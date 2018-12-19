@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>crm</title>
+    <!-- <script src="/static/pdf.worker.js"></script> -->
+  </head>
+  <body>
+    <div id="app">
+      
+    <keep-alive :max="3">
+        <router-view v-if="$route.meta.keepAlive" style="width:100%;height:100%;"></router-view>
+    </keep-alive>  
+
+        <router-view v-if="!$route.meta.keepAlive" style="width:100%;height:100%;"></router-view>
+        <!-- <router-view style="width:100%;height:100%;"></router-view> -->
+
+    </div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

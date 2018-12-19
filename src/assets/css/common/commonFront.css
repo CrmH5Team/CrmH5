@@ -1,0 +1,187 @@
+@import url("https://at.alicdn.com/t/font_651046_uhu8lmhfa5c.css");
+body {
+	font-size: 0.17rem;
+	line-height: 0.21rem;
+	touch-action: none;
+}
+
+header.mui-bar {line-height: 0.2rem;
+	background: #3cadf9;
+}
+
+header .mui-title,
+header a {
+	color: #fff;
+}
+
+a {
+	color: #3cadf9;
+}
+
+.mui-bar {
+	height: 0.88rem;
+}
+
+.mui-title {
+	line-height: 0.88rem;
+	font-size: 0.34rem;
+}
+
+/* .mui-bar .mui-icon {
+	font-size: 0.48rem;
+	width: 0.88rem;
+	text-align: center;
+	padding: 0.2rem 0;
+} */
+
+.mui-bar-nav~.mui-content {
+	padding-top: 0.88rem;
+	/*background: #fff;*/
+	padding-bottom: 0.88rem;
+}
+
+.mui-table-view-cell>a:not(.mui-btn).mui-active {
+	background-color: #fff
+}
+
+.mui-navigate-right:after,
+.mui-push-left:after,
+.mui-push-right:after {
+	color: #7f7f7f;
+	font-size: 0.3rem;
+}
+
+.calcfont {
+	vertical-align: middle;
+}
+
+
+/*列表共用*/
+
+.mui-table-view-cell:after,
+.mui-table-view:after,
+.mui-table-view:before {
+	left: 0;
+	background-color: #7f7f7f;
+}
+
+.mui-table-view-cell {
+	font-size: 0.25rem;
+}
+
+.mui-table-view-cell h2 {
+	font-size: 0.28rem;
+	font-weight: normal;
+	line-height: 1.2;
+}
+
+.mui-table-view-cell span {
+	font-size: 0.2rem;
+	color: #595959;
+	/*padding-top:0.1rem;*/
+}
+
+.mui-table-view-cell span.col1-right {
+	line-height: 0.5rem;
+}
+
+.listRL .mui-table-view-cell span{ width:35%;}
+.listRL .mui-table-view-cell h2{ width:60%;}
+/*线条距左15px*/
+
+.mui-table-viewsty02 .mui-table-view-cell:after,
+.mui-table-viewsty02 .mui-table-view:after,
+.mui-table-viewsty02 .mui-table-view:before {
+	left: 15px;
+	background-color: #7f7f7f;
+}
+
+.mui-table-viewsty02 .mui-table-view-cell>a:not(.mui-btn) {
+	padding: 0.33rem;
+}
+
+.mui-interval {
+	height: 10px;
+	background: #f2f2f2;
+}
+
+#FileAttr-aside {
+	opacity: 0;
+	transform: translateX(100%);
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.14);
+	padding: 20px 20px;
+	position: fixed;
+	background: #fff;
+	width: 80vw;
+	height: 100vh;
+	right: 0;
+	top: 0;
+	-webkit-transition: all 0.3s ease;
+	z-index: 2;
+	transition: all 0.3s ease;
+}
+
+#FileAttr-aside.active {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+#FileAttr-aside h2 {
+	text-transform: uppercase!important;
+	font-size: 0.28rem;
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+
+.FileAttrlist li {
+	position: relative;
+	padding: 10px 0;
+}
+
+.FileAttrlist li:after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 1px;
+	content: '';
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+}
+
+.FileAttrlist label {
+	display: block;
+	color: #595959;
+	list-style: none;
+	font-size: 0.24rem;
+	margin-bottom: 10px;
+}
+
+.FileAttrlist p {
+	min-height: 0.26rem;
+	margin-bottom: 0;
+	color: #333;
+	list-style: none;
+	font-size: 0.26rem;
+}
+
+.FileAttrlist {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.FileAttrlist {
+	list-style: none;
+}
+
+
+/*蓝: #3cadf9
+ * 黑 : #000
+ * 灰: #595959;
+  线： #7f7f7f
+  红： #fd3f3f
+  */
