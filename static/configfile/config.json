@@ -35,5 +35,6 @@
 	"CommonBaseData_Invok":"CommonBaseData/Invok",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000,
-	"mmm":"y123"
+  "mmm":"y123",
+  "alan":"alantest"
 }
