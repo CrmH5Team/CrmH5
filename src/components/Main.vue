@@ -54,79 +54,61 @@
 
         <div v-else class="list-view">
               <div class="month-event">
-                  <div class="date-div">2018-11-16 Thursday</div>
+                  <div class="date-div open" @click="groupToggle($event)">
+                      <span class="calcfont calc-richeng"></span>
+                      <span>2018-11-16 Thursday</span>
+                      <span class="right">(3)</span>
+                  </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
                   </div>
               </div>
               <div class="month-event">
-                  <div class="date-div">2018-12-16 Thursday</div>
+                  <div class="date-div open" @click="groupToggle($event)">
+                      <span class="calcfont calc-richeng"></span>
+                      <span>2018-12-16 Thursday</span>
+                      <span class="right">(1)</span>
+                  </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
+                      <div class="data-events-item">
+                          <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
+                          <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
+                          <div class="item-time">14:30-17:00</div>
+                      </div>
                   </div>
               </div>
-              <div class="month-event">
-                  <div class="date-div">2019-01-16 Thursday</div>
-                  <div class="occupy-div"></div>
-                  <div class="data-events">
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                  </div>
-              </div>
-              <div class="month-event">
-                  <div class="date-div">2019-02-16 Thursday</div>
-                  <div class="occupy-div"></div>
-                  <div class="data-events">
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                  </div>
-              </div>
-              <div class="month-event">
-                  <div class="date-div">2019-03-16 Thursday</div>
-                  <div class="occupy-div"></div>
-                  <div class="data-events">
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                      <p>456466123</p>
-                  </div>
-              </div>
+
 
         </div>
 
@@ -157,7 +139,7 @@
     </div>
 
     <!--  点击 + 号弹出层 -->
-    <div class="xuanfo-zhegai">
+    <div @click="hiddenModule()" class="xuanfo-zhegai">
 			<div class="calendar xuanfo">
 				<div class="calendar-wendi xuanfo-wendi">Calendar</div>
 				<div class="calendar-icon xuanfo-icon">
@@ -384,8 +366,9 @@ export default {
                 btnArray)
         },
 
-
+        //点击悬浮的+号
         addModule:function(e){
+            var _self = this;
             var el = e.target;
             if($(el).hasClass('calc-jiahao')){
                 $(el).removeClass('calc-jiahao').addClass('calc-folds');
@@ -404,27 +387,44 @@ export default {
                   }, 200)
                 })
 
+                $('.xuanfo-zhegai').on("touchmove", function(e) {
+                  e.stopPropagation();
+                  e.preventDefault();
+                });
+
             }else{
-                $(el).removeClass('calc-folds').addClass('calc-jiahao');
-                // $('.xuanfo-zhegai').hide(0.6);
-                $(".xuanfo-btn").each(function() {
-                  $(this).stop().animate({
-                    height: 0,
-                    width: 0
-                  }, 200);
-                })
-                $(".xuanfo-wendi").each(function() {
-                  $(this).stop().animate({
-                    right: "85px"
-                  }, 200, function() {
-                    $(this).fadeOut(100);
-                    $(".xuanfo-zhegai").fadeOut(200);
-                  });
-
-                })
+                _self.hiddenModule(el);
             }
+        },
+        hiddenModule:function(el){
+            if(el === undefined) el = $('.xuanfo-xiaoyuan span');
+            $(el).removeClass('calc-folds').addClass('calc-jiahao');
+              $(".xuanfo-btn").each(function() {
+                $(this).stop().animate({
+                  height: 0,
+                  width: 0
+                }, 200);
+              })
+              $(".xuanfo-wendi").each(function() {
+                $(this).stop().animate({
+                  right: "85px"
+                }, 200, function() {
+                  $(this).fadeOut(100);
+                  $(".xuanfo-zhegai").fadeOut(200);
+                });
 
-            // $('el')
+            })
+        },
+
+
+        //点击分组收起展开
+        groupToggle:function(e){
+            var el = e.target;
+            if($(el).hasClass('open')){
+                $(el).removeClass('open').siblings('.data-events').hide(0.2);
+            }else{
+                $(el).addClass('open').siblings('.data-events').show(0.2);
+            }
         }
 
 
