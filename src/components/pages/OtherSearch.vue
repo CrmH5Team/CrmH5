@@ -165,8 +165,8 @@ input[type="checkbox"] + .checkbox-style {
 
 <script>
 
-import Header from './common/Header'
-import Calendar from './pages/Calendar'
+import Header from '../common/Header'
+import Calendar from '../pages/Calendar'
 // import event from './common/Event.js'
 export default {
     components:{
