@@ -3,6 +3,8 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
+import OtherSearch from '@/components/pages/OtherSearch'
+
 
 import Opportunities from '@/components/pages/Opportunities'
 import Opportunitiesinfo from '@/components/pages/Opportunitiesinfo'
@@ -42,6 +44,13 @@ const router =  new Router({
         isBack:false
       }
     },
+
+    { path: '/otherSearch',name:'otherSearch',component: OtherSearch,
+    meta: {
+      keepAlive: true,
+      isBack:false
+    }
+  },
 
 
     {
