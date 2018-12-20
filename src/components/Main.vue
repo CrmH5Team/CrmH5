@@ -34,8 +34,6 @@
                   <p class="weui-grid__label lanText" data-lanid="173_销售机会"></p>
                 </router-link>
             </div>
-
-
             <div class="weui-grid">
                 <router-link to="/contacts" class="js_grid">
                   <div class="weui-grid__icon soon-icon">
@@ -45,9 +43,12 @@
                 </router-link>
             </div>
 
+            <div id="trip" class="trip">Trip & Schedule</div>
         </div>
-        <div id="trip" class="trip">Trip & Schedule</div>
         <div class="occupy-position"></div>
+
+
+
 
         <calendar v-if="showCalendar"></calendar>
 
@@ -71,7 +72,49 @@
                   </div>
               </div>
               <div class="month-event">
-                  <div class="date-div">2018-11-16 Thursday</div>
+                  <div class="date-div">2018-12-16 Thursday</div>
+                  <div class="occupy-div"></div>
+                  <div class="data-events">
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                  </div>
+              </div>
+              <div class="month-event">
+                  <div class="date-div">2019-01-16 Thursday</div>
+                  <div class="occupy-div"></div>
+                  <div class="data-events">
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                  </div>
+              </div>
+              <div class="month-event">
+                  <div class="date-div">2019-02-16 Thursday</div>
+                  <div class="occupy-div"></div>
+                  <div class="data-events">
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                      <p>456466123</p>
+                  </div>
+              </div>
+              <div class="month-event">
+                  <div class="date-div">2019-03-16 Thursday</div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
                       <p>456466123</p>
@@ -90,7 +133,8 @@
 
     </div>
 
-    <div class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+    <!--  右侧侧滑 -->
+    <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
     <div id="right-content" class="right-content">
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
@@ -112,8 +156,48 @@
         </div>
     </div>
 
+    <!--  点击 + 号弹出层 -->
+    <div class="xuanfo-zhegai">
+			<div class="calendar xuanfo">
+				<div class="calendar-wendi xuanfo-wendi">Calendar</div>
+				<div class="calendar-icon xuanfo-icon">
+					<div class="calendar-btn xuanfo-btn" data-btn="calendar">
+						<span class="icon mui-icon calcfont calc-rili"></span>
+					</div>
+				</div>
+			</div>
+			<div class="organization xuanfo">
+				<div class="organization-wendi xuanfo-wendi">organization</div>
+				<div class="organization-icon xuanfo-icon">
+					<div class="organization-btn xuanfo-btn" data-btn="organization">
+						<span class="icon mui-icon calcfont calc-kehu"></span>
+					</div>
+				</div>
+			</div>
+			<div class="contact xuanfo">
+				<div class="contact-wendi xuanfo-wendi">contact</div>
+				<div class="contact-icon xuanfo-icon">
+					<div class="contact-btn xuanfo-btn" data-btn="contact">
+						<span class="icon mui-icon calcfont calc-lianxiren1"></span>
+					</div>
+				</div>
+			</div>
+			<div class="opportunity xuanfo">
+				<div class="opportunity-wendi xuanfo-wendi">opportunity</div>
+				<div class="opportunity-icon xuanfo-icon">
+					<div class="opportunity-btn xuanfo-btn" data-btn="opportunity">
+						<span class="icon mui-icon calcfont calc-jihui"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="xuanfo-xiaoyuan">
+			<span @click="addModule($event)" class="calcfont calc-jiahao"></span>
+		</div>
+
 </div>
 </template>
+
 
 <style>
 
@@ -163,11 +247,14 @@ input[type="checkbox"] + .checkbox-style {
 </style>
 
 
+
+
 <script>
 
 import Header from './common/Header'
 import Calendar from './pages/Calendar'
-// import event from './common/Event.js'
+// import '@/assets/css/pages/main.css'
+
 export default {
     components:{
         'Header':Header,
@@ -175,7 +262,7 @@ export default {
     },
     data(){
         return {
-            showCalendar:true,
+            showCalendar:false,
             showRightPanel:false,
             title:'CRM',
             userName:'',
@@ -190,42 +277,51 @@ export default {
         //列表视图滚动
         var headerH = parseFloat($('header').innerHeight());
 				var searchH = parseFloat($("#searchBtn").innerHeight())+20;
-				var navH = parseFloat($('#nav').innerHeight());
-        var tipH = parseFloat($('#trip').innerHeight());
-        $('#page-content').scroll(function(){
+        var navH = parseFloat($('#nav').innerHeight());
 
+        $('#page-content').scroll(function(){
             var scrollTop = $(this).scrollTop();
             if(scrollTop >= searchH){
-              $("#nav").css({
-                "position":"fixed","top":headerH + 'px',
-                 "-webkit-transform":"translate3d(0,0,0)",
-                 "transform":"translate3d(0,0,0)",
-                 "background-attachment":"fixed",
-              });
-              $('#trip').css({
-                "position":"fixed","top": headerH + navH + 'px',
-                "-webkit-transform":"translate3d(0,0,0)",
-                "transform":"translate3d(0,0,0)",
-                "background-attachment":"fixed",
-              });
-              $('.occupy-position').css({'height':navH + tipH +'px'}).show();
 
-
+              if(tool.getSystem() === 'ios'){
+                  $("#nav").addClass('sticky');
+              }else{
+                  $("#nav").css({
+                    "position":"fixed","top":headerH + 'px',
+                    // "-webkit-transform":"translate3d(0,0,0)",
+                    // "transform":"translate3d(0,0,0)",
+                    // "background-attachment":"fixed",
+                  });
+                  $('.occupy-position').css({'height':navH + 'px'}).show();
+              }
             }else{
-              $('.occupy-position').css({'height':'0px'}).hide();
-              $("#nav,#trip").css({"position":"static"});
+                if(tool.getSystem() === 'ios'){
+                    $("#nav").removeClass('sticky');
+                }else{
+                    $('.occupy-position').css({'height':'0px'}).hide();
+                    $("#nav").css({"position":"static"});
+                }
 
             }
 
+            if($('.month-event').length <= 0) return ;
             $('.month-event').each(function(){
+              if($(this).position().top <= navH ){
 
-              // if($(this).position().top <= (navH + tipH)){
-              //   $(this).find('.date-div').css({"position":"fixed","top":(navH + tipH) + 'px'});
-              //   $(this).find('.occupy-div').show();
-              // }else{
-              //   $(this).find('.date-div').css({"position":"static"});
-              //   $(this).find('.occupy-div').hide();
-              // }
+                  if(tool.getSystem() === 'ios'){
+                      $(this).find(".date-div").addClass('sticky').css({"top":navH + 'px'});
+                  }else{
+                      $(this).find('.date-div').css({"position":"fixed","top":(navH + headerH) + 'px'});
+                      $(this).find('.occupy-div').show();
+                  }
+              }else{
+                  if(tool.getSystem() === 'ios'){
+                      $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
+                  }else{
+                      $(this).find('.date-div').css({"position":"static"});
+                      $(this).find('.occupy-div').hide();
+                  }
+              }
 
             })
 
@@ -239,23 +335,26 @@ export default {
           var _self = this;
             _self.showRightPanel = !_self.showRightPanel;
             if(_self.showRightPanel){
-                $('#right-content').show().css({
+                $('#right-content').css({
                     'left':'30%',
-                    'transition':'left 1.2s',
-                    '-moz-transition': 'left 1.2s',
-                    '-webkit-transition':'left 1.2s',
-                    '-o-transition': 'left 1.2s'
+                    'transition':'left 0.1s ease-out',
+                    '-moz-transition': 'left 0.1s ease-out',
+                    '-webkit-transition':'left 0.1s ease-out',
+                    '-o-transition': 'left 0.1s ease-out'
                 })
+                $('#mask,#right-content').on("touchmove", function(e) {
+                  e.stopPropagation();
+                  e.preventDefault();
+                });
             }else{
                 $('#right-content').css({
                     'left':'100%',
-                    'transition':'left 1s',
-                    '-moz-transition': 'left 1s',
-                    '-webkit-transition':'left 1s',
-                    '-o-transition': 'left 1s'
-                }).hide();
+                    'transition':'left 0.3s ease-out',
+                    '-moz-transition': 'left 0.3s ease-out',
+                    '-webkit-transition':'left 0.3s ease-out',
+                    '-o-transition': 'left 0.3s ease-out'
+                });
             }
-
 
         },
         // handleMaskClick:function(){
@@ -283,12 +382,55 @@ export default {
                     //no
                 },
                 btnArray)
+        },
+
+
+        addModule:function(e){
+            var el = e.target;
+            if($(el).hasClass('calc-jiahao')){
+                $(el).removeClass('calc-jiahao').addClass('calc-folds');
+                $('.xuanfo-zhegai').show(0.6);
+
+                $(".xuanfo-btn").each(function() {
+                  $(this).stop().animate({
+                    height: "50px",
+                    width: "50px"
+                  }, 200);
+                })
+                $(".xuanfo-wendi").each(function() {
+                  $(this).fadeIn(100);
+                  $(this).stop().animate({
+                    right: "110px"
+                  }, 200)
+                })
+
+            }else{
+                $(el).removeClass('calc-folds').addClass('calc-jiahao');
+                // $('.xuanfo-zhegai').hide(0.6);
+                $(".xuanfo-btn").each(function() {
+                  $(this).stop().animate({
+                    height: 0,
+                    width: 0
+                  }, 200);
+                })
+                $(".xuanfo-wendi").each(function() {
+                  $(this).stop().animate({
+                    right: "85px"
+                  }, 200, function() {
+                    $(this).fadeOut(100);
+                    $(".xuanfo-zhegai").fadeOut(200);
+                  });
+
+                })
+            }
+
+            // $('el')
         }
 
 
     },
     beforeDestroy:function(){
-       eventBus.$off('showDrawer');
+       eventBus.$off('showRightPanel');
     }
 
 
@@ -296,140 +438,6 @@ export default {
 </script>
 
 <style scoped>
-.header{position:fixed;width:100%;top:0;left:0;z-index:9;}
-.page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;}
-.occupy-position{display: none;}
-
-/*列表视图*/
-.list-view{}
-.date-div{
-  height: 30px;line-height: 30px;background:#ebf9fd;padding:0 10px;font-size: 12px;
-  width: 100%;
-  box-sizing: border-box;
-}
-.occupy-div{height:30px;display:none;}
-.data-events{padding: 0 10px;}
-.data-events p{height: 50px;line-height: 50px;}
-
-
-/*右侧style*/
-.mask{position:fixed;top:0;left:0;bottom:0;right:0;background: rgba(0, 0, 0, 0.1);z-index:99;}
-.right-content{
-    position: absolute;left:100%; width: 70%;
-    top: 0;bottom: 0; z-index: 100;padding-top:20px;
-    display: none;
-    background-color: #FFFFFF;
-}
-
-.right-block-title{height:32px;line-height:32px;background:#ecf7fb;padding-left:10px;font-size: 0.3rem;}
-
-
-
-/*搜索框*/
-.search{
-    margin: 10px 10px;
-    border-radius: 5px;
-    padding-left: 10px;
-    background-color: gainsboro;
-    height: 34px;
-    line-height: 34px;
-}
-.search-icon{
-    font-size: 20px !important;    color: gray;
-}
-.search-label{    color: gray; }
-
-
-/*nav 导航*/
-.weui-grids{
-  background: #fff;
-  width: 100%;
-}
-.weui-grid{
- text-align: center;
- padding:10px;
- width:25%;
-}
-.js_grid{
-  display: inline-block;padding: 10px 0;
-}
-.weui-grid:before{
-  border-right:0;
-}
-.weui-grid:after{
-  border-bottom:0;
-}
-.weui-grid__icon{
-  border-radius:5px;
-  width:0.9rem;
-  height:0.9rem;
-  line-height: 0.9rem;
-  display: inline-block;
-  margin: 0 auto;
-}
-.jihui-icon{
-  background: #3E9DFB;
-}
-.kehu-icon{
-  background: #FF5A21;
-}
-.lianxiren1-icon{
-  background: #2A79C8;
-}
-.soon-icon{
-  background:gray;
-}
-.weui-grid__label{
-  font-size: 0.25rem;
-  height: 0.5rem;line-height: 0.5rem;
-}
-.weui-grid .calcfont{
-  font-size: 0.5rem;
-  color:#fff;
-}
-/*nav 导航  ---------end---------*/
-
-.trip{
-    padding: 10px 10px;width:100%;box-sizing: border-box;
-    line-height:20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* .drawer-content .weui-cells{margin-top: 0;} */
-/*
-.weui-cell__hd{
-  margin-right: 0.2rem;
-}
-.weui-cell__bd{font-size:0.2rem;}
-
-.weui-cells{ padding:0;position: relative;}
-.weui-cells:after{ border:0;}
-.weui-cells:before{ color:#7f7f7f; background:#7f7f7f;}
-.weui-cell_access{position:relative;}
-.weui-cell_access:after{
-    content: " "; position: absolute;
-    left: 0; right: 0; bottom:0;
-    height: 1px; background: #7f7f7f; z-index: 2;
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
-}
-*/
-
-/* .weui-cell{padding:13px 15px;} */
-/* .main-weui-cell{padding:7px 15px;}
-.drawer-weui-cell{padding:10px 15px;}
-.drawer-weui-cell .calcfont{font-size: 0.5rem;color:#3cadf9;}
-.drawer-weui-cell .weui-cell__bd{font-size: 0.3rem;} */
+ @import "../assets/css/pages/main.css";
 </style>
-
 
