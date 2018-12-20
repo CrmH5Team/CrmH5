@@ -90,8 +90,8 @@
 
     </div>
 
-    <div class="mask" v-show="showRightPanel"></div>
-    <div class="right-content">
+    <div class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+    <div id="right-content" class="right-content">
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
         </div>
@@ -175,7 +175,7 @@ export default {
     },
     data(){
         return {
-            showCalendar:false,
+            showCalendar:true,
             showRightPanel:false,
             title:'CRM',
             userName:'',
@@ -185,7 +185,7 @@ export default {
     mounted:function(){
         lanTool.updateLanVersion();
         // this.userName = tool.getStorageItem(tool.cache_UserRealName);
-        eventBus.$on('showRightPanel',this.showPanel);
+        eventBus.$on('showRightPanel',this.panelToggle);
 
         //列表视图滚动
         var headerH = parseFloat($('header').innerHeight());
@@ -235,11 +235,27 @@ export default {
 
     },
     methods:{
-        showPanel:function(){
+        panelToggle:function(){
           var _self = this;
             _self.showRightPanel = !_self.showRightPanel;
+            if(_self.showRightPanel){
+                $('#right-content').show().css({
+                    'left':'30%',
+                    'transition':'left 1.2s',
+                    '-moz-transition': 'left 1.2s',
+                    '-webkit-transition':'left 1.2s',
+                    '-o-transition': 'left 1.2s'
+                })
+            }else{
+                $('#right-content').css({
+                    'left':'100%',
+                    'transition':'left 1s',
+                    '-moz-transition': 'left 1s',
+                    '-webkit-transition':'left 1s',
+                    '-o-transition': 'left 1s'
+                }).hide();
+            }
 
-            // $('.right-content').css({})
 
         },
         // handleMaskClick:function(){
@@ -298,7 +314,7 @@ export default {
 
 
 /*右侧style*/
-.mask{position:fixed;top:0;left:0;bottom:0;right:0;background: rgba(0, 0, 0, 0.1);z-index:99;display:none;}
+.mask{position:fixed;top:0;left:0;bottom:0;right:0;background: rgba(0, 0, 0, 0.1);z-index:99;}
 .right-content{
     position: absolute;left:100%; width: 70%;
     top: 0;bottom: 0; z-index: 100;padding-top:20px;

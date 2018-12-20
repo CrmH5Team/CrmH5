@@ -36,51 +36,56 @@ const router =  new Router({
     { path: '/',name:'login', component: Login },
     { path: '/login',name:'login', component: Login },
 
-    { path: '/main', component: Main },
-    
+    { path: '/main',name:'main',component: Main,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
 
-    { 
+
+    {
       path:'/opportunities',name:'opportunities',component:Opportunities,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      }  
+      }
     },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
       meta: {
-        keepAlive: true, 
+        keepAlive: true,
         isBack:false,
-        fromSave:false,  //当在文件上传保存后回到详情页面刷新 
-      } 
+        fromSave:false,  //当在文件上传保存后回到详情页面刷新
+      }
     },
     { path:'/previewfile',name:'previewfile',component:Previewfile},
 
     { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
-      }
-    },
-    
-
-
-
-    
-    { path:'/organizations',name:'organizations',component:Organizations,
-      meta: {
         keepAlive: true,
-        isBack:false, 
-        fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      } 
-    },
-    { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
-      meta: {
-        keepAlive: true, 
         isBack:false,
       }
     },
-  
+
+
+
+
+
+    { path:'/organizations',name:'organizations',component:Organizations,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+        fromSave:false,  //当在详情页面保存后回到列表页面刷新
+      }
+    },
+    { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+      }
+    },
+
 
 
 
@@ -89,19 +94,19 @@ const router =  new Router({
 
     { path:'/contacts',name:'contacts',component:Contacts,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      } 
+      }
     },
     { path:'/contactsinfo/:id',name:'contactsinfo',component:Contactsinfo,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
       }
     },
 
-    
+
 
 
     { path:'/about',component:About},
@@ -111,31 +116,31 @@ const router =  new Router({
     //报表
     { path:'/report',name:'report',component:Report,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
       }
     },
 
     //日程
     { path:'/calendar',name:'calendar',component:Calendar,
       meta: {
-        keepAlive: true, 
+        keepAlive: true,
         isBack:false,
         fromSave:false,  //当在详情页面保存后回到日历页面刷新
-      } 
+      }
     },
 
     { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      } 
+      }
     },
     { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Calendarinfo,
       meta: {
-        keepAlive: true, 
-        isBack:false, 
+        keepAlive: true,
+        isBack:false,
       }
     },
 
@@ -149,7 +154,7 @@ const router =  new Router({
 
 router.beforeEach(function(to, from, next){
 
-    
+
     var sessionName = tool.getStorageItem(tool.cache_SessionName);
     if(sessionName){
       // if(to.path == '/login'){
