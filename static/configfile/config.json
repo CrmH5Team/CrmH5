@@ -34,6 +34,5 @@
 	"AppVersion_IsLatestVersion":"AppVersion/IsLatestVersion",
 	"CommonBaseData_Invok":"CommonBaseData/Invok",
 	"currentLanguageVersion":"",
-	"refreshSessionTime":1200000,
-	"fff":"f"
+	"refreshSessionTime":1200000
 }
