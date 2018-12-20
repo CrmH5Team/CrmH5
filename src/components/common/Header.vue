@@ -3,7 +3,7 @@
 <div>
     <header class="mui-bar mui-bar-nav">
 
-          <a v-if="isMain" @click="showDrawer" class="calcfont calc-liebiao2 left "></a>
+          <a v-if="isMain" @click="showRightPanel" class="calcfont calc-liebiao2 right"></a>
 
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
@@ -37,8 +37,8 @@ export default {
         },
 
         //首页就显示侧滑
-        showDrawer:function(){
-            eventBus.$emit('showDrawer');
+        showRightPanel:function(){
+            eventBus.$emit('showRightPanel');
         }
 
     }
@@ -53,7 +53,7 @@ header.mui-bar {
 	background: #3cadf9;
 }
 .mui-title {
-	    right: 40px;
+	right: 40px;
     left: 40px;
     display: inline-block;
     overflow: hidden;

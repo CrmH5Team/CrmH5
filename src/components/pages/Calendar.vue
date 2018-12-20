@@ -1,8 +1,5 @@
 <template>
 <div>
-        <Header></Header>
-
-
         <div class="calendar">
             <div id="inline-calendar"></div>
             <div class="weui-cells weui-cells_form">
@@ -44,11 +41,8 @@
 
 <script>
 
-import Header from '../common/Listheader'
+
 export default {
-    components:{
-       Header
-      },
     data(){
         return {
            dateEvents:[],//一天中事件数据
@@ -72,7 +66,7 @@ export default {
         next();
     },
     activated:function(){
-        
+
         if(!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave){
             this.initCalendar();
         }
@@ -122,7 +116,7 @@ export default {
                 value:[ (new Date()).FormatNew('yyyy-MM-dd')], //默认选择的日期
                 onChange: function(p, values, displayValues) {
                 },
-                onDayClick:function(p, dayContainer, year, month, day){ 
+                onDayClick:function(p, dayContainer, year, month, day){
                     month = parseInt(month) + 1;
                     var dateStr = year + "-" + month + "-" +day;
                     $this.getEventsByDate(dateStr);
@@ -152,7 +146,7 @@ export default {
             //清空列表数据
             // $(".calendarDataListUl").empty();
 
-            //请求地址 
+            //请求地址
             var urlTemp =
                 tool.combineRequestUrl(
                     tool.getConfigValue(tool.config_ajaxUrl),
@@ -177,7 +171,7 @@ export default {
                 },
                 dataType: 'json',
                 success: function(data) {
-                    
+
                     //数据渲染
                     loading.hidden();
                     if(data.Result != 1) {
@@ -187,7 +181,7 @@ export default {
 
                     var dateArray = data.Data || [];
                         if(dateArray.length<=0){
-                            return;	
+                            return;
                         }
 
                     //写入样式
@@ -206,11 +200,11 @@ export default {
 
                     //判断当前的日历视图中是否有激活的天，若有，则执行getEventsByDate
                     var selectedDayObj = $("div.picker-calendar-day-selected:first");
-                    
+
                     if(!selectedDayObj){
                         return;
                     }
-                    
+
                     var year = selectedDayObj.attr("data-year") ||"";
                     var month = selectedDayObj.attr("data-month") ||"";
                     var day = selectedDayObj.attr("data-day") ||"";
@@ -218,7 +212,7 @@ export default {
                         return;
                     }
                     month = parseInt(month)+1;
-                    
+
                     var dateStr = year + "-" + month + "-" +day;
                     $this.getEventsByDate(dateStr);
                 },
@@ -228,21 +222,21 @@ export default {
                 }
             });
 
-        },   
+        },
 
         //根据指定的年月日，返回事件列表
         getEventsByDate:function(currentDate){
-            
+
                 var $this = this;
                 if(!currentDate){
                     return ;
                 }
-        
+
                 //写入当前时间
                 $this.date = currentDate;
                 $this.week = tool.getWeekDayStr(currentDate);
 
-                //请求地址 
+                //请求地址
                 var urlTemp =
                     tool.combineRequestUrl(
                         tool.getConfigValue(tool.config_ajaxUrl),
@@ -255,8 +249,8 @@ export default {
                     "TimeZoneValue": tool.getStorageItem(tool.cache_TimeZoneValue) || "",
                     "Date":currentDate
                 };
-                
-                $this.dateEvents = [];   
+
+                $this.dateEvents = [];
 
                 loading.show(3,lanTool.lanContent("172_加载中..."));
                 $.ajax({
@@ -268,19 +262,19 @@ export default {
                     },
                     dataType: 'json',
                     success: function(data) {
-                        
+
                         //数据渲染
                         loading.hidden();
                         if(data.Result != 1) {
                             toast.show(data.Msg);
                             return;
                         }
-                        
+
                         $this.dateEvents = data.Data || [];
 
                         if($this.dateEvents.length<=0){
                             $this.hasEvents = false;
-                            return;	
+                            return;
                         }else{
                             $this.hasEvents = true;
                         }
@@ -294,7 +288,7 @@ export default {
         }
     }
 
-    
+
 }
 </script>
 
@@ -316,7 +310,7 @@ export default {
 
 
 <style scoped>
-.calendar{position:fixed;top:0.88rem;bottom:0;left:0;right:0;overflow-y: scroll;
+.calendar{/*position:fixed;top:0.88rem;bottom:0;left:0;right:0;*/overflow-y: scroll;
 -webkit-overflow-scrolling:touch;}
 .weui-cells{margin-top: 0!important;font-size: 16px!important;background-color:#efeff4!important;}
 
