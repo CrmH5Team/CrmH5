@@ -71,8 +71,6 @@
             <div class="sure-btn">OK</div>
         </div>
     </div>
-
-</div>
 </template>
 
 <style>
@@ -175,5 +173,8 @@ export default {
             title: 'Other Search',
         }
     },
+
+
+
 }
 </script>
