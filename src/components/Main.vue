@@ -4,7 +4,7 @@
     <Header class="header" :title="title"></Header>
 
     <div id="page-content" class="page-content">
-        <div class="search" id="searchBtn">
+        <div @click="goSearch" class="search" id="searchBtn">
           <span class="search-icon mui-icon calcfont calc-sousuo"></span>
           <label class="search-label">Search</label>
         </div>
@@ -417,6 +417,10 @@ export default {
             }else{
                 $(el).addClass('open').siblings('.data-events').show(0.2);
             }
+        },
+
+        goSearch:function(){
+            this.$router.push('/search');
         }
 
 

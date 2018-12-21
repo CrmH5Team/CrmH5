@@ -17,7 +17,6 @@ import './assets/weui/js/jquery-weui'
 
 import '@/assets/weui/js/swiper.js'
 
-
 import './assets/js/common/RootFontSize'
 
 import './assets/css/common/common.css'
@@ -27,6 +26,10 @@ import './assets/js/common/common'
 import './assets/js/common/CommonFront'
 
 import eventBus from './components/common/Event.js'
+
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 
 window.eventBus = eventBus;
 
@@ -60,7 +63,7 @@ new Vue({
       lastTouchEnd=now;
   },false)
   */
- //iOS 里有一组双指手势操作的事件：gesturestart、gesturechange、gestureend 
+ //iOS 里有一组双指手势操作的事件：gesturestart、gesturechange、gestureend
 document.addEventListener('gesturestart', function (event) {
     event.preventDefault();
 })
