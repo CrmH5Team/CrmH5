@@ -129,7 +129,7 @@ label.checkbox-label .checkbox {
     background: #FFFFFF;
     border: 1px solid #FF5A21;
     border-radius: 2px;
-    vertical-align: -2px;
+    vertical-align: middle;
     overflow: hidden;
 }
 label.checkbox-label input:checked + .checkbox {
@@ -184,7 +184,7 @@ label.radios-label .radios {
     background: #FFFFFF;
     border: 1px solid #2A79C8;
     border-radius: 50%;
-    vertical-align: -2px;
+    vertical-align: middle;
 }
 label.radios-label input:checked + .radios {
     background:#2A79C8;

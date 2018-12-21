@@ -120,49 +120,47 @@
     <div id="right-content" class="right-content">
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
-            <div>
-                <div>
+            <div class="right-block-items">
+                <div class="radios-div">
                       <label class="radios-label">
                           <input type="radio" name="view"/><i class="radios"></i><span>alendar View 日历视图</span>
                       </label>
                 </div>
-                <div>
+                <div class="radios-div">
                       <label class="radios-label">
                           <input type="radio" name="view"/><i class="radios"></i> <span>List View 列表视图</span>
                       </label>
                 </div>
             </div>
-
-
         </div>
         <div class="right-content-block">
             <div class="right-block-title">Data Filter 数据筛选</div>
-            <div>
-                <div>
+            <div class="right-block-items">
+                <div class="checkbox-div">
                       <label class="checkbox-label">
                           <input type="checkbox" name="sex"/><i class="checkbox"></i>
                           <span>My Calendar我的日程</span>
                       </label>
                 </div>
-                <div>
+                <div class="checkbox-div">
                       <label class="checkbox-label">
                           <input type="checkbox" name="sex"/><i class="checkbox"></i>
                           <span>Visiable Calendar(From Others Shared)</span>
                       </label>
                 </div>
-                <div>
+                <div class="checkbox-div">
                       <label class="checkbox-label">
                           <input type="checkbox" name="sex"/><i class="checkbox"></i>
                           <span>From My Direct Team Member</span>
                       </label>
                 </div>
-                <div>
+                <div class="checkbox-div">
                       <label class="checkbox-label">
                           <input type="checkbox" name="sex"/><i class="checkbox"></i>
                           <span>From My All Team Member</span>
                       </label>
                 </div>
-                <div>
+                <div class="checkbox-div">
                       <label class="checkbox-label">
                           <input type="checkbox" name="sex"/><i class="checkbox"></i>
                           <span>PR Calendar</span>
@@ -172,6 +170,12 @@
         </div>
         <div class="right-content-block">
             <div class="right-block-title">Other 其他</div>
+            <div class="right-block-items">
+                <div class="other-search" id="OtherSearchBtn">
+                    <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
+                    <label class="other-search-label">Search</label>
+                </div>
+            </div>
         </div>
     </div>
 
