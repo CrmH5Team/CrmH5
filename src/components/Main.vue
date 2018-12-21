@@ -120,17 +120,54 @@
     <div id="right-content" class="right-content">
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
+            <div>
+                <div>
+                      <label class="radios-label">
+                          <input type="radio" name="view"/><i class="radios"></i><span>alendar View 日历视图</span>
+                      </label>
+                </div>
+                <div>
+                      <label class="radios-label">
+                          <input type="radio" name="view"/><i class="radios"></i> <span>List View 列表视图</span>
+                      </label>
+                </div>
+            </div>
+
+
         </div>
         <div class="right-content-block">
             <div class="right-block-title">Data Filter 数据筛选</div>
             <div>
-                <label class="checkbox">
-
-                    <input type="checkbox" name="check" >
-                    <span class="checkbox-style"></span>
-
-                    <span class="margin-r">custom size</span>
-                </label>
+                <div>
+                      <label class="checkbox-label">
+                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <span>My Calendar我的日程</span>
+                      </label>
+                </div>
+                <div>
+                      <label class="checkbox-label">
+                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <span>Visiable Calendar(From Others Shared)</span>
+                      </label>
+                </div>
+                <div>
+                      <label class="checkbox-label">
+                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <span>From My Direct Team Member</span>
+                      </label>
+                </div>
+                <div>
+                      <label class="checkbox-label">
+                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <span>From My All Team Member</span>
+                      </label>
+                </div>
+                <div>
+                      <label class="checkbox-label">
+                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <span>PR Calendar</span>
+                      </label>
+                </div>
             </div>
         </div>
         <div class="right-content-block">

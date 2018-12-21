@@ -21,7 +21,7 @@ html,body{
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
-    
+
 }
 body{ font-size: 0.17rem; line-height: 0.21rem;font-family: "微软雅黑" arial;font-family: "微软雅黑" arial;
 background: #efeff4;}
@@ -79,7 +79,7 @@ input[type=text]::-webkit-inner-spin-button,input[type=text]::-webkit-outer-spin
 
 .picker{box-sizing: border-box;width: 100%;height:40px;border:0;padding-right:30px;
 background:none;
-outline: none; 
+outline: none;
 -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
@@ -100,3 +100,115 @@ outline: none;
 .weui-picker-container-visible{background: rgba(0,0,0,0.2);height: 100%;top:0;}
 
 .picker-items-col-divider{font-size:0.5rem!important;padding: 0 6px;}
+
+
+
+/* checkbox
+
+<label class="checkbox-label">
+    <input type="checkbox" name="sex"/><i class="checkbox"></i> 男
+</label>
+<label class="checkbox-label">
+    <input type="checkbox" disabled name="sex"/><i class="checkbox"></i> 女
+</label>
+*/
+label.checkbox-label{padding:0;margin:0;}
+label.checkbox-label input{
+    position: absolute;
+    visibility: hidden;
+    width:0px;height: 0px;
+    opacity: 0;
+    padding:0;margin:0;box-sizing: border-box;
+}
+label.checkbox-label .checkbox {
+    display: inline-block;
+    position: relative;
+    padding:0;margin:0;box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    background: #FFFFFF;
+    border: 1px solid #FF5A21;
+    border-radius: 2px;
+    vertical-align: -2px;
+    overflow: hidden;
+}
+label.checkbox-label input:checked + .checkbox {
+    background: #FF5A21;
+    border: 1px solid #FF5A21;
+}
+label.checkbox-label  input:checked + .checkbox:after {
+    content: " ";
+    width: 12px;
+    height: 6px;
+    border:2px solid #fff;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transform: rotate(-45deg);
+    pointer-events:none;
+    -webkit-clip-path: inset(3px 3px 0px 0px);
+    clip-path: inset(3px 3px 0px 0px);
+}
+/*禁止状态的radios*/
+label.checkbox-label input:disabled + .checkbox {
+    background-color: #e8e8e8;
+    border: solid 1px #979797;
+}
+label.checkbox-label input:disabled:checked + .checkbox:after {
+    color: #c1c1c1;
+}
+
+
+
+/* radio */
+/*
+<label class="radios-label">
+    <input type="radio" name="sex"/><i class="radios"></i> 男
+</label>
+<label class="radios-label">
+    <input type="radio" name="sex"/><i class="radios"></i> 女
+</label>
+*/
+label.radios-label{padding:0;margin:0;}
+label.radios-label input {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+label.radios-label .radios {
+    display: inline-block;
+    position: relative;
+    padding:0;margin:0;box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    background: #FFFFFF;
+    border: 1px solid #2A79C8;
+    border-radius: 50%;
+    vertical-align: -2px;
+}
+label.radios-label input:checked + .radios {
+    background:#2A79C8;
+    border: 1px solid #2A79C8;
+}
+label.radios-label input:checked + .radios:after {
+    content: " ";
+    width: 12px;
+    height: 6px;
+    border:2px solid #fff;
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    transform: rotate(-45deg);
+    pointer-events:none;
+    -webkit-clip-path: inset(3px 3px 0px 0px);
+    clip-path: inset(3px 3px 0px 0px);
+}
+/*禁止状态的radios*/
+label.radios-label input:disabled + .radios {
+    background-color: #e8e8e8;
+    border: solid 1px #979797;
+}
+label.radios-label input:disabled:checked + .radios:after {
+    background-color: #c1c1c1;
+}
+
