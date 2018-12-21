@@ -4,8 +4,6 @@ import Router from 'vue-router'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
 import Search from '@/components/pages/Search'
-import SingleSelectList from '@/components/pages/SingleSelectList'
-
 
 import Opportunities from '@/components/pages/Opportunities'
 import Opportunitiesinfo from '@/components/pages/Opportunitiesinfo'
@@ -53,12 +51,6 @@ const router =  new Router({
       }
     },
 
-    { path: '/singleSelectList',name:'singleSelectList',component: SingleSelectList,
-      meta: {
-        keepAlive: true,
-        isBack:false
-      }
-    },
 
     {
       path:'/opportunities',name:'opportunities',component:Opportunities,
