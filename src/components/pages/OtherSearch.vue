@@ -71,8 +71,6 @@
             <div class="sure-btn">OK</div>
         </div>
     </div>
-
-</div>
 </template>
 
 <style>
