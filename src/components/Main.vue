@@ -222,55 +222,6 @@
 </template>
 
 
-<style>
-
-input[type="checkbox"]{display: none;}
-input[type="checkbox"] + .checkbox-style {
-    position: relative;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-    cursor: pointer;
-}
-
-.checkbox > input[type="checkbox"]:checked + .checkbox-style:before {
-    border: #20a0ff;
-    background: #20a0ff;
-    animation-name: none;
-}
-.checkbox > input[type="checkbox"] + .checkbox-style:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    content: '';
-    border: 1px solid #C0CCDA;
-    box-sizing: border-box;
-    border-radius:2px;
-}
-.checkbox > input[type="checkbox"] + .checkbox-style:after {
-    display: block;
-    position: absolute;
-    display: none;
-    content: '';
-    top: 5px;
-    left: 5px;
-    box-sizing: border-box;
-    width: 16px;
-    height: 3px;
-    transform: rotate(45deg);
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-}
-
-
-</style>
-
-
-
 
 <script>
 
