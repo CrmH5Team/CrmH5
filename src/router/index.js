@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
-import OtherSearch from '@/components/pages/OtherSearch'
+import Search from '@/components/pages/Search'
 import SingleSelectList from '@/components/pages/SingleSelectList'
 
 
@@ -46,19 +46,19 @@ const router =  new Router({
       }
     },
 
-    { path: '/otherSearch',name:'otherSearch',component: OtherSearch,
-    meta: {
-      keepAlive: true,
-      isBack:false
-    }
-  },
+    { path: '/search',name:'search',component: Search,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
 
-  { path: '/singleSelectList',name:'singleSelectList',component: SingleSelectList,
-  meta: {
-    keepAlive: true,
-    isBack:false
-  }
-},
+    { path: '/singleSelectList',name:'singleSelectList',component: SingleSelectList,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
 
     {
       path:'/opportunities',name:'opportunities',component:Opportunities,
