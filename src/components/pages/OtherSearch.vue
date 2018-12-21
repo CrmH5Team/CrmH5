@@ -175,5 +175,8 @@ export default {
             title: 'Other Search',
         }
     },
+
+
+
 }
 </script>
