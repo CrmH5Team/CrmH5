@@ -11,13 +11,78 @@
                       <input type="checkbox" class="weui-check" name="checkbox1" :id="slotProps.item.id" >
                       <label :for="slotProps.item.id" class="weui-icon-checked"></label>
                   </div>
-                 
+
                   <router-link :to="'/organizationsinfo/{\'AutoID\':\''+slotProps.item.id+'\'}'" class="weui-cell__bd" :data-id="slotProps.item.id">
                           <span class="right">{{slotProps.item.assigned_user_id}}</span>
                           <p class="">{{slotProps.item.accountname}}</p>
                   </router-link>
             </template>
       </Commonlist>
+
+
+
+      <!--  右侧侧滑 -->
+      <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+      <div id="right-content" class="right-content">
+          <div class="right-content-block">
+              <div class="right-block-title">Categories by 按...分类</div>
+              <div class="right-block-items">
+                  <div class="radios-div" >
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i><span>Business Sector 业务分类</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="Area/Region" v-model="classificationValue"/><i class="radios"></i> <span>Area/Region 区域</span>
+                        </label>
+                  </div>
+                  <div class="radios-div" >
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="country" v-model="classificationValue"/><i class="radios"></i><span>Country 国家</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="accountManager" v-model="classificationValue"/><i class="radios"></i> <span>Account Manager 客户经理</span>
+                        </label>
+                  </div>
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Data Display 数据显示</div>
+              <div class="right-block-items">
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>All Organizations 所有公司</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>My Followed Organizations 关注的公司</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="from-my-direct" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Existing Customer 现有客户</span>
+                        </label>
+                  </div>
+
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Other 其他</div>
+              <div class="right-block-items">
+                  <div class="other-search" id="OtherSearchBtn">
+                      <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
+                      <label class="other-search-label">Search</label>
+                  </div>
+              </div>
+          </div>
+      </div>
 
 
   </div>
@@ -55,7 +120,7 @@ export default {
                     {'text':lanTool.lanContent('221_按负责人正序排列'),'sortOrder':'ASC','sortName':'assigned_user_id','id':'organizations03'},
                     {'text':lanTool.lanContent('222_按负责人倒序排列'),'sortOrder':'DESC','sortName':'assigned_user_id','id':'organizations04'}
                 ],
-                screen:[             
+                screen:[
                     {
                         field:'accountname',
                         queryType:'string',
@@ -68,7 +133,7 @@ export default {
                                 value:'',
                             }
                         ]
-                    }, 
+                    },
                     {
                         field:'assigned_user_id',
                         queryType:'string',
@@ -86,25 +151,34 @@ export default {
                             }
                         ]
                     },
-                    
+
                 ]
             },
+
+            showRightPanel:false,
+            classificationValue:'businessSector',  //右侧分类
+            dataFilter:[],
         }
       },
-     
-      
+
+
+
       beforeRouteEnter:function(to, from, next){
             if(from.name === 'organizationsinfo' || from.name === 'selectlist'){
                 to.meta.isBack = true;
             }
             next();
-      }
-      
+      },
+
+
+
 
 }
 </script>
 
 <style scoped>
+@import "../../assets/css/common/list-right-style.css";
+
 .commonlist{height: calc(100% - 1.78rem);}
 
 /*列表中每一项style*/
@@ -118,6 +192,11 @@ export default {
     display: -webkit-box;-webkit-box-orient: vertical;
     }
 .weui-cell__bd span{font-size:0.2rem;color: #595959;}
+
+
+
+
+
 
 
 </style>

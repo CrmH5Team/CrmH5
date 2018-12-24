@@ -10,8 +10,8 @@
                     <input type="checkbox" class="weui-check" name="checkbox1" :id="slotProps.item.id" >
                     <label :for="slotProps.item.id" class="weui-icon-checked"></label>
                 </div>
-                
-                <router-link :to="'/opportunitiesinfo/{\'AutoID\':\''+slotProps.item.id+'\'}'" class="weui-cell__bd" :data-id="slotProps.item.id">    
+
+                <router-link :to="'/opportunitiesinfo/{\'AutoID\':\''+slotProps.item.id+'\'}'" class="weui-cell__bd" :data-id="slotProps.item.id">
                       <div class="title">{{slotProps.item.potentialname}}</div>
                       <div>
                         <span class="right">{{slotProps.item.closingdate}}</span>
@@ -21,6 +21,87 @@
 
           </template>
       </Commonlist>
+
+
+      <!--  右侧侧滑 -->
+      <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+      <div id="right-content" class="right-content">
+          <div class="right-content-block">
+              <div class="right-block-title">Categories by 按...分类</div>
+              <div class="right-block-items">
+                  <div class="radios-div" >
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="group" v-model="classificationValue"/><i class="radios"></i><span>Group 用户组</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="user" v-model="classificationValue"/><i class="radios"></i> <span>User 用户</span>
+                        </label>
+                  </div>
+                  <div class="radios-div" >
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="priority" v-model="classificationValue"/><i class="radios"></i><span>Priority 优先级</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i> <span>Business Sector 业务分类</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="Area/Region" v-model="classificationValue"/><i class="radios"></i> <span>Area/Region 区域</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="country" v-model="classificationValue"/><i class="radios"></i> <span>Country 国家</span>
+                        </label>
+                  </div>
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Data Filter 数据筛选</div>
+              <div class="right-block-items">
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>All Opportunities 所有商业机会</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>My Followed Opportunities</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="active" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Active 有效的</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="highPriority" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>High Priority 优先级高</span>
+                        </label>
+                  </div>
+
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Other 其他</div>
+              <div class="right-block-items">
+                  <div class="other-search" id="OtherSearchBtn">
+                      <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
+                      <label class="other-search-label">Search</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+
   </div>
 </template>
 
@@ -34,9 +115,9 @@ export default {
       components:{
         Listheader,Commonlist,Sortscreen
       },
-      
+
       data (){
-          
+
         return {
             key:'opportunities',
             title:lanTool.lanContent("173_销售机会"),
@@ -70,7 +151,7 @@ export default {
                                 value:'',
                             }
                         ]
-                    },                
+                    },
                     {
                         field:'related_to',
                         queryType:'string',
@@ -109,9 +190,13 @@ export default {
                     }
                 ]
             },
+
+            showRightPanel:false,
+            classificationValue:'group',  //右侧分类
+            dataFilter:[],
         }
       },
-      
+
       beforeRouteEnter:function(to, from, next){
 
             if(from.name === 'opportunitiesinfo' || from.name === 'selectlist'){
@@ -119,7 +204,15 @@ export default {
             }
             next();
       },
- 
+
+      mounted:function(){
+
+      },
+
+      methods: {
+
+      }
+
 }
 </script>
 
@@ -127,7 +220,7 @@ export default {
 
 
 <style scoped>
-
+@import "../../assets/css/common/list-right-style.css";
 
 /*列表中每一项style*/
 .weui-cell__hd{display:none;}

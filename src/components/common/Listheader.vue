@@ -22,9 +22,9 @@
 		  </div>
           <h1 v-else class="mui-title">{{title}}</h1>
 
-          <a @click="addData" class=" calcfont calc-liebiao2 right" id="addNew"></a>
+          <a @click="showRightPanel" class=" calcfont calc-liebiao2 right" id=""></a>
           <a @click="addData" class=" calcfont calc-tianjiajiahaowubiankuang right" id="addNew"></a>
-          <a @click="editSwitch" class="calcfont calc-bianji1 right" id="editBtn"></a>
+          <!-- <a @click="editSwitch" class="calcfont calc-bianji1 right" id="editBtn"></a> -->
       </header>
   </div>
 
@@ -135,6 +135,10 @@ export default {
 
         },
 
+        showRightPanel:function(){
+            eventBus.$emit('showRightPanel');
+        }
+
 
     },
     beforeDestroy:function(){
@@ -161,16 +165,11 @@ header.mui-bar {
 }
 .calcfont{
     font-size: 0.48rem;/* width: 0.88rem; */text-align: center;
-    padding: 0.2rem 0; position: relative; z-index: 20;
+    padding: 0.2rem 10px; position: relative; z-index: 20;
     display: inline-block;text-decoration: none; line-height: 1;
 }
-.calc-fanhui,.calc-bianji1,.calc-tianjiajiahaowubiankuang{
-    /* margin-right: -10px;  */
-    /* margin-left: -10px; */
-    padding-right: 10px; padding-left: 10px;
-}
 .calc-tianjiajiahaowubiankuang{
-    /* margin-right: 0px; */
+    margin-right: -10px;
 }
 header .mui-title,
 header a {

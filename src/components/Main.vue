@@ -463,5 +463,7 @@ export default {
 
 <style scoped>
  @import "../assets/css/pages/main.css";
+
+ @import "../assets/css/common/list-right-style.css";
 </style>
 

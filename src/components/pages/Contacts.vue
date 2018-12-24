@@ -17,6 +17,89 @@
             </template>
 
       </Commonlist>
+
+      <!--  右侧侧滑 -->
+      <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+      <div id="right-content" class="right-content">
+          <div class="right-content-block">
+              <div class="right-block-title">Categories by 按...分类</div>
+              <div class="right-block-items">
+                  <div class="radios-div" >
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="organizations" v-model="classificationValue"/><i class="radios"></i><span>Organizations 公司</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i> <span>Business Sector 业务分类</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="visibility" v-model="classificationValue"/><i class="radios"></i> <span>Visibility 可见性</span>
+                        </label>
+                  </div>
+                  <div class="radios-div">
+                        <label class="radios-label">
+                            <input type="radio" name="classification" value="accountManager" v-model="classificationValue"/><i class="radios"></i> <span>Account Manager 客户经理</span>
+                        </label>
+                  </div>
+
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Data Filter 数据筛选</div>
+              <div class="right-block-items">
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>All Contactss 所有联系人</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>My Followed Organizations 我关注的公司</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="existingCustomer" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Existing Customer 现有客户</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="publicContacts" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Public Contacts 公共联系人</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="privateContacts" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Private Contacts 私有联系人</span>
+                        </label>
+                  </div>
+                  <div class="checkbox-div">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="datafilter" value="sharedFromOthers" v-model="dataFilter"/><i class="checkbox"></i>
+                            <span>Shared From Others 别人分享的</span>
+                        </label>
+                  </div>
+
+              </div>
+          </div>
+          <div class="right-content-block">
+              <div class="right-block-title">Other 其他</div>
+              <div class="right-block-items">
+                  <div class="other-search" id="OtherSearchBtn">
+                      <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
+                      <label class="other-search-label">Search</label>
+                  </div>
+              </div>
+          </div>
+      </div>
+
   </div>
 </template>
 
@@ -49,7 +132,7 @@ export default {
                     {'text':lanTool.lanContent('219_按联系人名称正序排列'),'sortOrder':'ASC','sortName':'firstname','id':'contacts01'},
                     {'text':lanTool.lanContent('218_按联系人名称倒序排列'),'sortOrder':'DESC','sortName':'firstname','id':'contacts02'},
                 ],
-                screen:[             
+                screen:[
                     {
                         field:'lastname',
                         queryType:'string',
@@ -62,7 +145,7 @@ export default {
                                 value:'',
                             }
                         ]
-                    }, 
+                    },
                     {
                         field:'account_id',
                         queryType:'string',
@@ -80,25 +163,39 @@ export default {
                             }
                         ]
                     },
-                    
+
                 ]
             },
+
+            showRightPanel:false,
+            classificationValue:'group',  //右侧分类
+            dataFilter:[],
         }
       },
-     
-      
+
+
       beforeRouteEnter:function(to, from, next){
             if(from.name === 'contactsinfo' || from.name === 'selectlist'){
                 to.meta.isBack = true;
             }
             next();
+      },
+      mounted:function(){
+
+      },
+      methods: {
+
       }
-      
+
+
 
 
 }
 </script>
 <style scoped>
+
+@import "../../assets/css/common/list-right-style.css";
+
 /*列表中每一项style*/
 .weui-cell__hd{display:none;}
 .weui-check:checked + .weui-icon-checked:before{color:#3cadf9;}
