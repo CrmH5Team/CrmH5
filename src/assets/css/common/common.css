@@ -41,6 +41,14 @@ a {color: #3cadf9;}
     pointer-events: none;
 }
 
+.sticky{
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+}
+
 /*
   loading样式
 */
