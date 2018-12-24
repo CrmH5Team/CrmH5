@@ -2,12 +2,12 @@
 <div>
     <my-header class="header" :title="title"></my-header>
 
-    <div class="nav">
+    <!-- <div class="nav">
         <div @click="switchPage(0,$event)" class="nav-item active-item">Calendar</div>
         <div @click="switchPage(1,$event)" class="nav-item" >Organizations</div>
         <div @click="switchPage(2,$event)" class="nav-item" >Cantacts</div>
         <div @click="switchPage(3,$event)" class="nav-item" >Opportunities</div>
-    </div>
+    </div> -->
 
     <div class="search-box">
         <div class="swiper-container">
@@ -325,6 +325,6 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/pages/search.css";
+@import "../../assets/css/pages/calendarsearch.css";
 </style>
 

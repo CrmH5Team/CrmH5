@@ -19,6 +19,7 @@
 .item-title .spot{font-size: 0.5rem;color:#3cadf9;vertical-align: bottom;padding-right:5px;}
 .item-content{}
 .item-time{color:#333;}
+.item-address{font-weight: 600;}
 
 
 .data-events p{height: 50px;line-height: 50px;}

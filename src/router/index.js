@@ -23,6 +23,7 @@ import About from '@/components/pages/About'
 import General from '@/components/pages/General'
 
 import Calendar from '@/components/pages/Calendar'
+import Calendarsearch from '@/components/pages/Calendarsearch'
 import Calendarlist from '@/components/pages/Calendarlist'
 import Calendarinfo from '@/components/pages/Calendarinfo'
 
@@ -77,9 +78,6 @@ const router =  new Router({
     },
 
 
-
-
-
     { path:'/organizations',name:'organizations',component:Organizations,
       meta: {
         keepAlive: true,
@@ -95,11 +93,6 @@ const router =  new Router({
     },
 
 
-
-
-
-
-
     { path:'/contacts',name:'contacts',component:Contacts,
       meta: {
         keepAlive: true,
@@ -113,8 +106,6 @@ const router =  new Router({
         isBack:false,
       }
     },
-
-
 
 
     { path:'/about',component:About},
@@ -137,6 +128,7 @@ const router =  new Router({
         fromSave:false,  //当在详情页面保存后回到日历页面刷新
       }
     },
+    { path:'/calendarsearch',name:'calendarsearch',component:Calendarsearch},
 
     { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
       meta: {

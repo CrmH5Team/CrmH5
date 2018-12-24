@@ -50,9 +50,9 @@
 
 
 
-        <calendar v-if="showCalendar"></calendar>
+        <calendar v-show="selectView === 'calendar'"></calendar>
 
-        <div v-else class="list-view">
+        <div v-show="selectView === 'list'" class="list-view">
               <div class="month-event">
                   <div class="date-div open" @click="groupToggle($event)">
                       <span class="calcfont calc-richeng"></span>
@@ -64,22 +64,30 @@
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                   </div>
               </div>
@@ -94,17 +102,23 @@
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                       <div class="data-events-item">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
-                          <div class="item-time">14:30-17:00</div>
+                          <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
+                          <div class="item-address">China Eastern Airlines</div>
+                          <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
                   </div>
               </div>
@@ -121,14 +135,14 @@
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
             <div class="right-block-items">
-                <div class="radios-div">
+                <div class="radios-div" >
                       <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i><span>alendar View 日历视图</span>
+                          <input type="radio" name="view" value="calendar" v-model="selectView"/><i class="radios"></i><span>Calendar View 日历视图</span>
                       </label>
                 </div>
                 <div class="radios-div">
                       <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i> <span>List View 列表视图</span>
+                          <input type="radio" name="view" value="list" v-model="selectView"/><i class="radios"></i> <span>List View 列表视图</span>
                       </label>
                 </div>
             </div>
@@ -138,31 +152,31 @@
             <div class="right-block-items">
                 <div class="checkbox-div">
                       <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
                           <span>My Calendar我的日程</span>
                       </label>
                 </div>
                 <div class="checkbox-div">
                       <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
                           <span>Visiable Calendar(From Others Shared)</span>
                       </label>
                 </div>
                 <div class="checkbox-div">
                       <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <input type="checkbox" name="datafilter" value="from-my-direct" v-model="dataFilter"/><i class="checkbox"></i>
                           <span>From My Direct Team Member</span>
                       </label>
                 </div>
                 <div class="checkbox-div">
                       <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <input type="checkbox" name="datafilter" value="from-my-all" v-model="dataFilter"/><i class="checkbox"></i>
                           <span>From My All Team Member</span>
                       </label>
                 </div>
                 <div class="checkbox-div">
                       <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
+                          <input type="checkbox" name="datafilter" value="pr-calendar" v-model="dataFilter"/><i class="checkbox"></i>
                           <span>PR Calendar</span>
                       </label>
                 </div>
@@ -240,7 +254,21 @@ export default {
             showRightPanel:false,
             title:'CRM',
             userName:'',
+
+            // viewData:[
+            //     {text:'Calendar View 日历视图',value:'calendar'},
+            //     {text:'List View 列表视图',value:'list'}
+            // ],
+            selectView:'calendar',
+            dataFilter:[],
+
+
         }
+    },
+    computed:{
+        // selectView:function(){
+        //     console.log(this.selectView);
+        // }
     },
 
     mounted:function(){

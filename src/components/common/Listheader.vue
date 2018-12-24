@@ -5,23 +5,24 @@
           <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
           <div v-if="isCalender" class="segmented-control">
-            
+
                     <router-link to="/calendarlist"
-                    :class="{ active:activeCalendarlist}" 
-                    class="control-item " 
+                    :class="{ active:activeCalendarlist}"
+                    class="control-item "
                     >
                         <span class="lanText" data-lanid="332_列表视图"></span>
                     </router-link>
-                
-                    <router-link to="/calendar" 
-                    :class="{ active: activeCalendar}" 
+
+                    <router-link to="/calendar"
+                    :class="{ active: activeCalendar}"
                     class="control-item ">
                          <span class="lanText" data-lanid="333_日历视图"></span>
                     </router-link>
-              
+
 		  </div>
           <h1 v-else class="mui-title">{{title}}</h1>
 
+          <a @click="addData" class=" calcfont calc-liebiao2 right" id="addNew"></a>
           <a @click="addData" class=" calcfont calc-tianjiajiahaowubiankuang right" id="addNew"></a>
           <a @click="editSwitch" class="calcfont calc-bianji1 right" id="editBtn"></a>
       </header>
@@ -63,13 +64,13 @@ export default {
             this.activeCalendar = false;
             this.activeCalendarlist = true;
         }
-        
-        
+
+
     },
     mounted:function(){
         lanTool.updateLanVersion();
 
-        //监听headerEvent事件，禁止或者允许编辑，新增 
+        //监听headerEvent事件，禁止或者允许编辑，新增
         eventBus.$on('headerEvent',function(data){
             //data 的值 ban , allow
             if(data == undefined) return;
@@ -84,12 +85,12 @@ export default {
             $('#editBtn').addClass('disable');
         }
 
-    
+
     },
     methods:{
         //编辑按钮状态切换
         editSwitch:function(e){
-            
+
             var el = e.target;
             if($(el).hasClass('calc-bianji1')){
                 //编辑状态
@@ -121,16 +122,16 @@ export default {
 
         back:function(){
             var $this = this;
-            
+
             if($('#sortScreenLayer').length > 0){
-                $('#sortScreenLayer').trigger('click');    
+                $('#sortScreenLayer').trigger('click');
             }
 
             if($this.isCalender){
-                $this.$router.push('/main'); 
+                $this.$router.push('/main');
             }else{
                 $this.$router.back(-1);
-            }        
+            }
 
         },
 
@@ -164,11 +165,12 @@ header.mui-bar {
     display: inline-block;text-decoration: none; line-height: 1;
 }
 .calc-fanhui,.calc-bianji1,.calc-tianjiajiahaowubiankuang{
-    margin-right: -10px; /* margin-left: -10px; */
+    /* margin-right: -10px;  */
+    /* margin-left: -10px; */
     padding-right: 10px; padding-left: 10px;
 }
 .calc-tianjiajiahaowubiankuang{
-    margin-right: 0px;
+    /* margin-right: 0px; */
 }
 header .mui-title,
 header a {
