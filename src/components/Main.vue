@@ -259,7 +259,7 @@ export default {
             //     {text:'Calendar View 日历视图',value:'calendar'},
             //     {text:'List View 列表视图',value:'list'}
             // ],
-            selectView:'calendar',
+            selectView:'list',
             dataFilter:[],
 
 
