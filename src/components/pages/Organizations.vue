@@ -4,70 +4,69 @@
       <Listheader :title="title"></Listheader>
 
       <!--  右侧侧滑 -->
-      <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
-      <div id="right-content" class="right-content">
-          <div class="right-content-block">
-              <div class="right-block-title">Categories by 按...分类</div>
-              <div class="right-block-items">
-                  <div class="radios-div" >
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i><span>Business Sector 业务分类</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="Area/Region" v-model="classificationValue"/><i class="radios"></i> <span>Area/Region 区域</span>
-                        </label>
-                  </div>
-                  <div class="radios-div" >
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="country" v-model="classificationValue"/><i class="radios"></i><span>Country 国家</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="accountManager" v-model="classificationValue"/><i class="radios"></i> <span>Account Manager 客户经理</span>
-                        </label>
-                  </div>
-              </div>
-          </div>
-          <div class="right-content-block">
-              <div class="right-block-title">Data Display 数据显示</div>
-              <div class="right-block-items">
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>All Organizations 所有公司</span>
-                        </label>
-                  </div>
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>My Followed Organizations 关注的公司</span>
-                        </label>
-                  </div>
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="from-my-direct" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>Existing Customer 现有客户</span>
-                        </label>
-                  </div>
-
-              </div>
-          </div>
-          <div class="right-content-block">
-              <div class="right-block-title">Other 其他</div>
-              <div class="right-block-items">
-                  <div class="other-search" id="OtherSearchBtn">
-                      <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
-                      <label class="other-search-label">Search</label>
-                  </div>
-              </div>
-          </div>
-      </div>
+      <list-right-panel :panelData="rigthPanelData"></list-right-panel>
 
 
-      <div id="page-content" class="page-content">
+      <common-list :groupData="groupData">
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    <span>Todd Scott</span><span class="right">UEA</span>
+                </div>
+                <div class="item-div">
+                    <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                </div>
+                <div class="item-div">
+                  <span>China</span><span class="right">Asia Pacific</span>
+                </div>
+              </div>
+          </div>
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    <span>Todd Scott</span><span class="right">UEA</span>
+                </div>
+                <div class="item-div">
+                    <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                </div>
+                <div class="item-div">
+                  <span>China</span><span class="right">Asia Pacific</span>
+                </div>
+              </div>
+          </div>
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    <span>Todd Scott</span><span class="right">UEA</span>
+                </div>
+                <div class="item-div">
+                    <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                </div>
+                <div class="item-div">
+                  <span>China</span><span class="right">Asia Pacific</span>
+                </div>
+              </div>
+          </div>
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    <span>Todd Scott</span><span class="right">UEA</span>
+                </div>
+                <div class="item-div">
+                    <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                </div>
+                <div class="item-div">
+                  <span>China</span><span class="right">Asia Pacific</span>
+                </div>
+              </div>
+          </div>
+      </common-list>
+
+      <!-- <div id="page-content" class="page-content">
             <div class="group-div">
                 <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-fenlei"></span>
@@ -78,7 +77,7 @@
 
                 <div class="group-item-list">
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -92,7 +91,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -106,7 +105,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -120,7 +119,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -146,7 +145,7 @@
 
                 <div class="group-item-list">
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -160,7 +159,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -174,7 +173,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -200,7 +199,7 @@
 
                 <div class="group-item-list">
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -214,7 +213,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -228,7 +227,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -242,7 +241,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               <span>Todd Scott</span><span class="right">UEA</span>
@@ -258,7 +257,8 @@
                 </div>
             </div>
 
-      </div>
+      </div> -->
+
 
 
   </div>
@@ -266,13 +266,16 @@
 
 <script>
 import Listheader from '../common/Listheader'
+import Listrightpanel from '../common/Listrightpanel'
 import Commonlist from '../common/Commonlist'
-import Sortscreen from '../common/Sortscreen'
+// import Sortscreen from '../common/Sortscreen'
 import Mixins from '../../mixins'
 export default {
       mixins: [Mixins.PAGE_LIST],
       components:{
-        Listheader,Commonlist,Sortscreen
+        Listheader,
+        'list-right-panel':Listrightpanel,
+        'common-list':Commonlist
       },
       data (){
         return {
@@ -331,10 +334,78 @@ export default {
                 ]
             },
 
-            showRightPanel:false,
-            classificationValue:'businessSector',  //右侧分类
-            dataFilter:[],
+
+            rigthPanelData:[
+                {
+                  groupText:'Categories by 按...分类',
+                  type:'radio',
+                  default:'businessSector',
+                  items:[
+                      {text:'Business Sector 业务分类',value:'businessSector'},
+                      {text:'Area/Region 区域',value:'Area/Region'},
+                      {text:'Country 国家',value:'country'},
+                      {text:'Account Manager 客户经理',value:'accountManager'}
+                  ]
+                },
+                {
+                  groupText:'Data Filter 数据筛选',
+                  type:'checkbox',
+                  default:'allOrganizations',
+                  items:[
+                      {text:'All Organizations 所有公司',value:'allOrganizations'},
+                      {text:'My Followed Organizations 关注的公司',value:'myFollowedOrganizations'},
+                      {text:'Existing Customer 现有客户',value:'existingCustomer'},
+                  ]
+                },
+
+            ],
+
+            groupData:[
+                {
+                  groupName:'Alirline',
+                  count:3,
+                  iconClass:'calc-fenlei',
+                  items:[]
+                },
+                {
+                  groupName:'Alan',
+                  count:1,
+                  iconClass:'calc-fenlei',
+                  items:[]
+                },
+                {
+                  groupName:'Kity',
+                  count:2,
+                  iconClass:'calc-fenlei',
+                  items:[]
+                },
+                {
+                  groupName:'Alan123',
+                  count:1,
+                  iconClass:'calc-fenlei',
+                  items:[]
+                },
+            ],
         }
+      },
+
+      methods:{
+          //点击关注/取消关注
+          followToggle:function(id, e){
+              var el = e.target;
+              if($(el).hasClass('calc-shoucang')){
+                  //取消关注
+                  $(el).removeClass('calc-shoucang').addClass('calc-shoucang1')
+                  $.toast("取消关注", 1500, function() {});
+              }else{
+                  //关注
+                  $(el).removeClass('calc-shoucang1').addClass('calc-shoucang')
+                  $.toast("关注成功", 1500, function() {});
+
+              }
+          }
+
+
       },
 
 
@@ -353,23 +424,22 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/common/list-right-style.css";
 
-.page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;}
+
+/* .page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
+-webkit-overflow-scrolling:touch;} */
 /*列表style*/
-.date-div{
+/* .date-div{
   height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;font-size: 12px;
   width: 100%;color:#000;
   box-sizing: border-box;
   z-index: 99;
 }
-.item-user-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
+.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
 .calc-shoucang{color:#ff5a21}
-.item-user-icon::after{color:#3cadf9;}
 .date-div .calcfont{color:#ff5a21;margin-right:8px;}
 .group-name{font-size: 0.3rem;}
-.occupy-div{height:30px;display:none;}
+.occupy-div{height:30px;display:none;} */
 
 .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 1rem;}

@@ -136,7 +136,7 @@ export default {
         },
 
         showRightPanel:function(){
-            eventBus.$emit('showRightPanel');
+            eventBus.$emit('showRightPanelEvent');
         }
 
 

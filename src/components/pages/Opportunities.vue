@@ -3,86 +3,65 @@
       <Listheader :title="title"></Listheader>
 
       <!--  右侧侧滑 -->
-      <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
-      <div id="right-content" class="right-content">
-          <div class="right-content-block">
-              <div class="right-block-title">Categories by 按...分类</div>
-              <div class="right-block-items">
-                  <div class="radios-div" >
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="group" v-model="classificationValue"/><i class="radios"></i><span>Group 用户组</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="user" v-model="classificationValue"/><i class="radios"></i> <span>User 用户</span>
-                        </label>
-                  </div>
-                  <div class="radios-div" >
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="priority" v-model="classificationValue"/><i class="radios"></i><span>Priority 优先级</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i> <span>Business Sector 业务分类</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="Area/Region" v-model="classificationValue"/><i class="radios"></i> <span>Area/Region 区域</span>
-                        </label>
-                  </div>
-                  <div class="radios-div">
-                        <label class="radios-label">
-                            <input type="radio" name="classification" value="country" v-model="classificationValue"/><i class="radios"></i> <span>Country 国家</span>
-                        </label>
-                  </div>
+      <list-right-panel :panelData="rigthPanelData"></list-right-panel>
+
+      <common-list :groupData="groupData">
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    A320-200 sales project2 for to Eastern  Airlines
+                </div>
+                <div class="item-div">
+                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                </div>
+                <div class="item-div">
+                    <span>Normal</span><span class="right">Active</span>
+                </div>
+                <div class="item-div">
+                  <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                </div>
+                <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
               </div>
           </div>
-          <div class="right-content-block">
-              <div class="right-block-title">Data Filter 数据筛选</div>
-              <div class="right-block-items">
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>All Opportunities 所有商业机会</span>
-                        </label>
-                  </div>
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="visiable-calendar" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>My Followed Opportunities</span>
-                        </label>
-                  </div>
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="active" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>Active 有效的</span>
-                        </label>
-                  </div>
-                  <div class="checkbox-div">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="datafilter" value="highPriority" v-model="dataFilter"/><i class="checkbox"></i>
-                            <span>High Priority 优先级高</span>
-                        </label>
-                  </div>
-
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    A320-200 sales project2 for to Eastern  Airlines
+                </div>
+                <div class="item-div">
+                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                </div>
+                <div class="item-div">
+                    <span>Normal</span><span class="right">Active</span>
+                </div>
+                <div class="item-div">
+                  <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                </div>
+                <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
               </div>
           </div>
-          <div class="right-content-block">
-              <div class="right-block-title">Other 其他</div>
-              <div class="right-block-items">
-                  <div class="other-search" id="OtherSearchBtn">
-                      <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
-                      <label class="other-search-label">Search</label>
-                  </div>
+          <div class="group-item">
+              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+              <div class="item-block">
+                <div class="item-div item-first-div">
+                    A320-200 sales project2 for to Eastern  Airlines
+                </div>
+                <div class="item-div">
+                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                </div>
+                <div class="item-div">
+                    <span>Normal</span><span class="right">Active</span>
+                </div>
+                <div class="item-div">
+                  <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                </div>
+                <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
               </div>
           </div>
-      </div>
-
-
-      <div id="page-content" class="page-content">
+      </common-list>
+      <!-- <div id="page-content" class="page-content">
             <div class="group-div">
                 <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-yewujihui"></span>
@@ -93,7 +72,7 @@
 
                 <div class="group-item-list">
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               A320-200 sales project2 for to Eastern  Airlines
@@ -111,7 +90,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               A320-200 sales project2 for to Eastern  Airlines
@@ -129,7 +108,7 @@
                         </div>
                     </div>
                     <div class="group-item">
-                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div">
                               A320-200 sales project2 for to Eastern  Airlines
@@ -153,7 +132,7 @@
 
 
 
-      </div>
+      </div> -->
 
 
 
@@ -163,13 +142,16 @@
 
 <script>
 import Listheader from '../common/Listheader'
+import Listrightpanel from '../common/Listrightpanel'
 import Commonlist from '../common/Commonlist'
-import Sortscreen from '../common/Sortscreen'
+// import Sortscreen from '../common/Sortscreen'
 import Mixins from '../../mixins'
 export default {
       mixins: [Mixins.PAGE_LIST],
       components:{
-        Listheader,Commonlist,Sortscreen
+        Listheader,
+        'list-right-panel':Listrightpanel,
+        'common-list':Commonlist
       },
 
       data (){
@@ -247,9 +229,59 @@ export default {
                 ]
             },
 
-            showRightPanel:false,
-            classificationValue:'group',  //右侧分类
-            dataFilter:[],
+            rigthPanelData:[
+                {
+                  groupText:'Categories by 按...分类',
+                  type:'radio',
+                  default:'group',
+                  items:[
+                      {text:'Group 用户组',value:'group'},
+                      {text:'User 用户',value:'user'},
+                      {text:'Priority 优先级',value:'priority'},
+                      {text:'Business Sector 业务分类',value:'businessSector'},
+                      {text:'Area/Region 区域',value:'Area/Region'},
+                      {text:'Country 国家',value:'country'}
+                  ]
+                },
+                {
+                  groupText:'Data Filter 数据筛选',
+                  type:'checkbox',
+                  default:'allOpportunities',
+                  items:[
+                      {text:'All Opportunities 所有商业机会',value:'allOpportunities'},
+                      {text:'My Followed Opportunities',value:'myFollowedOpportunities'},
+                      {text:'Active 有效的',value:'active'},
+                      {text:'High Priority 优先级高',value:'highPriority'}
+                  ]
+                },
+
+            ],
+            groupData:[
+                {
+                  groupName:'Alirline',
+                  count:3,
+                  iconClass:'calc-yewujihui',
+                  items:[]
+                },
+                {
+                  groupName:'Alan',
+                  count:1,
+                  iconClass:'calc-yewujihui',
+                  items:[]
+                },
+                {
+                  groupName:'Kity',
+                  count:2,
+                  iconClass:'calc-yewujihui',
+                  items:[]
+                },
+                {
+                  groupName:'Alan123',
+                  count:1,
+                  iconClass:'calc-yewujihui',
+                  items:[]
+                },
+            ],
         }
       },
 
@@ -266,7 +298,17 @@ export default {
       },
 
       methods: {
-
+          //点击关注/取消关注
+          followToggle:function(id, e){
+              var el = e.target;
+              if($(el).hasClass('calc-shoucang')){
+                  //取消关注
+                  $(el).removeClass('calc-shoucang').addClass('calc-shoucang1')
+              }else{
+                  //关注
+                  $(el).removeClass('calc-shoucang1').addClass('calc-shoucang')
+              }
+          }
       }
 
 }
@@ -275,23 +317,24 @@ export default {
 
 
 <style scoped>
-@import "../../assets/css/common/list-right-style.css";
 
-.page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;}
+/* .page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
+-webkit-overflow-scrolling:touch;} */
 /*列表style*/
-.date-div{
+/* .date-div{
   height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;font-size: 12px;
   width: 100%;color:#000;
   box-sizing: border-box;
   z-index: 99;
 }
-.item-user-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
+.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
 .calc-shoucang{color:#ff5a21}
-.item-user-icon::after{color:#3cadf9;}
 .date-div .calcfont{color:#3cadf9;margin-right:8px;}
 .group-name{font-size: 0.3rem;}
 .occupy-div{height:30px;display:none;}
+*/
+
+
 
 .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 1rem;}

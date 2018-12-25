@@ -9,30 +9,6 @@ export default{
             lanTool.updateLanVersion();
             eventBus.$on('showRightPanel',this.panelToggle);
 
-            var headerH = parseFloat($('header').innerHeight());
-            $('#page-content').scroll(function(){
-                if($('.group-div').length <= 0) return ;
-
-                $('.group-div').each(function(){
-                  if($(this).position().top <= 0 ){
-
-                      if(tool.getSystem() === 'ios'){
-                          $(this).find(".date-div").addClass('sticky').css({"top": '0px'});
-                      }else{
-                          $(this).find('.date-div').css({"position":"fixed","top": headerH + 'px'});
-                          $(this).find('.occupy-div').show();
-                      }
-                  }else{
-                      if(tool.getSystem() === 'ios'){
-                          $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
-                      }else{
-                          $(this).find('.date-div').css({"position":"static"});
-                          $(this).find('.occupy-div').hide();
-                      }
-                  }
-
-                })
-            })
         },
         activated:function(){
 
@@ -53,43 +29,8 @@ export default{
 
         },
         methods:{
-            //右侧 侧滑
-            panelToggle:function(){
-              var _self = this;
-                _self.showRightPanel = !_self.showRightPanel;
-                if(_self.showRightPanel){
-                    $('#right-content').css({
-                        'left':'30%',
-                        'transition':'left 0.2s ease-out',
-                        '-moz-transition': 'left 0.2s ease-out',
-                        '-webkit-transition':'left 0.2s ease-out',
-                        '-o-transition': 'left 0.2s ease-out'
-                    })
-                    $('#mask,#right-content').on("touchmove", function(e) {
-                      e.stopPropagation();
-                      e.preventDefault();
-                    });
-                }else{
-                    $('#right-content').css({
-                        'left':'100%',
-                        'transition':'left 0.3s ease-out',
-                        '-moz-transition': 'left 0.3s ease-out',
-                        '-webkit-transition':'left 0.3s ease-out',
-                        '-o-transition': 'left 0.3s ease-out'
-                    });
-                }
 
-            },
 
-            //点击分组收起展开
-            groupToggle:function(e){
-                var el = e.target;
-                if($(el).hasClass('open')){
-                    $(el).removeClass('open').siblings('.group-item-list').hide(0.2);
-                }else{
-                    $(el).addClass('open').siblings('.group-item-list').show(0.2);
-                }
-            },
         },
         beforeDestroy:function(){
           eventBus.$off('showRightPanel');
