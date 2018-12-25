@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <Infoheader :title="pageTitle"></Infoheader>
+    <Infoheader :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="CalendarList">
@@ -284,7 +284,7 @@ import Infofooter from '../common/infoFooter'
 import Mixins from '../../mixins'
 
 export default {
-    mixins: [Mixins.PAGE_INFO],
+    // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
         Datetimepicker,
@@ -294,7 +294,7 @@ export default {
     data() {
         return {
 
-            pageTitle: 'calendar',
+            ptitle: 'calendardetail',
             id: null,
             isAdd: true, //页面是否是新增状态
             // data:null,

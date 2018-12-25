@@ -1,46 +1,45 @@
 <template>
-
-  <div>
+<div>
     <header class="mui-bar mui-bar-nav">
-          <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
+        <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
-          <h1 class="mui-title">{{title}}</h1>
-            <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gou calc-gengduo right" id="gengduo"></a>
-          <a @click="save" class="calcfont calc-gou right" id="save"></a>
-          <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
-      </header>
-  </div>
-
+        <h1 class="mui-title">{{title}}</h1>
+        <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
+        <a @click="save" class="calcfont calc-gou right" id="save"></a>
+        <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+    </header>
+</div>
 </template>
+
 <script>
 import event from './Event.js'
 export default {
-    data(){
+    data() {
         return {
-             moreHidden:true,
-             delHidden:true,
+            moreHidden: false,
+            delHidden: true,
         }
     },
-    props:{
-        title:String,
-        pageType:String
+    props: {
+        title: String,
+        pageType: String
     },
-    mounted:function(){
+    mounted: function () {
 
     },
-    methods:{
+    methods: {
 
         //保存动作
-        save:function(){
+        save: function () {
             eventBus.$emit('save');
         },
-        delClick:function(){
-           
-        },
-        moreClick:function(){
+        delClick: function () {
 
         },
-        back:function(){
+        moreClick: function () {
+
+        },
+        back: function () {
             this.$router.back(-1);
         }
 
@@ -50,15 +49,22 @@ export default {
 </script>
 
 <style scoped>
-header{position: relative;}
-header.mui-bar {
-  line-height: 0.2rem;
-    background: #3cadf9;
-    position:fixed;top:0;left:0;width:100%;
+header {
+    position: relative;
 }
+
+header.mui-bar {
+    line-height: 0.2rem;
+    background: #3cadf9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .mui-title {
-	    right: 40px;
-    left: 40px;
+    right: 0.8rem;
+    left: 0.8rem;
     display: inline-block;
     overflow: hidden;
     width: auto;
@@ -71,31 +77,37 @@ header.mui-bar {
     white-space: nowrap;
     line-height: 0.88rem;
 }
-.calcfont{
+
+.calcfont {
     font-size: 0.48rem;
     width: 0.88rem;
     text-align: center;
-    padding: 0.2rem 0.1rem;
+    padding: 0.2rem 0;
     position: relative;
     z-index: 20;
     display: inline-block;
     text-decoration: none;
     line-height: 1;
 }
-.calc-fanhui{
-    margin-right: -10px;
-    margin-left: -10px;
-    padding-right: 10px;
-    padding-left: 10px;
+
+.calc-fanhui {
+    margin-right: -0.2rem;
+    margin-left: -0.2rem;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
 
 }
-.right{
-    float:right;
+
+.right {
+    float: right;
     width: 0.52rem;
+}
+#delete:after{
+    clear: both;
+    
 }
 header .mui-title,
 header a {
-	color: #fff;
+    color: #fff;
 }
-
 </style>
