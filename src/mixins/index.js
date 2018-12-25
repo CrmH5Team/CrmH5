@@ -80,6 +80,16 @@ export default{
                 }
 
             },
+
+            //点击分组收起展开
+            groupToggle:function(e){
+                var el = e.target;
+                if($(el).hasClass('open')){
+                    $(el).removeClass('open').siblings('.group-item-list').hide(0.2);
+                }else{
+                    $(el).addClass('open').siblings('.group-item-list').show(0.2);
+                }
+            },
         },
         beforeDestroy:function(){
           eventBus.$off('showRightPanel');
