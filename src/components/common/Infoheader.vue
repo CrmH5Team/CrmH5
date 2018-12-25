@@ -5,9 +5,9 @@
           <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
           <h1 class="mui-title">{{title}}</h1>
-
+            <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gou calc-gengduo right" id="gengduo"></a>
           <a @click="save" class="calcfont calc-gou right" id="save"></a>
-
+          <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
       </header>
   </div>
 
@@ -17,7 +17,8 @@ import event from './Event.js'
 export default {
     data(){
         return {
-
+             moreHidden:true,
+             delHidden:true,
         }
     },
     props:{
@@ -33,7 +34,12 @@ export default {
         save:function(){
             eventBus.$emit('save');
         },
+        delClick:function(){
+           
+        },
+        moreClick:function(){
 
+        },
         back:function(){
             this.$router.back(-1);
         }
@@ -69,7 +75,7 @@ header.mui-bar {
     font-size: 0.48rem;
     width: 0.88rem;
     text-align: center;
-    padding: 0.2rem 0;
+    padding: 0.2rem 0.1rem;
     position: relative;
     z-index: 20;
     display: inline-block;
@@ -82,6 +88,10 @@ header.mui-bar {
     padding-right: 10px;
     padding-left: 10px;
 
+}
+.right{
+    float:right;
+    width: 0.52rem;
 }
 header .mui-title,
 header a {
