@@ -21,6 +21,7 @@
 .item-time{color:#333;}
 .item-address{font-weight: 600;}
 
+
 .data-events p{height: 50px;line-height: 50px;}
 
 
@@ -38,7 +39,13 @@
 }
 .search-label{    color: gray; }
 
-
+.sticky{
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+}
 /*nav 导航*/
 .weui-grids{
   background: #fff;

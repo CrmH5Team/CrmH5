@@ -2,7 +2,8 @@
   <div>
       <Listheader :title="title"></Listheader>
 
-      <!-- <Sortscreen :key="key" :sortScreenData="sortScreenData"></Sortscreen>
+      <Sortscreen :key="key" :sortScreenData="sortScreenData"></Sortscreen>
+
       <Commonlist :listData="listData">
             <template slot-scope="slotProps">
                   <div class="weui-cell__hd">
@@ -14,7 +15,8 @@
                       <p class="">{{slotProps.item.lastname}}</p>
                   </router-link>
             </template>
-      </Commonlist> -->
+
+      </Commonlist>
 
       <!--  右侧侧滑 -->
       <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
@@ -253,8 +255,6 @@
   </div>
 </template>
 
-
-
 <script>
 import Listheader from '../common/Listheader'
 import Commonlist from '../common/Commonlist'
@@ -334,8 +334,6 @@ export default {
       },
       mounted:function(){
 
-
-
       },
       methods: {
 
@@ -346,31 +344,23 @@ export default {
 
 }
 </script>
-
-
 <style scoped>
 
 @import "../../assets/css/common/list-right-style.css";
 
-.page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;}
-/*列表style*/
-.date-div{
-  height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;font-size: 12px;
-  width: 100%;color:#000;
-  box-sizing: border-box;
-  z-index: 99;
+/*列表中每一项style*/
+.weui-cell__hd{display:none;}
+.weui-check:checked + .weui-icon-checked:before{color:#3cadf9;}
+.weui-cell__bd{font-size:0.28rem;padding: 10px 15px;margin: 0 -15px;}
+.weui-cell__bd p{color:#000;width:60%;line-height: 26px;
+    overflow: hidden;text-overflow: ellipsis;
+    -webkit-line-clamp: 1;word-break: break-all;
+    display: -webkit-box;-webkit-box-orient: vertical!important;
 }
-.item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;border-radius: 5px;font-size:0.6rem;color:#3cadf9;}
-.item-user-icon::after{color:#3cadf9;}
-.date-div .calcfont{color:#3cadf9;margin-right:8px;}
-.group-name{font-size: 0.3rem;}
-.occupy-div{height:30px;display:none;}
-
-.group-item{background:#fff;position:relative;}
-.item-block{padding:5px 10px 5px 1.3rem;}
-.group-item::after{content:'';display:block;height: 1px;background:#3cadf9;width:100%;left:0;bottom:0;}
-.item-div{font-size: 0.25rem;line-height: 0.5rem;padding-top:5px;}
-.item-first-div{font-weight: 600;color:#ff5a21;}
+.weui-cell__bd span{width: 35%;font-size:0.2rem;color: #595959;line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;-webkit-line-clamp: 1;
+    word-break: break-all;display: -webkit-box;
+    -webkit-box-orient: vertical!important;}
 
 </style>

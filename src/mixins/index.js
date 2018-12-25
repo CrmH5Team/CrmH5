@@ -8,31 +8,6 @@ export default{
         mounted:function(){
             lanTool.updateLanVersion();
             eventBus.$on('showRightPanel',this.panelToggle);
-
-            var headerH = parseFloat($('header').innerHeight());
-            $('#page-content').scroll(function(){
-                if($('.group-div').length <= 0) return ;
-
-                $('.group-div').each(function(){
-                  if($(this).position().top <= 0 ){
-
-                      if(tool.getSystem() === 'ios'){
-                          $(this).find(".date-div").addClass('sticky').css({"top": '0px'});
-                      }else{
-                          $(this).find('.date-div').css({"position":"fixed","top": headerH + 'px'});
-                          $(this).find('.occupy-div').show();
-                      }
-                  }else{
-                      if(tool.getSystem() === 'ios'){
-                          $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
-                      }else{
-                          $(this).find('.date-div').css({"position":"static"});
-                          $(this).find('.occupy-div').hide();
-                      }
-                  }
-
-                })
-            })
         },
         activated:function(){
 
@@ -44,7 +19,7 @@ export default{
                //通知Sortscreen组件重置排序条件
                eventBus.$emit('resetSort');
 
-              //  eventBus.$emit('commonlistGetDataEvent');
+               eventBus.$emit('commonlistGetDataEvent');
 
             }
             this.$route.meta.isBack = false;
