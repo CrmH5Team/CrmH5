@@ -84,65 +84,67 @@
 
       <div id="page-content" class="page-content">
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-yewujihui"></span>
                     <span class="group-name">Marketing team（PRC）</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          A320-200 sales project2 for to Eastern  Airlines
-                      </div>
-                      <div class="item-div">
-                          <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Normal</span><span class="right">Active</span>
-                      </div>
-                      <div class="item-div">
-                        <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                      </div>
-                      <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              A320-200 sales project2 for to Eastern  Airlines
+                          </div>
+                          <div class="item-div">
+                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Normal</span><span class="right">Active</span>
+                          </div>
+                          <div class="item-div">
+                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                          </div>
+                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                        </div>
                     </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          A320-200 sales project2 for to Eastern  Airlines
-                      </div>
-                      <div class="item-div">
-                          <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Normal</span><span class="right">Active</span>
-                      </div>
-                      <div class="item-div">
-                        <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                      </div>
-                      <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              A320-200 sales project2 for to Eastern  Airlines
+                          </div>
+                          <div class="item-div">
+                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Normal</span><span class="right">Active</span>
+                          </div>
+                          <div class="item-div">
+                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                          </div>
+                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                        </div>
                     </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          A320-200 sales project2 for to Eastern  Airlines
-                      </div>
-                      <div class="item-div">
-                          <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Normal</span><span class="right">Active</span>
-                      </div>
-                      <div class="item-div">
-                        <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                      </div>
-                      <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              A320-200 sales project2 for to Eastern  Airlines
+                          </div>
+                          <div class="item-div">
+                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Normal</span><span class="right">Active</span>
+                          </div>
+                          <div class="item-div">
+                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
+                          </div>
+                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
+                        </div>
                     </div>
                 </div>
 

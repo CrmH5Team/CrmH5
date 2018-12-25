@@ -69,190 +69,193 @@
 
       <div id="page-content" class="page-content">
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-fenlei"></span>
                     <span class="group-name">Alirline</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
                     </div>
                 </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-fenlei"></span>
                     <span class="group-name">Alirline</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
                     </div>
                 </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-fenlei"></span>
                     <span class="group-name">Alirline</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-shoucang1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">
+                              <span>Todd Scott</span><span class="right">UEA</span>
+                          </div>
+                          <div class="item-div">
+                              <span>Alirlines</span><span class="right">Jessie Zhao</span>
+                          </div>
+                          <div class="item-div">
+                            <span>China</span><span class="right">Asia Pacific</span>
+                          </div>
+                        </div>
                     </div>
                 </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-shoucang1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">
-                          <span>Todd Scott</span><span class="right">UEA</span>
-                      </div>
-                      <div class="item-div">
-                          <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                      </div>
-                      <div class="item-div">
-                        <span>China</span><span class="right">Asia Pacific</span>
-                      </div>
-                    </div>
-                </div>
-
             </div>
 
       </div>

@@ -100,141 +100,146 @@
 
       <div id="page-content" class="page-content">
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-kehulianxiren"></span>
                     <span class="group-name">Air China (Airlines)</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
                     </div>
                 </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
-                    </div>
+            </div>
+
+            <div class="group-div">
+                <div class="date-div open" @click="groupToggle($event)">
+                    <span class="calcfont calc-kehulianxiren"></span>
+                    <span class="group-name">Air China (Airlines)</span>
+                    <span class="right">(3)</span>
                 </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
+                <div class="occupy-div"></div>
+
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
+                    </div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
             <div class="group-div">
-                <div class="date-div open" >
+                <div class="date-div open" @click="groupToggle($event)">
                     <span class="calcfont calc-kehulianxiren"></span>
                     <span class="group-name">Air China (Airlines)</span>
                     <span class="right">(3)</span>
                 </div>
                 <div class="occupy-div"></div>
 
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
+                <div class="group-item-list">
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
                     </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
                     </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="group-div">
-                <div class="date-div open" >
-                    <span class="calcfont calc-kehulianxiren"></span>
-                    <span class="group-name">Air China (Airlines)</span>
-                    <span class="right">(3)</span>
-                </div>
-                <div class="occupy-div"></div>
-
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
-                    </div>
-                </div>
-                <div class="group-item">
-                    <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                    <div class="item-block">
-                      <div class="item-div item-first-div">Todd Scott</div>
-                      <div class="item-div">Fleet Planning Manager</div>
-                      <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                      <div class="item-div">
-                        <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                      </div>
-                      <div class="item-div">Airlines, Computer info Services</div>
+                    <div class="group-item">
+                        <div class="item-user-icon calcfont calc-fuzeren1"></div>
+                        <div class="item-block">
+                          <div class="item-div item-first-div">Todd Scott</div>
+                          <div class="item-div">Fleet Planning Manager</div>
+                          <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                          <div class="item-div">
+                            <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                          </div>
+                          <div class="item-div">Airlines, Computer info Services</div>
+                        </div>
                     </div>
                 </div>
 
