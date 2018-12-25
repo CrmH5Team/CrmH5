@@ -130,7 +130,7 @@
     </div>
 
     <!--  右侧侧滑 -->
-    <div id="mask" class="mask" @click="panelToggle" v-show="showRightPanel"></div>
+    <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
     <div id="right-content" class="right-content">
         <div class="right-content-block">
             <div class="right-block-title">View视图</div>
@@ -251,7 +251,7 @@ export default {
     data(){
         return {
             showCalendar:false,
-            showRightPanel:false,
+            showPanel:false,
             title:'CRM',
             userName:'',
 
@@ -274,7 +274,7 @@ export default {
     mounted:function(){
         lanTool.updateLanVersion();
         // this.userName = tool.getStorageItem(tool.cache_UserRealName);
-        eventBus.$on('showRightPanel',this.panelToggle);
+        eventBus.$on('showRightPanelEvent',this.panelToggle);
 
         //列表视图滚动
         var headerH = parseFloat($('header').innerHeight());
@@ -335,8 +335,8 @@ export default {
     methods:{
         panelToggle:function(){
           var _self = this;
-            _self.showRightPanel = !_self.showRightPanel;
-            if(_self.showRightPanel){
+            _self.showPanel = !_self.showPanel;
+            if(_self.showPanel){
                 $('#right-content').css({
                     'left':'30%',
                     'transition':'left 0.1s ease-out',
@@ -454,7 +454,7 @@ export default {
 
     },
     beforeDestroy:function(){
-       eventBus.$off('showRightPanel');
+       eventBus.$off('showRightPanelEvent');
     }
 
 

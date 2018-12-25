@@ -7,6 +7,7 @@
           <h1 class="mui-title">{{title}}</h1>
 
           <a @click="save" class="calcfont calc-gou right" id="save"></a>
+
       </header>
   </div>
 

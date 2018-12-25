@@ -38,7 +38,7 @@ export default {
 
         //首页就显示侧滑
         showRightPanel:function(){
-            eventBus.$emit('showRightPanel');
+            eventBus.$emit('showRightPanelEvent');
         }
 
     }
