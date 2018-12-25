@@ -1,0 +1,318 @@
+.scroll-div {
+    position: fixed;
+    top: 0.88rem;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    /*height: calc(100% - 0.88rem);*/
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    background-color: #FFFFFF
+}
+
+.CalendarList {
+    /* height: 100%; */
+    background-color: #FFFFFF
+}
+
+.calendarListCell {
+    position: relative;
+    display: flex;
+    padding: 10px 10px;
+    padding-right: 5px;
+    /*border-bottom: solid 1px red;*/
+}
+.calendarListCell .calendarListCellLeftIcon {
+    width: 40px;
+    /* height:30px; */
+    /* text-align: right; */
+    padding: 10px 0;
+    /* background-color: red; */
+}
+.calendarListCell .calendarListCellLeftText {
+    margin: auto 0;
+    width: 100%;
+    padding-left: 0px;
+    display: flex;
+    font-size: 15px;
+}
+.calendarListCell .calendarListCellContent
+{
+    margin: auto 0;
+    width: 100%;
+    padding-left: 0px;
+    display: flex;
+    font-size: 15px;
+}
+.calendarListCell .calendarListCellContentField,.calendarListCell .calendarListCellContentData{
+  width: calc(100% - 65px);
+}
+.calendarListCell .calendarListCellContent .calendarListCellContentRigth
+{
+    width: 65px;
+    height: 27px;
+    text-align: left;
+}
+.calendarListCell .calendarListCellContent .calendarListCellContentLeft
+{
+    width: calc(100% - 65px);
+    margin: auto 0;
+}
+.leftContent, .rightContent
+{
+    width:calc(50% - 13px) !important;
+    margin: auto 0;
+}
+.calendarListCellContentRightText{
+    text-align: right;
+    min-height: 20px;
+    line-height: 20px;
+}
+.calendarListCellContentLeftText
+{
+   min-height: 20px;
+   line-height: 20px;
+}
+.calendarListCellLeftIcon.leftIconHidden
+{
+    display: block;
+    visibility: hidden;
+}
+
+.calendarListCell .calendarListCellContent .calendarListCellRightIcon
+{
+   width: 20px;
+   line-height: 20px;
+   text-align: right;
+}
+p.textareaP{
+    width: 100%;
+}
+textarea {
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+    display: block;
+    margin-left: 0;
+    overflow: hidden;
+    position: relative;
+    /* left: -4px; */
+    border: none;
+    font-size: 15px;
+    /*border: 1px solid transparent; */
+    /* height: 400px; */
+    line-height: 24px;
+    /* margin: 11px 11px 8px 0; */
+    display: block;
+    height:25px;
+}
+.calendarListCell:after {
+    position: absolute;
+    content: '';
+    left: 40px;
+    right: 18px;
+    bottom: 0;
+    height: 1px;
+    background-color: #A6D4F6;
+}
+
+.calendarListCell input {
+    /* outline: none; */
+    width: 80%;
+}
+
+.MoreCalendarList {
+    display: none;
+}
+
+.MoreCalendarList .calendarListCell:after,.documentCalendarList .calendarListCell:after,.updateCalendarList .calendarListCell:after {
+    background-color: #E5F0F4;
+}
+
+.MoreCalendarList .visible:after{
+    background-color: #A6D4F6;
+}
+
+.documentCalendarList .documentHeader{
+    width: calc(100% - 24px);
+
+}
+.documentAddIcon{
+    /* width: 24px;     */
+    /* height: 44px; */
+    margin: auto 0;  
+   margin-left: 20px;  
+}
+.documentAddIcon .mui-icon.calcfont.calc-jia
+{
+    padding: 10px;
+}
+.documentList .calc-fujian{
+    color: #FF5A21;
+}
+.documentList .calendarListCellContentLeftText
+{
+    color: #2A79C8;
+}
+.documentList .rightContent
+{
+    width: calc(50% - 30px) !important;
+    /* padding-right: 20px; */
+}
+.documentList .deleteDoc{
+    padding: 5px;
+}
+.updateCalendarList .leftContent,.updateCalendarList .rightContent
+{
+    width: calc(50%) !important;
+}
+.updateCalendarList .rightContent{
+    padding-right: 20px;
+}
+/* .calendarListCellContentRightText
+{
+    text-align: center;
+} */
+/* .calendarListCell .calendarListCellLeftText input {
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    color: #666666;
+    margin: auto 0;
+    padding-left: 0;
+    border: none;
+    background-color: none;
+} */
+
+/* .calendarListCell .switch {
+    flex: 9;
+    text-align: right;
+    padding-right: 5px;
+} */
+
+/* .calendarListCell .calendarListCellLeftContent {
+    flex: 8;
+    margin: auto 0;
+    padding-left: 5px;
+    line-height: 15px;
+} */
+
+/* .calendarListCell .calendarListCellMiddle {
+    flex: 10;
+    margin: auto 0;
+    padding-left: 10px;
+    line-height: 20px;
+    text-align: right;
+} */
+
+/* .calendarListCell .calendarListCellMiddle .calendarListCellMiddleContent {
+    width: 4rem;
+    font-size: 15px;
+    height: 20px;
+    line-height: 20px;
+    color: #666666;
+    float: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+} */
+
+/* .calendarListCell .calendarListCellMiddle .calendarListCellMiddleContent:after {
+    clear: both;
+} */
+
+.calendarListCell .calendarListCellRight,
+.calendarListCell .calendarListCellLeftIcon {
+    /* flex: 1; */
+    margin: auto 0;
+}
+
+.calendarListCell .calendarListCellRightIcon .mui-icon.calcfont {
+    color: #cdcdcd;
+    margin: auto 0;
+}
+
+.calendarListCell .calendarListCellLeftIcon .mui-icon.calcfont {
+    font-size: 28px;
+    color: #8A8A8A;
+}
+
+.calendarListCell .time.calendarListCellLeftIcon .mui-icon.calcfont {
+    color: #FFFFFF;
+}
+.mui-icon.calcfont.calc-tishi
+{
+    color: #FF5A21;
+    font-size: 18px;
+    margin-top: -5px;
+    padding-left: 3px;
+    line-height: 13px;
+}
+.MoreBtn {
+    margin: 20px auto;
+    border: solid 1px #999999;
+    border-radius: 22px;
+    height: 44px;
+    width: 70%;
+    line-height: 44px;
+    text-align: center;
+    color: #FF5A21;
+}
+
+/* switch 开关*/
+label.bui-switch-label input {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+label.bui-switch-label .bui-switch {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    border: 1px solid #D7D7D7;
+    background-color: #D7D7D7;
+    box-shadow: #D7D7D7 0 0 0 0 inset;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-clip: content-box;
+    display: inline-block;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    box-sizing: content-box;
+}
+
+label.bui-switch-label .bui-switch:before {
+    content: '';
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+label.bui-switch-label input:checked+.bui-switch {
+    border-color: #FF5A21;
+    box-shadow: #FF5A21 0 0 0 16px inset;
+    background-color: #FF5A21;
+}
+
+label.bui-switch-label input:checked+.bui-switch:before {
+    left: 27px;
+}
