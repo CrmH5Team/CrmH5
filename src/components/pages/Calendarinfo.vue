@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <Infoheader :title="ptitle"></Infoheader>
+    <Infoheader :moreHidden="moreHidden" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="CalendarList">
@@ -282,6 +282,7 @@ import Infofooter from '../common/infoFooter'
 // import commoninfo from '../common/commoninfo.js'
 
 import Mixins from '../../mixins'
+import eventBus from '../common/Event';
 
 export default {
     // mixins: [Mixins.PAGE_INFO],
@@ -293,7 +294,8 @@ export default {
     },
     data() {
         return {
-
+            moreHidden:false,
+            delHidden:true,
             ptitle: 'detail',
             id: null,
             isAdd: true, //页面是否是新增状态
@@ -364,9 +366,9 @@ export default {
         var $this = this;
 
         //set pageTitlepageTitle
-        eventBus.$on('setPageTitle', function (data) {
-            // $this.pageTitle = data.subject || '';
-        });
+        // eventBus.$on('setPageTitle', function (data) {
+        //     // $this.pageTitle = data.subject || '';
+        // });
 
     },
     mounted: function () {
@@ -378,7 +380,9 @@ export default {
                 tool.autoTextarea(cur);
             });
         })
-
+        eventBus.$on('delete',function(data){
+             console.log(data);
+        });
         // //监听滚动条
         // $('.scroll-div').on('scroll', function () {
         //     _self.scrollTop = $(this).scrollTop();

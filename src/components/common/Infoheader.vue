@@ -13,16 +13,19 @@
 
 <script>
 import event from './Event.js'
+import eventBus from './Event.js';
 export default {
     data() {
         return {
-            moreHidden: false,
-            delHidden: true,
+            // moreHidden: false,
+            // delHidden: true,
         }
     },
     props: {
         title: String,
-        pageType: String
+        pageType: String,
+        moreHidden:Boolean,
+        delHidden:Boolean
     },
     mounted: function () {
 
@@ -34,7 +37,7 @@ export default {
             eventBus.$emit('save');
         },
         delClick: function () {
-
+             eventBus.$emit('delete','asdaf');     
         },
         moreClick: function () {
 

@@ -132,7 +132,7 @@ textarea {
     line-height: 0.48rem;
     /* margin: 11px 11px 8px 0; */
     display: block;
-    /* height:0.5rem; */
+    height:0.5rem;
 }
 .ListCell:after,.ListSpecialCell:after {
     position: absolute;
