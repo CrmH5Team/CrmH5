@@ -4,98 +4,98 @@
 
     <div class="scroll-div">
         <div class="CalendarList">
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
-                <div class="calendarListCellLeftText">
+            <div class="ListCell">
+                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
+                <div class="ListCellLeftText">
                     <p class="textareaP">
                         <textarea autoHeight="true" placeholder="Title">Firsting Meeting with Eastern Airlines</textarea>
                     </p>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft">
-                        <div class="calendarListCellContentLeftText">All day</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft">
+                        <div class="ListCellContentLeftText">All day</div>
                     </div>
-                    <div class="calendarListCellContentRigth switch">
+                    <div class="ListCellContentRigth switch">
                         <label class="bui-switch-label ">
                          <input @click="inputClick" type="checkbox" name="s" ><i class="bui-switch"></i>
                         </label>
                     </div>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft leftContent">
-                        <div class="calendarListCellContentLeftText">Start</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Start</div>
                     </div>
-                    <div class="calendarListCellContentRight rightContent">
-                        <div class="calendarListCellContentRightText">16/Nov 15:00</div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">16/Nov 15:00</div>
                     </div>
-                    <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft leftContent">
-                        <div class="calendarListCellContentLeftText">End</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">End</div>
                     </div>
-                    <div class="calendarListCellContentRight rightContent">
-                        <div class="calendarListCellContentRightText">16/Nov 16:00</div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">16/Nov 16:00</div>
                     </div>
-                    <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft leftContent">
-                        <div class="calendarListCellContentLeftText">Meeting Nature</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Meeting Nature</div>
                     </div>
-                    <div class="calendarListCellContentRight rightContent">
-                        <div class="calendarListCellContentRightText">Meeting Nature</div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Meeting Nature</div>
                     </div>
-                    <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-17"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft leftContent">
-                        <div class="calendarListCellContentLeftText">Meeting Type</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-17"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Meeting Type</div>
                     </div>
-                    <div class="calendarListCellContentRight rightContent">
-                        <div class="calendarListCellContentRightText">Meeting Type</div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Meeting Type</div>
                     </div>
-                    <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="calendarListSpecialCell" id="Organization">
-                <div class="calendarListSpecialCellField">
-                    <div class="calendarListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
-                    <div class="calendarListSpecialCellFieldContent">Organization</div>
-                    <div class="calendarListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+            <div class="ListSpecialCell" id="Organization">
+                <div class="ListSpecialCellField">
+                    <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
+                    <div class="ListSpecialCellFieldContent">Organization</div>
+                    <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-                <div class="calendarListSpecialCellContent">Organization Organization Organization Organization Organization Organization</div>
+                <div class="ListSpecialCellContent">Organization Organization Organization Organization Organization Organization</div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
-                <div class="calendarListCellContent">
-                    <div class="calendarListCellContentLeft leftContent">
-                        <div class="calendarListCellContentLeftText">Contact</div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Contact</div>
                     </div>
-                    <div class="calendarListCellContentRight rightContent">
-                        <div class="calendarListCellContentRightText">Contact</div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Contact</div>
                     </div>
-                    <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="calendarListCell">
-                <div class="calendarListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
-                <div class="calendarListCellLeftText">
+            <div class="ListCell">
+                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                <div class="ListCellLeftText">
                     <p class="textareaP">
                         <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
                     </p>
@@ -103,158 +103,158 @@
             </div>
         </div>
         <div v-show="isShowMore" class="moreList">
-            <div class="MoreCalendarList">
-                <div class="calendarListSpecialCell specialCell" id="Opportunity">
-                    <div class="calendarListSpecialCellField">
-                        <div class="calendarListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
-                        <div class="calendarListSpecialCellFieldContent">Opportunity</div>
-                        <div class="calendarListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+            <div class="MoreList">
+                <div class="ListSpecialCell specialCell" id="Opportunity">
+                    <div class="ListSpecialCellField">
+                        <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellFieldContent">Opportunity</div>
+                        <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="calendarListSpecialCellContent">Opportunity Opportunity Opportunity Opportunity Opportunity Opportunity</div>
+                    <div class="ListSpecialCellContent">Opportunity Opportunity Opportunity Opportunity Opportunity Opportunity</div>
                 </div>
-                <div class="calendarListCell" id="Initiator">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Initiator</div>
+                <div class="ListCell" id="Initiator">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Initiator</div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">Cheryl Xiong</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Cheryl Xiong</div>
                         </div>
-                        <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-youxianji"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Priority</div>
-                        </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">Priority</div>
-                        </div>
-                        <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
-                    <div class="calendarListCellLeftText">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxianji"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Priority</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Priority</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
+                    <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
                         </p>
                     </div>
                 </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">Select user or group</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Select user or group</div>
                         </div>
-                        <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="calendarListCell visible">
-                    <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Visibility for</div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Visibility for</div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">Market Team</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Market Team</div>
                         </div>
-                        <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-tixing1"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft">
-                            <div class="calendarListCellContentLeftText reminderTiShi">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-tixing1"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft">
+                            <div class="ListCellContentLeftText reminderTiShi">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
-                        <div class="calendarListCellContentRigth switch">
+                        <div class="ListCellContentRigth switch">
                             <label class="bui-switch-label ">
                          <input @click="inputClick" type="checkbox" name="s" ><i class="bui-switch"></i>
                         </label>
                         </div>
                     </div>
                 </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Send Email Before</div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Send Email Before</div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">1h</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">1h</div>
                         </div>
-                        <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
             </div>
-            <div class="documentCalendarList">
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-wendang1"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft documentHeader">
-                            <div class="calendarListCellContentLeftText documentHeader">Documents</div>
+            <div class="documentList">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-wendang1"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft documentHeader">
+                            <div class="ListCellContentLeftText documentHeader">Documents</div>
                         </div>
-                        <div class="calendarListCellRightIcon documentAddIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                        <div class="ListCellRightIcon documentAddIcon"><span class="mui-icon calcfont calc-jia"></span></div>
                     </div>
                 </div>
-                <div class="documentList">
-                    <div class="calendarListCell">
-                        <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                        <div class="calendarListCellContent">
-                            <div class="calendarListCellContentLeft leftContent">
-                                <div class="calendarListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName1.png</div>
+                <div class="wendangList">
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName1.png</div>
                             </div>
-                            <div class="calendarListCellContentRight rightContent">
-                                <div class="calendarListCellContentRightText">16/Nov 15:00</div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">16/Nov 15:00</div>
                             </div>
-                            <div class="calendarListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
                     </div>
-                    <div class="calendarListCell">
-                        <div class="calendarListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                        <div class="calendarListCellContent">
-                            <div class="calendarListCellContentLeft leftContent">
-                                <div class="calendarListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName2.png</div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName2.png</div>
                             </div>
-                            <div class="calendarListCellContentRight rightContent">
-                                <div class="calendarListCellContentRightText">16/Nov 15:00</div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">16/Nov 15:00</div>
                             </div>
-                            <div class="calendarListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="updateCalendarList">
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Updated Time</div>
+            <div class="updateList">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Updated Time</div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">13/Nov/2018 15:00</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">13/Nov/2018 15:00</div>
                         </div>
-                        <!-- <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
+                        <!-- <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
                     </div>
                 </div>
-                <div class="calendarListCell">
-                    <div class="calendarListCellLeftIcon"><span class="mui-icon calcfont calc-chuangjianren"></span></div>
-                    <div class="calendarListCellContent">
-                        <div class="calendarListCellContentLeft leftContent">
-                            <div class="calendarListCellContentLeftText">Updated by Cheryl Xiong</div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chuangjianren"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Updated by Cheryl Xiong</div>
                         </div>
-                        <div class="calendarListCellContentRight rightContent">
-                            <div class="calendarListCellContentRightText">Cheryl Xiong</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Cheryl Xiong</div>
                         </div>
-                        <!-- <div class="calendarListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
+                        <!-- <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
                     </div>
                 </div>
             </div>
@@ -294,7 +294,7 @@ export default {
     data() {
         return {
 
-            ptitle: 'calendardetail',
+            ptitle: 'detail',
             id: null,
             isAdd: true, //页面是否是新增状态
             // data:null,

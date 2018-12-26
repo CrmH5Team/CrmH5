@@ -17,54 +17,54 @@
     background-color: #FFFFFF
 }
 
-.calendarListCell {
+.ListCell {
     position: relative;
     display: flex;
     padding: 0.2rem 0.2rem;
     padding-right: 0.1rem;
     /*border-bottom: solid 1px red;*/
 }
-.calendarListSpecialCell{
+.ListSpecialCell{
     position: relative;
     padding: 0.2rem 0.2rem;
     padding-right: 0.1rem;
 }
-.calendarListSpecialCellField{
+.ListSpecialCellField{
     display: flex;
     width: 100%;
 }
-.calendarListSpecialCellContent{
+.ListSpecialCellContent{
     padding: 0.1rem 0;
     padding-left: 0.7rem;
     padding-right: 0.5rem;
     line-height: 0.32rem;
     font-size: 0.28rem;
 }
-.calendarListSpecialCellLeftIcon{
+.ListSpecialCellLeftIcon{
     width: 0.8rem;
     padding: 0.2rem 0;
 }
-.calendarListSpecialCellFieldContent{
+.ListSpecialCellFieldContent{
     width: calc(100% - 1.3rem);
     margin: auto 0;
     margin-left: -0.1rem;
     font-size: 0.28rem;
 }
-.calendarListCell .calendarListCellLeftIcon {
+.ListCell .ListCellLeftIcon {
     width: 0.8rem;
     /* height:30px; */
     /* text-align: right; */
     padding: 0.2rem 0;
     /* background-color: red; */
 }
-.calendarListCell .calendarListCellLeftText {
+.ListCell .ListCellLeftText {
     margin: auto 0;
     width: 100%;
     padding-left: 0px;
     display: flex;
     font-size: 0.28rem;
 }
-.calendarListCell .calendarListCellContent
+.ListCell .ListCellContent
 {
     margin: auto 0;
     width: 100%;
@@ -72,16 +72,16 @@
     display: flex;
     font-size: 0.28rem;
 }
-.calendarListCell .calendarListCellContentField,.calendarListCell .calendarListCellContentData{
+.ListCell .ListCellContentField,.ListCell .ListCellContentData{
   width: calc(100% - 1.3rem);
 }
-.calendarListCell .calendarListCellContent .calendarListCellContentRigth
+.ListCell .ListCellContent .ListCellContentRigth
 {
     width: 1.3rem;
     height: 0.54rem;
     text-align: left;
 }
-.calendarListCell .calendarListCellContent .calendarListCellContentLeft
+.ListCell .ListCellContent .ListCellContentLeft
 {
     width: calc(100% - 1.3rem);
     margin: auto 0;
@@ -91,23 +91,23 @@
     width:calc(50% - 0.26rem) !important;
     margin: auto 0;
 }
-.calendarListCellContentRightText{
+.ListCellContentRightText{
     text-align: right;
     min-height: 0.4rem;
     line-height: 0.4rem;
 }
-.calendarListCellContentLeftText
+.ListCellContentLeftText
 {
    min-height: 0.4rem;
    line-height: 0.4rem;
 }
-.calendarListCellLeftIcon.leftIconHidden
+.ListCellLeftIcon.leftIconHidden
 {
     display: block;
     visibility: hidden;
 }
 
-.calendarListCell .calendarListCellContent .calendarListCellRightIcon,.calendarListSpecialCellRightIcon
+.ListCell .ListCellContent .ListCellRightIcon,.ListSpecialCellRightIcon
 {
    width:0.4rem;
    line-height: 0.4rem;
@@ -134,7 +134,7 @@ textarea {
     display: block;
     /* height:0.5rem; */
 }
-.calendarListCell:after,.calendarListSpecialCell:after {
+.ListCell:after,.ListSpecialCell:after {
     position: absolute;
     content: '';
     left:0.8rem;
@@ -144,24 +144,24 @@ textarea {
     background-color: #A6D4F6;
 }
 
-.calendarListCell input {
+.ListCell input {
     /* outline: none; */
     width: 80%;
 }
 
-/* .MoreCalendarList {
+/* .MoreList {
     display: none;
 } */
 
-.MoreCalendarList .calendarListCell:after,.documentCalendarList .calendarListCell:after,.updateCalendarList .calendarListCell:after,.MoreCalendarList .specialCell:after {
+.MoreList .ListCell:after,.documentList .ListCell:after,.updateList .ListCell:after,.MoreList .specialCell:after {
     background-color: #E5F0F4;
 }
 
-.MoreCalendarList .visible:after{
+.MoreList .visible:after{
     background-color: #A6D4F6;
 }
 
-.documentCalendarList .documentHeader{
+.documentList .documentHeader{
     width: calc(100% - 0.48rem);
 
 }
@@ -175,35 +175,35 @@ textarea {
 {
     padding: 0.2rem;
 }
-.documentList .calc-fujian{
+.wendangList .calc-fujian{
     color: #FF5A21;
     font-size: 0.32rem;
 }
-.documentList .calendarListCellContentLeftText
+.wendangList .ListCellContentLeftText
 {
     color: #2A79C8;
 }
-.documentList .rightContent
+.wendangList .rightContent
 {
     width: calc(50% - 0.6rem) !important;
     /* padding-right: 20px; */
 }
-.documentList .deleteDoc{
+.wendangList .deleteDoc{
     padding: 0.1rem;
     font-size: 0.32rem;
 }
-.updateCalendarList .leftContent,.updateCalendarList .rightContent
+.updateList .leftContent,.updateList .rightContent
 {
     width: calc(50%) !important;
 }
-.updateCalendarList .rightContent{
+.updateList .rightContent{
     padding-right: 0.4rem;
 }
-/* .calendarListCellContentRightText
+/* .ListCellContentRightText
 {
     text-align: center;
 } */
-/* .calendarListCell .calendarListCellLeftText input {
+/* .ListCell .ListCellLeftText input {
     height: 20px;
     line-height: 20px;
     font-size: 15px;
@@ -214,20 +214,20 @@ textarea {
     background-color: none;
 } */
 
-/* .calendarListCell .switch {
+/* .ListCell .switch {
     flex: 9;
     text-align: right;
     padding-right: 5px;
 } */
 
-/* .calendarListCell .calendarListCellLeftContent {
+/* .ListCell .ListCellLeftContent {
     flex: 8;
     margin: auto 0;
     padding-left: 5px;
     line-height: 15px;
 } */
 
-/* .calendarListCell .calendarListCellMiddle {
+/* .ListCell .ListCellMiddle {
     flex: 10;
     margin: auto 0;
     padding-left: 10px;
@@ -235,7 +235,7 @@ textarea {
     text-align: right;
 } */
 
-/* .calendarListCell .calendarListCellMiddle .calendarListCellMiddleContent {
+/* .ListCell .ListCellMiddle .ListCellMiddleContent {
     width: 4rem;
     font-size: 15px;
     height: 20px;
@@ -247,33 +247,33 @@ textarea {
     white-space: nowrap;
 } */
 
-/* .calendarListCell .calendarListCellMiddle .calendarListCellMiddleContent:after {
+/* .ListCell .ListCellMiddle .ListCellMiddleContent:after {
     clear: both;
 } */
 
-.calendarListCell .calendarListCellRight,
-.calendarListCell .calendarListCellLeftIcon,.calendarListSpecialCellLeftIcon,.calendarListSpecialCellRightIcon{
+.ListCell .ListCellRight,
+.ListCell .ListCellLeftIcon,.ListSpecialCellLeftIcon,.ListSpecialCellRightIcon{
     /* flex: 1; */
     margin: auto 0;
 }
-.calendarListCellLeftIcon.textLeftIcon{
+.ListCellLeftIcon.textLeftIcon{
     margin: 0 0;
 }
-.calendarListSpecialCellRightIcon{
+.ListSpecialCellRightIcon{
     padding-left: 0.1rem;
 }
-.calendarListCell .calendarListCellRightIcon .mui-icon.calcfont,.calendarListSpecialCellRightIcon .mui-icon.calcfont {
+.ListCell .ListCellRightIcon .mui-icon.calcfont,.ListSpecialCellRightIcon .mui-icon.calcfont {
     color: #cdcdcd;
     margin: auto 0;
     font-size: 0.32rem;
 }
 
-.calendarListCell .calendarListCellLeftIcon .mui-icon.calcfont,.calendarListSpecialCellLeftIcon .mui-icon.calcfont{
+.ListCell .ListCellLeftIcon .mui-icon.calcfont,.ListSpecialCellLeftIcon .mui-icon.calcfont{
     font-size: 0.56rem;
     color: #8A8A8A;
 }
 
-.calendarListCell .time.calendarListCellLeftIcon .mui-icon.calcfont {
+.ListCell .time.ListCellLeftIcon .mui-icon.calcfont {
     color: #FFFFFF;
 }
 .mui-icon.calcfont.calc-tishi
