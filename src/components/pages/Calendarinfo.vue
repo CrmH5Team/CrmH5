@@ -194,81 +194,15 @@
                     </div>
                 </div>
             </div>
-            <div class="documentList">
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-wendang1"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft documentHeader">
-                            <div class="ListCellContentLeftText documentHeader">Documents</div>
-                        </div>
-                        <div class="ListCellRightIcon documentAddIcon"><span class="mui-icon calcfont calc-jia"></span></div>
-                    </div>
-                </div>
-                <div class="wendangList">
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName1.png</div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">16/Nov 15:00</div>
-                            </div>
-                            <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
-                        </div>
-                    </div>
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName2.png</div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">16/Nov 15:00</div>
-                            </div>
-                            <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class="updateList">
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Updated Time</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">13/Nov/2018 15:00</div>
-                        </div>
-                        <!-- <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
-                    </div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chuangjianren"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Updated by Cheryl Xiong</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Cheryl Xiong</div>
-                        </div>
-                        <!-- <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div> -->
-                    </div>
-                </div>
-            </div>
+            <Uploadfile></Uploadfile>
+
+            <Infofooter> </Infofooter>
+
         </div>
         <div class="MoreBtn" @click="moreClick">
             <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
         </div>
-
-        <!-- <Infofooter 
-                v-if="!isAdd"
-                :createdtime="moduleData.createdtime"
-                :modifiedtime="moduleData.modifiedtime"
-                :modifiedby="moduleData.modifiedby"
-              ></Infofooter> -->
 
     </div>
 </div>
@@ -279,6 +213,7 @@ import Infoheader from '../common/Infoheader'
 import Datetimepicker from '../common/Datetimepicker'
 import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
+import Uploadfile from './Uploadfile'
 // import commoninfo from '../common/commoninfo.js'
 
 import Mixins from '../../mixins'
@@ -290,12 +225,13 @@ export default {
         Infoheader,
         Datetimepicker,
         Picker,
-        Infofooter
+        Infofooter,
+        Uploadfile
     },
     data() {
         return {
-            moreHidden:false,
-            delHidden:true,
+            moreHidden: false,
+            delHidden: true,
             ptitle: 'detail',
             id: null,
             isAdd: true, //页面是否是新增状态
@@ -380,8 +316,8 @@ export default {
                 tool.autoTextarea(cur);
             });
         })
-        eventBus.$on('delete',function(data){
-             console.log(data);
+        eventBus.$on('delete', function (data) {
+            console.log(data);
         });
         // //监听滚动条
         // $('.scroll-div').on('scroll', function () {

@@ -35,7 +35,7 @@
                 </router-link>
             </div>
             <div class="weui-grid">
-                <router-link to="/contacts" class="js_grid">
+                <router-link to="/calendarlistinfo/{'AutoID':'18x3618'}" class="js_grid">
                   <div class="weui-grid__icon soon-icon">
                     <span class="mui-icon calcfont calc-lianxiren1"></span>
                   </div>

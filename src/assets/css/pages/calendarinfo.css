@@ -160,7 +160,9 @@ textarea {
 .MoreList .visible:after{
     background-color: #A6D4F6;
 }
-
+.updateList,.documentList{
+    margin-top: 0.2rem;
+}
 .documentList .documentHeader{
     width: calc(100% - 0.48rem);
 
@@ -192,6 +194,8 @@ textarea {
     padding: 0.1rem;
     font-size: 0.32rem;
 }
+
+
 .updateList .leftContent,.updateList .rightContent
 {
     width: calc(50%) !important;
