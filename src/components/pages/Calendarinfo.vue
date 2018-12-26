@@ -232,7 +232,7 @@ export default {
         return {
             moreHidden: false,
             delHidden: true,
-            ptitle: 'detail',
+            ptitle: 'calendar detail',
             id: null,
             isAdd: true, //页面是否是新增状态
             // data:null,

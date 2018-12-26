@@ -17,7 +17,7 @@ import eventBus from './Event.js';
 export default {
     data() {
         return {
-            // moreHidden: false,
+            moreHidden: true,
             // delHidden: true,
         }
     },
@@ -86,6 +86,7 @@ header.mui-bar {
     width: 0.88rem;
     text-align: center;
     padding: 0.2rem 0;
+    padding-right: 0.1rem;
     position: relative;
     z-index: 20;
     display: inline-block;
