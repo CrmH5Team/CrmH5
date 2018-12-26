@@ -20,7 +20,7 @@
                     </div>
                     <!-- <div class="ListCellContentRight switch"> -->
                         <label class="bui-switch-label ">
-                         <input @click="inputClick" type="checkbox" name="s" checked='checked'><i class="bui-switch"></i>
+                         <input @click="inputClick" type="checkbox" name="s"><i class="bui-switch"></i>
                         </label>
                     <!-- </div> -->
                 </div>
@@ -32,7 +32,7 @@
                         <div class="ListCellContentLeftText">Start</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">16/Nov 15:00</div>
+                        <div class="ListCellContentRightText"><input type="text" value="16/Nov 15:00" readonly></div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -44,7 +44,7 @@
                         <div class="ListCellContentLeftText">End</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">16/Nov 16:00</div>
+                        <div class="ListCellContentRightText"><input type="text" value="16/Nov 16:00" readonly></div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -56,7 +56,7 @@
                         <div class="ListCellContentLeftText">Meeting Nature</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Meeting Nature</div>
+                        <div class="ListCellContentRightText"><input type="text" value="Meeting Nature" readonly></div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -68,7 +68,7 @@
                         <div class="ListCellContentLeftText">Meeting Type</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Meeting Type</div>
+                        <div class="ListCellContentRightText"><input type="text" value="Meeting Type" readonly></div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -88,7 +88,7 @@
                         <div class="ListCellContentLeftText">Contact</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Contact</div>
+                        <div class="ListCellContentRightText"><input type="text" value="Contact" readonly></div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -119,7 +119,7 @@
                             <div class="ListCellContentLeftText">Initiator</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Cheryl Xiong</div>
+                            <div class="ListCellContentRightText"><input type="text" value="Cheryl Xiong" readonly></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -131,7 +131,7 @@
                             <div class="ListCellContentLeftText">Priority</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Priority</div>
+                            <div class="ListCellContentRightText"><input type="text" value="Priority" readonly></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -151,7 +151,7 @@
                             <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Select user or group</div>
+                            <div class="ListCellContentRightText"><input type="text" value="Select user or group user or group" readonly></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -163,7 +163,7 @@
                             <div class="ListCellContentLeftText">Visibility for</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Market Team</div>
+                            <div class="ListCellContentRightText"><input type="text" value="Market Team" readonly></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -176,7 +176,7 @@
                         </div>
                         <!-- <div class="ListCellContentRight switch"> -->
                             <label class="bui-switch-label ">
-                         <input @click="inputClick" type="checkbox" name="s" checked><i class="bui-switch"></i>
+                         <input @click="inputClick" type="checkbox" name="s"><i class="bui-switch"></i>
                         </label>
                         <!-- </div> -->
                     </div>
@@ -188,7 +188,7 @@
                             <div class="ListCellContentLeftText">Send Email Before</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">1h</div>
+                            <div class="ListCellContentRightText"><input type="text" value="1h" readonly></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
