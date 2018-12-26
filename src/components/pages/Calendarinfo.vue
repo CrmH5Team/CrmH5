@@ -18,14 +18,14 @@
                     <div class="ListCellContentLeft">
                         <div class="ListCellContentLeftText">All day</div>
                     </div>
-                    <div class="ListCellContentRigth switch">
+                    <!-- <div class="ListCellContentRight switch"> -->
                         <label class="bui-switch-label ">
-                         <input @click="inputClick" type="checkbox" name="s" ><i class="bui-switch"></i>
+                         <input @click="inputClick" type="checkbox" name="s" checked='checked'><i class="bui-switch"></i>
                         </label>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell" @click="startClick">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -174,11 +174,11 @@
                         <div class="ListCellContentLeft">
                             <div class="ListCellContentLeftText reminderTiShi">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
-                        <div class="ListCellContentRigth switch">
+                        <!-- <div class="ListCellContentRight switch"> -->
                             <label class="bui-switch-label ">
-                         <input @click="inputClick" type="checkbox" name="s" ><i class="bui-switch"></i>
+                         <input @click="inputClick" type="checkbox" name="s" checked><i class="bui-switch"></i>
                         </label>
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
                 <div class="ListCell">
@@ -318,6 +318,7 @@ export default {
         })
         eventBus.$on('delete', function (data) {
             console.log(data);
+            // alert(data);
         });
         // //监听滚动条
         // $('.scroll-div').on('scroll', function () {
@@ -333,6 +334,9 @@ export default {
                 console.log("false");
             }
 
+        },
+        startClick:function(e){
+            // alert("dianji")
         },
         moreClick: function (e) {
             console.log("gengduo");
