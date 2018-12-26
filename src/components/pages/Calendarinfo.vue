@@ -79,7 +79,7 @@
                     <div class="ListSpecialCellFieldContent">Organization</div>
                     <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-                <div class="ListSpecialCellContent">Organization Organization Organization Organization Organization Organization</div>
+                <div class="ListSpecialCellContent">Organization</div>
             </div>
             <div class="ListCell">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
@@ -110,7 +110,7 @@
                         <div class="ListSpecialCellFieldContent">Opportunity</div>
                         <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent">Opportunity Opportunity Opportunity Opportunity Opportunity Opportunity</div>
+                    <div class="ListSpecialCellContent">Opportunity</div>
                 </div>
                 <div class="ListCell" id="Initiator">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>

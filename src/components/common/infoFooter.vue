@@ -15,7 +15,7 @@
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chuangjianren"></span></div>
         <div class="ListCellContent">
             <div class="ListCellContentLeft leftContent">
-                <div class="ListCellContentLeftText">Updated by Cheryl Xiong</div>
+                <div class="ListCellContentLeftText">Updated by</div>
             </div>
             <div class="ListCellContentRight rightContent">
                 <div class="ListCellContentRightText">Cheryl Xiong</div>
