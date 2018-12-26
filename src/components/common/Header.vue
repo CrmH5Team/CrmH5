@@ -7,7 +7,7 @@
 
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
-          <h1 class="mui-title">{{title}}</h1>
+          <h1 class="mui-title f18">{{title}}</h1>
     </header>
 </div>
 
@@ -58,13 +58,14 @@ header.mui-bar {
     display: inline-block;
     overflow: hidden;
     width: auto;
-    font-size: 0.34rem;
+    /* font-size: 0.34rem; */
     margin: 0;
     text-overflow: ellipsis;
     position: absolute;
     padding: 0;
     text-align: center;
     white-space: nowrap;
+    font-weight: 400;
     line-height: 0.88rem;
 }
 .calcfont{

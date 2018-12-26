@@ -7,15 +7,15 @@
 /*列表视图*/
 .list-view{}
 .date-div{
-  height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;font-size: 12px;
+  height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;
   width: 100%;color:#000;
   box-sizing: border-box;
 }
 .date-div .calcfont{color:#ff5a21;margin-right:8px;}
 .occupy-div{height:30px;display:none;}
 .data-events{}
-.data-events-item{border-bottom: 1px solid #ebf9fd;line-height: 22px;font-size: 0.23rem;background: #fff;padding: 5px 10px;}
-.item-title{height:28px;line-height:28px;font-weight: 600;}
+.data-events-item{border-bottom: 1px solid #ebf9fd;line-height: 22px;background: #fff;padding: 5px 10px;}
+.item-title{height:28px;line-height:28px;font-weight: 600;color:#2A79C8;}
 .item-title .spot{font-size: 0.5rem;color:#3cadf9;vertical-align: bottom;padding-right:5px;}
 .item-content{}
 .item-time{color:#333;}
@@ -36,7 +36,7 @@
 .search-icon{
     font-size: 20px !important;    color: gray;
 }
-.search-label{    color: gray; }
+.search-label{ color: gray; }
 
 
 /*nav 导航*/
@@ -81,7 +81,7 @@
   background:gray;
 }
 .weui-grid__label{
-  font-size: 0.25rem;
+  /* font-size: 0.25rem; */
   height: 0.5rem;line-height: 0.5rem;
 }
 .weui-grid .calcfont{

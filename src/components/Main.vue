@@ -6,7 +6,7 @@
     <div id="page-content" class="page-content">
         <div @click="goSearch" class="search" id="searchBtn">
           <span class="search-icon mui-icon calcfont calc-sousuo"></span>
-          <label class="search-label">Search</label>
+          <label class="f16 search-label">Search</label>
         </div>
 
         <div id="nav" class="weui-grids">
@@ -15,7 +15,7 @@
                   <div class="weui-grid__icon kehu-icon">
                     <span class="mui-icon calcfont calc-kehu"></span>
                   </div>
-                  <p class="weui-grid__label lanText" data-lanid="174_客户"></p>
+                  <p class="f12 weui-grid__label lanText" data-lanid="174_客户"></p>
                 </router-link>
             </div>
             <div class="weui-grid">
@@ -23,7 +23,7 @@
                   <div class="weui-grid__icon lianxiren1-icon">
                     <span class="mui-icon calcfont calc-lianxiren1"></span>
                   </div>
-                  <p class="weui-grid__label lanText" data-lanid="175_联系人"></p>
+                  <p class="f12 weui-grid__label lanText" data-lanid="175_联系人"></p>
                 </router-link>
             </div>
             <div class="weui-grid">
@@ -31,7 +31,7 @@
                   <div class="weui-grid__icon jihui-icon">
                     <span class="calcfont calc-jihui"></span>
                   </div>
-                  <p class="weui-grid__label lanText" data-lanid="173_销售机会"></p>
+                  <p class="f12 weui-grid__label lanText" data-lanid="173_销售机会"></p>
                 </router-link>
             </div>
             <div class="weui-grid">
@@ -39,11 +39,11 @@
                   <div class="weui-grid__icon soon-icon">
                     <span class="mui-icon calcfont calc-lianxiren1"></span>
                   </div>
-                  <p class="weui-grid__label" >soon</p>
+                  <p class="f12 weui-grid__label" >soon</p>
                 </router-link>
             </div>
 
-            <div id="trip" class="trip">Trip & Schedule</div>
+            <div id="trip" class="trip f16">Trip & Schedule</div>
         </div>
         <div class="occupy-position"></div>
 
@@ -54,35 +54,35 @@
 
         <div v-show="selectView === 'list'" class="list-view">
               <div class="month-event">
-                  <div class="date-div open" @click="groupToggle($event)">
+                  <div class="f14 date-div open" @click="groupToggle($event)">
                       <span class="calcfont calc-richeng"></span>
                       <span>2018-11-16 Thursday</span>
                       <span class="right">(3)</span>
                   </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
                           <div class="item-address">China Eastern Airlines</div>
                           <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
                           <div class="item-address">China Eastern Airlines</div>
                           <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
                           <div class="item-address">China Eastern Airlines</div>
                           <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
@@ -92,28 +92,28 @@
                   </div>
               </div>
               <div class="month-event">
-                  <div class="date-div open" @click="groupToggle($event)">
+                  <div class="f14 date-div open" @click="groupToggle($event)">
                       <span class="calcfont calc-richeng"></span>
                       <span>2018-12-16 Thursday</span>
                       <span class="right">(1)</span>
                   </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
                           <div class="item-address">China Eastern Airlines</div>
                           <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
                           <div class="item-address">China Eastern Airlines</div>
                           <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                       </div>
-                      <div class="data-events-item">
+                      <div class="data-events-item f12">
                           <div class="item-title"><span class="spot">&bull;</span>Firsting Meeting with Eastern Airlines</div>
                           <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 4 5 6 7 8 9</span></div>
                           <div class="item-time"><span>14:30-17:00</span><span class="right">Cheryl Xiong</span></div>
@@ -191,6 +191,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="btn-div"></div>
     </div>
 
     <!--  点击 + 号弹出层 -->
@@ -250,7 +252,7 @@ export default {
     },
     data(){
         return {
-            showCalendar:false,
+            showCalendar:true,
             showPanel:false,
             title:'CRM',
             userName:'',
@@ -259,7 +261,7 @@ export default {
             //     {text:'Calendar View 日历视图',value:'calendar'},
             //     {text:'List View 列表视图',value:'list'}
             // ],
-            selectView:'list',
+            selectView:'calendar',
             dataFilter:[],
 
 
