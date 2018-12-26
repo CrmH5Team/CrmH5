@@ -17,7 +17,7 @@
                     <span class="date"></span>
                     <span class="week"></span>
                 </div>
-                <div class="demindList">
+                <div class="demindList f14">
                     <span class="calcfont calc-richeng"></span>
                     <span class="lanText" data-lanid="334_事件列表">Event List</span>
                 </div>
