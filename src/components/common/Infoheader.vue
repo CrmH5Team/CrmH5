@@ -4,9 +4,10 @@
         <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
         <h1 class="mui-title f18">{{title}}</h1>
-        <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
+        <div class="leftView">    <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
         <a @click="save" class="calcfont calc-gou right" id="save"></a>
-        <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+        <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a></div>
+    
     </header>
 </div>
 </template>
@@ -64,9 +65,17 @@ header.mui-bar {
     left: 0;
     width: 100%;
 }
-
+.leftView
+{
+ position: absolute;
+  height: 0.88rem;
+  width: 2.1rem;
+  right: 0;
+  padding-right: 0.1rem
+  
+}
 .mui-title {
-    right: 0.8rem;
+    right: 2.3rem;
     left: 0.8rem;
     display: inline-block;
     overflow: hidden;
@@ -76,9 +85,10 @@ header.mui-bar {
     text-overflow: ellipsis;
     position: absolute;
     padding: 0;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
     line-height: 0.88rem;
+    margin-left: -0.2rem;
 }
 
 .calcfont {
@@ -104,7 +114,7 @@ header.mui-bar {
 
 .right {
     float: right;
-    width: 0.52rem;
+    width: 0.6rem;
 }
 #delete:after{
     clear: both;

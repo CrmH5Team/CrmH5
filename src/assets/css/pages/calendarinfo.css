@@ -38,7 +38,6 @@
 .ListSpecialCellContent{
     padding: 0.1rem 0;
     padding-left: 0.6rem;
-    /* padding-right: 0.5rem; */
     line-height: 0.32rem;
     font-size: 0.28rem;
 }
@@ -77,12 +76,61 @@
 .ListCell .ListCellContentField,.ListCell .ListCellContentData{
   width: calc(100% - 1.3rem);
 }
-.ListCell .ListCellContent .ListCellContentRigth.switch
+
+
+.ListCell .ListCellContent .ListCellContentRight.switch
 {
-    width: 1.3rem;
-    height: 0.54rem;
+    width: 1.3rem !important;
+    height: 0.5rem;
     /* text-align: left; */
+    margin-right: 0.16rem;
 }
+.ListCellContentRight.switch .weui-cell__ft
+{
+    text-align: right;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    /* padding-left: 0.1rem; */
+   
+}
+.ListCellContentRight.switch .weui-cell__ft input.weui-switch{
+    /* width: 1.04rem; */
+   height: 0.5rem;
+}
+.weui-switch-cp__box:after, .weui-switch:after
+{
+    height: 0.46rem;
+    width: 0.46rem;
+    border-radius: 50%;
+}
+.weui-switch-cp__input:checked~.weui-switch-cp__box:after, .weui-switch:checked:after
+{
+    transform: translateX(0.52rem);/*小圆水平移动的位置大小*/
+}
+.weui-switch-cp__box:before, .weui-switch:before{
+    background-color: #D7D7D7;
+    border-color:#D7D7D7;
+    height: 0.5rem;
+}
+.weui-switch-cp__input:checked~.weui-switch-cp__box, .weui-switch:checked
+{
+    border-color: #FF5A21;
+    background-color: #FF5A21;
+    height: 0.5rem;
+}
+.weui-switch, .weui-switch-cp__box
+{
+    border-radius: 0.25rem;
+    background-color: #D7D7D7;
+    border-color:#D7D7D7;
+}
+.weui-switch-cp__box:before, .weui-switch:before
+{
+    width: auto;
+    border-radius: 0.25rem;
+}
+
+
 .ListCell .ListCellContent .ListCellContentLeft
 {
     width: calc(100% - 1.3rem);
@@ -92,6 +140,9 @@
 {
     width:calc(50% - 0.16rem) !important;
     margin: auto 0;
+}
+.ListCellContentRight{
+    width: 1.2rem;
 }
 .ListCellContentRightText{
     text-align: right;
@@ -154,6 +205,10 @@ textarea {
     display: block;
     height:0.5rem;
 }
+textarea::placeholder
+{
+    color: #D7D7D7;
+}
 .ListCell:after,.ListSpecialCell:after {
     position: absolute;
     content: '';
@@ -212,8 +267,10 @@ textarea {
 }
 .wendangList .deleteDoc{
     padding: 0.1rem;
+    padding-top: 0;
     font-size: 0.32rem;
-}
+    margin: auto 0;
+}y
 
 
 .updateList .leftContent,.updateList .rightContent
@@ -270,60 +327,4 @@ textarea {
 {
     font-size: 0.4rem;
     color: gray;
-}
-/* switch 开关*/
-label.bui-switch-label input {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-}
-
-label.bui-switch-label .bui-switch {
-    width: 1rem;
-    height: 0.5rem;
-    right: 0;
-    position: relative;
-    border: 1px solid #D7D7D7;
-    background-color: #D7D7D7;
-    box-shadow: #D7D7D7 0 0 0 0 inset;
-    border-radius: 0.4rem;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    border-bottom-left-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
-    background-clip: content-box;
-    display: inline-block;
-    -webkit-appearance: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    outline: none;
-    box-sizing: content-box;
-}
-
-label.bui-switch-label .bui-switch:before {
-    content: '';
-    width: 0.46rem;
-    height: 0.46rem;
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    border-radius:0.4rem;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    border-bottom-left-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-label.bui-switch-label input:checked+.bui-switch {
-    border-color: #FF5A21;
-    box-shadow: #FF5A21 0 0 0 0.32rem inset;
-    background-color: #FF5A21;
-}
-
-label.bui-switch-label input:checked+.bui-switch:before {
-    left: 0.54rem;
 }
