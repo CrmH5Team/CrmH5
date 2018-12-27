@@ -3,7 +3,7 @@
     <header class="mui-bar mui-bar-nav">
         <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
-        <h1 class="mui-title">{{title}}</h1>
+        <h1 class="mui-title f18">{{title}}</h1>
         <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
         <a @click="save" class="calcfont calc-gou right" id="save"></a>
         <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>

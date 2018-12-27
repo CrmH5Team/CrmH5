@@ -32,7 +32,7 @@
                         <div class="ListCellContentLeftText">Start</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"><input type="text" value="16/Nov 15:00" readonly></div>
+                        <div class="ListCellContentRightText">16/Nov 15:00</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -44,7 +44,7 @@
                         <div class="ListCellContentLeftText">End</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"><input type="text" value="16/Nov 16:00" readonly></div>
+                        <div class="ListCellContentRightText">16/Nov 16:00</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -56,7 +56,7 @@
                         <div class="ListCellContentLeftText">Meeting Nature</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"><input type="text" value="Meeting Nature" readonly></div>
+                        <div class="ListCellContentRightText">Meeting Nature</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -68,7 +68,7 @@
                         <div class="ListCellContentLeftText">Meeting Type</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"><input type="text" value="Meeting Type" readonly></div>
+                        <div class="ListCellContentRightText">Meeting Type</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -88,7 +88,7 @@
                         <div class="ListCellContentLeftText">Contact</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"><input type="text" value="Contact" readonly></div>
+                        <div class="ListCellContentRightText">Contact</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div v-show="isShowMore" class="moreList">
+        <div  class="showMoreList">
             <div class="MoreList">
                 <div class="ListSpecialCell specialCell" id="Opportunity">
                     <div class="ListSpecialCellField">
@@ -119,7 +119,7 @@
                             <div class="ListCellContentLeftText">Initiator</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"><input type="text" value="Cheryl Xiong" readonly></div>
+                            <div class="ListCellContentRightText">Cheryl Xiong</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -131,7 +131,7 @@
                             <div class="ListCellContentLeftText">Priority</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"><input type="text" value="Priority" readonly></div>
+                            <div class="ListCellContentRightText">Priority</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -151,7 +151,7 @@
                             <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"><input type="text" value="Select user or group user or group" readonly></div>
+                            <div class="ListCellContentRightText">Select user or group user or group</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -163,7 +163,7 @@
                             <div class="ListCellContentLeftText">Visibility for</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"><input type="text" value="Market Team" readonly></div>
+                            <div class="ListCellContentRightText">Market Team</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -185,10 +185,10 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Send Email Before</div>
+                            <div class="ListCellContentLeftText">Send Email Before Email Before</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"><input type="text" value="1h" readonly></div>
+                            <div class="ListCellContentRightText">1h</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -285,7 +285,7 @@ export default {
             },
 
             scrollTop: 0, //记录滚动条的位置
-            isShowMore: false,
+            // isShowMore: false,
 
         }
     },
@@ -340,16 +340,16 @@ export default {
         },
         moreClick: function (e) {
             console.log("gengduo");
-            this.isShowMore = !this.isShowMore;
+            // this.isShowMore = !this.isShowMore;
             var thisBtn = e.target;
-            if (this.isShowMore) {
-                // $(".MoreCalendarList").fadeIn();
+            if ( $(".showMoreList").css("display")=='none') {
+                $(".showMoreList").fadeIn(800);
                 // $(thisBtn).text("Collapse");
                 $("#moreIcon").removeClass("calc-shousuojiantou");
                 $("#moreIcon").addClass("calc-shousuoshangjiantou");
 
             } else {
-                // $(".MoreCalendarList").fadeOut();
+                $(".showMoreList").fadeOut(800);
                 // $(ththisBtnis).text("More");
                 $("#moreIcon").removeClass("calc-shousuoshangjiantou");
                 $("#moreIcon").addClass("calc-shousuojiantou");
