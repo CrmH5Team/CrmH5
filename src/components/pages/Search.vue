@@ -375,15 +375,12 @@ export default {
           }
        });
 
-       this.changePos();
-
-      //用当前vue中的方法初始化
-      //  this.initPicker();
-      //  this.initDatePicker();
+      this.changePos();
 
       //用common中的方法初始化
       initial.initPicker();
       initial.initDatePicker();
+
     },
     methods:{
 
@@ -406,140 +403,8 @@ export default {
                     width: $('.nav .active-item').innerWidth()
                 });
             })
-        },
-
-        //初始化picker
-        initPicker:function(){
-
-            $('.picker').each(function(){
-                var _self = $(this);
-                var filedName = _self.attr("data-field");
-
-                //根据字段名查询数据
-                var dataArray = allTypeList.QueryChildItemsByPTypeValue(filedName);
-                var items = [];
-                $.each(dataArray,function(index,item){
-                    items.push(item.text);
-                });
-
-                _self.picker({
-                            fromId:_self.attr("id")||"",
-                            jqueryObj:_self,
-                            toolbarCloseText:lanTool.lanContent('191_确认'),
-                            toolbarCancleText:lanTool.lanContent('199_取消'),
-                            cols:[
-                                {
-                                    textAlign:'center',
-                                    values:items
-                                },
-                            ],
-                            onOpen:function(data){
-                              var valueTemp = _self.attr("data-val") || "";
-                              if(valueTemp==""){
-                                if(data.params != undefined && data.params.cols != undefined && data.params.cols.length>=1 && data.params.cols[0].values != undefined && data.params.cols[0].values.length>=1){
-                                    valueTemp = data.params.cols[0].values[0];
-                                }
-                              }
-
-                              _self.text(valueTemp);
-                              _self.attr('data-val',valueTemp);
-                              _self.picker("setValue", [valueTemp]);
-                            },
-                            onChange:function(data,value){
-                                _self.text(data.value[0]||"");
-                                _self.attr('data-val',data.value[0]||"");
-                                _self.picker("setValue", data.value);
-                            }
-                        });
-
-            });
-
-
-        },
-
-        //初始化datepicker
-        initDatePicker:function(){
-            var my_self = this;
-
-                $('.datepicker').each(function(index, cur){
-                    var _self = $(this);
-
-                    var filedName = _self.attr("data-field");
-
-                    var showMinute = _self.attr("data-minute");
-                    var times = function(){
-                        return [];
-                    };
-                    if(showMinute === 'true'){
-                          times = function(){
-                              return [  // 自定义的时间
-                                  {
-                                  values: (function () {
-                                      var hours = [];
-                                      for (var i=0; i<24; i++) hours.push(my_self.formatNumber(i));
-                                      return hours;
-                                  })()
-                                  },
-                                  {
-                                  divider: true,  // 这是一个分隔符
-                                  content: ':'
-                                  },
-                                  {
-                                  values: (function () {
-                                      var minutes = [];
-                                      for (var i=0; i<60; i++) minutes.push(my_self.formatNumber(i));
-                                      return minutes;
-                                  })()
-                                  }
-                              ];
-                          };
-                    }
-
-                    //写入当前选中的记录
-                    var valueTemp = _self.attr("data-val") || "";
-
-                    _self.datetimePicker({
-                        fromId:_self.attr("id")||"",
-                        jqueryObj:_self,
-                        toolbarCloseText:lanTool.lanContent('191_确认'),
-                        toolbarCancleText:lanTool.lanContent('199_取消'),
-                        years:my_self.yearArray(50),
-                        value:valueTemp,
-                        times: times,
-                        onChange:function(picker, values, displayValues){
-                            var value = my_self.returndateString(picker.value);
-                            _self.text(value);
-                            _self.attr('data-vualu',value)
-                        }
-                    })
-                })
-
-
-        },
-
-        formatNumber:function (n) {
-            return n < 10 ? "0" + n : n;
-        },
-
-        returndateString:function(arr){
-            if(arr.length<=0 ) return;
-            if(arr.length == 3){
-              return arr[0]+'-'+arr[1]+'-'+arr[2];
-            }else if(arr.length == 5){
-              return arr[0]+'-'+arr[1]+'-'+arr[2]+' '+arr[3]+':'+arr[4];
-            }
-        },
-        //返回 从当前年份一直往后的 n 年的年份数组 n默认为10
-        yearArray:function(n){
-              if(n == undefined || n == null) n = 10;
-
-              var currentYear = new Date().getFullYear();
-              var arr = [];
-              for(var i=0 ; i<n ; i++){
-                  arr.push(currentYear + i);
-              }
-              return arr;
         }
+
     }
 
 

@@ -1732,24 +1732,42 @@ loading.hidden = function(){
                     ];
                 };
           }
-
-          //写入当前选中的记录
-          var valueTemp = _self.attr("data-val") || "";
-
           _self.datetimePicker({
-              fromId:_self.attr("id")||"",
-              jqueryObj:_self,
-              toolbarCloseText:lanTool.lanContent('191_确认'),
-              toolbarCancleText:lanTool.lanContent('199_取消'),
-              years:initial.yearArray(50),
-              value:valueTemp,
-              times: times,
-              onChange:function(picker, values, displayValues){
-                  var value = initial.returndateString(picker.value);
-                  _self.text(value);
-                  _self.attr('data-vualu',value)
-              }
-          })
+                      fromId:_self.attr("id")||"",
+                      jqueryObj:_self,
+                      toolbarCloseText:lanTool.lanContent('191_确认'),
+                      toolbarCancleText:lanTool.lanContent('199_取消'),
+                      years:initial.yearArray(50),
+                      // value:valueTemp,
+                      times: times,
+                      onOpen:function(data){
+
+                          //写入当前选中的记录
+                          var valueTemp = _self.attr("data-val") || "";
+                          if(valueTemp ==""){
+                            var arr = [];
+                            var date = new Date;
+
+                              arr.push(date.getFullYear());
+                              arr.push(date.getMonth());
+                              arr.push(date.getDate());
+                            if(showMinute ==='true'){
+                              arr.push(date.getHours());
+                              arr.push(date.getMinutes());
+                              // arr.push(getSeconds());
+                            }
+                             _self.picker("setValue", arr);
+
+                          }
+
+                      },
+                      onChange:function(picker, values, displayValues){
+                          var value = initial.returndateString(picker.value);
+                          _self.text(value);
+                          _self.attr('data-val',value);
+                          _self.picker("setValue", picker.value);
+                      }
+                  })
       })
   },
 
