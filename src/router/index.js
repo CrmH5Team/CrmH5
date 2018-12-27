@@ -3,7 +3,10 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
+
 import Search from '@/components/pages/Search'
+import Searchmodule from '@/components/pages/Searchmodule'
+
 
 import Opportunities from '@/components/pages/Opportunities'
 import Opportunitiesinfo from '@/components/pages/Opportunitiesinfo'
@@ -51,6 +54,14 @@ const router =  new Router({
         isBack:false
       }
     },
+    { path: '/searchmodule',name:'searchmodule',component: Searchmodule,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
+
+
 
 
     {

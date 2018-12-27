@@ -3297,7 +3297,7 @@ if (typeof define === 'function' && define.amd) {
         onOK: onOK
       }
 
-      
+
       if(typeof btnText !== 'undefined'){
          myText = btnText;
       }else{
@@ -3334,8 +3334,8 @@ if (typeof define === 'function' && define.amd) {
         onOK: onOK,
         onCancel: onCancel
       }
-      
-      if(arr != undefined){ 
+
+      if(arr != undefined){
             defaults.buttonCancel = arr[0];
             defaults.buttonOK = arr[1];
       }
@@ -4014,10 +4014,13 @@ Device/OS Detection
 /* global $:true */
 /* jshint unused:false */
 /* jshint multistr:true */
+var innerPicker;
 + function($) {
   "use strict";
-  var Picker = function (params) {  
+  var Picker = function (params) {
       var p = this;
+      innerPicker = p;
+
       var defaults = {
           updateValuesOnMomentum: false,
           updateValuesOnTouchmove: true,
@@ -4038,6 +4041,7 @@ Device/OS Detection
           <h1 class="title">{{title}}</h1>\
           </div>\
           </div>',
+          jqueryObj:{}
       };
       params = params || {};
       for (var def in defaults) {
@@ -4402,7 +4406,7 @@ Device/OS Detection
           col.initEvents();
 
       };
-      p.destroyPickerCol = function (colContainer) { 
+      p.destroyPickerCol = function (colContainer) {
           colContainer = $(colContainer);
           if ('f7DestroyPickerCol' in colContainer[0]) colContainer[0].f7DestroyPickerCol();
       };
@@ -4625,8 +4629,22 @@ Device/OS Detection
   $(document).on("click", ".clean-picker", function() {
     var pickerToClose = $('.weui-picker-modal.weui-picker-modal-visible');
     if (pickerToClose.length > 0) {
-        $.closePicker(pickerToClose);
-    //   $.updatePicker();
+
+      var _curObj = innerPicker.params.jqueryObj;
+      if(_curObj == undefined){
+          return;
+      }
+
+      _curObj.text("");
+      _curObj.attr('data-val',"");
+      _curObj.picker("setValue", []);
+
+      // if(innerPicker.params != undefined && innerPicker.params.cols != undefined && innerPicker.params.cols.length>=1 && innerPicker.params.cols[0].values != undefined && innerPicker.params.cols[0].values.length>=1){
+      //   var valueTemp = innerPicker.params.cols[0].values[0];
+
+      // }
+
+      $.closePicker(pickerToClose);
     }
   });
 
@@ -6016,10 +6034,10 @@ Device/OS Detection
           content: params.dateSplit
         })
       }
-      
+
 
       var times = self.params.times();
-      if (times && times.length) { 
+      if (times && times.length) {
 
         config.cols.push({
             divider: true,
@@ -6097,13 +6115,13 @@ Device/OS Detection
       // 把字符串转换成数组，用来解析初始值
       // 如果你的定制的初始值格式无法被这个默认函数解析，请自定义这个函数。比如你的时间是 '子时' 那么默认情况这个'时'会被当做分隔符而导致错误，所以你需要自己定义parse函数
       // 默认兼容的分隔符
-      
+
       var t = str.split(this.datetimeSplit);
-      
+
       if(t.length <= 1){
          return t[0].split(/\D/);
       }
-      
+
       return t[0].split(/\D/).concat(t[1].split(/:|时|分|秒/)).filter(function (d) {
         return !!d;
       })
