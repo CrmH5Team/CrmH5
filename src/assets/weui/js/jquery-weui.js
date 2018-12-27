@@ -4014,13 +4014,10 @@ Device/OS Detection
 /* global $:true */
 /* jshint unused:false */
 /* jshint multistr:true */
-var innerPicker;
 + function($) {
   "use strict";
   var Picker = function (params) {
       var p = this;
-      innerPicker = p;
-
       var defaults = {
           updateValuesOnMomentum: false,
           updateValuesOnTouchmove: true,
@@ -4037,11 +4034,12 @@ var innerPicker;
           toolbarTemplate: '<div class="toolbar">\
           <div class="toolbar-inner">\
           <a href="javascript:;" class="picker-button close-picker">{{closeText}}</a>\
-          <a href="javascript:;" class="picker-button-clean clean-picker">{{cancleText}}</a>\
+          <a href="javascript:;" class="picker-button-clean clean-picker" data-fromId="{{fromId}}">{{cancleText}}</a>\
           <h1 class="title">{{title}}</h1>\
           </div>\
           </div>',
-          jqueryObj:{}
+          jqueryObj:{},
+          fromId:""
       };
       params = params || {};
       for (var def in defaults) {
@@ -4451,7 +4449,16 @@ var innerPicker;
           pickerClass = 'weui-picker-modal picker-columns ' + (p.params.cssClass || '') + (p.params.rotateEffect ? ' picker-3d' : '') + (p.params.cols.length === 1 ? ' picker-columns-single' : '');
           pickerHTML =
               '<div class="' + (pickerClass) + '">' +
-                  (p.params.toolbar ? p.params.toolbarTemplate.replace(/{{closeText}}/g, p.params.toolbarCloseText).replace(/{{cancleText}}/g, p.params.toolbarCancleText).replace(/{{title}}/g, p.params.title) : '') +
+                  (
+                    p.params.toolbar
+                    ? p.params.toolbarTemplate
+                    .replace(/{{closeText}}/g, p.params.toolbarCloseText)
+                    .replace(/{{cancleText}}/g, p.params.toolbarCancleText)
+                    .replace(/{{title}}/g, p.params.title)
+                    .replace(/{{fromId}}/g, p.params.fromId)
+                    : ''
+                  )
+                  +
                   '<div class="picker-modal-inner picker-items">' +
                       colsHTML +
                       '<div class="picker-center-highlight"></div>' +
@@ -4630,19 +4637,19 @@ var innerPicker;
     var pickerToClose = $('.weui-picker-modal.weui-picker-modal-visible');
     if (pickerToClose.length > 0) {
 
-      var _curObj = innerPicker.params.jqueryObj;
+      var _curObj = $(this);
       if(_curObj == undefined){
           return;
+      }
+
+      _curObj = $("#"+_curObj.attr("data-fromid")||"");
+      if(!_curObj){
+        return;
       }
 
       _curObj.text("");
       _curObj.attr('data-val',"");
       _curObj.picker("setValue", []);
-
-      // if(innerPicker.params != undefined && innerPicker.params.cols != undefined && innerPicker.params.cols.length>=1 && innerPicker.params.cols[0].values != undefined && innerPicker.params.cols[0].values.length>=1){
-      //   var valueTemp = innerPicker.params.cols[0].values[0];
-
-      // }
 
       $.closePicker(pickerToClose);
     }

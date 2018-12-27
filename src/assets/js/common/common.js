@@ -1033,7 +1033,7 @@
 			return false;
 		}
 		var imgArr = ["Ogg", "MPEG4", "WebM", "mp4","MOV","AVI","WMV","3GP","MKV","FLV","RMVB"];
-		
+
 		return $.inArray(fileExtension, imgArr) > -1;
 	}
 
@@ -1146,7 +1146,7 @@
 		});
 	}
 
-	tool.autoTextarea = function(elem, extra, maxHeight) { 
+	tool.autoTextarea = function(elem, extra, maxHeight) {
 		extra = extra || 0;
 		var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
 			isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
@@ -1286,7 +1286,7 @@ loading.hidden = function(){
 
 
 	//当前多语言本
-	lan.currentLanguageVersion = tool.getConfigValue(tool.config_currentLanguageVersion) || 1;	
+	lan.currentLanguageVersion = tool.getConfigValue(tool.config_currentLanguageVersion) || 1;
 
 	//多语言数据
 	lan.Data = [];
@@ -1327,7 +1327,7 @@ loading.hidden = function(){
 		// console.log("urlTemp:" + urlTemp);
 		// console.log("jsonTemp:" + JSON.stringify(jsonTemp));
 
-		
+
 		if(!isFirst || lan.Data.length) {
 			// setTimeout(function() {
 				loading.show(1);
@@ -1340,7 +1340,7 @@ loading.hidden = function(){
 					},
 					dataType: 'json',
 					success: function(funResult) {
-						
+
             			loading.hidden();
 
 						funResult = tool.jObject(funResult);
@@ -1396,7 +1396,7 @@ loading.hidden = function(){
 		for(var i = 0, dataLen = lan.Data.length; i < dataLen; i++) {
 			if(tool.isPositiveInteger(id)) {
 				if(lan.Data[i].id !== id) {
-					
+
 					continue;
 				}
 			} else {
@@ -1404,7 +1404,7 @@ loading.hidden = function(){
 					continue;
 				}
 			}
-				
+
 			switch(parseInt(lan.currentLanguageVersion)) {
 				case 2:
 					return lan.Data[i].SimplifiedChinese;
@@ -1443,9 +1443,9 @@ loading.hidden = function(){
 					lan.lanContent($(this).attr("data-lanid"))
 				);
 			});
-			
+
 			//placeholder
-			$(".lanInputPlaceHolder").each(function() { 
+			$(".lanInputPlaceHolder").each(function() {
 				$(this).attr('placeholder', lan.lanContent($(this).attr("data-lanid")));
 			});
 			//title
@@ -1454,7 +1454,7 @@ loading.hidden = function(){
 			});
 		}
 	  };
-	  
+
 	//多语言读取完毕后再更新页面显示的多语言
 	lan.ready.done(lan.updateLanVersion);
 
@@ -1464,7 +1464,7 @@ loading.hidden = function(){
 		lan.waitExcute(false, false, true);
 	} else {
 		lan.currentLanguageVersion = curLV;
-		
+
 		lan.Data = tool.getConfigValue(tool.config_lanData);
 		//手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。
 		lan.ready.resolve();
@@ -1513,7 +1513,7 @@ loading.hidden = function(){
  * 下拉数据
  */
 ;
-(function(allTypeList) { 
+(function(allTypeList) {
 	//tool.clearStoragItem();
 	//所有类型数据
 	allTypeList.Data = [];
@@ -1527,7 +1527,7 @@ loading.hidden = function(){
 			allTypeList.Data = tool.jObject(cacheDataStr);
 			return true;
 		}
-		
+
 		isFromCache = ((isFromCache == undefined || isFromCache == null) ? false : isFromCache);
 		isRefreshCache = ((isRefreshCache == undefined || isRefreshCache == null) ? true : isRefreshCache);
 		//构造传入参数
@@ -1537,7 +1537,7 @@ loading.hidden = function(){
 			IsRefreshCache: isRefreshCache
 		};
 
-		//请求地址 
+		//请求地址
 		var urlTemp =
 			tool.combineRequestUrl(
 				tool.getConfigValue(tool.config_ajaxUrl),
@@ -1593,8 +1593,8 @@ loading.hidden = function(){
 	//根据父级的TypeValue查询子项的数据(父级的TypeValue一般就是字段名)
 	allTypeList.QueryChildItemsByPTypeValue = function(typeValue) {
 		var childItems = [];
-		
-		if(tool.isNullOrEmptyObject(typeValue) || allTypeList.Data.length <= 0) { 
+
+		if(tool.isNullOrEmptyObject(typeValue) || allTypeList.Data.length <= 0) {
 			return childItems;
 		}
 		var parentItem = {};
@@ -1618,7 +1618,7 @@ loading.hidden = function(){
 		var showDataArray = [];
 		for(var i = 0, len = childItems.length; i < len; i++) {
 			var textTemp = "";
-			
+
 			switch(parseInt(lanTool.currentLanguageVersion)) {
 				case 2:
 					textTemp = childItems[i]["SimplifiedNameChinese"] || "";
@@ -1645,5 +1645,137 @@ loading.hidden = function(){
 }(window.allTypeList = {}));
 
 
+/*
+ * 控件初始化
+ */
+;
+(function(initial,$){
+
+  //初始化picker组件
+  initial.initPicker = function(){
+
+      $('.picker').each(function(){
+          var _self = $(this);
+          var filedName = _self.attr("data-field");
+
+          //根据字段名查询数据
+          var dataArray = allTypeList.QueryChildItemsByPTypeValue(filedName);
+          var items = [];
+          $.each(dataArray,function(index,item){
+              items.push(item.text);
+          });
+
+          _self.picker({
+                      fromId:_self.attr("id")||"",
+                      jqueryObj:_self,
+                      toolbarCloseText:lanTool.lanContent('191_确认'),
+                      toolbarCancleText:lanTool.lanContent('199_取消'),
+                      cols:[
+                          {
+                              textAlign:'center',
+                              values:items
+                          },
+                      ],
+                      onOpen:function(data){
+                        var valueTemp = _self.attr("data-val") || "";
+                        if(valueTemp==""){
+                          if(data.params != undefined && data.params.cols != undefined && data.params.cols.length>=1 && data.params.cols[0].values != undefined && data.params.cols[0].values.length>=1){
+                              valueTemp = data.params.cols[0].values[0];
+                          }
+                        }
+
+                        _self.text(valueTemp);
+                        _self.attr('data-val',valueTemp);
+                        _self.picker("setValue", [valueTemp]);
+                      },
+                      onChange:function(data,value){
+                          _self.text(data.value[0]||"");
+                          _self.attr('data-val',data.value[0]||"");
+                          _self.picker("setValue", data.value);
+                      }
+                  });
+      });
+  },
+
+  //初始化datePicker组件
+  initial.initDatePicker = function(){
+
+      $('.datepicker').each(function(index, cur){
+          var _self = $(this);
+
+          // var filedName = _self.attr("data-field");
+          var showMinute = _self.attr("data-minute");
+          var times = function(){
+              return [];
+          };
+          if(showMinute === 'true'){
+                times = function(){
+                    return [  // 自定义的时间
+                        {
+                        values: (function () {
+                            var hours = [];
+                            for (var i=0; i<24; i++) hours.push(initial.formatNumber(i));
+                            return hours;
+                        })()
+                        },
+                        {
+                        divider: true,  // 这是一个分隔符
+                        content: ':'
+                        },
+                        {
+                        values: (function () {
+                            var minutes = [];
+                            for (var i=0; i<60; i++) minutes.push(initial.formatNumber(i));
+                            return minutes;
+                        })()
+                        }
+                    ];
+                };
+          }
+
+          //写入当前选中的记录
+          var valueTemp = _self.attr("data-val") || "";
+
+          _self.datetimePicker({
+              fromId:_self.attr("id")||"",
+              jqueryObj:_self,
+              toolbarCloseText:lanTool.lanContent('191_确认'),
+              toolbarCancleText:lanTool.lanContent('199_取消'),
+              years:initial.yearArray(50),
+              value:valueTemp,
+              times: times,
+              onChange:function(picker, values, displayValues){
+                  var value = initial.returndateString(picker.value);
+                  _self.text(value);
+                  _self.attr('data-vualu',value)
+              }
+          })
+      })
+  },
+
+  initial.formatNumber = function (n) {
+      return n < 10 ? "0" + n : n;
+  },
+  initial.returndateString = function(arr){
+      if(arr.length<=0 ) return;
+      if(arr.length == 3){
+        return arr[0]+'-'+arr[1]+'-'+arr[2];
+      }else if(arr.length == 5){
+        return arr[0]+'-'+arr[1]+'-'+arr[2]+' '+arr[3]+':'+arr[4];
+      }
+  },
+  //返回 从当前年份一直往后的 n 年的年份数组 n默认为10
+  initial.yearArray = function(n){
+      if(n == undefined || n == null) n = 10;
+
+      var currentYear = new Date().getFullYear();
+      var arr = [];
+      for(var i=0 ; i<n ; i++){
+          arr.push(currentYear + i);
+      }
+      return arr;
+  }
+
+}(window.initial={},jQuery))
 
 
