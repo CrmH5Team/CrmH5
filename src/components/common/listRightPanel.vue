@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="btn-div f16">OK确认</div>
+        <div @click="okBtn" class="btn-div f16">OK确认</div>
     </div>
 
 
@@ -117,6 +117,15 @@ export default {
                   path: '/searchmodule',
                   query: parameter
             })
+        },
+
+        //点击侧滑中的确定按钮
+        okBtn:function(){
+            var _self = this;
+            if(_self.dataFilter.length <=0){
+                  $.alert("数据筛选必须选一个", "提示", function() {},'好的');
+                  return false;
+            }
         },
     },
 

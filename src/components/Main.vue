@@ -192,7 +192,7 @@
             </div>
         </div>
 
-        <div class="btn-div f16">OK确认</div>
+        <div @click="okBtn" class="btn-div f16">OK确认</div>
     </div>
 
     <!--  点击 + 号弹出层 -->
@@ -262,7 +262,7 @@ export default {
             //     {text:'List View 列表视图',value:'list'}
             // ],
             selectView:'calendar',
-            dataFilter:[],
+            dataFilter:['my-calendar'],
             //搜索页面数据模型
             calendarSearchData:[
                 {
@@ -436,6 +436,15 @@ export default {
             })
         },
 
+        //点击侧滑中的确定按钮
+        okBtn:function(){
+            var _self = this;
+            if(_self.dataFilter.length <=0){
+                  $.alert("数据筛选必须选一个", "提示", function() {},'好的');
+                  return false;
+            }
+        },
+
         //侧滑
         panelToggle:function(){
           var _self = this;
@@ -468,9 +477,7 @@ export default {
             }
 
         },
-        // handleMaskClick:function(){
-        //      this.$refs.drawer.toggle();
-        // },
+
 
         //退出
         logout:function(){
