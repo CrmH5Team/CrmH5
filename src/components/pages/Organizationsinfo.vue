@@ -81,10 +81,11 @@
                 </div>
             </div>
             <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span  class="mui-icon calcfont calc-shoucang1"></span></div>
+                <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="">Follow it</textarea>
+                        <!-- <textarea autoHeight="true" placeholder="" readonly disabled>Follow it</textarea> -->
+                        Follow it
                     </p>
                 </div>
             </div>
@@ -115,18 +116,18 @@
                         </p>
                     </div>
                 </div>
-  
-             </div>
-                <Uploadfile></Uploadfile>
-
-                <Infofooter> </Infofooter>
 
             </div>
-            <!-- <div class="MoreBtn" @click="moreClick">
+            <Uploadfile></Uploadfile>
+
+            <Infofooter> </Infofooter>
+
+        </div>
+        <!-- <div class="MoreBtn" @click="moreClick">
                 <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
             </div> -->
-        </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -171,15 +172,8 @@ export default {
     created: function () {
         var $this = this;
 
-        //set pageTitlepageTitle
-        // eventBus.$on('setPageTitle', function (data) {
-        //     // $this.pageTitle = data.subject || '';
-        // });
-
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
-        // var _self = this;
         this.$nextTick(function () {
             //将textarea设置为高度自适应
             $("textarea").each(function (index, cur) {
@@ -201,17 +195,16 @@ export default {
             }
 
         },
-        reminderClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true re");
+        followClick: function (e) {
+            console.log("收藏");
+            if ($(".guanZhu").hasClass("calc-shoucang1")) {
+                $(".guanZhu").addClass("calc-shoucang");
+                $(".guanZhu").removeClass("calc-shoucang1")
             } else {
-                console.log("false re");
+                $(".guanZhu").addClass("calc-shoucang1");
+                $(".guanZhu").removeClass("calc-shoucang")
             }
-
-        },
-        startClick: function (e) {
-            // alert("dianji")
-        },
+        }
     }
 
 }
@@ -219,4 +212,7 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
+.ListCell .mui-icon.calcfont.calc-shoucang{
+    color:#FF5A21 !important;
+}
 </style>

@@ -3,6 +3,9 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
+        <div class="tipClose">
+            <div class="tipCloseContent">This opportunity have been closed, it's only allowed to be viewed.</div>
+        </div>
         <div class="OpportunitiesList">
             <div class="ListCell">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
@@ -62,177 +65,175 @@
             </div>
         </div>
 
-
-        <div class="ProcessList" >
+        <div class="ProcessList">
             <div class="group-div">
-                  <div class="date-div" @click="groupToggle($event)">
-                      <span class="calcfont calc-yuanjiaofangkuang"></span>
-                      <span class="group-name f14">Conference/Seminar/Training</span>
-                      <span class="right">(2)</span>
-                  </div>
-                  <div class="occupy-div"></div>
+                <div class="date-div" @click="groupToggle($event)">
+                    <span class="calcfont calc-yuanjiaofangkuang"></span>
+                    <span class="group-name f14">Conference/Seminar/Training</span>
+                    <span class="right">(2)</span>
+                </div>
+                <div class="occupy-div"></div>
 
-                  <div class="group-item-list">
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                <div class="group-item-list">
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
                         </div>
-
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
                         </div>
+                    </div>
 
-                  </div>
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
+                        </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="group-div">
-                  <div class="date-div" @click="groupToggle($event)">
-                      <span class="calcfont calc-yuanjiaofangkuang"></span>
-                      <span class="group-name f14">Conference/Seminar/Training</span>
-                      <span class="right">(2)</span>
-                  </div>
-                  <div class="occupy-div"></div>
+                <div class="date-div" @click="groupToggle($event)">
+                    <span class="calcfont calc-yuanjiaofangkuang"></span>
+                    <span class="group-name f14">Conference/Seminar/Training</span>
+                    <span class="right">(2)</span>
+                </div>
+                <div class="occupy-div"></div>
 
-                  <div class="group-item-list">
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                <div class="group-item-list">
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
                         </div>
-
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
                         </div>
+                    </div>
 
-                  </div>
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
+                        </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="group-div">
-                  <div class="date-div" @click="groupToggle($event)">
-                      <span class="calcfont calc-yuanjiaofangkuang"></span>
-                      <span class="group-name f14">Conference/Seminar/Training</span>
-                      <span class="right">(2)</span>
-                  </div>
-                  <div class="occupy-div"></div>
+                <div class="date-div" @click="groupToggle($event)">
+                    <span class="calcfont calc-yuanjiaofangkuang"></span>
+                    <span class="group-name f14">Conference/Seminar/Training</span>
+                    <span class="right">(2)</span>
+                </div>
+                <div class="occupy-div"></div>
 
-                  <div class="group-item-list">
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                <div class="group-item-list">
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
                         </div>
-
-                        <div class="group-item f12">
-                              <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
-                              <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
-                              <div class="item-time">
-                                <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
-                                <span class="right">Cheryl Xiong</span>
-                              </div>
-                              <div class="doc-block">China Eastern Airlines</div>
-                              <div class="doc-list">
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                                  <div>
-                                      <span class="doc-icon calcfont calc-fujian"></span>
-                                      <span>TestFileName2.pdf</span>
-                                      <span class="doc-right right">Proposals</span>
-                                  </div>
-                              </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
                         </div>
+                    </div>
 
-                  </div>
+                    <div class="group-item f12">
+                        <div class="item-title"><span class="spot">•</span>Meeting with Eastern Airlines</div>
+                        <div class="item-content"><span>Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 2 3 Test data1 </span></div>
+                        <div class="item-time">
+                            <span>2018-11-16 Thursday</span><span>14:30-17:00</span>
+                            <span class="right">Cheryl Xiong</span>
+                        </div>
+                        <div class="doc-block">China Eastern Airlines</div>
+                        <div class="doc-list">
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                            <div>
+                                <span class="doc-icon calcfont calc-fujian"></span>
+                                <span>TestFileName2.pdf</span>
+                                <span class="doc-right right">Proposals</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
 
         <div class="showMoreList" style="display:block">
             <div class="MoreList">
@@ -240,7 +241,7 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
+                            <div class="ListCellContentLeftText tiShi" @click="VisibilityTiShiClick">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Select user or group user or group</div>
@@ -280,10 +281,58 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxiang1"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText tiShi">Email Reminder <span class="mui-icon calcfont calc-tishi"></span></div>
+                            <div class="ListCellContentLeftText tiShi" @click="reminderClick">Email Reminder <span class="mui-icon calcfont calc-tishi"></span></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">No</div>
+                            <div class="ListCellContentRightText">Cyclic</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell" id="frequency">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Frequency</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Every Day</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell" id="whatDay">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">What Day</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Monday</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell" id="time">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Time </div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">8:00</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell" id="closingDate">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Before Planning Closing Date</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">10 Days 0 Hours</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -303,9 +352,9 @@
             <Infofooter> </Infofooter>
 
         </div>
-        <div class="MoreBtn" @click="moreClick">
+        <!-- <div class="MoreBtn" @click="moreClick">
             <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
-        </div>
+        </div> -->
     </div>
 </div>
 </template>
@@ -376,30 +425,36 @@ export default {
         //     _self.scrollTop = $(this).scrollTop();
         // });
 
-
-
         //滚动固定
         var headerH = parseFloat($('header').innerHeight());
-        $('.scroll-div').scroll(function(){
+        $('.scroll-div').scroll(function () {
 
+            if ($('.group-div').length <= 0) return;
+            $('.group-div').each(function () {
 
-            if($('.group-div').length <= 0) return ;
-            $('.group-div').each(function(){
+                var mTop = $(this).offset().top;
 
-                var mTop = $('.date-div').offset().top;
-
-                if(mTop <= headerH ){
-                    if(tool.getSystem() === 'ios'){
-                        $(this).find(".date-div").addClass('sticky').css({"top":'0px'});
-                    }else{
-                        $(this).find('.date-div').css({"position":"fixed","top": headerH + 'px'});
+                if (mTop <= headerH) {
+                    if (tool.getSystem() === 'ios') {
+                        $(this).find(".date-div").addClass('sticky').css({
+                            "top": '0px'
+                        });
+                    } else {
+                        $(this).find('.date-div').css({
+                            "position": "fixed",
+                            "top": headerH + 'px'
+                        });
                         $(this).find('.occupy-div').show();
                     }
-                }else{
-                    if(tool.getSystem() === 'ios'){
-                        $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
-                    }else{
-                        $(this).find('.date-div').css({"position":"static"});
+                } else {
+                    if (tool.getSystem() === 'ios') {
+                        $(this).find(".date-div").removeClass('sticky').css({
+                            "top": '0px'
+                        });
+                    } else {
+                        $(this).find('.date-div').css({
+                            "position": "static"
+                        });
                         $(this).find('.occupy-div').hide();
                     }
                 }
@@ -408,12 +463,12 @@ export default {
     },
     methods: {
         //点击分组收起展开
-        groupToggle:function(e){
+        groupToggle: function (e) {
             var el = e.target;
 
-            if($(el).hasClass('open')){
+            if ($(el).hasClass('open')) {
                 $(el).removeClass('open').siblings('.group-item-list').hide(0.2);
-            }else{
+            } else {
                 $(el).addClass('open').siblings('.group-item-list').show(0.2);
             }
         },
@@ -428,15 +483,11 @@ export default {
 
         },
         reminderClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true re");
-            } else {
-                console.log("false re");
-            }
-
+            $.alert('System will send email noticafication for Initiator in advance.', "Tip", "", "Ok");
         },
-        startClick: function (e) {
-            // alert("dianji")
+        VisibilityTiShiClick: function (e) {
+            $.alert('Public: This record will be seen by everyone.Private: This record will be seen only by Initiator and Initiator’s superior user.Share with others: This record will be seen only by Initiator and Initiator’s superior user, and selected user or group.', "Tip", "", "Ok");
+
         },
         moreClick: function (e) {
             console.log("gengduo");
@@ -468,4 +519,18 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
+
+.tipClose {
+    padding: 0.2rem 0.4rem;
+    display: none;
+}
+
+.tipClose .tipCloseContent {
+    height: 0.6rem;
+    line-height: 0.28rem;
+    font-size: 0.24rem;
+}
+#closingDate{
+    display: none;
+}
 </style>

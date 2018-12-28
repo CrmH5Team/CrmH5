@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="ListCell InvisibleLine">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing"></span>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span>
                     </div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
@@ -250,24 +250,28 @@ export default {
         shrink: function (e) {
             console.log("shrink");
             //calc-xiala
-            if ($(".organizationsHeaderBoxRightIcon span").hasClass("calc-shangla")) {
-                $(".organizationsHeaderBoxRightIcon span").removeClass("calc-shangla");
-                $(".organizationsHeaderBoxRightIcon span").addClass("calc-xiala");
-                $(".organizationsList").slideUp(500);
-            } else {
-                $(".organizationsHeaderBoxRightIcon span").addClass("calc-shangla");
-                $(".organizationsHeaderBoxRightIcon span").removeClass("calc-xiala");
-                $(".organizationsList").slideDown(500);
-            }
+            if ($(".organizationsList").css("display") != 'none') {
+                    $(".organizationsList").slideUp(500, function () {
+                        $(".organizationsHeaderBoxRightIcon span").removeClass("calc-shangla");
+                        $(".organizationsHeaderBoxRightIcon span").addClass("calc-xiala");
+                    });
 
-        },
-        startClick: function (e) {
-            // alert("dianji")
-        },
- 
+                } else {
+                    $(".organizationsList").slideDown(500, function () {
+                        $(".organizationsHeaderBoxRightIcon span").addClass("calc-shangla");
+                        $(".organizationsHeaderBoxRightIcon span").removeClass("calc-xiala");
+                    });
+
+                }
+
+            },
+            startClick: function (e) {
+                    // alert("dianji")
+                },
+
+        }
+
     }
-
-}
 </script>
 
 <style scoped>

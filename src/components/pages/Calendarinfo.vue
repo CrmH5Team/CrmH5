@@ -149,7 +149,7 @@
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
+                                <div class="ListCellContentLeftText tiShi" @click="VisibilityTiShiClick">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText">Select user or group user or group</div>
@@ -282,30 +282,28 @@ export default {
 
         },
         reminderClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true re");
-            } else {
-                console.log("false re");
-            }
-
+            $.alert('System will send email noticafication for Initiator in advance.', "Tip", "", "Ok");
         },
-        startClick: function (e) {
-            // alert("dianji")
+        VisibilityTiShiClick: function (e) {
+            $.alert('Public: This record will be seen by everyone.Private: This record will be seen only by Initiator and Initiator’s superior user.Share with others: This record will be seen only by Initiator and Initiator’s superior user, and selected user or group.', "Tip", "", "Ok");
+
         },
         moreClick: function (e) {
             console.log("gengduo");
             // this.isShowMore = !this.isShowMore;
             var thisBtn = e.target;
             if ($(".showMoreList").css("display") == 'none') {
-                $(".showMoreList").slideDown();
+                $(".showMoreList").slideDown(500, function () {
                     $("#moreIcon").removeClass("calc-shousuojiantou");
                     $("#moreIcon").addClass("calc-shousuoshangjiantou");
+                });
 
             } else {
 
-                $(".showMoreList").slideUp();
+                $(".showMoreList").slideUp(500, function () {
                     $("#moreIcon").removeClass("calc-shousuoshangjiantou");
                     $("#moreIcon").addClass("calc-shousuojiantou");
+                });
             }
         }
     }
