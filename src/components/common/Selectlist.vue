@@ -18,63 +18,35 @@
                     id="searchInput"
                     class="search-input" data-lanid="208_搜索" placeholder=""  />
             <span class="calcfont calc-delete"></span>
-            <span @click="clickSearch" class="search-placeholder">
+            <span @click="clickSearch" class="search-placeholder f16">
                     <span class="calcfont calc-sousuo"></span>
             <span class="lanText" data-lanid="208_搜索"></span>
             </span>
         </div>
 
         <!-- 列表 -->
-        <div v-if="isMulSelect" class="dataList muiSelectList">
-            <div class="checkbox-div">
+        <div v-if="selectType==='checkbox'" class="dataList checkboxList">
+            <div v-for="item in dataArray" class="item-div">
                 <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
-                          <span>Air India</span>
-                      </label>
+                    <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios">{{item.text}}</span>
+                </label>
             </div>
-            <div class="checkbox-div">
-                <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
-                          <span>Shandong Airlines</span>
-                      </label>
-            </div>
-            <div class="checkbox-div">
-                <label class="checkbox-label">
-                          <input type="checkbox" name="sex"/><i class="checkbox"></i>
-                          <span>Shenzhen Airlines</span>
-                      </label>
-            </div>
-
         </div>
         <div v-else class="dataList">
-            <div class="checkbox-div">
+            <div v-for="item in dataArray" class="item-div">
                 <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i><span>Shenzhen Airlines</span>
-                      </label>
-            </div>
-            <div class="checkbox-div">
-                <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i><span>Sichuan Airlines</span>
-                      </label>
-            </div>
-            <div class="checkbox-div">
-                <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i><span>China Southern Airlines</span>
-                      </label>
-            </div>
-            <div class="checkbox-div">
-                <label class="radios-label">
-                          <input type="radio" name="view"/><i class="radios"></i><span>China Southern Airlines</span>
-                      </label>
+                    <input type="radio" :name="field" :value="item.value" v-model="radioValue"/><i class="radios"></i><span class="f14">{{item.text}}</span>
+                </label>
             </div>
         </div>
+
     </div>
-    <div v-show="isShow" class="selectAll">
-        <div class="checkbox-div">
+    <div v-if="selectType==='checkbox'" class="selectAll">
+        <div class="item-div">
             <label class="checkbox-label">
                           <input @click="selectAll" type="checkbox" name="sex"/><i class="checkbox checkAll"></i>
                           <span>all</span>
-                      </label>
+            </label>
         </div>
     </div>
 </div>
@@ -88,37 +60,38 @@ export default {
             languageData: {
                 'search': lanTool.lanContent('208_搜索'), //208_搜索
             },
-            dataArray: [],
 
+            dataArray: [],
             queryUrl: null,
             field: null,
             title: '',
-            data: {}, //默认值数据 
-            isMulSelect: false, //判断是否多选
-            isShow: true //判断全选控件是否隐藏
+            value: '', //默认值数据
+            selectType:'',  //判断是否多选
+
+            radioValue:'',
+            checkboxValue:[],
 
         }
     },
     created: function () {
-
         this.queryUrl = this.$route.query.url;
         this.field = this.$route.query.field;
         this.title = this.$route.query.title;
-        this.data = this.$route.query.data;
+        this.value = this.$route.query.value;
+        this.selectType = this.$route.query.selectType
     },
     mounted: function () {
         lanTool.updateLanVersion();
-        this.$nextTick(function () {
-            this.getData();
-            this.search();
-            this.isMulSelect = true;
-            //根据是否多选来设置列表滚动的区域高度
-            if (this.isMulSelect) {
-                $(".selectList-scroll").css("bottom", "50px");
-            } else {
-                $(".selectList-scroll").css("bottom", "0px");
-            }
-        })
+
+        //根据是否多选来设置列表滚动的区域高度
+        if (this.selectType === 'checkbox') {
+            $(".selectList-scroll").css("bottom", "50px");
+        } else {
+            $(".selectList-scroll").css("bottom", "0px");
+        }
+
+        this.getData();
+        this.search();
 
     },
     methods: {
@@ -128,9 +101,9 @@ export default {
                 var el = e.target,
                     t = $(e.target).is(":checked");
                 if (t) {
-                    $(".dataList input").prop("checked", true);
+                    $(".checkboxList input").prop("checked", true);
                 } else {
-                    $(".dataList input").prop("checked", false);
+                    $(".checkboxList input").prop("checked", false);
                 }
             })
         },
@@ -153,22 +126,30 @@ export default {
 
         saveHandler: function () {
             var $this = this;
+            // console.log($this.radioValue);
             var arr = {
                 field: $this.field,
-                value: {
-                    text: '',
-                    value: ''
-                }
+                value: []
             };
+            $.each($this.dataArray,function(index, item){
 
-            $(".listData input[type='checkbox']").each(function (index, el) {
-                if ($(el).is(":checked") == true) {
-                    $this.data.value = $(el).closest("label").attr('data-val');
-                    $this.data.text = $(el).closest('.weui-cell__hd').attr('data-text');
-                    arr.value.text = $(el).closest('.weui-cell__hd').attr('data-text');
-                    arr.value.value = $(el).closest("label").attr('data-val');
+                if($this.selectType === 'radio' && $this.radioValue === item.value){
+                    var t = {};
+                    t.text = item.text;
+                    t.value = item.value;
+                    arr.value.push(t);
                 }
+
             })
+
+            // $(".listData input[type='checkbox']").each(function (index, el) {
+            //     if ($(el).is(":checked") == true) {
+            //         $this.data.value = $(el).closest("label").attr('data-val');
+            //         $this.data.text = $(el).closest('.weui-cell__hd').attr('data-text');
+            //         arr.value.text = $(el).closest('.weui-cell__hd').attr('data-text');
+            //         arr.value.value = $(el).closest("label").attr('data-val');
+            //     }
+            // })
             eventBus.$emit('updataSelectList', arr);
             $this.$router.back(-1);
 
@@ -212,10 +193,10 @@ export default {
                     $this.dataArray = data.Data.Rows;
 
                     $this.$nextTick(function () {
-                        if ($this.data.text && $this.data.value) {
-                            $this.LocateCurentItem($this.data.value);
-                        }
-                        $this.selectItem();
+                        // if ($this.data.text && $this.data.value) {
+                        //     $this.LocateCurentItem($this.data.value);
+                        // }
+                        // $this.selectItem();
                     })
 
                 },
@@ -256,7 +237,7 @@ export default {
         //筛选
         search: function () {
             this.$nextTick(function () {
-                var listDom = $('.listData');
+                var listDom = $('.dataList');
                 $('#searchInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
@@ -268,12 +249,6 @@ export default {
             })
         },
 
-        /*
-                //回到顶部
-                scrollUp:function(){
-                    $('#'+this.id+ '.selectList-scroll').animate({scrollTop: 0}, 700);
-                },
-        */
     },
 
 }

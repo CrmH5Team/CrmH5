@@ -12,14 +12,23 @@
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
 
-                  <div v-if="item.type==='selectlist'" class="selectList row-cell-ft" :data-field="item.field" :data-vualu="item.value"></div>
+                  <div
+                    v-if="item.type==='selectlist'"
+                    class="selectList row-cell-ft"
+                    :data-url="item.queryUrl"
+                    :data-field="item.field"
+                    :data-val="item.value.value"
+                    @click="callSelectList($event)"
+                    :data-title="item.text"
+                    :data-type="item.selectType"
+                    ></div>
 
                   <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div>
 
                   <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div>
 
               </div>
-              <div class="select-list-value"></div>
+              <div v-if="item.type==='selectlist'" class="select-list-value"></div>
           </div>
       </div>
 
@@ -53,29 +62,31 @@ export default {
 
     methods: {
         //点击调起列表组件
-        selectList:function(event){
-            var self = this,
-            ele = event.target,
-            url = $(ele).attr('data-url') || '',
-            field = $(ele).attr('data-field') || '';
-            // var ds = {};
-            // $.each(this.screenData,function(index,item){
-            //     $.each(item.comp,function(i,v){
-            //         if((v.field === field) && (v.data != undefined) ){
-            //             ds = v.data;
-            //         }
-            //     })
-            // })
-            var parameter = {
-                'field':field,
-                'url':url,
-                'title':$(ele).prop('placeholder'),
-                'data':{}
-            };
-            self.$router.push({
-                            path: '/selectlist',
-                            query: parameter
-            })
+        callSelectList:function(event){
+            var el = event.target,
+                self = this;
+                document.activeElement.blur();
+            var url = $(el).attr('data-url') || '';
+            var dataLinkfrom = $(el).attr('data-linkfrom') || '';
+                if(dataLinkfrom){
+                    // url = o.moduleData[dataLinkfrom];
+                }
+            var fieldValue = $(el).attr('data-val') || '',
+                fieldName = $(el).attr('data-field') || '',
+                title = $(el).attr('data-title') || '',
+                selectType = $(el).attr('data-type') || '',
+                parameter = {
+                    'field':fieldName,
+                    'url':url,
+                    'title':title,
+                    'value':fieldValue,
+                    'selectType':selectType
+                };
+                self.$router.push({
+                                path: '/selectlist',
+                                query: parameter
+                })
+
         },
     }
 

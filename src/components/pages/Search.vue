@@ -53,11 +53,13 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import Searchitems from '../common/Searchitems'
 
 import Header from '../common/Header'
+import eventBus from '../common/Event';
 var count = 0;
 export default {
     components: {
       swiper,
       swiperSlide,
+      currentPage:0,//当前显示第几页
       'my-header': Header,
       'search-items':Searchitems
     },
@@ -79,6 +81,7 @@ export default {
                     queryType:'string',
                     queryUrl:"Accounts/Query",
                     text:'Initiator发起人',
+                    selectType:'radio',
                     value:{
                         text:'',
                         value:''
@@ -106,6 +109,7 @@ export default {
                     queryType:'string',
                     queryUrl:"Accounts/Query",
                     text:'Organization公司',
+                    selectType:'checkbox',
                     value:{
                         text:'',
                         value:''
@@ -117,6 +121,7 @@ export default {
                     queryType:'string',
                     queryUrl:"Accounts/Query",
                     text:'Contact Name联系人名称',
+                    selectType:'checkbox',
                     value:{
                         text:'',
                         value:''
@@ -367,9 +372,11 @@ export default {
           onSlideChangeEnd: function(swiper){
             // alert(swiper.activeIndex) //切换结束时，告诉我现在是第几个slide
               $('.nav-item').each(function(index,el){
+
                     if(index == swiper.activeIndex){
                         $(this).addClass('active-item').siblings().removeClass('active-item');
                         _self.changePos();
+                        _self.currentPage = index;
                     }
               })
           }
@@ -381,8 +388,25 @@ export default {
       initial.initPicker();
       initial.initDatePicker();
 
+
+    },
+    activated:function(){
+
+        this.handleSelectlist();
     },
     methods:{
+        //处理从selectlist返回来的值
+        handleSelectlist:function(){
+          console.log(789);
+            var $this = this;
+            var sData = eventBus.selectListData;
+                if(!tool.isNullOrEmptyObject(sData)){
+                    console.log(sData);
+                    // $this.moduleData[sData.field] = sData.value;
+                    eventBus.selectListData = null;
+                }
+
+        },
 
         //切换页面
         switchPage:function(num, e){
@@ -392,6 +416,7 @@ export default {
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.swiper.slideTo(num, 500, false);
             _self.changePos();
+            _self.currentPage = num;
         },
 
         //table底部横条过渡效果
