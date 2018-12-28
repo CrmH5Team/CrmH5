@@ -234,57 +234,6 @@ export default {
             moreHiddenIcon: true,
             delHidden: true,
             ptitle: 'calendar detail calendar detail calendar detail',
-            id: null,
-            isAdd: true, //页面是否是新增状态
-            // data:null,
-            querySingleUrl: tool.ajaxUrl_Events_QuerySingle, //查询单条记录接口地址
-            saveOrUpdateUrl: tool.ajaxUrl_Events_SaveOrUpdate, //数据保存接口地址
-
-            isFirstEnter: false, // 是否第一次进入，默认false
-
-            languageData: {
-                'selectDate': lanTool.lanContent('212_请选择日期'),
-
-                'eventstatus': lanTool.lanContent('246_请选择状态'),
-                'activitytype': lanTool.lanContent('248_请选择类型'),
-                'taskpriority': lanTool.lanContent('250_请选择优先级'),
-                'visibility': lanTool.lanContent('251_请选择公开程度'),
-                'parent_idfrom': lanTool.lanContent('255_请选择关联于客户/销售机会'),
-
-                'assigned_user_id': lanTool.lanContent(''),
-                'contact_id': lanTool.lanContent('201_请选择联系人'),
-                'parent_id': lanTool.lanContent('257_请选择客户/销售机会'),
-            },
-
-            moduleData: {
-                subject: '',
-                assigned_user_id: {
-                    text: tool.getStorageItem(tool.cache_UserRealName) || "",
-                    value: tool.getStorageItem(tool.cache_UserId) || ""
-                },
-                date_start: '',
-                due_date: '',
-                eventstatus: '',
-                activitytype: '',
-                location: '',
-                taskpriority: '',
-                visibility: '',
-                contact_id: {
-                    text: '',
-                    value: ''
-                },
-                parent_idfrom: '',
-                parent_id: '',
-                description: '',
-
-                createdtime: '',
-                modifiedtime: '',
-                modifiedby: {
-                    text: '',
-                    value: ''
-                },
-            },
-
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -321,10 +270,6 @@ export default {
             console.log(data);
             // alert(data);
         });
-        // //监听滚动条
-        // $('.scroll-div').on('scroll', function () {
-        //     _self.scrollTop = $(this).scrollTop();
-        // });
     },
     methods: {
         // 开关事件
@@ -352,22 +297,15 @@ export default {
             // this.isShowMore = !this.isShowMore;
             var thisBtn = e.target;
             if ($(".showMoreList").css("display") == 'none') {
-                $(".showMoreList").show();
-                // function({
+                $(".showMoreList").slideDown();
                     $("#moreIcon").removeClass("calc-shousuojiantou");
                     $("#moreIcon").addClass("calc-shousuoshangjiantou");
-                // });
-                // $(thisBtn).text("Collapse");
 
             } else {
 
-                $(".showMoreList").hide();
-                // , function () {
+                $(".showMoreList").slideUp();
                     $("#moreIcon").removeClass("calc-shousuoshangjiantou");
                     $("#moreIcon").addClass("calc-shousuojiantou");
-                // });
-                // $(ththisBtnis).text("More");
-
             }
         }
     }

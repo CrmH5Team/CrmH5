@@ -3,130 +3,139 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
-        <div class="OpportuntiesList">
+        <div class="OpportunitiesList">
             <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
+                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="English">Air China</textarea>
+                        <textarea autoHeight="true" placeholder="Title">A320-200 sales project1 for to Air China</textarea>
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="China">中国国际航空公司</textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+            <div class="ListCell" id="Initiator">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Business Sector</div>
+                        <div class="ListCellContentLeftText">Initiator</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Airline</div>
+                        <div class="ListCellContentRightText">Cheryl Xiong</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
             <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-17"></span></div>
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxianji"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Region/Area</div>
+                        <div class="ListCellContentLeftText">Priority</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Asia Pacific</div>
+                        <div class="ListCellContentRightText">Nomal</div>
+                    </div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
+            <div class="ListCell" @click="startClick">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Start</div>
+                    </div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">16/Nov 15:00</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
             <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-jiezhishijianicon"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Country</div>
+                        <div class="ListCellContentLeftText">End</div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">China</div>
+                        <div class="ListCellContentRightText">16/Nov 16:00</div>
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Account Manager</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Jessie Zhao</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Existing Customer?</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Yes</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shoucang1"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="">Follow it</textarea>
-                    </p>
                 </div>
             </div>
         </div>
-        <div class="showMoreList">
+        <div class="ProcessList" ></div>
+        <div class="showMoreList" style="display:block">
             <div class="MoreList">
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText tiShi">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Select user or group user or group</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Share with</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Share with others</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shoucang1"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Rating"></textarea>
+                            <textarea autoHeight="true" placeholder="">Follow it</textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="address"></textarea>
+                            <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxiang1"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText tiShi">Email Reminder <span class="mui-icon calcfont calc-tishi"></span></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">No</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Remarks"></textarea>
+                            <textarea autoHeight="true" placeholder="Risk Tips">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description.</textarea>
                         </p>
                     </div>
                 </div>
-  
-             </div>
-                <Uploadfile></Uploadfile>
-
-                <Infofooter> </Infofooter>
-
             </div>
-            <div class="MoreBtn" @click="moreClick">
-                <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
-            </div>
+
+            <Uploadfile></Uploadfile>
+
+            <Infofooter> </Infofooter>
+
+        </div>
+        <div class="MoreBtn" @click="moreClick">
+            <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -153,7 +162,7 @@ export default {
         return {
             moreHiddenIcon: true,
             delHidden: true,
-            ptitle: 'Opportunitiesinfo detail',
+            ptitle: 'Opportunities detail',
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 

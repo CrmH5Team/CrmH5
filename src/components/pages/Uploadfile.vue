@@ -1,7 +1,7 @@
 <template>
 <div class="documentList">
     <div class="ListCell">
-        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-wendang1"></span></div>
+        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-wendang2"></span></div>
         <div class="ListCellContent">
             <div class="ListCellContentLeft documentHeader">
                 <div class="ListCellContentLeftText documentHeader">Documents</div>
