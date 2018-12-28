@@ -4,7 +4,7 @@
       <Listheader :title="title"></Listheader>
 
       <!--  右侧侧滑 -->
-      <list-right-panel :panelData="rigthPanelData"></list-right-panel>
+      <list-right-panel :panelData="rigthPanelData" :searchData="organizationsSearchData"></list-right-panel>
 
 
       <common-list :groupData="groupData">
@@ -270,6 +270,7 @@ import Listrightpanel from '../common/Listrightpanel'
 import Commonlist from '../common/Commonlist'
 // import Sortscreen from '../common/Sortscreen'
 import Mixins from '../../mixins'
+var count = 0;
 export default {
       mixins: [Mixins.PAGE_LIST],
       components:{
@@ -291,50 +292,8 @@ export default {
                 isUsePager : true,//是否分页
 
             },
-            //传给Sortscreen组件
-            sortScreenData:{
-                sort:[
-                    {'text':lanTool.lanContent('182_按公司名称正序排列'),'sortOrder':'ASC','sortName':'accountname','id':'organizations01'},
-                    {'text':lanTool.lanContent('183_按公司名称倒序排列'),'sortOrder':'DESC','sortName':'accountname','id':'organizations02'},
-                    {'text':lanTool.lanContent('221_按负责人正序排列'),'sortOrder':'ASC','sortName':'assigned_user_id','id':'organizations03'},
-                    {'text':lanTool.lanContent('222_按负责人倒序排列'),'sortOrder':'DESC','sortName':'assigned_user_id','id':'organizations04'}
-                ],
-                screen:[
-                    {
-                        field:'accountname',
-                        queryType:'string',
-                        text:lanTool.lanContent('26_公司名称'),
-                        comp:[
-                            {
-                                type:'input',
-                                field:'accountname',
-                                placeholder:lanTool.lanContent('189_请输入公司名称'),
-                                value:'',
-                            }
-                        ]
-                    },
-                    {
-                        field:'assigned_user_id',
-                        queryType:'string',
-                        text:lanTool.lanContent('33_负责人'),
-                        comp:[
-                            {
-                                type:'selectlist',
-                                field:'assigned_user_id',
-                                queryUrl:"Users/Query",
-                                placeholder:lanTool.lanContent('203_请选择负责人'),
-                                data:{
-                                    text:'',
-                                    value:''
-                                }
-                            }
-                        ]
-                    },
 
-                ]
-            },
-
-
+            //侧滑数据模型
             rigthPanelData:[
                 {
                   groupText:'Categories by 按...分类',
@@ -357,6 +316,57 @@ export default {
                       {text:'Existing Customer 现有客户',value:'existingCustomer'},
                   ]
                 },
+
+            ],
+            //侧滑搜索页面数据模型
+            organizationsSearchData:[
+              {
+                  type:'input',
+                  field:'potentialname',
+                  queryType:'string',
+                  text:'Organizations Name',
+                  value:'',
+              },
+              {
+                  type:'picker',
+                  field:'cf_771',
+                  queryType:'string',
+                  text:'Business Sector 业务分类',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'picker',
+                  field:'cf_771',
+                  queryType:'string',
+                  text:'Area / Region 区域',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'selectlist',
+                  field:'related_to',
+                  queryType:'string',
+                  queryUrl:"Accounts/Query",
+                  text:'Country 国家',
+                  selectType:'radio',
+                  value:{
+                      text:'',
+                      value:''
+                  }
+              },
+              {
+                  type:'selectlist',
+                  field:'related_to',
+                  queryType:'string',
+                  queryUrl:"Accounts/Query",
+                  text:'Account Manager 客户经理',
+                  selectType:'checkbox',
+                  value:{
+                      text:'',
+                      value:''
+                  }
+              }
 
             ],
 

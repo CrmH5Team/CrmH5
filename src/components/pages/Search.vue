@@ -82,6 +82,7 @@ export default {
                     queryUrl:"Contacts/Query",
                     text:'Initiator发起人',
                     selectType:'radio',
+
                     value:{
                         text:'',
                         value:''

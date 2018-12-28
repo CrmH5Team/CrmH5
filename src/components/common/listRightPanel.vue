@@ -52,7 +52,7 @@
         <div class="right-content-block">
             <div class="right-block-title">Other 其他</div>
             <div class="right-block-items">
-                <div class="other-search" id="OtherSearchBtn">
+                <div class="other-search" id="OtherSearchBtn" @click="goSearchPage">
                     <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
                     <label class="other-search-label">Search</label>
                 </div>
@@ -73,7 +73,7 @@ export default {
             dataFilter:[],
         }
     },
-    props:['panelData'],
+    props:['panelData','searchData'],
     created:function(){
         var _self = this;
         if(_self.panelData.length >= 1){
@@ -126,6 +126,20 @@ export default {
                 })
             }
 
+        },
+
+        //点击侧滑中的search
+        goSearchPage:function(){
+            var _self = this;
+            var parameter = {
+                'selectView':_self.classificationValue,
+                'dataFilter':_self.dataFilter,
+                'dataModule':_self.searchData
+            }
+            _self.$router.push({
+                  path: '/searchmodule',
+                  query: parameter
+            })
         },
     },
 

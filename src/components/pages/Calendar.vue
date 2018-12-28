@@ -126,7 +126,7 @@ export default {
                 onMonthAdd:function(p, monthContainer){
 
                     setTimeout(function(){
-                        $this.setCalendarEvent(p);
+                        // $this.setCalendarEvent(p);
                     },1);
                 }
             });

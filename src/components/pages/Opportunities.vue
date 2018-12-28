@@ -3,7 +3,7 @@
       <Listheader :title="title"></Listheader>
 
       <!--  右侧侧滑 -->
-      <list-right-panel :panelData="rigthPanelData"></list-right-panel>
+      <list-right-panel :panelData="rigthPanelData" :searchData="opportunitiesSearchData"></list-right-panel>
 
       <common-list :groupData="groupData">
           <div class="group-item">
@@ -146,6 +146,7 @@ import Listrightpanel from '../common/Listrightpanel'
 import Commonlist from '../common/Commonlist'
 // import Sortscreen from '../common/Sortscreen'
 import Mixins from '../../mixins'
+var count = 0;
 export default {
       mixins: [Mixins.PAGE_LIST],
       components:{
@@ -168,67 +169,7 @@ export default {
                 deleteUrl : tool.ajaxUrl_Potentials_Delete,//记录删除接口
                 isUsePager : true,//是否分页
             },
-            //传给Sortscreen组件
-            sortScreenData:{
-                sort:[
-                    {'text':lanTool.lanContent('180_按销售机会名称正序排列'),'sortOrder':'ASC','sortName':'potentialname','id':'opportunities01'},
-                    {'text':lanTool.lanContent('181_按销售机会名称倒序排列'),'sortOrder':'DESC','sortName':'potentialname','id':'opportunities02'},
-                    {'text':lanTool.lanContent('184_按日期正序排列'),'sortOrder':'ASC','sortName':'closingdate','id':'opportunities03'},
-                    {'text':lanTool.lanContent('185_按日期倒序排列'),'sortOrder':'DESC','sortName':'closingdate','id':'opportunities04'}
-                ],
-                screen:[
-                    {
-                        field:'potentialname',
-                        queryType:'string',
-                        text:lanTool.lanContent('173_销售机会'),
-                        comp:[
-                            {
-                                type:'input',
-                                field:'potentialname',
-                                placeholder:lanTool.lanContent('186_请输入销售机会名称'),
-                                value:'',
-                            }
-                        ]
-                    },
-                    {
-                        field:'related_to',
-                        queryType:'string',
-                        text:lanTool.lanContent('26_公司名称'),
-                        comp:[
-                            {
-                                type:'selectlist',
-                                field:'related_to',
-                                queryUrl:"Accounts/Query",
-                                placeholder:lanTool.lanContent('202_请选择公司'),
-                                data:{
-                                    text:'',
-                                    value:''
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        field:'closingdate',
-                        queryType:'string',
-                        text:lanTool.lanContent('156_日期'),
-                        comp:[
-                            {
-                                type:'datepicker',
-                                field:'stardate',
-                                placeholder:lanTool.lanContent('187_请选择开始日期'),
-                                value:''
-                            },
-                            {
-                                type:'datepicker',
-                                field:'enddate',
-                                placeholder:lanTool.lanContent('188_请选择结束日期'),
-                                value:''
-                            },
-                        ]
-                    }
-                ]
-            },
-
+            //侧滑数据模型
             rigthPanelData:[
                 {
                   groupText:'Categories by 按...分类',
@@ -248,7 +189,7 @@ export default {
                   type:'checkbox',
                   default:'allOpportunities',
                   items:[
-                      {text:'All Opportunities 所有商业机会',value:'allOpportunities'},
+                      {text:'All Opportunities',value:'allOpportunities'},
                       {text:'My Followed Opportunities',value:'myFollowedOpportunities'},
                       {text:'Active 有效的',value:'active'},
                       {text:'High Priority 优先级高',value:'highPriority'}
@@ -256,6 +197,109 @@ export default {
                 },
 
             ],
+            //侧滑搜索页面数据模型
+            opportunitiesSearchData:[
+              {
+                  type:'input',
+                  field:'name',
+                  queryType:'string',
+                  text:'Opportunity Name',
+                  value:'',
+              },
+              {
+                  type:'picker',
+                  field:'cf_771',
+                  queryType:'string',
+                  text:'Latest progress 最新的流程',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'picker',
+                  field:'cf_765',
+                  queryType:'string',
+                  text:'Priority 优先级',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'picker',
+                  field:'cf_771',
+                  queryType:'string',
+                  text:'Status 状态',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'selectlist',
+                  field:'related_to',
+                  queryType:'string',
+                  queryUrl:"Accounts/Query",
+                  text:'Initiator发起人',
+                  selectType:'radio',
+                  value:{
+                      text:'',
+                      value:''
+                  }
+              },
+              {
+                  type:'datepicker',
+                  field:'closingdate',
+                  queryType:'string',
+                  text:'Start Date Range 起始日期范围',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'datepicker',
+                  field:'closingdate',
+                  queryType:'string',
+                  text:'Planning Closing Date Range 计划结束日期',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'selectlist',
+                  field:'related_to',
+                  queryType:'string',
+                  queryUrl:"Accounts/Query",
+                  text:'Organization公司',
+                  selectType:'checkbox',
+                  value:{
+                      text:'',
+                      value:''
+                  }
+              },
+              {
+                  type:'picker',
+                  field:'cf_771',
+                  queryType:'string',
+                  text:'Business Sector 业务分类',
+                  value:'',
+                  id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                type:'picker',
+                field:'cf_771',
+                queryType:'string',
+                text:'Area / Region 区域',
+                value:'',
+                id:Number((new Date()).valueOf()) + count++
+              },
+              {
+                  type:'selectlist',
+                  field:'related_to',
+                  queryType:'string',
+                  queryUrl:"Accounts/Query",
+                  text:'Country 国家',
+                  selectType:'radio',
+                  value:{
+                      text:'',
+                      value:''
+                  }
+              }
+            ],
+
             groupData:[
                 {
                   groupName:'Alirline',
@@ -303,10 +347,12 @@ export default {
               var el = e.target;
               if($(el).hasClass('calc-shoucang')){
                   //取消关注
-                  $(el).removeClass('calc-shoucang').addClass('calc-shoucang1')
+                  $(el).removeClass('calc-shoucang').addClass('calc-shoucang1');
+                  $.toast("取消关注", 1500, function() {});
               }else{
                   //关注
-                  $(el).removeClass('calc-shoucang1').addClass('calc-shoucang')
+                  $(el).removeClass('calc-shoucang1').addClass('calc-shoucang');
+                  $.toast("关注成功", 1500, function() {});
               }
           }
       }
