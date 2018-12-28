@@ -185,7 +185,7 @@
         <div class="right-content-block">
             <div class="right-block-title">Other 其他</div>
             <div class="right-block-items">
-                <div class="other-search" id="OtherSearchBtn">
+                <div class="other-search" id="OtherSearchBtn" @click="goSearchPage">
                     <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
                     <label class="other-search-label">Search</label>
                 </div>
@@ -244,7 +244,7 @@
 import Header from './common/Header'
 import Calendar from './pages/Calendar'
 // import '@/assets/css/pages/main.css'
-
+var count = 0;
 export default {
     components:{
         'Header':Header,
@@ -263,6 +263,92 @@ export default {
             // ],
             selectView:'calendar',
             dataFilter:[],
+            //搜索页面数据模型
+            calendarSearchData:[
+                {
+                    type:'input',
+                    field:'potentialname',
+                    queryType:'string',
+                    text:'Title标题',
+                    value:'',
+                },
+                {
+                    type:'selectlist',
+                    field:'contact_id',
+                    queryType:'string',
+                    queryUrl:"Contacts/Query",
+                    text:'Initiator发起人',
+                    selectType:'radio',
+                    value:{
+                        text:'',
+                        value:''
+                    }
+                },
+                {
+                    type:'picker',
+                    field:'cf_765',
+                    queryType:'string',
+                    text:'Meeting nature会议性质',
+                    value:'',
+                    id: Number((new Date()).valueOf()) + count++
+                },
+                {
+                    type:'picker',
+                    field:'cf_763',
+                    queryType:'string',
+                    text:'Meeting type会议类型',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                },
+                {
+                    type:'selectlist',
+                    field:'related_to',
+                    queryType:'string',
+                    queryUrl:"Accounts/Query",
+                    text:'Organization公司',
+                    selectType:'checkbox',
+                    value:{
+                        text:'',
+                        value:''
+                    }
+                },
+                {
+                    type:'selectlist',
+                    field:'assigned_user_id',
+                    queryType:'string',
+                    queryUrl:"Users/Query",
+                    text:'Contact Name联系人名称',
+                    selectType:'checkbox',
+                    value:{
+                        text:'',
+                        value:''
+                    }
+                },
+                {
+                    type:'picker',
+                    field:'cf_771',
+                    queryType:'string',
+                    text:'Opportunity 商业机会',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                },
+                {
+                    type:'picker',
+                    field:'cf_769',
+                    queryType:'string',
+                    text:'Priority',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                },
+                {
+                    type:'datepicker',
+                    field:'closingdate',
+                    queryType:'string',
+                    text:'Time Range',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                }
+            ],
 
 
         }
@@ -335,6 +421,22 @@ export default {
 
     },
     methods:{
+
+        //点击侧滑中的search
+        goSearchPage:function(){
+            var _self = this;
+            var parameter = {
+                'selectView':_self.selectView,
+                'dataFilter':_self.dataFilter,
+                'dataModule':_self.calendarSearchData
+            }
+            _self.$router.push({
+                  path: '/searchmodule',
+                  query: parameter
+            })
+        },
+
+        //侧滑
         panelToggle:function(){
           var _self = this;
             _self.showPanel = !_self.showPanel;

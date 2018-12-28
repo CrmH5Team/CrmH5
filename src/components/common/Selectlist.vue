@@ -28,7 +28,7 @@
         <div v-if="selectType==='checkbox'" class="dataList checkboxList">
             <div v-for="item in dataArray" class="item-div">
                 <label class="checkbox-label">
-                    <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios">{{item.text}}</span>
+                    <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios f14">{{item.text}}</span>
                 </label>
             </div>
         </div>
@@ -97,15 +97,16 @@ export default {
     methods: {
         selectAll: function (e) {
             var self = this;
-            self.$nextTick(function () {
                 var el = e.target,
                     t = $(e.target).is(":checked");
                 if (t) {
-                    $(".checkboxList input").prop("checked", true);
+                    $.each(self.dataArray,function(index,item){
+                        self.checkboxValue.push(item.value);
+                    })
                 } else {
-                    $(".checkboxList input").prop("checked", false);
+                    self.checkboxValue = [];
+
                 }
-            })
         },
         clickSearch: function (e) {
             $(e.target).closest('.search').addClass('search-active');
@@ -126,14 +127,15 @@ export default {
 
         saveHandler: function () {
             var $this = this;
-            // console.log($this.radioValue);
+            // console.log($this.checkboxValue);
             var arr = {
                 field: $this.field,
                 value: []
             };
             $.each($this.dataArray,function(index, item){
 
-                if($this.selectType === 'radio' && $this.radioValue === item.value){
+                if(($this.selectType === 'radio' && $this.radioValue === item.value) ||
+                  ($this.selectType === 'checkbox' && $this.checkboxValue.indexOf(item.value)>=0 )){
                     var t = {};
                     t.text = item.text;
                     t.value = item.value;
@@ -141,15 +143,6 @@ export default {
                 }
 
             })
-
-            // $(".listData input[type='checkbox']").each(function (index, el) {
-            //     if ($(el).is(":checked") == true) {
-            //         $this.data.value = $(el).closest("label").attr('data-val');
-            //         $this.data.text = $(el).closest('.weui-cell__hd').attr('data-text');
-            //         arr.value.text = $(el).closest('.weui-cell__hd').attr('data-text');
-            //         arr.value.value = $(el).closest("label").attr('data-val');
-            //     }
-            // })
             eventBus.$emit('updataSelectList', arr);
             $this.$router.back(-1);
 
@@ -198,6 +191,11 @@ export default {
                         // }
                         // $this.selectItem();
                     })
+
+                    //如果是多选，显示底部全选按钮
+                    if($this.selectType === 'checkbox'){
+                        $('.selectAll').show();
+                    }
 
                 },
                 error: function (jqXHR, type, error) {

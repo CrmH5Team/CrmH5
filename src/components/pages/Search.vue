@@ -15,19 +15,19 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
 
-                <div id="p1" class="swiper-slide">
+                <div id="page0" class="swiper-slide">
                       <search-items :searchData="calendarSearchData"></search-items>
                 </div>
 
-                <div id="p2" class="swiper-slide">
+                <div id="page1" class="swiper-slide">
                       <search-items :searchData="organizationsSearchData"></search-items>
 
                 </div>
-                <div id="p3" class="swiper-slide">
+                <div id="page2" class="swiper-slide">
                       <search-items :searchData="cantactsSearchData"></search-items>
 
                 </div>
-                <div id="p4" class="swiper-slide">
+                <div id="page3" class="swiper-slide">
                       <search-items :searchData="opportunitiesSearchData"></search-items>
                 </div>
             </div>
@@ -59,7 +59,6 @@ export default {
     components: {
       swiper,
       swiperSlide,
-      currentPage:0,//当前显示第几页
       'my-header': Header,
       'search-items':Searchitems
     },
@@ -67,6 +66,7 @@ export default {
         return {
             title: 'Other Search',
             swiper:null,
+            currentPage: 0,//当前显示第几页
             calendarSearchData:[
                 {
                     type:'input',
@@ -77,9 +77,9 @@ export default {
                 },
                 {
                     type:'selectlist',
-                    field:'related_to',
+                    field:'contact_id',
                     queryType:'string',
-                    queryUrl:"Accounts/Query",
+                    queryUrl:"Contacts/Query",
                     text:'Initiator发起人',
                     selectType:'radio',
                     value:{
@@ -117,9 +117,9 @@ export default {
                 },
                 {
                     type:'selectlist',
-                    field:'related_to',
+                    field:'assigned_user_id',
                     queryType:'string',
-                    queryUrl:"Accounts/Query",
+                    queryUrl:"Users/Query",
                     text:'Contact Name联系人名称',
                     selectType:'checkbox',
                     value:{
@@ -182,6 +182,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Country 国家',
+                  selectType:'radio',
                   value:{
                       text:'',
                       value:''
@@ -193,6 +194,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Account Manager 客户经理',
+                  selectType:'checkbox',
                   value:{
                       text:'',
                       value:''
@@ -221,6 +223,7 @@ export default {
                     queryType:'string',
                     queryUrl:"Accounts/Query",
                     text:'Organization公司',
+                    selectType:'checkbox',
                     value:{
                         text:'',
                         value:''
@@ -248,6 +251,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Country 国家',
+                  selectType:'radio',
                   value:{
                       text:'',
                       value:''
@@ -259,6 +263,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Account Manager 客户经理',
+                  selectType:'checkbox',
                   value:{
                       text:'',
                       value:''
@@ -303,6 +308,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Initiator发起人',
+                  selectType:'radio',
                   value:{
                       text:'',
                       value:''
@@ -330,6 +336,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Organization公司',
+                  selectType:'checkbox',
                   value:{
                       text:'',
                       value:''
@@ -357,6 +364,7 @@ export default {
                   queryType:'string',
                   queryUrl:"Accounts/Query",
                   text:'Country 国家',
+                  selectType:'radio',
                   value:{
                       text:'',
                       value:''
@@ -395,17 +403,22 @@ export default {
         this.handleSelectlist();
     },
     methods:{
+
         //处理从selectlist返回来的值
         handleSelectlist:function(){
-          console.log(789);
-            var $this = this;
+            var _self = this;
             var sData = eventBus.selectListData;
                 if(!tool.isNullOrEmptyObject(sData)){
-                    console.log(sData);
-                    // $this.moduleData[sData.field] = sData.value;
+
+                    var el = $('#page'+_self.currentPage).find('.selectList[data-field="'+ sData.field +'"]');
+                    var valueDiv = el.closest('.item-row-flex').next();
+                    valueDiv.html('');
+
+                    $.each(sData.value,function(index,item){
+                        valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                    })
                     eventBus.selectListData = null;
                 }
-
         },
 
         //切换页面

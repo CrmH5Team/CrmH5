@@ -24,7 +24,43 @@ export default {
         return {
             title:'Search',
             searchData:[],
+            selectView:'',
+            dataFilter:[]
         }
+    },
+    created () {
+        this.searchData = this.$route.query.dataModule;
+        this.selectView = this.$route.query.selectView;
+        this.dataFilter = this.$route.query.dataFilter;
+    },
+    mounted:function(){
+
+        //用common中的方法初始化
+        initial.initPicker();
+        initial.initDatePicker();
+    },
+    activated:function(){
+
+        this.handleSelectlist();
+    },
+    methods:{
+        //处理从selectlist返回来的值
+        handleSelectlist:function(){
+            var _self = this;
+            var sData = eventBus.selectListData;
+                if(!tool.isNullOrEmptyObject(sData)){
+
+                    var el = $('.search-rows').find('.selectList[data-field="'+ sData.field +'"]');
+                    console.log(el.length);
+                    var valueDiv = el.closest('.item-row-flex').next();
+                    valueDiv.html('');
+
+                    $.each(sData.value,function(index,item){
+                        valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                    })
+                    eventBus.selectListData = null;
+                }
+        },
     }
 }
 </script>
@@ -35,6 +71,8 @@ export default {
   -webkit-overflow-scrolling:touch;
 }
 
+
+/*底部按钮*/
 .anniu {
   position:fixed;
   width: 100%;

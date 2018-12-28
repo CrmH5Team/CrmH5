@@ -104,7 +104,7 @@ export default {
 
 
 <style scoped>
-.search-rows{background: #fff;}
+.search-rows{background: #fff;width:100%;overflow: hidden;}
 .item-row{padding:0px 15px;box-sizing: border-box;line-height: 40px;
 border-bottom: 1px solid rgba(60,173,249,.2);}
 .item-row .calcfont{color:#cdcdcd;position:absolute;top:0;right:-6px;}
@@ -152,9 +152,10 @@ border-bottom: 1px solid rgba(60,173,249,.2);}
   text-align: right;padding-right:10px;
 }
 .select-list-value{
-   color:rgb(102, 102, 102);text-align: right;padding-right:10px;display: none;
+   color:rgb(102, 102, 102);text-align:left;line-height:16px;
+   /* display: none; */
 }
-
+/* .select-list-value span{display:inline-block;padding:0 5px 5px 0;} */
 .selectList{width:100%;height:40px;border:0;outline: none;}
 
 </style>
