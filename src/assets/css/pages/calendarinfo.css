@@ -12,11 +12,13 @@
     /* background-color: #FFFFFF */
 }
 
-.CalendarList {
+.CalendarList,.PrCalendarList {
     /* height: 100%; */
     background-color: #FFFFFF
 }
-
+.PrCalendarList{
+    height: 100%;
+}
 .ListCell {
     position: relative;
     display: flex;

@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <Infoheader :moreHidden="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="CalendarList">

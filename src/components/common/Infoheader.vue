@@ -4,7 +4,8 @@
         <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
         <h1 class="mui-title f18">{{title}}</h1>
-        <div class="leftView">    <a v-show="moreHidden" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
+        <div class="leftView">
+        <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
         <a @click="save" class="calcfont calc-gou right" id="save"></a>
         <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a></div>
     
@@ -18,14 +19,14 @@ import eventBus from './Event.js';
 export default {
     data() {
         return {
-            moreHidden: true,
+            // moreIcon: true,
             // delHidden: true,
         }
     },
     props: {
         title: String,
         pageType: String,
-        moreHidden:Boolean,
+        moreIcon:Boolean,
         delHidden:Boolean
     },
     mounted: function () {
@@ -35,7 +36,7 @@ export default {
 
         //保存动作
         save: function () {
-            eventBus.$emit('save');
+            eventBus.$emit('save','saveData');
         },
         delClick: function () {
              eventBus.$emit('delete','asdaf');     

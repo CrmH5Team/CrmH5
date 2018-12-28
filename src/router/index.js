@@ -29,6 +29,8 @@ import Calendar from '@/components/pages/Calendar'
 import Calendarsearch from '@/components/pages/Calendarsearch'
 import Calendarlist from '@/components/pages/Calendarlist'
 import Calendarinfo from '@/components/pages/Calendarinfo'
+import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
+
 
 import Selectlist from '@/components/common/Selectlist'
 
@@ -148,7 +150,7 @@ const router =  new Router({
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
       }
     },
-    { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Calendarinfo,
+    { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Contactsinfo,
       meta: {
         keepAlive: true,
         isBack:false,
