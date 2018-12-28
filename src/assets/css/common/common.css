@@ -145,8 +145,8 @@ label.checkbox-label .checkbox {
     display: inline-block;
     position: relative;
     padding:0;margin:0;box-sizing: border-box;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: #FFFFFF;
     border: 1px solid #FF5A21;
     border-radius: 2px;
@@ -159,8 +159,8 @@ label.checkbox-label input:checked + .checkbox {
 }
 label.checkbox-label  input:checked + .checkbox:after {
     content: " ";
-    width: 12px;
-    height: 6px;
+    width: 10px;
+    height: 5px;
     border:2px solid #fff;
     position: absolute;
     top: 1px;
@@ -200,8 +200,8 @@ label.radios-label .radios {
     display: inline-block;
     position: relative;
     padding:0;margin:0;box-sizing: border-box;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     background: #FFFFFF;
     border: 1px solid #2A79C8;
     border-radius: 50%;
@@ -213,8 +213,8 @@ label.radios-label input:checked + .radios {
 }
 label.radios-label input:checked + .radios:after {
     content: " ";
-    width: 12px;
-    height: 6px;
+    width: 10px;
+    height: 5px;
     border:2px solid #fff;
     position: absolute;
     top: 1px;
