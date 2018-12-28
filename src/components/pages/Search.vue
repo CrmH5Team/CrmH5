@@ -35,7 +35,7 @@
 
     </div>
 
-    <div class="anniu">
+    <div class="anniu f16">
         <div class="clear-btn">Clear</div>
         <div class="sure-btn">OK</div>
     </div>

@@ -65,7 +65,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.header{position:fixed;width:100%;left:0;top:0;}
 .search-box{
   position:fixed;top:0.88rem;bottom:0.9rem;left:0;right:0;overflow-y: scroll;
   -webkit-overflow-scrolling:touch;

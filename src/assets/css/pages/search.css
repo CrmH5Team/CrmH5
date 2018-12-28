@@ -55,7 +55,7 @@
   height:0.9rem;
   line-height:0.9rem;
   bottom: 0;
-  font-size: 0.25rem;
+  /* font-size: 0.25rem; */
   left:0;
   z-index: 3;
   display: flex;
