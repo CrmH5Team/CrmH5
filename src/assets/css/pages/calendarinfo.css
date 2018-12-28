@@ -93,7 +93,7 @@
     height: 0.5rem;
     line-height: 0.5rem;
     /* padding-left: 0.1rem; */
-   
+
 }
 .ListCellContentRight.switch .weui-cell__ft input.weui-switch{
     /* width: 1.04rem; */
@@ -172,7 +172,7 @@
    line-height: 0.4rem;
    overflow: hidden;
    text-overflow: ellipsis;
-   white-space: nowrap; 
+   white-space: nowrap;
 }
 .ListCellLeftIcon.leftIconHidden
 {
@@ -226,6 +226,53 @@ textarea::placeholder
     width: 80%;
 }
 
+
+.ProcessList{padding:10px 0;background:#fff;}
+
+.group-div{border-top:1px solid #e9cfae;}
+.date-div{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height:34px;line-height: 34px;
+  border-bottom: 1px solid #e9cfae;
+  background: #f8f2dc;
+  padding: 0 10px;
+  font-size: 12px;
+  width: 100%;
+  color: #000;
+  z-index: 99;
+}
+.occupy-div{
+  height: 34px;
+  display: none;
+}
+.group-item-list{display: none;}
+.group-item{
+  line-height: 22px;
+  padding: 5px 10px;
+}
+.item-title{
+  height: 28px;
+  line-height: 28px;
+  color: #000;
+  font-weight: 600;
+}
+
+.item-title .spot{
+  font-size: .5rem;
+  color: #3cadf9;
+  vertical-align: bottom;
+  padding-right: 5px;
+}
+.doc-block{font-weight:600;}
+
+.doc-list{color: rgb(42, 121, 200);}
+.doc-list .doc-icon{color:#ff5a21;}
+.doc-list .doc-right{color:#000;}
+
+
+
+
 .showMoreList {
     display: none;
 }
@@ -247,8 +294,8 @@ textarea::placeholder
 .documentAddIcon{
     /* width: 24px;     */
     /* height: 44px; */
-    margin: auto 0;  
-   margin-left: 0.4rem;  
+    margin: auto 0;
+   margin-left: 0.4rem;
 }
 .documentAddIcon .mui-icon.calcfont.calc-jia
 {
