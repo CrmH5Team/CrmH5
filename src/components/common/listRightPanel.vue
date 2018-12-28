@@ -24,31 +24,6 @@
             </div>
         </div>
 
-        <!--
-        <div class="right-content-block">
-            <div class="right-block-title">Categories by 按...分类</div>
-            <div class="right-block-items">
-                <div class="radios-div" >
-                      <label class="radios-label">
-                          <input type="radio" name="classification" value="businessSector" v-model="classificationValue"/><i class="radios"></i><span>Business Sector 业务分类</span>
-                      </label>
-                </div>
-            </div>
-        </div>
-        <div class="right-content-block">
-            <div class="right-block-title">Data Display 数据显示</div>
-            <div class="right-block-items">
-                <div class="checkbox-div">
-                      <label class="checkbox-label">
-                          <input type="checkbox" name="datafilter" value="my-calendar" v-model="dataFilter"/><i class="checkbox"></i>
-                          <span>All Organizations 所有公司</span>
-                      </label>
-                </div>
-            </div>
-        </div>
-        -->
-
-
         <div class="right-content-block">
             <div class="right-block-title">Other 其他</div>
             <div class="right-block-items">
@@ -58,6 +33,8 @@
                 </div>
             </div>
         </div>
+
+        <div class="btn-div f16">OK确认</div>
     </div>
 
 

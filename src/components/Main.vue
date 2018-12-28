@@ -192,7 +192,7 @@
             </div>
         </div>
 
-        <div class="btn-div"></div>
+        <div class="btn-div f16">OK确认</div>
     </div>
 
     <!--  点击 + 号弹出层 -->

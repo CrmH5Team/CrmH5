@@ -102,7 +102,7 @@ header a {
 }
 
 .search-input {
-    padding: 10px 15px 10px 33px;
+    padding: 10px 15px 10px 36px;
     box-sizing: border-box;
     height: 34px;
     text-align: center;
@@ -129,7 +129,7 @@ header a {
 }
 
 .search-placeholder {
-    padding-left: 10px;
+    padding-left:36px;
     line-height: 34px;
     position: absolute;
     z-index: 1;
@@ -153,8 +153,9 @@ header a {
 .search .calc-sousuo {
     padding: 0;
     color: #333;
-    margin-right: -3px;
-    width: auto;
+    position: absolute;
+    left:9px;top:6px;
+    width:23px;height: 23px;text-align: center;line-height: 23px;
 }
 
 /*列表style*/
@@ -213,10 +214,12 @@ header a {
     padding: 10px;
     border-bottom: solid 1px #e5f0f4;
 }
-.dataList .item-div label{display:block;}
+.dataList .item-div label{display:block;line-height: 20px;position: relative;}
+.item-div .checkbox-label .checkbox{position: absolute;left:0;top:2px;}
 .dataList .item-div span {
-    padding-left: 10px;
+    padding-left:26px;display: block;
 }
+
 .selectAll{
 	position: fixed;
 	left: 0;
@@ -231,6 +234,9 @@ header a {
   color: gray;
   display: none;
 }
+.selectAll .checkbox-label{position: relative;}
 .selectAll span{
-    padding-left: 5px;
+    padding-left:26px;
 }
+
+label.radios-label .radios{position: absolute;}
