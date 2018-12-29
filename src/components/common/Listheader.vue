@@ -20,7 +20,7 @@
                     </router-link>
 
 		  </div>
-          <h1 v-else class="mui-title">{{title}}</h1>
+          <h1 v-else class="mui-title f18">{{title}}</h1>
 
           <a @click="showRightPanel" class=" calcfont calc-liebiao2 right" id=""></a>
           <a @click="addData" class=" calcfont calc-tianjiajiahaowubiankuang right" id="addNew"></a>
@@ -158,12 +158,26 @@ header{position:fixed;width:100%;top:0;left:0;}
 header.mui-bar {
   /* line-height: 0.2rem; */
   overflow: hidden;
-  background: #3cadf9;
+  background: #f8f2dc;
 }
 .mui-title {
-	right: 40px;left: 40px; display: inline-block; overflow: hidden;
+	/* right: 40px;left: 40px; display: inline-block; overflow: hidden;
     width: auto; font-size: 0.34rem; margin: 0; text-overflow: ellipsis;
-    position: absolute;padding: 0;text-align: center; white-space: nowrap; line-height: 0.88rem;
+    position: absolute;padding: 0;text-align: center; white-space: nowrap; line-height: 0.88rem; */
+
+    right: 40px;
+    left: 40px;
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    margin: 0;
+    text-overflow: ellipsis;
+    position: absolute;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: .88rem;
 }
 .calcfont{
     font-size: 0.48rem;/* width: 0.88rem; */text-align: center;
@@ -175,7 +189,7 @@ header.mui-bar {
 }
 header .mui-title,
 header a {
-	color: #fff;
+	color: #333;
 }
 
 
