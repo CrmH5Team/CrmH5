@@ -21,6 +21,7 @@
                     @click="callSelectList($event)"
                     :data-title="item.text"
                     :data-type="item.selectType"
+                    :data-resulteRow="item.resulteRow"
                     ></div>
 
                   <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div>
@@ -28,7 +29,7 @@
                   <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div>
 
               </div>
-              <div v-if="item.type==='selectlist'" class="select-list-value"></div>
+              <div v-if="item.resulteRow" class="select-list-value"></div>
           </div>
       </div>
 
@@ -156,6 +157,6 @@ border-bottom: 1px solid rgba(60,173,249,.2);}
    /* display: none; */
 }
 /* .select-list-value span{display:inline-block;padding:0 5px 5px 0;} */
-.selectList{width:100%;height:40px;border:0;outline: none;}
+/* .selectList{width:100%;height:40px;border:0;outline: none;} */
 
 </style>

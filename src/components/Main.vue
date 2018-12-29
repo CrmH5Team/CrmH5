@@ -307,6 +307,7 @@ export default {
                     queryUrl:"Accounts/Query",
                     text:'Organization公司',
                     selectType:'checkbox',
+                    resulteRow:true, //第二行显示结果
                     value:{
                         text:'',
                         value:''
@@ -319,6 +320,7 @@ export default {
                     queryUrl:"Users/Query",
                     text:'Contact Name联系人名称',
                     selectType:'checkbox',
+                    resulteRow:true, //第二行显示结果
                     value:{
                         text:'',
                         value:''

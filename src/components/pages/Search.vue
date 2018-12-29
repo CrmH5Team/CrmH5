@@ -82,7 +82,6 @@ export default {
                     queryUrl:"Contacts/Query",
                     text:'Initiator发起人',
                     selectType:'radio',
-
                     value:{
                         text:'',
                         value:''
@@ -111,6 +110,7 @@ export default {
                     queryUrl:"Accounts/Query",
                     text:'Organization公司',
                     selectType:'checkbox',
+                    resulteRow:true, //第二行显示结果
                     value:{
                         text:'',
                         value:''
@@ -123,6 +123,7 @@ export default {
                     queryUrl:"Users/Query",
                     text:'Contact Name联系人名称',
                     selectType:'checkbox',
+                    resulteRow:true, //第二行显示结果
                     value:{
                         text:'',
                         value:''
@@ -225,6 +226,7 @@ export default {
                     queryUrl:"Accounts/Query",
                     text:'Organization公司',
                     selectType:'checkbox',
+                    resulteRow:true, //第二行显示结果
                     value:{
                         text:'',
                         value:''
@@ -338,6 +340,7 @@ export default {
                   queryUrl:"Accounts/Query",
                   text:'Organization公司',
                   selectType:'checkbox',
+                  resulteRow:true, //第二行显示结果
                   value:{
                       text:'',
                       value:''
@@ -412,12 +415,20 @@ export default {
                 if(!tool.isNullOrEmptyObject(sData)){
 
                     var el = $('#page'+_self.currentPage).find('.selectList[data-field="'+ sData.field +'"]');
-                    var valueDiv = el.closest('.item-row-flex').next();
-                    valueDiv.html('');
+                    var resulterow = el.attr('data-resulterow') || false;
+                    if(resulterow){
+                        var valueDiv = el.closest('.item-row-flex').next();
+                        valueDiv.html('');
+                        $.each(sData.value,function(index,item){
+                            valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                        })
+                    }else{
+                        el.html('');
+                        $.each(sData.value,function(index,item){
+                            el.append('<span style="display:inline-block;padding-left:5px;" data-value='+ item.value +'>'+ item.text +'</span>');
+                        })
+                    }
 
-                    $.each(sData.value,function(index,item){
-                        valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
-                    })
                     eventBus.selectListData = null;
                 }
         },

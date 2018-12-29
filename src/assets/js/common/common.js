@@ -1697,6 +1697,18 @@ loading.hidden = function(){
       });
   },
 
+  //根据text值在一个数组对象中找出value
+  initial.findValueByText = function(arr,text){
+      if(isNullOrEmptyObject(arr)) return '';
+      $.each(arr,function(index,item){
+         if(item.text === text) {
+           return item.value;
+         }
+      })
+      return '';
+  },
+
+
   //初始化datePicker组件
   initial.initDatePicker = function(){
 
