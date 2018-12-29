@@ -13,7 +13,7 @@
                     A320-200 sales project2 for to Eastern  Airlines
                 </div>
                 <div class="item-div">
-                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                    <span class="item-new">new</span><span class="itme-div-span">Proposal discussion</span>
                 </div>
                 <div class="item-div">
                     <span>Normal</span><span class="right">Active</span>
@@ -31,7 +31,7 @@
                     A320-200 sales project2 for to Eastern  Airlines
                 </div>
                 <div class="item-div">
-                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                    <span class="item-new">new</span><span class="itme-div-span">Proposal discussion</span>
                 </div>
                 <div class="item-div">
                     <span>Normal</span><span class="right">Active</span>
@@ -49,7 +49,7 @@
                     A320-200 sales project2 for to Eastern  Airlines
                 </div>
                 <div class="item-div">
-                    <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
+                    <span class="item-new">new</span><span class="itme-div-span">Proposal discussion</span>
                 </div>
                 <div class="item-div">
                     <span>Normal</span><span class="right">Active</span>
@@ -305,14 +305,15 @@ export default {
 
 .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 1rem;}
-.group-item::after{content:'';display:block;height: 1px;background:#e5f0f4;width:100%;left:0;bottom:0;}
-.item-div{font-size: 0.25rem;line-height: 0.5rem;padding-top:5px;}
+.group-item::after{content:'';display:block;height: 1px;background:#e5f0f4;width:100%;left:0;top:0px;position:absolute;}
+.item-div{font-size: 0.25rem;line-height: 0.4rem;}
 
 .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius: 2px;
 box-sizing: border-box;height: 16px;line-height:16px;font-size: 0.2rem;vertical-align:middle;
-margin-right: 5px;padding:0;}
+margin-right: 5px;padding:0 3px;}
+.itme-div-span{font-weight: 600;vertical-align: middle;}
 
-.item-first-div{font-weight: 600;color:#3cadf9;width: 100%;}
+.item-first-div{font-weight: 600;color:#3cadf9;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
 .item-last-div{line-height:0.4rem;}
 
 </style>

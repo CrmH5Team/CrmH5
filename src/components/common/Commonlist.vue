@@ -113,9 +113,9 @@ export default {
   box-sizing: border-box;
   z-index: 99;
 }
-.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
+.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:6px;left:0.2rem;font-size:0.5rem;color:#ccc;}
 .calc-shoucang{color:#ff5a21}
-.date-div .calcfont{color:#ff5a21;margin-right:8px;}
+.date-div .calcfont{color:#ff5a21;margin-right:8px;vertical-align:bottom;}
 .group-name{font-size: 0.3rem;}
 .occupy-div{height:30px;display:none;}
 

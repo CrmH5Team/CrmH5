@@ -460,8 +460,9 @@ export default {
 
 .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 1rem;}
-.group-item::after{content:'';display:block;height: 1px;background:#f8f2dc;width:100%;left:0;bottom:0;}
-.item-div{font-size: 0.25rem;line-height: 0.5rem;padding-top:5px;}
-.item-first-div{font-weight: 600;color:#ff5a21;}
+.group-item::after{content:'';display:block;height: 1px;background:#f8f2dc;width:100%;left:0;
+top:0px;position:absolute;}
+.item-div{font-size: 0.25rem;line-height: 0.4rem;}
+.item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
 
 </style>
