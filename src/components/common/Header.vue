@@ -87,7 +87,8 @@ header.mui-bar {
     padding-left: 10px;
 }
 .calc-liebiao{
-  /* font-size: 0.7rem; */
+  font-size: 0.6rem;
+  padding: 0.15rem 10px;
 }
 
 header .mui-title,
