@@ -87,7 +87,6 @@ header.mui-bar {
 
 }
 
-
 header .mui-title,
 header a {
 	color: #fff;

@@ -22,7 +22,7 @@
 .ListCell {
     position: relative;
     display: flex;
-    padding: 0.14rem 0.3rem;
+    padding: 9px 0.3rem;
     padding-right: 0.14rem;
     /*border-bottom: solid 1px red;*/
     background-color: #fff;
@@ -218,7 +218,7 @@ textarea::placeholder
     right: 0.3rem;
     bottom: 0;
     height: 1px;
-    background-color: #A6D4F6;
+    background-color: #e9cfae;
 }
 
 .ListCell input {

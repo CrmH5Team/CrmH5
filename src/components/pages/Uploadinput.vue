@@ -3,8 +3,9 @@
 
     <Header :title="pageTitle"></Header>
 
-    <div class="mui-content mui-fullscreen mui-scroll-wrapper">
-        <div class="mui-scroll">
+
+    <!-- <div class="">
+        <div class="">
                 <div class="selectedFile">
                     <h3><span class="lanText" data-lanid="286_已选文件"></span></h3>
                     <div class="name mui-ellipsis">
@@ -20,20 +21,20 @@
                             <div class="mui-navigate-right">
                                 <label><span class="red">*</span><span class="lanText" data-lanid="157_负责人"></span></label>
                                 <p>
-                                    <input 
+                                    <input
                                         key="uploadinput_assigned_user_id"
                                         v-model="assigned_user_id.text"
                                         @click="selectList"
                                         class="selectList lanInputPlaceHolder"
                                         data-lanid="203_请选择负责人"
-                                        data-url="Users/Query" 
-                                        data-field="assigned_user_id" 
-                                        readonly="readonly" >    
-                                    
+                                        data-url="Users/Query"
+                                        data-field="assigned_user_id"
+                                        readonly="readonly" >
+
                                     <i class="calcfont arrow-right calc-xiangzuo"></i>
                                 </p>
                             </div>
-                            
+
                         </div>
                         <div class="mui-input-row">
                             <div class="mui-navigate-right">
@@ -44,8 +45,8 @@
                                         :title="languageData.folderid"
                                         data=""
                                         field="folderid"
-                                        ></Picker>    
-                                    <i class="calcfont arrow-right calc-xiangzuo"></i>    
+                                        ></Picker>
+                                    <i class="calcfont arrow-right calc-xiangzuo"></i>
                                 </p>
                             </div>
                         </div>
@@ -55,21 +56,68 @@
                                 <textarea class="ItemVal" v-model="notecontent" data-field="notecontent"></textarea>
                             </div>
                         </div>
-                
+
                 </form>
                 <div class="btn_div">
                         <button type="button" @click="upload" class="mui-btn mui-btn-primary lanText mui-btn-block" id="uploadFile" data-lanid="277_上传" ></button>
                 </div>
 
         </div>
-        
+    </div> -->
+    <div >
+          <div class="ListCell">
+              <div class="ListCellLeftIcon">
+                  <span class="mui-icon calcfont calc-yewu"></span>
+              </div>
+              <div class="ListCellContent">
+                  <div class="ListCellContentLeft leftContent">
+                    <div class="ListCellContentLeftText">Business Sector</div>
+                  </div>
+                  <div class="ListCellContentRight rightContent">
+                    <div class="ListCellContentRightText">Airline</div>
+                  </div>
+                  <div class="ListCellRightIcon">
+                      <span class="mui-icon calcfont calc-you"></span>
+                  </div>
+              </div>
+          </div>
+
+          <div class="ListCell">
+              <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
+              <div class="ListCellContent">
+                  <div class="ListCellContentLeft leftContent">
+                      <div class="ListCellContentLeftText">Business Sector</div>
+                  </div>
+                  <div class="ListCellContentRight rightContent">
+                      <div class="ListCellContentRightText">Airline</div>
+                  </div>
+                  <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+              </div>
+          </div>
+
+
+          <div class="ListCell">
+                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
+                <div class="ListCellLeftText">
+                    <p class="textareaP">
+                        <textarea autoHeight="true" placeholder="Description描述"></textarea>
+                    </p>
+                </div>
+            </div>
+
     </div>
 
 
-
 </div>
-    
+
 </template>
+
+<style scoped>
+@import "../../assets/css/pages/calendarinfo.css";
+</style>
+
+
+
 <script>
 import Header from '../common/Header'
 import Picker from '../common/Picker'
@@ -100,7 +148,7 @@ export default {
         }
     },
     components:{ Header,Picker },
-    
+
     beforeRouteEnter:function(to, from, next){
         //如果是从以下路由回来的就不用刷新页面
         if(from.name === 'selectlist'){
@@ -114,11 +162,11 @@ export default {
 
     created:function(){
         var $this = this;
-        $this.isFirstEnter = true; 
+        $this.isFirstEnter = true;
 
         //如果是刷新就返回上一页(用params传值刷新数据会丢失)
         if(tool.isNullOrEmptyObject(this.$route.params)){
-            $this.$router.back(-1);
+            // $this.$router.back(-1);
         }
 
         //处理Picker组件回传的值
@@ -129,6 +177,13 @@ export default {
 
     mounted:function(){
         lanTool.updateLanVersion();
+
+        this.$nextTick(function () {
+            //将textarea设置为高度自适应
+            $("textarea").each(function (index, cur) {
+                tool.autoTextarea(cur);
+            });
+        })
     },
 
     activated:function(){
@@ -139,9 +194,9 @@ export default {
             eventBus.selectListData = null;
         }
 
-        if(!this.$route.meta.isBack || this.isFirstEnter){ 
+        if(!this.$route.meta.isBack || this.isFirstEnter){
 
-                        
+
             this.file = this.$route.params.file;
             this.fileName = this.$route.params.fileName;
             this.fileSize = this.$route.params.fileSize;
@@ -179,15 +234,15 @@ export default {
         },
 
         upload:function(){
-            var $this = this; 
-            
-            //请求地址 
+            var $this = this;
+
+            //请求地址
             var urlTemp =
                 tool.combineRequestUrl(
                     tool.getConfigValue(tool.config_ajaxUrl),
                     tool.getConfigValue(tool.ajaxUrl_FileOperation_FileUpload)
                 );
-                
+
             //构造传入参数
             var jsonDatas = {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
@@ -201,12 +256,12 @@ export default {
                 id: $this.id || '',
                 assigned_user_id: $this.assigned_user_id.value || "",
                 fileBase64Str: $this.file
-            };  
+            };
 
             var formData = new FormData();
-                formData.append('file', $this.file);    
+                formData.append('file', $this.file);
                 formData.append("jsonDatas",JSON.stringify(jsonDatas));
-                
+
                 loading.show(3,lanTool.lanContent("172_加载中..."));
                 $.ajax({
                     async: true,
@@ -228,28 +283,28 @@ export default {
                         var routeName = $this.$route.name;
                         var routers = $this.$router.options.routes;
                         $.each(routers,function(index,item){
-                            
+
                             if(item.name === 'opportunitiesinfo'){
                                 item.meta.fromSave = true;
                                 $this.$router.back(-1);
                                 return ;
                             }
                         })
-                        
+
                     },
                     error: function() {
                         loading.hidden();
                     }
                 });
-                
-                
+
+
         }
     },
     beforeDestroy:function(){
         eventBus.$off('updataPicker');
     }
-    
-    
+
+
 }
 </script>
 
