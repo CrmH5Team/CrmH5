@@ -80,9 +80,9 @@ export default {
           var el = e.target;
 
           if($(el).hasClass('open')){
-              $(el).removeClass('open').siblings('.group-item-list').hide(0.2);
+              $(el).removeClass('open').siblings('.group-item-list').slideUp(500);
           }else{
-              $(el).addClass('open').siblings('.group-item-list').show(0.2);
+              $(el).addClass('open').siblings('.group-item-list').slideDown(500);
           }
       },
 

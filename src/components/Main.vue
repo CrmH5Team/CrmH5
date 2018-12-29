@@ -559,9 +559,9 @@ export default {
         groupToggle:function(e){
             var el = e.target;
             if($(el).hasClass('open')){
-                $(el).removeClass('open').siblings('.data-events').hide(0.2);
+                $(el).removeClass('open').siblings('.data-events').slideUp(500);
             }else{
-                $(el).addClass('open').siblings('.data-events').show(0.2);
+                $(el).addClass('open').siblings('.data-events').slideDown(500);
             }
         },
 
