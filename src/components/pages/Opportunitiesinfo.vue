@@ -357,11 +357,13 @@
             <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
         </div> -->
     </div>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
 </div>
 </template>
 
 <script>
 import Infoheader from '../common/Infoheader'
+import InfoRightPanel from '../common/InfoRightPanel'
 import Datetimepicker from '../common/Datetimepicker'
 import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
@@ -378,13 +380,16 @@ export default {
         Datetimepicker,
         Picker,
         Infofooter,
-        Uploadfile
+        Uploadfile,
+         InfoRightPanel
     },
     data() {
         return {
             moreHiddenIcon: true,
             delHidden: true,
             ptitle: 'Opportunities detail',
+            itemsData:['Organizations','Contacts'],
+            isShowMenuList:true,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 

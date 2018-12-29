@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="ListCell" @click="startClick">
+                <div class="ListCell">
                     <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -173,11 +173,11 @@
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-tixing1"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft">
-                                <div class="ListCellContentLeftText reminderTiShi">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
+                                <div class="ListCellContentLeftText reminderTiShi" @click="reminderClick">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
                             </div>
                             <div class="ListCellContentRight switch">
                                 <div class="weui-cell__ft">
-                                    <input @click="reminderClick" class="weui-switch" type="checkbox">
+                                    <input @click="reminderSwitch" class="weui-switch" type="checkbox">
 
 </div>
                                 </div>
@@ -206,11 +206,13 @@
                     <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
                 </div>
             </div>
+            <InfoRightPanel :isShowList="isShowMenuList"></InfoRightPanel>
         </div>
 </template>
 
 <script>
 import Infoheader from '../common/Infoheader'
+import InfoRightPanel from '../common/InfoRightPanel'
 import Datetimepicker from '../common/Datetimepicker'
 import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
@@ -227,13 +229,15 @@ export default {
         Datetimepicker,
         Picker,
         Infofooter,
-        Uploadfile
+        Uploadfile,
+        InfoRightPanel
     },
     data() {
         return {
             moreHiddenIcon: true,
             delHidden: true,
-            ptitle: 'calendar detail calendar detail calendar detail',
+            ptitle: 'calendar detail',
+            isShowMenuList:false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -250,12 +254,6 @@ export default {
 
     created: function () {
         var $this = this;
-
-        //set pageTitlepageTitle
-        // eventBus.$on('setPageTitle', function (data) {
-        //     // $this.pageTitle = data.subject || '';
-        // });
-
     },
     mounted: function () {
         // lanTool.updateLanVersion();
@@ -270,6 +268,7 @@ export default {
             console.log(data);
             // alert(data);
         });
+
     },
     methods: {
         // 开关事件
@@ -280,6 +279,13 @@ export default {
                 console.log("false all");
             }
 
+        },
+        reminderSwitch: function (e) {
+            if ($(e.target).is(":checked") == true) {
+                console.log("true remind");
+            } else {
+                console.log("false remind");
+            }
         },
         reminderClick: function (e) {
             $.alert('System will send email noticafication for Initiator in advance.', "Tip", "", "Ok");

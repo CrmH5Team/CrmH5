@@ -4,7 +4,7 @@
 
     <div class="scroll-div">
         <div class="ContactList">
-            <div class="ListCell" @click="startClick">
+            <div class="ListCell">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="organizationsBlock">
-            <div class="organizationsHeader" @click="shrink">
+            <div class="organizationsHeader">
                 <div class="organizationsHeaderBox">
                     <div class="organizationsHeaderBoxLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
                     <div class="organizationsHeaderBoxContent f14">organizations info</div>
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div class="organizationsList">
-                <div class="ListCell InvisibleLine" @click="startClick">
+                <div class="ListCell InvisibleLine">
                     <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -177,11 +177,13 @@
 
         <Infofooter> </Infofooter>
     </div>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
 </div>
 </template>
 
 <script>
 import Infoheader from '../common/Infoheader'
+import InfoRightPanel from '../common/InfoRightPanel'
 import Datetimepicker from '../common/Datetimepicker'
 import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
@@ -198,13 +200,16 @@ export default {
         Datetimepicker,
         Picker,
         Infofooter,
-        Uploadfile
+        Uploadfile,
+        InfoRightPanel
     },
     data() {
         return {
             moreHiddenIcon: true,
             delHidden: true,
             ptitle: 'contact detail',
+            itemsData:['Calndar(3)','Opportunities(2)'],
+            isShowMenuList:true,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -221,16 +226,8 @@ export default {
 
     created: function () {
         var $this = this;
-
-        //set pageTitlepageTitle
-        // eventBus.$on('setPageTitle', function (data) {
-        //     // $this.pageTitle = data.subject || '';
-        // });
-
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
-        // var _self = this;
         this.$nextTick(function () {
             //将textarea设置为高度自适应
             $("textarea").each(function (index, cur) {
@@ -241,9 +238,9 @@ export default {
             console.log(data);
             // alert(data);
         });
-        // //监听滚动条
-        // $('.scroll-div').on('scroll', function () {
-        //     _self.scrollTop = $(this).scrollTop();
+        // eventBus.$on('more', function () {
+        //     console.log("more");
+        //     // alert(data);
         // });
     },
     methods: {
@@ -251,27 +248,24 @@ export default {
             console.log("shrink");
             //calc-xiala
             if ($(".organizationsList").css("display") != 'none') {
-                    $(".organizationsList").slideUp(500, function () {
-                        $(".organizationsHeaderBoxRightIcon span").removeClass("calc-shangla");
-                        $(".organizationsHeaderBoxRightIcon span").addClass("calc-xiala");
-                    });
+                $(".organizationsList").slideUp(500, function () {
+                    $(".organizationsHeaderBoxRightIcon span").removeClass("calc-shangla");
+                    $(".organizationsHeaderBoxRightIcon span").addClass("calc-xiala");
+                });
 
-                } else {
-                    $(".organizationsList").slideDown(500, function () {
-                        $(".organizationsHeaderBoxRightIcon span").addClass("calc-shangla");
-                        $(".organizationsHeaderBoxRightIcon span").removeClass("calc-xiala");
-                    });
+            } else {
+                $(".organizationsList").slideDown(500, function () {
+                    $(".organizationsHeaderBoxRightIcon span").addClass("calc-shangla");
+                    $(".organizationsHeaderBoxRightIcon span").removeClass("calc-xiala");
+                });
 
-                }
+            }
 
-            },
-            startClick: function (e) {
-                    // alert("dianji")
-                },
-
-        }
+        },
 
     }
+
+}
 </script>
 
 <style scoped>

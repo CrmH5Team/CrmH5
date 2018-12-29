@@ -39,10 +39,10 @@ export default {
             eventBus.$emit('save','saveData');
         },
         delClick: function () {
-             eventBus.$emit('delete','asdaf');     
+             eventBus.$emit('delete');     
         },
         moreClick: function () {
-
+             eventBus.$emit('gengduo');
         },
         back: function () {
             this.$router.back(-1);

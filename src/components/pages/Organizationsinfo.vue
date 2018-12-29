@@ -123,15 +123,15 @@
             <Infofooter> </Infofooter>
 
         </div>
-        <!-- <div class="MoreBtn" @click="moreClick">
-                <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
-            </div> -->
     </div>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
+
 </div>
 </template>
 
 <script>
 import Infoheader from '../common/Infoheader'
+import InfoRightPanel from '../common/InfoRightPanel'
 import Datetimepicker from '../common/Datetimepicker'
 import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
@@ -148,13 +148,16 @@ export default {
         Datetimepicker,
         Picker,
         Infofooter,
-        Uploadfile
+        Uploadfile,
+        InfoRightPanel
     },
     data() {
         return {
             moreHiddenIcon: true,
             delHidden: true,
             ptitle: 'Organizationsinfo detail',
+            itemsData: ['Contacts(5)', ' Opportunities(2)','Calndar(3)','Airline database'],
+            isShowMenuList: true,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -212,7 +215,8 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-.ListCell .mui-icon.calcfont.calc-shoucang{
-    color:#FF5A21 !important;
+
+.ListCell .mui-icon.calcfont.calc-shoucang {
+    color: #FF5A21 !important;
 }
 </style>
