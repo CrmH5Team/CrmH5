@@ -33,6 +33,7 @@ import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
 
 
 import Selectlist from '@/components/common/Selectlist'
+import Sharelist from '@/components/pages/Sharelist'
 
 
 Vue.use(Router)
@@ -159,6 +160,8 @@ const router =  new Router({
 
 
     { path:'/selectlist',name:'selectlist',component:Selectlist},
+    { path:'/sharelist',name:'sharelist',component:Sharelist},
+
 
 
   ]

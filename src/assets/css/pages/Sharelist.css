@@ -1,0 +1,293 @@
+
+/*页面头部style*/
+header {
+    position: relative;
+}
+
+header.mui-bar {
+    /* line-height: 0.2rem; */
+    background: #f8f2dc;
+}
+
+.mui-title {
+    right: 40px;
+    left: 40px;
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    margin: 0;
+    text-overflow: ellipsis;
+    position: absolute;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: .88rem;
+}
+
+.calcfont {
+    font-size: 0.48rem;
+    width: 0.88rem;
+    text-align: center;
+    padding: 0.2rem 0;
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.calc-fanhui {
+    margin-right: -10px;
+    margin-left: -10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+header .mui-title,
+header a {
+    color: #333;
+}
+
+.selectList-scroll {
+    position: absolute;
+    top: calc(0.88rem + 40px);
+    left: 0;
+    overflow-y: scroll;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+}
+
+
+/*table 切换*/
+.nav{
+  position:fixed;
+  width:100%;height:40px;top:0.88rem;
+  -webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;
+  display:-moz-box;
+  display:-webkit-box;
+  display:box;
+  box-sizing: border-box;
+  /* border-bottom:1px solid #ccc; */
+}
+.nav-item{
+  line-height:38px;
+  margin-bottom: -1px;
+  text-align: center;
+  padding:0 5px;
+  box-sizing: border-box;
+  -moz-box-flex:3;
+  -webkit-box-flex:3;
+  box-flex:3;
+  font-size: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+}
+.active-item{color:#007aff;}
+.nav-border{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background:rgba(0, 153, 121, 1);
+  width: auto;
+  height: 2px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.selectListInput {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    /*padding-right:30px;*/
+    background: none;
+    outline: none;
+}
+
+.selectList {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/*收索狂style*/
+.search {
+    /* border-bottom: solid 1px #e3e3e3; */
+    padding:10px;
+}
+.search-box{
+    line-height: 34px;
+    position: relative;
+    background:#f2f2f2;
+}
+
+.search-active .search-input {
+    text-align: left;
+    color: inherit;
+}
+
+.search .input-search-icon {
+    display: none;
+    position: absolute;
+    top: 8px;
+    left:10px;
+}
+
+.search-active .input-search-icon {
+    display: block;
+}
+
+.search-input {
+    padding: 10px 15px 10px 36px;
+    box-sizing: border-box;
+    height: 34px;
+    text-align: center;
+    border: 0;
+    font-size: 16px;
+    width: 100%;
+    font-size: 14px;
+    color: #999;
+    line-height: 14px;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background: #f2f2f2;
+    border-radius: 6px;
+}
+
+.search .calc-delete {
+    padding: 0;
+    width: auto;
+    color: #999;
+    font-size: 16px;
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 1;
+}
+
+.search-placeholder {
+    padding-left:36px;
+    line-height: 34px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    height: 34px;
+    text-align:left;
+    color: #999;
+    border: 0;
+    border-radius: 6px;
+    background:#f2f2f2;
+}
+
+.search-active .search-placeholder {
+    display: none;
+}
+
+.search .calc-sousuo {
+    padding: 0;
+    color: #333;
+    position: absolute;
+    left:9px;top:6px;
+    width:23px;height: 23px;text-align: center;line-height: 23px;
+}
+
+
+
+
+
+/*列表style*/
+.listData {
+    margin-top: 0;
+    padding-bottom: 0.2rem;
+    background: #efeff4;
+}
+
+.list-item {
+    line-height: 26px;
+    font-size: 0.28rem;
+    margin-top: 0;
+    background: #fff;
+}
+
+.list-item:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #7f7f7f;
+    color: #7f7f7f;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    z-index: 2;
+}
+
+.weui-check:checked+.weui-icon-checked:before {
+    color: #3cadf9 !important;
+}
+
+.weui-cell {
+    padding: 8px 15px;
+}
+
+.weui-cell__bd {
+    font-size: 0.28rem;
+}
+
+.weui-cell__bd p {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.dataList .item-div {
+    padding: 10px;
+    border-bottom: solid 1px #e5f0f4;
+}
+.dataList .item-div label{display:block;line-height: 20px;position: relative;}
+.item-div .checkbox-label .checkbox{position: absolute;left:0;top:2px;}
+.dataList .item-div span {
+    padding-left:26px;display: block;
+}
+
+.selectAll{
+	position: fixed;
+	left: 0;
+	right: 0;
+	height: 50px;
+  line-height: 50px;
+  padding-left:10px;
+	bottom: 0;
+  z-index: 2;
+/*border-top: solid 1px #aaa;*/
+  background-color: rgb(245,245,245);
+  color: gray;
+  display: none;
+}
+.selectAll .checkbox-label{position: relative;}
+.selectAll span{
+    padding-left:26px;
+}
+
+label.radios-label .radios{position: absolute;}
