@@ -156,7 +156,9 @@ export default {
 
 header{position:fixed;width:100%;top:0;left:0;}
 header.mui-bar {
-  line-height: 0.2rem;background: #3cadf9;
+  /* line-height: 0.2rem; */
+  overflow: hidden;
+  background: #3cadf9;
 }
 .mui-title {
 	right: 40px;left: 40px; display: inline-block; overflow: hidden;

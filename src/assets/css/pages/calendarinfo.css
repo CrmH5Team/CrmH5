@@ -297,7 +297,7 @@ textarea::placeholder
     margin: auto 0;
    margin-left: 0.4rem;
 }
-.documentAddIcon .mui-icon.calcfont.calc-jia
+.documentAddIcon .calcfont.calc-jia
 {
     padding: 0.2rem;
 }
@@ -340,21 +340,21 @@ textarea::placeholder
 /* .ListSpecialCellRightIcon{
     padding-left: 0.1rem;
 } */
-.ListCell .ListCellRightIcon .mui-icon.calcfont,.ListSpecialCellRightIcon .mui-icon.calcfont {
+.ListCell .ListCellRightIcon .calcfont,.ListSpecialCellRightIcon .calcfont {
     color: #cdcdcd;
     margin: auto 0;
     font-size: 0.32rem;
 }
 
-.ListCell .ListCellLeftIcon .mui-icon.calcfont,.ListSpecialCellLeftIcon .mui-icon.calcfont{
+.ListCell .ListCellLeftIcon .calcfont,.ListSpecialCellLeftIcon .calcfont{
     font-size: 0.44rem;
     color: #8A8A8A;
 }
 
-.ListCell .time.ListCellLeftIcon .mui-icon.calcfont {
+.ListCell .time.ListCellLeftIcon .calcfont {
     color: #FFFFFF;
 }
-.mui-icon.calcfont.calc-tishi
+.calcfont.calc-tishi
 {
     color: #FF5A21;
     font-size: 0.36rem;

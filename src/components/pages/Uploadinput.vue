@@ -65,39 +65,41 @@
         </div>
     </div> -->
     <div >
-          <div class="ListCell">
+          <div class="ListCell file-name-row">
               <div class="ListCellLeftIcon">
-                  <span class="mui-icon calcfont calc-yewu"></span>
+                  <span class=" calcfont calc-wenjian"></span>
               </div>
-              <div class="ListCellContent">
+              <div class="ListCellContent ">
+                  <!-- <div class="left file-name-row-left">已选择Selected</div>
+                  <div class="right file-name-row-right" style="padding-right:0.32rem">748978Alan.jpg748978Alan74n</div> -->
                   <div class="ListCellContentLeft leftContent">
-                    <div class="ListCellContentLeftText">Business Sector</div>
+                    <div class="ListCellContentLeftText">已选择Selected</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                    <div class="ListCellContentRightText">Airline</div>
+                    <div class="ListCellContentRightText right-break-word">                     Airline.jpgAirline.jpgAirline.jpgjpgAirline.jpgjpgAirline.jpg</div>
                   </div>
-                  <div class="ListCellRightIcon">
+                  <!-- <div class="ListCellRightIcon">
                       <span class="mui-icon calcfont calc-you"></span>
-                  </div>
+                  </div> -->
               </div>
           </div>
 
           <div class="ListCell">
-              <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
+              <div class="ListCellLeftIcon"><span class=" calcfont calc-17"></span></div>
               <div class="ListCellContent">
                   <div class="ListCellContentLeft leftContent">
-                      <div class="ListCellContentLeftText">Business Sector</div>
+                      <div class="ListCellContentLeftText">CRM Document Type</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <div class="ListCellContentRightText">Airline</div>
+                      <div class="ListCellContentRightText"></div>
                   </div>
-                  <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                  <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
           </div>
 
 
           <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
+                <div class="ListCellLeftIcon textLeftIcon"><span class=" calcfont calc-bianji1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
                         <textarea autoHeight="true" placeholder="Description描述"></textarea>
@@ -114,6 +116,11 @@
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
+/* .file-name-row{line-height: 20px;}
+.file-name-row .ListCellLeftIcon{padding:0;margin: 0;}
+.file-name-row-left{width:40%;overflow: hidden;}
+.file-name-row-right{box-sizing: border-box;word-wrap: break-word;overflow: hidden;} */
+
 </style>
 
 

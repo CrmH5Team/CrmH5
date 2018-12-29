@@ -3,7 +3,7 @@
 <div>
     <header class="mui-bar mui-bar-nav">
 
-          <a v-if="isMain" @click="showRightPanel" class="calcfont calc-liebiao2 right"></a>
+          <a v-if="isMain" @click="showRightPanel" class="calcfont calc-liebiao right"></a>
 
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
@@ -49,8 +49,9 @@ export default {
 <style scoped>
 header{position: relative;}
 header.mui-bar {
-  line-height: 0.2rem;
-	background: #3cadf9;
+  /* line-height: 0.2rem; */
+  background: #f8f2dc;
+  overflow: hidden;
 }
 .mui-title {
 	right: 40px;
@@ -79,17 +80,19 @@ header.mui-bar {
     text-decoration: none;
     line-height: 1;
 }
-.calc-liebiao2,.calc-fanhui{
+.calc-liebiao,.calc-fanhui{
     margin-right: -10px;
     margin-left: -10px;
     padding-right: 10px;
     padding-left: 10px;
-
+}
+.calc-liebiao{
+  /* font-size: 0.7rem; */
 }
 
 header .mui-title,
 header a {
-	color: #fff;
+	color: #333;
 }
 
 </style>
