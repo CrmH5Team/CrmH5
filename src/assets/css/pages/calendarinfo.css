@@ -377,3 +377,9 @@ textarea::placeholder
     font-size: 0.4rem;
     color: gray;
 }
+
+/*文件上传input*/
+.fileInput{
+  visibility: hidden;
+  position: fixed;bottom:0;z-index: -1;
+}

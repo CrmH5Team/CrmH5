@@ -6,8 +6,8 @@
       <list-right-panel :panelData="rigthPanelData" :searchData="opportunitiesSearchData"></list-right-panel>
 
       <common-list :groupData="groupData">
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage('1')">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     A320-200 sales project2 for to Eastern  Airlines
@@ -24,8 +24,8 @@
                 <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
               </div>
           </div>
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage('1')">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     A320-200 sales project2 for to Eastern  Airlines
@@ -42,8 +42,8 @@
                 <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
               </div>
           </div>
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage('1')">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     A320-200 sales project2 for to Eastern  Airlines
@@ -61,78 +61,7 @@
               </div>
           </div>
       </common-list>
-      <!-- <div id="page-content" class="page-content">
-            <div class="group-div">
-                <div class="date-div open" @click="groupToggle($event)">
-                    <span class="calcfont calc-yewujihui"></span>
-                    <span class="group-name">Marketing team（PRC）</span>
-                    <span class="right">(3)</span>
-                </div>
-                <div class="occupy-div"></div>
 
-                <div class="group-item-list">
-                    <div class="group-item">
-                        <div class="item-stars-icon calcfont calc-shoucang"></div>
-                        <div class="item-block">
-                          <div class="item-div item-first-div">
-                              A320-200 sales project2 for to Eastern  Airlines
-                          </div>
-                          <div class="item-div">
-                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                          </div>
-                          <div class="item-div">
-                              <span>Normal</span><span class="right">Active</span>
-                          </div>
-                          <div class="item-div">
-                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                          </div>
-                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
-                        </div>
-                    </div>
-                    <div class="group-item">
-                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
-                        <div class="item-block">
-                          <div class="item-div item-first-div">
-                              A320-200 sales project2 for to Eastern  Airlines
-                          </div>
-                          <div class="item-div">
-                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                          </div>
-                          <div class="item-div">
-                              <span>Normal</span><span class="right">Active</span>
-                          </div>
-                          <div class="item-div">
-                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                          </div>
-                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
-                        </div>
-                    </div>
-                    <div class="group-item">
-                        <div class="item-stars-icon calcfont calc-shoucang1"></div>
-                        <div class="item-block">
-                          <div class="item-div item-first-div">
-                              A320-200 sales project2 for to Eastern  Airlines
-                          </div>
-                          <div class="item-div">
-                              <span class="item-new">new</span><span style="font-weight:600;">Proposal discussion</span>
-                          </div>
-                          <div class="item-div">
-                              <span>Normal</span><span class="right">Active</span>
-                          </div>
-                          <div class="item-div">
-                            <span>Cheryl Xiong</span><span class="right">1/Oct/2018 - 31/Dec/2018</span>
-                          </div>
-                          <div class="item-div item-last-div">Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description, Some detailed description,</div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-
-      </div> -->
 
 
 
@@ -355,6 +284,13 @@ export default {
                   $(el).removeClass('calc-shoucang1').addClass('calc-shoucang');
                   $.toast("关注成功", 1500, function() {});
               }
+          },
+
+          //点击去详情页
+          goInfoPage:function(id){
+              var _self = this,
+                url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
+                _self.$router.push(url);
           }
       }
 
@@ -365,22 +301,6 @@ export default {
 
 <style scoped>
 
-/* .page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;} */
-/*列表style*/
-/* .date-div{
-  height:36px;line-height:36px;background:#ebf9fd;padding:0 10px;font-size: 12px;
-  width: 100%;color:#000;
-  box-sizing: border-box;
-  z-index: 99;
-}
-.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:8px;left:0.2rem;font-size:0.5rem;color:#ccc;}
-.calc-shoucang{color:#ff5a21}
-.date-div .calcfont{color:#3cadf9;margin-right:8px;}
-.group-name{font-size: 0.3rem;}
-.occupy-div{height:30px;display:none;}
-*/
-
 
 
 .group-item{background:#fff;position:relative;}
@@ -389,8 +309,8 @@ export default {
 .item-div{font-size: 0.25rem;line-height: 0.5rem;padding-top:5px;}
 
 .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius: 2px;
-box-sizing: border-box;padding:0px 5px;height: 16px;line-height:16px;font-size: 0.2rem;vertical-align:middle;
-margin-right: 5px;}
+box-sizing: border-box;height: 16px;line-height:16px;font-size: 0.2rem;vertical-align:middle;
+margin-right: 5px;padding:0;}
 
 .item-first-div{font-weight: 600;color:#3cadf9;width: 100%;}
 .item-last-div{line-height:0.4rem;}

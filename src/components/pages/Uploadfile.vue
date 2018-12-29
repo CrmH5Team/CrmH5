@@ -6,7 +6,7 @@
             <div class="ListCellContentLeft documentHeader">
                 <div class="ListCellContentLeftText documentHeader">Documents</div>
             </div>
-            <div class="ListCellRightIcon documentAddIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+            <div class="ListCellRightIcon documentAddIcon"><span @click="actionSheet" class="mui-icon calcfont calc-jia"></span></div>
         </div>
     </div>
     <div class="wendangList">
@@ -36,6 +36,8 @@
         </div>
     </div>
 
+    <input ref="fileChoose" v-on:change="inputFiles" class="fileInput" type="file" name="img" id="selectFile" />
+
 </div>
 </template>
 
@@ -52,7 +54,7 @@ export default {
     },
     methods: {
 
-        //选择文件后触发 一次选择一张图片  
+        //选择文件后触发 一次选择一张图片
         inputFiles: function () {
 
             loading.show(3, lanTool.lanContent("172_加载中..."));

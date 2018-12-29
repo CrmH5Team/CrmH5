@@ -70,9 +70,9 @@ export default{
             })
 
             //监听滚动条
-            $('.scroll-div').on('scroll',function(){
-                _self.scrollTop = $(this).scrollTop();
-            });
+            // $('.scroll-div').on('scroll',function(){
+            //     _self.scrollTop = $(this).scrollTop();
+            // });
         },
 
         methods:{
@@ -152,9 +152,9 @@ export default{
             }
 
             //设置滚动条位置
-            if($this.scrollTop > 0){
-                $('.scroll-div').scrollTop($this.scrollTop);
-            }
+            // if($this.scrollTop > 0){
+            //     $('.scroll-div').scrollTop($this.scrollTop);
+            // }
         },
 
         beforeDestroy:function(){

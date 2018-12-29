@@ -8,8 +8,8 @@
 
 
       <common-list :groupData="groupData">
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage(1)">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     <span>Todd Scott</span><span class="right">UEA</span>
@@ -22,8 +22,8 @@
                 </div>
               </div>
           </div>
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage(2)">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     <span>Todd Scott</span><span class="right">UEA</span>
@@ -36,8 +36,8 @@
                 </div>
               </div>
           </div>
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage(3)">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     <span>Todd Scott</span><span class="right">UEA</span>
@@ -50,8 +50,8 @@
                 </div>
               </div>
           </div>
-          <div class="group-item">
-              <div @click="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
+          <div class="group-item" @click="goInfoPage(4)">
+              <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
               <div class="item-block">
                 <div class="item-div item-first-div">
                     <span>Todd Scott</span><span class="right">UEA</span>
@@ -413,6 +413,13 @@ export default {
                   $.toast("关注成功", 1500, function() {});
 
               }
+          },
+
+          //点击去详情页
+          goInfoPage:function(id){
+              var _self = this,
+                url = '/organizationsinfo/{"AutoID":"'+ id +'"}';
+                _self.$router.push(url);
           }
 
 
