@@ -93,10 +93,18 @@ export default {
       //点击分组收起展开
       groupToggle:function(e){
           var el = e.target;
-          if($(el).hasClass('open')){
-              $(el).removeClass('open').siblings('.group-item-list').slideUp(500);
+          var _curObj = $(el);
+          if(!_curObj.hasClass('date-div')){
+              _curObj = _curObj.parent('div.date-div:first');
+              if(_curObj == undefined){
+                  return;
+              }
+          }
+
+          if(_curObj.hasClass('open')){
+              _curObj.removeClass('open').siblings('.group-item-list').slideUp(500);
           }else{
-              $(el).addClass('open').siblings('.group-item-list').slideDown(500);
+              _curObj.addClass('open').siblings('.group-item-list').slideDown(500);
           }
 
       },
