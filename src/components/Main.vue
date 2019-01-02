@@ -200,7 +200,7 @@
 			<div class="calendar xuanfo">
 				<div class="calendar-wendi xuanfo-wendi">Calendar</div>
 				<div class="calendar-icon xuanfo-icon">
-					<div class="calendar-btn xuanfo-btn" data-btn="calendar">
+					<div @click.stop="goList" class="calendar-btn xuanfo-btn" data-btn="calendar">
 						<span class="icon mui-icon calcfont calc-rili"></span>
 					</div>
 				</div>
@@ -208,7 +208,7 @@
 			<div class="organization xuanfo">
 				<div class="organization-wendi xuanfo-wendi">organization</div>
 				<div class="organization-icon xuanfo-icon">
-					<div class="organization-btn xuanfo-btn" data-btn="organization">
+					<div @click.stop="goList" data-url="/organizations" class="organization-btn xuanfo-btn" data-btn="organization">
 						<span class="icon mui-icon calcfont calc-kehu"></span>
 					</div>
 				</div>
@@ -216,7 +216,7 @@
 			<div class="contact xuanfo">
 				<div class="contact-wendi xuanfo-wendi">contact</div>
 				<div class="contact-icon xuanfo-icon">
-					<div class="contact-btn xuanfo-btn" data-btn="contact">
+					<div @click.stop="goList" data-url="/contacts" class="contact-btn xuanfo-btn" data-btn="contact">
 						<span class="icon mui-icon calcfont calc-lianxiren1"></span>
 					</div>
 				</div>
@@ -224,7 +224,7 @@
 			<div class="opportunity xuanfo">
 				<div class="opportunity-wendi xuanfo-wendi">opportunity</div>
 				<div class="opportunity-icon xuanfo-icon">
-					<div class="opportunity-btn xuanfo-btn" data-btn="opportunity">
+					<div @click.stop="goList" data-url="/opportunities" class="opportunity-btn xuanfo-btn" data-btn="opportunity">
 						<span class="icon mui-icon calcfont calc-jihui"></span>
 					</div>
 				</div>
@@ -255,12 +255,8 @@ export default {
             showCalendar:true,
             showPanel:false,
             title:'CRM',
-            userName:'',
+            // userName:'',
 
-            // viewData:[
-            //     {text:'Calendar View 日历视图',value:'calendar'},
-            //     {text:'List View 列表视图',value:'list'}
-            // ],
             selectView:'calendar',
             dataFilter:['my-calendar'],
             //搜索页面数据模型
@@ -356,9 +352,7 @@ export default {
         }
     },
     computed:{
-        // selectView:function(){
-        //     console.log(this.selectView);
-        // }
+
     },
 
     mounted:function(){
@@ -371,24 +365,21 @@ export default {
 				var searchH = parseFloat($("#searchBtn").innerHeight())+20;
         var navH = parseFloat($('#nav').innerHeight());
 
-        $('#page-content').scroll(function(){
+        $(window).scroll(function(){
             var scrollTop = $(this).scrollTop();
             if(scrollTop >= searchH){
 
               if(tool.getSystem() === 'ios'){
-                  $("#nav").addClass('sticky');
+                  $("#nav").addClass('sticky').css({"top": headerH + 'px'});
               }else{
                   $("#nav").css({
                     "position":"fixed","top":headerH + 'px',
-                    // "-webkit-transform":"translate3d(0,0,0)",
-                    // "transform":"translate3d(0,0,0)",
-                    // "background-attachment":"fixed",
                   });
                   $('.occupy-position').css({'height':navH + 'px'}).show();
               }
             }else{
                 if(tool.getSystem() === 'ios'){
-                    $("#nav").removeClass('sticky');
+                    $("#nav").removeClass('sticky').css({"top":'0px'});
                 }else{
                     $('.occupy-position').css({'height':'0px'}).hide();
                     $("#nav").css({"position":"static"});
@@ -398,10 +389,11 @@ export default {
 
             if($('.month-event').length <= 0) return ;
             $('.month-event').each(function(){
-              if($(this).position().top <= navH ){
+
+              if( ($(this).offset().top - $(window).scrollTop()) <= (navH + headerH) ){
 
                   if(tool.getSystem() === 'ios'){
-                      $(this).find(".date-div").addClass('sticky').css({"top":navH + 'px'});
+                      $(this).find(".date-div").addClass('sticky').css({"top":navH + headerH + 'px'});
                   }else{
                       $(this).find('.date-div').css({"position":"fixed","top":(navH + headerH) + 'px'});
                       $(this).find('.occupy-div').show();
@@ -554,14 +546,36 @@ export default {
             })
         },
 
+        //点击悬浮层的每个图标
+        goList:function(e){
+            var el = e.target;
+            var _curObj = $(el);
+            if(!_curObj.hasClass('xuanfo-btn')){
+                _curObj = _curObj.parent('div.xuanfo-btn:first');
+                if(_curObj == undefined){
+                    return;
+                }
+            }
+            var url = _curObj.attr('data-url')||'';
+            this.$router.push(url);
+        },
+
 
         //点击分组收起展开
         groupToggle:function(e){
             var el = e.target;
-            if($(el).hasClass('open')){
-                $(el).removeClass('open').siblings('.data-events').slideUp(500);
+            var _curObj = $(el);
+            if(!_curObj.hasClass('date-div')){
+                _curObj = _curObj.parent('div.date-div:first');
+                if(_curObj == undefined){
+                    return;
+                }
+            }
+
+            if(_curObj.hasClass('open')){
+                _curObj.removeClass('open').siblings('.data-events').slideUp(500);
             }else{
-                $(el).addClass('open').siblings('.data-events').slideDown(500);
+                _curObj.addClass('open').siblings('.data-events').slideDown(500);
             }
         },
 

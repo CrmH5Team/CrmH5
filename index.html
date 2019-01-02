@@ -8,12 +8,12 @@
   </head>
   <body>
     <div id="app">
-      
-    <keep-alive :max="3">
-        <router-view v-if="$route.meta.keepAlive" style="width:100%;height:100%;"></router-view>
-    </keep-alive>  
 
-        <router-view v-if="!$route.meta.keepAlive" style="width:100%;height:100%;"></router-view>
+    <keep-alive :max="3">
+        <router-view v-if="$route.meta.keepAlive" ></router-view>
+    </keep-alive>
+
+        <router-view v-if="!$route.meta.keepAlive" ></router-view>
         <!-- <router-view style="width:100%;height:100%;"></router-view> -->
 
     </div>

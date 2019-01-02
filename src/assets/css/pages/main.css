@@ -1,7 +1,10 @@
 
-.header{position:fixed;width:100%;top:0;left:0;z-index:9;}
-.page-content{position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
--webkit-overflow-scrolling:touch;}
+.header{position:fixed;width:100%;top:0;left:0;z-index:99;}
+.page-content{
+  padding-top: 0.88rem;
+  /* position:fixed;top:0.88rem;left:0;right:0;bottom:0;overflow-y:scroll;
+-webkit-overflow-scrolling:touch; */
+}
 .occupy-position{display: none;}
 
 /*列表视图*/
@@ -43,8 +46,8 @@
 .weui-grids{
   background: #fff;
   width: 100%;
-  z-index:999;
-  top:0px;
+  z-index:9;
+  /* top:0.88rem; */
 }
 .weui-grid{
  text-align: center;
@@ -106,7 +109,7 @@
   bottom: 0;
   background-color: rgba(255,255,255,0.9);
   display: none;
-  z-index: 17;
+  z-index: 100;
 }
 .xuanfo-xiaoyuan {
   position: fixed;
@@ -116,7 +119,7 @@
   line-height: 50px;
   bottom: 50px;
   border-radius: 50%;
-  z-index: 18;
+  z-index: 101;
   background-color: #FF6600;
 }
 .xuanfo-xiaoyuan .calcfont {
