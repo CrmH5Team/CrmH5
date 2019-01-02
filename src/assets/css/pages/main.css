@@ -28,11 +28,11 @@
 
 
 /*搜索框*/
+.search-box{background: #fff;padding: 10px 5px;}
 .search{
-    margin: 10px 10px;
-    border-radius: 5px;
-    padding-left: 10px;
-    background-color:#e5e5e5;
+    border-radius: 6px;
+    padding-left:6px;
+    background-color:#f2f2f2;
     height: 34px;
     line-height: 34px;
 }
@@ -47,15 +47,16 @@
   background: #fff;
   width: 100%;
   z-index:9;
-  /* top:0.88rem; */
 }
+.weui-grids::before{display:none!important;}
 .weui-grid{
  text-align: center;
  padding:10px;
  width:25%;
 }
 .js_grid{
-  display: inline-block;padding: 10px 0;
+  display: inline-block;
+  /* padding: 10px 0; */
 }
 .weui-grid:before{
   border-right:0;
@@ -93,8 +94,9 @@
 }
 /*nav 导航  ---------end---------*/
 .trip{
-    padding: 10px 10px;width:100%;box-sizing: border-box;
+    padding: 10px;width:100%;box-sizing: border-box;
     line-height:20px;
+    /* border-top:5px solid #f2f2f2; */
 }
 
 

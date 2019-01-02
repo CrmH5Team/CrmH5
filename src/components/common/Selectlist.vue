@@ -10,30 +10,33 @@
     <div class="selectList-scroll">
 
         <!-- search-active -->
-        <div class="search ">
-            <span class="calcfont calc-sousuo input-search-icon"></span>
-            <input
-                    @blur="blurHandler"
-                    type="search"
-                    id="searchInput"
-                    class="search-input" data-lanid="208_搜索" placeholder=""  />
-            <span class="calcfont calc-delete"></span>
-            <span @click="clickSearch" class="search-placeholder f16">
-                    <span class="calcfont calc-sousuo"></span>
-            <span class="lanText" data-lanid="208_搜索"></span>
-            </span>
-        </div>
+
+      <div class="search ">
+          <div class="search-box">
+              <span class="calcfont calc-sousuo input-search-icon"></span>
+              <input
+                      @blur="blurHandler"
+                      type="search"
+                      id="searchInput"
+                      class="search-input" data-lanid="208_搜索" placeholder=""  />
+              <span class="calcfont calc-delete"></span>
+              <span @click="clickSearch" class="search-placeholder f16">
+                      <span class="calcfont calc-sousuo"></span>
+              <span class="lanText" data-lanid="208_搜索"></span>
+              </span>
+          </div>
+      </div>
 
         <!-- 列表 -->
         <div v-if="selectType==='checkbox'" class="dataList checkboxList">
-            <div v-for="item in dataArray" class="item-div">
+            <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="checkbox-label">
                     <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios f14">{{item.text}}</span>
                 </label>
             </div>
         </div>
         <div v-else class="dataList">
-            <div v-for="item in dataArray" class="item-div">
+            <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="radios-label">
                     <input type="radio" :name="field" :value="item.value" v-model="radioValue"/><i class="radios"></i><span class="f14">{{item.text}}</span>
                 </label>

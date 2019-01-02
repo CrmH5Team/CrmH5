@@ -450,7 +450,7 @@ export default {
                 var activePos = $('.nav .active-item').position();
                 $('.nav-border').stop().css({
                     left: activePos.left,
-                    width: $('.nav .active-item').innerWidth()
+                    width: $('.nav .active-item').width()
                 });
             })
         }

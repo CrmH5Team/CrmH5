@@ -9,8 +9,8 @@
     </header>
 
     <div class="nav">
-        <div @click="switchPage(0,$event)" class="nav-item active-item">User</div>
-        <div @click="switchPage(1,$event)" class="nav-item" >Group</div>
+        <div @click="switchPage(0,$event)" class="f16 nav-item active-item">User</div>
+        <div @click="switchPage(1,$event)" class="f16 nav-item" >Group</div>
         <div class="nav-border"></div>
     </div>
 
@@ -65,12 +65,60 @@ export default {
             },
 
             dataArray: [
-              {text:'Alan',value:'Alan'},
-              {text:'Alan',value:'Alan'},
-              {text:'Alan',value:'Alan'},
-              {text:'Alan',value:'Alan'},
-              {text:'Alan',value:'Alan'},
-              {text:'Alan',value:'Alan'},
+              {text:'Alan',value:'Alan1'},
+              {text:'Alan',value:'Alan2'},
+              {text:'Alan',value:'Alan3'},
+              {text:'Alan',value:'Alan4'},
+              {text:'Alan',value:'Alan5'},
+              {text:'Alan',value:'Alan6'},
+              {text:'Alan',value:'Alan7'},
+              {text:'Alan',value:'Alan8'},
+              {text:'Alan',value:'Alan9'},
+              {text:'Alan',value:'Alan10'},
+              {text:'Alan',value:'Alan11'},
+              {text:'Alan',value:'Alan12'},
+              {text:'Alan',value:'Alan13'},
+              {text:'Alan',value:'Alan14'},
+              {text:'Alan',value:'Alan15'},
+              {text:'Alan',value:'Alan16'},
+              {text:'Alan',value:'Alan17'},
+              {text:'Alan',value:'Alan18'},
+              {text:'Alan',value:'Alan19'},
+              {text:'Alan',value:'Alan20'},
+              {text:'Alan',value:'Alan21'},
+              {text:'Alan',value:'Alan22'},
+              {text:'Alan',value:'Alan23'},
+              {text:'Alan',value:'Alan24'},
+              {text:'Alan',value:'Alan25'},
+              {text:'Alan',value:'Alan26'},
+              {text:'Alan',value:'Alan27'},
+              {text:'Alan',value:'Alan28'},
+              {text:'Alan',value:'Alan29'},
+              {text:'Alan',value:'Alan30'},
+              {text:'Alan',value:'Alan31'},
+              {text:'Alan',value:'Alan32'},
+              {text:'Alan',value:'Alan33'},
+              {text:'Alan',value:'Alan34'},
+              {text:'Alan',value:'Alan35'},
+              {text:'Alan',value:'Alan36'},
+              {text:'Alan',value:'Alan37'},
+              {text:'Alan',value:'Alan38'},
+              {text:'Alan',value:'Alan39'},
+              {text:'Alan',value:'Alan40'},
+              {text:'Alan',value:'Alan41'},
+              {text:'Alan',value:'Alan42'},
+              {text:'Alan',value:'Alan43'},
+              {text:'Alan',value:'Alan44'},
+              {text:'Alan',value:'Alan45'},
+              {text:'Alan',value:'Alan46'},
+              {text:'Alan',value:'Alan47'},
+              {text:'Alan',value:'Alan48'},
+              {text:'Alan',value:'Alan49'},
+              {text:'Alan',value:'Alan50'},
+              {text:'Alan',value:'Alan51'},
+              {text:'Alan',value:'Alan52'},
+              {text:'Alan',value:'Alan53'},
+              {text:'Alan',value:'Alan54'},
             ],
             queryUrl: null,
             field: null,
@@ -121,7 +169,7 @@ export default {
                 var activePos = $('.nav .active-item').position();
                 $('.nav-border').stop().css({
                     left: activePos.left,
-                    width: $('.nav .active-item').innerWidth()
+                    width: $('.nav .active-item').width()
                 });
             })
         },
@@ -158,7 +206,6 @@ export default {
 
         saveHandler: function () {
             var $this = this;
-            // console.log($this.checkboxValue);
             var arr = {
                 field: $this.field,
                 value: []

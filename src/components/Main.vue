@@ -4,45 +4,50 @@
     <Header class="header" :title="title"></Header>
 
     <div id="page-content" class="page-content">
-        <div @click="goSearch" class="search" id="searchBtn">
-          <span class="search-icon mui-icon calcfont calc-sousuo"></span>
-          <label class="f16 search-label">Search</label>
+        <div class="search-box">
+          <div @click="goSearch" class="search" id="searchBtn">
+            <span class="search-icon mui-icon calcfont calc-sousuo"></span>
+            <label class="f16 search-label">Search</label>
+          </div>
         </div>
 
-        <div id="nav" class="weui-grids">
-            <div class="weui-grid">
-                <router-link to="/organizations" class="js_grid">
-                  <div class="weui-grid__icon kehu-icon">
-                    <span class="mui-icon calcfont calc-kehu"></span>
-                  </div>
-                  <p class="f12 weui-grid__label lanText" data-lanid="174_客户"></p>
-                </router-link>
-            </div>
-            <div class="weui-grid">
-                <router-link to="/contacts" class="js_grid">
-                  <div class="weui-grid__icon lianxiren1-icon">
-                    <span class="mui-icon calcfont calc-lianxiren1"></span>
-                  </div>
-                  <p class="f12 weui-grid__label lanText" data-lanid="175_联系人"></p>
-                </router-link>
-            </div>
-            <div class="weui-grid">
-                <router-link to="/opportunities" class="js_grid">
-                  <div class="weui-grid__icon jihui-icon">
-                    <span class="calcfont calc-jihui"></span>
-                  </div>
-                  <p class="f12 weui-grid__label lanText" data-lanid="173_销售机会"></p>
-                </router-link>
-            </div>
-            <div class="weui-grid">
-                <router-link to="/calendarlistinfo/{'AutoID':'18x3618'}" class="js_grid">
-                  <div class="weui-grid__icon soon-icon">
-                    <span class="mui-icon calcfont calc-lianxiren1"></span>
-                  </div>
-                  <p class="f12 weui-grid__label" >soon</p>
-                </router-link>
-            </div>
+        <div id="nav">
+            <div class="weui-grids">
+                <div class="weui-grid">
+                    <router-link to="/organizations" class="js_grid">
+                      <div class="weui-grid__icon kehu-icon">
+                        <span class="mui-icon calcfont calc-kehu"></span>
+                      </div>
+                      <p class="f12 weui-grid__label lanText" data-lanid="174_客户"></p>
+                    </router-link>
+                </div>
+                <div class="weui-grid">
+                    <router-link to="/contacts" class="js_grid">
+                      <div class="weui-grid__icon lianxiren1-icon">
+                        <span class="mui-icon calcfont calc-lianxiren1"></span>
+                      </div>
+                      <p class="f12 weui-grid__label lanText" data-lanid="175_联系人"></p>
+                    </router-link>
+                </div>
+                <div class="weui-grid">
+                    <router-link to="/opportunities" class="js_grid">
+                      <div class="weui-grid__icon jihui-icon">
+                        <span class="calcfont calc-jihui"></span>
+                      </div>
+                      <p class="f12 weui-grid__label lanText" data-lanid="173_销售机会"></p>
+                    </router-link>
+                </div>
+                <div class="weui-grid">
+                    <router-link to="/sharelist" class="js_grid">
+                      <div class="weui-grid__icon soon-icon">
+                        <span class="mui-icon calcfont calc-lianxiren1"></span>
+                      </div>
+                      <p class="f12 weui-grid__label" >soon</p>
+                    </router-link>
+                </div>
 
+
+            </div>
             <div id="trip" class="trip f16">Trip & Schedule</div>
         </div>
         <div class="occupy-position"></div>
