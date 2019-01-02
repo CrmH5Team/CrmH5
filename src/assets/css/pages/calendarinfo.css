@@ -293,6 +293,10 @@ textarea::placeholder
 .updateList,.documentList{
     margin-top: 0.2rem;
 }
+.updateList .ListCellContentRightText
+{
+    padding-right: 0.3rem;
+}
 .documentList .documentHeader{
     width: calc(100% - 0.48rem);
 
