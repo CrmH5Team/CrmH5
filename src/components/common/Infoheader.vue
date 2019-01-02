@@ -8,7 +8,7 @@
         <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
         <a @click="save" class="calcfont calc-gou right" id="save"></a>
         <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a></div>
-    
+
     </header>
 </div>
 </template>
@@ -39,7 +39,7 @@ export default {
             eventBus.$emit('save','saveData');
         },
         delClick: function () {
-             eventBus.$emit('delete');     
+             eventBus.$emit('delete');
         },
         moreClick: function () {
              eventBus.$emit('gengduo');
@@ -64,7 +64,8 @@ header.mui-bar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right:0;
+    z-index: 99;
 }
 .leftView
 {
@@ -73,7 +74,7 @@ header.mui-bar {
   width: 2.1rem;
   right: 0;
   padding-right: 0.1rem
-  
+
 }
 .mui-title {
     right: 2.3rem;
@@ -120,7 +121,7 @@ header.mui-bar {
 }
 #delete:after{
     clear: both;
-    
+
 }
 header .mui-title,
 header a {

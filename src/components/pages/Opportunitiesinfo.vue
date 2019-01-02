@@ -1,8 +1,9 @@
 <template>
-<div class="content">
+<div>
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
+
         <div class="tipClose">
             <div class="tipCloseContent">This opportunity have been closed, it's only allowed to be viewed.</div>
         </div>
@@ -39,7 +40,9 @@
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
+
             <!-- <div class="ListCell" @click="startClick"> -->
+
             <div class="ListCell">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
@@ -353,11 +356,15 @@
             <Infofooter> </Infofooter>
 
         </div>
+
         <!-- <div class="MoreBtn" @click="moreClick">
             <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
         </div> -->
+
     </div>
     <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
+
+
 </div>
 </template>
 
@@ -433,34 +440,24 @@ export default {
 
         //滚动固定
         var headerH = parseFloat($('header').innerHeight());
-        $('.scroll-div').scroll(function () {
+        $(window).scroll(function () {
 
             if ($('.group-div').length <= 0) return;
             $('.group-div').each(function () {
 
-                var mTop = $(this).offset().top;
+                if($(this).offset().top - $(window).scrollTop() <= headerH ){
 
-                if (mTop <= headerH) {
                     if (tool.getSystem() === 'ios') {
-                        $(this).find(".date-div").addClass('sticky').css({
-                            "top": '0px'
-                        });
+                        $(this).find(".date-div").addClass('sticky').css({"top": headerH + 'px'});
                     } else {
-                        $(this).find('.date-div').css({
-                            "position": "fixed",
-                            "top": headerH + 'px'
-                        });
+                        $(this).find('.date-div').css({"position": "fixed","top": headerH + 'px'});
                         $(this).find('.occupy-div').show();
                     }
                 } else {
                     if (tool.getSystem() === 'ios') {
-                        $(this).find(".date-div").removeClass('sticky').css({
-                            "top": '0px'
-                        });
+                        $(this).find(".date-div").removeClass('sticky').css({"top": '0px'});
                     } else {
-                        $(this).find('.date-div').css({
-                            "position": "static"
-                        });
+                        $(this).find('.date-div').css({"position": "static"});
                         $(this).find('.occupy-div').hide();
                     }
                 }
@@ -471,11 +468,18 @@ export default {
         //点击分组收起展开
         groupToggle: function (e) {
             var el = e.target;
+            var _curObj = $(el);
+            if(!_curObj.hasClass('date-div')){
+                _curObj = _curObj.parent('div.date-div:first');
+                if(_curObj == undefined){
+                    return;
+                }
+            }
 
-            if ($(el).hasClass('open')) {
-                $(el).removeClass('open').siblings('.group-item-list').slideUp(500);
+            if (_curObj.hasClass('open')) {
+                _curObj.removeClass('open').siblings('.group-item-list').slideUp(500);
             } else {
-                $(el).addClass('open').siblings('.group-item-list').slideDown(500);
+                _curObj.addClass('open').siblings('.group-item-list').slideDown(500);
             }
         },
 

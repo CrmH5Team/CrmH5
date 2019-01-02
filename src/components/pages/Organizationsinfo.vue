@@ -1,5 +1,5 @@
 <template>
-<div class="content">
+<div>
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">

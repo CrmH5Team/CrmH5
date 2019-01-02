@@ -1,14 +1,15 @@
 .scroll-div {
-    position: fixed;
-    top: 0.88rem;
+    /* position: fixed; */
+    /* top: 0.88rem;
     left: 0;
     width: 100%;
     bottom: 0;
-    right: 0;
+    right: 0; */
     /*height: calc(100% - 0.88rem);*/
-    overflow: hidden;
+    /* overflow: hidden;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; */
+    padding-top: 0.88rem;
     /* background-color: #FFFFFF */
 }
 
@@ -134,12 +135,12 @@
 
 
 .ListCell .ListCellContent .ListCellContentLeft
-{   
+{
     width: calc(100% - 1.3rem);
     margin: auto 0;
 }
 .leftContent, .rightContent
-{ 
+{
     width:calc(50% - 0.16rem) !important;
     position: relative;
     height: 0.4rem;
@@ -245,7 +246,7 @@ textarea::placeholder
   font-size: 12px;
   width: 100%;
   color: #000;
-  z-index: 99;
+  z-index: 89;
 }
 .occupy-div{
   height: 34px;

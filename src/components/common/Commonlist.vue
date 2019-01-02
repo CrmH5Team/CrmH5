@@ -42,21 +42,12 @@ export default {
       lanTool.updateLanVersion();
 
       var headerH = parseFloat($('header').innerHeight());
-
           $(window).scroll(function(){
-
-              // console.log($(window).scrollTop() );
 
               if($('.group-div').length <= 0) return ;
               $('.group-div').each(function(){
 
-                // console.log($(this).position().top);
-                // console.log($(this).offset().top);
-
                 if($(this).offset().top - $(window).scrollTop() <= headerH ){
-
-                // if( ($(this).position().top - headerH) <= 0 ){
-
 
                     if(tool.getSystem() === 'ios'){
                         $(this).find(".date-div").addClass('sticky').css({"top": headerH + 'px'});
@@ -76,10 +67,6 @@ export default {
 
               })
           })
-
-
-
-
 
   },
 
