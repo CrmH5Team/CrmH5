@@ -154,7 +154,7 @@ export default {
 
 <style scoped>
 
-header{position:fixed;width:100%;top:0;left:0;}
+header{position:fixed;width:100%;top:0;left:0;z-index: 99;}
 header.mui-bar {
   /* line-height: 0.2rem; */
   overflow: hidden;
