@@ -78,12 +78,19 @@ header a {
     background: #fff;
 }
 
-/*收索狂style*/
+/*搜索框style*/
 .search {
-    border-bottom: solid 1px #e3e3e3;
+    padding:10px 5px 5px;
+    /* border-bottom: solid 1px #e3e3e3;
+    line-height: 34px;
+    position: relative; */
+}
+.search-box{
     line-height: 34px;
     position: relative;
+    background: #f2f2f2;
 }
+
 
 .search-active .search-input {
     text-align: left;
@@ -102,7 +109,7 @@ header a {
 }
 
 .search-input {
-    padding: 10px 15px 10px 36px;
+    padding: 10px 15px 10px 32px;
     box-sizing: border-box;
     height: 34px;
     text-align: center;
@@ -113,7 +120,9 @@ header a {
     color: #999;
     line-height: 14px;
     outline: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    background: #f2f2f2;
+    border-radius: 8px;
 }
 
 .search .calc-delete {
@@ -129,7 +138,7 @@ header a {
 }
 
 .search-placeholder {
-    padding-left:36px;
+    padding-left:32px;
     line-height: 34px;
     position: absolute;
     z-index: 1;
@@ -142,8 +151,8 @@ header a {
     text-align:left;
     color: #999;
     border: 0;
-    border-radius: 6px;
-    background: 0 0;
+    border-radius: 8px;
+    background:#f2f2f2;
 }
 
 .search-active .search-placeholder {
@@ -154,7 +163,7 @@ header a {
     padding: 0;
     color: #333;
     position: absolute;
-    left:9px;top:6px;
+    left:5px;top:6px;
     width:23px;height: 23px;text-align: center;line-height: 23px;
 }
 
