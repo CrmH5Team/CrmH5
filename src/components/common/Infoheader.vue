@@ -104,7 +104,7 @@ header.mui-bar {
     display: inline-block;
     text-decoration: none;
     line-height: 1;
-    color: #8a8a8a;
+    color: #515151;
 }
 
 .calc-fanhui {
@@ -125,6 +125,6 @@ header.mui-bar {
 }
 header .mui-title,
 header a {
-    color: #999999;
+    color: #515151;
 }
 </style>
