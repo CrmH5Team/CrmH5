@@ -57,7 +57,7 @@
                             <div class="ListCellContentLeftText">Meeting Nature</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Meeting Nature</div>
+                            <div class="ListCellContentRightText">Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature </div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -152,7 +152,7 @@
                                 <div class="ListCellContentLeftText tiShi" @click="VisibilityTiShiClick">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Select user or group user or group</div>
+                                <div class="ListCellContentRightText">Select user or group user or group Select user or group user or group Select user or group user or group</div>
                             </div>
                             <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>

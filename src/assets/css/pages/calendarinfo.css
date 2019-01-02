@@ -134,45 +134,50 @@
 
 
 .ListCell .ListCellContent .ListCellContentLeft
-{
+{   
     width: calc(100% - 1.3rem);
     margin: auto 0;
 }
 .leftContent, .rightContent
-{
+{ 
     width:calc(50% - 0.16rem) !important;
+    position: relative;
+    height: 0.4rem;
     margin: auto 0;
+    overflow: hidden;
 }
 .ListCellContentRight{
     width: 1.2rem;
 }
 .ListCellContentRightText{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     text-align: right;
     min-height: 0.4rem;
     line-height: 0.4rem;
-    overflow: hidden;  /*溢出隐藏*/
-    text-overflow: ellipsis; /*以省略号...显示*/
-    white-space: nowrap;  /*强制不换行*/
-}
-.ListCellContentRightText input{
-    outline: none;
-    text-align: right;
-    border: none;
-    height:0.5rem;
-    line-height: 0.5rem;
-    font-size: 0.28rem;
-    width:100% !important;
-    overflow: hidden;  /*溢出隐藏*/
-    text-overflow: ellipsis; /*以省略号...显示*/
-    white-space: nowrap;  /*强制不换行*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .ListCellContentLeftText
 {
+
    min-height: 0.4rem;
    line-height: 0.4rem;
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
+}
+.leftContent .ListCellContentLeftText
+{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .ListCellLeftIcon.leftIconHidden
 {
