@@ -60,7 +60,7 @@ header {
 
 header.mui-bar {
     line-height: 0.2rem;
-    background: #3cadf9;
+    background: #f8f2dc;
     position: fixed;
     top: 0;
     left: 0;
@@ -103,6 +103,7 @@ header.mui-bar {
     display: inline-block;
     text-decoration: none;
     line-height: 1;
+    color: #8a8a8a;
 }
 
 .calc-fanhui {
@@ -123,6 +124,6 @@ header.mui-bar {
 }
 header .mui-title,
 header a {
-    color: #fff;
+    color: #999999;
 }
 </style>

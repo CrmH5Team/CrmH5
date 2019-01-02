@@ -223,7 +223,7 @@ textarea::placeholder
     right: 0.3rem;
     bottom: 0;
     height: 1px;
-    background-color: #e9cfae;
+    background-color: #F6E78B;
 }
 
 .ListCell input {
@@ -283,11 +283,11 @@ textarea::placeholder
 }
 
 .MoreList .ListCell:after,.documentList .ListCell:after,.updateList .ListCell:after,.MoreList .specialCell:after {
-    background-color: #E5F0F4;
+    background-color: #F5F5DC;
 }
 
 .MoreList .visible:after{
-    background-color: #A6D4F6;
+    background-color: #F6E78B;
 }
 .updateList,.documentList{
     margin-top: 0.2rem;
