@@ -16,7 +16,7 @@
 			</div>
 			<div @click="login" id="LoginBtn" class="LoginBtn lanText" data-lanid="171_登录" :class="{disable:isDisable}"></div>
       <div v-if="showLanguage" @click="tapCurrentLanguage" class="layer" style=""></div>
-		</div>
+	</div>
 </template>
 
 <script>
@@ -44,13 +44,16 @@ export default {
         userPwd:tool.getStorageItem(tool.cache_loginPwd) || "",
         //防止登陆按钮重复提交
         isDisable:false,
-      
+
     }
   },
   mounted:function(){
 
       lanTool.updateLanVersion();
-     
+
+      $('#Body').height( document.documentElement.clientHeight );
+      // console.log();
+
       var self = this;
         var currentLan = lanTool.currentLanguageVersion || 1;
         self.languages.map(function(item){
@@ -58,7 +61,7 @@ export default {
                 self.currentLanguageText = item.text;
             }
         })
-        
+
   },
 
   methods:{
@@ -88,7 +91,7 @@ export default {
             if(item.type == lanType){
                 lanTool.setLan(lanType, function() {});
                 self.currentLanguageText = item.text;
-     
+
                 lanTool.updateLanVersion();
                 self.tapCurrentLanguage();
             }
@@ -110,12 +113,12 @@ export default {
           "UserName": self.userName || "",
           "Password": self.userPwd || ""
         };
-        
+
         self.isDisable = true;
         loading.show(1);
 
         var params = new URLSearchParams();
-        params.append('jsonDatas', jsonDatasTemp); 
+        params.append('jsonDatas', jsonDatasTemp);
 
         $.ajax({
             async: true,
@@ -168,7 +171,7 @@ export default {
 
                 //定时刷新Session
                 setInterval(function() {
-             
+
                   $.ajax({
                     async: true,
                     type: "post",
@@ -219,7 +222,7 @@ export default {
 
             }
         })
-       
+
     }
 
   }

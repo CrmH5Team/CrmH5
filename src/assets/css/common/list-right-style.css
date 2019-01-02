@@ -1,10 +1,10 @@
 
 
 /*右侧style*/
-.mask{position:fixed;top:0;left:0;bottom:0;right:0;background: rgba(0, 0, 0, 0.1);z-index:99;}
+.mask{position:fixed;top:0;left:0;bottom:0;right:0;background: rgba(0, 0, 0, 0.1);z-index:102;}
 .right-content{
     position:fixed;left:100%; width: 70%;
-    top: 0;bottom: 0; z-index: 100;padding-top:0px;
+    top: 0;bottom: 0; z-index: 103;padding-top:0px;
     /* display: none; */
     background-color: #FFFFFF;
 }
