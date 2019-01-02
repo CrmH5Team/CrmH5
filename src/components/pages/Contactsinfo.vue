@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="organizationsBlock">
-            <div class="organizationsHeader">
+            <div class="organizationsHeader" @click="shrink">
                 <div class="organizationsHeaderBox">
                     <div class="organizationsHeaderBoxLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
                     <div class="organizationsHeaderBoxContent f14">organizations info</div>
