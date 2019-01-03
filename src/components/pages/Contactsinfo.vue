@@ -4,14 +4,14 @@
 
     <div class="scroll-div">
         <div class="ContactList">
-            <div class="ListCell">
+            <!-- <div class="ListCell">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
                         <div class="ListCellContentLeftText">photo</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="ListCell">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-name"></span></div>
                 <div class="ListCellLeftText">
@@ -60,7 +60,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell InvisibleLine" id="Initiator">
+            <!-- <div class="ListCell InvisibleLine" id="Initiator">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -83,15 +83,15 @@
                     </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-            </div>
-            <div class="ListCell InvisibleLine">
+            </div> -->
+            <!-- <div class="ListCell InvisibleLine">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-zuzhibumen"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
                         <textarea autoHeight="true" placeholder="Department"></textarea>
                     </p>
                 </div>
-            </div>
+            </div> -->
             <div class="ListCell InvisibleLine">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-chuanzhen"></span></div>
                 <div class="ListCellLeftText">
@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="organizationsBlock">
+        <!-- <div class="organizationsBlock">
             <div class="organizationsHeader" @click="shrink">
                 <div class="organizationsHeaderBox">
                     <div class="organizationsHeaderBoxLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
@@ -172,12 +172,70 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <!-- <Uploadfile></Uploadfile> -->
+        <div class="accessView">
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Colleagues with access</div>
+                    </div>
+                    <!-- <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText"></div>
+                    </div> -->
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
         </div>
-        <Uploadfile></Uploadfile>
+        <div class="organizationMessage">
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">查看公司信息</div>
+                    </div>
+                    <!-- <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText"></div>
+                    </div> -->
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
+        </div>
 
+        <div class="accessList">
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Accessable</div>
+                    </div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Private</div>
+                    </div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
+            <div class="ListCell">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Initiator</div>
+                    </div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Cheryl Xiong</div>
+                    </div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
+            <div class="ListCell tip">
+                <div class="tipBox"><p class="f14" style="margin:0;padding:0"><span style="color:red">*</span> 请注意，当选择私有的时，只有负责人及其上司可以访问并分享。</p></div>
+                
+            </div>
+        </div>
         <Infofooter> </Infofooter>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
 </div>
 </template>
 
@@ -206,10 +264,11 @@ export default {
     data() {
         return {
             moreHiddenIcon: true,
-            delHidden: true,
+            delHidden: false,
             ptitle: 'contact detail',
-            itemsData:['Calndar(3)','Opportunities(2)'],
-            isShowMenuList:true,
+            itemsData: ['Calndar(3)', 'Opportunities(2)'],
+            isShowMenuList: false,
+            isShowSendBtn: true,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -271,6 +330,41 @@ export default {
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
 
+/* <div class="accessView"></div>
+        <div class="organizationMessage"></div>
+        <div class="accessList"></div> */
+.accessView,
+.organizationMessage,
+.accessList {
+    margin-top: 10px;
+}
+
+.accessView .ListCell:after,
+.organizationMessage .ListCell:after {
+    background-color: #fff;
+}
+.accessView .ListCellContentLeftText,.organizationMessage .ListCellContentLeftText{
+    font-weight: 700;
+}
+.accessView .leftContent,.organizationMessage .leftContent
+{
+    width: calc(100% - 0.32rem) !important;
+}
+.ListCell.tip
+{
+    padding:9px 0;
+}
+.ListCell.tip:after
+{
+    background-color: #F5F5DC;
+}
+.tipBox{
+    padding-left: 0.9rem;
+    padding-right: 0.3rem;
+    line-height: 0.34rem;
+}
+
+
 .organizationsBlock {
     margin-top: 0.2rem;
     background-color: #fff;
@@ -283,9 +377,9 @@ export default {
     border-bottom: solid 1px #A6D4F6;
 }
 
-.InvisibleLine:after {
+/* .InvisibleLine:after {
     background-color: #D7D7D7;
-}
+} */
 
 /* .organizationsHeader:after {
     position: absolute;

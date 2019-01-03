@@ -10,7 +10,10 @@
             </div>
         </div>
         <div right-content-block id="generalBlock">
-            <div class="right-content-header f16">General</div>
+            <div class="right-content-header f16">Operation</div>
+            <div class="right-content-list f14">
+                <div class="right-content-list-cell" v-show="isShowSend"><span class="mui-icon calcfont calc-icon-test2"></span>Share with Colleagues</div>
+            </div>
             <div class="right-content-list f14">
                 <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div>
             </div>
@@ -28,9 +31,9 @@ export default {
             dataFilter: [],
         }
     },
-    props: ['items','isShowList'],
+    props: ['items', 'isShowList','isShowSend'],
     created: function () {
-        
+
     },
 
     mounted: function () {
@@ -73,7 +76,6 @@ export default {
 
         },
 
-
     },
 
     beforeDestroy: function () {
@@ -94,17 +96,18 @@ export default {
     padding-left: 0.1rem;
 
 }
-
 .right-content-list .calcfont {
     color: #FF5A21;
     padding-right: 0.1rem;
     font-size: 0.32rem;
 }
-.right-content-list .calcfont.calc-fenxiang1 {
+
+.right-content-list .calcfont {
     color: #000000;
     padding-right: 0.1rem;
     font-size: 0.32rem;
 }
+
 .right-content-list-cell {
     position: relative;
     height: 0.8rem;
@@ -121,7 +124,5 @@ export default {
     height: 1px;
     background-color: #F5F5DC;
 }
-#generalBlock .right-content-list-cell:after{
-    height: 0;
-}
+
 </style>

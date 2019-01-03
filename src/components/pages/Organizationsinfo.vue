@@ -118,13 +118,27 @@
                 </div>
 
             </div>
-            <Uploadfile></Uploadfile>
+            <div class="contactList">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">联系人</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText"></div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <Uploadfile></Uploadfile> -->
 
             <Infofooter> </Infofooter>
 
         </div>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList"></InfoRightPanel>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
 
 </div>
 </template>
@@ -154,10 +168,11 @@ export default {
     data() {
         return {
             moreHiddenIcon: true,
-            delHidden: true,
+            delHidden: false,
             ptitle: 'Organizationsinfo detail',
-            itemsData: ['Contacts(5)', ' Opportunities(2)','Calndar(3)','Airline database'],
-            isShowMenuList: true,
+            itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
+            isShowMenuList: false,
+            isShowSendBtn:false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -218,5 +233,17 @@ export default {
 
 .ListCell .mui-icon.calcfont.calc-shoucang {
     color: #FF5A21 !important;
+}
+.contactList
+{
+    margin-top: 10px;
+}
+.contactList .ListCell::after
+{
+    background-color: #fff;
+}
+.contactList .ListCellContentLeftText
+{
+    font-weight: 700;
 }
 </style>

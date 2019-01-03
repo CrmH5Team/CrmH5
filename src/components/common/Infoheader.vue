@@ -82,7 +82,8 @@ header.mui-bar {
     display: inline-block;
     overflow: hidden;
     width: auto;
-    font-size: 0.34rem;
+    font-size: 0.36rem;
+    font-weight: 400;
     margin: 0;
     text-overflow: ellipsis;
     position: absolute;
@@ -104,7 +105,7 @@ header.mui-bar {
     display: inline-block;
     text-decoration: none;
     line-height: 1;
-    color: #515151;
+    color: #333333;
 }
 
 .calc-fanhui {
@@ -125,6 +126,6 @@ header.mui-bar {
 }
 header .mui-title,
 header a {
-    color: #515151;
+    color: #333333;
 }
 </style>
