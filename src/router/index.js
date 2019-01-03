@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
+
+import Index from '@/components/Index'
 import Main from '@/components/Main'
 import Login from '@/components/Login'
+
+import Meetinglist from '@/components/pages/Meetinglist'
+import Notification from '@/components/pages/Notification'
 
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
@@ -43,6 +48,10 @@ const router =  new Router({
   routes: [
     { path: '/',name:'login', component: Login },
     { path: '/login',name:'login', component: Login },
+
+    { path: '/index',name:'index', component:Index },
+    { path: '/meetinglist',name:'meetinglist', component:Meetinglist },
+    { path: '/notification',name:'notification', component:Notification },
 
     { path: '/main',name:'main',component: Main,
       meta: {

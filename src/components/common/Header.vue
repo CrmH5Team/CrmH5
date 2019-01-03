@@ -3,7 +3,10 @@
 <div>
     <header class="mui-bar mui-bar-nav">
 
-          <a v-if="isMain" @click="showRightPanel" class="calcfont calc-liebiao right"></a>
+          <a v-if="isMain" @click="showRightPanel" class="calcfont calc-yonghu1 right"></a>
+          <a v-if="isMain" @click="goNotification" class="calcfont calc-youxiang1 right">
+              <span class="count">2</span>
+          </a>
 
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
@@ -23,7 +26,7 @@ export default {
     props:['title'],
     created:function(){
         var url = this.$route.path;
-        if(url == '/Main'|| url == '/main'){
+        if(url == '/Index'|| url == '/index'){
             this.isMain = true;
         }
     },
@@ -39,6 +42,10 @@ export default {
         //首页就显示侧滑
         showRightPanel:function(){
             eventBus.$emit('showRightPanelEvent');
+        },
+
+        goNotification:function(){
+            this.$router.push('/notification');
         }
 
     }
@@ -71,9 +78,8 @@ header.mui-bar {
 }
 .calcfont{
     font-size: 0.48rem;
-    width: 0.88rem;
     text-align: center;
-    padding: 0.2rem 0;
+    padding: 0.2rem 10px;
     position: relative;
     z-index: 20;
     display: inline-block;
@@ -81,11 +87,13 @@ header.mui-bar {
     line-height: 1;
 }
 .calc-liebiao,.calc-fanhui{
-    margin-right: -10px;
-    margin-left: -10px;
-    padding-right: 10px;
-    padding-left: 10px;
+    /* margin-right: -10px; */
+    /* margin-left: -10px; */
+    /* padding-right: 10px;
+    padding-left: 10px; */
 }
+.calc-youxiang1{margin-right:-10px;}
+.calc-youxiang1::before{vertical-align:middle;}
 .calc-liebiao{
   font-size: 0.6rem;
   padding: 0.15rem 10px;
@@ -95,5 +103,14 @@ header .mui-title,
 header a {
 	color: #333;
 }
+
+.count{
+  background:#ff0000;
+  color:#fff;padding:3px;
+  position:absolute;
+  top:0;right:0;
+  display: inline-block;min-width:12px;min-height: 12px;font-size: 10px;
+  border-radius: 50%;}
+
 
 </style>
