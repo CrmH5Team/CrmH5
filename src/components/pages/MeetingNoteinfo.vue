@@ -52,7 +52,15 @@
                     <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListSpecialCell specialCell" id="Organization">
+                <div class="ListSpecialCellField">
+                    <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                    <div class="ListSpecialCellFieldContent">Opportunity</div>
+                    <div class="ListSpecialCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+                <div class="ListSpecialCellContent rightIconHidden">中国东方航空公司</div>
+            </div>
+            <!-- <div class="ListCell">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -63,7 +71,7 @@
                     </div>
                     <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-            </div>
+            </div> -->
             <div class="ListCell">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
@@ -84,7 +92,15 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell visible">
+            <div class="ListSpecialCell specialCell visible">
+                <div class="ListSpecialCellField">
+                    <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                    <div class="ListSpecialCellFieldContent">Linked with Business</div>
+                    <div class="ListSpecialCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+                <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
+            </div>
+            <!-- <div class="ListCell visible">
                 <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -95,7 +111,7 @@
                     </div>
                     <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <Uploadfile></Uploadfile>
@@ -230,20 +246,25 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-.busOpportunities{
-  margin: 10px 0;
+
+.busOpportunities {
+    margin: 10px 0;
 }
-.busOpportunities .ListCellContentLeftText
-{
+
+.busOpportunities .ListCellContentLeftText {
     font-weight: 700;
 }
-.busOpportunities .leftContent{
-   width: calc(80% - 0.32rem) !important;
+
+.busOpportunities .leftContent {
+    width: calc(80% - 0.32rem) !important;
 }
+
 .busOpportunities .rightContent {
     width: 20% !important;
 }
- .ListCell:after,.specialCell:after {
+
+.ListCell:after,
+.specialCell:after {
     background-color: #F5F5DC;
 }
 </style>
