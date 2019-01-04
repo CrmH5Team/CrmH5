@@ -6,25 +6,117 @@
 
             <div class="calendarDataList">
 
+                <!-- 显示日期 -->
                 <div class="f14 date-div open">
                       <span class="calcfont calc-richeng"></span>
                       <span class="date-text">2018-11-16 Thursday</span>
-                      <!-- <span class="right">(3)</span> -->
                 </div>
 
-                <div class="table-"></div>
+                <!-- table切换 -->
+                <div class="nav sticky">
+                      <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
+                      <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
+                      <div class="nav-border"></div>
+                </div>
 
 
-                <ul v-show="hasEvents" class="calendarDataListUl">
-                    <!-- <li v-for="item in dateEvents" class="calendarDataListItem">
-                        <router-link :to="'/calendarlistinfo/{\'AutoID\':\''+item.id+'\'}'" class="saveOrUpdatePage">
-                            <span class="right col1-right">{{item.eventstatus}}</span>
-                            <h2 class="mui-ellipsis">{{item.subject}}</h2>
-                            <div class="info"><span class="right time">{{item.date_start}}</span></div>
-                        </router-link>
-                    </li> -->
-                </ul>
+                <div>
+                    <div v-show="showPage==0" class="pageList">
+                        <!-- 增加meeting按钮 -->
+                        <div class="add-btn-div">
+                              <div class="add-div">
+                                  <span class="calcfont calc-add"></span>
+                                  <span class="add-text">And Meeting</span>
+                              </div>
+                        </div>
+                        <!-- meeting list -->
+                        <div class="list">
+                              <div class="data-events-item f12">
+                                    <div class="item-title">Meeting with Eastern Airlines</div>
+                                    <div class="item-time f12">
+                                        <span class="calcfont calc-gengxinshijian"></span>
+                                        <span class="time-text">14:30-17:00</span>
+                                        <!-- <span class="right">Cheryl Xiong</span> -->
+                                    </div>
+                                    <div class="item-address">China Eastern Airlines</div>
+                                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                              </div>
+                              <div class="data-events-item f12">
+                                    <div class="item-title">Meeting with Eastern Airlines</div>
+                                    <div class="item-time f12">
+                                        <span class="calcfont calc-gengxinshijian"></span>
+                                        <span class="time-text">14:30-17:00</span>
+                                        <span class="right">Cheryl Xiong</span>
+                                    </div>
+                                    <div class="item-address">China Eastern Airlines</div>
+                                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                              </div>
+                        </div>
+                    </div>
 
+                    <div v-show="showPage==1" class="pageList">
+                        <!-- 增加trip按钮 -->
+                        <div class="add-btn-div">
+                              <div class="add-div">
+                                  <span class="calcfont calc-add"></span>
+                                  <span class="add-text">And Trip</span>
+                              </div>
+                        </div>
+                        <!-- trip list -->
+                        <div class="list">
+                              <div class="data-events-item f12">
+                                    <div class="item-title">
+                                        <span>1115-1116东航会议出差上海</span>
+                                        <span class="right">审批已通过</span>
+                                    </div>
+                                    <div class="item-time f12">
+                                        <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                    </div>
+                                    <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                    <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                    <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                              </div>
+                              <div class="data-events-item f12">
+                                    <div class="item-title">
+                                        <span>1115-1116东航会议出差上海</span>
+                                        <span class="right">审批已通过</span>
+                                    </div>
+                                    <div class="item-time f12">
+                                        <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                    </div>
+                                    <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                    <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                    <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                              </div>
+                              <div class="data-events-item f12">
+                                    <div class="item-title">
+                                        <span>1115-1116东航会议出差上海</span>
+                                        <span class="right">审批已通过</span>
+                                    </div>
+                                    <div class="item-time f12">
+                                        <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                    </div>
+                                    <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                    <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                    <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                              </div>
+                              <div class="data-events-item f12">
+                                    <div class="item-title">
+                                        <span>1115-1116东航会议出差上海</span>
+                                        <span class="right">审批已通过</span>
+                                    </div>
+                                    <div class="item-time f12">
+                                        <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                    </div>
+                                    <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                    <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                    <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                              </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 列表没数据 -->
                 <div v-show="!hasEvents" class="noMessagePrompt lanText" data-lanid="335_暂无事件"></div>
 
             </div>
@@ -42,6 +134,7 @@ export default {
         return {
            dateEvents:[],//一天中事件数据
            hasEvents:true, //一天中是否有事件数据
+           showPage:0,
           //  date:'',
           //  week:'',
 
@@ -53,6 +146,8 @@ export default {
     },
     mounted:function(){
         this.initCalendar();
+
+        this.changePos();
     },
     beforeRouteEnter:function(to, from, next){
         if(from.name === 'calendarlistinfo' || from.name === 'calendarlist'){
@@ -70,7 +165,27 @@ export default {
         this.isFirstEnter = false;
     },
     methods:{
+        //table切换页面
+        switchPage:function(num, e){
+            var _self = this;
+            var el = e.target;
+            if(num === undefined) return;
+            $(el).addClass('active-item').siblings().removeClass('active-item');
+            _self.changePos();
+            _self.showPage = num;
+        },
+        //table底部横条过渡效果
+        changePos:function() {
+            this.$nextTick(function(){
+                var activePos = $('.nav .active-item').position();
+                $('.nav-border').stop().css({
+                    left: activePos.left,
+                    width: $('.nav .active-item').width()
+                });
+            })
+        },
 
+        //初始化日历
         initCalendar:function(){
             var $this = this;
             $("#inline-calendar").remove();
@@ -305,12 +420,7 @@ export default {
 
 
 <style scoped>
-/* .calendar{position:fixed;top:0.88rem;bottom:0;left:0;right:0;overflow-y: scroll;
--webkit-overflow-scrolling:touch;} */
-/* .weui-cells{margin-top: 0!important;font-size: 16px!important;background-color:#efeff4!important;} */
-
-
-
+/*日期显示 style*/
 .date-div{
   height:36px;line-height:36px;background:#e9cfae;padding:0 10px;
   width: 100%;color:#000;box-sizing: border-box;
@@ -319,29 +429,75 @@ export default {
 .date-div .date-text{vertical-align:middle;}
 
 
+/*nav style*/
+.nav{
+  width:100%;height:40px;background: #fff;
+  -webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;
+  display:-moz-box;
+  display:-webkit-box;
+  display:box;
+  box-sizing: border-box;
+  border-bottom:1px solid #ccc;
+}
+.nav-item{
+  line-height:38px;
+  margin-bottom: -1px;
+  text-align: center;
+  /* padding:0 5px; */
+  box-sizing: border-box;
+  -moz-box-flex:3;
+  -webkit-box-flex:3;
+  box-flex:3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  word-break: break-all;
+  box-sizing: border-box;
+  width:50%;
+}
+.active-item{color:#009979;}
+.nav-border{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #009979;
+  width: auto;
+  height: 2px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
 
-/*
-.calendarDataListItem{font-size: 0.25rem;height: 1.16rem;
-    position: relative; overflow: hidden; padding: 11px 15px; -webkit-box-sizing: border-box;
-    box-sizing: border-box; background:#fff;
-}
-.calendarDataListItem::after {
-    position: absolute; right: 0; bottom: 0; left: 0;
-    height: 1px; content: ''; background: #c8c7cc;
-}
-.saveOrUpdatePage{
-    position: relative; display: block;overflow: hidden; margin: -11px -15px;
-    padding: inherit; white-space: nowrap; text-overflow: ellipsis; color: inherit;
-}
-.saveOrUpdatePage .col1-right{ line-height: 0.5rem; font-size: 0.2rem; color: #595959;}
-.saveOrUpdatePage  h2 {
-    font-size: 0.28rem;font-weight: normal;line-height: 1.2;overflow: hidden; white-space: nowrap;
-    text-overflow: ellipsis; margin-top: 5px; margin-bottom: 5px;}
-.saveOrUpdatePage .time{font-size: 0.2rem; color: #595959;}
-*/
+/*增加按钮*/
+.add-btn-div{text-align: center;}
+.add-div{height:38px;line-height:38px;text-align: center;display:inline-block;margin: 0 auto;padding:0 15px;}
+.add-div .calcfont{color:#ff5a21;}
+.add-div .add-text{vertical-align: middle;color:#ff5a21;}
+
+
+/* 列表 style*/
+.data-events-item{border-bottom: 1px solid #ccc;line-height:20px;background: #fff;padding: 5px 10px;}
+.item-title{font-weight: 600;color:#333;}
+.item-time{color:#333;}
+.item-time .calc-gengxinshijian{color:#ff5a21;}
+.time-text{vertical-align: middle;}
+.trip-time-text{font-size:11px;color:#666666;}
+.item-address{font-weight: 600;}
+.data-events p{height: 50px;line-height: 50px;}
+
+
+
 
 .noMessagePrompt{padding:11px 15px;font-size:0.28rem;color:#595959;background:#fff;text-align: center;}
 </style>
+
+
+
+
+
+
+
+
+
 
 
 

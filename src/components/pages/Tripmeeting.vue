@@ -1,16 +1,115 @@
 <template>
 <div>
-    <Header class="header" :title="title"></Header>
+    <Header class="header sticky" :title="title"></Header>
 
     <div id="page-content" class="page-content">
 
+
+          <!-- calendar视图 -->
         <calendar v-show="selectView === 'calendar'"></calendar>
 
+
+          <!-- list 视图 -->
         <div v-show="selectView === 'list'" class="list-view">
+
+              <div id="nav" class="nav sticky">
+                  <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
+                  <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
+                  <div class="nav-border"></div>
+              </div>
+
+              <div v-show="showPage == 0" class="pageList">
+                    <div class="add-btn-div">
+                          <div class="add-div">
+                              <span class="calcfont calc-add"></span>
+                              <span class="add-text">And Meeting</span>
+                          </div>
+                    </div>
+                    <!-- 列表 -->
+                    <common-list :groupData="groupData">
+                          <div class="data-events-item f12">
+                                <div class="item-title">Meeting with Eastern Airlines</div>
+                                <div class="item-time f12">
+                                    <span class="calcfont calc-gengxinshijian"></span>
+                                    <span class="time-text">14:30-17:00</span>
+                                    <!-- <span class="right">Cheryl Xiong</span> -->
+                                </div>
+                                <div class="item-address">China Eastern Airlines</div>
+                                <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                          </div>
+                          <div class="data-events-item f12">
+                                <div class="item-title">Meeting with Eastern Airlines</div>
+                                <div class="item-time f12">
+                                    <span class="calcfont calc-gengxinshijian"></span>
+                                    <span class="time-text">14:30-17:00</span>
+                                    <!-- <span class="right">Cheryl Xiong</span> -->
+                                </div>
+                                <div class="item-address">China Eastern Airlines</div>
+                                <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                          </div>
+                          <div class="data-events-item f12">
+                                <div class="item-title">Meeting with Eastern Airlines</div>
+                                <div class="item-time f12">
+                                    <span class="calcfont calc-gengxinshijian"></span>
+                                    <span class="time-text">14:30-17:00</span>
+                                    <!-- <span class="right">Cheryl Xiong</span> -->
+                                </div>
+                                <div class="item-address">China Eastern Airlines</div>
+                                <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                          </div>
+                    </common-list>
+              </div>
+
+              <div v-show="showPage == 1" class="pageList">
+                    <div class="add-btn-div">
+                          <div class="add-div">
+                              <span class="calcfont calc-add"></span>
+                              <span class="add-text">And Trip</span>
+                          </div>
+                    </div>
+                    <!-- 列表 -->
+                    <common-list :groupData="groupData">
+                          <div class="data-events-item f12">
+                                <div class="item-title">
+                                    <span>1115-1116东航会议出差上海</span>
+                                    <span class="right">审批已通过</span>
+                                </div>
+                                <div class="item-time f12">
+                                    <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                </div>
+                                <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                          </div>
+                          <div class="data-events-item f12">
+                                <div class="item-title">
+                                    <span>1115-1116东航会议出差上海</span>
+                                    <span class="right">审批已通过</span>
+                                </div>
+                                <div class="item-time f12">
+                                    <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                </div>
+                                <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                          </div>
+                          <div class="data-events-item f12">
+                                <div class="item-title">
+                                    <span>1115-1116东航会议出差上海</span>
+                                    <span class="right">审批已通过</span>
+                                </div>
+                                <div class="item-time f12">
+                                    <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                                </div>
+                                <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                                <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                                <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                          </div>
+                    </common-list>
+              </div>
 
         </div>
     </div>
-
 
     <!--  右侧侧滑 -->
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
@@ -78,18 +177,22 @@
 <script>
 import Calendar from './Calendar'
 import Header from '../common/Listheader'
+import Commonlist from '../common/Commonlist'
 var count = 0;
 export default {
     components:{
         'Header':Header,
-        'calendar':Calendar
+        'calendar':Calendar,
+        'common-list':Commonlist
     },
     data(){
         return {
             title:'Trip&Meeting',
             showPanel:false,
 
-            selectView:'calendar',
+            showPage:0, //list视图控制显示meeting(0)或者trip(1)
+
+            selectView:'list',
             dataFilter:['my-calendar'],
             //搜索页面数据模型
             calendarSearchData:[
@@ -179,13 +282,57 @@ export default {
                     id:Number((new Date()).valueOf()) + count++
                 }
             ],
+
+            // 列表数据
+            groupData:[
+                {
+                  groupName:'Alirline',
+                  count:3,
+                  iconClass:'calc-rili1',//calc-lianxiren1
+                  items:[]
+                },
+                {
+                  groupName:'Alirline123',
+                  count:3,
+                  iconClass:'calc-rili1',//calc-lianxiren1
+                  items:[]
+                },
+                {
+                  groupName:'Alirline111',
+                  count:3,
+                  iconClass:'calc-rili1',//calc-lianxiren1
+                  items:[]
+                },
+            ],
         }
     },
     mounted:function(){
 
         eventBus.$on('showRightPanelEvent',this.panelToggle);
+
+        this.changePos();
     },
     methods:{
+        //切换页面
+        switchPage:function(num, e){
+            var _self = this;
+            var el = e.target;
+            if(num === undefined) return;
+            $(el).addClass('active-item').siblings().removeClass('active-item'); console.log(999);
+            _self.changePos();
+            _self.showPage = num;
+        },
+        //table底部横条过渡效果
+        changePos:function() {
+            this.$nextTick(function(){
+                var activePos = $('#nav .active-item').position();
+                $('.nav-border').stop().css({
+                    left: activePos.left,
+                    width: $('#nav .active-item').width()
+                });
+            })
+        },
+
         //侧滑
         panelToggle:function(){
           var _self = this;
@@ -251,6 +398,19 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/pages/tripmeeting.css";
+/* @import "../../assets/css/pages/tripmeeting.css"; */
+@import "../../assets/css/common/commonlist.css";
 @import "../../assets/css/common/list-right-style.css";
+
+
+/* 列表 style*/
+.data-events-item{border-bottom: 1px solid #ccc;line-height:20px;background: #fff;padding: 5px 10px;}
+.item-title{font-weight: 600;color:#333;}
+.item-time{color:#333;}
+.item-time .calc-gengxinshijian{color:#ff5a21;}
+.time-text{vertical-align: middle;}
+.trip-time-text{font-size:11px;color:#666666;}
+.item-address{font-weight: 600;}
+.data-events p{height: 50px;line-height: 50px;}
+
 </style>

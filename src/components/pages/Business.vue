@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Header class="header" :title="title"></Header>
+    <Header class="header sticky" :title="title"></Header>
 
     <div id="page-content" class="page-content">
         <div id="nav" class="nav sticky">
@@ -44,7 +44,7 @@
               <div class="add-btn-div">
                     <div class="add-div">
                         <span class="calcfont calc-add"></span>
-                        <span class="add-text">Add Deal</span>
+                        <span class="add-text">Add Opportunity</span>
                     </div>
               </div>
               <!-- 列表 -->
@@ -317,7 +317,6 @@ export default {
             var el = e.target;
             if(num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
-            // _self.swiper.slideTo(num, 500, false);
             _self.changePos();
             _self.showPage = num;
         },
@@ -354,5 +353,26 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/pages/business.css";
+@import "../../assets/css/common/commonlist.css";
+
+
+/*列表 style*/
+.group-item{background:#fff;position:relative;}
+.item-block{padding:5px 10px 5px 0.8rem;}
+.group-item::after{content:'';display:block;height: 1px;background:#e5f0f4;width:100%;left:0;top:0px;position:absolute;}
+.item-div{line-height: 0.4rem;}
+
+.item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
+box-sizing: border-box;height: 14px;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
+margin-right: 5px;}
+.itme-div-span{vertical-align: middle;}
+
+.item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
+.dete-div{padding-left:40px;}
+
+.blue-color{color:#3cadf9;}
+.padding-bottom-5{padding-bottom: 5px;}
+.padding-top-5{padding-top: 5px;}
+
+
 </style>
