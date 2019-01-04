@@ -1,35 +1,30 @@
 <template>
 <div>
         <div class="calendar">
+
             <div id="inline-calendar"></div>
-            <div class="weui-cells weui-cells_form">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd">
-                        <span>{{date}}</span><span>{{week}}</span>
-                    </div>
-                </div>
-            </div>
-
-
 
             <div class="calendarDataList">
-                <div class="selectedDate">
-                    <span class="date"></span>
-                    <span class="week"></span>
+
+                <div class="f14 date-div open">
+                      <span class="calcfont calc-richeng"></span>
+                      <span class="date-text">2018-11-16 Thursday</span>
+                      <!-- <span class="right">(3)</span> -->
                 </div>
-                <div class="demindList f14">
-                    <span class="calcfont calc-richeng"></span>
-                    <span class="lanText" data-lanid="334_事件列表">Event List</span>
-                </div>
+
+                <div class="table-"></div>
+
+
                 <ul v-show="hasEvents" class="calendarDataListUl">
-                    <li v-for="item in dateEvents" class="calendarDataListItem">
+                    <!-- <li v-for="item in dateEvents" class="calendarDataListItem">
                         <router-link :to="'/calendarlistinfo/{\'AutoID\':\''+item.id+'\'}'" class="saveOrUpdatePage">
                             <span class="right col1-right">{{item.eventstatus}}</span>
                             <h2 class="mui-ellipsis">{{item.subject}}</h2>
                             <div class="info"><span class="right time">{{item.date_start}}</span></div>
                         </router-link>
-                    </li>
+                    </li> -->
                 </ul>
+
                 <div v-show="!hasEvents" class="noMessagePrompt lanText" data-lanid="335_暂无事件"></div>
 
             </div>
@@ -47,8 +42,8 @@ export default {
         return {
            dateEvents:[],//一天中事件数据
            hasEvents:true, //一天中是否有事件数据
-           date:'',
-           week:'',
+          //  date:'',
+          //  week:'',
 
            isFirstEnter:false, // 是否第一次进入，默认false
         }
@@ -57,7 +52,7 @@ export default {
         this.isFirstEnter = true;
     },
     mounted:function(){
-        // this.initCalendar();
+        this.initCalendar();
     },
     beforeRouteEnter:function(to, from, next){
         if(from.name === 'calendarlistinfo' || from.name === 'calendarlist'){
@@ -233,8 +228,8 @@ export default {
                 }
 
                 //写入当前时间
-                $this.date = currentDate;
-                $this.week = tool.getWeekDayStr(currentDate);
+                // $this.date = currentDate;
+                // $this.week = tool.getWeekDayStr(currentDate);
 
                 //请求地址
                 var urlTemp =
@@ -310,14 +305,22 @@ export default {
 
 
 <style scoped>
-.calendar{/*position:fixed;top:0.88rem;bottom:0;left:0;right:0;*/overflow-y: scroll;
--webkit-overflow-scrolling:touch;}
-.weui-cells{margin-top: 0!important;font-size: 16px!important;background-color:#efeff4!important;}
+/* .calendar{position:fixed;top:0.88rem;bottom:0;left:0;right:0;overflow-y: scroll;
+-webkit-overflow-scrolling:touch;} */
+/* .weui-cells{margin-top: 0!important;font-size: 16px!important;background-color:#efeff4!important;} */
 
-.demindList {height: 0.6rem; border-bottom: solid 0.5px #aaaaaa;line-height: 0.64rem;font-size: 0.28rem;
-    background-color: #fff;padding-left: 0.2rem;}
-.calc-richeng {margin-right: 0.1rem; color: #0bb60f; margin-top: -0.1rem;}
 
+
+.date-div{
+  height:36px;line-height:36px;background:#e9cfae;padding:0 10px;
+  width: 100%;color:#000;box-sizing: border-box;
+}
+.date-div .calcfont{ color: #ff5a21; margin-right: 8px;}
+.date-div .date-text{vertical-align:middle;}
+
+
+
+/*
 .calendarDataListItem{font-size: 0.25rem;height: 1.16rem;
     position: relative; overflow: hidden; padding: 11px 15px; -webkit-box-sizing: border-box;
     box-sizing: border-box; background:#fff;
@@ -335,16 +338,22 @@ export default {
     font-size: 0.28rem;font-weight: normal;line-height: 1.2;overflow: hidden; white-space: nowrap;
     text-overflow: ellipsis; margin-top: 5px; margin-bottom: 5px;}
 .saveOrUpdatePage .time{font-size: 0.2rem; color: #595959;}
+*/
+
 .noMessagePrompt{padding:11px 15px;font-size:0.28rem;color:#595959;background:#fff;text-align: center;}
 </style>
 
+
+
+
 <style>
 /*日历style*/
-.toolbar{font-size: 0.25rem!important;}
+.toolbar{font-size: 0.25rem!important;display:none!important;}
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
+.picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;}
 .toolbar .toolbar-inner,.toolbar .toolbar-inner,.picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only,.picker-calendar-month-picker, .picker-calendar-year-picker,.picker-calendar-month-picker .current-month-value, .picker-calendar-year-picker .current-month-value, .picker-calendar-month-picker .current-year-value, .picker-calendar-year-picker .current-year-value,.picker-calendar-year-picker,.picker-calendar-year-picker .current-year-value {height: 0.9rem!important;line-height: 0.9rem!important;}
 i.icon.icon-next, i.icon.icon-prev{width: 0.35rem!important;height: 0.35rem!important;}
-.picker-calendar-week-days {height: 0.42rem!important;}
+/* .picker-calendar-week-days {height: 0.42rem!important;} */
 /* .picker-calendar-row {height: calc(50% / 6)!important;} */
 .current-month-value,.current-year-value{font-size: 16px!important;}
 .picker-calendar-week-days + .picker-calendar-months{height: 6rem!important;}

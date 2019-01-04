@@ -9,6 +9,8 @@ import Login from '@/components/Login'
 import Meetinglist from '@/components/pages/Meetinglist'
 import Notification from '@/components/pages/Notification'
 
+import Tripmeeting from '@/components/pages/Tripmeeting'
+
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
 
@@ -50,8 +52,15 @@ const router =  new Router({
     { path: '/login',name:'login', component: Login },
 
     { path: '/index',name:'index', component:Index },
-    { path: '/meetinglist',name:'meetinglist', component:Meetinglist },
+    { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
     { path: '/notification',name:'notification', component:Notification },
+
+    { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
 
     { path: '/main',name:'main',component: Main,
       meta: {

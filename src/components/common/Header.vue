@@ -7,8 +7,9 @@
           <a v-if="isMain" @click="goNotification" class="calcfont calc-youxiang1 right">
               <span class="count">2</span>
           </a>
-
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
+
+
 
           <h1 class="mui-title f18">{{title}}</h1>
     </header>

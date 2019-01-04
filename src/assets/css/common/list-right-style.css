@@ -8,7 +8,8 @@
     /* display: none; */
     background-color: #FFFFFF;
 }
-.right-block-title{height:32px;line-height:32px;background:#ecf7fb;padding-left:10px;font-size: 0.3rem;}
+.right-block-title{height:32px;line-height:32px;background:#e9cfae;padding-left:10px;font-size: 0.3rem;
+  font-weight: 600;}
 .right-block-items{padding:5px 0;}
 .checkbox-label,.radios-label{position: relative;}
 .checkbox-label .checkbox,.radios-label .radios{position: absolute;left:0;top:2px;}
