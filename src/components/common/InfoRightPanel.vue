@@ -12,9 +12,8 @@
         <div right-content-block id="generalBlock">
             <div class="right-content-header f16">Operation</div>
             <div class="right-content-list f14">
+                <div class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
                 <div class="right-content-list-cell" v-show="isShowSend"><span class="mui-icon calcfont calc-icon-test2"></span>Share with Colleagues</div>
-            </div>
-            <div class="right-content-list f14">
                 <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div>
             </div>
         </div>
@@ -31,7 +30,7 @@ export default {
             dataFilter: [],
         }
     },
-    props: ['items', 'isShowList','isShowSend'],
+    props: ['items', 'isShowList','isShowSend','isShowClose'],
     created: function () {
 
     },

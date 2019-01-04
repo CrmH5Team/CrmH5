@@ -181,7 +181,7 @@
     top: 0;
     bottom: 0;
 }
-.ListCellLeftIcon.leftIconHidden
+.ListCellLeftIcon.leftIconHidden,.ListCellRightIcon.rightIconHidden
 {
     display: block;
     visibility: hidden;
@@ -227,7 +227,9 @@ textarea::placeholder
     height: 1px;
     background-color: #F6E78B;
 }
-
+.visible:after {
+    background-color: #F6E78B !important;
+}
 .ListCell input {
     /* outline: none; */
     width: 80%;
@@ -302,6 +304,9 @@ textarea::placeholder
     width: calc(100% - 0.48rem);
 
 }
+.documentHeaderContent{
+    color: #FF5A21;
+}
 .documentAddIcon{
     /* width: 24px;     */
     /* height: 44px; */
@@ -311,6 +316,7 @@ textarea::placeholder
 .documentAddIcon .calcfont.calc-jia
 {
     padding: 0.2rem;
+    color: #FF5A21 !important;
 }
 .wendangList .calc-fujian{
     color: #FF5A21;

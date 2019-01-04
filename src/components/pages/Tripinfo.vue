@@ -28,7 +28,7 @@
 
         </div>
 
-        <div class="meeting wrap">
+        <div class="meeting">
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
                 <div class="headerBlockContent f16">meeting</div>
