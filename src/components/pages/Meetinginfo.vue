@@ -4,7 +4,7 @@
 
     <div class="scroll-div">
         <div class="MeetingList">
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -12,7 +12,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="ListCell">
+                <div class="ListCell visible">
                     <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -38,7 +38,7 @@
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="ListCell">
+                <div class="ListCell visible">
                     <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -50,7 +50,7 @@
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="ListCell">
+                <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-mingcheng"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -62,7 +62,7 @@
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="ListSpecialCell" id="Organization">
+                <div class="ListSpecialCell visible" id="Organization">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
                         <div class="ListSpecialCellFieldContent">Organization</div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="ListSpecialCellContent">Organization</div>
                 </div>
-                <div class="ListCell">
+                <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -193,5 +193,11 @@ export default {
 }
 .meetingRecord .ListCell:after{
     background-color: #fff;
+}
+.ListCell:after{
+     background-color: #F5F5DC;
+}
+.ListCell.visible:after{
+    background-color: #F6E78B;
 }
 </style>

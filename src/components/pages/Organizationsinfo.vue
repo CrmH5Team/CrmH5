@@ -4,7 +4,7 @@
 
     <div class="scroll-div">
         <div class="OrganizationsList">
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -12,7 +12,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-CH"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -20,7 +20,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -32,7 +32,7 @@
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -44,7 +44,7 @@
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -245,5 +245,11 @@ export default {
 .contactList .ListCellContentLeftText
 {
     font-weight: 700;
+}
+.ListCell:after{
+     background-color: #F5F5DC;
+}
+.ListCell.visible:after{
+    background-color: #F6E78B;
 }
 </style>

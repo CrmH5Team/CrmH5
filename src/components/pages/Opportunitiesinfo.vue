@@ -568,7 +568,9 @@ export default {
 .accessBlock {
     margin-top: 10px;
 }
-
+.accessBlock .ListCellContentLeftText{
+   font-weight: 700;
+}
 .leftContent {
     width: calc(100% - 0.32rem) !important;
 }

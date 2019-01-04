@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-name"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -20,7 +20,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListSpecialCell" id="Organization">
+            <div class="ListSpecialCell visible" id="Organization">
                 <div class="ListSpecialCellField">
                     <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
                     <div class="ListSpecialCellFieldContent">Organization</div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="ListSpecialCellContent">Air China</div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-zhiwei-"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -36,7 +36,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-youxiang1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -174,18 +174,38 @@
             </div>
         </div> -->
         <!-- <Uploadfile></Uploadfile> -->
-        <div class="accessView">
-            <div class="ListCell">
+
+        <div class="accessList">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Colleagues with access</div>
+                        <div class="ListCellContentLeftText">Accessable</div>
                     </div>
-                    <!-- <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText"></div>
-                    </div> -->
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Private</div>
+                    </div>
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
+            </div>
+
+            <div class="ListCell visible">
+                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText">Responsible by负责人</div>
+                    </div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Cheryl Xiong</div>
+                    </div>
+                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+            </div>
+            <div class="ListCell tip">
+                <div class="tipBox">
+                    <p class="f14" style="margin:0;padding:0"><span style="color:red">*</span> 请注意，当选择私有的时，只有负责人及其上司可以访问并分享。</p>
+                </div>
+
             </div>
         </div>
         <div class="organizationMessage">
@@ -203,34 +223,16 @@
             </div>
         </div>
 
-        <div class="accessList">
+        <div class="accessView">
             <div class="ListCell">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Accessable</div>
+                        <div class="ListCellContentLeftText">Colleagues with access</div>
                     </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Private</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell tip">
-                <div class="tipBox">
-                    <p class="f14" style="margin:0;padding:0"><span style="color:red">*</span> 请注意，当选择私有的时，只有负责人及其上司可以访问并分享。</p>
-                </div>
-
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Responsible by负责人</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Cheryl Xiong</div>
-                    </div>
+                    <!-- <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText"></div>
+                    </div> -->
                     <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
             </div>
@@ -331,9 +333,11 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-.scroll-div{
+
+.scroll-div {
     background-color: rgb(242, 242, 242);
 }
+
 .accessView,
 .organizationMessage,
 .accessList {
@@ -431,5 +435,11 @@ export default {
 .organizationsHeaderBoxRightIcon .calcfont {
     font-size: 0.5rem;
     color: #2a79c8;
+}
+.ListCell:after{
+     background-color: #F5F5DC;
+}
+.ListCell.visible:after{
+    background-color: #F6E78B;
 }
 </style>
