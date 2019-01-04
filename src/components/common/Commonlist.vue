@@ -42,17 +42,18 @@ export default {
       lanTool.updateLanVersion();
 
       var headerH = parseFloat($('header').innerHeight());
+      var navH = parseFloat($('.nav').innerHeight());
           $(window).scroll(function(){
 
               if($('.group-div').length <= 0) return ;
               $('.group-div').each(function(){
 
-                if($(this).offset().top - $(window).scrollTop() <= headerH ){
+                if($(this).offset().top - $(window).scrollTop() <= (headerH + navH) ){
 
                     if(tool.getSystem() === 'ios'){
-                        $(this).find(".date-div").addClass('sticky').css({"top": headerH + 'px'});
+                        $(this).find(".date-div").addClass('sticky').css({"top": headerH + navH + 'px'});
                     }else{
-                        $(this).find('.date-div').css({"position":"fixed","top": headerH + 'px'});
+                        $(this).find('.date-div').css({"position":"fixed","top": headerH + navH + 'px'});
                         $(this).find('.occupy-div').show();
                     }
 
@@ -114,7 +115,7 @@ export default {
 
 <style scoped>
 
-.page-content{/*position:fixed;top:0.88rem;left:0;right:0;bottom:0;*/ padding-top:0.88rem;}
+.page-content{/*position:fixed;top:0.88rem;left:0;right:0;bottom:0;padding-top:0.88rem;*/ }
 /* .scroll-box{height: 100%;overflow-y:scroll;-webkit-overflow-scrolling:touch;position: static;} */
 
 .group-div{border-bottom:1px solid #fff;}
@@ -125,9 +126,9 @@ export default {
   z-index:89;
   top:0;
 }
-.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:6px;left:0.2rem;font-size:0.5rem;color:#ccc;}
+.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem;color:#ccc;}
 .calc-shoucang{color:#ff5a21}
-.date-div .calcfont{color:#ff5a21;margin-right:8px;vertical-align:bottom;}
+.date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
 .group-name{font-size: 0.3rem;}
 .occupy-div{height:30px;display:none;}
 

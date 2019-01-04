@@ -55,9 +55,12 @@ export default {
         var _self = this;
         if(_self.panelData.length >= 1){
             $.each(this.panelData,function(key,value){
-                if(value.type === 'radio' && value.default){
-                    _self.classificationValue = value.default;
-                }else if(value.type === 'checkbox' && value.default){
+                // if(value.type === 'radio' && value.default){
+                //     _self.classificationValue = value.default;
+                // }else if(value.type === 'checkbox' && value.default){
+                //     _self.dataFilter[0] = value.default;
+                // }
+                if(value.type === 'checkbox' && value.default){
                     _self.dataFilter[0] = value.default;
                 }
             })
@@ -109,7 +112,7 @@ export default {
         goSearchPage:function(){
             var _self = this;
             var parameter = {
-                'selectView':_self.classificationValue,
+                // 'selectView':_self.classificationValue,
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.searchData
             }

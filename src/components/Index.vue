@@ -14,7 +14,7 @@
           <div id="nav">
               <div class="weui-grids">
                   <div class="weui-grid">
-                      <router-link to="/organizations" class="js_grid">
+                      <router-link to="/tripmeeting" class="js_grid">
                         <div class="weui-grid__icon trip-meeting-icon">
                           <span class="mui-icon calcfont calc-kehu"></span>
                         </div>
@@ -30,7 +30,7 @@
                       </router-link>
                   </div>
                   <div class="weui-grid">
-                      <router-link to="/opportunities" class="js_grid">
+                      <router-link to="/business" class="js_grid">
                         <div class="weui-grid__icon jihui-icon">
                           <span class="calcfont calc-jihui"></span>
                         </div>

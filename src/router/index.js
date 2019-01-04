@@ -10,6 +10,8 @@ import Meetinglist from '@/components/pages/Meetinglist'
 import Notification from '@/components/pages/Notification'
 
 import Tripmeeting from '@/components/pages/Tripmeeting'
+import Business from '@/components/pages/Business'
+
 
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
@@ -61,6 +63,7 @@ const router =  new Router({
         isBack:false
       }
     },
+    { path: '/business',name:'business', component:Business },
 
     { path: '/main',name:'main',component: Main,
       meta: {
