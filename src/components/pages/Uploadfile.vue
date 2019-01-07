@@ -69,6 +69,7 @@ export default {
             // alert(JSON.stringify(reader));
             reader.readAsDataURL(file);
             reader.onload = function (e) {
+
                 $this.$router.push({
                     name: "uploadinput",
                     params: {
@@ -79,6 +80,7 @@ export default {
                     }
                 });
 
+                loading.hidden();
                 $('#selectFile').val('');
             };
         },

@@ -70,17 +70,12 @@
                   <span class=" calcfont calc-wenjian"></span>
               </div>
               <div class="ListCellContent ">
-                  <!-- <div class="left file-name-row-left">已选择Selected</div>
-                  <div class="right file-name-row-right" style="padding-right:0.32rem">748978Alan.jpg748978Alan74n</div> -->
                   <div class="ListCellContentLeft leftContent">
                     <div class="ListCellContentLeftText">已选择Selected</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                    <div class="ListCellContentRightText right-break-word">                     Airline.jpgAirline.jpgAirline.jpgjpgAirline.jpgjpgAirline.jpg</div>
+                    <div class="ListCellContentRightText right-break-word">{{fileName}}</div>
                   </div>
-                  <!-- <div class="ListCellRightIcon">
-                      <span class="mui-icon calcfont calc-you"></span>
-                  </div> -->
               </div>
           </div>
 
@@ -173,13 +168,9 @@ export default {
 
         //如果是刷新就返回上一页(用params传值刷新数据会丢失)
         if(tool.isNullOrEmptyObject(this.$route.params)){
-            // $this.$router.back(-1);
+            $this.$router.back(-1);
         }
 
-        //处理Picker组件回传的值
-        eventBus.$on('updataPicker',function(data){
-            $this.folderid = data.value.value;
-        })
     },
 
     mounted:function(){
@@ -194,15 +185,8 @@ export default {
     },
 
     activated:function(){
-        //处理Selectlist组件回传的值
-        var sData = eventBus.selectListData;
-        if(!tool.isNullOrEmptyObject(sData)){
-            this.assigned_user_id = sData.value;
-            eventBus.selectListData = null;
-        }
 
         if(!this.$route.meta.isBack || this.isFirstEnter){
-
 
             this.file = this.$route.params.file;
             this.fileName = this.$route.params.fileName;
@@ -210,35 +194,15 @@ export default {
             this.id = this.$route.params.id;
 
             this.notes_title = '';
-            //触发picker初始化
-            eventBus.$emit('initPickerEvent',true);
+
         }
 
         this.$route.meta.isBack = false;
         this.isFirstEnter = false;
-
-
     },
 
 
     methods:{
-        //点击调起列表组件
-        selectList:function(event){
-            var self = this,
-            ele = event.target,
-            url = $(ele).attr('data-url') || '',
-            field = $(ele).attr('data-field') || '';
-            var parameter = {
-                'field':field,
-                'url':url,
-                'title':$(ele).prop('placeholder'),
-                'data':self.assigned_user_id
-            };
-            self.$router.push({
-                            path: '/selectlist',
-                            query: parameter
-            })
-        },
 
         upload:function(){
             var $this = this;
