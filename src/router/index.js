@@ -31,12 +31,13 @@ import Uploadinput from '@/components/pages/Uploadinput'
 
 import Report from '@/components/pages/Report'
 
-import About from '@/components/pages/About'
-import General from '@/components/pages/General'
+// import About from '@/components/pages/About'
+// import General from '@/components/pages/General'
 
 import Calendar from '@/components/pages/Calendar'
-import Calendarsearch from '@/components/pages/Calendarsearch'
-import Calendarlist from '@/components/pages/Calendarlist'
+
+// import Calendarsearch from '@/components/pages/Calendarsearch'
+// import Calendarlist from '@/components/pages/Calendarlist'
 import Calendarinfo from '@/components/pages/Calendarinfo'
 import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
 
@@ -143,8 +144,8 @@ const router =  new Router({
     },
 
 
-    { path:'/about',component:About},
-    { path:'/general',component:General},
+    // { path:'/about',component:About},
+    // { path:'/general',component:General},
     { path:'/uploadinput',component:Uploadinput},
 
     //报表
@@ -163,15 +164,15 @@ const router =  new Router({
         fromSave:false,  //当在详情页面保存后回到日历页面刷新
       }
     },
-    { path:'/calendarsearch',name:'calendarsearch',component:Calendarsearch},
+    // { path:'/calendarsearch',name:'calendarsearch',component:Calendarsearch},
 
-    { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-        fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      }
-    },
+    // { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
+    //   meta: {
+    //     keepAlive: true,
+    //     isBack:false,
+    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
+    //   }
+    // },
     { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Contactsinfo,
       meta: {
         keepAlive: true,

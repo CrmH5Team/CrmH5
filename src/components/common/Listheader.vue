@@ -83,7 +83,9 @@ export default {
 
 <style scoped>
 
-header{position:fixed;width:100%;top:0;left:0;z-index: 99;}
+header{
+    /* position:fixed;width:100%;top:0;left:0;z-index: 99; */
+    }
 header.mui-bar {
   overflow: hidden;
   background: #f8f2dc;

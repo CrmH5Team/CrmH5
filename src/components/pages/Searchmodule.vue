@@ -129,6 +129,7 @@ export default {
   -webkit-line-clamp: 1;
   word-break: break-all;
   box-sizing: border-box;
+  width:50%;
 }
 .active-item{color:#009979;}
 .nav-border{

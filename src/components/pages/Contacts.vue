@@ -3,7 +3,7 @@
       <Header class="header sticky" :title="title"></Header>
 
       <div id="page-content" class="page-content">
-          <div id="nav" class="nav sticky">
+          <div class="nav sticky">
               <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Organizations</div>
               <div @click="switchPage(1,$event)" class="nav-item f16" >Contacts</div>
               <div class="nav-border"></div>

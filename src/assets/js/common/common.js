@@ -521,6 +521,32 @@
 		return true;
 	};
 
+	//	sessionStorage
+	/*通过键(key)检索获取应用存储sessionStorage的值*/ 
+	tool.getSessionStorageItem = function(keyName) {
+		if(tool.isNull(keyName)) {
+			return "";
+		}
+		return sessionStorage.getItem(keyName);
+	};
+
+	/*修改或添加键值(key-value)对数据到应用数据存储sessionStorage中*/
+	tool.setSessionStorageItem = function(keyName, value) {
+		if(tool.isNull(keyName)) {
+			return false;
+		}
+		sessionStorage.setItem(keyName, value);
+		return true;
+	};
+
+	/*通过key值删除键值对存储的数据*/
+	tool.clearSessionStorageItem = function() {
+		sessionStorage.clear();
+		return true;
+	};
+
+
+
 	/*生成随机数  min ≤ r ≤ max*/
 	tool.RandomNumBoth = function(min, max) {
 		var rangeTemp = max - min;

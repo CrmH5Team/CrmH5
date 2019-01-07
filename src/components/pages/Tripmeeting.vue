@@ -12,7 +12,7 @@
           <!-- list 视图 -->
         <div v-show="selectView === 'list'" class="list-view">
 
-              <div id="nav" class="nav sticky">
+              <div class="nav sticky">
                   <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
                   <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
                   <div class="nav-border"></div>
@@ -194,92 +194,122 @@ export default {
 
             selectView:'list',
             dataFilter:['my-calendar'],
-            //搜索页面数据模型
-            calendarSearchData:[
+            
+            //侧滑搜索页面数据模型
+            tripMeetingSearchData:[
                 {
-                    type:'input',
-                    field:'potentialname',
-                    queryType:'string',
-                    text:'Title标题',
-                    value:'',
+                    module:'Meeting',
+                    searchItems:[
+                          {
+                              type:'input',
+                              field:'name',
+                              queryType:'string',
+                              text:'Organization Name 公司名称',
+                              value:'',
+                          },
+                          {
+                              type:'picker',
+                              field:'cf_765',
+                              queryType:'string',
+                              text:'Business Sector 业务分类',
+                              value:'',
+                              id:Number((new Date()).valueOf()) + count++
+                          },
+                          {
+                            type:'picker',
+                            field:'cf_771',
+                            queryType:'string',
+                            text:'Area / Region 区域',
+                            value:'',
+                            id:Number((new Date()).valueOf()) + count++
+                          },
+                          {
+                              type:'selectlist',
+                              field:'related_to',
+                              queryType:'string',
+                              queryUrl:"Accounts/Query",
+                              text:'Country 国家',
+                              selectType:'radio',
+                              value:{
+                                  text:'',
+                                  value:''
+                              }
+                          },
+                          {
+                              type:'selectlist',
+                              field:'related_to',
+                              queryType:'string',
+                              queryUrl:"Accounts/Query",
+                              text:'Account Manager 客户经理',
+                              selectType:'radio',
+                              value:{
+                                  text:'',
+                                  value:''
+                              }
+                          }
+                    ]
                 },
                 {
-                    type:'selectlist',
-                    field:'contact_id',
-                    queryType:'string',
-                    queryUrl:"Contacts/Query",
-                    text:'Initiator发起人',
-                    selectType:'radio',
-                    value:{
-                        text:'',
-                        value:''
-                    }
-                },
-                {
-                    type:'picker',
-                    field:'cf_765',
-                    queryType:'string',
-                    text:'Meeting nature会议性质',
-                    value:'',
-                    id: Number((new Date()).valueOf()) + count++
-                },
-                {
-                    type:'picker',
-                    field:'cf_763',
-                    queryType:'string',
-                    text:'Meeting type会议类型',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                },
-                {
-                    type:'selectlist',
-                    field:'related_to',
-                    queryType:'string',
-                    queryUrl:"Accounts/Query",
-                    text:'Organization公司',
-                    selectType:'checkbox',
-                    resulteRow:true, //第二行显示结果
-                    value:{
-                        text:'',
-                        value:''
-                    }
-                },
-                {
-                    type:'selectlist',
-                    field:'assigned_user_id',
-                    queryType:'string',
-                    queryUrl:"Users/Query",
-                    text:'Contact Name联系人名称',
-                    selectType:'checkbox',
-                    resulteRow:true, //第二行显示结果
-                    value:{
-                        text:'',
-                        value:''
-                    }
-                },
-                {
-                    type:'picker',
-                    field:'cf_771',
-                    queryType:'string',
-                    text:'Opportunity 商业机会',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                },
-                {
-                    type:'picker',
-                    field:'cf_769',
-                    queryType:'string',
-                    text:'Priority',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                },
-                {
-                    type:'datepicker',
-                    field:'closingdate',
-                    queryType:'string',
-                    text:'Time Range',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
+                    module:'Trip',
+                    searchItems:[
+                          {
+                              type:'input',
+                              field:'name',
+                              queryType:'string',
+                              text:'Name',
+                              value:'',
+                          },
+                          {
+                              type:'picker',
+                              field:'cf_765',
+                              queryType:'string',
+                              text:'Status 状态',
+                              value:'',
+                              id:Number((new Date()).valueOf()) + count++
+                          },
+                          {
+                              type:'selectlist',
+                              field:'related_to',
+                              queryType:'string',
+                              queryUrl:"Accounts/Query",
+                              text:'Initiator发起人',
+                              selectType:'checkbox',
+                              resulteRow:false, //第二行显示结果
+                              value:{
+                                  text:'',
+                                  value:''
+                              }
+                          },
+                          {
+                              type:'selectlist',
+                              field:'related_to',
+                              queryType:'string',
+                              queryUrl:"Accounts/Query",
+                              text:'Organization公司',
+                              selectType:'checkbox',
+                              resulteRow:true, //第二行显示结果
+                              value:{
+                                  text:'',
+                                  value:''
+                              }
+                          },
+                          {
+                              type:'picker',
+                              field:'cf_765',
+                              queryType:'string',
+                              text:'Business Sector 业务分类',
+                              value:'',
+                              id:Number((new Date()).valueOf()) + count++
+                          },
+                          {
+                            type:'picker',
+                            field:'cf_771',
+                            queryType:'string',
+                            text:'Area / Region 区域',
+                            value:'',
+                            id:Number((new Date()).valueOf()) + count++
+                        }
+                    ]
                 }
             ],
 
@@ -310,7 +340,7 @@ export default {
 
         eventBus.$on('showRightPanelEvent',this.panelToggle);
 
-        this.changePos();
+        // this.changePos();
     },
     methods:{
         //切换页面
@@ -318,8 +348,8 @@ export default {
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
-            $(el).addClass('active-item').siblings().removeClass('active-item'); console.log(999);
-            _self.changePos();
+            $(el).addClass('active-item').siblings().removeClass('active-item'); 
+            // _self.changePos();
             _self.showPage = num;
         },
         //table底部横条过渡效果
@@ -372,7 +402,7 @@ export default {
             var parameter = {
                 'selectView':_self.selectView,
                 'dataFilter':_self.dataFilter,
-                'dataModule':_self.calendarSearchData
+                'dataModule':_self.tripMeetingSearchData
             }
             _self.$router.push({
                   path: '/searchmodule',
