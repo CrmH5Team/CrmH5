@@ -65,7 +65,11 @@ const router =  new Router({
     { path: '/index',name:'index', component:Index },
     { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
     { path: '/notification',name:'notification', component:Notification },
+
     { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo },
+
+    { path: '/prcalendarinfo/:id',name:'prcalendarinfo', component:PrCalendarinfo },
+
 
     { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
       meta: {

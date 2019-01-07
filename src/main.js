@@ -47,31 +47,20 @@ new Vue({
 })
 
 
-  /*
-  //禁止双击事件
-  document.addEventListener('touchstart',function (event) {
-      if(event.touches.length>1){
-          event.preventDefault();
-      }
-  })
-  var lastTouchEnd=0;
-  document.addEventListener('touchend',function (event) {
-      var now=(new Date()).getTime();
-      if(now-lastTouchEnd<=300){
-          event.preventDefault();
-      }
-      lastTouchEnd=now;
-  },false)
-  */
+
  //iOS 里有一组双指手势操作的事件：gesturestart、gesturechange、gestureend
 document.addEventListener('gesturestart', function (event) {
     event.preventDefault();
 })
 
-document.documentElement.addEventListener('touchstart', function (event) {
-  if (event.touches.length > 1) {
+//禁止iOS 10+ safari浏览器页面双击放大
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+  var now = (new Date()).getTime();
+  if (now - lastTouchEnd <= 300) {
     event.preventDefault();
   }
+  lastTouchEnd = now;
 }, false);
 
 
