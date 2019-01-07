@@ -259,7 +259,7 @@ export default {
     data() {
         return {
             moreHiddenIcon: false,
-            delHidden: false,
+            delHidden: true,
             saveHidden: true,
             submitIconHidden: true,
             ptitle: 'Trip detail',

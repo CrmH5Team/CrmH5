@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -152,6 +152,7 @@ export default {
         return {
             moreHiddenIcon: false,
             delHidden: false,
+            saveHidden:true,
             ptitle: 'MeetingNote detail',
             isShowMenuList: false,
             scrollTop: 0, //记录滚动条的位置

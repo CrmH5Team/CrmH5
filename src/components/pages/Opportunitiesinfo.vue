@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -202,6 +202,7 @@ export default {
         return {
             moreHiddenIcon: true,
             delHidden: false,
+            saveHidden:true,
             ptitle: 'Opportunities detail',
             itemsData: ['Organizations', 'Contacts'],
             isShowMenuList: false,
