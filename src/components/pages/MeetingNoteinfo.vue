@@ -117,7 +117,7 @@
         <Uploadfile></Uploadfile>
 
         <div class="busOpportunities">
-            <div class="ListCell">
+            <div class="ListCell" @click="goinDealOrOpportunity">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -198,6 +198,15 @@ export default {
 
     },
     methods: {
+        goinDealOrOpportunity: function () {
+            this.$router.push({
+                path: '/opportunitiesinfo/:id',
+                query: {
+                    id: ""
+                }
+            })
+        },
+
         // 开关事件
         allDayClick: function (e) {
             if ($(e.target).is(":checked") == true) {

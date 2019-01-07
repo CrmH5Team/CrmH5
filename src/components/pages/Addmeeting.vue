@@ -7,7 +7,7 @@
             <div class="ListCellLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
             <div class="ListCellContent">
                 <div class="ListCellContentLeft leftContent">
-                    <div class="ListCellContentLeftText">Meeting Nature</div>
+                    <div class="ListCellContentLeftText">Select Existence</div>
                 </div>
                 <div class="ListCellContentRight rightContent">
                     <div class="ListCellContentRightText"></div>
