@@ -182,7 +182,7 @@
     bottom: 0;
 }
 .ListCellLeftIcon.leftIconHidden,.ListCellRightIcon.rightIconHidden,
-.ListSpecialCellLeftIcon.leftIconHidden,.ListSpecialCellRightIcon.rightIconHidden
+.ListSpecialCellLeftIcon.leftIconHidden,.ListSpecialCellRightIcon.rightIconHidden,.iconHidden
 {
     display: block;
     visibility: hidden;

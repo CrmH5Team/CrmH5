@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle" :submitIcon="submitIconHidden"></Infoheader>
 
     <div class="scroll-div">
         <div class="tipBox">
@@ -32,11 +32,11 @@
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
                 <div class="headerBlockContent f16">meeting</div>
-                <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                <div class="headerBlockRightIcon"><router-link to='/addmeeting'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
             </div>
-            <!-- <div class="shuoming">
+            <div class="shuoming" v-show="isHiddenShuoMing">
                 <div class="shuomingContent f14">请至少添加一条会议记录！</div>
-            </div> -->
+            </div>
             <div class="contentList">
                 <div class="contentListCell">
                     <div class="contentListCellHeader headerBlock">
@@ -94,11 +94,11 @@
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-icon-test3"></span></div>
                 <div class="headerBlockContent f16">路线/机票申请</div>
-                <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                <div class="headerBlockRightIcon"><router-link to='/AddRouteOrRoom'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
             </div>
-            <!-- <div class="shuoming">
+            <div class="shuoming" v-show="isHiddenShuoMing">
                 <div class="shuomingContent f14">请至少添加一条会议记录！</div>
-            </div> -->
+            </div>
             <div class="contentList">
                 <div class="contentListCell">
                     <div class="contentListCellHeader headerBlock">
@@ -132,13 +132,13 @@
                 </div>
             </div>
         </div>
-        <div class="route">
+        <div class="room">
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-zhusu"></span></div>
                 <div class="headerBlockContent f16">住宿</div>
-                <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                <div class="headerBlockRightIcon"><router-link to='/AddRouteOrRoom'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
             </div>
-            <!-- <div class="shuoming">
+            <!-- <div class="shuoming" v-show="isHiddenShuoMing">
                 <div class="shuomingContent f14">请至少添加一条会议记录！</div>
             </div> -->
             <div class="contentList">
@@ -171,11 +171,63 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+        <div class="budget">
+            <div class="budgetHeader">
+                <div class="headerBlock">
+                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-yusuan"></span></div>
+                    <div class="headerBlockContent f16">住宿</div>
+                    <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                </div>
+            </div>
+
+            <div class="ListCell visible">
+                <div class="ListCellLeftIcon iconHidden"><span class="mui-icon calcfont calc-tixing1"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft">
+                        <div class="ListCellContentLeftText reminderTiShi">住宿费用是否超出报销限额</div>
+                    </div>
+                    <div class="ListCellContentRight switch">
+                        <div class="weui-cell__ft">
+                            <input @click="reminderSwitch" class="weui-switch" type="checkbox">
+
+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ListCell visible" v-show="isHiddenYuanying">
+                    <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="mui-icon calcfont calc-T"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="请输入原因"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="mui-icon calcfont calc-T"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="预算合计"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">币别</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">人民币</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -203,8 +255,11 @@ export default {
         return {
             moreHiddenIcon: false,
             delHidden: false,
+            submitIconHidden: true,
             ptitle: 'Trip detail',
             isShowMenuList: false,
+            isHiddenShuoMing: false,
+            isHiddenYuanying: false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -244,6 +299,22 @@ export default {
             }
 
         },
+        reminderSwitch: function (e) {
+            var $this = this;
+            if ($(e.target).is(":checked") == true) {
+                console.log('true');
+                // $this.$nextTick(function(){
+                $this.isHiddenYuanying = true;
+                // })
+
+            } else {
+                console.log('false');
+
+                //   $this.$nextTick(function(){
+                $this.isHiddenYuanying = false;
+                // })
+            }
+        },
 
     }
 
@@ -272,13 +343,31 @@ export default {
 }
 
 .meeting,
-.route {
+.route,.room {
     margin-top: 10px;
     padding: 5px 0;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
 
     background-color: #fff;
+}
+
+.budget {
+    margin-top: 10px;
+    padding: 5px 0;
+    background-color: #fff;
+}
+
+.budgetHeader {
+
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    background-color: #fff;
+}
+
+.budget .ListCell.visible:after {
+    background-color: #F5F5DC !important;
 }
 
 .headerBlock,
@@ -320,6 +409,10 @@ export default {
     padding-left: 5px;
     margin: auto 0;
     color: #FF5A21;
+}
+
+.budget .headerBlock .headerBlockContent {
+    color: #333333;
 }
 
 .contentListCell .headerBlockContent {

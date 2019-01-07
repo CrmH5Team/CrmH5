@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-mingcheng"></span></div>
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">对内/对外</div>

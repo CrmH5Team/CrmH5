@@ -5,9 +5,11 @@
 
         <h1 class="mui-title f18">{{title}}</h1>
         <div class="leftView">
-        <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
-        <a @click="save" class="calcfont calc-gou right" id="save"></a>
-        <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a></div>
+            <a v-show="submitIcon" class="calcfont calc-tijiao right" id="tijiao"></a>
+            <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
+            <a @click="save" v-show="saveIcon" class="calcfont calc-gou right" id="save"></a>
+            <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+        </div>
 
     </header>
 </div>
@@ -21,13 +23,16 @@ export default {
         return {
             // moreIcon: true,
             // delHidden: true,
+            // submitIcon: false
         }
     },
     props: {
         title: String,
         pageType: String,
-        moreIcon:Boolean,
-        delHidden:Boolean
+        moreIcon: Boolean,
+        delHidden: Boolean,
+        submitIcon: Boolean,
+        saveIcon:Boolean
     },
     mounted: function () {
 
@@ -36,13 +41,13 @@ export default {
 
         //保存动作
         save: function () {
-            eventBus.$emit('save','saveData');
+            eventBus.$emit('save', 'saveData');
         },
         delClick: function () {
-             eventBus.$emit('delete');
+            eventBus.$emit('delete');
         },
         moreClick: function () {
-             eventBus.$emit('gengduo');
+            eventBus.$emit('gengduo');
         },
         back: function () {
             this.$router.back(-1);
@@ -64,18 +69,18 @@ header.mui-bar {
     position: fixed;
     top: 0;
     left: 0;
-    right:0;
+    right: 0;
     z-index: 99;
 }
-.leftView
-{
- position: absolute;
-  height: 0.88rem;
-  width: 2.1rem;
-  right: 0;
-  padding-right: 0.1rem
 
+.leftView {
+    position: absolute;
+    height: 0.88rem;
+    width: 2.1rem;
+    right: 0;
+    padding-right: 0.1rem
 }
+
 .mui-title {
     right: 2.3rem;
     left: 0.8rem;
@@ -120,10 +125,12 @@ header.mui-bar {
     float: right;
     width: 0.6rem;
 }
-#delete:after{
+
+#delete:after {
     clear: both;
 
 }
+
 header .mui-title,
 header a {
     color: #333333;
