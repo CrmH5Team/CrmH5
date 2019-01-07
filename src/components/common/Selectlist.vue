@@ -242,9 +242,9 @@ export default {
                 $('#searchInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('label').show();
+                        listDom.find('div.item-div').show();
                     } else {
-                        listDom.find('label').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        listDom.find('div.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
             })
