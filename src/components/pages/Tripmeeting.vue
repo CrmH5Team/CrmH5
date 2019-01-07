@@ -194,7 +194,7 @@ export default {
 
             selectView:'list',
             dataFilter:['my-calendar'],
-            
+
             //侧滑搜索页面数据模型
             tripMeetingSearchData:[
                 {
@@ -340,7 +340,7 @@ export default {
 
         eventBus.$on('showRightPanelEvent',this.panelToggle);
 
-        // this.changePos();
+        this.changePos();
     },
     methods:{
         //切换页面
@@ -348,8 +348,8 @@ export default {
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
-            $(el).addClass('active-item').siblings().removeClass('active-item'); 
-            // _self.changePos();
+            $(el).addClass('active-item').siblings().removeClass('active-item');
+            _self.changePos();
             _self.showPage = num;
         },
         //table底部横条过渡效果

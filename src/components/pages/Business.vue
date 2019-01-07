@@ -11,14 +11,14 @@
 
         <div v-show="showPage == 0" class="pageList">
               <div class="add-btn-div">
-                    <div class="add-div">
+                    <div class="add-div" @click="goInfoPage()">
                         <span class="calcfont calc-add"></span>
                         <span class="add-text">Add Deal</span>
                     </div>
               </div>
               <!-- 列表 -->
               <common-list :groupData="groupData">
-                    <div class="group-item f14" >
+                    <div class="group-item f14" @click="goInfoPage(5)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div blue-color">
@@ -42,14 +42,14 @@
 
         <div v-show="showPage == 1" class="pageList">
               <div class="add-btn-div">
-                    <div class="add-div">
+                    <div class="add-div"  @click="goInfoPage()">
                         <span class="calcfont calc-add"></span>
                         <span class="add-text">Add Opportunity</span>
                     </div>
               </div>
               <!-- 列表 -->
               <common-list :groupData="groupData">
-                    <div class="group-item f14" >
+                    <div class="group-item f14" @click="goInfoPage(5)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">
@@ -61,7 +61,7 @@
                             <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
                         </div>
                     </div>
-                    <div class="group-item f14" >
+                    <div class="group-item f14"  @click="goInfoPage(9)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">
@@ -73,7 +73,7 @@
                             <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
                         </div>
                     </div>
-                    <div class="group-item f14" >
+                    <div class="group-item f14"  @click="goInfoPage(7)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">
@@ -310,6 +310,22 @@ export default {
         this.changePos();
     },
     methods:{
+
+        //点击去详情页
+        goInfoPage:function(id){
+            var _self = this,
+                url = "";
+            if(id === undefined){
+              id = '';
+            }
+
+            if(_self.showPage == 0){
+                url = '/organizationsinfo/{"AutoID":"'+ id +'"}';
+            }else{
+                url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
+            }
+              _self.$router.push(url);
+        },
 
         //切换页面
         switchPage:function(num, e){
