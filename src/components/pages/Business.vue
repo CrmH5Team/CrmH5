@@ -17,8 +17,8 @@
                     </div>
               </div>
               <!-- 列表 -->
-              <common-list :groupData="groupData">
-                    <div class="group-item f14" @click="goInfoPage(5)">
+              <common-list :groupData="groupData" id="dealpipeline">
+                    <div slot="dealpipeline" class="group-item f14" @click="goInfoPage(5)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                           <div class="item-div item-first-div blue-color">
@@ -48,8 +48,8 @@
                     </div>
               </div>
               <!-- 列表 -->
-              <common-list :groupData="groupData">
-                    <div class="group-item f14" @click="goInfoPage(5)">
+              <common-list :groupData="groupData" id="opportunities">
+                    <div slot="opportunities" class="group-item f14" @click="goInfoPage(5)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">
@@ -61,7 +61,7 @@
                             <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
                         </div>
                     </div>
-                    <div class="group-item f14"  @click="goInfoPage(9)">
+                    <div slot="opportunities" class="group-item f14"  @click="goInfoPage(9)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">
@@ -73,7 +73,7 @@
                             <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
                         </div>
                     </div>
-                    <div class="group-item f14"  @click="goInfoPage(7)">
+                    <div slot="opportunities" class="group-item f14"  @click="goInfoPage(7)">
                         <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                         <div class="item-block">
                             <div class="item-div item-first-div blue-color">

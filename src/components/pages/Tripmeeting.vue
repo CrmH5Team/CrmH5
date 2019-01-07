@@ -25,8 +25,8 @@
                           </div>
                     </div>
                     <!-- 列表 -->
-                    <common-list :groupData="groupData">
-                          <div class="data-events-item f12" @click="goInfoPage(45)">
+                    <common-list :groupData="groupData" id="meeting">
+                          <div slot="meeting" class="data-events-item f12" @click="goInfoPage(45)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -36,7 +36,7 @@
                                 <div class="item-address">China Eastern Airlines</div>
                                 <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                           </div>
-                          <div class="data-events-item f12" @click="goInfoPage(25)">
+                          <div slot="meeting" class="data-events-item f12" @click="goInfoPage(45)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -46,7 +46,7 @@
                                 <div class="item-address">China Eastern Airlines</div>
                                 <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                           </div>
-                          <div class="data-events-item f12" @click="goInfoPage(69)">
+                          <div slot="meeting" class="data-events-item f12" @click="goInfoPage(45)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -67,8 +67,8 @@
                           </div>
                     </div>
                     <!-- 列表 -->
-                    <common-list :groupData="groupData">
-                          <div class="data-events-item f12" @click="goInfoPage(1)">
+                    <common-list :groupData="groupData"  id="trip">
+                          <div slot="trip" class="data-events-item f12" @click="goInfoPage(1)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>
@@ -80,7 +80,7 @@
                                 <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                 <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                           </div>
-                          <div class="data-events-item f12" @click="goInfoPage(79)">
+                          <div slot="trip" class="data-events-item f12" @click="goInfoPage(1)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>
@@ -92,7 +92,7 @@
                                 <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                 <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                           </div>
-                          <div class="data-events-item f12" @click="goInfoPage(25)">
+                          <div slot="trip" class="data-events-item f12" @click="goInfoPage(1)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>

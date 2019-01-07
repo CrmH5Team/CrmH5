@@ -13,7 +13,7 @@
             <div class="occupy-div"></div>
 
             <div class="group-item-list">
-                <slot></slot>
+                <slot :name="id"></slot>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@ export default {
         //   scroll:null,
       }
   },
-  props: ['groupData'],
+  props: ['groupData','id'],
   created:function(){
 
   },

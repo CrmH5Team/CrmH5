@@ -38,7 +38,7 @@
                       </router-link>
                   </div>
                   <div class="weui-grid">
-                      <router-link to="/sharelist" class="js_grid">
+                      <router-link to="" class="js_grid">
                         <div class="weui-grid__icon intelligence-icon">
                           <span class="calcfont calc-lianxiren1 "></span>
                         </div>
