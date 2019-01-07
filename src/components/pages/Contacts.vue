@@ -18,7 +18,8 @@
                 </div>
                 <!-- 列表 -->
                 <common-list :groupData="groupData" id="organizations">
-                      <div slot="organizations" class="group-item" @click="goInfoPage(2)">
+                  <div slot="organizations">
+                      <div class="group-item" @click="goInfoPage(2)">
                           <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                           <div class="item-block">
                             <div class="item-div item-first-div">
@@ -32,7 +33,7 @@
                             </div>
                           </div>
                       </div>
-                      <div slot="organizations" class="group-item" @click="goInfoPage(12)">
+                      <div class="group-item" @click="goInfoPage(12)">
                           <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
                           <div class="item-block">
                             <div class="item-div item-first-div">
@@ -46,6 +47,7 @@
                             </div>
                           </div>
                       </div>
+                  </div>
                 </common-list>
           </div>
 
@@ -58,7 +60,8 @@
                 </div>
                 <!-- 列表 -->
                 <common-list :groupData="groupData" id="contacts">
-                      <div slot="contacts" class="group-item" @click="goInfoPage(1)">
+                  <div slot="contacts">
+                      <div class="group-item" @click="goInfoPage(1)">
                           <div class="item-user-icon calcfont calc-fuzeren1"></div>
                           <div class="item-block contacts-item-block">
                             <div class="item-div item-first-div">Todd Scott</div>
@@ -70,7 +73,7 @@
                             <div class="item-div">Airlines, Computer info Services</div>
                           </div>
                       </div>
-                      <div slot="contacts" class="group-item" @click="goInfoPage(2)">
+                      <div class="group-item" @click="goInfoPage(2)">
                           <div class="item-user-icon calcfont calc-fuzeren1"></div>
                           <div class="item-block contacts-item-block">
                             <div class="item-div item-first-div">Todd Scott</div>
@@ -82,7 +85,7 @@
                             <div class="item-div">Airlines, Computer info Services</div>
                           </div>
                       </div>
-                      <div slot="contacts" class="group-item" @click="goInfoPage(3)">
+                      <div class="group-item" @click="goInfoPage(3)">
                           <div class="item-user-icon calcfont calc-fuzeren1"></div>
                           <div class="item-block contacts-item-block">
                             <div class="item-div item-first-div">Todd Scott</div>
@@ -94,7 +97,7 @@
                             <div class="item-div">Airlines, Computer info Services</div>
                           </div>
                       </div>
-                      <div slot="contacts" class="group-item" @click="goInfoPage(4)">
+                      <div class="group-item" @click="goInfoPage(4)">
                           <div class="item-user-icon calcfont calc-fuzeren1"></div>
                           <div class="item-block contacts-item-block">
                             <div class="item-div item-first-div">Todd Scott</div>
@@ -106,6 +109,7 @@
                             <div class="item-div">Airlines, Computer info Services</div>
                           </div>
                       </div>
+                  </div>
                 </common-list>
           </div>
       </div>
