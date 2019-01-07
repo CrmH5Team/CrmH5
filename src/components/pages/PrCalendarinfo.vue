@@ -4,7 +4,7 @@
 
     <div class="scroll-div">
         <div class="PrCalendarList">
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-mingcheng"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -12,7 +12,7 @@
                     </p>
                 </div>
             </div>
-            <div class="ListCell">
+            <div class="ListCell visible">
                 <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-rili1"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">

@@ -3,173 +3,173 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
-
-        <div class="tipBox">
-            <div class="tipContent">
-                <p class="f12"><span>* </span> 请注意，该商业机会已关闭，仅允许被查看。</p>
+        <div class="box">
+            <div class="tipBox">
+                <div class="tipContent">
+                    <p class="f12"><span>* </span> 请注意，该商业机会已关闭，仅允许被查看。</p>
+                </div>
             </div>
-        </div>
-        <div class="OpportunitiesList">
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shangye"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Business Types</div>
+            <div class="OpportunitiesList">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shangye"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Business Types</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Opportunity</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Opportunity</div>
+                </div>
+                <div class="ListCell visible">
+                    <!-- 如果是deal详情 就将icon改为calc-jiaoyi -->
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="Title">MSN03092 Sales to Eastern Airlines</textarea>
+                        </p>
                     </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-            </div>
-            <div class="ListCell visible">
-                <!-- 如果是deal详情 就将icon改为calc-jiaoyi -->
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="Title">MSN03092 Sales to Eastern Airlines</textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListSpecialCell" id="Organization">
-                <div class="ListSpecialCellField">
-                    <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
-                    <div class="ListSpecialCellFieldContent">Organization</div>
-                    <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-                <div class="ListSpecialCellContent">Organization</div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Contact</div>
+                <div class="ListSpecialCell" id="Organization">
+                    <div class="ListSpecialCellField">
+                        <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
+                        <div class="ListSpecialCellFieldContent">Organization</div>
+                        <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Niki zhu</div>
+                    <div class="ListSpecialCellContent">Organization</div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Contact</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Niki zhu</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon " @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Follow it</div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                        </p>
                     </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Unfollowed</div>
-                    </div>
-                    <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
                 </div>
-                <!-- <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shoucang1"></span></div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon " @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Follow it</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Unfollowed</div>
+                        </div>
+                        <div class="ListCellRightIcon iconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                    <!-- <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shoucang1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
                         <textarea autoHeight="true" placeholder="">Follow it</textarea>
                     </p>
                 </div> -->
+                </div>
             </div>
-        </div>
-        <div class="meetingRecord">
-            <div class="headerBlock">
-                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
-                <div class="headerBlockContent f16">meeting Note</div>
-                <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+            <div class="meetingRecord">
+                <div class="headerBlock">
+                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                    <div class="headerBlockContent f16">meeting Note</div>
+                    <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                </div>
             </div>
-        </div>
-        <div class="meetingRecordList">
-            <div class="meetingRecordListCell">
-                <div class="headerDiv">
-                    <div class="headerDivLeftIcon"><span class="calcfont calc-bianhaonumbered5"></span></div>
-                    <div class="headerDivContent">
-                        <div class="content">MSN 05789 机身检查会议2</div>
-                    </div>
-                    <div class="headerDivRightBtn">
-                        <div class="rightBtn">查看完整
+            <div class="meetingRecordList">
+                <div class="meetingRecordListCell">
+                    <div class="headerDiv">
+                        <div class="headerDivLeftIcon"><span class="calcfont calc-bianhaonumbered5"></span></div>
+                        <div class="headerDivContent">
+                            <div class="content">MSN 05789 机身检查会议2</div>
+                        </div>
+                        <div class="headerDivRightBtn">
+                            <div class="rightBtn">查看完整
 
+                            </div>
+                        </div>
+                        <div class="headerDivRightDelete">
+                            <span class="calcfont calc-delete"></span>
                         </div>
                     </div>
-                    <div class="headerDivRightDelete">
-                        <span class="calcfont calc-delete"></span>
+                    <div class="airlinesName">
+                        <div class="airlinesNameContent f14">China Eastern Airlines</div>
+                    </div>
+                    <div class="meetingRemark">
+                        <p f14>会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容。</p>
+                    </div>
+                    <div class="meetingDocList">
+                        <div class="docListCell">
+                            <div class="docListCellLeft">
+                                <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName1.pdf</div>
+                            </div>
+                            <div class="docListCellRight">
+                                <div class="docListCellRightContent">16/Nov 15:00</div>
+                            </div>
+                        </div>
+                        <div class="docListCell">
+                            <div class="docListCellLeft">
+                                <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName2.pdf</div>
+                            </div>
+                            <div class="docListCellRight">
+                                <div class="docListCellRightContent">16/Nov 15:00</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="airlinesName">
-                    <div class="airlinesNameContent f14">China Eastern Airlines</div>
+            </div>
+            <div class="shareBlock">
+                <div class="shareTip">
+                    <p><span>* </span>请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。</p>
                 </div>
-                <div class="meetingRemark">
-                    <p f14>会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容。</p>
-                </div>
-                <div class="meetingDocList">
-                    <div class="docListCell">
-                        <div class="docListCellLeft">
-                            <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName1.pdf</div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Responsible by</div>
                         </div>
-                        <div class="docListCellRight">
-                            <div class="docListCellRightContent">16/Nov 15:00</div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Niki zhu</div>
                         </div>
-                    </div>
-                    <div class="docListCell">
-                        <div class="docListCellLeft">
-                            <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName2.pdf</div>
-                        </div>
-                        <div class="docListCellRight">
-                            <div class="docListCellRightContent">16/Nov 15:00</div>
-                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="shareBlock">
-            <div class="shareTip">
-                <p><span>* </span>请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。</p>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Responsible by</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Niki zhu</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-        </div>
 
-        <div class="accessBlock">
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Colleagues with access查看有权限访问的同事</div>
-                    </div>
-                    <!-- <div class="ListCellContentRight rightContent">
+            <div class="accessBlock">
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Colleagues with access查看有权限访问的同事</div>
+                        </div>
+                        <!-- <div class="ListCellContentRight rightContent">
                         <div class="ListCellContentRightText"></div>
                     </div> -->
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
                 </div>
             </div>
+
+            <Infofooter> </Infofooter>
         </div>
-
-        <Infofooter> </Infofooter>
-
     </div>
     <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowClose="isShowClose" :isShowSend="isShowSend"></InfoRightPanel>
 
@@ -317,7 +317,8 @@ export default {
     color: rgb(102, 102, 102);
 }
 
-.tipContent span, {
+.tipContent span,
+    {
     color: red;
 }
 
@@ -351,21 +352,6 @@ export default {
     bottom: 0;
     height: 1px;
     background-color: #F5F5DC;
-}
-
-.ListCell:after,
-.ListSpecialCell:after {
-    background-color: #F5F5DC;
-}
-
-.visible:after {
-    background-color: #F6E78B;
-}
-
-.iconHidden,
-.ListCellRightIcon.rightIconHidden {
-    display: block;
-    visibility: hidden;
 }
 
 .headerBlock .headerBlockLeftIcon {
@@ -568,13 +554,16 @@ export default {
 .accessBlock {
     margin-top: 10px;
 }
-.accessBlock .ListCellContentLeftText{
-   font-weight: 700;
+
+.accessBlock .ListCellContentLeftText {
+    font-weight: 700;
 }
+
 .leftContent {
     width: calc(100% - 0.32rem) !important;
 }
-span.calcfont.calc-shoucang{
-    color:#FF5A21 !important;
+
+span.calcfont.calc-shoucang {
+    color: #FF5A21 !important;
 }
 </style>

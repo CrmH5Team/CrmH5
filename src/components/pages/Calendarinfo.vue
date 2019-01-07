@@ -3,207 +3,209 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
-        <div class="CalendarList">
-            <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="Title">Firsting Meeting with Eastern Airlines</textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft">
-                        <div class="ListCellContentLeftText">All day</div>
-                    </div>
-                    <div class="ListCellContentRight switch">
-                        <div class="weui-cell__ft">
-                            <input @click="allDayClick" class="weui-switch" type="checkbox">
-
-</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="box">
+            <div class="CalendarList">
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Start</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">16/Nov 15:00</div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">End</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">16/Nov 16:00</div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Meeting Nature</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature </div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-17"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Meeting Type</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Meeting Type</div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListSpecialCell" id="Organization">
-                    <div class="ListSpecialCellField">
-                        <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
-                        <div class="ListSpecialCellFieldContent">Organization</div>
-                        <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                    <div class="ListSpecialCellContent">Organization</div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Contact</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Contact</div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            <textarea autoHeight="true" placeholder="Title">Firsting Meeting with Eastern Airlines</textarea>
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="showMoreList">
-                <div class="MoreList">
-                    <div class="ListSpecialCell specialCell" id="Opportunity">
-                        <div class="ListSpecialCellField">
-                            <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
-                            <div class="ListSpecialCellFieldContent">Opportunity</div>
-                            <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft">
+                            <div class="ListCellContentLeftText">All day</div>
                         </div>
-                        <div class="ListSpecialCellContent">Opportunity</div>
-                    </div>
-                    <div class="ListCell" id="Initiator">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">Initiator</div>
+                        <div class="ListCellContentRight switch">
+                            <div class="weui-cell__ft">
+                                <input @click="allDayClick" class="weui-switch" type="checkbox">
+
+</div>
                             </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Cheryl Xiong</div>
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>
                     </div>
                     <div class="ListCell">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxianji"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">Priority</div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Priority</div>
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                        </div>
-                    </div>
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
-                        <div class="ListCellLeftText">
-                            <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText tiShi" @click="VisibilityTiShiClick">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Select user or group user or group Select user or group user or group Select user or group user or group</div>
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                        </div>
-                    </div>
-                    <div class="ListCell visible">
                         <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">Visibility for</div>
+                                <div class="ListCellContentLeftText">Start</div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Market Team</div>
+                                <div class="ListCellContentRightText">16/Nov 15:00</div>
                             </div>
                             <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>
                     </div>
                     <div class="ListCell">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-tixing1"></span></div>
+                        <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
                         <div class="ListCellContent">
-                            <div class="ListCellContentLeft">
-                                <div class="ListCellContentLeftText reminderTiShi" @click="reminderClick">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText">End</div>
                             </div>
-                            <div class="ListCellContentRight switch">
-                                <div class="weui-cell__ft">
-                                    <input @click="reminderSwitch" class="weui-switch" type="checkbox">
-
-</div>
-                                </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">16/Nov 16:00</div>
                             </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>
-                        <div class="ListCell">
-                            <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText">Meeting Nature</div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature Meeting Nature </div>
+                            </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-17"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText">Meeting Type</div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">Meeting Type</div>
+                            </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                    </div>
+                    <div class="ListSpecialCell" id="Organization">
+                        <div class="ListSpecialCellField">
+                            <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
+                            <div class="ListSpecialCellFieldContent">Organization</div>
+                            <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                        <div class="ListSpecialCellContent">Organization</div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehulianxiren"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText">Contact</div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText">Contact</div>
+                            </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showMoreList">
+                    <div class="MoreList">
+                        <div class="ListSpecialCell specialCell" id="Opportunity">
+                            <div class="ListSpecialCellField">
+                                <div class="ListSpecialCellLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                                <div class="ListSpecialCellFieldContent">Opportunity</div>
+                                <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                            </div>
+                            <div class="ListSpecialCellContent">Opportunity</div>
+                        </div>
+                        <div class="ListCell" id="Initiator">
+                            <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-fuzerenicon"></span></div>
                             <div class="ListCellContent">
                                 <div class="ListCellContentLeft leftContent">
-                                    <div class="ListCellContentLeftText">Send Email Before Email Before</div>
+                                    <div class="ListCellContentLeftText">Initiator</div>
                                 </div>
                                 <div class="ListCellContentRight rightContent">
-                                    <div class="ListCellContentRightText">1h</div>
+                                    <div class="ListCellContentRightText">Cheryl Xiong</div>
                                 </div>
                                 <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                             </div>
                         </div>
+                        <div class="ListCell">
+                            <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-youxianji"></span></div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft leftContent">
+                                    <div class="ListCellContentLeftText">Priority</div>
+                                </div>
+                                <div class="ListCellContentRight rightContent">
+                                    <div class="ListCellContentRightText">Priority</div>
+                                </div>
+                                <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                            </div>
+                        </div>
+                        <div class="ListCell">
+                            <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-fengxianyujing"></span></div>
+                            <div class="ListCellLeftText">
+                                <p class="textareaP">
+                                    <textarea autoHeight="true" placeholder="Risk Tips"></textarea>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ListCell">
+                            <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft leftContent">
+                                    <div class="ListCellContentLeftText tiShi" @click="VisibilityTiShiClick">Visibility<span class="mui-icon calcfont calc-tishi"></span></div>
+                                </div>
+                                <div class="ListCellContentRight rightContent">
+                                    <div class="ListCellContentRightText">Select user or group user or group Select user or group user or group Select user or group user or group</div>
+                                </div>
+                                <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                            </div>
+                        </div>
+                        <div class="ListCell visible">
+                            <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft leftContent">
+                                    <div class="ListCellContentLeftText">Visibility for</div>
+                                </div>
+                                <div class="ListCellContentRight rightContent">
+                                    <div class="ListCellContentRightText">Market Team</div>
+                                </div>
+                                <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                            </div>
+                        </div>
+                        <div class="ListCell">
+                            <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-tixing1"></span></div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft">
+                                    <div class="ListCellContentLeftText reminderTiShi" @click="reminderClick">Reminder<span class="mui-icon calcfont calc-tishi"></span></div>
+                                </div>
+                                <div class="ListCellContentRight switch">
+                                    <div class="weui-cell__ft">
+                                        <input @click="reminderSwitch" class="weui-switch" type="checkbox">
+
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ListCell">
+                                <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                                <div class="ListCellContent">
+                                    <div class="ListCellContentLeft leftContent">
+                                        <div class="ListCellContentLeftText">Send Email Before Email Before</div>
+                                    </div>
+                                    <div class="ListCellContentRight rightContent">
+                                        <div class="ListCellContentRightText">1h</div>
+                                    </div>
+                                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <Uploadfile></Uploadfile>
+
+                        <Infofooter> </Infofooter>
+
                     </div>
-
-                    <Uploadfile></Uploadfile>
-
-                    <Infofooter> </Infofooter>
-
-                </div>
-                <div class="MoreBtn" @click="moreClick">
-                    <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
+                    <div class="MoreBtn" @click="moreClick">
+                        <span id="moreIcon" class="calcfont calc-shousuojiantou"></span>
+                    </div>
                 </div>
             </div>
             <InfoRightPanel :isShowList="isShowMenuList"></InfoRightPanel>
@@ -237,7 +239,7 @@ export default {
             moreHiddenIcon: true,
             delHidden: true,
             ptitle: 'calendar detail',
-            isShowMenuList:false,
+            isShowMenuList: false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 

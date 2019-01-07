@@ -10,13 +10,15 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; */
     padding-top: 0.88rem;
-    background-color: rgb(242, 242, 242);
+    background-color: #fff;
     /* background-color: #FFFFFF */
 }
-
-.CalendarList,.PrCalendarList {
+.box{
+    background-color: rgb(242, 242, 242)
+}
+.CalendarList,.PrCalendarList,.MeetingList {
     /* height: 100%; */
-    background-color: #FFFFFF
+    background-color: #fff;
 }
 .PrCalendarList{
     height: 100%;
@@ -226,10 +228,10 @@ textarea::placeholder
     right: 0.3rem;
     bottom: 0;
     height: 1px;
-    background-color: #F6E78B;
+    background-color: #F5F5DC;
 }
 .visible:after {
-    background-color: #F6E78B !important;
+    background-color: #F6E78B;
 }
 .ListCell input {
     /* outline: none; */
@@ -285,14 +287,6 @@ textarea::placeholder
 
 .showMoreList {
     display: none;
-}
-
-.MoreList .ListCell:after,.documentList .ListCell:after,.updateList .ListCell:after,.MoreList .specialCell:after {
-    background-color: #F5F5DC;
-}
-
-.MoreList .visible:after{
-    background-color: #F6E78B;
 }
 .updateList,.documentList{
     margin-top: 0.2rem;

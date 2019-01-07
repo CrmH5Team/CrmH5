@@ -3,6 +3,7 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
+        <div class="box">
         <div class="MeetingList">
             <div class="ListCell visible">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
@@ -106,6 +107,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </template>
@@ -197,17 +199,5 @@ export default {
 
 .meetingRecord .ListCellContentLeftText {
     font-weight: 700;
-}
-
-.meetingRecord .ListCell:after {
-    background-color: #fff;
-}
-
-.ListCell:after {
-    background-color: #F5F5DC;
-}
-
-.ListCell.visible:after {
-    background-color: #F6E78B;
 }
 </style>

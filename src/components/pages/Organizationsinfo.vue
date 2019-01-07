@@ -3,139 +3,141 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
-        <div class="OrganizationsList">
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="English">Air China</textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-CH"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="China">中国国际航空公司</textarea>
-                    </p>
-                </div>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Business Sector</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Airline</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Region/Area</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Asia Pacific</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell visible">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Country</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">China</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Account Manager</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Jessie Zhao</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehuguanli"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Existing Customer?</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Yes</div>
-                    </div>
-                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div>
-            <div class="ListCell">
-                <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
-                <div class="ListCellLeftText">
-                    <p class="textareaP">
-                        <!-- <textarea autoHeight="true" placeholder="" readonly disabled>Follow it</textarea> -->
-                        Follow it
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="showMoreList" style="display:block">
-            <div class="MoreList">
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shenqingpingji"></span></div>
+        <div class="box">
+            <div class="OrganizationsList">
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Rating"></textarea>
+                            <textarea autoHeight="true" placeholder="English">Air China</textarea>
                         </p>
                     </div>
                 </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-CH"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="address"></textarea>
+                            <textarea autoHeight="true" placeholder="China">中国国际航空公司</textarea>
                         </p>
                     </div>
                 </div>
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
-                    <div class="ListCellLeftText">
-                        <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Remarks"></textarea>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="contactList">
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">联系人</div>
+                            <div class="ListCellContentLeftText">Business Sector</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"></div>
+                            <div class="ListCellContentRightText">Airline</div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Region/Area</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Asia Pacific</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Country</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">China</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Account Manager</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Jessie Zhao</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehuguanli"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Existing Customer?</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Yes</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <!-- <textarea autoHeight="true" placeholder="" readonly disabled>Follow it</textarea> -->
+                            Follow it
+                        </p>
+                    </div>
+                </div>
             </div>
-            <!-- <Uploadfile></Uploadfile> -->
+            <div class="showMoreList" style="display:block">
+                <div class="MoreList">
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shenqingpingji"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea autoHeight="true" placeholder="Rating"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea autoHeight="true" placeholder="address"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea autoHeight="true" placeholder="Remarks"></textarea>
+                            </p>
+                        </div>
+                    </div>
 
-            <Infofooter> </Infofooter>
+                </div>
+                <div class="contactList">
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText">联系人</div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText"></div>
+                            </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <Uploadfile></Uploadfile> -->
 
+                <Infofooter> </Infofooter>
+
+            </div>
         </div>
     </div>
     <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
@@ -172,7 +174,7 @@ export default {
             ptitle: 'Organizationsinfo detail',
             itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
             isShowMenuList: false,
-            isShowSendBtn:false,
+            isShowSendBtn: false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
 
@@ -234,22 +236,16 @@ export default {
 .ListCell .mui-icon.calcfont.calc-shoucang {
     color: #FF5A21 !important;
 }
-.contactList
-{
+
+.contactList {
     margin-top: 10px;
 }
-.contactList .ListCell::after
-{
+
+.contactList .ListCell:after {
     background-color: #fff;
 }
-.contactList .ListCellContentLeftText
-{
+
+.contactList .ListCellContentLeftText {
     font-weight: 700;
-}
-.ListCell:after{
-     background-color: #F5F5DC;
-}
-.ListCell.visible:after{
-    background-color: #F6E78B;
 }
 </style>
