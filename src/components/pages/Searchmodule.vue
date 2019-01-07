@@ -2,7 +2,7 @@
 <div>
     <my-header class="header" :title="title"></my-header>
 
-    <div id="nav" class="nav">
+    <div class="nav">
         <div @click="switchPage(0,$event)" class="nav-item f16 active-item">{{searchData[0].module}}</div>
         <div @click="switchPage(1,$event)" class="nav-item f16" >{{searchData[1].module}}</div>
         <div class="nav-border"></div>
@@ -39,50 +39,80 @@ export default {
         }
     },
     created () {
-        this.searchData = this.$route.query.dataModule;
-
-        // this.selectView = this.$route.query.selectView;
-        this.dataFilter = this.$route.query.dataFilter;
+        var _self = this;
+        var sessionData = JSON.parse(tool.getSessionStorageItem('searchData'));
+        // console.log(sessionData);
+        if(!tool.isNullOrEmptyObject(sessionData)){
+            _self.searchData = sessionData.dataModule;
+            _self.dataFilter = sessionData.dataFilter;
+        }
     },
     mounted:function(){
 
-        //用common中的方法初始化
-        initial.initPicker();
-        initial.initDatePicker();
 
-        this.changePos();
     },
     activated:function(){
 
-        this.handleSelectlist();
+        var _self = this;
+        var sessionData = JSON.parse(tool.getSessionStorageItem('searchData'));
+        if(!tool.isNullOrEmptyObject(sessionData)){
+            _self.searchData = sessionData.dataModule;
+            _self.dataFilter = sessionData.dataFilter;
+
+            _self.$nextTick(function(){
+                //用common中的方法初始化
+                initial.initPicker();
+                initial.initDatePicker();
+
+                _self.changePos();
+            })
+        }
+        _self.handleSelectlist();
+
     },
     methods:{
+
         //处理从selectlist返回来的值
         handleSelectlist:function(){
             var _self = this;
             var sData = eventBus.selectListData;
                 if(!tool.isNullOrEmptyObject(sData)){
 
-                    var el = $('.search-rows').find('.selectList[data-field="'+ sData.field +'"]');
-                    console.log(el.length);
-                    var valueDiv = el.closest('.item-row-flex').next();
-                    valueDiv.html('');
+                    var el = $('.search-box').find('.selectList[data-field="'+ sData.field +'"]');
+                    var resulterow = el.attr('data-resulterow') || false;
+                    if(resulterow){
+                        var valueDiv = el.closest('.item-row-flex').next();
+                        valueDiv.html('');
+                        $.each(sData.value,function(index,item){
+                            valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                        })
+                    }else{
+                        el.html('');
+                        $.each(sData.value,function(index,item){
+                            el.append('<span style="display:inline-block;padding-left:5px;" data-value='+ item.value +'>'+ item.text +'</span>');
+                        })
+                    }
 
-                    $.each(sData.value,function(index,item){
-                        valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
-                    })
                     eventBus.selectListData = null;
                 }
         },
+
         //切换页面
         switchPage:function(num, e){
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
-            // _self.swiper.slideTo(num, 500, false);
-            _self.changePos();
             _self.showPage = num;
+
+            _self.$nextTick(function(){
+                //用common中的方法初始化
+                initial.initPicker();
+                initial.initDatePicker();
+
+                _self.changePos();
+            })
+
         },
         //table底部横条过渡效果
         changePos:function() {
@@ -134,7 +164,7 @@ export default {
 .active-item{color:#009979;}
 .nav-border{
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   background: #009979;
   width: auto;

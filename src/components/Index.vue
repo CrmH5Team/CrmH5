@@ -206,11 +206,19 @@
         <div class="right-content-block">
             <div class="right-block-title f14">General 通用</div>
             <div class="right-block-items f14">
-                <div>English</div>
-                <div>中文简体</div>
-                <div>中文繁体</div>
-                <div class="item-border-top">清除缓存</div>
-                <div>登出</div>
+                <div class="block-item">English</div>
+                <div class="block-item">中文简体</div>
+                <div class="block-item">中文繁体</div>
+                <div class="block-item item-border-top">
+                    <div class="switch-text">分享后通知对方</div>
+                    <div class="switch">
+                        <div class="weui-cell__ft">
+                            <input class="weui-switch" type="checkbox">
+                        </div>
+                    </div>
+                </div>
+                <div class="block-item item-border-top">清除缓存</div>
+                <div class="block-item">登出</div>
             </div>
         </div>
     </div>
@@ -241,6 +249,8 @@ export default {
         var headerH = parseFloat($('header').innerHeight());
 				var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
         var navH = parseFloat($('#nav').innerHeight());
+        // alert('headerH:'+ headerH);
+        // alert('navH:'+ navH);
 
         $(window).scroll(function(){
             var scrollTop = $(this).scrollTop();
@@ -270,7 +280,7 @@ export default {
               if( ($(this).offset().top - $(window).scrollTop()) <= (navH + headerH) ){
 
                   if(tool.getSystem() === 'ios'){
-                      $(this).find(".date-div").addClass('sticky').css({"top":navH + headerH + 'px'});
+                      $(this).find(".date-div").addClass('sticky').css({"top":(navH + headerH) + 'px'});
                   }else{
                       $(this).find('.date-div').css({"position":"fixed","top":(navH + headerH) + 'px'});
                       $(this).find('.occupy-div').show();

@@ -522,7 +522,7 @@ export default {
 
 <style>
 /*日历style*/
-.toolbar{font-size: 0.25rem!important;display:none!important;}
+#inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;}
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
 .picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;}
 .toolbar .toolbar-inner,.toolbar .toolbar-inner,.picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only,.picker-calendar-month-picker, .picker-calendar-year-picker,.picker-calendar-month-picker .current-month-value, .picker-calendar-year-picker .current-month-value, .picker-calendar-month-picker .current-year-value, .picker-calendar-year-picker .current-year-value,.picker-calendar-year-picker,.picker-calendar-year-picker .current-year-value {height: 0.9rem!important;line-height: 0.9rem!important;}

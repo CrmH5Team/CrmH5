@@ -229,6 +229,7 @@ export default {
                               queryUrl:"Accounts/Query",
                               text:'Country 国家',
                               selectType:'radio',
+                              resulteRow:false, //第二行显示结果
                               value:{
                                   text:'',
                                   value:''
@@ -236,11 +237,12 @@ export default {
                           },
                           {
                               type:'selectlist',
-                              field:'related_to',
+                              field:'related_to_1',
                               queryType:'string',
                               queryUrl:"Accounts/Query",
                               text:'Account Manager 客户经理',
                               selectType:'radio',
+                              resulteRow:false, //第二行显示结果
                               value:{
                                   text:'',
                                   value:''
@@ -268,7 +270,7 @@ export default {
                           },
                           {
                               type:'selectlist',
-                              field:'related_to',
+                              field:'related_to_2',
                               queryType:'string',
                               queryUrl:"Accounts/Query",
                               text:'Initiator发起人',
@@ -281,7 +283,7 @@ export default {
                           },
                           {
                               type:'selectlist',
-                              field:'related_to',
+                              field:'related_to_3',
                               queryType:'string',
                               queryUrl:"Accounts/Query",
                               text:'Organization公司',
@@ -420,9 +422,9 @@ export default {
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.tripMeetingSearchData
             }
+            tool.setSessionStorageItem('searchData',JSON.stringify(parameter));
             _self.$router.push({
-                  path: '/searchmodule',
-                  query: parameter
+                  path: '/searchmodule'
             })
         },
 
@@ -450,7 +452,21 @@ export default {
 
 
 /* 列表 style*/
-.data-events-item{border-bottom: 1px solid #ccc;line-height:20px;background: #fff;padding: 5px 10px;}
+.data-events-item{
+  line-height:20px;background: #fff;padding: 5px 10px;
+  position: relative;
+}
+.data-events-item::after{
+  content: "";
+  display: block;
+  height: 1px;
+  background: #e5f0f4;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
 .item-time .calc-gengxinshijian{color:#ff5a21;}

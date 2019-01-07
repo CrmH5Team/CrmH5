@@ -109,7 +109,7 @@ header a {
   background:#ff0000;
   color:#fff;padding:3px;
   position:absolute;
-  top:0;right:0;
+  top:2px;right:2px;
   display: inline-block;min-width:12px;min-height: 12px;font-size: 10px;
   border-radius: 50%;}
 

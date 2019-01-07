@@ -116,9 +116,10 @@ export default {
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.searchData
             }
+            tool.setSessionStorageItem('searchData',JSON.stringify(parameter));
             _self.$router.push({
                   path: '/searchmodule',
-                  query: parameter
+                  // query: parameter
             })
         },
 
