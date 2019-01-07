@@ -3,7 +3,7 @@
     <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
-        <div class="routeList">
+        <div class="routeList" v-if="isRoute">
             <div class="ListCell">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="roomList">
+        <div class="roomList" v-else>
             <div class="ListCell">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
@@ -117,6 +117,16 @@ export default {
 
     created: function () {
         var $this = this;
+      var id = this.$route.query.id;
+      if (id == "route") {
+          this.isRoute = true;
+          this.ptitle = "添加路线/机票申请";
+      } else {
+           this.isRoute = false;
+           this.ptitle = "添加住宿";
+      }
+      console.log(">>>>" + id);
+      
     },
     mounted: function () {
         // lanTool.updateLanVersion();

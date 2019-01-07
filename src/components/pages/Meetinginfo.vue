@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="MeetingList">
@@ -93,7 +93,7 @@
             </div>
             <Infofooter> </Infofooter>
             <div class="meetingRecord">
-                <div class="ListCell">
+                <div class="ListCell" @click="meetingRecordClick">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -135,6 +135,7 @@ export default {
         return {
             moreHiddenIcon: false,
             delHidden: false,
+            saveHidden: true,
             ptitle: 'Meeting detail',
             isShowMenuList: false,
             scrollTop: 0, //记录滚动条的位置
@@ -167,6 +168,11 @@ export default {
 
     },
     methods: {
+        meetingRecordClick: function () {
+            this.$router.push({
+                path: '/MeetingNoteinfo',
+            })
+        },
         // 开关事件
         allDayClick: function (e) {
             if ($(e.target).is(":checked") == true) {
@@ -184,20 +190,24 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-.meetingRecord{
-  margin: 10px 0;
+
+.meetingRecord {
+    margin: 10px 0;
 }
-.meetingRecord .ListCellContentLeftText
-{
+
+.meetingRecord .ListCellContentLeftText {
     font-weight: 700;
 }
-.meetingRecord .ListCell:after{
+
+.meetingRecord .ListCell:after {
     background-color: #fff;
 }
-.ListCell:after{
-     background-color: #F5F5DC;
+
+.ListCell:after {
+    background-color: #F5F5DC;
 }
-.ListCell.visible:after{
+
+.ListCell.visible:after {
     background-color: #F6E78B;
 }
 </style>

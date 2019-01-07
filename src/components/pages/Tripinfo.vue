@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle" :submitIcon="submitIconHidden"></Infoheader>
+    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle" :submitIcon="submitIconHidden"></Infoheader>
 
     <div class="scroll-div">
         <div class="tipBox">
@@ -32,7 +32,9 @@
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
                 <div class="headerBlockContent f16">meeting</div>
-                <div class="headerBlockRightIcon"><router-link to='/addmeeting'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
+                <div class="headerBlockRightIcon">
+                    <router-link to='/addmeeting'><span class="mui-icon calcfont calc-jia"></span></router-link>
+                </div>
             </div>
             <div class="shuoming" v-show="isHiddenShuoMing">
                 <div class="shuomingContent f14">请至少添加一条会议记录！</div>
@@ -94,7 +96,9 @@
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-icon-test3"></span></div>
                 <div class="headerBlockContent f16">路线/机票申请</div>
-                <div class="headerBlockRightIcon"><router-link to='/AddRouteOrRoom'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
+                <div class="headerBlockRightIcon" @click="routeClick">
+                    <span class="mui-icon calcfont calc-jia"></span>
+                </div>
             </div>
             <div class="shuoming" v-show="isHiddenShuoMing">
                 <div class="shuomingContent f14">请至少添加一条会议记录！</div>
@@ -136,11 +140,10 @@
             <div class="headerBlock">
                 <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-zhusu"></span></div>
                 <div class="headerBlockContent f16">住宿</div>
-                <div class="headerBlockRightIcon"><router-link to='/AddRouteOrRoom'><span class="mui-icon calcfont calc-jia"></span></router-link></div>
+                <div class="headerBlockRightIcon" @click="roomClick">
+                    <span class="mui-icon calcfont calc-jia"></span>
+                </div>
             </div>
-            <!-- <div class="shuoming" v-show="isHiddenShuoMing">
-                <div class="shuomingContent f14">请至少添加一条会议记录！</div>
-            </div> -->
             <div class="contentList">
                 <div class="contentListCell">
                     <div class="contentListCellHeader headerBlock">
@@ -255,6 +258,7 @@ export default {
         return {
             moreHiddenIcon: false,
             delHidden: false,
+            saveHidden:true,
             submitIconHidden: true,
             ptitle: 'Trip detail',
             isShowMenuList: false,
@@ -290,6 +294,24 @@ export default {
 
     },
     methods: {
+        routeClick: function () {
+            console.log("route");
+            this.$router.push({
+                path: '/AddRouteOrRoom',
+                query: {
+                    id: "route"
+                }
+            })
+        },
+        roomClick: function () {
+            console.log("room");
+            this.$router.push({
+                path: '/AddRouteOrRoom',
+                query: {
+                    id: "room"
+                }
+            })
+        },
         // 开关事件
         allDayClick: function (e) {
             if ($(e.target).is(":checked") == true) {
@@ -343,7 +365,8 @@ export default {
 }
 
 .meeting,
-.route,.room {
+.route,
+.room {
     margin-top: 10px;
     padding: 5px 0;
     padding-left: 0.3rem;
