@@ -3,67 +3,6 @@
 
     <Header :title="pageTitle"></Header>
 
-
-    <!-- <div class="">
-        <div class="">
-                <div class="selectedFile">
-                    <h3><span class="lanText" data-lanid="286_已选文件"></span></h3>
-                    <div class="name mui-ellipsis">
-                        <i class="calcfont calc-tupian"></i><span id="selectedFileName">{{fileName}}</span>
-                    </div>
-                </div>
-                <form class="mui-input-group">
-                        <div class="mui-input-row">
-                            <label><span class="red">*</span><span class="lanText" data-lanid="282_标题"></span></label>
-                            <p><input type="text" placeholder="" class="ItemVal lanInputPlaceHolder Necessary" data-lanid="285_请输入标题" v-model="notes_title" data-field="notes_title"></p>
-                        </div>
-                        <div class="mui-input-row">
-                            <div class="mui-navigate-right">
-                                <label><span class="red">*</span><span class="lanText" data-lanid="157_负责人"></span></label>
-                                <p>
-                                    <input
-                                        key="uploadinput_assigned_user_id"
-                                        v-model="assigned_user_id.text"
-                                        @click="selectList"
-                                        class="selectList lanInputPlaceHolder"
-                                        data-lanid="203_请选择负责人"
-                                        data-url="Users/Query"
-                                        data-field="assigned_user_id"
-                                        readonly="readonly" >
-
-                                    <i class="calcfont arrow-right calc-xiangzuo"></i>
-                                </p>
-                            </div>
-
-                        </div>
-                        <div class="mui-input-row">
-                            <div class="mui-navigate-right">
-                                <label><span class="red">*</span><span class="lanText" data-lanid="283_文件夹"></span></label>
-                                <p>
-                                    <Picker
-                                        :placeholder="languageData.folderid"
-                                        :title="languageData.folderid"
-                                        data=""
-                                        field="folderid"
-                                        ></Picker>
-                                    <i class="calcfont arrow-right calc-xiangzuo"></i>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="mui-input-row">
-                            <label><span class="lanText" data-lanid="147_描述"></span></label>
-                            <div class="textarea_div">
-                                <textarea class="ItemVal" v-model="notecontent" data-field="notecontent"></textarea>
-                            </div>
-                        </div>
-
-                </form>
-                <div class="btn_div">
-                        <button type="button" @click="upload" class="mui-btn mui-btn-primary lanText mui-btn-block" id="uploadFile" data-lanid="277_上传" ></button>
-                </div>
-
-        </div>
-    </div> -->
     <div >
           <div class="ListCell file-name-row">
               <div class="ListCellLeftIcon">
@@ -86,7 +25,7 @@
                       <div class="ListCellContentLeftText">CRM Document Type</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <div class="ListCellContentRightText"></div>
+                      <div class="picker ListCellContentRightText"></div>
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
