@@ -8,9 +8,15 @@ import Login from '@/components/Login'
 
 import Meetinglist from '@/components/pages/Meetinglist'
 import Notification from '@/components/pages/Notification'
+import Meetinginfo from '@/components/pages/Meetinginfo'
+
 
 import Tripmeeting from '@/components/pages/Tripmeeting'
 import Business from '@/components/pages/Business'
+import Tripinfo from '@/components/pages/Tripinfo'
+import MeetingNoteinfo from '@/components/pages/MeetingNoteinfo'
+
+
 
 
 import Search from '@/components/pages/Search'
@@ -57,6 +63,7 @@ const router =  new Router({
     { path: '/index',name:'index', component:Index },
     { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
     { path: '/notification',name:'notification', component:Notification },
+    { path: '/meetinginfo',name:'meetinginfo', component:Meetinginfo },
 
     { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
       meta: {
@@ -65,7 +72,10 @@ const router =  new Router({
       }
     },
     { path: '/business',name:'business', component:Business },
+    { path: '/tripinfo',name:'tripinfo', component:Tripinfo },
+    { path: '/meetingNoteinfo',name:'meetingNoteinfo', component:MeetingNoteinfo },
 
+    
     { path: '/main',name:'main',component: Main,
       meta: {
         keepAlive: true,
