@@ -60,7 +60,7 @@
 
           <div class="group-title">
               <div class="title-text f14">最近7天要参加的会议</div>
-              <div class="check-all right f14 a">查看全部&gt;&gt;</div>
+              <router-link to="/tripmeeting" class="check-all right f14 a">查看全部&gt;&gt;</router-link>
           </div>
 
           <div class="list-view">

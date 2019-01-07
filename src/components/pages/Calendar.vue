@@ -13,10 +13,10 @@
                 </div>
 
                 <!-- table切换 -->
-                <div class="nav sticky">
+                <div class="calendar-nav">
                       <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
                       <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
-                      <div class="nav-border"></div>
+                      <div class="calendar-nav-border"></div>
                 </div>
 
 
@@ -24,14 +24,14 @@
                     <div v-show="showPage==0" class="pageList">
                         <!-- 增加meeting按钮 -->
                         <div class="add-btn-div">
-                              <div class="add-div">
+                              <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
                                   <span class="add-text">And Meeting</span>
                               </div>
                         </div>
                         <!-- meeting list -->
                         <div class="list">
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">Meeting with Eastern Airlines</div>
                                     <div class="item-time f12">
                                         <span class="calcfont calc-gengxinshijian"></span>
@@ -41,7 +41,7 @@
                                     <div class="item-address">China Eastern Airlines</div>
                                     <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                               </div>
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(8)">
                                     <div class="item-title">Meeting with Eastern Airlines</div>
                                     <div class="item-time f12">
                                         <span class="calcfont calc-gengxinshijian"></span>
@@ -57,14 +57,14 @@
                     <div v-show="showPage==1" class="pageList">
                         <!-- 增加trip按钮 -->
                         <div class="add-btn-div">
-                              <div class="add-div">
+                              <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
                                   <span class="add-text">And Trip</span>
                               </div>
                         </div>
                         <!-- trip list -->
                         <div class="list">
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
                                         <span class="right">审批已通过</span>
@@ -76,7 +76,7 @@
                                     <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                     <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                               </div>
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(15)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
                                         <span class="right">审批已通过</span>
@@ -88,7 +88,7 @@
                                     <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                     <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                               </div>
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(50)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
                                         <span class="right">审批已通过</span>
@@ -100,7 +100,7 @@
                                     <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                     <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                               </div>
-                              <div class="data-events-item f12">
+                              <div class="data-events-item f12" @click="goInfoPage(8)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
                                         <span class="right">审批已通过</span>
@@ -165,6 +165,22 @@ export default {
         this.isFirstEnter = false;
     },
     methods:{
+        //点击去详情页
+        goInfoPage:function(id){
+            var _self = this,
+                url = "";
+            if(id === undefined){
+              id = '';
+            }
+
+            if(_self.showPage == 0){
+                url = '/meetinginfo/{"AutoID":"'+ id +'"}';
+            }else{
+                url = '/tripinfo/{"AutoID":"'+ id +'"}';
+            }
+              _self.$router.push(url);
+        },
+
         //table切换页面
         switchPage:function(num, e){
             var _self = this;
@@ -177,10 +193,11 @@ export default {
         //table底部横条过渡效果
         changePos:function() {
             this.$nextTick(function(){
-                var activePos = $('.nav .active-item').position();
-                $('.nav-border').stop().css({
+                var activePos = $('.calendar-nav .active-item').position();
+                // console.log($('.calendar-nav .active-item').width());
+                $('.calendar-nav-border').stop().css({
                     left: activePos.left,
-                    width: $('.nav .active-item').width()
+                    width: $('.calendar-nav .active-item').width()
                 });
             })
         },
@@ -430,7 +447,8 @@ export default {
 
 
 /*nav style*/
-.nav{
+.calendar-nav{
+  position: relative;
   width:100%;height:40px;background: #fff;
   -webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;
   display:-moz-box;
@@ -456,9 +474,9 @@ export default {
   width:50%;
 }
 .active-item{color:#009979;}
-.nav-border{
+.calendar-nav-border{
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   background: #009979;
   width: auto;

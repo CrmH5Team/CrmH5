@@ -11,7 +11,6 @@
 
           <!-- list 视图 -->
         <div v-show="selectView === 'list'" class="list-view">
-
               <div class="nav sticky">
                   <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
                   <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
@@ -368,13 +367,14 @@ export default {
             _self.changePos();
             _self.showPage = num;
         },
+
         //table底部横条过渡效果
         changePos:function() {
             this.$nextTick(function(){
-                var activePos = $('#nav .active-item').position();
+                var activePos = $('.nav .active-item').position();
                 $('.nav-border').stop().css({
                     left: activePos.left,
-                    width: $('#nav .active-item').width()
+                    width: $('.nav .active-item').width()
                 });
             })
         },

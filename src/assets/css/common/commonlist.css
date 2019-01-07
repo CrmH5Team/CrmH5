@@ -30,7 +30,7 @@
 .active-item{color:#009979;}
 .nav-border{
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   background: #009979;
   width: auto;

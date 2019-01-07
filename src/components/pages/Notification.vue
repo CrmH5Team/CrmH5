@@ -70,9 +70,18 @@ export default {
         setAlready:function(){
             var _self = this;
             if(_self.dataArray.length < 1) return;
-            $.each(_self.dataArray,function(index,item){
-                 item.already = true;
-            })
+            $.confirm({
+              title: '提示',
+              text: '全部标记为已读吗？',
+              onOK: function () {
+                  $.each(_self.dataArray,function(index,item){
+                      item.already = true;
+                  })
+              },
+              onCancel: function () {
+              }
+            });
+
         },
         //清空所有
         clearAll:function(){
