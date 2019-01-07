@@ -164,7 +164,7 @@ export default {
                 tool.setStoragItem(tool.cache_loginPwd, self.userPwd || "");
 
 
-                self.$router.push('/main');
+                self.$router.push('/index');
 
                 //隐藏虚拟键盘
                 document.activeElement.blur();
