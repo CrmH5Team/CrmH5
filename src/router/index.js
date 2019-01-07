@@ -63,7 +63,7 @@ const router =  new Router({
     { path: '/index',name:'index', component:Index },
     { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
     { path: '/notification',name:'notification', component:Notification },
-    { path: '/meetinginfo',name:'meetinginfo', component:Meetinginfo },
+    { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo },
 
     { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
       meta: {
@@ -72,10 +72,10 @@ const router =  new Router({
       }
     },
     { path: '/business',name:'business', component:Business },
-    { path: '/tripinfo',name:'tripinfo', component:Tripinfo },
+    { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
     { path: '/meetingNoteinfo',name:'meetingNoteinfo', component:MeetingNoteinfo },
 
-    
+
     { path: '/main',name:'main',component: Main,
       meta: {
         keepAlive: true,

@@ -20,14 +20,14 @@
 
               <div v-show="showPage == 0" class="pageList">
                     <div class="add-btn-div">
-                          <div class="add-div">
+                          <div class="add-div" @click="goInfoPage()">
                               <span class="calcfont calc-add"></span>
                               <span class="add-text">And Meeting</span>
                           </div>
                     </div>
                     <!-- 列表 -->
                     <common-list :groupData="groupData">
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(45)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -37,7 +37,7 @@
                                 <div class="item-address">China Eastern Airlines</div>
                                 <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                           </div>
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(25)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -47,7 +47,7 @@
                                 <div class="item-address">China Eastern Airlines</div>
                                 <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                           </div>
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(69)">
                                 <div class="item-title">Meeting with Eastern Airlines</div>
                                 <div class="item-time f12">
                                     <span class="calcfont calc-gengxinshijian"></span>
@@ -62,14 +62,14 @@
 
               <div v-show="showPage == 1" class="pageList">
                     <div class="add-btn-div">
-                          <div class="add-div">
+                          <div class="add-div" @click="goInfoPage()">
                               <span class="calcfont calc-add"></span>
                               <span class="add-text">And Trip</span>
                           </div>
                     </div>
                     <!-- 列表 -->
                     <common-list :groupData="groupData">
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(1)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>
@@ -81,7 +81,7 @@
                                 <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                 <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                           </div>
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(79)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>
@@ -93,7 +93,7 @@
                                 <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
                                 <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                           </div>
-                          <div class="data-events-item f12">
+                          <div class="data-events-item f12" @click="goInfoPage(25)">
                                 <div class="item-title">
                                     <span>1115-1116东航会议出差上海</span>
                                     <span class="right">审批已通过</span>
@@ -343,6 +343,22 @@ export default {
         this.changePos();
     },
     methods:{
+        //点击去详情页
+        goInfoPage:function(id){
+            var _self = this,
+                url = "";
+            if(id === undefined){
+              id = '';
+            }
+
+            if(_self.showPage == 0){
+                url = '/meetinginfo/{"AutoID":"'+ id +'"}';
+            }else{
+                url = '/tripinfo/{"AutoID":"'+ id +'"}';
+            }
+              _self.$router.push(url);
+        },
+
         //切换页面
         switchPage:function(num, e){
             var _self = this;

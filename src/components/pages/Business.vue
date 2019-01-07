@@ -320,7 +320,7 @@ export default {
             }
 
             if(_self.showPage == 0){
-                url = '/organizationsinfo/{"AutoID":"'+ id +'"}';
+                url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
             }else{
                 url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
             }
