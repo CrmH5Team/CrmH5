@@ -272,7 +272,7 @@ export default {
                             text:'Area / Region 区域',
                             value:'',
                             id:Number((new Date()).valueOf()) + count++
-                        }
+                          }
                     ]
                 }
             ],

@@ -305,8 +305,6 @@ export default {
         }
     },
     mounted:function(){
-        eventBus.$on('showRightPanel',this.panelToggle);
-
         this.changePos();
     },
     methods:{
@@ -361,9 +359,6 @@ export default {
             }
         },
     },
-    beforeDestroy:function(){
-        eventBus.$off('showRightPanel');
-    }
 
 }
 </script>

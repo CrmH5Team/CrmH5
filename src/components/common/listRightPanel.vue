@@ -10,7 +10,7 @@
             <div v-if="item.type=='radio'" class="right-block-items">
                 <div v-for="radio in item.items" class="radios-div" >
                       <label class="radios-label">
-                          <input type="radio" name="classification" :value="radio.value" v-model="classificationValue"/><i class="radios"></i><span>{{radio.text}}</span>
+                          <input type="radio" name="classification" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
                       </label>
                 </div>
             </div>
@@ -46,7 +46,8 @@ export default {
     data(){
         return {
             showPanel:false,
-            classificationValue:'',  //右侧分类
+
+            viewValue:'',  //右侧分类
             dataFilter:[],
         }
     },
@@ -55,12 +56,9 @@ export default {
         var _self = this;
         if(_self.panelData.length >= 1){
             $.each(this.panelData,function(key,value){
-                // if(value.type === 'radio' && value.default){
-                //     _self.classificationValue = value.default;
-                // }else if(value.type === 'checkbox' && value.default){
-                //     _self.dataFilter[0] = value.default;
-                // }
-                if(value.type === 'checkbox' && value.default){
+                if(value.type === 'radio' && value.default){
+                    _self.viewValue = value.default;
+                }else if(value.type === 'checkbox' && value.default){
                     _self.dataFilter[0] = value.default;
                 }
             })

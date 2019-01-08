@@ -1,14 +1,14 @@
 <template>
 <div class="selectList">
-    <header class="mui-bar mui-bar-nav">
+    <header class="header sticky">
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
 
         <h1 class="mui-title">{{title||''}}</h1>
 
-        <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+        <a @click="saveHandler" class="header-save right f18" id="save">ok</a>
     </header>
-    <div class="selectList-scroll">
 
+    <div class="selectList-scroll">
         <!-- search-active -->
 
       <div class="search ">
@@ -88,9 +88,7 @@ export default {
 
         //根据是否多选来设置列表滚动的区域高度
         if (this.selectType === 'checkbox') {
-            $(".selectList-scroll").css("bottom", "50px");
-        } else {
-            $(".selectList-scroll").css("bottom", "0px");
+            $(".selectList-scroll").css("padding-bottom", "50px");
         }
 
         this.getData();

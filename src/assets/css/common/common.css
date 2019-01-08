@@ -204,13 +204,13 @@ label.radios-label .radios {
     width: 20px;
     height: 20px;
     background: #FFFFFF;
-    border: 1px solid #2A79C8;
+    border: 1px solid #009979;
     border-radius: 50%;
     vertical-align: middle;
 }
 label.radios-label input:checked + .radios {
-    background:#2A79C8;
-    border: 1px solid #2A79C8;
+    background:#009979;
+    border: 1px solid #009979;
 }
 label.radios-label input:checked + .radios:after {
     content: " ";
