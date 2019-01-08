@@ -50,6 +50,7 @@
           <div class="occupy-position"></div>
 
           <!-- 提示 -->
+
           <div class="tips">
               <div class="tips-box f14">
                   <span class="calcfont calc-tishi1"></span>
@@ -77,7 +78,6 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -87,7 +87,6 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -97,48 +96,6 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
-                            </div>
-                            <div class="item-address">China Eastern Airlines</div>
-                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                        </div>
-                  </div>
-              </div>
-
-              <div class="month-event">
-                  <div class="f14 date-div open" @click="groupToggle($event)">
-                      <span class="calcfont calc-richeng"></span>
-                      <span class="date-text">2018-11-16 Thursday</span>
-                      <span class="right">(3)</span>
-                  </div>
-                  <div class="occupy-div"></div>
-                  <div class="data-events">
-                        <div class="data-events-item f12">
-                            <div class="item-title">Meeting with Eastern Airlines</div>
-                            <div class="item-time f12">
-                                <span class="calcfont calc-gengxinshijian"></span>
-                                <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
-                            </div>
-                            <div class="item-address">China Eastern Airlines</div>
-                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                        </div>
-                        <div class="data-events-item f12">
-                            <div class="item-title">Meeting with Eastern Airlines</div>
-                            <div class="item-time f12">
-                                <span class="calcfont calc-gengxinshijian"></span>
-                                <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
-                            </div>
-                            <div class="item-address">China Eastern Airlines</div>
-                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                        </div>
-                        <div class="data-events-item f12">
-                            <div class="item-title">Meeting with Eastern Airlines</div>
-                            <div class="item-time f12">
-                                <span class="calcfont calc-gengxinshijian"></span>
-                                <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -149,7 +106,7 @@
               <div class="month-event">
                   <div class="f14 date-div open" @click="groupToggle($event)">
                       <span class="calcfont calc-richeng"></span>
-                      <span class="date-text">2018-11-16 Thursday</span>
+                      <span class="date-text">2018-11-17 Thursday</span>
                       <span class="right">(3)</span>
                   </div>
                   <div class="occupy-div"></div>
@@ -159,7 +116,6 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -169,7 +125,6 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -179,7 +134,44 @@
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
                                 <span class="time-text">14:30-17:00</span>
-                                <!-- <span class="right">Cheryl Xiong</span> -->
+                            </div>
+                            <div class="item-address">China Eastern Airlines</div>
+                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                        </div>
+                  </div>
+              </div>
+
+              <div class="month-event">
+                  <div class="f14 date-div open" @click="groupToggle($event)">
+                      <span class="calcfont calc-richeng"></span>
+                      <span class="date-text">2018-11-18 Thursday</span>
+                      <span class="right">(3)</span>
+                  </div>
+                  <div class="occupy-div"></div>
+                  <div class="data-events">
+                        <div class="data-events-item f12">
+                            <div class="item-title">Meeting with Eastern Airlines</div>
+                            <div class="item-time f12">
+                                <span class="calcfont calc-gengxinshijian"></span>
+                                <span class="time-text">14:30-17:00</span>
+                            </div>
+                            <div class="item-address">China Eastern Airlines</div>
+                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                        </div>
+                        <div class="data-events-item f12">
+                            <div class="item-title">Meeting with Eastern Airlines</div>
+                            <div class="item-time f12">
+                                <span class="calcfont calc-gengxinshijian"></span>
+                                <span class="time-text">14:30-17:00</span>
+                            </div>
+                            <div class="item-address">China Eastern Airlines</div>
+                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                        </div>
+                        <div class="data-events-item f12">
+                            <div class="item-title">Meeting with Eastern Airlines</div>
+                            <div class="item-time f12">
+                                <span class="calcfont calc-gengxinshijian"></span>
+                                <span class="time-text">14:30-17:00</span>
                             </div>
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -189,10 +181,9 @@
 
           </div>
 
-
-
-
     </div>
+
+
 
     <!--  右侧侧滑 -->
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
@@ -225,6 +216,9 @@
 
 </div>
 </template>
+<style>
+.test-div{height: 50px;line-height: 50px;}
+</style>
 
 <script>
 import Header from './common/Header'
@@ -247,10 +241,11 @@ export default {
 
         //列表视图滚动
         var headerH = parseFloat($('header').innerHeight());
-				var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
+        var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
         var navH = parseFloat($('#nav').innerHeight());
-        // alert('headerH:'+ headerH);
-        // alert('navH:'+ navH);
+        console.log('headerH:'+ headerH);
+        console.log('navH:'+ navH);
+
 
         $(window).scroll(function(){
             var scrollTop = $(this).scrollTop();
@@ -296,6 +291,9 @@ export default {
 
             })
         })
+
+
+
     },
     methods:{
 

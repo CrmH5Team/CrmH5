@@ -1,8 +1,8 @@
 @import url("https://at.alicdn.com/t/font_651046_uhu8lmhfa5c.css");
 body {
-	font-size: 0.17rem;
+	/* font-size: 0.17rem; */
 	line-height: 0.21rem;
-	touch-action: none;
+	/* touch-action: none; */
 }
 
 header.mui-bar {line-height: 0.2rem;
@@ -24,19 +24,11 @@ a {
 
 .mui-title {
 	line-height: 0.88rem;
-	/* font-size: 0.34rem; */
 }
 
-/* .mui-bar .mui-icon {
-	font-size: 0.48rem;
-	width: 0.88rem;
-	text-align: center;
-	padding: 0.2rem 0;
-} */
 
 .mui-bar-nav~.mui-content {
 	padding-top: 0.88rem;
-	/*background: #fff;*/
 	padding-bottom: 0.88rem;
 }
 
@@ -57,7 +49,7 @@ a {
 
 
 /*列表共用*/
-
+/*
 .mui-table-view-cell:after,
 .mui-table-view:after,
 .mui-table-view:before {
@@ -78,7 +70,6 @@ a {
 .mui-table-view-cell span {
 	font-size: 0.2rem;
 	color: #595959;
-	/*padding-top:0.1rem;*/
 }
 
 .mui-table-view-cell span.col1-right {
@@ -88,7 +79,7 @@ a {
 .listRL .mui-table-view-cell span{ width:35%;}
 .listRL .mui-table-view-cell h2{ width:60%;}
 /*线条距左15px*/
-
+/*
 .mui-table-viewsty02 .mui-table-view-cell:after,
 .mui-table-viewsty02 .mui-table-view:after,
 .mui-table-viewsty02 .mui-table-view:before {
@@ -177,8 +168,7 @@ a {
 .FileAttrlist {
 	list-style: none;
 }
-
-
+*/
 /*蓝: #3cadf9
  * 黑 : #000
  * 灰: #595959;

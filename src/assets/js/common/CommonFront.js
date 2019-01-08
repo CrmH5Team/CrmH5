@@ -28,6 +28,7 @@
 // }
 
 //打开具体的页面
+/*
 $(".modelmainpage").off().on('tap', function() {
 	event.stopPropagation();
 
@@ -53,3 +54,4 @@ $(".modelmainpage").off().on('tap', function() {
 	// });
 
 });
+*/

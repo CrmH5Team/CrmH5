@@ -442,8 +442,8 @@ export default {
   height:36px;line-height:36px;background:#e9cfae;padding:0 10px;
   width: 100%;color:#000;box-sizing: border-box;
 }
-.date-div .calcfont{ color: #ff5a21; margin-right: 8px;}
-.date-div .date-text{vertical-align:middle;}
+.date-div .calcfont{ color: #ff5a21; margin-right: 5px; vertical-align: bottom;}
+.date-div .date-text{/*vertical-align:middle;*/}
 
 
 /*nav style*/
@@ -524,7 +524,7 @@ export default {
 /*日历style*/
 #inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;}
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
-.picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;}
+.picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;overflow: hidden;color:#000!important;}
 .toolbar .toolbar-inner,.toolbar .toolbar-inner,.picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only,.picker-calendar-month-picker, .picker-calendar-year-picker,.picker-calendar-month-picker .current-month-value, .picker-calendar-year-picker .current-month-value, .picker-calendar-month-picker .current-year-value, .picker-calendar-year-picker .current-year-value,.picker-calendar-year-picker,.picker-calendar-year-picker .current-year-value {height: 0.9rem!important;line-height: 0.9rem!important;}
 i.icon.icon-next, i.icon.icon-prev{width: 0.35rem!important;height: 0.35rem!important;}
 /* .picker-calendar-week-days {height: 0.42rem!important;} */
