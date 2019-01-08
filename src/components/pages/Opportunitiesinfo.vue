@@ -90,7 +90,7 @@
                 <div class="headerBlock">
                     <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
                     <div class="headerBlockContent f16">meeting Note</div>
-                    <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-jia"></span></div>
+                    <div class="headerBlockRightIcon" @click="addMeetingClick"><span class="mui-icon calcfont calc-jia"></span></div>
                 </div>
             </div>
             <div class="meetingRecordList">
@@ -100,7 +100,7 @@
                         <div class="headerDivContent">
                             <div class="content">MSN 05789 机身检查会议2</div>
                         </div>
-                        <div class="headerDivRightBtn">
+                        <div class="headerDivRightBtn" @click="viewCompleteClick">
                             <div class="rightBtn">查看完整
 
                             </div>
@@ -202,7 +202,7 @@ export default {
         return {
             moreHiddenIcon: true,
             delHidden: false,
-            saveHidden:true,
+            saveHidden: true,
             ptitle: 'Opportunities detail',
             itemsData: ['Organizations', 'Contacts'],
             isShowMenuList: false,
@@ -247,14 +247,29 @@ export default {
 
     },
     methods: {
+        //添加会议记录
+        addMeetingClick: function () {
+            this.$router.push({
+                path: '/MeetingNoteinfo/{"AutoID":""}',
+            })
+        },
+        //查看完整会议记录
+        viewCompleteClick: function () {
+            this.$router.push({
+                path: '/MeetingNoteinfo/{"AutoID":""}',
+            })
+        },
+        //收藏事件
         followClick: function (e) {
             console.log("收藏");
             if ($(".guanZhu").hasClass("calc-shoucang1")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-shoucang1")
+                 $.toast("关注成功", 1500, function () {});
             } else {
                 $(".guanZhu").addClass("calc-shoucang1");
                 $(".guanZhu").removeClass("calc-shoucang")
+                $.toast("取消关注", 1500, function () {});
             }
         },
         // 开关事件

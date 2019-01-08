@@ -14,6 +14,7 @@ import Meetinginfo from '@/components/pages/Meetinginfo'
 import Tripmeeting from '@/components/pages/Tripmeeting'
 import Business from '@/components/pages/Business'
 import Tripinfo from '@/components/pages/Tripinfo'
+import AddTripExpense from '@/components/pages/AddTripExpense'
 import MeetingNoteinfo from '@/components/pages/MeetingNoteinfo'
 import Addmeeting from '@/components/pages/Addmeeting'
 import AddRouteOrRoom from '@/components/pages/AddRouteOrRoom'
@@ -80,6 +81,7 @@ const router =  new Router({
     },
     { path: '/business',name:'business', component:Business },
     { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
+    { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
     { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },

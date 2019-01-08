@@ -19,7 +19,7 @@
                 <div class="ListCellContentRight rightContent">
                     <div class="ListCellContentRightText">16/Nov 15:00</div>
                 </div>
-                <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
+                <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div>
             </div>
         </div>
         <div class="ListCell">
@@ -31,7 +31,7 @@
                 <div class="ListCellContentRight rightContent">
                     <div class="ListCellContentRightText">16/Nov 15:00</div>
                 </div>
-                <div class="ListCellRightIcon deleteDoc"><span class="mui-icon calcfont calc-delete"></span></div>
+                <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div>
             </div>
         </div>
     </div>

@@ -120,7 +120,7 @@
 
                 </div>
                 <div class="contactList">
-                    <div class="ListCell">
+                    <div class="ListCell" @click="goToContactsPage">
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
@@ -171,7 +171,7 @@ export default {
         return {
             moreHiddenIcon: true,
             delHidden: false,
-            saveHidden:true,
+            saveHidden: true,
             ptitle: 'Organizationsinfo detail',
             itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
             isShowMenuList: false,
@@ -207,6 +207,12 @@ export default {
         });
     },
     methods: {
+        //跳转到联系人界面事件
+        goToContactsPage: function () {
+            this.$router.push({
+                path: '/contactsof',
+            })
+        },
         // 开关事件
         allDayClick: function (e) {
             if ($(e.target).is(":checked") == true) {
@@ -221,9 +227,11 @@ export default {
             if ($(".guanZhu").hasClass("calc-shoucang1")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-shoucang1")
+                $.toast("关注成功", 1500, function () {});
             } else {
                 $(".guanZhu").addClass("calc-shoucang1");
                 $(".guanZhu").removeClass("calc-shoucang")
+                $.toast("取消关注", 1500, function () {});
             }
         }
     }

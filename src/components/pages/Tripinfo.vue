@@ -231,6 +231,9 @@
                     </div>
                 </div>
             </div>
+            <div class="expense" style="display:none">
+                <div class="expenseBtn" @click="expenseClick">Expense Claim Form</div>
+            </div>
         </div>
     </div>
 </template>
@@ -296,6 +299,11 @@ export default {
 
     },
     methods: {
+        expenseClick: function () {
+            this.$router.push({
+                path: '/addTripExpense/:id',
+            })
+        },
         routeClick: function () {
             console.log("route");
             this.$router.push({
@@ -468,5 +476,18 @@ export default {
     color: #666666;
     margin: 0.1rem 0;
     line-height: 0.3rem;
+}
+
+.expense {
+    background-color: #ffffff;
+    padding: 10px 0;
+}
+
+.expenseBtn {
+    font-size: 0.28rem;
+    color: #FF5A21;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
 }
 </style>

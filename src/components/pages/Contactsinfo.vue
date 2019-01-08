@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="organizationMessage">
-                <div class="ListCell">
+                <div class="ListCell" @click="goToOrganizationsInfo">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-gongsixinxi"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -127,7 +127,7 @@
             </div>
 
             <div class="accessView">
-                <div class="ListCell">
+                <div class="ListCell" @click="goToShareList">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -173,7 +173,7 @@ export default {
         return {
             moreHiddenIcon: true,
             delHidden: false,
-            saveHidden:true,
+            saveHidden: true,
             ptitle: 'contact detail',
             itemsData: ['Calndar(3)', 'Opportunities(2)'],
             isShowMenuList: false,
@@ -212,6 +212,21 @@ export default {
         // });
     },
     methods: {
+        //查看有权限访问的同事跳转事件
+        goToShareList: function () {
+            this.$router.push({
+                path: '/sharelist',
+                query: {
+                    name:"Colleagues with access",
+                }
+            })
+        },
+        //查看公司信息跳转事件
+        goToOrganizationsInfo: function () {
+            this.$router.push({
+                path: '/organizationsinfo/{"AutoID":""}',
+            })
+        },
         shrink: function (e) {
             console.log("shrink");
             //calc-xiala
@@ -271,6 +286,7 @@ export default {
 .ListCell.tip:after {
     background-color: #ffffff;
 }
+
 .tipBox {
     padding-left: 0.9rem;
     padding-right: 0.3rem;
