@@ -32,6 +32,7 @@ import Organizations from '@/components/pages/Organizations'
 import Organizationsinfo from '@/components/pages/Organizationsinfo'
 
 import Contacts from '@/components/pages/Contacts'
+import Contactsof from '@/components/pages/Contactsof'
 import Contactsinfo from '@/components/pages/Contactsinfo'
 
 import Previewfile from '@/components/pages/Previewfile'
@@ -155,6 +156,7 @@ const router =  new Router({
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
       }
     },
+    { path:'/contactsof',name:'contactsof',component:Contactsof},
     { path:'/contactsinfo/:id',name:'contactsinfo',component:Contactsinfo,
       meta: {
         keepAlive: true,
