@@ -172,7 +172,7 @@ export default {
     methods: {
         meetingRecordClick: function () {
             this.$router.push({
-                path: '/MeetingNoteinfo',
+                path: '/MeetingNoteinfo/{"AutoID":""}',
             })
         },
         // 开关事件

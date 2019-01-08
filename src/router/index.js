@@ -79,7 +79,7 @@ const router =  new Router({
     },
     { path: '/business',name:'business', component:Business },
     { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
-    { path: '/meetingNoteinfo',name:'meetingNoteinfo', component:MeetingNoteinfo },
+    { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
 
