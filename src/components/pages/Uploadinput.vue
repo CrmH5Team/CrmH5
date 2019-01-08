@@ -25,7 +25,11 @@
                       <div class="ListCellContentLeftText">CRM Document Type</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <div class="picker ListCellContentRightText"></div>
+                      <div class="picker ListCellContentRightText"
+                          data-field="cf_765"
+                          id="document-type"
+                          data-val=""
+                      ></div>
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
@@ -120,6 +124,9 @@ export default {
             $("textarea").each(function (index, cur) {
                 tool.autoTextarea(cur);
             });
+
+            //用common中的方法初始化
+            initial.initPicker();
         })
     },
 

@@ -223,10 +223,10 @@ header a {
     padding: 10px;
     border-bottom: solid 1px #e5f0f4;
 }
-.dataList .item-div label{display:block;line-height: 20px;position: relative;}
-.item-div .checkbox-label .checkbox{position: absolute;left:0;top:2px;}
+.dataList .item-div label{display:block;line-height:40px;position: relative;margin:-10px 0;}
+.item-div .checkbox-label .checkbox{position: absolute;left:0;top:12px;}
 .dataList .item-div span {
-    padding-left:26px;display: block;
+    padding:10px 0  10px 26px;display: block;word-wrap : break-word;line-height: 20px;
 }
 
 .selectAll{
@@ -248,4 +248,4 @@ header a {
     padding-left:26px;
 }
 
-label.radios-label .radios{position: absolute;}
+label.radios-label .radios{position: absolute;top:10px;left:0;}
