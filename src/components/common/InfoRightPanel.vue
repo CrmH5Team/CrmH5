@@ -30,19 +30,22 @@ export default {
             dataFilter: [],
         }
     },
-    props: ['items', 'isShowList','isShowSend','isShowClose'],
+    props: ['items', 'isShowList', 'isShowSend', 'isShowClose'],
     created: function () {
 
     },
 
     mounted: function () {
-        eventBus.$on('gengduo', this.panelToggle);
+        // eventBus.$on('gengduo', this.panelToggle);
 
     },
-
+    activated: function () {
+        eventBus.$on('gengduo', this.panelToggle);
+    },
     methods: {
         //侧滑
         panelToggle: function () {
+            console.log("Infocehua");
             var _self = this;
             _self.showPanel = !_self.showPanel;
             if (_self.showPanel) {
@@ -76,9 +79,11 @@ export default {
         },
 
     },
-
+    deactivated:function(){
+        eventBus.$off('gengduo');
+    },
     beforeDestroy: function () {
-        eventBus.$off('showRightPanelEvent');
+        // eventBus.$off('gengduo');
     }
 
 }
@@ -95,6 +100,7 @@ export default {
     padding-left: 0.1rem;
 
 }
+
 .right-content-list .calcfont {
     color: #FF5A21;
     padding-right: 0.1rem;
@@ -123,5 +129,4 @@ export default {
     height: 1px;
     background-color: #F5F5DC;
 }
-
 </style>
