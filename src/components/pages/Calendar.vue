@@ -194,10 +194,9 @@ export default {
         changePos:function() {
             this.$nextTick(function(){
                 var activePos = $('.calendar-nav .active-item').position();
-                // console.log($('.calendar-nav .active-item').width());
                 $('.calendar-nav-border').stop().css({
                     left: activePos.left,
-                    width: $('.calendar-nav .active-item').width()
+                    // width: $('.calendar-nav .active-item').width()
                 });
             })
         },
@@ -479,7 +478,7 @@ export default {
   bottom: -1px;
   left: 0;
   background: #009979;
-  width: auto;
+  width: 50%;
   height: 2px;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;

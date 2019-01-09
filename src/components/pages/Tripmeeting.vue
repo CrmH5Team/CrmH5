@@ -135,7 +135,7 @@ export default {
 
             showPage:0, //list视图控制显示meeting(0)或者trip(1)
 
-            selectView:'calendarVeiw',
+            selectView:'listView',
             dataFilter:['mySchedule'],
 
              //侧滑数据模型
@@ -143,7 +143,7 @@ export default {
                 {
                   groupText:'View视图',
                   type:'radio',
-                  default:'calendarVeiw',
+                  default:'listView',
                   items:[
                       {text:'Calendar Veiw',value:'calendarVeiw'},
                       {text:'List View',value:'listView'}
@@ -345,7 +345,7 @@ export default {
                 var activePos = $('.nav .active-item').position();
                 $('.nav-border').stop().css({
                     left: activePos.left,
-                    width: $('.nav .active-item').width()
+                    // width: $('.nav .active-item').width()
                 });
             })
         },
