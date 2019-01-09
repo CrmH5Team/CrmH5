@@ -131,7 +131,6 @@ export default {
     data(){
         return {
             title:'Trip&Meeting',
-            showPanel:false,
 
             showPage:0, //list视图控制显示meeting(0)或者trip(1)
 

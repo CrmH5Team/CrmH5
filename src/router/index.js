@@ -79,7 +79,12 @@ const router =  new Router({
         isBack:false
       }
     },
-    { path: '/business',name:'business', component:Business },
+    { path: '/business',name:'business', component:Business,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
     { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
     { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
     { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },

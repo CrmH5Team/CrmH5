@@ -72,6 +72,9 @@ export default {
 
     mounted:function(){
         lanTool.updateLanVersion();
+
+    },
+    activated:function(){
         eventBus.$on('showRightPanelEvent',this.panelToggle);
     },
 
@@ -133,9 +136,11 @@ export default {
             }
         },
     },
-
-    beforeDestroy:function(){
+    deactivated:function(){
         eventBus.$off('showRightPanelEvent');
+    },
+    beforeDestroy:function(){
+
     }
 
 }
