@@ -1,37 +1,37 @@
 @import url("https://at.alicdn.com/t/font_651046_uhu8lmhfa5c.css");
 body {
 	/* font-size: 0.17rem; */
-	line-height: 0.21rem;
+	/* line-height: 0.21rem; */
 	/* touch-action: none; */
 }
 
-header.mui-bar {line-height: 0.2rem;
+/* header.mui-bar {line-height: 0.2rem;
 	background: #3cadf9;
-}
+} */
 
-header .mui-title,
+/* header .mui-title,
 header a {
 	color: #fff;
 }
 
 a {
 	color: #3cadf9;
-}
+} */
 
-.mui-bar {
+/* .mui-bar {
 	height: 0.88rem;
-}
+} */
 
-.mui-title {
+/* .mui-title {
 	line-height: 0.88rem;
-}
+} */
 
 
-.mui-bar-nav~.mui-content {
+/* .mui-bar-nav~.mui-content {
 	padding-top: 0.88rem;
 	padding-bottom: 0.88rem;
-}
-
+} */
+/*
 .mui-table-view-cell>a:not(.mui-btn).mui-active {
 	background-color: #fff
 }
@@ -42,10 +42,10 @@ a {
 	color: #7f7f7f;
 	font-size: 0.3rem;
 }
-
-.calcfont {
+*/
+/* .calcfont {
 	vertical-align: middle;
-}
+} */
 
 
 /*列表共用*/

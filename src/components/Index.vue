@@ -243,9 +243,6 @@ export default {
         var headerH = parseFloat($('header').innerHeight());
         var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
         var navH = parseFloat($('#nav').innerHeight());
-        console.log('headerH:'+ headerH);
-        console.log('navH:'+ navH);
-
 
         $(window).scroll(function(){
             var scrollTop = $(this).scrollTop();

@@ -92,10 +92,13 @@ input[type=text] { -moz-appearance:textfield!important;}
 input[type=text]::-webkit-inner-spin-button,input[type=text]::-webkit-outer-spin-button { -webkit-appearance: none!important; margin: 0;}
 
 
+/*给头部设置高度，避免js获取不准确*/
+header{height: 0.88rem;}
 
 
 
 /*picker组件*/
+/*
 .picker-layer{position:fixed;z-index:998;top:0.88rem;bottom:0;left:0;right:0;background:rgba(0,0,0,0.2);}
 .picker-div{position:relative;z-index:9;}
 
@@ -122,6 +125,10 @@ outline: none;
 .weui-picker-container-visible{background: rgba(0,0,0,0.2);height: 100%;top:0;}
 
 .picker-items-col-divider{font-size:0.5rem!important;padding: 0 6px;}
+*/
+
+
+
 
 
 
