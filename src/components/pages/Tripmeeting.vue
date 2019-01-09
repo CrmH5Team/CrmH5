@@ -368,7 +368,7 @@ export default {
   content: "";
   display: block;
   height: 1px;
-  background: #e5f0f4;
+  background: beige;
   width: 100%;
   left: 0;
   top: 0;
