@@ -78,8 +78,8 @@
 /*提示*/
 .tips{border-top:10px solid #f2f2f2;border-bottom:10px solid #f2f2f2;}
 .tips-box{height:40px;line-height: 40px;padding:0 10px;}
-.tips-box .calc-tishi1{color:#ff5a21;}
-.tips-box span{vertical-align: middle;}
+.tips-box .calc-tishi1{color:#ff5a21;vertical-align: bottom;}
+.tips-box span{/*vertical-align: middle;*/}
 
 
 .group-title{height: 40px;line-height: 40px;padding: 0 10px;}
