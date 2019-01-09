@@ -1,9 +1,15 @@
 <template>
 <div>
 
-    <Header :title="pageTitle"></Header>
+    <header class="header sticky">
+        <a @click="backHandler" class="header-calcfont calcfont calc-fanhui left" id="back"></a>
 
-    <div >
+        <h1 class="mui-title">{{pageTitle||''}}</h1>
+
+        <a @click="saveHandler" class="header-save right f18" id="save">ok</a>
+    </header>
+
+    <div class="page-content">
           <div class="ListCell file-name-row">
               <div class="ListCellLeftIcon">
                   <span class=" calcfont calc-wenjian"></span>
@@ -52,20 +58,11 @@
 
 </template>
 
-<style scoped>
-@import "../../assets/css/pages/calendarinfo.css";
-/* .file-name-row{line-height: 20px;}
-.file-name-row .ListCellLeftIcon{padding:0;margin: 0;}
-.file-name-row-left{width:40%;overflow: hidden;}
-.file-name-row-right{box-sizing: border-box;word-wrap: break-word;overflow: hidden;} */
 
-</style>
 
 
 
 <script>
-import Header from '../common/Header'
-import Picker from '../common/Picker'
 
 export default {
     data(){
@@ -92,8 +89,6 @@ export default {
             }
         }
     },
-    components:{ Header,Picker },
-
     beforeRouteEnter:function(to, from, next){
         //如果是从以下路由回来的就不用刷新页面
         if(from.name === 'selectlist'){
@@ -149,8 +144,11 @@ export default {
 
 
     methods:{
+        backHandler: function () {
+            this.$router.back(-1);
+        },
 
-        upload:function(){
+        saveHandler:function(){
             var $this = this;
 
             //请求地址
@@ -218,7 +216,7 @@ export default {
         }
     },
     beforeDestroy:function(){
-        eventBus.$off('updataPicker');
+
     }
 
 
@@ -230,195 +228,60 @@ export default {
 
 
 <style scoped>
+@import "../../assets/css/pages/calendarinfo.css";
+/*页面头部style*/
 
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  line-height: 0.2rem;
+  background: #f8f2dc;
+}
 
-.selectedFile {
-    background: #fff;
-    font-size: 0.24rem;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    padding: 15px;
-    color: #595959;
+.mui-title {
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    max-width: 75%;
+    font-size: 0.34rem;
+    margin: 0 0 0 -10px;
+    text-overflow: ellipsis;
+    padding: 0;
     text-align: center;
+    white-space: nowrap;
+    line-height: 0.88rem;
 }
-.selectedFile h3 {
+
+.header-calcfont {
+    font-size: 0.48rem;
+    text-align: center;
+    padding: 0.2rem 10px;
     position: relative;
-    font-size: 0.28rem;
-    font-weight: normal;
-    padding: 10px 11px;
+    z-index: 20;
+    display: inline-block;
+    text-decoration: none;
     line-height: 1;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    box-sizing: border-box;
-    outline: 0;
 }
-.selectedFile h3:after {
-    position: absolute;
-    right: 0;
-    bottom: 15px;
-    width: 100%;
-    left: 0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
-    background-color: #c8c7cc;
-}
-.selectedFile h3 span {
-    background: #fff;
-    padding: 0 20px;
+.header-save{
+    text-align: center;
+    padding: 0.2rem 10px;
     position: relative;
-    z-index: 2;
+    z-index: 20;
+    display: inline-block;
+    text-decoration: none;
+    box-sizing: border-box;
+    line-height:0.48rem;
 }
-.mui-ellipsis {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    line-height: 1.5;
-    color: #3cadf9;
-}
-.selectedFile .name i {
-    color: #3cadf9;
-    font-size: 0.45rem;
-    margin-right: 5px;
-    vertical-align: -0.05rem;
+header .mui-title,
+header a {
+    color: #333;
+    font-weight: 400;
 }
 
+.page-content{padding-top: 0.88rem;}
 
-.mui-input-group {
-    position: relative;
-    padding: 0;
-    border: 0;
-    background-color: #fff;
-}
-.mui-input-group:before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 1px;
-    content: '';
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
-    background-color: #c8c7cc;
-}
-.mui-input-group .mui-input-row {
-    height: auto;
-    position: relative;
-    clear: left;
-    overflow: hidden;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-user-select: none;
-    outline: 0;
-}
-.mui-input-row .arrow-right{
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
-    color: #7f7f7f;
-}
-.mui-input-row label {
-    float: none;
-    padding: 11px 15px 0;
-    width: 100%;
-    color: #898989;
-    font-size: 0.24rem;
-    display: block;
-    position: relative;
-    font-family: 'Helvetica Neue',Helvetica,sans-serif;
-    line-height: 1.1;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-user-select: none;
-    outline: 0;
-}
-.mui-input-row label span.red {
-    color: #fd3f3f;
-    vertical-align: middle;
-    position: absolute;
-    left: 8px;
-    top: 13px;
-}
-.mui-input-row p {
-    min-height: 40px;
-    line-height: 40px;
-    font-size: 0.28rem;
-    color: #000;
-    padding: 0 15px;
-    margin-bottom: 0;
-}
-.mui-input-row p::after{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 15px;
-    height: 1px;
-    content: '';
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
-    background-color: #c8c7cc;
-}
-.mui-input-row input{
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    font-size: 0.28rem;
-    color: #000;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
-    padding-right: 30px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: 0;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-    line-height: 21px;
-    height: 40px;
-    border: 0;
-}
-
-
-.textarea_div{
-    padding: 0 15px;
-}
-.mui-input-row textarea {
-    width: 100%;
-    outline: none;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-    background-color: transparent;
-    display: block;
-    margin-left: 0;
-    overflow: hidden;
-    position: relative;
-    left: -2px;
-    height: 40px;
-    line-height: 24px;
-    margin: 11px 11px 8px 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border:0;
-}
-
-.btn_div{
-    width: 90%;
-    margin: 20px auto;
-}
-.mui-btn-block {
-    font-size: 18px;
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    color: #fff;
-    border: 1px solid #007aff;
-    background-color: #007aff;
-    border-radius: 3px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-}
 
 </style>
