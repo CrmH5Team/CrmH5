@@ -9,7 +9,7 @@
   display:-webkit-box;
   display:box;
   box-sizing: border-box;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid beige;
 }
 .nav-item{
   line-height:38px;

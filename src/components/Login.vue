@@ -1,10 +1,10 @@
 <template>
   <div id="Body">
-			<a @click="tapCurrentLanguage"  id="lvShow" class="popover-yuyan">{{currentLanguageText}}</a>
+			<!-- <a @click="tapCurrentLanguage"  id="lvShow" class="popover-yuyan">{{currentLanguageText}}</a>
 			<div v-show="showLanguage" id="popover-yuyan" class="mui-popover" >
 				<a v-for="language in languages" v-bind:lvId="language.type" @click="switchLanguage">{{language.text}}</a>
         <div class="mui-popover-arrow" style="left:51px"></div>
-			</div>
+			</div> -->
 			<div id="UserName" class="UserInfo">
 				<i class="calcfont calc-User"></i>
 				<input id="UserNameVal" class="UserInfoVal lanInputPlaceHolder" data-lanid="169_请输入用户名"  type="text" placeholder="" v-model="userName" />
@@ -26,20 +26,20 @@ export default {
         currentLanguageText:'English',
         showLanguage:false,
         activeEyes:false,
-        languages:[
-            {
-            type:1,
-            text:'English'
-            },
-            {
-            type:2,
-            text:'简体中文'
-            },
-            {
-            type:3,
-            text:'繁體中文'
-            },
-        ],
+        // languages:[
+        //     {
+        //     type:1,
+        //     text:'English'
+        //     },
+        //     {
+        //     type:2,
+        //     text:'简体中文'
+        //     },
+        //     {
+        //     type:3,
+        //     text:'繁體中文'
+        //     },
+        // ],
         userName:tool.getStorageItem(tool.cache_loginUserName) || "",
         userPwd:tool.getStorageItem(tool.cache_loginPwd) || "",
         //防止登陆按钮重复提交
@@ -51,16 +51,18 @@ export default {
 
       lanTool.updateLanVersion();
 
+      // alert(window.localStorage===undefined);
+
       $('#Body').height( document.documentElement.clientHeight );
       // console.log();
 
-      var self = this;
-        var currentLan = lanTool.currentLanguageVersion || 1;
-        self.languages.map(function(item){
-            if(item.type == currentLan){
-                self.currentLanguageText = item.text;
-            }
-        })
+      // var self = this;
+      //   var currentLan = lanTool.currentLanguageVersion || 1;
+      //   self.languages.map(function(item){
+      //       if(item.type == currentLan){
+      //           self.currentLanguageText = item.text;
+      //       }
+      //   })
 
   },
 
@@ -248,6 +250,7 @@ export default {
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
+/*
 a.popover-yuyan {
   position: absolute;
   z-index:9;
@@ -276,7 +279,6 @@ a.popover-yuyan {
   right:1%;
   z-index: 999;
   width: auto;
-  /* display: none; */
   position: absolute;
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
@@ -300,7 +302,6 @@ a.popover-yuyan {
 }
 #popover-yuyan .mui-popover-arrow {
   position: absolute;
-  /* z-index: 1000; */
   top: -0.25rem;
   left: 0;
   overflow: hidden;
@@ -310,6 +311,7 @@ a.popover-yuyan {
 	border-left:0.3rem solid transparent;
 	border-bottom:0.3rem solid #f7f7f7;
 }
+*/
 .eyes{
     position: absolute;
     right:0rem;

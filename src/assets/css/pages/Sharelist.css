@@ -56,7 +56,7 @@ header .mui-title,header a { color: #333;font-weight: 400;}
   box-sizing: border-box;
   z-index: 99;
   background:#fff;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid beige;
 
 }
 
@@ -297,7 +297,7 @@ label.radios-label .radios{position: absolute;}
 .group-div .item-div{background:#f8f2dc;position: relative;}
 .group-div .item-div::before{content: "";  display: block;  height: 1px;  background: #e9cfae;
   width: 100%;  left: 0;  top: 0;  position: absolute;}
-.group-div .item-div::after{content: "";  display: block;  height: 1px;  background: #e9cfae;
+.group-div .open::after{content: "";  display: block;  height: 1px;  background: #e9cfae;
   width: 100%;  left: 0;  bottom: 0;  position: absolute;}
 
 .group-div .child-list{padding:0 36px; display:none;}

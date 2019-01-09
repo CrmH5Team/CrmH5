@@ -73,7 +73,7 @@
                   </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(57)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -82,7 +82,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(56)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -91,7 +91,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(3)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -111,7 +111,7 @@
                   </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(85)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -120,7 +120,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(96)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -129,7 +129,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(48)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -149,7 +149,7 @@
                   </div>
                   <div class="occupy-div"></div>
                   <div class="data-events">
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(5)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -158,7 +158,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(9)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -167,7 +167,7 @@
                             <div class="item-address">China Eastern Airlines</div>
                             <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                         </div>
-                        <div class="data-events-item f12">
+                        <div class="data-events-item f12" @click="goInfoPage(8)">
                             <div class="item-title">Meeting with Eastern Airlines</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -293,6 +293,17 @@ export default {
 
     },
     methods:{
+
+        //点击去详情页
+        goInfoPage:function(id){
+            var _self = this,
+                url = "";
+            if(id === undefined){
+              id = '';
+            }
+            url = '/meetinginfo/{"AutoID":"'+ id +'"}';
+            _self.$router.push(url);
+        },
 
         goSearch:function(){
             this.$router.push('/search');

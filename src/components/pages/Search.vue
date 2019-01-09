@@ -103,7 +103,7 @@ export default {
 
 
 
-.input-box{border-bottom:1px solid #ccc;}
+.input-box{border-bottom:1px solid beige;}
 .input{height: 36px;box-sizing: border-box;line-height: 16px;padding:10px 10px;
 width: 100%;border: 0;outline: none;}
 

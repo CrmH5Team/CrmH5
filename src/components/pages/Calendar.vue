@@ -454,7 +454,7 @@ export default {
   display:-webkit-box;
   display:box;
   box-sizing: border-box;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid beige;
 }
 .nav-item{
   line-height:38px;
@@ -484,8 +484,9 @@ export default {
   transition: 0.3s ease;
 }
 
+
 /*增加按钮*/
-.add-btn-div{text-align: center;}
+.add-btn-div{text-align: center;position:relative;border-bottom: 1px solid beige;}
 .add-div{height:38px;line-height:38px;text-align: center;display:inline-block;margin: 0 auto;padding:0 15px;}
 .add-div .calcfont{color:#ff5a21;}
 .add-div .add-text{vertical-align: middle;color:#ff5a21;}
@@ -521,6 +522,8 @@ export default {
 
 <style>
 /*日历style*/
+.picker-calendar-week-days::after{background:beige!important;}
+.picker-calendar-row:after{background:beige!important;}
 #inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;}
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
 .picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;overflow: hidden;color:#000!important;}
