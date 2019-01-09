@@ -374,7 +374,7 @@ export default {
 .item-div{line-height: 0.4rem;}
 
 .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
-box-sizing: border-box;height: 14px;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
+box-sizing: border-box;/*height: 14px;*/line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
 margin-right: 5px;}
 .itme-div-span{vertical-align: middle;}
 
