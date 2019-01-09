@@ -240,6 +240,7 @@ export default {
         eventBus.$on('showRightPanelEvent',this.panelToggle);
 
         //列表视图滚动
+        setTimeout(() => {
         var headerH = parseFloat($('header').innerHeight());
         var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
         var navH = parseFloat($('#nav').innerHeight());
@@ -287,10 +288,8 @@ export default {
               }
 
             })
-        })
-
-
-
+        });
+        }, 100);
     },
     methods:{
 
