@@ -42,19 +42,6 @@ header {
     text-decoration: none;
     line-height: 1;
 }
-.header-save{
-    text-align: center;
-    padding: 0.2rem 10px;
-    position: relative;
-    z-index: 20;
-    display: inline-block;
-    text-decoration: none;
-    box-sizing: border-box;
-    line-height:0.48rem;
-}
-
-.calc-fanhui {}
-
 header .mui-title,
 header a {
     color: #333;

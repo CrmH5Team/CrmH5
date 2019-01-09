@@ -5,7 +5,7 @@
 
         <h1 class="mui-title">{{title||''}}</h1>
 
-        <a @click="saveHandler" class="header-save right f18" id="save">ok</a>
+        <a @click="saveHandler" class="calc-gou header-calcfont calcfont right" id="save"></a>
     </header>
 
     <div class="selectList-scroll">

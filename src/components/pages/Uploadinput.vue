@@ -6,7 +6,7 @@
 
         <h1 class="mui-title">{{pageTitle||''}}</h1>
 
-        <a @click="saveHandler" class="header-save right f18" id="save">ok</a>
+        <a @click="saveHandler" class="calc-gou header-calcfont calcfont right" id="save"></a>
     </header>
 
     <div class="page-content">
@@ -264,16 +264,6 @@ header {
     display: inline-block;
     text-decoration: none;
     line-height: 1;
-}
-.header-save{
-    text-align: center;
-    padding: 0.2rem 10px;
-    position: relative;
-    z-index: 20;
-    display: inline-block;
-    text-decoration: none;
-    box-sizing: border-box;
-    line-height:0.48rem;
 }
 header .mui-title,
 header a {
