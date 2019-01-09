@@ -206,7 +206,7 @@ header a {
 
 .dataList .item-div {
     padding: 10px;
-    border-bottom: solid 1px #e5f0f4;
+    border-bottom: solid 1px beige;
 }
 .dataList .item-div label{display:block;line-height:40px;position: relative;margin:-10px 0;}
 .item-div .checkbox-label .checkbox{position: absolute;left:0;top:12px;}

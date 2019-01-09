@@ -107,7 +107,7 @@ export default {
 <style scoped>
 .search-rows{background: #fff;width:100%;overflow: hidden;}
 .item-row{padding:0px 15px;box-sizing: border-box;line-height: 40px;
-border-bottom: 1px solid rgba(60,173,249,.2);}
+border-bottom: 1px solid beige;}
 .item-row .calcfont{color:#cdcdcd;position:absolute;top:0;right:-6px;}
 
 .search-input{
