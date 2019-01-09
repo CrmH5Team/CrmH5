@@ -217,7 +217,7 @@ export default {
             this.$router.push({
                 path: '/sharelist',
                 query: {
-                    name:"Colleagues with access",
+                    name: "Colleagues with access",
                 }
             })
         },
@@ -253,11 +253,6 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-
-.scroll-div {
-    background-color: rgb(242, 242, 242);
-}
-
 .accessView,
 .organizationMessage,
 .accessList {

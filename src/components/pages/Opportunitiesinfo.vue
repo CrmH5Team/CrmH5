@@ -9,7 +9,7 @@
                     <p class="f12"><span>* </span> 请注意，该商业机会已关闭，仅允许被查看。</p>
                 </div>
             </div>
-            <div class="OpportunitiesList">
+            <div class="OpportunitiesList" v-if="true">
                 <div class="ListCell">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shangye"></span></div>
                     <div class="ListCellContent">
@@ -23,7 +23,6 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <!-- 如果是deal详情 就将icon改为calc-jiaoyi -->
                     <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-yewujihui"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
@@ -84,6 +83,49 @@
                         <textarea autoHeight="true" placeholder="">Follow it</textarea>
                     </p>
                 </div> -->
+                </div>
+            </div>
+            <div class="dealList" v-else>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shangye"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Business Types</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Opportunity</div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-jiaoyi"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="Title">MSN03092 Sales to Eastern Airlines</textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon " @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText">Follow it</div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">Unfollowed</div>
+                        </div>
+                        <div class="ListCellRightIcon iconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+
                 </div>
             </div>
             <div class="meetingRecord">
@@ -265,7 +307,7 @@ export default {
             if ($(".guanZhu").hasClass("calc-shoucang1")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-shoucang1")
-                 $.toast("关注成功", 1500, function () {});
+                $.toast("关注成功", 1500, function () {});
             } else {
                 $(".guanZhu").addClass("calc-shoucang1");
                 $(".guanZhu").removeClass("calc-shoucang")
@@ -445,7 +487,8 @@ export default {
 
 .headerDiv .headerDivRightDelete {
     width: 0.4rem;
-    height: 0.4rem;
+    /* height: 0.4rem; */
+
     margin: auto 0;
     /* align-self: auto; */
 
