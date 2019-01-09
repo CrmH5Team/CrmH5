@@ -1,14 +1,15 @@
 <template>
-<div class="selectList">
-    <header class="mui-bar mui-bar-nav">
+<div>
+    <header class="header sticky">
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
 
         <h1 class="mui-title f18">{{title||''}}</h1>
 
-        <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+        <!-- <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a> -->
+        <a @click="saveHandler" class="header-save right f18" id="save">ok</a>
     </header>
 
-    <div class="nav">
+    <div class="nav sticky">
         <div @click="switchPage(0,$event)" class="f16 nav-item active-item">User</div>
         <div @click="switchPage(1,$event)" class="f16 nav-item" >Group</div>
         <div class="nav-border"></div>
@@ -17,46 +18,94 @@
 
     <div class="selectList-scroll">
 
-        <!-- search-active -->
-        <div class="search ">
-            <div class="search-box">
-                <span class="calcfont calc-sousuo input-search-icon"></span>
-                <input
-                        @blur="blurHandler"
-                        type="search"
-                        id="searchInput"
-                        class="search-input" data-lanid="208_搜索" placeholder=""  />
-                <span class="calcfont calc-delete"></span>
-                <span @click="clickSearch" class="search-placeholder f16">
-                        <span class="calcfont calc-sousuo"></span>
-                <span class="lanText" data-lanid="208_搜索"></span>
-                </span>
+            <div v-show="showPage==0" class="user-page">
+                  <div class="search ">
+                      <div class="search-box">
+                          <span class="calcfont calc-sousuo input-search-icon"></span>
+                          <input
+                                  @blur="blurHandler"
+                                  type="search"
+                                  id="userInput"
+                                  key="userInput"
+                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
+                          <span class="calcfont calc-delete"></span>
+                          <span @click="clickSearch" class="search-placeholder f16">
+                                  <span class="calcfont calc-sousuo"></span>
+                          <span class="lanText" data-lanid="208_搜索"></span>
+                          </span>
+                      </div>
+                  </div>
+                  <!-- 列表 -->
+                  <div class="dataList checkboxList">
+                      <div v-for="item in userData" class="item-div">
+                          <label class="checkbox-label">
+                              <input type="checkbox" name="user" :value="item.value" v-model="userCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.text}}</span>
+                          </label>
+                      </div>
+                  </div>
+                  <div class="selectAll">
+                      <div class="item-div">
+                          <label class="checkbox-label">
+                                <input @click="selectAll('user',$event)" type="checkbox" name="sex"/><i class="checkbox checkAll"></i>
+                                <span>all</span>
+                          </label>
+                      </div>
+                  </div>
             </div>
-        </div>
 
-        <!-- 列表 -->
-        <div  class="dataList checkboxList">
-            <div v-for="item in dataArray" class="item-div">
-                <label class="checkbox-label">
-                    <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios f14">{{item.text}}</span>
-                </label>
+            <div v-show="showPage==1" class="group-page">
+                  <div class="search ">
+                      <div class="search-box">
+                          <span class="calcfont calc-sousuo input-search-icon"></span>
+                          <input
+                                  @blur="blurHandler"
+                                  type="search"
+                                  id="groupInput"
+                                  key="groupInput"
+                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
+                          <span class="calcfont calc-delete"></span>
+                          <span @click="clickSearch" class="search-placeholder f16">
+                                  <span class="calcfont calc-sousuo"></span>
+                          <span class="lanText" data-lanid="208_搜索"></span>
+                          </span>
+                      </div>
+                  </div>
+                  <!-- 列表 -->
+                  <div class="dataList checkboxList">
+
+                      <div v-for="item in groupData" class="group-div">
+                          <div  class="item-div" @click="groupToggle">
+                              <label class="checkbox-label" @click.stop>
+                                  <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
+                              </label>
+                          </div>
+                          <div class="child-list">
+                              <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="selectAll">
+                      <div class="item-div">
+                          <label class="checkbox-label">
+                                <input @click="selectAll('group',$event)" type="checkbox" name="sex"/><i class="checkbox checkAll"></i>
+                                <span>all</span>
+                          </label>
+                      </div>
+                  </div>
             </div>
-        </div>
+
+
+
+
 
     </div>
-    <div class="selectAll">
-        <div class="item-div">
-            <label class="checkbox-label">
-                          <input @click="selectAll" type="checkbox" name="sex"/><i class="checkbox checkAll"></i>
-                          <span>all</span>
-            </label>
-        </div>
-    </div>
+
 </div>
 </template>
 
 <script>
-// import event from './Event.js'
+
 export default {
     data() {
         return {
@@ -64,7 +113,8 @@ export default {
                 'search': lanTool.lanContent('208_搜索'), //208_搜索
             },
 
-            dataArray: [
+            //用户数据
+            userData: [
               {text:'Alan',value:'Alan1'},
               {text:'Alan',value:'Alan2'},
               {text:'Alan',value:'Alan3'},
@@ -72,62 +122,49 @@ export default {
               {text:'Alan',value:'Alan5'},
               {text:'Alan',value:'Alan6'},
               {text:'Alan',value:'Alan7'},
-              {text:'Alan',value:'Alan8'},
-              {text:'Alan',value:'Alan9'},
-              {text:'Alan',value:'Alan10'},
-              {text:'Alan',value:'Alan11'},
-              {text:'Alan',value:'Alan12'},
-              {text:'Alan',value:'Alan13'},
-              {text:'Alan',value:'Alan14'},
-              {text:'Alan',value:'Alan15'},
-              {text:'Alan',value:'Alan16'},
-              {text:'Alan',value:'Alan17'},
-              {text:'Alan',value:'Alan18'},
-              {text:'Alan',value:'Alan19'},
-              {text:'Alan',value:'Alan20'},
-              {text:'Alan',value:'Alan21'},
-              {text:'Alan',value:'Alan22'},
-              {text:'Alan',value:'Alan23'},
-              {text:'Alan',value:'Alan24'},
-              {text:'Alan',value:'Alan25'},
-              {text:'Alan',value:'Alan26'},
-              {text:'Alan',value:'Alan27'},
-              {text:'Alan',value:'Alan28'},
-              {text:'Alan',value:'Alan29'},
-              {text:'Alan',value:'Alan30'},
-              {text:'Alan',value:'Alan31'},
-              {text:'Alan',value:'Alan32'},
-              {text:'Alan',value:'Alan33'},
-              {text:'Alan',value:'Alan34'},
-              {text:'Alan',value:'Alan35'},
-              {text:'Alan',value:'Alan36'},
-              {text:'Alan',value:'Alan37'},
-              {text:'Alan',value:'Alan38'},
-              {text:'Alan',value:'Alan39'},
-              {text:'Alan',value:'Alan40'},
-              {text:'Alan',value:'Alan41'},
-              {text:'Alan',value:'Alan42'},
-              {text:'Alan',value:'Alan43'},
-              {text:'Alan',value:'Alan44'},
-              {text:'Alan',value:'Alan45'},
-              {text:'Alan',value:'Alan46'},
-              {text:'Alan',value:'Alan47'},
-              {text:'Alan',value:'Alan48'},
-              {text:'Alan',value:'Alan49'},
-              {text:'Alan',value:'Alan50'},
-              {text:'Alan',value:'Alan51'},
-              {text:'Alan',value:'Alan52'},
-              {text:'Alan',value:'Alan53'},
-              {text:'Alan',value:'Alan54'},
             ],
+            //组数据
+            groupData:[
+                {
+                  groupName:'Alan123',
+                  value:'A1',
+                  groupMember:[
+                      {text:'Alan1'},
+                      {text:'Alan24'},
+                      {text:'Alan3'},
+                  ]
+                },
+                {
+                  groupName:'Alan123456',
+                  value:'A2',
+                  groupMember:[
+                      {text:'Alan1'},
+                      {text:'Alan24'},
+                      {text:'Alan37'},
+                  ]
+                },
+                {
+                  groupName:'Alan1',
+                  value:'A3',
+                  groupMember:[
+                      {text:'Alan15'},
+                      {text:'Alan2'},
+                      {text:'Alan3'},
+                  ]
+                },
+            ],
+
             queryUrl: null,
             field: null,
             title: 'Share with',
             value: '', //默认值数据
-            selectType:'checkbox',  //判断是否多选
-
+            
             radioValue:'',
-            checkboxValue:[],
+
+            userCheckedValue:[],
+            groupCheckedValue:[],
+
+            showPage:0,
 
         }
     },
@@ -135,33 +172,46 @@ export default {
         this.queryUrl = this.$route.query.url;
         this.field = this.$route.query.field;
         this.value = this.$route.query.value;
-        // this.selectType = this.$route.query.selectType
     },
     mounted: function () {
         lanTool.updateLanVersion();
 
-        //根据是否多选来设置列表滚动的区域高度
-        if (this.selectType === 'checkbox') {
-            $(".selectList-scroll").css("bottom", "50px");
-        } else {
-            $(".selectList-scroll").css("bottom", "0px");
-        }
 
-        this.getData();
+        // this.getData();
         this.search();
         this.changePos();
 
     },
     methods: {
+        //点击分组收起展开
+        groupToggle:function(e){
+            document.activeElement.blur();
+            var el = e.target;
+            var _curObj = $(el);
+            if(!_curObj.hasClass('date-div')){
+
+                if(_curObj.hasClass('open')){
+                    _curObj.removeClass('open').siblings('.child-list').slideUp(500);
+                }else{
+                    _curObj.addClass('open').siblings('.child-list').slideDown(500);
+                }
+                // return;
+                // _curObj = _curObj.parent('div.date-div:first');
+                // if(_curObj == undefined){
+                //     return;
+                // }
+            }
+        },
+
         //切换页面
         switchPage:function(num, e){
+            document.activeElement.blur();
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
-            // _self.swiper.slideTo(num, 500, false);
             _self.changePos();
-            _self.currentPage = num;
+            _self.showPage = num;
         },
         //table底部横条过渡效果
         changePos:function() {
@@ -174,17 +224,25 @@ export default {
             })
         },
 
-        selectAll: function (e) {
+        selectAll: function (type,e) {
+            document.activeElement.blur();
             var self = this;
                 var el = e.target,
                     t = $(e.target).is(":checked");
                 if (t) {
-                    $.each(self.dataArray,function(index,item){
-                        self.checkboxValue.push(item.value);
-                    })
+                    if(type === 'user'){
+                        $.each(self.userData,function(index,item){
+                            self.userCheckedValue.push(item.value);
+                        })
+                    }else{
+                        $.each(self.groupData,function(index,item){
+                            self.groupCheckedValue.push(item.value);
+                        })
+                    }
+                    
                 } else {
-                    self.checkboxValue = [];
-
+                    self.userCheckedValue = [];
+                    self.groupCheckedValue = [];
                 }
         },
         clickSearch: function (e) {
@@ -195,9 +253,9 @@ export default {
 
         //失去焦点
         blurHandler: function (e) {
-            document.activeElement.blur();
-            $(e.target).val('');
-            $(e.target).closest('.search').removeClass('search-active');
+            // document.activeElement.blur();
+            // $(e.target).val('');
+            // $(e.target).closest('.search').removeClass('search-active');
         },
 
         backHandler: function () {
@@ -206,23 +264,23 @@ export default {
 
         saveHandler: function () {
             var $this = this;
-            var arr = {
-                field: $this.field,
-                value: []
-            };
-            $.each($this.dataArray,function(index, item){
+            // var arr = {
+            //     field: $this.field,
+            //     value: []
+            // };
+            // $.each($this.dataArray,function(index, item){
 
-                if(($this.selectType === 'radio' && $this.radioValue === item.value) ||
-                  ($this.selectType === 'checkbox' && $this.checkboxValue.indexOf(item.value)>=0 )){
-                    var t = {};
-                    t.text = item.text;
-                    t.value = item.value;
-                    arr.value.push(t);
-                }
+            //     if(($this.selectType === 'radio' && $this.radioValue === item.value) ||
+            //       ($this.selectType === 'checkbox' && $this.checkboxValue.indexOf(item.value)>=0 )){
+            //         var t = {};
+            //         t.text = item.text;
+            //         t.value = item.value;
+            //         arr.value.push(t);
+            //     }
 
-            })
-            eventBus.$emit('updataSelectList', arr);
-            $this.$router.back(-1);
+            // })
+            // eventBus.$emit('updataSelectList', arr);
+            // $this.$router.back(-1);
 
         },
 
@@ -283,43 +341,24 @@ export default {
             })
         },
 
-        //锁定当前选项
-        LocateCurentItem: function (fieldValue) {
-            $('.list-item').each(function (index, el) {
-                $(el).find('input').prop("checked", false);
-            })
-
-            if (tool.isNullOrEmptyObject(fieldValue)) {
-                return true;
-            }
-
-            $(".list-item[data-val='" + fieldValue + "'] input:first").prop("checked", true);
-            return true;
-        },
-
-        //选择数据
-        selectItem: function () {
-            $("input[type='checkbox']").unbind().on('change', function (e) {
-                document.activeElement.blur();
-                e.stopPropagation();
-                var _self = $(this);
-
-                if (_self.is(":checked") == true) {
-                    _self.parents("label").siblings("label").find("input[type='checkbox']").prop("checked", false);
-                }
-            })
-        },
-
         //筛选
         search: function () {
             this.$nextTick(function () {
                 var listDom = $('.dataList');
-                $('#searchInput').unbind().bind('input', function () {
+                $('#userInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('label').show();
+                        listDom.find('.item-div').show();
                     } else {
-                        listDom.find('label').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        listDom.find('.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                    }
+                })
+                $('#groupInput').unbind().bind('input', function () {
+                    var queryStr = $.trim($(this).val());
+                    if (queryStr === '') {
+                        listDom.find('.group-div').show();
+                    } else {
+                        listDom.find('.group-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
             })

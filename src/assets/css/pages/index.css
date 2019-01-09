@@ -89,7 +89,7 @@
 
 /*列表视图*/
 .date-div{
-  height:36px;line-height:36px;background:#e9cfae;padding:0 10px;
+  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;
   width: 100%;color:#000;
   box-sizing: border-box;
 }
@@ -99,8 +99,8 @@
 .data-events-item{border-bottom: 1px solid #e5f0f4;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
-.item-time .calc-gengxinshijian{color:#ff5a21;}
-.time-text{vertical-align: middle;}
+.item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
+.time-text{/*vertical-align: middle;*/}
 .item-address{font-weight: 600;}
 .data-events p{height: 50px;line-height: 50px;}
 
@@ -118,13 +118,13 @@
 }
 .user-name{font-weight: 600;padding-bottom: 5px;}
 
-.right-block-title{height:32px;line-height:32px;background:#e9cfae;padding-left:10px;font-weight: 600;}
-.right-block-items .block-item{line-height: 32px;box-sizing: border-box;padding-left:1rem;}
+.right-block-title{height:0.7rem;line-height:0.7rem;background:#e9cfae;padding-left:10px;font-weight: 600;}
+.right-block-items .block-item{line-height:0.7rem;box-sizing: border-box;padding-left:10px;}
 .item-border-top{border-top:5px solid #f2f2f2}
 
 /*switch style*/
 .switch-text{vertical-align: middle;display: inline-block;}
-.switch{width: 1.3rem!important;height: .5rem;display: inline-block;vertical-align: middle;margin-left:0.5rem;}
+.switch{width: 1.3rem!important;height: .5rem;display: inline-block;vertical-align: middle;margin-left:1.3rem;}
 .weui-cell__ft{height: 0.5rem;line-height: 0.5rem;}
 .switch .weui-switch{width: 1.3rem;height: 0.5rem;width: 80%;border-radius: .25rem;}
 .switch .weui-switch:checked {

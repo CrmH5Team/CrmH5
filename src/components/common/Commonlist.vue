@@ -120,7 +120,7 @@ export default {
 
 .group-div{border-bottom:1px solid #fff;}
 .date-div{
-  height:36px;line-height:36px;background:#e9cfae;padding:0 10px;font-size: 12px;
+  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
   width: 100%;color:#000;
   box-sizing: border-box;
   z-index:89;

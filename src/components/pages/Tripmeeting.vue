@@ -111,7 +111,7 @@
     </div>
 
     <!--  右侧侧滑 -->
-    <list-right-panel :panelData="rigthPanelData" :searchData="tripMeetingSearchData"></list-right-panel>
+    <list-right-panel ref="listRightPanel" :panelData="rigthPanelData" :searchData="tripMeetingSearchData"></list-right-panel>
 
 </div>
 </template>
@@ -306,7 +306,11 @@ export default {
         }
     },
     mounted:function(){
-        this.changePos();
+        var _self = this;
+        _self.changePos();
+        eventBus.$on('changeViewEvent',function(data){
+            _self.selectView = data;
+        })
     },
     methods:{
         //点击去详情页
@@ -373,8 +377,8 @@ export default {
 
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
-.item-time .calc-gengxinshijian{color:#ff5a21;}
-.time-text{vertical-align: middle;}
+.item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
+.time-text{/*vertical-align: middle;*/}
 .trip-time-text{font-size:11px;color:#666666;}
 .item-address{font-weight: 600;}
 .data-events p{height: 50px;line-height: 50px;}

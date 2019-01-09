@@ -439,7 +439,7 @@ export default {
 <style scoped>
 /*日期显示 style*/
 .date-div{
-  height:36px;line-height:36px;background:#e9cfae;padding:0 10px;
+  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;
   width: 100%;color:#000;box-sizing: border-box;
 }
 .date-div .calcfont{ color: #ff5a21; margin-right: 5px; vertical-align: bottom;}
@@ -496,8 +496,8 @@ export default {
 .data-events-item{border-bottom: 1px solid #ccc;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
-.item-time .calc-gengxinshijian{color:#ff5a21;}
-.time-text{vertical-align: middle;}
+.item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
+.time-text{/*vertical-align: middle;*/}
 .trip-time-text{font-size:11px;color:#666666;}
 .item-address{font-weight: 600;}
 .data-events p{height: 50px;line-height: 50px;}

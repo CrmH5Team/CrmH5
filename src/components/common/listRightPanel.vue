@@ -51,6 +51,11 @@ export default {
             dataFilter:[],
         }
     },
+    watch:{
+        viewValue:function(newVule){
+            eventBus.$emit('changeViewEvent',newVule);
+        }
+    },
     props:['panelData','searchData'],
     created:function(){
         var _self = this;
@@ -68,7 +73,6 @@ export default {
     mounted:function(){
         lanTool.updateLanVersion();
         eventBus.$on('showRightPanelEvent',this.panelToggle);
-
     },
 
     methods: {
@@ -77,7 +81,6 @@ export default {
           var _self = this;
             _self.showPanel = !_self.showPanel;
             if(_self.showPanel){
-
                 _self.$nextTick(function(){
                     $('#right-content').css({
                         'left':'30%',

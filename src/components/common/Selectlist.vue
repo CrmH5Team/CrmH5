@@ -106,7 +106,6 @@ export default {
                     })
                 } else {
                     self.checkboxValue = [];
-
                 }
         },
         clickSearch: function (e) {
@@ -128,7 +127,6 @@ export default {
 
         saveHandler: function () {
             var $this = this;
-            // console.log($this.checkboxValue);
             var arr = {
                 field: $this.field,
                 value: []
@@ -207,31 +205,18 @@ export default {
         },
 
         //锁定当前选项
-        LocateCurentItem: function (fieldValue) {
-            $('.list-item').each(function (index, el) {
-                $(el).find('input').prop("checked", false);
-            })
+        // LocateCurentItem: function (fieldValue) {
+        //     $('.list-item').each(function (index, el) {
+        //         $(el).find('input').prop("checked", false);
+        //     })
 
-            if (tool.isNullOrEmptyObject(fieldValue)) {
-                return true;
-            }
+        //     if (tool.isNullOrEmptyObject(fieldValue)) {
+        //         return true;
+        //     }
 
-            $(".list-item[data-val='" + fieldValue + "'] input:first").prop("checked", true);
-            return true;
-        },
-
-        //选择数据
-        selectItem: function () {
-            $("input[type='checkbox']").unbind().on('change', function (e) {
-                document.activeElement.blur();
-                e.stopPropagation();
-                var _self = $(this);
-
-                if (_self.is(":checked") == true) {
-                    _self.parents("label").siblings("label").find("input[type='checkbox']").prop("checked", false);
-                }
-            })
-        },
+        //     $(".list-item[data-val='" + fieldValue + "'] input:first").prop("checked", true);
+        //     return true;
+        // },
 
         //筛选
         search: function () {

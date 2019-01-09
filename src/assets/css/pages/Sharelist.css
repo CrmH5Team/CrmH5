@@ -1,76 +1,66 @@
 
 /*页面头部style*/
 header {
-    position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  line-height: 0.2rem;
+  background: #f8f2dc;
 }
-
-header.mui-bar {
-    /* line-height: 0.2rem; */
-    background: #f8f2dc;
+.mui-title{
+  display: inline-block;
+  overflow: hidden;
+  width: auto;
+  max-width: 75%;
+  font-size: 0.34rem;
+  margin: 0 0 0 -10px;
+  text-overflow: ellipsis;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 0.88rem;
 }
-
-.mui-title {
-    right: 40px;
-    left: 40px;
-    display: inline-block;
-    overflow: hidden;
-    width: auto;
-    margin: 0;
-    text-overflow: ellipsis;
-    position: absolute;
-    padding: 0;
-    text-align: center;
-    white-space: nowrap;
-    font-weight: 400;
-    line-height: .88rem;
-}
-
 .calcfont {
-    font-size: 0.48rem;
-    width: 0.88rem;
-    text-align: center;
-    padding: 0.2rem 0;
-    position: relative;
-    z-index: 20;
-    display: inline-block;
-    text-decoration: none;
-    line-height: 1;
+  font-size: 0.48rem;
+  text-align: center;
+  padding: 0.2rem 10px;
+  position: relative;
+  z-index: 20;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1;
 }
-
-.calc-fanhui {
-    margin-right: -10px;
-    margin-left: -10px;
-    padding-right: 10px;
-    padding-left: 10px;
+.header-save{
+  text-align: center;
+  padding: 0.2rem 10px;
+  position: relative;
+  z-index: 20;
+  display: inline-block;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height:0.48rem;
 }
-
-header .mui-title,
-header a {
-    color: #333;
-}
-
-.selectList-scroll {
-    position: absolute;
-    top: calc(0.88rem + 40px);
-    left: 0;
-    overflow-y: scroll;
-    right: 0;
-    bottom: 0;
-    background: #fff;
-}
+header .mui-title,header a { color: #333;font-weight: 400;}
 
 
 /*table 切换*/
 .nav{
   position:fixed;
-  width:100%;height:40px;top:0.88rem;
+  width:100%;height:40px;top:calc(0.87rem);
   -webkit-box-orient:horizontal;-moz-box-orient:horizontal;box-orient:horizontal;
   display:-moz-box;
   display:-webkit-box;
   display:box;
   box-sizing: border-box;
-  /* border-bottom:1px solid #ccc; */
+  z-index: 99;
+  background:#fff;
+  border-bottom:1px solid #ccc;
+
 }
+
+
 .nav-item{
   line-height:38px;
   margin-bottom: -1px;
@@ -89,7 +79,7 @@ header a {
 .active-item{color:#009979;}
 .nav-border{
   position: absolute;
-  bottom: 0;
+  bottom:-1px;
   left: 0;
   background:rgba(0, 153, 121, 1);
   width: auto;
@@ -117,7 +107,11 @@ header a {
     height: 100%;
 }
 
-
+.selectList-scroll {
+  padding-top: calc(0.88rem + 40px);
+  padding-bottom:50px;
+  background: #fff;
+}
 
 /*搜索框style*/
 .search {
@@ -215,14 +209,12 @@ header a {
     padding-bottom: 0.2rem;
     background: #efeff4;
 }
-
 .list-item {
     line-height: 26px;
     font-size: 0.28rem;
     margin-top: 0;
     background: #fff;
 }
-
 .list-item:after {
     content: " ";
     position: absolute;
@@ -238,15 +230,12 @@ header a {
     transform: scaleY(0.5);
     z-index: 2;
 }
-
 .weui-check:checked+.weui-icon-checked:before {
     color: #3cadf9 !important;
 }
-
 .weui-cell {
     padding: 8px 15px;
 }
-
 .weui-cell__bd {
     font-size: 0.28rem;
 }
@@ -265,10 +254,18 @@ header a {
     padding: 10px;
     border-bottom: solid 1px #e5f0f4;
 }
-.dataList .item-div label{display:block;line-height: 20px;position: relative;}
-.item-div .checkbox-label .checkbox{position: absolute;left:0;top:2px;}
+.dataList .item-div label{
+  display: block;
+  line-height: 40px;
+  position: relative;
+  margin: -10px 0;
+}
+.item-div .checkbox-label .checkbox{position: absolute;left:0;top:12px;}
 .dataList .item-div span {
-    padding-left:26px;display: block;
+    padding: 10px 0 10px 26px;
+    display: block;
+    word-wrap: break-word;
+    line-height: 20px;
 }
 
 .selectAll{
@@ -291,3 +288,21 @@ header a {
 }
 
 label.radios-label .radios{position: absolute;}
+
+.selectAll .item-div .checkbox-label .checkbox{top:2px;}
+
+/*分组列表*/
+.group-div{}
+.dataList .group-div label{display: inline-block;}
+.group-div .item-div{background:#f8f2dc;position: relative;}
+.group-div .item-div::before{content: "";  display: block;  height: 1px;  background: #e9cfae;
+  width: 100%;  left: 0;  top: 0;  position: absolute;}
+.group-div .item-div::after{content: "";  display: block;  height: 1px;  background: #e9cfae;
+  width: 100%;  left: 0;  bottom: 0;  position: absolute;}
+
+.group-div .child-list{padding:0 36px; display:none;}
+.group-div .child-list-item{line-height:1;padding:0.3rem 0;position: relative;}
+.group-div .child-list-item::after{
+  content: "";  display: block;  height: 1px;  background: #e5f0f4;
+  width: 100%;  left: 0;  bottom: 0;  position: absolute;
+}
