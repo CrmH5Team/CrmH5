@@ -98,7 +98,7 @@ header{height: 0.88rem;}
 
 
 /*picker组件*/
-/*
+
 .picker-layer{position:fixed;z-index:998;top:0.88rem;bottom:0;left:0;right:0;background:rgba(0,0,0,0.2);}
 .picker-div{position:relative;z-index:9;}
 
@@ -125,7 +125,7 @@ outline: none;
 .weui-picker-container-visible{background: rgba(0,0,0,0.2);height: 100%;top:0;}
 
 .picker-items-col-divider{font-size:0.5rem!important;padding: 0 6px;}
-*/
+
 
 
 
