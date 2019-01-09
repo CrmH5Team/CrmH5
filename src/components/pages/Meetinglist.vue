@@ -75,7 +75,7 @@ export default {
 .tips{margin: 5px 0;background: #f2f2f2;height: 26px;line-height: 26px;box-sizing: border-box;padding-left: 10px;}
 
 /*列表*/
-.data-events-item{border-bottom: 1px solid #ccc;line-height:20px;background: #fff;padding: 5px 10px;}
+.data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
 .item-time .calc-gengxinshijian{color:#ff5a21;}

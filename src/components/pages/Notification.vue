@@ -138,7 +138,7 @@ header .mui-title,header a {color: #333;}
 .page-content{padding-top: 0.88rem;}
 /*列表*/
 .alreadyRead{opacity: 0.7;}/*已读*/
-.item{border-bottom:1px solid #ccc;padding:5px 10px;line-height: 16px;}
+.item{border-bottom:1px solid beige;padding:5px 10px;line-height: 16px;}
 .item-title{font-weight: 600;padding-bottom: 5px;}
 .item-div-text{display:inline-block;}
 
