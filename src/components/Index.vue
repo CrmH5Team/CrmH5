@@ -191,27 +191,39 @@
         <div class="user-info f14">
               <img class="user-img" src="../assets/images/user.png" alt="">
               <div class="user-name">Cheryl Xiong</div>
-              <div>Test User</div>
+              <div class="user-position">Test User</div>
               <div>Test Department</div>
         </div>
         <div class="right-content-block">
             <div class="right-block-title f14">General 通用</div>
+
             <div class="right-block-items f14">
-                <div class="block-item">English</div>
-                <div class="block-item">中文简体</div>
-                <div class="block-item">中文繁体</div>
+                <div class="block-item language-type language-show" data-lanType="1">
+                    <div class="switch-text">English</div>
+                    <div class="right calcfont calc-gou1 language-icon"></div>
+                </div>
+                <div class="block-item language-type"  data-lanType="2">
+                    <div class="switch-text">中文简体</div>
+                    <div class="right calcfont calc-gou1 language-icon"></div>
+                </div>
+                <div class="block-item language-type"  data-lanType="3">
+                    <div class="switch-text">中文繁体</div>
+                    <div class="right calcfont calc-gou1 language-icon"></div>
+                </div>
                 <div class="block-item item-border-top">
                     <div class="switch-text">分享后通知对方</div>
-                    <div class="switch">
+                    <div class="switch right">
                         <div class="weui-cell__ft">
                             <input class="weui-switch" type="checkbox">
                         </div>
                     </div>
                 </div>
                 <div class="block-item item-border-top">清除缓存</div>
-                <div class="block-item">登出</div>
+
             </div>
         </div>
+
+        <div @click="logout" class="logout-btn">登出</div>
     </div>
 
 </div>
@@ -231,7 +243,7 @@ export default {
           title:'CRM',
           showPanel:false,
           selectView:'calendar',
-          dataFilter:['my-calendar'],
+          dataFilter:['my-calendar']
       }
     },
     mounted:function(){
@@ -241,8 +253,35 @@ export default {
 
         this.watchScroll();
 
+
+        //切换语言
+        $('.language-type').on('click',function(event){
+              var target = $(event.target);
+              if(!target.hasClass('language-type')){
+                  target = target.closest('div.language-type');
+                  if(target == undefined){
+                      return;
+                  }
+              }
+              if(!target.hasClass('language-show')){
+                  target.addClass('language-show').siblings('.language-type').removeClass('language-show');
+
+
+              }
+        })
+
     },
     methods:{
+        //切换语言逻辑处理
+        switchHandle:function(){
+
+        },
+
+        //退出
+        logout:function(){
+alert(1);
+        },
+
         //监听滚动固定
         watchScroll:function(){
 
