@@ -522,7 +522,7 @@
 	};
 
 	//	sessionStorage
-	/*通过键(key)检索获取应用存储sessionStorage的值*/ 
+	/*通过键(key)检索获取应用存储sessionStorage的值*/
 	tool.getSessionStorageItem = function(keyName) {
 		if(tool.isNull(keyName)) {
 			return "";
@@ -1245,7 +1245,297 @@
 		}
 
 		return weekdayArray[dateTemp.getDay()];
-	}
+  }
+
+  //模板
+  tool.meetingTemplate =
+  `<div class="group-div">
+      <div class="date-div">
+      <span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
+			</div>
+								<div class="occupy-div"></div>
+								<div class="group-item-list">
+										<div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+										</div>
+								</div>
+                </div>
+
+                <div class="group-div">
+								<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
+								</div>
+								<div class="occupy-div"></div>
+								<div class="group-item-list">
+										<div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+										</div>
+								</div>
+                            </div>
+
+                <div class="group-div">
+								<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
+								</div>
+								<div class="occupy-div"></div>
+								<div class="group-item-list">
+										<div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    </div>
+                    <div class="data-events-item f12" data-url="/meetinginfo/12" >
+											<div class="item-title">Meeting with Eastern Airlines</div>
+											<div class="item-time f12">
+												<span class="calcfont calc-gengxinshijian"></span>
+												<span class="time-text">14:30-17:00</span>
+											</div>
+											<div class="item-address">China Eastern Airlines</div>
+											<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+										</div>
+								</div>
+                            </div>
+                            `;
+
+  tool.tripTemplate = `<div class="group-div">
+							<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+							<div class="occupy-div"></div>
+							<div class="group-item-list" >
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+							</div>
+						</div>
+						<div class="group-div">
+							<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+							<div class="occupy-div"></div>
+							<div class="group-item-list" >
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+							</div>
+						</div>
+						<div class="group-div">
+							<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+							<div class="occupy-div"></div>
+							<div class="group-item-list" >
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+							</div>
+						</div>
+						<div class="group-div">
+							<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+							<div class="occupy-div"></div>
+							<div class="group-item-list" >
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+							</div>
+						</div>
+						<div class="group-div">
+							<div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+							<div class="occupy-div"></div>
+							<div class="group-item-list" >
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+								<div class="data-events-item f12" data-url="/tripinfo/12">
+										<div class="item-title">
+											<span>1115-1116东航会议出差上海</span>
+											<span class="right">审批已通过</span>
+										</div>
+										<div class="item-time f12">
+											<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+										</div>
+										<div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+										<div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+										<div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+								</div>
+							</div>
+						</div>`;
+
+  /*
+  *fromType:模块名
+  *containerObj:容器jquery对象
+  */
+  tool.InitiateGroupList = function(fromType,containerObj){
+    if(tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)){
+      // console.log(containerObj);
+      // console.log(fromType);
+      return false;
+    }
+
+    var htmlStr = "";
+    switch(fromType){
+      case "Meeting":
+          htmlStr = tool.meetingTemplate;
+          break;
+      case "Trip":
+          htmlStr = tool.tripTemplate;
+          break;
+    }
+
+    containerObj.html('');
+    containerObj.append(htmlStr);
+    return true;
+  };
+
+
+
+
 
 }(top.window.tool = {}, jQuery));
 
@@ -1833,5 +2123,7 @@ loading.hidden = function(){
   }
 
 }(window.initial={},jQuery))
+
+
 
 

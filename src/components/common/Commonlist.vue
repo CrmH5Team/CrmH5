@@ -4,7 +4,7 @@
   <div v-if="groupData.length<=0" class="noDatabj"></div>
   <div v-else ref="wrapper"  id="page-content" class="page-content">
     <div class="scroll-box">
-        <div v-for="item in groupData" class="group-div">
+        <div :key="item.groupId" v-for="item in groupData" class="group-div">
             <div class="date-div" @click="groupToggle($event)">
                 <span class="calcfont" :class="item.iconClass"></span>
                 <span class="group-name">{{item.groupName}}</span>
@@ -19,6 +19,8 @@
     </div>
 
   </div>
+
+
 </div>
 </template>
 

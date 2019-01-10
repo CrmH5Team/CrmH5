@@ -28,7 +28,7 @@
 .weui-grids{
   background: #fff;
   width: 100%;
-  z-index:9;
+  z-index:90;
 }
 .weui-grids::before{display:none!important;}
 .weui-grid{
