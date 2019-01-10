@@ -93,8 +93,8 @@ export default {
 @import "../../assets/css/common/list-right-style.css";
 
 .right-content-header {
-    height: 0.8rem;
-    line-height: 0.8rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
     width: 100%;
     background-color: #F8F2DC;
     padding-left: 0.1rem;
