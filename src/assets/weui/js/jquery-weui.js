@@ -3560,7 +3560,7 @@ if (typeof define === 'function' && define.amd) {
   }
 
   var toastDefaults = $.toast.prototype.defaults = {
-    duration: 112500
+    duration: 2500
   }
 
 }($);
