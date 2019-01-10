@@ -217,15 +217,10 @@ const router =  new Router({
   ]
 })
 
-
+//路由拦截
 router.beforeEach(function(to, from, next){
-
-
-    var sessionName = tool.getStorageItem(tool.cache_SessionName);
-    if(sessionName){
-      // if(to.path == '/login'){
-      //   next({path: '/main'});
-      // }
+    var registerCode = tool.RegisterCode();
+    if(!tool.isNullOrEmptyObject(registerCode)){
         next();
     }else{
       if(to.path == '/login'){
@@ -233,7 +228,6 @@ router.beforeEach(function(to, from, next){
       }else{
           next({path: '/login'});
       }
-
     }
 })
 
