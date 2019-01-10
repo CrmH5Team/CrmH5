@@ -11,106 +11,24 @@
 
           <div v-show="showPage == 0" class="pageList">
                 <div class="add-btn-div">
-                      <div class="add-div" @click="goInfoPage()">
+                      <router-link to="/organizationsinfo/0" class="add-div">
                           <span class="calcfont calc-add"></span>
                           <span class="add-text">Add Organization</span>
-                      </div>
+                      </router-link>
                 </div>
                 <!-- 列表 -->
-                <common-list :groupData="groupData" id="organizations">
-                  <div slot="organizations">
-                      <div class="group-item" @click="goInfoPage(2)">
-                          <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                          <div class="item-block">
-                            <div class="item-div item-first-div">
-                                <span>Todd Scott</span><span class="right">UEA</span>
-                            </div>
-                            <div class="item-div">
-                                <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                            </div>
-                            <div class="item-div">
-                              <span>China</span><span class="right">Asia Pacific</span>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="group-item" @click="goInfoPage(12)">
-                          <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                          <div class="item-block">
-                            <div class="item-div item-first-div">
-                                <span>Todd Scott</span><span class="right">UEA</span>
-                            </div>
-                            <div class="item-div">
-                                <span>Alirlines</span><span class="right">Jessie Zhao</span>
-                            </div>
-                            <div class="item-div">
-                              <span>China</span><span class="right">Asia Pacific</span>
-                            </div>
-                          </div>
-                      </div>
-                  </div>
-                </common-list>
+                <div id="organizationsList"></div>
           </div>
 
           <div v-show="showPage == 1" class="pageList">
                 <div class="add-btn-div">
-                      <div class="add-div" @click="goInfoPage()">
+                      <router-link to="/contactsinfo/0" class="add-div">
                           <span class="calcfont calc-add"></span>
                           <span class="add-text">Add Contact</span>
-                      </div>
+                      </router-link>
                 </div>
                 <!-- 列表 -->
-                <common-list :groupData="groupData" id="contacts">
-                  <div slot="contacts">
-                      <div class="group-item" @click="goInfoPage(1)">
-                          <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                          <div class="item-block contacts-item-block">
-                            <div class="item-div item-first-div">Todd Scott</div>
-                            <div class="item-div">Fleet Planning Manager</div>
-                            <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                            <div class="item-div">
-                              <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                            </div>
-                            <div class="item-div">Airlines, Computer info Services</div>
-                          </div>
-                      </div>
-                      <div class="group-item" @click="goInfoPage(2)">
-                          <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                          <div class="item-block contacts-item-block">
-                            <div class="item-div item-first-div">Todd Scott</div>
-                            <div class="item-div">Fleet Planning Manager</div>
-                            <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                            <div class="item-div">
-                              <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                            </div>
-                            <div class="item-div">Airlines, Computer info Services</div>
-                          </div>
-                      </div>
-                      <div class="group-item" @click="goInfoPage(3)">
-                          <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                          <div class="item-block contacts-item-block">
-                            <div class="item-div item-first-div">Todd Scott</div>
-                            <div class="item-div">Fleet Planning Manager</div>
-                            <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                            <div class="item-div">
-                              <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                            </div>
-                            <div class="item-div">Airlines, Computer info Services</div>
-                          </div>
-                      </div>
-                      <div class="group-item" @click="goInfoPage(4)">
-                          <div class="item-user-icon calcfont calc-fuzeren1"></div>
-                          <div class="item-block contacts-item-block">
-                            <div class="item-div item-first-div">Todd Scott</div>
-                            <div class="item-div">Fleet Planning Manager</div>
-                            <div class="item-div"><span>Air China</span><span class="right">China</span></div>
-                            <div class="item-div">
-                              <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-                            </div>
-                            <div class="item-div">Airlines, Computer info Services</div>
-                          </div>
-                      </div>
-                  </div>
-                </common-list>
+                <div id="contactsList"></div>
           </div>
       </div>
 
@@ -277,39 +195,7 @@ export default {
                 }
             ],
 
-            // 列表数据
-            groupData:[
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-business',
-                  items:[]
-                },
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-business',
-                  items:[]
-                },
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-business',
-                  items:[]
-                },
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-business',
-                  items:[]
-                },
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-business',
-                  items:[]
-                },
-            ],
+
         }
       },
 
@@ -320,35 +206,105 @@ export default {
             next();
       },
       mounted:function(){
-          eventBus.$on('showRightPanel',this.panelToggle);
-          this.changePos();
+          var _self = this;
+
+
+          tool.InitiateGroupList('organizations',$('#organizationsList'));
+
+          _self.changePos();
+          _self.groupToggle();
+          _self.goInfoPage();
+          _self.followToggle();
+          _self.watchScroll();
 
       },
       methods: {
+          //监听滚动固定
+          watchScroll:function(){
+              var _self = this;
+              setTimeout(function(){
+                  var headerH = parseFloat($('header').innerHeight());
+                  var navH = parseFloat($('.nav').innerHeight());
+                  $(window).scroll(function(){
+
+                      if($('.group-div').length <= 0) return ;
+                      $('.group-div').each(function(){
+                          if($(this).offset().top - $(window).scrollTop() <= (headerH + navH) ){
+
+                              if(tool.getSystem() === 'ios'){
+                                  $(this).find('.date-div').addClass('sticky').css({"top": headerH + navH + 'px'});
+                              }else{
+                                  $(this).find('.date-div').css({"position":"fixed","top": headerH + navH + 'px'});
+                                  $(this).find('.occupy-div').show();
+                              }
+
+                          }else{
+                              if(tool.getSystem() === 'ios'){
+                                  $(this).find('.date-div').removeClass('sticky').css({"top":'0px'});
+                              }else{
+                                  $(this).find('.date-div').css({"position":"static"});
+                                  $(this).find('.occupy-div').hide();
+                              }
+                          }
+
+                      })
+                  })
+              },100)
+          },
+
           //点击去详情页
           goInfoPage:function(id){
-              var _self = this,
-                  url = "";
-              if(id === undefined){
-                id = '';
-              }
-
-              if(_self.showPage == 0){
-                  url = '/organizationsinfo/{"AutoID":"'+ id +'"}';
-              }else{
-                  url = '/contactsinfo/{"AutoID":"'+ id +'"}';
-              }
-                _self.$router.push(url);
+              var _self = this;
+              $("#organizationsList,#contactsList").on("click","div.group-item",function(event){
+                  var target = $(event.target);
+                  if(!target.hasClass('group-item')){
+                      target = target.closest('div.group-item');
+                      if(target == undefined){
+                          return;
+                      }
+                  }
+                  var url = target.attr('data-url') || '';
+                  _self.$router.push(url);
+              })
           },
+
+          //列表展开收起
+          groupToggle:function(){
+              $("#organizationsList,#contactsList").on("click","div.date-div",function(event){
+                  var target = $(event.target);
+                  if(!target.hasClass('date-div')){
+                      target = target.closest('div.date-div');
+                      if(target == undefined){
+                          return;
+                      }
+                  }
+                  if(target.hasClass('open')){
+                      target.removeClass('open').siblings('.group-item-list').slideUp(500);
+                  }else{
+                      target.addClass('open').siblings('.group-item-list').slideDown(500);
+                  }
+              })
+          },
+
           //切换页面
           switchPage:function(num, e){
               var _self = this;
               var el = e.target;
               if(num === undefined) return;
               $(el).addClass('active-item').siblings().removeClass('active-item');
-              // _self.swiper.slideTo(num, 500, false);
               _self.changePos();
               _self.showPage = num;
+
+              var container = null;
+              var moduleName = '';
+              if(num == 0){
+                  moduleName = 'organizations';
+                  container = $('#organizationsList');
+              }else{
+                  moduleName = 'contacts';
+                  container = $('#contactsList');
+              }
+              tool.InitiateGroupList(moduleName,container);
           },
           //table底部横条过渡效果
           changePos:function() {
@@ -360,22 +316,26 @@ export default {
                   });
               })
           },
+
           //点击关注/取消关注
-          followToggle:function(id, e){
-              var el = e.target;
-              if($(el).hasClass('calc-shoucang')){
-                  //取消关注
-                  $(el).removeClass('calc-shoucang').addClass('calc-shoucang1');
-                  $.toast("取消关注", 1500, function() {});
-              }else{
-                  //关注
-                  $(el).removeClass('calc-shoucang1').addClass('calc-shoucang');
-                  $.toast("关注成功", 1500, function() {});
-              }
+          followToggle:function(){
+
+              $("#organizationsList").on("click",".item-stars-icon",function(event){
+
+                  event.stopPropagation();
+                  var target = $(event.target);
+                  if(target.hasClass('calc-shoucang')){
+                      //取消关注
+                      target.removeClass('calc-shoucang').addClass('calc-shoucang1');
+                      $.toast("取消关注", 1500, function() {});
+                  }else{
+                      //关注
+                      target.removeClass('calc-shoucang1').addClass('calc-shoucang');
+                      $.toast("关注成功", 1500, function() {});
+                  }
+              })
           },
       }
-
-
 
 
 }
@@ -385,17 +345,41 @@ export default {
 <style scoped>
 @import "../../assets/css/common/commonlist.css";
 
+</style>
+
+<style>
+/*列表分组 style */
+/* .group-div{border-bottom:1px solid #fff;}
+.date-div{
+  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
+  width: 100%;color:#000;
+  box-sizing: border-box;
+  z-index:89;
+  top:0;
+}
+.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;
+text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem!important;color:#ccc;}
+.calc-shoucang{color:#ff5a21}
+.date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
+.group-name{font-size: 0.3rem;}
+.occupy-div{height:0.7rem;display:none;}
+.group-item-list{display: none;} */
+
+
+
+
 /*list----style----*/
-.group-item{background:#fff;position:relative;}
+/* .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 0.8rem;}
 .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
 top:0px;position:absolute;}
 .item-div{font-size: 0.25rem;line-height: 0.4rem;}
-.item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
+.item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;} */
 
 /*Contacts list  style*/
-.item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;border-radius: 5px;font-size:0.6rem;color:#3cadf9;}
-.contacts-item-block{padding:5px 10px 5px 1.3rem;}
-
-
+/* .item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;
+text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;
+border-radius: 5px;font-size:0.6rem!important;color:#3cadf9;}
+.contacts-item-block{padding:5px 10px 5px 1.3rem;} */
 </style>
+

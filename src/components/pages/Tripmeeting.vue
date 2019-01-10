@@ -17,7 +17,7 @@
                   <div class="nav-border"></div>
               </div>
 
-              <div class="pageList">
+              <div class="pageList" v-show="showPage == 0">
                     <div class="add-btn-div">
                           <router-link to="/meetinginfo/0" class="add-div">
                               <span class="calcfont calc-add"></span>
@@ -28,7 +28,7 @@
                     <div id="meetingList"></div>
               </div>
 
-              <div class="pageList" style="display:none">
+              <div class="pageList" v-show="showPage == 1">
                     <div class="add-btn-div">
                           <router-link to="/tripinfo/0" class="add-div">
                               <span class="calcfont calc-add"></span>
@@ -219,24 +219,29 @@ export default {
         var _self = this;
         _self.changePos();
         eventBus.$on('changeViewEvent',function(data){
-            if(data === '' || data === undefined) return;    
+            if(data === '' || data === undefined) return;
             if(data === 'listView'){
                 $('.calendar-view').hide();
                 $('.list-view').show();
+
+                if(_self.showPage == 0){
+                    tool.InitiateGroupList('meeting',$('#meetingList'));
+                }else{
+                    tool.InitiateGroupList('trip',$('#tripList'));
+                }
             }else{
                 $('.calendar-view').show();
                 $('.list-view').hide();
             }
             // _self.selectView = data;
-            //window.location.reload();
         })
 
-        tool.InitiateGroupList('Meeting',$('#meetingList'));
+        tool.InitiateGroupList('meeting',$('#meetingList'));
 
         _self.groupToggle();
-        _self.goInfoPage();  
-        _self.watchScroll();         
-        
+        _self.goInfoPage();
+        _self.watchScroll();
+
     },
     methods:{
         //监听滚动固定
@@ -284,10 +289,10 @@ export default {
                 }
                 var url = target.attr('data-url') || '';
                 _self.$router.push(url);
-            })    
+            })
         },
 
-        //列表展开收起    
+        //列表展开收起
         groupToggle:function(){
             $("#meetingList,#tripList").on("click","div.date-div",function(event){
                 var target = $(event.target);
@@ -297,7 +302,7 @@ export default {
                         return;
                     }
                 }
-                if(target.hasClass('open')){ 
+                if(target.hasClass('open')){
                     target.removeClass('open').siblings('.group-item-list').slideUp(500);
                 }else{
                     target.addClass('open').siblings('.group-item-list').slideDown(500);
@@ -312,15 +317,17 @@ export default {
             if(num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
-            $('.list-view .pageList').eq(num).show().siblings('.pageList').hide();
-            // _self.showPage = num;
+
+            // $('.list-view .pageList').eq(num).show().siblings('.pageList').hide();
+            _self.showPage = num;
+
             var container = null;
             var moduleName = '';
-            if(num == 0){
-                moduleName = 'Meeting';
+            if(_self.showPage == 0){
+                moduleName = 'meeting';
                 container = $('#meetingList');
             }else{
-                moduleName = 'Trip';
+                moduleName = 'trip';
                 container = $('#tripList');
             }
             tool.InitiateGroupList(moduleName,container);
@@ -343,51 +350,21 @@ export default {
 
 <style scoped>
 @import "../../assets/css/common/commonlist.css";
-.pageList{padding-top:40px;}
-
 </style>
 
 <style >
 
-
-.group-div{border-bottom:1px solid #fff;}
-.date-div{
-  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
-  width: 100%;color:#000;
-  box-sizing: border-box;
-  z-index:89;
-  top:0;
-}
-.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem;color:#ccc;}
-.calc-shoucang{color:#ff5a21}
-.date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
-.group-name{font-size: 0.3rem;}
-.occupy-div{height:0.7rem;display:none;}
-
-.group-item-list{display: none;}
-
 /* 列表 style*/
-.data-events-item{
-  line-height:20px;background: #fff;padding: 5px 10px;
-  position: relative;
+/* .data-events-item{ line-height:20px;background: #fff;padding: 5px 10px; position: relative;}
+.data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
+  left: 0; top: 0; position: absolute;
 }
-.data-events-item::after{
-  content: "";
-  display: block;
-  height: 1px;
-  background: beige;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-}
-
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
 .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
-.time-text{/*vertical-align: middle;*/}
+
 .trip-time-text{font-size:11px;color:#666666;}
 .item-address{font-weight: 600;}
-.data-events p{height: 50px;line-height: 50px;}
+.data-events p{height: 50px;line-height: 50px;} */
 
 </style>
