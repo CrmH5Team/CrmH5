@@ -405,10 +405,7 @@ alert(1);
         },
     },
     beforeDestroy:function(){
-
         eventBus.$off('showIndexRightPanelEvent');
-
-
     }
 
 }
