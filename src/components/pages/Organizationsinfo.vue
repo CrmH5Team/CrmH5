@@ -22,6 +22,14 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-iconset0264"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea autoHeight="true" placeholder="ICAO Code"></textarea>
+                        </p>
+                    </div>
+                </div>
+                <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
