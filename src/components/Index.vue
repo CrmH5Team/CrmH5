@@ -189,7 +189,10 @@
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
     <div id="right-content" class="right-content">
         <div class="user-info f14">
-              <img class="user-img" src="../assets/images/user.png" alt="">
+              <picture >
+                  <source srcset="../assets/images/user.svg"  type="image/svg+xml">
+                  <img class="user-img" src="../assets/images/user.png" >
+              </picture>
               <div class="user-name">Cheryl Xiong</div>
               <div class="user-position">Test User</div>
               <div>Test Department</div>

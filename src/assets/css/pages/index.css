@@ -114,7 +114,9 @@
     background-color: #FFFFFF;
 }
 .user-info{text-align: center;line-height:16px;padding:10px;}
-.user-img{border-radius: 50%;display:block;margin: 0.5rem auto 8px;width: 1.5rem;height:1;
+.user-img{
+  display:inline-block;margin: 0.2rem auto 8px;
+  width: 1.5rem;height: 1.5rem;
 }
 .user-name{font-weight: 600;padding-bottom: 5px;}
 .user-position{padding-bottom: 5px;}
