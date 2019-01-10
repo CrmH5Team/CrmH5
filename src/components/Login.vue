@@ -98,10 +98,14 @@ export default {
 
           data = data._OnlyOneData || {};
           
-          //缓存注册码和当前登陆对象
-          var _registerCode = data[tool.cache_RegisterCode] || "";
           //注册码
+          var _registerCode = data[tool.cache_RegisterCode] || "";
           tool.setStoragItem(tool.cache_RegisterCode, _registerCode);
+          
+          //用户名
+          var _userName = data[tool.cache_UserName] || "";
+          tool.setStoragItem(tool.cache_UserName, JSON.stringify(data));
+
           //登陆对象
           tool.setStoragItem(tool.cache_CurUser, JSON.stringify(data));
 

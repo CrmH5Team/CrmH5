@@ -253,6 +253,10 @@
 	 */
 	tool.cache_RegisterCode = "_RegisterCode";
 	/*
+	 * cache_UserName:用户名在缓存中的Key
+	 */
+	tool.cache_UserName = "_UserName";
+	/*
 	 * cache_CurUser:当前用户在缓存中的Key
 	 */
 	tool.cache_CurUser = "_CurUser";
@@ -1123,31 +1127,35 @@
 		$.toast(msg, "cancel");
 	};
 	//显示等待
-	tool.showLoading = function(msg){
+	tool.showLoading = function (msg) {
 		msg = msg || lanTool.lanContent("770_加载中...");
 		$.showLoading(msg);
 	};
 	//隐藏等待
-	tool.hideLoading = function(){
+	tool.hideLoading = function () {
 		$.hideLoading();
 	};
 
 	//当前登陆对象
-	tool.CurUser = function(){
+	tool.CurUser = function () {
 		var curUserStr = tool.getStorageItem(tool.cache_CurUser);
-		if(tool.isNullOrEmptyObject(curUserStr)){
+		if (tool.isNullOrEmptyObject(curUserStr)) {
 			return {};
 		}
 		return tool.jObject(curUserStr);
 	}
 	//注册码
-	tool.RegisterCode = function(){
+	tool.RegisterCode = function () {
 		return tool.getStorageItem(tool.cache_RegisterCode) || "";
+	}
+	//用户名
+	tool.UserName = function(){
+		return tool.getStorageItem(tool.cache_UserName) || "";
 	}
 
 	//模板
 	tool.meetingTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 		<div class="date-div">
 			<span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
 			  </div>
@@ -1165,9 +1173,9 @@
 		</div>
 	</div>
 	`;
-  
+
 	tool.tripTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 		  <div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
 		  <div class="occupy-div"></div>
 		  <div class="group-item-list trip-list" >
@@ -1186,10 +1194,10 @@
 		  </div>
 	  </div>
 	`;
-  
-  
+
+
 	tool.dealPipelineTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 		  <div class="date-div" >
 			  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
 		  </div>
@@ -1218,7 +1226,7 @@
 	</div>
 	`;
 	tool.opportunitiesTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 		  <div class="date-div" >
 			  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
 		  </div>
@@ -1240,7 +1248,7 @@
 	  </div>
 	`;
 	tool.organizationsTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 	  <div class="date-div" >
 		  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
 	  </div>
@@ -1265,7 +1273,7 @@
 	</div>
 	`;
 	tool.contactsTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 	  <div class="date-div" >
 		  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
 	  </div>
@@ -1286,45 +1294,45 @@
 	  </div>
 	</div>
 	`;
-  
+
 	/*
 	*fromType:模块名
 	*containerObj:容器jquery对象
 	*/
-	tool.InitiateGroupList = function(fromType,containerObj){
-	  if(tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)){
-		// console.log(containerObj);
-		// console.log(fromType);
-		return false;
-	  }
-  
-	  var htmlStr = "";
-	  switch(fromType){
-		case "meeting":
-			htmlStr = tool.meetingTemplate;
-			break;
-		case "trip":
-			htmlStr = tool.tripTemplate;
-			break;
-		case "dealPipeline":
-			htmlStr = tool.dealPipelineTemplate;
-			break;
-		case "opportunities":
-			htmlStr = tool.opportunitiesTemplate;
-			break;
-		case "organizations":
-			htmlStr = tool.organizationsTemplate;
-			break;
-		case "contacts":
-			htmlStr = tool.contactsTemplate;
-			break;
-	  }
-  
-	  containerObj.html('');
-	  containerObj.append(htmlStr);
-	  return true;
+	tool.InitiateGroupList = function (fromType, containerObj) {
+		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
+			// console.log(containerObj);
+			// console.log(fromType);
+			return false;
+		}
+
+		var htmlStr = "";
+		switch (fromType) {
+			case "meeting":
+				htmlStr = tool.meetingTemplate;
+				break;
+			case "trip":
+				htmlStr = tool.tripTemplate;
+				break;
+			case "dealPipeline":
+				htmlStr = tool.dealPipelineTemplate;
+				break;
+			case "opportunities":
+				htmlStr = tool.opportunitiesTemplate;
+				break;
+			case "organizations":
+				htmlStr = tool.organizationsTemplate;
+				break;
+			case "contacts":
+				htmlStr = tool.contactsTemplate;
+				break;
+		}
+
+		containerObj.html('');
+		containerObj.append(htmlStr);
+		return true;
 	};
-  
+
 
 }(top.window.tool = {}, jQuery));
 
@@ -1378,10 +1386,10 @@
 
 // })(top.window.loading = {}, jQuery)
 
-	/*
-	 * 多语言
-	 */
-	;
+/*
+ * 多语言
+ */
+;
 (function (win, lan, $) {
 
 	//当前多语言本
