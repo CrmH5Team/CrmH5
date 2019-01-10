@@ -708,6 +708,10 @@ body {
 .weui-toast_text .weui-toast_content {
   margin: 10px 15px;
 }
+.weui-toast--text .weui-toast_content{
+  /* margin: 10px 15px; */
+  line-height: 17px;
+}
 .weui-mask {
   opacity: 0;
   -webkit-transition-duration: .3s;

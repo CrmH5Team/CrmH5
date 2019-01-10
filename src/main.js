@@ -8,22 +8,22 @@ import router from './router'
 // Vue.prototype.$axios = axios
 
 
-import './assets/weui/css/weui.min.css'
+import './assets/weui/css/weui.css'
 import './assets/weui/css/jquery-weui.css'
 
 import $ from 'jquery'
 
-import './assets/weui/js/jquery-weui'
+import './assets/weui/js/jquery-weui.js'
 
 import '@/assets/weui/js/swiper.js'
 
-import './assets/js/common/RootFontSize'
+import './assets/js/common/RootFontSize.js'
 
 import './assets/css/common/common.css'
 import './assets/css/common/commonFront.css'
 
-import './assets/js/common/common'
-import './assets/js/common/CommonFront'
+import './assets/js/common/common.js'
+import './assets/js/common/CommonFront.js'
 
 import eventBus from './components/common/Event.js'
 

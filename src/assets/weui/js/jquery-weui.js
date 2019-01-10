@@ -3539,7 +3539,8 @@ if (typeof define === 'function' && define.amd) {
     } else if(typeof style === typeof 1) {
       duration = style
     }
-    show('<i class="' + iconClassName + ' weui-icon_toast"></i><p class="weui-toast_content">' + (text || "已经完成") + '</p>', className);
+    // show('<i class="' + iconClassName + ' weui-icon_toast"></i><p class="weui-toast_content">' + (text || "已经完成") + '</p>', className);
+    show('<i class="' + iconClassName + ' weui-icon_toast"></i><div class="weui-toast_content">' + (text || "已经完成") + '</div>', className);
 
     setTimeout(function() {
       hide(callback);
