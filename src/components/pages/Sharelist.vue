@@ -37,10 +37,24 @@
                   </div>
                   <!-- 列表 -->
                   <div class="dataList checkboxList">
-                      <div v-for="item in userData" class="item-div">
+                      <!-- <div v-for="item in userData" class="item-div">
                           <label class="checkbox-label">
                               <input type="checkbox" name="user" :value="item.value" v-model="userCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.text}}</span>
                           </label>
+                      </div> -->
+                      <div v-for="item in userData" class="group-div">
+                          <div  class="item-div f14" @click="groupToggle">{{item.groupName}}
+                              <!-- <label class="checkbox-label" @click.stop>
+                                  <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
+                              </label> -->
+                          </div>
+                          <div class="child-list">
+                              <div v-for="member in item.groupMember" class="child-list-item f14">
+                                    <label class="checkbox-label" @click.stop>
+                                        <input type="checkbox" name="group" :value="member.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{member.text}}</span>
+                                    </label>
+                              </div>
+                          </div>
                       </div>
                   </div>
                   <div class="selectAll">
@@ -115,13 +129,30 @@ export default {
 
             //用户数据
             userData: [
-              {text:'Alan',value:'Alan1'},
-              {text:'Alan',value:'Alan2'},
-              {text:'Alan',value:'Alan3'},
-              {text:'Alan',value:'Alan4'},
-              {text:'Alan',value:'Alan5'},
-              {text:'Alan',value:'Alan6'},
-              {text:'Alan',value:'Alan7'},
+                {
+                  groupName:'group1',
+                  groupMember:[
+                      {text:'Alan1',value:'Alan1'},
+                      {text:'Alan2',value:'Alan2'},
+                      {text:'Alan3',value:'Alan3'},
+                  ]
+                },
+                {
+                  groupName:'group2',
+                  groupMember:[
+                      {text:'Alan4',value:'Alan4'},
+                      {text:'Alan5',value:'Alan5'},
+                      {text:'Alan6',value:'Alan6'},
+                  ]
+                },
+                {
+                  groupName:'group3',
+                  groupMember:[
+                      {text:'Alan7',value:'Alan7'},
+                      {text:'Alan8',value:'Alan8'},
+                      {text:'Alan9',value:'Alan9'},
+                  ]
+                },
             ],
             //组数据
             groupData:[
@@ -158,7 +189,7 @@ export default {
             field: null,
             title: 'Share with',
             value: '', //默认值数据
-            
+
             radioValue:'',
 
             userCheckedValue:[],
@@ -239,7 +270,7 @@ export default {
                             self.groupCheckedValue.push(item.value);
                         })
                     }
-                    
+
                 } else {
                     self.userCheckedValue = [];
                     self.groupCheckedValue = [];

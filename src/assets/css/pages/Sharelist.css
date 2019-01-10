@@ -253,6 +253,7 @@ header .mui-title,header a { color: #333;font-weight: 400;}
 .dataList .item-div {
     padding: 10px;
     border-bottom: solid 1px beige;
+    line-height: 20px;
 }
 .dataList .item-div label{
   display: block;
