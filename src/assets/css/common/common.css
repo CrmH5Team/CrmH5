@@ -241,3 +241,136 @@ label.radios-label input:disabled:checked + .radios:after {
     background-color: #c1c1c1;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*列表页面  分组 style */
+.list-group-div{border-bottom:1px solid #fff;}
+.list-group-div .date-div{
+  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
+  width: 100%;color:#000;box-sizing: border-box;z-index:89;top:0;
+}
+.list-group-div .item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem;color:#ccc;}
+.list-group-div .calc-shoucang{color:#ff5a21}
+.list-group-div .date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
+.list-group-div .group-name{font-size: 0.3rem;}
+.list-group-div .occupy-div{height:0.7rem;display:none;}
+.list-group-div .group-item-list{display: none;}
+
+
+
+
+/*列表页面 meeting 模块下 item style */
+.meeting-list{}
+.meeting-list .data-events-item{ line-height:20px;background: #fff;padding: 5px 10px; position: relative;}
+.meeting-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
+  left: 0; top: 0; position: absolute;
+}
+.meeting-list .item-title{font-weight: 600;color:#333;}
+.meeting-list .item-time{color:#333;}
+.meeting-list .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
+
+.meeting-list .trip-time-text{font-size:11px;color:#666666;}
+.meeting-list .item-address{font-weight: 600;}
+/* .meeting-list .data-events p{height: 50px;line-height: 50px;} */
+
+
+
+
+/*列表页面 trip 模块下 item style */
+.trip-list{}
+.trip-list .data-events-item{ line-height:20px;background: #fff;padding: 5px 10px; position: relative;}
+.trip-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
+  left: 0; top: 0; position: absolute;
+}
+.trip-list .item-title{font-weight: 600;color:#333;}
+.trip-list .item-time{color:#333;}
+.trip-list .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
+.trip-list .trip-time-text{font-size:11px;color:#666666;}
+.trip-list .item-address{font-weight: 600;}
+.trip-list .data-events p{height: 50px;line-height: 50px;}
+
+
+
+
+/*列表页面 opportunities 模块下 item style */
+.opportunities-list{}
+.opportunities-list .group-item{background:#fff;position:relative;}
+.opportunities-list .item-block{padding:5px 10px 5px 0.8rem;}
+.opportunities-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;top:0px;position:absolute;}
+.opportunities-list .item-div{line-height: 0.4rem;}
+.opportunities-list .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
+box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
+margin-right: 5px;}
+.opportunities-list .itme-div-span{vertical-align: middle;}
+.opportunities-list .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
+.opportunities-list .dete-div{padding-left:40px;}
+.opportunities-list .blue-color{color:#3cadf9;}
+.opportunities-list .padding-bottom-5{padding-bottom: 5px;}
+.opportunities-list .padding-top-5{padding-top: 5px;}
+
+
+
+/*列表页面 dealPipeline 模块下 item style */
+.dealPipeline-list{}
+.dealPipeline-list .group-item{background:#fff;position:relative;}
+.dealPipeline-list .item-block{padding:5px 10px 5px 0.8rem;}
+.dealPipeline-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;top:0px;position:absolute;}
+.dealPipeline-list .item-div{line-height: 0.4rem;}
+.dealPipeline-list .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
+box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
+margin-right: 5px;}
+.dealPipeline-list .itme-div-span{vertical-align: middle;}
+.dealPipeline-list .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
+.dealPipeline-list .dete-div{padding-left:40px;}
+.dealPipeline-list .blue-color{color:#3cadf9;}
+.dealPipeline-list .padding-bottom-5{padding-bottom: 5px;}
+.dealPipeline-list .padding-top-5{padding-top: 5px;}
+
+
+
+/*列表页面 organizations 模块下 item style */
+.organizations-list{}
+.organizations-list .group-item{background:#fff;position:relative;}
+.organizations-list .item-block{padding:5px 10px 5px 0.8rem;}
+.organizations-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
+top:0px;position:absolute;}
+.organizations-list .item-div{font-size: 0.25rem;line-height: 0.4rem;}
+.organizations-list .item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
+
+
+
+
+/*列表页面 contacts 模块下 item style */
+.contacts-list{}
+.contacts-list .group-item{background:#fff;position:relative;}
+.contacts-list .item-block{padding:5px 10px 5px 0.8rem;}
+.contacts-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
+top:0px;position:absolute;}
+.contacts-list .item-div{font-size: 0.25rem;line-height: 0.4rem;}
+.contacts-list .item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
+
+.contacts-list .item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;
+  text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;
+  border-radius: 5px;font-size:0.6rem!important;color:#3cadf9;}
+.contacts-list .contacts-item-block{padding:5px 10px 5px 1.3rem;}

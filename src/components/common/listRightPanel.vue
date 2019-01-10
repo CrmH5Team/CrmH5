@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div @click="okBtn" class="btn-div f16">OK确认</div>
+        <div @click="okBtn" class="right-btn-div f16">OK确认</div>
     </div>
 
 

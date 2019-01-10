@@ -11,81 +11,24 @@
 
         <div v-show="showPage == 0" class="pageList">
               <div class="add-btn-div">
-                    <div class="add-div" @click="goInfoPage()">
+                    <router-link to="/opportunitiesinfo/0" class="add-div" >
                         <span class="calcfont calc-add"></span>
                         <span class="add-text">Add Deal</span>
-                    </div>
+                    </router-link>
               </div>
               <!-- 列表 -->
-              <common-list :groupData="groupData" id="dealpipeline">
-                    <div slot="dealpipeline" class="group-item f14" @click="goInfoPage(5)">
-                        <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                        <div class="item-block">
-                          <div class="item-div item-first-div blue-color">
-                              A320-200 sales project2 for
-                          </div>
-                          <div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-                          <div class="item-div blue-color padding-bottom-5">
-                              <span>In Progress</span>
-                          </div>
-                          <div class="item-div">
-                              <div class="item-new">new</div>
-                              <span class="itme-div-span">First Proposal discussion</span>
-                          </div>
-                          <div class="item-div dete-div">
-                            <span>01/Jan/2019</span>
-                          </div>
-                        </div>
-                    </div>
-              </common-list>
+              <div id="dealpipelineList"></div>
         </div>
 
         <div v-show="showPage == 1" class="pageList">
               <div class="add-btn-div">
-                    <div class="add-div"  @click="goInfoPage()">
+                    <router-link to="/opportunitiesinfo/0" class="add-div" >
                         <span class="calcfont calc-add"></span>
                         <span class="add-text">Add Opportunity</span>
-                    </div>
+                    </router-link>
               </div>
               <!-- 列表 -->
-              <common-list :groupData="groupData" id="opportunities">
-                    <div slot="opportunities" class="group-item f14" @click="goInfoPage(5)">
-                        <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                        <div class="item-block">
-                            <div class="item-div item-first-div blue-color">
-                                A320-200 sales project2 for
-                            </div>
-                            <div class="item-div blue-color padding-bottom-5 padding-top-5">
-                                <span>In Progress</span>
-                            </div>
-                            <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-                        </div>
-                    </div>
-                    <div slot="opportunities" class="group-item f14"  @click="goInfoPage(9)">
-                        <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                        <div class="item-block">
-                            <div class="item-div item-first-div blue-color">
-                                A320-200 sales project2 for
-                            </div>
-                            <div class="item-div blue-color padding-bottom-5 padding-top-5">
-                                <span>In Progress</span>
-                            </div>
-                            <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-                        </div>
-                    </div>
-                    <div slot="opportunities" class="group-item f14"  @click="goInfoPage(7)">
-                        <div @click.stop="followToggle(100,$event)" class="item-stars-icon calcfont calc-shoucang"></div>
-                        <div class="item-block">
-                            <div class="item-div item-first-div blue-color">
-                                A320-200 sales project2 for
-                            </div>
-                            <div class="item-div blue-color padding-bottom-5 padding-top-5">
-                                <span>In Progress</span>
-                            </div>
-                            <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-                        </div>
-                    </div>
-              </common-list>
+              <div id="opportunitiesList"></div>
         </div>
 
 
@@ -101,13 +44,13 @@
 <script>
 import Header from '../common/Listheader'
 import Listrightpanel from '../common/Listrightpanel'
-import Commonlist from '../common/Commonlist'
+// import Commonlist from '../common/Commonlist'
 var count = 0;
 export default {
     components:{
         'Header':Header,
         'list-right-panel':Listrightpanel,
-        'common-list':Commonlist
+        // 'common-list':Commonlist
     },
     data(){
         return {
@@ -280,49 +223,85 @@ export default {
                 }
             ],
 
-            // 列表数据
-            groupData:[
-                {
-                  groupName:'Alirline',
-                  count:3,
-                  iconClass:'calc-lianxiren1',//calc-lianxiren1
-                  items:[]
-                },
-                {
-                  groupName:'Alirline123',
-                  count:3,
-                  iconClass:'calc-lianxiren1',//calc-lianxiren1
-                  items:[]
-                },
-                {
-                  groupName:'Alirline111',
-                  count:3,
-                  iconClass:'calc-lianxiren1',//calc-lianxiren1
-                  items:[]
-                },
-            ],
-
         }
     },
     mounted:function(){
+        var _self = this;
         this.changePos();
+
+        tool.InitiateGroupList('dealPipeline',$('#dealpipelineList'));
+
+        _self.watchScroll();
+        _self.goInfoPage();
+        _self.groupToggle();
+        _self.followToggle();
     },
     methods:{
+        //监听滚动固定
+        watchScroll:function(){
+            var _self = this;
+            setTimeout(function(){
+                var headerH = parseFloat($('header').innerHeight());
+                var navH = parseFloat($('.nav').innerHeight());
+                $(window).scroll(function(){
+
+                    if($('.group-div').length <= 0) return ;
+                    $('.group-div').each(function(){
+                        if($(this).offset().top - $(window).scrollTop() <= (headerH + navH) ){
+
+                            if(tool.getSystem() === 'ios'){
+                                $(this).find('.date-div').addClass('sticky').css({"top": headerH + navH + 'px'});
+                            }else{
+                                $(this).find('.date-div').css({"position":"fixed","top": headerH + navH + 'px'});
+                                $(this).find('.occupy-div').show();
+                            }
+
+                        }else{
+                            if(tool.getSystem() === 'ios'){
+                                $(this).find('.date-div').removeClass('sticky').css({"top":'0px'});
+                            }else{
+                                $(this).find('.date-div').css({"position":"static"});
+                                $(this).find('.occupy-div').hide();
+                            }
+                        }
+
+                    })
+                })
+            },100)
+        },
+
+        //列表展开收起
+        groupToggle:function(){
+            $("#dealpipelineList,#opportunitiesList").on("click","div.date-div",function(event){
+                var target = $(event.target);
+                if(!target.hasClass('date-div')){
+                    target = target.closest('div.date-div');
+                    if(target == undefined){
+                        return;
+                    }
+                }
+                if(target.hasClass('open')){
+                    target.removeClass('open').siblings('.group-item-list').slideUp(500);
+                }else{
+                    target.addClass('open').siblings('.group-item-list').slideDown(500);
+                }
+            })
+        },
 
         //点击去详情页
         goInfoPage:function(id){
-            var _self = this,
-                url = "";
-            if(id === undefined){
-              id = '';
-            }
-
-            if(_self.showPage == 0){
-                url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
-            }else{
-                url = '/opportunitiesinfo/{"AutoID":"'+ id +'"}';
-            }
-              _self.$router.push(url);
+            var _self = this;
+            $("#dealpipelineList,#opportunitiesList").on("click","div.group-item",function(event){
+                var target = $(event.target);
+                if(!target.hasClass('group-item')){
+                    target = target.closest('div.group-item');
+                    if(target == undefined){
+                        return;
+                    }
+                }
+                var url = target.attr('data-url') || '';
+                _self.$router.push(url);
+            })
         },
 
         //切换页面
@@ -333,6 +312,19 @@ export default {
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
             _self.showPage = num;
+
+            var container = null;
+            var moduleName = '';
+            if(num == 0){
+                moduleName = 'dealPipeline';
+                container = $('#dealpipelineList');
+            }else{
+                moduleName = 'opportunities';
+                container = $('#opportunitiesList');
+            }
+            tool.InitiateGroupList(moduleName,container);
+
+
         },
         //table底部横条过渡效果
         changePos:function() {
@@ -346,17 +338,22 @@ export default {
         },
 
         //点击关注/取消关注
-        followToggle:function(id, e){
-            var el = e.target;
-            if($(el).hasClass('calc-shoucang')){
-                //取消关注
-                $(el).removeClass('calc-shoucang').addClass('calc-shoucang1');
-                $.toast("取消关注", 1500, function() {});
-            }else{
-                //关注
-                $(el).removeClass('calc-shoucang1').addClass('calc-shoucang');
-                $.toast("关注成功", 1500, function() {});
-            }
+        followToggle:function(){
+
+            $("#dealpipelineList,#opportunitiesList").on("click",".item-stars-icon",function(event){
+
+                event.stopPropagation();
+                var target = $(event.target);
+                if(target.hasClass('calc-shoucang')){
+                    //取消关注
+                    target.removeClass('calc-shoucang').addClass('calc-shoucang1');
+                    $.toast("取消关注", 1500, function() {});
+                }else{
+                    //关注
+                    target.removeClass('calc-shoucang1').addClass('calc-shoucang');
+                    $.toast("关注成功", 1500, function() {});
+                }
+            })
         },
     },
 
@@ -365,25 +362,27 @@ export default {
 
 <style scoped>
 @import "../../assets/css/common/commonlist.css";
+</style>
 
+
+
+
+<style >
 
 /*列表 style*/
-.group-item{background:#fff;position:relative;}
+/* .group-item{background:#fff;position:relative;}
 .item-block{padding:5px 10px 5px 0.8rem;}
 .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;top:0px;position:absolute;}
 .item-div{line-height: 0.4rem;}
-
 .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
-box-sizing: border-box;/*height: 14px;*/line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
+box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
 margin-right: 5px;}
 .itme-div-span{vertical-align: middle;}
-
 .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
 .dete-div{padding-left:40px;}
-
 .blue-color{color:#3cadf9;}
 .padding-bottom-5{padding-bottom: 5px;}
-.padding-top-5{padding-top: 5px;}
+.padding-top-5{padding-top: 5px;} */
 
 
 </style>

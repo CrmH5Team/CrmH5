@@ -24,7 +24,7 @@
 
 
 /*nav 导航*/
-#nav{z-index: 9;width: 100%;}
+#nav{z-index: 90;width: 100%;}
 .weui-grids{
   background: #fff;
   width: 100%;

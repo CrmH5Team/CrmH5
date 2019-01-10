@@ -42,7 +42,7 @@ export default {
 
         //首页就显示侧滑
         showRightPanel:function(){
-            eventBus.$emit('showRightPanelEvent');
+            eventBus.$emit('showIndexRightPanelEvent');
         },
 
         goNotification:function(){
@@ -93,7 +93,7 @@ header.mui-bar {
     /* padding-right: 10px;
     padding-left: 10px; */
 }
-.calc-youxiang1{margin-right:-10px;}
+.calc-youxiang1{margin-right:-10px;z-index: 10;}
 .calc-youxiang1::before{vertical-align:middle;}
 .calc-liebiao{
   font-size: 0.6rem;
