@@ -237,61 +237,66 @@ export default {
     mounted:function(){
         // lanTool.updateLanVersion();
 
-        eventBus.$on('showRightPanelEvent',this.panelToggle);
+        eventBus.$on('showIndexRightPanelEvent',this.panelToggle);
 
-        //列表视图滚动
-        setTimeout(() => {
-        var headerH = parseFloat($('header').innerHeight());
-        var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
-        var navH = parseFloat($('#nav').innerHeight());
+        this.watchScroll();
 
-        $(window).scroll(function(){
-            var scrollTop = $(this).scrollTop();
-            if(scrollTop >= searchH){
-
-              if(tool.getSystem() === 'ios'){
-                  $("#nav").addClass('sticky').css({"top": headerH + 'px'});
-              }else{
-                  $("#nav").css({
-                    "position":"fixed","top":headerH + 'px',
-                  });
-                  $('.occupy-position').css({'height':navH + 'px'}).show();
-              }
-            }else{
-                if(tool.getSystem() === 'ios'){
-                    $("#nav").removeClass('sticky').css({"top":'0px'});
-                }else{
-                    $('.occupy-position').css({'height':'0px'}).hide();
-                    $("#nav").css({"position":"static"});
-                }
-
-            }
-
-            if($('.month-event').length <= 0) return ;
-            $('.month-event').each(function(){
-
-              if( ($(this).offset().top - $(window).scrollTop()) <= (navH + headerH) ){
-
-                  if(tool.getSystem() === 'ios'){
-                      $(this).find(".date-div").addClass('sticky').css({"top":(navH + headerH) + 'px'});
-                  }else{
-                      $(this).find('.date-div').css({"position":"fixed","top":(navH + headerH) + 'px'});
-                      $(this).find('.occupy-div').show();
-                  }
-              }else{
-                  if(tool.getSystem() === 'ios'){
-                      $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
-                  }else{
-                      $(this).find('.date-div').css({"position":"static"});
-                      $(this).find('.occupy-div').hide();
-                  }
-              }
-
-            })
-        });
-        }, 100);
     },
     methods:{
+        //监听滚动固定
+        watchScroll:function(){
+
+              setTimeout(function(){
+                    var headerH = parseFloat($('header').innerHeight());
+                    var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
+                    var navH = parseFloat($('#nav').innerHeight());
+
+                    $(window).scroll(function(){
+                        var scrollTop = $(this).scrollTop();
+                        if(scrollTop >= searchH){
+
+                          if(tool.getSystem() === 'ios'){
+                              $("#nav").addClass('sticky').css({"top": headerH + 'px'});
+                          }else{
+                              $("#nav").css({
+                                "position":"fixed","top":headerH + 'px',
+                              });
+                              $('.occupy-position').css({'height':navH + 'px'}).show();
+                          }
+                        }else{
+                            if(tool.getSystem() === 'ios'){
+                                $("#nav").removeClass('sticky').css({"top":'0px'});
+                            }else{
+                                $('.occupy-position').css({'height':'0px'}).hide();
+                                $("#nav").css({"position":"static"});
+                            }
+
+                        }
+
+                        if($('.month-event').length <= 0) return ;
+                        $('.month-event').each(function(){
+
+                          if( ($(this).offset().top - $(window).scrollTop()) <= (navH + headerH) ){
+
+                              if(tool.getSystem() === 'ios'){
+                                  $(this).find(".date-div").addClass('sticky').css({"top":(navH + headerH) + 'px'});
+                              }else{
+                                  $(this).find('.date-div').css({"position":"fixed","top":(navH + headerH) + 'px'});
+                                  $(this).find('.occupy-div').show();
+                              }
+                          }else{
+                              if(tool.getSystem() === 'ios'){
+                                  $(this).find(".date-div").removeClass('sticky').css({"top":'0px'});
+                              }else{
+                                  $(this).find('.date-div').css({"position":"static"});
+                                  $(this).find('.occupy-div').hide();
+                              }
+                          }
+
+                        })
+                    });
+              }, 100);
+        },
 
         //点击去详情页
         goInfoPage:function(id){
@@ -328,6 +333,7 @@ export default {
 
         //侧滑
         panelToggle:function(){
+
           var _self = this;
             _self.showPanel = !_self.showPanel;
             if(_self.showPanel){
@@ -358,6 +364,12 @@ export default {
             }
 
         },
+    },
+    beforeDestroy:function(){
+
+        eventBus.$off('showIndexRightPanelEvent');
+
+
     }
 
 }

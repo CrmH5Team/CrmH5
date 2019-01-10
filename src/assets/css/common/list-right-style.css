@@ -27,5 +27,5 @@
 }
 .other-search-label{font-size: 0.28rem;}
 
-.btn-div{height:0.85rem;line-height: 0.85rem;background:#ff5a21;color:#fff;text-align: center;
-position:absolute;left:0;bottom:0;width:100%;}
+.right-btn-div{height:0.85rem;line-height: 0.85rem;background:#ff5a21;color:#fff;text-align: center;
+position:absolute;left:0;bottom:0;width:100%;z-index: 103;}
