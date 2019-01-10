@@ -3345,14 +3345,14 @@ if (typeof define === 'function' && define.amd) {
       title: config.title,
       buttons: [
       {
-        text: defaults.buttonCancel,
-        className: "default",
-        onClick: config.onCancel
-      },
-      {
         text: defaults.buttonOK,
         className: "primary",
         onClick: config.onOK
+      },
+      {
+        text: defaults.buttonCancel,
+        className: "default",
+        onClick: config.onCancel
       }]
     });
   };

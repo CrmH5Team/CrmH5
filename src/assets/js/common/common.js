@@ -1126,6 +1126,15 @@
 		}
 		$.toast(msg, "cancel");
 	};
+	//显示确认框
+	tool.showConfirm =  function(content, okCallBack, cancelCallBack){
+		if(tool.isNullOrEmptyObject(content)){
+			return;
+		}
+		var title = lanTool.lanContent("586_提示");
+		var btnTextArr = [lanTool.lanContent("570_取消"),lanTool.lanContent("545_确定")];
+		$.confirm(content,title,okCallBack,cancelCallBack,btnTextArr);
+	};
 	//显示等待
 	tool.showLoading = function (msg) {
 		msg = msg || lanTool.lanContent("770_加载中...");
@@ -1426,7 +1435,7 @@
 		// console.log(jsonTemp);
 		// console.log(urlTemp);
 
-		if (!isFirst || lan.Data.length) {
+		if (!isFirst || lan.Data.length || !isFromCache || isRefreshCache) {
 
 			tool.showLoading();
 
@@ -1512,7 +1521,7 @@
 
 	//切换多语言
 	lan.setLan = function (curVersion, myCallBack) {
-		if (lan.currentLanguageVersion === curVersion) {
+		if (lan.currentLanguageVersion == curVersion) {
 			return;
 		}
 
