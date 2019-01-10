@@ -1,0 +1,127 @@
+.tipBox {
+    background-color: #ffffff;
+    padding: 0.1rem 0.3rem;
+}
+
+.tipContent {
+    height: 0.4rem;
+    line-height: 0.4rem;
+    background-color: rgb(242, 242, 242);
+    border: solid 1px rgb(242, 242, 242);
+    border-radius: 5px;
+    color: rgb(102, 102, 102);
+}
+
+.tipContent span {
+    color: red;
+}
+
+.TripList {
+    padding-bottom: 5px;
+    background-color: #ffffff;
+}
+
+.meeting,
+.route,
+.room,.winehouseExpense,
+.transportation,
+.other {
+    margin-top: 10px;
+    padding: 5px 0;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    background-color: #fff;
+}
+
+.budget {
+    margin-top: 10px;
+    padding: 5px 0;
+    background-color: #fff;
+}
+
+.budgetHeader {
+
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    background-color: #fff;
+}
+
+.headerBlock,
+.contentListCellHeader {
+    position: relative;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    display: flex;
+    padding: 10px 0;
+}
+
+.headerBlock:after {
+    position: absolute;
+    content: '';
+    left: 0.6rem;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.headerBlock .headerBlockLeftIcon {
+    width: 0.6rem;
+    margin: auto 0;
+}
+
+.headerBlock .headerBlockLeftIcon .calcfont {
+    font-size: 0.44rem;
+    color: #8a8a8a;
+}
+
+.headerBlock .headerBlockContent {
+    width: calc(100% - 1.16rem);
+    padding-left: 5px;
+    margin: auto 0;
+    color: #FF5A21;
+}
+
+.budget .headerBlock .headerBlockContent {
+    color: #333333;
+}
+
+.contentListCell .headerBlockContent {
+    color: #000000;
+}
+
+.headerBlock .headerBlockRightIcon {
+    width: 0.56rem;
+    text-align: right;
+    margin: auto 0;
+}
+
+.headerBlock .headerBlockRightIcon .calcfont {
+    font-size: 0.4rem;
+    color: #FF5A21;
+}
+
+.contentListCell .headerBlockRightIcon .calcfont {
+    color: #8a8a8a;
+}
+
+.shuomingContent {
+    color: #666666;
+    margin: 0.1rem 0;
+    line-height: 0.3rem;
+}
+
+.expense {
+    background-color: #ffffff;
+    padding: 10px 0;
+}
+
+.expenseBtn {
+    font-size: 0.28rem;
+    color: #FF5A21;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+}
