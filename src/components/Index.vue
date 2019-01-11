@@ -7,7 +7,7 @@
       <div class="search-box">
         <div @click="goSearch" class="search" id="searchBtn">
           <span class="search-icon mui-icon calcfont calc-sousuo"></span>
-          <label class="f16 search-label">Search</label>
+          <label class="f16 search-label lanText" data-lanid="780_搜索"></label>
         </div>
       </div>
 
@@ -18,7 +18,7 @@
               <div class="weui-grid__icon trip-meeting-icon">
                 <span class="mui-icon calcfont calc-kehu"></span>
               </div>
-              <p class="f12 weui-grid__label lanText" data-lanid>Trip&Meeting</p>
+              <p class="f12 weui-grid__label lanText" data-lanid="781_出差&会议"></p>
             </router-link>
           </div>
           <div class="weui-grid">
@@ -26,7 +26,7 @@
               <div class="weui-grid__icon lianxiren1-icon">
                 <span class="mui-icon calcfont calc-kehulianxiren"></span>
               </div>
-              <p class="f12 weui-grid__label lanText" data-lanid="175_联系人">Contacts</p>
+              <p class="f12 weui-grid__label lanText" data-lanid="782_联系人"></p>
             </router-link>
           </div>
           <div class="weui-grid">
@@ -34,7 +34,7 @@
               <div class="weui-grid__icon jihui-icon">
                 <span class="calcfont calc-jihui"></span>
               </div>
-              <p class="f12 weui-grid__label lanText" data-lanid="173_销售机会">Business</p>
+              <p class="f12 weui-grid__label lanText" data-lanid="783_商业"></p>
             </router-link>
           </div>
           <div class="weui-grid">
@@ -42,7 +42,7 @@
               <div class="weui-grid__icon intelligence-icon">
                 <span class="calcfont calc-lianxiren1"></span>
               </div>
-              <p class="f12 weui-grid__label">Intelligence</p>
+              <p class="f12 weui-grid__label lanText" data-lanid="784_商业智能"></p>
             </router-link>
           </div>
         </div>

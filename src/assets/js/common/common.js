@@ -1490,140 +1490,138 @@
 }(window, window.lanTool = {}, jQuery));
 
 
-// /*
-//  * 下拉数据
-//  */
-// ;
-// (function (allTypeList) {
-// 	//tool.clearStoragItem();
-// 	//所有类型数据
-// 	allTypeList.Data = [];
+/*
+ * 下拉数据
+ */
+;
+(function (allTypeList) {
+	//tool.clearStoragItem();
+	//所有类型数据
+	allTypeList.Data = [];
 
-// 	//查询下拉数据
-// 	allTypeList.Query = function (isFromCache, isRefreshCache) {
+	//查询下拉数据
+	allTypeList.Query = function (isFromCache, isRefreshCache) {
+		return [];
+		
+		//若缓存有数据，则返回缓存的数据
+		var cacheDataStr = tool.getStorageItem(tool.config_allTypesData);
+		if (!tool.isNullOrEmptyObject(cacheDataStr)) {
+			allTypeList.Data = tool.jObject(cacheDataStr);
+			return true;
+		}
 
-// 		//若缓存有数据，则返回缓存的数据
-// 		var cacheDataStr = tool.getStorageItem(tool.config_allTypesData);
-// 		if (!tool.isNullOrEmptyObject(cacheDataStr)) {
-// 			allTypeList.Data = tool.jObject(cacheDataStr);
-// 			return true;
-// 		}
+		isFromCache = ((isFromCache == undefined || isFromCache == null) ? false : isFromCache);
+		isRefreshCache = ((isRefreshCache == undefined || isRefreshCache == null) ? true : isRefreshCache);
+		//构造传入参数
+		var jsonTemp = {
+			CurrentLanguageVersion: (lanTool.currentLanguageVersion || 1),
+			IsFromCache: isFromCache,
+			IsRefreshCache: isRefreshCache
+		};
 
-// 		isFromCache = ((isFromCache == undefined || isFromCache == null) ? false : isFromCache);
-// 		isRefreshCache = ((isRefreshCache == undefined || isRefreshCache == null) ? true : isRefreshCache);
-// 		//构造传入参数
-// 		var jsonTemp = {
-// 			CurrentLanguageVersion: (lanTool.currentLanguageVersion || 1),
-// 			IsFromCache: isFromCache,
-// 			IsRefreshCache: isRefreshCache
-// 		};
+		//请求地址
+		var urlTemp =
+			tool.combineRequestUrl(
+				tool.getConfigValue(tool.config_ajaxUrl),
+				tool.getConfigValue(tool.ajaxUrl_AllTypes_Query)
+			);
 
-// 		//请求地址
-// 		var urlTemp =
-// 			tool.combineRequestUrl(
-// 				tool.getConfigValue(tool.config_ajaxUrl),
-// 				tool.getConfigValue(tool.ajaxUrl_AllTypes_Query)
-// 			);
+		if (allTypeList.Data.length <= 0) {
+			setTimeout(function () {
+				$.ajax({
+					async: true,
+					type: "post",
+					url: urlTemp,
+					data: {
+						jsonDatas: JSON.stringify(jsonTemp)
+					},
+					dataType: 'json',
+					success: function (funResult) {
+						allTypeList.Data = [];
 
-// 		if (allTypeList.Data.length <= 0) {
-// 			setTimeout(function () {
-// 				$.ajax({
-// 					async: true,
-// 					type: "post",
-// 					url: urlTemp,
-// 					data: {
-// 						jsonDatas: JSON.stringify(jsonTemp)
-// 					},
-// 					dataType: 'json',
-// 					success: function (funResult) {
-// 						allTypeList.Data = [];
+						funResult = tool.jObject(funResult);
+						if (funResult.Result != 1) {
+							allTypeList.Data = [];
+							return false;
+						}
 
-// 						funResult = tool.jObject(funResult);
-// 						if (funResult.Result != 1) {
-// 							allTypeList.Data = [];
-// 							return false;
-// 						}
+						allTypeList.Data = funResult.Data;
 
-// 						// console.log(JSON.stringify(funResult.Data));
+						//写入缓存
+						tool.setStoragItem(tool.config_allTypesData, JSON.stringify(allTypeList.Data));
+						return true;
+					},
+					error: function (jqXHR, type, error) {
+						console.log(jqXHR.responseText);
+						console.log(jqXHR.status);
+						console.log(jqXHR.readyState);
+						console.log(jqXHR.statusText);
+						console.log('type:' + type);
+						console.log('error:' + error);
+						return false;
+					}
+				});
+			}, 10);
+		}
+	};
+	//执行查询动作
+	allTypeList.Query(false, true);
 
-// 						//                      for (var i = 0, len = funResult.Data.length; i < len; i++) {
-// 						//                          allTypeList.Data.push(funResult.Data[i]);
-// 						//                      }
-// 						allTypeList.Data = funResult.Data;
+	//根据父级的TypeValue查询子项的数据(父级的TypeValue一般就是字段名)
+	allTypeList.QueryChildItemsByPTypeValue = function (typeValue) {
+		return [];
 
-// 						//写入缓存
-// 						tool.setStoragItem(tool.config_allTypesData, JSON.stringify(allTypeList.Data));
-// 						return true;
-// 					},
-// 					error: function (jqXHR, type, error) {
-// 						console.log(jqXHR.responseText);
-// 						console.log(jqXHR.status);
-// 						console.log(jqXHR.readyState);
-// 						console.log(jqXHR.statusText);
-// 						console.log('type:' + type);
-// 						console.log('error:' + error);
-// 						return false;
-// 					}
-// 				});
-// 			}, 10);
-// 		}
-// 	};
-// 	//执行查询动作
-// 	allTypeList.Query(false, true);
+		var childItems = [];
+		if (tool.isNullOrEmptyObject(typeValue) || allTypeList.Data.length <= 0) {
+			return childItems;
+		}
+		var parentItem = {};
+		for (var i = 0, len = allTypeList.Data.length; i < len; i++) {
+			if (typeValue == allTypeList.Data[i]["TypeValue"]) {
+				parentItem = allTypeList.Data[i];
+				break;
+			}
+		}
+		if (parentItem["AutoID"] == undefined || parentItem["AutoID"] == null || parentItem["AutoID"] == "") {
+			return childItems;
+		}
 
-// 	//根据父级的TypeValue查询子项的数据(父级的TypeValue一般就是字段名)
-// 	allTypeList.QueryChildItemsByPTypeValue = function (typeValue) {
-// 		var childItems = [];
+		for (var i = 0, len = allTypeList.Data.length; i < len; i++) {
+			if (allTypeList.Data[i]["ParentID"] != undefined && parentItem["AutoID"] == allTypeList.Data[i]["ParentID"]) {
+				childItems.push(allTypeList.Data[i]);
+				continue;
+			}
+		}
 
-// 		if (tool.isNullOrEmptyObject(typeValue) || allTypeList.Data.length <= 0) {
-// 			return childItems;
-// 		}
-// 		var parentItem = {};
-// 		for (var i = 0, len = allTypeList.Data.length; i < len; i++) {
-// 			if (typeValue == allTypeList.Data[i]["TypeValue"]) {
-// 				parentItem = allTypeList.Data[i];
-// 				break;
-// 			}
-// 		}
-// 		if (parentItem["AutoID"] == undefined || parentItem["AutoID"] == null || parentItem["AutoID"] == "") {
-// 			return childItems;
-// 		}
+		//统一处理成mui.PopPicker需要的数据格式
+		var showDataArray = [];
+		for (var i = 0, len = childItems.length; i < len; i++) {
+			var textTemp = "";
 
-// 		for (var i = 0, len = allTypeList.Data.length; i < len; i++) {
-// 			if (allTypeList.Data[i]["ParentID"] != undefined && parentItem["AutoID"] == allTypeList.Data[i]["ParentID"]) {
-// 				childItems.push(allTypeList.Data[i]);
-// 				continue;
-// 			}
-// 		}
-// 		//统一处理成mui.PopPicker需要的数据格式
-// 		var showDataArray = [];
-// 		for (var i = 0, len = childItems.length; i < len; i++) {
-// 			var textTemp = "";
+			switch (parseInt(lanTool.currentLanguageVersion)) {
+				case 2:
+					textTemp = childItems[i]["SimplifiedNameChinese"] || "";
+					break;
 
-// 			switch (parseInt(lanTool.currentLanguageVersion)) {
-// 				case 2:
-// 					textTemp = childItems[i]["SimplifiedNameChinese"] || "";
-// 					break;
+				case 3:
+					textTemp = childItems[i]["TraditionalNameChinese"] || "";
+					break;
 
-// 				case 3:
-// 					textTemp = childItems[i]["TraditionalNameChinese"] || "";
-// 					break;
+				case 1:
+				default:
+					textTemp = childItems[i]["TypeNameEnglish"] || "";
+					break;
+			}
+			var objNew = {
+				"value": childItems[i]["TypeValue"] || "",
+				"text": textTemp,
+			};
+			showDataArray.push(objNew);
+		}
 
-// 				case 1:
-// 				default:
-// 					textTemp = childItems[i]["TypeNameEnglish"] || "";
-// 					break;
-// 			}
-// 			var objNew = {
-// 				"value": childItems[i]["TypeValue"] || "",
-// 				"text": textTemp,
-// 			};
-// 			showDataArray.push(objNew);
-// 		}
-// 		//return childItems;
-// 		return showDataArray;
-// 	}
-// }(window.allTypeList = {}));
+		return showDataArray;
+	}
+}(window.allTypeList = {}));
 
 /*
 * 控件初始化
