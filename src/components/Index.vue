@@ -196,7 +196,7 @@
         <div class="right-block-title f14 lanText" data-lanid="774_通用"></div>
 
         <div class="right-block-items f14">
-          <div class="block-item language-type language-show" data-lantype="1">
+          <div class="block-item language-type" data-lantype="1">
             <div class="switch-text">English</div>
             <div class="right calcfont calc-gou1 language-icon"></div>
           </div>
@@ -268,6 +268,7 @@ export default {
           return;
         }
       }
+
       if (!target.hasClass("language-show")) {
         target
           .addClass("language-show")
@@ -280,17 +281,22 @@ export default {
           lanTool.updateLanVersion();
       });
     });
+
+    //写入当前多语言值
+    $("div.language-type[data-lantype='"+ lanTool.currentLanguageVersion +"']:first").trigger("click");
   },
   methods: {
     //清除缓存
     ClearCache: function() {
+      var _self = this;
+
       tool.showConfirm(
         lanTool.lanContent("778_是否确认清除缓存？"),
         function() {
           //重新加载多语言
           lanTool.waitExcute(false, true, function() {
-            window.location.reload();
-            //_self.$router.push("/index");
+            //window.location.reload();
+            _self.$router.go(0);//todo 以后增加刷新机制
           });
         },
         function() {}
