@@ -1337,7 +1337,7 @@
 		}
 
 		var parentContainerObj = containerObj.parents("div.group-div:first");
-		console.log(parentContainerObj);
+		// console.log(parentContainerObj);
 		if (tool.isNullOrEmptyObject(parentContainerObj)) {
 			return;
 		}

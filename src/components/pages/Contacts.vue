@@ -275,9 +275,8 @@ export default {
     //点击去详情页
     goInfoPage: function(id) {
       var _self = this;
-      $("#organizationsList,#contactsList").on(
-        "click",
-        "div.group-item",
+      // $("#organizationsList,#contactsList").on("click","div.group-item",
+      $("div.date-div").on('click',
         function(event) {
           var target = $(event.target);
           if (!target.hasClass("group-item")) {
@@ -300,9 +299,17 @@ export default {
         function(event) {
           var target = $(event.target);
           console.log(target);
-          var fromType = target.parents("div[data-fromType]").attr("data-fromType") || "";
-          var groupID =
-            target.find("span[data-groupid]:first").attr("data-groupid") || "";
+          if(!target.hasClass('date-div')){
+              target = target.parents("div.date-div:first");
+              if(tool.isNullOrEmptyObject(target)){
+                return;
+              }
+          }
+          var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+          var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+          // console.log(fromType);
+          // console.log(groupID);
+
           if (tool.isNullOrEmptyObject(groupID)) {
             return;
           }
@@ -323,15 +330,6 @@ export default {
           } else {
             //若是收起
             tool.InitiateInnerDataList(fromType, groupID, target, function(containerObj) {
-              // if (!containerObj.hasClass("date-div")) {
-              //     containerObj = containerObj.closest("div.date-div");
-              //     if (containerObj == undefined) {
-              //         return;
-              //     }
-              // }
-
-                  console.log(123);
-
                   containerObj
                   .addClass("open")
                   .siblings(".group-item-list")
