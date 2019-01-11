@@ -42,10 +42,16 @@
     width: 100%;
 }
 .ListSpecialCellContent{
-    padding: 0.1rem 0;
-    padding-left: 0.6rem;
-    line-height: 0.32rem;
+    padding: 0.1rem 0.32rem 0 0.6rem;
+    /* padding-left: 0.6rem; */
+    /* line-height: 0.32rem; */
     font-size: 0.28rem;
+    line-height:1.2;
+    /* white-space: normal; */
+    word-break:break-all;
+    overflow:auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 .ListSpecialCellLeftIcon{
     width: 0.6rem;
