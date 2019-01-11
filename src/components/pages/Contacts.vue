@@ -17,7 +17,8 @@
                       </router-link>
                 </div>
                 <!-- 列表 -->
-                <div id="organizationsList"></div>
+                <div v-if="!notOrganizations" id="organizationsList"></div>
+                <nothing v-if="notOrganizations" style="padding-top:0.8rem;"></nothing>
           </div>
 
           <div v-show="showPage == 1" class="pageList">
@@ -28,7 +29,8 @@
                       </router-link>
                 </div>
                 <!-- 列表 -->
-                <div id="contactsList"></div>
+                <div v-if="!notContacts" id="contactsList"></div>
+                <nothing v-if="notContacts" style="padding-top:0.8rem;"></nothing>
           </div>
       </div>
 
@@ -45,7 +47,7 @@
 <script>
 import Header from '../common/Listheader'
 import Listrightpanel from '../common/Listrightpanel'
-import Commonlist from '../common/Commonlist'
+import Nothing from "../common/Nothing"
 
 // import Mixins from '../../mixins'
 var count = 0;
@@ -54,13 +56,15 @@ export default {
       components:{
         'Header':Header,
         'list-right-panel':Listrightpanel,
-        'common-list':Commonlist
+        'nothing':Nothing
       },
       data (){
         return {
             key:'contacts',
             title:lanTool.lanContent('175_联系人'),
             showPage:0,
+            notOrganizations:true,   //没数据
+            notContacts:true, //没数据
 
             isFirstEnter:false, // 是否第一次进入，默认false
 

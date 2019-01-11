@@ -17,7 +17,8 @@
                     </router-link>
               </div>
               <!-- 列表 -->
-              <div id="dealpipelineList"></div>
+              <div v-if="!notDealPipeline" id="dealpipelineList"></div>
+              <nothing v-if="notDealPipeline" style="padding-top:0.8rem;"></nothing>
         </div>
 
         <div v-show="showPage == 1" class="pageList">
@@ -28,7 +29,8 @@
                     </router-link>
               </div>
               <!-- 列表 -->
-              <div id="opportunitiesList"></div>
+              <div v-if="!notOpportunities" id="opportunitiesList"></div>
+              <nothing v-if="notOpportunities" style="padding-top:0.8rem;"></nothing>
         </div>
 
 
@@ -44,18 +46,21 @@
 <script>
 import Header from '../common/Listheader'
 import Listrightpanel from '../common/Listrightpanel'
-// import Commonlist from '../common/Commonlist'
+import Nothing from "../common/Nothing"
+
 var count = 0;
 export default {
     components:{
         'Header':Header,
         'list-right-panel':Listrightpanel,
-        // 'common-list':Commonlist
+        'nothing':Nothing
     },
     data(){
         return {
             title:'Business',
             showPage:0,
+            notDealPipeline:true,   //没数据
+            notOpportunities:true, //没数据
 
             //侧滑数据模型
             rigthPanelData:[

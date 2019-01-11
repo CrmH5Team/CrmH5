@@ -30,7 +30,7 @@
                               </div>
                         </div>
                         <!-- meeting list -->
-                        <div class="list">
+                        <div v-if="!notMeeting" class="list">
                               <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">Meeting with Eastern Airlines</div>
                                     <div class="item-time f12">
@@ -52,6 +52,8 @@
                                     <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                               </div>
                         </div>
+                        <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
+
                     </div>
 
                     <div v-show="showPage==1" class="pageList">
@@ -62,8 +64,9 @@
                                   <span class="add-text">And Trip</span>
                               </div>
                         </div>
+
                         <!-- trip list -->
-                        <div class="list">
+                        <div v-if="!notTrip" class="list">
                               <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
@@ -114,10 +117,10 @@
                               </div>
 
                         </div>
+                        <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
+
                     </div>
                 </div>
-                <!-- 列表没数据 -->
-                <div v-show="!hasEvents" class="noMessagePrompt lanText" data-lanid="335_暂无事件"></div>
 
             </div>
         </div>
@@ -128,8 +131,11 @@
 
 <script>
 
-
+import Nothing from "../common/Nothing"
 export default {
+    components: {
+      'nothing':Nothing
+    },
     data(){
         return {
            dateEvents:[],//一天中事件数据
@@ -139,6 +145,8 @@ export default {
           //  week:'',
 
            isFirstEnter:false, // 是否第一次进入，默认false
+           notTrip:true,   //没数据
+           notMeeting:true, //没数据
         }
     },
     created:function(){
@@ -502,10 +510,6 @@ export default {
 .item-address{font-weight: 600;}
 .data-events p{height: 50px;line-height: 50px;}
 
-
-
-
-.noMessagePrompt{padding:11px 15px;font-size:0.28rem;color:#595959;background:#fff;text-align: center;}
 </style>
 
 

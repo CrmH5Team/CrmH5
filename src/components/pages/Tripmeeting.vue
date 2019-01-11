@@ -25,7 +25,8 @@
                           </router-link>
                     </div>
                     <!-- 列表 -->
-                    <div id="meetingList"></div>
+                    <div v-if="!notMeeting" id="meetingList"></div>
+                    <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
               </div>
 
               <div class="pageList" v-show="showPage == 1">
@@ -36,7 +37,8 @@
                           </router-link>
                     </div>
                     <!-- 列表 -->
-                    <div id="tripList"></div>
+                    <div v-if="!notTrip" id="tripList"></div>
+                    <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
               </div>
 
         </div>
@@ -51,18 +53,21 @@
 import Calendar from './Calendar'
 import Header from '../common/Listheader'
 import Listrightpanel from '../common/Listrightpanel'
-// import Commonlist from '../common/Commonlist'
+import Nothing from "../common/Nothing"
+
 var count = 0;
 export default {
     components:{
         'Header':Header,
         'calendar':Calendar,
-        // 'common-list':Commonlist,
+        'nothing':Nothing,
         'list-right-panel':Listrightpanel,
     },
     data(){
         return {
             title:'Trip&Meeting',
+            notTrip:true,   //没数据
+            notMeeting:true, //没数据
 
             showPage:0, //list视图控制显示meeting(0)或者trip(1)
 

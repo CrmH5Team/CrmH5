@@ -63,7 +63,10 @@
         <router-link to="/tripmeeting" class="check-all right f14 a">查看全部&gt;&gt;</router-link>
       </div>
 
-      <div class="list-view">
+      <!-- 没有数据   -->
+      <nothing v-if="nothing" style="padding-top:1.5rem;"></nothing>
+      <!-- 列表 -->
+      <div v-if="!nothing" class="list-view">
         <div class="month-event">
           <div class="f14 date-div open" @click="groupToggle($event)">
             <span class="calcfont calc-richeng"></span>
@@ -232,14 +235,17 @@
 </style>
 
 <script>
-import Header from "./common/Header";
+import Header from "./common/Header"
+import Nothing from "./common/Nothing"
 export default {
   components: {
-    Header: Header
+    Header: Header,
+    'nothing':Nothing
   },
   data() {
     return {
       title: "CRM",
+      nothing:false, //没有数据
       showPanel: false,
       selectView: "calendar",
       dataFilter: ["my-calendar"]
