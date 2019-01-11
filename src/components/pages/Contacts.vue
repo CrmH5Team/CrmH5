@@ -33,7 +33,7 @@
       </div>
 
       <!--  右侧侧滑 -->
-      <list-right-panel :panelData="rigthPanelData" :searchData="cantactsSearchData"></list-right-panel>
+      <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
 
 
 
@@ -77,124 +77,118 @@ export default {
                 },
 
             ],
-            //侧滑搜索页面数据模型
-            cantactsSearchData:[
-                {
-                    module:'Organizations',
-                    searchItems:[
-                          {
-                              type:'input',
-                              field:'name',
-                              queryType:'string',
-                              text:'Organization Name 公司名称',
-                              value:'',
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Business Sector 业务分类',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                            type:'picker',
-                            field:'cf_771',
-                            queryType:'string',
-                            text:'Area / Region 区域',
-                            value:'',
-                            id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Country 国家',
-                              selectType:'radio',
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Account Manager 客户经理',
-                              selectType:'radio',
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          }
-                    ]
-                },
-                {
-                    module:'Contacts',
-                    searchItems:[
-                          {
-                              type:'input',
-                              field:'name',
-                              queryType:'string',
-                              text:'Name',
-                              value:'',
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Status 状态',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Initiator发起人',
-                              selectType:'checkbox',
-                              resulteRow:false, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Organization公司',
-                              selectType:'checkbox',
-                              resulteRow:true, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Business Sector 业务分类',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                            type:'picker',
-                            field:'cf_771',
-                            queryType:'string',
-                            text:'Area / Region 区域',
-                            value:'',
-                            id:Number((new Date()).valueOf()) + count++
-                          }
-                    ]
-                }
-            ],
 
+            //搜索页面数据模型
+            searchData:{},
+
+            OrganizationsSearch:[
+                  {
+                      type:'input',
+                      field:'name',
+                      queryType:'string',
+                      text:'Organization Name 公司名称',
+                      value:'',
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Business Sector 业务分类',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                    type:'picker',
+                    field:'cf_771',
+                    queryType:'string',
+                    text:'Area / Region 区域',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Country 国家',
+                      selectType:'radio',
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Account Manager 客户经理',
+                      selectType:'radio',
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  }
+            ],
+            ContactsSearch:[
+                  {
+                      type:'input',
+                      field:'name',
+                      queryType:'string',
+                      text:'Name',
+                      value:'',
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Status 状态',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Initiator发起人',
+                      selectType:'checkbox',
+                      resulteRow:false, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Organization公司',
+                      selectType:'checkbox',
+                      resulteRow:true, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Business Sector 业务分类',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                    type:'picker',
+                    field:'cf_771',
+                    queryType:'string',
+                    text:'Area / Region 区域',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                  }
+            ],
 
         }
       },
@@ -208,6 +202,7 @@ export default {
       mounted:function(){
           var _self = this;
 
+          _self.searchData = _self.OrganizationsSearch;
 
           tool.InitiateGroupList('organizations',$('#organizationsList'));
 
@@ -298,9 +293,13 @@ export default {
               var container = null;
               var moduleName = '';
               if(num == 0){
+                  _self.searchData = _self.OrganizationsSearch;
+
                   moduleName = 'organizations';
                   container = $('#organizationsList');
               }else{
+                  _self.searchData = _self.ContactsSearch;
+
                   moduleName = 'contacts';
                   container = $('#contactsList');
               }

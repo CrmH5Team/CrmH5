@@ -41,13 +41,10 @@
 
 
 <script>
-import Datetimepicker from './Datetimepicker'
-import Picker from './Picker'
 
 export default {
     components:{
-        'picker':Picker,
-        'datetime-picker':Datetimepicker
+
     },
     data(){
         return {

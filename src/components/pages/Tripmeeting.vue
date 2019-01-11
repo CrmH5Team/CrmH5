@@ -66,7 +66,7 @@ export default {
 
             showPage:0, //list视图控制显示meeting(0)或者trip(1)
 
-            selectView:'listView',
+            selectView:'calendarVeiw',
             dataFilter:['mySchedule'],
 
              //侧滑数据模型
@@ -74,7 +74,7 @@ export default {
                 {
                   groupText:'View视图',
                   type:'radio',
-                  default:'listView',
+                  default:'calendarVeiw',
                   items:[
                       {text:'Calendar Veiw',value:'calendarVeiw'},
                       {text:'List View',value:'listView'}

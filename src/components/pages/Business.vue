@@ -36,7 +36,7 @@
 
 
     <!--  右侧侧滑 -->
-    <list-right-panel :panelData="rigthPanelData" :searchData="businessSearchData"></list-right-panel>
+    <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
 
 </div>
 </template>
@@ -71,166 +71,163 @@ export default {
                 },
 
             ],
+
             //侧滑搜索页面数据模型
-            businessSearchData:[
-                {
-                    module:'Deal Pipeline',
-                    searchItems:[
-                          {
-                              type:'input',
-                              field:'name',
-                              queryType:'string',
-                              text:'Name',
-                              value:'',
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Status 状态',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Initiator发起人',
-                              selectType:'checkbox',
-                              resulteRow:false, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Organization公司',
-                              selectType:'checkbox',
-                              resulteRow:true, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Business Sector 业务分类',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                            type:'picker',
-                            field:'cf_771',
-                            queryType:'string',
-                            text:'Area / Region 区域',
-                            value:'',
-                            id:Number((new Date()).valueOf()) + count++
-                        },
-                        {
-                            type:'selectlist',
-                            field:'related_to',
-                            queryType:'string',
-                            queryUrl:"Accounts/Query",
-                            text:'Country 国家',
-                            selectType:'radio',
-                            value:{
-                                text:'',
-                                value:''
-                            }
-                        },
-                        {
-                            type:'selectlist',
-                            field:'related_to',
-                            queryType:'string',
-                            queryUrl:"Accounts/Query",
-                            text:'Created by 创建者',
-                            selectType:'radio',
-                            value:{
-                                text:'',
-                                value:''
-                            }
-                        }
-                    ]
+            searchData:{},
+            dealPipelineSearch:[
+                  {
+                      type:'input',
+                      field:'name',
+                      queryType:'string',
+                      text:'Name',
+                      value:'',
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Status 状态',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Initiator发起人',
+                      selectType:'checkbox',
+                      resulteRow:false, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Organization公司',
+                      selectType:'checkbox',
+                      resulteRow:true, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Business Sector 业务分类',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                    type:'picker',
+                    field:'cf_771',
+                    queryType:'string',
+                    text:'Area / Region 区域',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
                 },
                 {
-                    module:'Opportunities',
-                    searchItems:[
-                          {
-                              type:'input',
-                              field:'name',
-                              queryType:'string',
-                              text:'Name',
-                              value:'',
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Status 状态',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Initiator发起人',
-                              selectType:'checkbox',
-                              resulteRow:false, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'selectlist',
-                              field:'related_to',
-                              queryType:'string',
-                              queryUrl:"Accounts/Query",
-                              text:'Organization公司',
-                              selectType:'checkbox',
-                              resulteRow:true, //第二行显示结果
-                              value:{
-                                  text:'',
-                                  value:''
-                              }
-                          },
-                          {
-                              type:'picker',
-                              field:'cf_765',
-                              queryType:'string',
-                              text:'Business Sector 业务分类',
-                              value:'',
-                              id:Number((new Date()).valueOf()) + count++
-                          },
-                          {
-                            type:'picker',
-                            field:'cf_771',
-                            queryType:'string',
-                            text:'Area / Region 区域',
-                            value:'',
-                            id:Number((new Date()).valueOf()) + count++
-                        }
-                    ]
+                    type:'selectlist',
+                    field:'related_to',
+                    queryType:'string',
+                    queryUrl:"Accounts/Query",
+                    text:'Country 国家',
+                    selectType:'radio',
+                    value:{
+                        text:'',
+                        value:''
+                    }
+                },
+                {
+                    type:'selectlist',
+                    field:'related_to',
+                    queryType:'string',
+                    queryUrl:"Accounts/Query",
+                    text:'Created by 创建者',
+                    selectType:'radio',
+                    value:{
+                        text:'',
+                        value:''
+                    }
                 }
             ],
+            opportunitiesSearch:[
+                  {
+                      type:'input',
+                      field:'name',
+                      queryType:'string',
+                      text:'Name',
+                      value:'',
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Status 状态',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Initiator发起人',
+                      selectType:'checkbox',
+                      resulteRow:false, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'selectlist',
+                      field:'related_to',
+                      queryType:'string',
+                      queryUrl:"Accounts/Query",
+                      text:'Organization公司',
+                      selectType:'checkbox',
+                      resulteRow:true, //第二行显示结果
+                      value:{
+                          text:'',
+                          value:''
+                      }
+                  },
+                  {
+                      type:'picker',
+                      field:'cf_765',
+                      queryType:'string',
+                      text:'Business Sector 业务分类',
+                      value:'',
+                      id:Number((new Date()).valueOf()) + count++
+                  },
+                  {
+                    type:'picker',
+                    field:'cf_771',
+                    queryType:'string',
+                    text:'Area / Region 区域',
+                    value:'',
+                    id:Number((new Date()).valueOf()) + count++
+                  }
+            ],
+
+
 
         }
     },
     mounted:function(){
         var _self = this;
-        this.changePos();
 
+        _self.searchData = _self.dealPipelineSearch;
         tool.InitiateGroupList('dealPipeline',$('#dealpipelineList'));
 
+        _self.changePos();
         _self.watchScroll();
         _self.goInfoPage();
         _self.groupToggle();
@@ -316,9 +313,13 @@ export default {
             var container = null;
             var moduleName = '';
             if(num == 0){
+                _self.searchData = _self.dealPipelineSearch;
+
                 moduleName = 'dealPipeline';
                 container = $('#dealpipelineList');
             }else{
+                _self.searchData = _self.opportunitiesSearch;
+
                 moduleName = 'opportunities';
                 container = $('#opportunitiesList');
             }
