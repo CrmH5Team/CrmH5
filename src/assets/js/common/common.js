@@ -220,10 +220,9 @@
 	 */
 	tool.Api_OrganizationsHandle_Group = "Api_OrganizationsHandle_Group";
 	/*
-	 * 用户登陆接口
+	 * 公司分组内部数据接口
 	 */
-	tool.SysAccountHandle_UserLogin = "SysAccountHandle_UserLogin";
-
+	tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -1184,29 +1183,10 @@
 	// </div>
 	// `;
 	tool.organizationsGroupTemplate =
-	`<div class="list-group-div group-div">
+		`<div class="list-group-div group-div">
 	  <div class="date-div" >
 		  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
 	  </div>
-	</div>
-	`;
-	tool.organizationsListTemplate =
-	`<div class="occupy-div"></div>
-	<div class="group-item-list organizations-list">
-		<div class=" group-item" data-url="/organizationsinfo/12">
-			<div class="item-stars-icon calcfont calc-shoucang"></div>
-			<div class="item-block">
-			  <div class="item-div item-first-div">
-				  <span>Todd Scott</span><span class="right">UEA</span>
-			  </div>
-			  <div class="item-div">
-				  <span>Alirlines</span><span class="right">Jessie Zhao</span>
-			  </div>
-			  <div class="item-div">
-				<span>China</span><span class="right">Asia Pacific</span>
-			  </div>
-			</div>
-		</div>
 	</div>
 	`;
 	tool.contactsTemplate =
@@ -1243,7 +1223,7 @@
 		containerObj.html('');
 
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
-			return true;
+			return;
 		}
 
 		var template = "";
@@ -1277,68 +1257,68 @@
 		}
 
 		//查询分组数据
-		 //请求地址
-		 var urlTemp = tool.AjaxBaseUrl();
-		 //传入参数
-		 var jsonDatasTemp = {
-		   CurrentLanguageVersion: lanTool.currentLanguageVersion,
-		   UserName : tool.UserName(),
-		   _ControlName: controlName,
-		   _RegisterCode:tool.RegisterCode(),
-		   QueryCondiction : []
-		 };
-		 tool.showLoading();
+		//请求地址
+		var urlTemp = tool.AjaxBaseUrl();
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			_RegisterCode: tool.RegisterCode(),
+			QueryCondiction: []
+		};
+		tool.showLoading();
 
-		 $.ajax({
+		$.ajax({
 			async: true,
 			type: "post",
 			url: urlTemp,
 			data: jsonDatasTemp,
-			success: function(data) {
-			  data = tool.jObject(data);
-			  if (data._ReturnStatus == false) {
-				tool.showText(tool.getMessage(data));
-				console.log(tool.getMessage(data));
-				return true;
-			  }
-	
-			  data = data._OnlyOneData.Rows || [];
-			  //无数据
-			  if(data.length <= 0){
-				return true;
-			  }
-
-			  //渲染组数据
-			  for(var i=0;i<data.length;i++){
-				var tempStr = template;
-				for(var key in data[i]){
-					tempStr = tempStr.replace("{"+key+"}",(data[i][key] || ""));
+			success: function (data) {
+				data = tool.jObject(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return;
 				}
 
-				contentHtmlStr += tempStr;
-			}
+				data = data._OnlyOneData.Rows || [];
+				//无数据
+				if (data.length <= 0) {
+					return;
+				}
+
+				//渲染组数据
+				for (var i = 0; i < data.length; i++) {
+					var tempStr = template;
+					for (var key in data[i]) {
+						tempStr = tempStr.replace("{" + key + "}", (data[i][key] || ""));
+					}
+
+					contentHtmlStr += tempStr;
+				}
 
 				//console.log(contentHtmlStr);
 
-			  //追加数据
-			  containerObj.append(contentHtmlStr);
-			  if(!tool.isNullOrEmptyObject(myCallBack)){
-				myCallBack(containerObj);  
-			  }
-			  
-			  return false;
+				//追加数据
+				containerObj.append(contentHtmlStr);
+				if (!tool.isNullOrEmptyObject(myCallBack)) {
+					myCallBack(containerObj);
+				}
+
+				return;
 			},
-			error: function(jqXHR, type, error) {
-			  console.log(error);
-			  tool.hideLoading();
-			  return true;
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				tool.hideLoading();
+				return;
 			},
-			complete:function(){
+			complete: function () {
 				tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}
-		  });
+		});
 
 	};
 
@@ -1348,8 +1328,134 @@
 	*noData:是否无数据
 	*myCallBack:回调函数
 	*/
-	tool.InitiateInnerDataList = function(fromType,groupID,containerObj,myCallBack){
+	tool.InitiateInnerDataList = function (fromType, groupID, containerObj, myCallBack) {
+		console.log(fromType);
+		console.log(groupID);
+		console.log(containerObj);
+		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(groupID) || tool.isNullOrEmptyObject(containerObj)) {
+			return;
+		}
 
+		var parentContainerObj = containerObj.parents("div.group-div:first");
+		console.log(parentContainerObj);
+		if (tool.isNullOrEmptyObject(parentContainerObj)) {
+			return;
+		}
+		//清空容器内容
+		parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+
+		var outerTemplate = "";
+		var innerTemplate = "";
+		var controlName = "";
+		var contentHtmlStr = "";
+		switch (fromType) {
+			case "meeting":
+				outerTemplate = tool.meetingTemplate;
+				controlName = "";
+				break;
+			case "trip":
+				outerTemplate = tool.tripTemplate;
+				controlName = "";
+				break;
+			case "dealPipeline":
+				outerTemplate = tool.dealPipelineTemplate;
+				controlName = "";
+				break;
+			case "opportunities":
+				outerTemplate = tool.opportunitiesTemplate;
+				controlName = "";
+				break;
+			case "organizations":
+				controlName = tool.Api_OrganizationsHandle_GroupInnerData;
+				outerTemplate = `<div class="occupy-div"></div>
+				<div class="group-item-list organizations-list">
+				{InnerList}
+				</div>`;
+				innerTemplate = `<div class=" group-item" data-url="/organizationsinfo/{AutoID}">
+				<div class="item-stars-icon calcfont calc-shoucang"></div>
+				<div class="item-block">
+				  <div class="item-div item-first-div">
+					  <span>{ShortName}</span><span class="right">{ICAOCode}</span>
+				  </div>
+				  <div class="item-div">
+					  <span>{BusinessType}</span><span class="right">{AccountManager}</span>
+				  </div>
+				  <div class="item-div">
+					<span>{CountryName}</span><span class="right">{CityName}</span>
+				  </div>
+				</div>
+			</div>`;
+				break;
+			case "contacts":
+				outerTemplate = tool.contactsTemplate;
+				controlName = "";
+				break;
+		}
+
+		//请求地址
+		var urlTemp = tool.AjaxBaseUrl();
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			GroupID: groupID,
+			_RegisterCode: tool.RegisterCode(),
+			QueryCondiction: []
+		};
+		tool.showLoading();
+
+		$.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function (data) {
+				data = tool.jObject(data);
+				console.log(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return;
+				}
+
+				data = data._OnlyOneData.Rows || [];
+				//无数据
+				if (data.length <= 0) {
+					return;
+				}
+
+				//渲染组数据
+				 for (var i = 0; i < data.length; i++) {
+					var tempStr = innerTemplate;
+					for (var key in data[i]) {
+						tempStr = tempStr.replace("{" + key + "}", (data[i][key] || ""));
+					}
+
+					contentHtmlStr += tempStr;
+				}
+				outerTemplate = outerTemplate.replace("{InnerList}", contentHtmlStr);
+				//console.log(contentHtmlStr);
+
+				//追加数据
+				parentContainerObj.append(outerTemplate);
+				if (!tool.isNullOrEmptyObject(myCallBack)) {
+					myCallBack(containerObj);
+				}
+
+				return;
+			},
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				tool.hideLoading();
+				return;
+			},
+			complete: function () {
+				tool.hideLoading();
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		});
 	};
 
 }(top.window.tool = {}, jQuery));

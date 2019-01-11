@@ -21,7 +21,7 @@
           </router-link>
         </div>
         <!-- 列表 -->
-        <div v-show="!noData" id="organizationsList" data-fromType="organizations"></div>
+        <div v-show="!noData" id="organizationsList" data-fromtype="organizations"></div>
         <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
       </div>
 
@@ -33,7 +33,7 @@
           </router-link>
         </div>
         <!-- 列表 -->
-        <div v-show="!noData" id="contactsList" data-fromType="contacts"></div>
+        <div v-show="!noData" id="contactsList" data-fromtype="contacts"></div>
         <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
       </div>
     </div>
@@ -294,38 +294,50 @@ export default {
 
     //列表展开收起
     groupToggle: function() {
-      $("#organizationsList,#contactsList").on("click","div.date-div",
+      $("#organizationsList,#contactsList").on(
+        "click",
+        "div.date-div",
         function(event) {
-          //todo....
           var target = $(event.target);
-          var fromType = target.parents("div[data-fromType]").attr("data-fromType")  || "";
-          var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
-          if(tool.isNullOrEmptyObject(groupID)){
-                return;
-          }
           console.log(target);
-          console.log(fromType);
-          console.log(groupID);
+          var fromType = target.parents("div[data-fromType]").attr("data-fromType") || "";
+          var groupID =
+            target.find("span[data-groupid]:first").attr("data-groupid") || "";
+          if (tool.isNullOrEmptyObject(groupID)) {
+            return;
+          }
 
-          tool.InitiateInnerDataList(fromType,groupID,target,function(containerObj){
-                // if (!containerObj.hasClass("date-div")) {
-                //     containerObj = containerObj.closest("div.date-div");
-                //     if (containerObj == undefined) {
-                //         return;
-                //     }
-                // }
-                if (containerObj.hasClass("open")) {
-                    containerObj
-                    .removeClass("open")
-                    .siblings(".group-item-list")
-                    .slideUp(500);
-                } else {
-                    containerObj
-                    .addClass("open")
-                    .siblings(".group-item-list")
-                    .slideDown(500);
+          //若是展开
+          if (target.hasClass("open")) {
+            target
+            .removeClass("open")
+            .siblings(".group-item-list")
+            .slideUp(500,function(){
+                var parentContainerObj = target.parents("div.group-div:first");
+                if (tool.isNullOrEmptyObject(parentContainerObj)) {
+                  return;
                 }
-          });
+                //清空容器内容
+                parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+            });           
+          } else {
+            //若是收起
+            tool.InitiateInnerDataList(fromType, groupID, target, function(containerObj) {
+              // if (!containerObj.hasClass("date-div")) {
+              //     containerObj = containerObj.closest("div.date-div");
+              //     if (containerObj == undefined) {
+              //         return;
+              //     }
+              // }
+
+                  console.log(123);
+
+                  containerObj
+                  .addClass("open")
+                  .siblings(".group-item-list")
+                  .slideDown(500);
+            });
+          }
         }
       );
     },

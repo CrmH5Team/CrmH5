@@ -4,6 +4,7 @@
 	"LanguageVersionsHandle_Query":"LanguageVersionsHandle_Query",
 	"Api_UserLogin":"Api_UserLogin",
 	"Api_OrganizationsHandle_Group":"Api_OrganizationsHandle_Group",
+	"Api_OrganizationsHandle_GroupInnerData":"Api_OrganizationsHandle_GroupInnerData",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }
