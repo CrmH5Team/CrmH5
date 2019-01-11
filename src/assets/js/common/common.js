@@ -885,7 +885,7 @@
 
 		var imgArr = ["bmp", "jpg", "jpeg", "png", "gif"];
 		return $.inArray(fileExtension.toLowerCase(), imgArr) > -1;
-	}
+	};
 
 	tool.isFileVideo = function (fileName) {
 		if (tool.isNullOrEmptyObject(fileName)) {
@@ -898,7 +898,21 @@
 		var imgArr = ["Ogg", "MPEG4", "WebM", "mp4", "MOV", "AVI", "WMV", "3GP", "MKV", "FLV", "RMVB"];
 
 		return $.inArray(fileExtension, imgArr) > -1;
-	}
+	};
+
+	//获取用户系统是 android 还是 ios
+	tool.getSystem = function(){
+
+		var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+		if(isAndroid){
+			return 'android';
+		}
+		if(isiOS){
+			return 'ios';
+		}
+	};
 
 	tool.autoTextarea = function (elem, extra, maxHeight) {
 		extra = extra || 0;
@@ -973,7 +987,7 @@
 		}
 
 		return weekdayArray[dateTemp.getDay()];
-	}
+	};
 
 	//根据当前语言版本获取返回对象的消息
 	tool.getMessage = function (data) {

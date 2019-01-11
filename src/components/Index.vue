@@ -256,8 +256,17 @@ export default {
     }
 
     $(".userName").text(curUser.Realname || "");
-    $(".userTitle").text(curUser.PositionID || "");
-    $(".userDepartment").text(curUser.DepartmentID || "");
+    var curLV = lanTool.currentLanguageVersion;
+    if (curLV == "1") {
+      $(".userTitle").text(curUser.PositionNameEN || "");
+      $(".userDepartment").text(curUser.DepartmentNameEN || "");
+    } else if (curLV == "2") {
+      $(".userTitle").text(curUser.PositionNameCN || "");
+      $(".userDepartment").text(curUser.DepartmentNameCN || "");
+    } else if (curLV == "3") {
+      $(".userTitle").text(curUser.PositionNameTD || "");
+      $(".userDepartment").text(curUser.DepartmentNameTD || "");
+    }
 
     //切换语言
     $(".language-type").on("click", function(event) {
@@ -275,15 +284,19 @@ export default {
           .siblings(".language-type")
           .removeClass("language-show");
       }
-        
+
       var curLV = target.attr("data-lantype");
-      lanTool.setLan(curLV,function(){
-          lanTool.updateLanVersion();
+      lanTool.setLan(curLV, function() {
+        lanTool.updateLanVersion();
       });
     });
 
     //写入当前多语言值
-    $("div.language-type[data-lantype='"+ lanTool.currentLanguageVersion +"']:first").trigger("click");
+    $(
+      "div.language-type[data-lantype='" +
+        lanTool.currentLanguageVersion +
+        "']:first"
+    ).trigger("click");
   },
   methods: {
     //清除缓存
@@ -296,7 +309,7 @@ export default {
           //重新加载多语言
           lanTool.waitExcute(false, true, function() {
             //window.location.reload();
-            _self.$router.go(0);//todo 以后增加刷新机制
+            _self.$router.go(0); //todo 以后增加刷新机制
           });
         },
         function() {}
