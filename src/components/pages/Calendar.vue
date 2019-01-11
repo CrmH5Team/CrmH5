@@ -287,7 +287,7 @@ export default {
                 "Month":calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
             };
 
-            loading.show(3,lanTool.lanContent("172_加载中..."));
+            // loading.show(3,lanTool.lanContent("172_加载中..."));
             $.ajax({
                 async: true,
                 type: "post",
@@ -299,7 +299,7 @@ export default {
                 success: function(data) {
 
                     //数据渲染
-                    loading.hidden();
+                    // loading.hidden();
                     if(data.Result != 1) {
                         toast.show(data.Msg);
                         return;
@@ -344,7 +344,7 @@ export default {
                 },
                 error: function(jqXHR, type, error) {
                     console.log("error");
-                    loading.hidden();
+                    // loading.hidden();
                 }
             });
 
@@ -378,7 +378,7 @@ export default {
 
                 $this.dateEvents = [];
 
-                loading.show(3,lanTool.lanContent("172_加载中..."));
+                // loading.show(3,lanTool.lanContent("172_加载中..."));
                 $.ajax({
                     async: true,
                     type: "post",
@@ -390,7 +390,7 @@ export default {
                     success: function(data) {
 
                         //数据渲染
-                        loading.hidden();
+                        // loading.hidden();
                         if(data.Result != 1) {
                             toast.show(data.Msg);
                             return;
@@ -407,7 +407,7 @@ export default {
                     },
                     error: function(jqXHR, type, error) {
                         console.log("error");
-                        loading.hidden();
+                        // loading.hidden();
                     }
                 });
 
@@ -534,6 +534,8 @@ i.icon.icon-next, i.icon.icon-prev{width: 0.35rem!important;height: 0.35rem!impo
 .current-month-value,.current-year-value{font-size: 16px!important;}
 .picker-calendar-week-days + .picker-calendar-months{height: 6rem!important;}
 .weui-picker-calendar,.weui-picker-calendar .picker-modal-inner{height: auto!important;}
+.picker-calendar-day.picker-calendar-day-selected span{background:#ff5a21;}
+.picker-calendar-day.picker-calendar-day-today span{}
 /*日历style -----end---*/
 
 /*红点点*/
