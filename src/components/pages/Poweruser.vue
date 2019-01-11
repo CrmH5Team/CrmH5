@@ -5,7 +5,7 @@
 
         <h1 class="header-title f18">{{title||''}}</h1>
 
-        <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+        <!-- <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a> -->
     </header>
 
     <div class="nav sticky">
@@ -26,17 +26,17 @@
                                   type="search"
                                   id="userInput"
                                   key="userInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
+                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
+                          <span class="lanText" data-lanid="208_搜索"></span>
                           </span>
                       </div>
                   </div>
                   <!-- 列表 -->
                   <div class="dataList select-user-list">
-                      <div v-for="item in userData" class="group-div">
+                      <!-- <div v-for="item in userData" class="group-div">
                           <div  class="item-div f14" @click="groupToggle">{{item.groupName}}
                           </div>
                           <div class="child-list">
@@ -49,9 +49,9 @@
                                     </div>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                   </div>
-
+                  
             </div>
 
             <div v-show="showPage==1" class="group-page">
@@ -63,18 +63,18 @@
                                   type="search"
                                   id="groupInput"
                                   key="groupInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
+                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
+                          <span class="lanText" data-lanid="208_搜索"></span>
                           </span>
                       </div>
                   </div>
                   <!-- 列表 -->
                   <div class="dataList select-group-list">
 
-                      <div v-for="item in groupData" class="group-div">
+                      <!-- <div v-for="item in groupData" class="group-div">
                           <div  class="item-div" @click="groupToggle">
                               <label class="checkbox-label" @click.stop>
                                   <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
@@ -83,7 +83,7 @@
                           <div class="child-list">
                               <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
                           </div>
-                      </div>
+                      </div> -->
 
                   </div>
             </div>
@@ -187,7 +187,8 @@ export default {
         this.value = this.$route.query.value;
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
+        lanTool.updateLanVersion();
+
 
         // this.getData();
         this.search();
@@ -360,11 +361,9 @@ export default {
                 $('#userInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('.child-list-item').show().closest('.group-div').show();
+                        listDom.find('.item-div').show();
                     } else {
-                        var childListItems = listDom.find('.child-list-item');
-                            childListItems.hide().closest('.group-div').hide();
-                            childListItems.filter(":lowerCaseContains('" + queryStr + "')").show().closest('.group-div').show();
+                        listDom.find('.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
                 $('#groupInput').unbind().bind('input', function () {
@@ -384,5 +383,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/pages/Sharelist.css";
+@import "../../assets/css/pages/poweruser.css";
 </style>
