@@ -900,115 +900,6 @@
 		return $.inArray(fileExtension, imgArr) > -1;
 	}
 
-	//获取用户系统是 android 还是 ios
-	tool.getSystem = function () {
-
-		var u = navigator.userAgent;
-		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-		if (isAndroid) {
-			return 'android';
-		}
-		if (isiOS) {
-			return 'ios';
-		}
-	},
-
-		//获取当前app版本号
-		tool.isHasNewVersionOuter = function (isShowTip) {
-			plus.runtime.getProperty(plus.runtime.appid, function (inf) {//todo
-				var currAppVersion = inf.version || "1.0.0";
-				tool.setStoragItem(tool.cache_appVersion, currAppVersion);
-				tool.isHasNewVersionExe(isShowTip, currAppVersion);
-			});
-		};
-
-	var appUpgradeWV = null;
-	//是否有新版本
-	//isShowTip:没有最新版本的时候，是否显示提示
-	tool.isHasNewVersionExe = function (isShowTip, appVersion) {
-		//console.log(appVersion);
-		//请求的传入参数
-		var jsonDatasTemp = {
-			"CurrentLanguageVersion": lanTool.currentLanguageVersion,
-			//"AppVersion": currentWV.appVersion,
-			"AppVersion": appVersion
-		};
-
-		//请求地址
-		var urlTemp =
-			tool.combineRequestUrl(
-				tool.getConfigValue(tool.config_ajaxUrl),
-				tool.getConfigValue(tool.ajaxUrl_AppVersion_IsLatestVersion)
-			);
-
-		// mui.showLoading(lanTool.lanContent("172_加载中..."));
-
-		$.ajax({
-			async: false,
-			type: "post",
-			url: urlTemp,
-			data: {
-				jsonDatas: JSON.stringify(jsonDatasTemp)
-			},
-			dataType: 'json',
-			success: function (data) {
-				// mui.showLoading(lanTool.lanContent("172_加载中..."));
-
-				//清缓存，重新查询数据
-				//tool.clearStoragItem();
-
-				//				allTypeList.Query(false,true);
-				//				lanTool.waitExcute(true,false,true);
-
-				//					allTypeList.Data = [];
-				//					lanTool.Data = [];
-				//					lanTool.waitExcute(false, false, true);
-				//					allTypeList.Query(false, true);
-
-				// mui.hideLoading();
-
-				if (data.Result != 1) {
-					// mui.toast(data.Msg);
-					return false;
-				}
-
-				data = data.Data;
-				/*
-						//若有新版本，则提示用户是否升级
-						if(data.IsHasLatestVersion && !tool.isNullOrEmptyObject(data.UpdateUrl)) {
-							var btnArray = [lanTool.lanContent('262_否'), lanTool.lanContent('263_是')];
-							mui.confirm(lanTool.lanContent('305_检测到新版本'), lanTool.lanContent('261_提示'), btnArray, function(e) {
-								if(e.index == 1) {
-									//mui.toast("跳转升级");
-									if(!appUpgradeWV) {
-										appUpgradeWV = plus.webview.getWebviewById("AppUpgrade");
-									}
-		
-									mui.fire(appUpgradeWV, 'loadUpgradePage', {
-										UpdateUrl: data.UpdateUrl
-									});
-		
-									//打开升级页面
-									plus.webview.show(appUpgradeWV, 'slide-in-right');
-									return;
-								}
-							});
-						} else {
-							if(isShowTip) {
-								mui.toast(lanTool.lanContent("306_当前应用已经是最新的版本。"));
-								return;
-							}
-				}
-				*/
-			},
-			error: function (jqXHR, type, error) {
-				// mui.hideLoading();
-				console.error(jqXHR);
-			}
-		});
-	}
-
 	tool.autoTextarea = function (elem, extra, maxHeight) {
 		extra = extra || 0;
 		var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
@@ -1411,15 +1302,11 @@
 	lan.ready = $.Deferred();
 
 	//获取多语言数据
-	lan.waitExcute = function (isFirst, isFromCache, isRefreshCache, myCallBack) {
+	lan.waitExcute = function (isFromCache, isRefreshCache, myCallBack) {
 		var def = lan.ready;
 
 		isFromCache = ((isFromCache == undefined || isFromCache == null) ? false : isFromCache);
 		isRefreshCache = ((isRefreshCache == undefined || isRefreshCache == null) ? true : isRefreshCache);
-
-		if (isFirst) {
-			def = $.Deferred();
-		}
 
 		//构造传入参数
 		var jsonTemp = {
@@ -1432,11 +1319,7 @@
 		//请求地址
 		var urlTemp = tool.AjaxBaseUrl();
 
-		// console.log(jsonTemp);
-		// console.log(urlTemp);
-
-		if (!isFirst || lan.Data.length || !isFromCache || isRefreshCache) {
-
+		if (lan.Data == undefined || lan.Data == null || lan.Data.length <= 0 || !isFromCache || isRefreshCache) {
 			tool.showLoading();
 
 			$.ajax({
@@ -1454,10 +1337,12 @@
 						return;
 					} else {
 						lan.Data = data._OnlyOneData;
-						var configJSONTemp = tool.getConfigJSON();
-						configJSONTemp[tool.config_currentLanguageVersion] = lan.currentLanguageVersion;
-						configJSONTemp[tool.config_lanData] = lan.Data;
+						 var configJSONTemp = tool.getConfigJSON();
+						 configJSONTemp[tool.config_currentLanguageVersion] = lan.currentLanguageVersion;
+						// configJSONTemp[tool.config_lanData] = lan.Data;
 						tool.setConfig(configJSONTemp);
+
+						//console.log(lan.Data);
 					}
 
 					//执行回调函数
@@ -1491,6 +1376,9 @@
 
 	//根据多语言自动别名获取当前语言内容
 	win.lanContent = lan.lanContent = function (id) {
+		
+		// console.log("lan.lanContent");
+		// console.log(lan.Data);
 
 		if (tool.isNullOrEmptyObject(id)) {
 			return '';
@@ -1537,11 +1425,15 @@
 
 	//更新当前语言版本
 	lan.updateLanVersion = function ($parent) {
+		// console.log("lan.updateLanVersion");
+		// console.log("lan.currentLanguageVersion:"+lan.currentLanguageVersion);
 		if (!lan.currentLanguageVersion) {
 			return;
 		}
 
 		if (lan.currentLanguageVersion) {
+			// console.log($(".lanText").length);
+
 			//text
 			$(".lanText", $parent || $('body')).each(function () {
 				$(this).text(
@@ -1563,13 +1455,22 @@
 	lan.ready.done(lan.updateLanVersion);
 
 	//获取和设置当前APP配置
-	var curLV = tool.getConfigValue(tool.config_currentLanguageVersion);
-	if (!curLV) {
-		lan.waitExcute(false, false, true);
+	// var curLV = tool.getConfigValue(tool.config_currentLanguageVersion);
+	// if (!curLV) {
+	// 	lan.waitExcute(false, true);
+	// } else {
+	// 	lan.currentLanguageVersion = curLV;
+	// 	lan.Data = tool.getConfigValue(tool.config_lanData);
+	// 	//手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。
+	// 	lan.ready.resolve();
+	// };
+
+	if (lan.Data == undefined || lan.Data == null || lan.Data.length<=0) {
+		console.log("lan.Data is null");
+		$.when(lan.waitExcute(false, true));
 	} else {
-		lan.currentLanguageVersion = curLV;
-		lan.Data = tool.getConfigValue(tool.config_lanData);
 		//手动改变deferred对象的运行状态为"已完成"，从而立即触发done()方法。
+		console.log("lan.Data is not null");
 		lan.ready.resolve();
 	};
 }(window, window.lanTool = {}, jQuery));

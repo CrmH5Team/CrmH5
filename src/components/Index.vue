@@ -288,8 +288,9 @@ export default {
         lanTool.lanContent("778_是否确认清除缓存？"),
         function() {
           //重新加载多语言
-          lanTool.waitExcute(false, false, true, function() {
+          lanTool.waitExcute(false, true, function() {
             window.location.reload();
+            //_self.$router.push("/index");
           });
         },
         function() {}
