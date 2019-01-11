@@ -26,32 +26,42 @@
                                   type="search"
                                   id="userInput"
                                   key="userInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
+                                  class="search-input" data-lanid="208_搜索" placeholder="search"/>
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索"></span>
+                          <span class="lanText" data-lanid="208_搜索">search</span>
                           </span>
                       </div>
                   </div>
                   <!-- 列表 -->
                   <div class="dataList select-user-list">
-                      <!-- <div v-for="item in userData" class="group-div">
-                          <div  class="item-div f14" @click="groupToggle">{{item.groupName}}
-                          </div>
-                          <div class="child-list">
-                              <div v-for="member in item.groupMember" class="child-list-item f14">
-                                    <div class="margin10">
-                                            <label class="user-checkbox checkbox-label" @click.stop>
-                                                <input type="checkbox" name="group" :value="member.value" v-model="userCheckedValue"/>
-                                                <i class="checkbox"></i><span class="f14">{{member.text}}</span>
-                                            </label>
-                                    </div>
-                              </div>
-                          </div>
-                      </div> -->
+                      <div class="child-list-item f14">
+                            <span>alan1</span>
+                            <span class="power f12 right">123</span>
+                      </div>
+                      <div class="child-list-item f14">
+                            <span>alan2</span>
+                            <span class="power f12 right">123</span>
+                      </div>
+                      <div class="child-list-item f14">
+                            <span>alan3</span>
+                            <span class="power f12 right">123</span>
+                      </div>
+                      <div class="child-list-item f14">
+                            <span>alan4</span>
+                            <span class="power f12 right">123</span>
+                      </div>
+                      <div class="child-list-item f14">
+                            <span>alan5</span>
+                            <span class="power f12 right">123</span>
+                      </div>
+                      <div class="child-list-item f14">
+                            <span>alan16</span>
+                            <span class="power f12 right">123</span>
+                      </div>
                   </div>
-                  
+
             </div>
 
             <div v-show="showPage==1" class="group-page">
@@ -63,27 +73,28 @@
                                   type="search"
                                   id="groupInput"
                                   key="groupInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
+                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索"></span>
+                          <span class="lanText" data-lanid="208_搜索">search</span>
                           </span>
                       </div>
                   </div>
                   <!-- 列表 -->
                   <div class="dataList select-group-list">
 
-                      <!-- <div v-for="item in groupData" class="group-div">
+                      <div v-for="item in groupData" class="group-div">
                           <div  class="item-div" @click="groupToggle">
-                              <label class="checkbox-label" @click.stop>
+                              {{item.groupName}}
+                              <!-- <label class="checkbox-label" @click.stop>
                                   <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
-                              </label>
+                              </label> -->
                           </div>
                           <div class="child-list">
                               <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
                           </div>
-                      </div> -->
+                      </div>
 
                   </div>
             </div>
@@ -204,15 +215,13 @@ export default {
             if(!_curObj.hasClass('date-div')){
 
                 if(_curObj.hasClass('open')){
-                    _curObj.removeClass('open').siblings('.child-list').slideUp(500);
+                    _curObj.siblings('.child-list').slideUp(500,function(){
+                        _curObj.removeClass('open');
+                    });
+
                 }else{
                     _curObj.addClass('open').siblings('.child-list').slideDown(500);
                 }
-                // return;
-                // _curObj = _curObj.parent('div.date-div:first');
-                // if(_curObj == undefined){
-                //     return;
-                // }
             }
         },
 
@@ -361,9 +370,9 @@ export default {
                 $('#userInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('.item-div').show();
+                        listDom.find('.child-list-item').show();
                     } else {
-                        listDom.find('.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        listDom.find('.child-list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
                 $('#groupInput').unbind().bind('input', function () {

@@ -44,7 +44,9 @@
                                     <div class="margin10">
                                             <label class="user-checkbox checkbox-label" @click.stop>
                                                 <input type="checkbox" name="group" :value="member.value" v-model="userCheckedValue"/>
-                                                <i class="checkbox"></i><span class="f14">{{member.text}}</span>
+                                                <i class="checkbox"></i>
+                                                <span class="f14">{{member.text}}</span>
+                                                <span class="power f12 right">Responsible by</span>
                                             </label>
                                     </div>
                               </div>
@@ -203,7 +205,9 @@ export default {
             if(!_curObj.hasClass('date-div')){
 
                 if(_curObj.hasClass('open')){
-                    _curObj.removeClass('open').siblings('.child-list').slideUp(500);
+                    _curObj.siblings('.child-list').slideUp(500,function(){
+                        _curObj.removeClass('open');
+                    });
                 }else{
                     _curObj.addClass('open').siblings('.child-list').slideDown(500);
                 }

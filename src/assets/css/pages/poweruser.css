@@ -178,8 +178,15 @@ header {
 
 /*选择用户*/
 .select-user-list{background: #fff;}
- /*
-.select-user-list .item-div{background:#f8f2dc;position: relative;
+
+.select-user-list .child-list-item{line-height:1;padding:13px 10px;position: relative;}
+.select-user-list .child-list-item::after{
+content: "";  display: block;  height: 1px;  background: beige;
+width: 100%;  left: 0;  bottom: 0;  position: absolute;
+}
+.select-user-list .child-list-item .power{color: #666666;}
+
+/* .select-user-list .item-div{background:#f8f2dc;position: relative;
     padding: 10px 36px;
     border-bottom: solid 1px beige;
     line-height: 20px;}
@@ -187,22 +194,20 @@ header {
     width: 100%;  left: 0;  top: 0;  position: absolute;}
 .select-user-list .open::after{content: "";  display: block;  height: 1px;  background: #e9cfae;
     width: 100%;  left: 0;  bottom: 0;  position: absolute;}
-.select-user-list .group-div .child-list{padding:0 36px; display:none;}
-.select-user-list .group-div .child-list-item{line-height:1;padding:13px 0;position: relative;}
-.select-user-list .group-div .child-list-item::after{
-content: "";  display: block;  height: 1px;  background: beige;
-width: 100%;  left: 0;  bottom: 0;  position: absolute;
-}
-.select-user-list .child-list-item .margin10{margin-left:-26px; } 
-.select-user-list .group-div label{display:block;margin:-13px 0;} 
-.select-user-list .group-div label span{display:inline-block;line-height: 20px;padding: 10px 0 10px 8px;}   */
+.select-user-list .group-div .child-list{padding:0 36px; display:none;} */
+
+
+
+/* .select-user-list .child-list-item .margin10{margin-left:-26px; }
+.select-user-list .group-div label{display:block;margin:-13px 0;}
+.select-user-list .group-div label span{display:inline-block;line-height: 20px;padding: 10px 0 10px 8px;} */
 
 
 
 
 /*选择组*/
 .select-group-list{background: #fff;}
-/* 
+
 .select-group-list .item-div{background:#f8f2dc;position: relative;
     padding: 10px;
     border-bottom: solid 1px beige;
@@ -216,9 +221,9 @@ width: 100%;  left: 0;  bottom: 0;  position: absolute;
 .select-group-list .checkbox-label .checkbox{position: absolute;left:0;top:12px;}
 .select-group-list .checkbox-label span {padding: 10px 0 10px 26px; display: block; word-wrap: break-word;line-height: 20px;}
 
-.select-group-list .group-div .child-list{padding:0 36px; display:none;}
+.select-group-list .group-div .child-list{padding:0 20px; display:none;}
 .select-group-list .group-div .child-list-item{line-height:1;padding:13px 0;position: relative;}
 .select-group-list .group-div .child-list-item::after{
   content: "";  display: block;  height: 1px;  background: beige;
   width: 100%;  left: 0;  bottom: 0;  position: absolute;
-} */
+}
