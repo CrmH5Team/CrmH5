@@ -28,7 +28,7 @@
                       </div>
                   </div>
                   <!-- 列表 -->
-                  <div class="dataList select-user-list">
+                  <div v-if="!notData" class="dataList select-user-list">
                       <div v-for="item in userData" class="group-div">
                           <div  class="item-div f14" @click="groupToggle">{{item.groupName}}
                           </div>
@@ -47,6 +47,9 @@
                       </div>
                   </div>
 
+                  <!-- 没数据 -->
+                  <nothing v-if="notData" style="padding-top:0.8rem;"></nothing>
+
             </div>
     </div>
 
@@ -54,14 +57,17 @@
 </template>
 
 <script>
-
+import Nothing from "../common/Nothing"
 export default {
+    components:{
+        'nothing':Nothing
+    },
     data() {
         return {
             languageData: {
                 'search': lanTool.lanContent('208_搜索'), //208_搜索
             },
-
+            notData:false,
             //用户数据
             userData: [
                 {

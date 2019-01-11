@@ -28,20 +28,24 @@
       </div>
 
         <!-- 列表 -->
-        <div v-if="selectType==='checkbox'" class="dataList checkboxList">
+        <div v-if="!notData && selectType==='checkbox'" class="dataList checkboxList">
             <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="checkbox-label">
                     <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios f14">{{item.text}}</span>
                 </label>
             </div>
         </div>
-        <div v-else class="dataList">
+        <div v-else-if="!notData && selectType==='radio'" class="dataList">
             <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="radios-label">
                     <input type="radio" :name="field" :value="item.value" v-model="radioValue"/><i class="radios"></i><span class="f14">{{item.text}}</span>
                 </label>
             </div>
         </div>
+
+        <!-- 没数据 -->
+        <nothing v-else="notData" style="padding-top:0.8rem;"></nothing>
+
 
     </div>
     <div v-if="selectType==='checkbox'" class="selectAll">
@@ -56,14 +60,18 @@
 </template>
 
 <script>
-// import event from './Event.js'
+import Nothing from "./Nothing"
 export default {
+    components:{
+        'nothing':Nothing
+    },
     data() {
         return {
             languageData: {
                 'search': lanTool.lanContent('208_搜索'), //208_搜索
             },
 
+            notData:false, //没数据
             dataArray: [],
             queryUrl: null,
             field: null,
