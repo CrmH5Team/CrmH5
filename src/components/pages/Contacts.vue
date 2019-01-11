@@ -298,7 +298,7 @@ export default {
         "div.date-div",
         function(event) {
           var target = $(event.target);
-          console.log(target);
+          // console.log(target);
           if(!target.hasClass('date-div')){
               target = target.parents("div.date-div:first");
               if(tool.isNullOrEmptyObject(target)){

@@ -1329,9 +1329,9 @@
 	*myCallBack:回调函数
 	*/
 	tool.InitiateInnerDataList = function (fromType, groupID, containerObj, myCallBack) {
-		console.log(fromType);
-		console.log(groupID);
-		console.log(containerObj);
+		// console.log(fromType);
+		// console.log(groupID);
+		// console.log(containerObj);
 		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(groupID) || tool.isNullOrEmptyObject(containerObj)) {
 			return;
 		}
@@ -1412,7 +1412,7 @@
 			data: jsonDatasTemp,
 			success: function (data) {
 				data = tool.jObject(data);
-				console.log(data);
+				// console.log(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
