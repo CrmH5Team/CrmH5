@@ -5,7 +5,7 @@
 
         <h1 class="mui-title">{{title||''}}</h1>
 
-        <a @click="saveHandler" class="calc-gou header-calcfont calcfont right" id="save"></a>
+        <a @click="saveHandler" class="calc-gou  calcfont right" id="save"></a>
     </header>
 
     <div class="selectList-scroll">
@@ -167,7 +167,7 @@ export default {
                 "UserId": tool.getStorageItem(tool.cache_UserId) || ""
             };
 
-            loading.show(3, lanTool.lanContent("172_加载中..."));
+            // loading.show(3, lanTool.lanContent("172_加载中..."));
             $.ajax({
                 async: true,
                 type: "post",
@@ -177,9 +177,9 @@ export default {
                 },
                 dataType: 'json',
                 success: function (data) {
-                    loading.hidden();
+                    // loading.hidden();
                     if (data.Result != 1) {
-                        toast.show(data.Msg);
+                        // toast.show(data.Msg);
                         return;
                     }
                     $this.dataArray = data.Data.Rows;
@@ -199,7 +199,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log("error");
-                    loading.hidden();
+                    // loading.hidden();
                 }
             })
         },

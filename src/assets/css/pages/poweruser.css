@@ -178,6 +178,7 @@ header {
 
 /*选择用户*/
 .select-user-list{background: #fff;}
+ /*
 .select-user-list .item-div{background:#f8f2dc;position: relative;
     padding: 10px 36px;
     border-bottom: solid 1px beige;
@@ -194,13 +195,14 @@ width: 100%;  left: 0;  bottom: 0;  position: absolute;
 }
 .select-user-list .child-list-item .margin10{margin-left:-26px; } 
 .select-user-list .group-div label{display:block;margin:-13px 0;} 
-.select-user-list .group-div label span{display:inline-block;line-height: 20px;padding: 10px 0 10px 8px;}  
+.select-user-list .group-div label span{display:inline-block;line-height: 20px;padding: 10px 0 10px 8px;}   */
 
 
 
 
 /*选择组*/
-.select-group-list{/*margin-top: 0; padding-bottom: 0.2rem;*/ background: #fff;}
+.select-group-list{background: #fff;}
+/* 
 .select-group-list .item-div{background:#f8f2dc;position: relative;
     padding: 10px;
     border-bottom: solid 1px beige;
@@ -219,4 +221,4 @@ width: 100%;  left: 0;  bottom: 0;  position: absolute;
 .select-group-list .group-div .child-list-item::after{
   content: "";  display: block;  height: 1px;  background: beige;
   width: 100%;  left: 0;  bottom: 0;  position: absolute;
-}
+} */

@@ -8,16 +8,9 @@
         <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
     </header>
 
-    <div class="nav sticky">
-        <div @click="switchPage(0,$event)" class="f16 nav-item active-item">User</div>
-        <div @click="switchPage(1,$event)" class="f16 nav-item" >Group</div>
-        <div class="nav-border"></div>
-    </div>
-
-
     <div class="selectList-scroll">
 
-            <div v-show="showPage==0" class="user-page">
+            <div class="user-page">
                   <div class="search ">
                       <div class="search-box">
                           <span class="calcfont calc-sousuo input-search-icon"></span>
@@ -26,11 +19,11 @@
                                   type="search"
                                   id="userInput"
                                   key="userInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
+                                  class="search-input" data-lanid="208_搜索" placeholder=""  />
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
+                          <span class="lanText" data-lanid="208_搜索"></span>
                           </span>
                       </div>
                   </div>
@@ -53,45 +46,6 @@
                   </div>
 
             </div>
-
-            <div v-show="showPage==1" class="group-page">
-                  <div class="search ">
-                      <div class="search-box">
-                          <span class="calcfont calc-sousuo input-search-icon"></span>
-                          <input
-                                  @blur="blurHandler"
-                                  type="search"
-                                  id="groupInput"
-                                  key="groupInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
-                          <span class="calcfont calc-delete"></span>
-                          <span @click="clickSearch" class="search-placeholder f16">
-                                  <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
-                          </span>
-                      </div>
-                  </div>
-                  <!-- 列表 -->
-                  <div class="dataList select-group-list">
-
-                      <div v-for="item in groupData" class="group-div">
-                          <div  class="item-div" @click="groupToggle">
-                              <label class="checkbox-label" @click.stop>
-                                  <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
-                              </label>
-                          </div>
-                          <div class="child-list">
-                              <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
-                          </div>
-                      </div>
-
-                  </div>
-            </div>
-
-
-
-
-
     </div>
 
 </div>
@@ -136,62 +90,24 @@ export default {
                   ]
                 },
             ],
-            //组数据
-            groupData:[
-                {
-                  groupName:'group1',
-                  value:'group1',
-                  groupMember:[
-                      {text:'Alan1',value:'Alan1'},
-                      {text:'Alan2',value:'Alan2'},
-                      {text:'Alan3',value:'Alan3'},
-                  ]
-                },
-                {
-                  groupName:'group2',
-                  value:'group2',
-                  groupMember:[
-                      {text:'Alan4',value:'Alan4'},
-                      {text:'Alan5',value:'Alan5'},
-                      {text:'Alan6',value:'Alan6'},
-                  ]
-                },
-                {
-                  groupName:'group3',
-                  value:'group3',
-                  groupMember:[
-                      {text:'Alan7',value:'Alan7'},
-                      {text:'Alan8',value:'Alan8'},
-                      {text:'Alan9',value:'Alan9'},
-                  ]
-                },
-            ],
 
-            queryUrl: null,
-            field: null,
-            title: 'Share with',
-            value: '', //默认值数据
+            // queryUrl: null,
+            // field: null,
+            title: 'Colleagues with access',
+            // value: '', //默认值数据
 
-            radioValue:'',
+            // radioValue:'',
 
             userCheckedValue:[],
-            groupCheckedValue:[],
-
-            showPage:0,
-
         }
     },
     created: function () {
-        this.queryUrl = this.$route.query.url;
-        this.field = this.$route.query.field;
-        this.value = this.$route.query.value;
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
+        lanTool.updateLanVersion();
 
         // this.getData();
         this.search();
-        this.changePos();
 
     },
     methods: {
@@ -215,48 +131,9 @@ export default {
             }
         },
 
-        //切换页面
-        switchPage:function(num, e){
-            document.activeElement.blur();
-            var _self = this;
-            var el = e.target;
-            if(num === undefined) return;
-            $(el).addClass('active-item').siblings().removeClass('active-item');
-            _self.changePos();
-            _self.showPage = num;
-        },
-        //table底部横条过渡效果
-        changePos:function() {
-            this.$nextTick(function(){
-                var activePos = $('.nav .active-item').position();
-                $('.nav-border').stop().css({
-                    left: activePos.left,
-                    width: $('.nav .active-item').width()
-                });
-            })
-        },
 
-        selectAll: function (type,e) {
-            document.activeElement.blur();
-            var self = this;
-                var el = e.target,
-                    t = $(e.target).is(":checked");
-                if (t) {
-                    if(type === 'user'){
-                        $.each(self.userData,function(index,item){
-                            self.userCheckedValue.push(item.value);
-                        })
-                    }else{
-                        $.each(self.groupData,function(index,item){
-                            self.groupCheckedValue.push(item.value);
-                        })
-                    }
 
-                } else {
-                    self.userCheckedValue = [];
-                    self.groupCheckedValue = [];
-                }
-        },
+
         clickSearch: function (e) {
             $(e.target).closest('.search').addClass('search-active');
             document.activeElement.blur();
@@ -367,14 +244,6 @@ export default {
                             childListItems.filter(":lowerCaseContains('" + queryStr + "')").show().closest('.group-div').show();
                     }
                 })
-                $('#groupInput').unbind().bind('input', function () {
-                    var queryStr = $.trim($(this).val());
-                    if (queryStr === '') {
-                        listDom.find('.group-div').show();
-                    } else {
-                        listDom.find('.group-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
-                    }
-                })
             })
         },
 
@@ -385,4 +254,5 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/Sharelist.css";
+.selectList-scroll{padding-top:0.88rem;}
 </style>

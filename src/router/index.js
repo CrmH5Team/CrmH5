@@ -20,11 +20,8 @@ import Addmeeting from '@/components/pages/Addmeeting'
 import AddRouteOrRoom from '@/components/pages/AddRouteOrRoom'
 
 
-
-
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
-
 
 import Opportunities from '@/components/pages/Opportunities'
 import Opportunitiesinfo from '@/components/pages/Opportunitiesinfo'
@@ -44,17 +41,18 @@ import Report from '@/components/pages/Report'
 // import About from '@/components/pages/About'
 // import General from '@/components/pages/General'
 
-import Calendar from '@/components/pages/Calendar'
+// import Calendar from '@/components/pages/Calendar'
 
 // import Calendarsearch from '@/components/pages/Calendarsearch'
 // import Calendarlist from '@/components/pages/Calendarlist'
-import Calendarinfo from '@/components/pages/Calendarinfo'
+// import Calendarinfo from '@/components/pages/Calendarinfo'
 import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
 
 
 import Selectlist from '@/components/common/Selectlist'
 import Sharelist from '@/components/pages/Sharelist'
-
+import Personcharge from '@/components/pages/Personcharge'
+import Poweruser from '@/components/pages/Poweruser'
 
 Vue.use(Router)
 
@@ -112,9 +110,6 @@ const router =  new Router({
         isBack:false
       }
     },
-
-
-
 
     {
       path:'/opportunities',name:'opportunities',component:Opportunities,
@@ -185,13 +180,13 @@ const router =  new Router({
     },
 
     //日程
-    { path:'/calendar',name:'calendar',component:Calendar,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-        fromSave:false,  //当在详情页面保存后回到日历页面刷新
-      }
-    },
+    // { path:'/calendar',name:'calendar',component:Calendar,
+    //   meta: {
+    //     keepAlive: true,
+    //     isBack:false,
+    //     fromSave:false,  //当在详情页面保存后回到日历页面刷新
+    //   }
+    // },
     // { path:'/calendarsearch',name:'calendarsearch',component:Calendarsearch},
 
     // { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
@@ -211,6 +206,9 @@ const router =  new Router({
 
     { path:'/selectlist',name:'selectlist',component:Selectlist},
     { path:'/sharelist',name:'sharelist',component:Sharelist},
+    { path:'/personcharge',name:'personcharge',component:Personcharge},
+    { path:'/poweruser',name:'poweruser',component:Poweruser},
+    
 
 
 
@@ -223,11 +221,11 @@ router.beforeEach(function(to, from, next){
     if(!tool.isNullOrEmptyObject(registerCode)){
         next();
     }else{
-      if(to.path == '/login'){
+      // if(to.path == '/login'){
           next();
-      }else{
-          next({path: '/login'});
-      }
+      // }else{
+      //     next({path: '/login'});
+      // }
     }
 })
 
