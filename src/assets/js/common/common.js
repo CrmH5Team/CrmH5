@@ -215,22 +215,20 @@
 	 * 用户登陆接口
 	 */
 	tool.Api_UserLogin = "Api_UserLogin";
-
+	/*
+	 * 公司分组接口
+	 */
+	tool.Api_OrganizationsHandle_Group = "Api_OrganizationsHandle_Group";
 	/*
 	 * 用户登陆接口
 	 */
 	tool.SysAccountHandle_UserLogin = "SysAccountHandle_UserLogin";
 
-	/*
-	 * 登陆接口地址
-	 */
-	tool.ajaxUrl_Login_UserLogin = "Login_UserLogin";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
 	tool.config_currentLanguageVersion = "currentLanguageVersion";
-
 	/*
 	 * refreshSessionTime:刷新Session时间
 	 */
@@ -901,15 +899,15 @@
 	};
 
 	//获取用户系统是 android 还是 ios
-	tool.getSystem = function(){
+	tool.getSystem = function () {
 
 		var u = navigator.userAgent;
-        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-		if(isAndroid){
+		if (isAndroid) {
 			return 'android';
 		}
-		if(isiOS){
+		if (isiOS) {
 			return 'ios';
 		}
 	};
@@ -1032,13 +1030,13 @@
 		$.toast(msg, "cancel");
 	};
 	//显示确认框
-	tool.showConfirm =  function(content, okCallBack, cancelCallBack){
-		if(tool.isNullOrEmptyObject(content)){
+	tool.showConfirm = function (content, okCallBack, cancelCallBack) {
+		if (tool.isNullOrEmptyObject(content)) {
 			return;
 		}
 		var title = lanTool.lanContent("586_提示");
-		var btnTextArr = [lanTool.lanContent("570_取消"),lanTool.lanContent("545_确定")];
-		$.confirm(content,title,okCallBack,cancelCallBack,btnTextArr);
+		var btnTextArr = [lanTool.lanContent("570_取消"), lanTool.lanContent("545_确定")];
+		$.confirm(content, title, okCallBack, cancelCallBack, btnTextArr);
 	};
 	//显示等待
 	tool.showLoading = function (msg) {
@@ -1063,7 +1061,7 @@
 		return tool.getStorageItem(tool.cache_RegisterCode) || "";
 	}
 	//用户名
-	tool.UserName = function(){
+	tool.UserName = function () {
 		return tool.getStorageItem(tool.cache_UserName) || "";
 	}
 
@@ -1161,29 +1159,54 @@
 		  </div>
 	  </div>
 	`;
-	tool.organizationsTemplate =
-		`<div class="list-group-div group-div">
+	// tool.organizationsTemplate =
+	// `<div class="list-group-div group-div">
+	//   <div class="date-div" >
+	// 	  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">{GroupRowCount}</span>
+	//   </div>
+	//   <div class="occupy-div"></div>
+	//   <div class="group-item-list organizations-list">
+	// 	  <div class=" group-item" data-url="/organizationsinfo/12">
+	// 		  <div class="item-stars-icon calcfont calc-shoucang"></div>
+	// 		  <div class="item-block">
+	// 			<div class="item-div item-first-div">
+	// 				<span>Todd Scott</span><span class="right">UEA</span>
+	// 			</div>
+	// 			<div class="item-div">
+	// 				<span>Alirlines</span><span class="right">Jessie Zhao</span>
+	// 			</div>
+	// 			<div class="item-div">
+	// 			  <span>China</span><span class="right">Asia Pacific</span>
+	// 			</div>
+	// 		  </div>
+	// 	  </div>
+	//   </div>
+	// </div>
+	// `;
+	tool.organizationsGroupTemplate =
+	`<div class="list-group-div group-div">
 	  <div class="date-div" >
-		  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
+		  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
 	  </div>
-	  <div class="occupy-div"></div>
-	  <div class="group-item-list organizations-list">
-		  <div class=" group-item" data-url="/organizationsinfo/12">
-			  <div class="item-stars-icon calcfont calc-shoucang"></div>
-			  <div class="item-block">
-				<div class="item-div item-first-div">
-					<span>Todd Scott</span><span class="right">UEA</span>
-				</div>
-				<div class="item-div">
-					<span>Alirlines</span><span class="right">Jessie Zhao</span>
-				</div>
-				<div class="item-div">
-				  <span>China</span><span class="right">Asia Pacific</span>
-				</div>
+	</div>
+	`;
+	tool.organizationsListTemplate =
+	`<div class="occupy-div"></div>
+	<div class="group-item-list organizations-list">
+		<div class=" group-item" data-url="/organizationsinfo/12">
+			<div class="item-stars-icon calcfont calc-shoucang"></div>
+			<div class="item-block">
+			  <div class="item-div item-first-div">
+				  <span>Todd Scott</span><span class="right">UEA</span>
 			  </div>
-		  </div>
-  
-	  </div>
+			  <div class="item-div">
+				  <span>Alirlines</span><span class="right">Jessie Zhao</span>
+			  </div>
+			  <div class="item-div">
+				<span>China</span><span class="right">Asia Pacific</span>
+			  </div>
+			</div>
+		</div>
 	</div>
 	`;
 	tool.contactsTemplate =
@@ -1212,41 +1235,122 @@
 	/*
 	*fromType:模块名
 	*containerObj:容器jquery对象
+	*noData:是否无数据
+	*myCallBack:回调函数
 	*/
-	tool.InitiateGroupList = function (fromType, containerObj) {
+	tool.InitiateGroupList = function (fromType, containerObj, myCallBack) {
+		//清空容器内容
+		containerObj.html('');
+
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
-			// console.log(containerObj);
-			// console.log(fromType);
-			return false;
+			return true;
 		}
 
-		var htmlStr = "";
+		var template = "";
+		var controlName = "";
+		var contentHtmlStr = "";
 		switch (fromType) {
 			case "meeting":
-				htmlStr = tool.meetingTemplate;
+				template = tool.meetingTemplate;
+				controlName = "";
 				break;
 			case "trip":
-				htmlStr = tool.tripTemplate;
+				template = tool.tripTemplate;
+				controlName = "";
 				break;
 			case "dealPipeline":
-				htmlStr = tool.dealPipelineTemplate;
+				template = tool.dealPipelineTemplate;
+				controlName = "";
 				break;
 			case "opportunities":
-				htmlStr = tool.opportunitiesTemplate;
+				template = tool.opportunitiesTemplate;
+				controlName = "";
 				break;
 			case "organizations":
-				htmlStr = tool.organizationsTemplate;
+				template = tool.organizationsGroupTemplate;
+				controlName = tool.Api_OrganizationsHandle_Group;
 				break;
 			case "contacts":
-				htmlStr = tool.contactsTemplate;
+				template = tool.contactsTemplate;
+				controlName = "";
 				break;
 		}
 
-		containerObj.html('');
-		containerObj.append(htmlStr);
-		return true;
+		//查询分组数据
+		 //请求地址
+		 var urlTemp = tool.AjaxBaseUrl();
+		 //传入参数
+		 var jsonDatasTemp = {
+		   CurrentLanguageVersion: lanTool.currentLanguageVersion,
+		   UserName : tool.UserName(),
+		   _ControlName: controlName,
+		   _RegisterCode:tool.RegisterCode(),
+		   QueryCondiction : []
+		 };
+		 tool.showLoading();
+
+		 $.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function(data) {
+			  data = tool.jObject(data);
+			  if (data._ReturnStatus == false) {
+				tool.showText(tool.getMessage(data));
+				console.log(tool.getMessage(data));
+				return true;
+			  }
+	
+			  data = data._OnlyOneData.Rows || [];
+			  //无数据
+			  if(data.length <= 0){
+				return true;
+			  }
+
+			  //渲染组数据
+			  for(var i=0;i<data.length;i++){
+				var tempStr = template;
+				for(var key in data[i]){
+					tempStr = tempStr.replace("{"+key+"}",(data[i][key] || ""));
+				}
+
+				contentHtmlStr += tempStr;
+			}
+
+				//console.log(contentHtmlStr);
+
+			  //追加数据
+			  containerObj.append(contentHtmlStr);
+			  if(!tool.isNullOrEmptyObject(myCallBack)){
+				myCallBack(containerObj);  
+			  }
+			  
+			  return false;
+			},
+			error: function(jqXHR, type, error) {
+			  console.log(error);
+			  tool.hideLoading();
+			  return true;
+			},
+			complete:function(){
+				tool.hideLoading();
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		  });
+
 	};
 
+	/*
+	*fromType:模块名
+	*containerObj:容器jquery对象
+	*noData:是否无数据
+	*myCallBack:回调函数
+	*/
+	tool.InitiateInnerDataList = function(fromType,groupID,containerObj,myCallBack){
+
+	};
 
 }(top.window.tool = {}, jQuery));
 
@@ -1351,8 +1455,8 @@
 						return;
 					} else {
 						lan.Data = data._OnlyOneData;
-						 var configJSONTemp = tool.getConfigJSON();
-						 configJSONTemp[tool.config_currentLanguageVersion] = lan.currentLanguageVersion;
+						var configJSONTemp = tool.getConfigJSON();
+						configJSONTemp[tool.config_currentLanguageVersion] = lan.currentLanguageVersion;
 						// configJSONTemp[tool.config_lanData] = lan.Data;
 						tool.setConfig(configJSONTemp);
 
@@ -1390,7 +1494,7 @@
 
 	//根据多语言自动别名获取当前语言内容
 	win.lanContent = lan.lanContent = function (id) {
-		
+
 		// console.log("lan.lanContent");
 		// console.log(lan.Data);
 
@@ -1479,7 +1583,7 @@
 	// 	lan.ready.resolve();
 	// };
 
-	if (lan.Data == undefined || lan.Data == null || lan.Data.length<=0) {
+	if (lan.Data == undefined || lan.Data == null || lan.Data.length <= 0) {
 		console.log("lan.Data is null");
 		$.when(lan.waitExcute(false, true));
 	} else {
@@ -1502,7 +1606,7 @@
 	//查询下拉数据
 	allTypeList.Query = function (isFromCache, isRefreshCache) {
 		return [];
-		
+
 		//若缓存有数据，则返回缓存的数据
 		var cacheDataStr = tool.getStorageItem(tool.config_allTypesData);
 		if (!tool.isNullOrEmptyObject(cacheDataStr)) {

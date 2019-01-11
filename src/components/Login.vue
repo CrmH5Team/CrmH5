@@ -103,8 +103,8 @@ export default {
           tool.setStoragItem(tool.cache_RegisterCode, _registerCode);
           
           //用户名
-          var _userName = data[tool.cache_UserName] || "";
-          tool.setStoragItem(tool.cache_UserName, JSON.stringify(data));
+          var _userName = data["UserName"] || "";
+          tool.setStoragItem(tool.cache_UserName, _userName);
 
           //登陆对象
           tool.setStoragItem(tool.cache_CurUser, JSON.stringify(data));

@@ -1,388 +1,409 @@
 <template>
-<div>
-      <Header class="header sticky" :title="title"></Header>
+  <div>
+    <Header class="header sticky" :title="title"></Header>
 
-      <div id="page-content" class="page-content">
-          <div class="nav sticky">
-              <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Organizations</div>
-              <div @click="switchPage(1,$event)" class="nav-item f16" >Contacts</div>
-              <div class="nav-border"></div>
-          </div>
-
-          <div v-show="showPage == 0" class="pageList">
-                <div class="add-btn-div">
-                      <router-link to="/organizationsinfo/0" class="add-div">
-                          <span class="calcfont calc-add"></span>
-                          <span class="add-text">Add Organization</span>
-                      </router-link>
-                </div>
-                <!-- 列表 -->
-                <div v-if="!notOrganizations" id="organizationsList"></div>
-                <nothing v-if="notOrganizations" style="padding-top:0.8rem;"></nothing>
-          </div>
-
-          <div v-show="showPage == 1" class="pageList">
-                <div class="add-btn-div">
-                      <router-link to="/contactsinfo/0" class="add-div">
-                          <span class="calcfont calc-add"></span>
-                          <span class="add-text">Add Contact</span>
-                      </router-link>
-                </div>
-                <!-- 列表 -->
-                <div v-if="!notContacts" id="contactsList"></div>
-                <nothing v-if="notContacts" style="padding-top:0.8rem;"></nothing>
-          </div>
+    <div id="page-content" class="page-content">
+      <div class="nav sticky">
+        <div
+          @click="switchPage(0,$event)"
+          class="nav-item f16 active-item lanText"
+          data-lanid="790_公司"
+        ></div>
+        <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="791_联系人"></div>
+        <div class="nav-border"></div>
       </div>
 
-      <!--  右侧侧滑 -->
-      <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
+      <div v-show="showPage == 0" class="pageList">
+        <div class="add-btn-div">
+          <router-link to="/organizationsinfo/0" class="add-div">
+            <span class="calcfont calc-add"></span>
+            <span class="add-text lanText" data-lanid="792_添加公司"></span>
+          </router-link>
+        </div>
+        <!-- 列表 -->
+        <div v-show="!noData" id="organizationsList" data-fromType="organizations"></div>
+        <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
+      </div>
 
+      <div v-show="showPage == 1" class="pageList">
+        <div class="add-btn-div">
+          <router-link to="/contactsinfo/0" class="add-div">
+            <span class="calcfont calc-add"></span>
+            <span class="add-text lanText" data-lanid="793_添加联系人"></span>
+          </router-link>
+        </div>
+        <!-- 列表 -->
+        <div v-show="!noData" id="contactsList" data-fromType="contacts"></div>
+        <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
+      </div>
+    </div>
 
-
-</div>
+    <!--  右侧侧滑 -->
+    <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
+  </div>
 </template>
 
 
 
 <script>
-import Header from '../common/Listheader'
-import Listrightpanel from '../common/Listrightpanel'
-import Nothing from "../common/Nothing"
+import Header from "../common/Listheader";
+import Listrightpanel from "../common/Listrightpanel";
+import Nothing from "../common/Nothing";
 
-// import Mixins from '../../mixins'
 var count = 0;
 export default {
-      // mixins: [Mixins.PAGE_LIST],
-      components:{
-        'Header':Header,
-        'list-right-panel':Listrightpanel,
-        'nothing':Nothing
-      },
-      data (){
-        return {
-            key:'contacts',
-            title:lanTool.lanContent('175_联系人'),
-            showPage:0,
-            notOrganizations:true,   //没数据
-            notContacts:true, //没数据
+  components: {
+    Header: Header,
+    "list-right-panel": Listrightpanel,
+    nothing: Nothing
+  },
+  data() {
+    return {
+      key: "contacts",
+      title: lanTool.lanContent("175_联系人"),
+      showPage: 0,
+      noData: true, //没数据
+      isFirstEnter: false, //是否第一次进入，默认false
 
-            isFirstEnter:false, // 是否第一次进入，默认false
-
-            //侧滑数据模型
-            rigthPanelData:[
-                {
-                  groupText:'Data Filter 数据筛选',
-                  type:'checkbox',
-                  default:'allContactss',
-                  items:[
-                      {text:'All 所有',value:'allContactss'},
-                      {text:'My Followed  Organizations',value:'publicContacts'}
-                  ]
-                },
-
-            ],
-
-            //搜索页面数据模型
-            searchData:{},
-
-            OrganizationsSearch:[
-                  {
-                      type:'input',
-                      field:'name',
-                      queryType:'string',
-                      text:'Organization Name 公司名称',
-                      value:'',
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:'Business Sector 业务分类',
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                    type:'picker',
-                    field:'cf_771',
-                    queryType:'string',
-                    text:'Area / Region 区域',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:'Country 国家',
-                      selectType:'radio',
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:'Account Manager 客户经理',
-                      selectType:'radio',
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  }
-            ],
-            ContactsSearch:[
-                  {
-                      type:'input',
-                      field:'name',
-                      queryType:'string',
-                      text:'Name',
-                      value:'',
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:'Status 状态',
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:'Initiator发起人',
-                      selectType:'checkbox',
-                      resulteRow:false, //第二行显示结果
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:'Organization公司',
-                      selectType:'checkbox',
-                      resulteRow:true, //第二行显示结果
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:'Business Sector 业务分类',
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                    type:'picker',
-                    field:'cf_771',
-                    queryType:'string',
-                    text:'Area / Region 区域',
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                  }
-            ],
-
-        }
-      },
-
-      beforeRouteEnter:function(to, from, next){
-            if(from.name === 'contactsinfo' || from.name === 'selectlist'){
-                to.meta.isBack = true;
+      //侧滑数据模型
+      rigthPanelData: [
+        {
+          groupText: lanTool.lanContent("794_数据筛选"),
+          type: "checkbox",
+          default: "allContactss",
+          items: [
+            { text: lanTool.lanContent("795_全部"), value: "allContactss" },
+            {
+              text: lanTool.lanContent("796_关注的公司"),
+              value: "publicContacts"
             }
-            next();
-      },
-      mounted:function(){
-          var _self = this;
+          ]
+        }
+      ],
+      //搜索页面数据模型
+      searchData: {},
 
-          _self.searchData = _self.OrganizationsSearch;
+      OrganizationsSearch: [
+        {
+          type: "input",
+          field: "name",
+          queryType: "string",
+          text: "Organization Name 公司名称",
+          value: ""
+        },
+        {
+          type: "picker",
+          field: "cf_765",
+          queryType: "string",
+          text: "Business Sector 业务分类",
+          value: "",
+          id: Number(new Date().valueOf()) + count++
+        },
+        {
+          type: "picker",
+          field: "cf_771",
+          queryType: "string",
+          text: "Area / Region 区域",
+          value: "",
+          id: Number(new Date().valueOf()) + count++
+        },
+        {
+          type: "selectlist",
+          field: "related_to",
+          queryType: "string",
+          queryUrl: "Accounts/Query",
+          text: "Country 国家",
+          selectType: "radio",
+          value: {
+            text: "",
+            value: ""
+          }
+        },
+        {
+          type: "selectlist",
+          field: "related_to",
+          queryType: "string",
+          queryUrl: "Accounts/Query",
+          text: "Account Manager 客户经理",
+          selectType: "radio",
+          value: {
+            text: "",
+            value: ""
+          }
+        }
+      ],
+      ContactsSearch: [
+        {
+          type: "input",
+          field: "name",
+          queryType: "string",
+          text: "Name",
+          value: ""
+        },
+        {
+          type: "picker",
+          field: "cf_765",
+          queryType: "string",
+          text: "Status 状态",
+          value: "",
+          id: Number(new Date().valueOf()) + count++
+        },
+        {
+          type: "selectlist",
+          field: "related_to",
+          queryType: "string",
+          queryUrl: "Accounts/Query",
+          text: "Initiator发起人",
+          selectType: "checkbox",
+          resulteRow: false, //第二行显示结果
+          value: {
+            text: "",
+            value: ""
+          }
+        },
+        {
+          type: "selectlist",
+          field: "related_to",
+          queryType: "string",
+          queryUrl: "Accounts/Query",
+          text: "Organization公司",
+          selectType: "checkbox",
+          resulteRow: true, //第二行显示结果
+          value: {
+            text: "",
+            value: ""
+          }
+        },
+        {
+          type: "picker",
+          field: "cf_765",
+          queryType: "string",
+          text: "Business Sector 业务分类",
+          value: "",
+          id: Number(new Date().valueOf()) + count++
+        },
+        {
+          type: "picker",
+          field: "cf_771",
+          queryType: "string",
+          text: "Area / Region 区域",
+          value: "",
+          id: Number(new Date().valueOf()) + count++
+        }
+      ]
+    };
+  },
+  beforeRouteEnter: function(to, from, next) {
+    if (from.name === "contactsinfo" || from.name === "selectlist") {
+      to.meta.isBack = true;
+    }
+    next();
+  },
+  mounted: function() {
+    lanTool.updateLanVersion();
+    var _self = this;
+    _self.searchData = _self.OrganizationsSearch;
 
-          tool.InitiateGroupList('organizations',$('#organizationsList'));
+    //渲染数据
+    tool.InitiateGroupList("organizations", $("#organizationsList"), function(
+      containerObj
+    ) {
+      if (tool.isNullOrEmptyObject(containerObj)) {
+        _self.noData = true;
+        return;
+      }
+      if (!containerObj.html()) {
+        _self.noData = true;
+      } else {
+        _self.noData = false;
+      }
+    });
 
-          _self.changePos();
-          _self.groupToggle();
-          _self.goInfoPage();
-          _self.followToggle();
-          _self.watchScroll();
-
-      },
-      methods: {
-          //监听滚动固定
-          watchScroll:function(){
-              var _self = this;
-              setTimeout(function(){
-                  var headerH = parseFloat($('header').innerHeight());
-                  var navH = parseFloat($('.nav').innerHeight());
-                  $(window).scroll(function(){
-
-                      if($('.group-div').length <= 0) return ;
-                      $('.group-div').each(function(){
-                          if($(this).offset().top - $(window).scrollTop() <= (headerH + navH) ){
-
-                              if(tool.getSystem() === 'ios'){
-                                  $(this).find('.date-div').addClass('sticky').css({"top": headerH + navH + 'px'});
-                              }else{
-                                  $(this).find('.date-div').css({"position":"fixed","top": headerH + navH + 'px'});
-                                  $(this).find('.occupy-div').show();
-                              }
-
-                          }else{
-                              if(tool.getSystem() === 'ios'){
-                                  $(this).find('.date-div').removeClass('sticky').css({"top":'0px'});
-                              }else{
-                                  $(this).find('.date-div').css({"position":"static"});
-                                  $(this).find('.occupy-div').hide();
-                              }
-                          }
-
-                      })
-                  })
-              },100)
-          },
-
-          //点击去详情页
-          goInfoPage:function(id){
-              var _self = this;
-              $("#organizationsList,#contactsList").on("click","div.group-item",function(event){
-                  var target = $(event.target);
-                  if(!target.hasClass('group-item')){
-                      target = target.closest('div.group-item');
-                      if(target == undefined){
-                          return;
-                      }
-                  }
-                  var url = target.attr('data-url') || '';
-                  _self.$router.push(url);
-              })
-          },
-
-          //列表展开收起
-          groupToggle:function(){
-              $("#organizationsList,#contactsList").on("click","div.date-div",function(event){
-                  var target = $(event.target);
-                  if(!target.hasClass('date-div')){
-                      target = target.closest('div.date-div');
-                      if(target == undefined){
-                          return;
-                      }
-                  }
-                  if(target.hasClass('open')){
-                      target.removeClass('open').siblings('.group-item-list').slideUp(500);
-                  }else{
-                      target.addClass('open').siblings('.group-item-list').slideDown(500);
-                  }
-              })
-          },
-
-          //切换页面
-          switchPage:function(num, e){
-              var _self = this;
-              var el = e.target;
-              if(num === undefined) return;
-              $(el).addClass('active-item').siblings().removeClass('active-item');
-              _self.changePos();
-              _self.showPage = num;
-
-              var container = null;
-              var moduleName = '';
-              if(num == 0){
-                  _self.searchData = _self.OrganizationsSearch;
-
-                  moduleName = 'organizations';
-                  container = $('#organizationsList');
-              }else{
-                  _self.searchData = _self.ContactsSearch;
-
-                  moduleName = 'contacts';
-                  container = $('#contactsList');
+    _self.changePos();
+    _self.groupToggle();
+    _self.goInfoPage();
+    _self.followToggle();
+    _self.watchScroll();
+  },
+  methods: {
+    //监听滚动固定
+    watchScroll: function() {
+      var _self = this;
+      setTimeout(function() {
+        var headerH = parseFloat($("header").innerHeight());
+        var navH = parseFloat($(".nav").innerHeight());
+        $(window).scroll(function() {
+          if ($(".group-div").length <= 0) return;
+          $(".group-div").each(function() {
+            if (
+              $(this).offset().top - $(window).scrollTop() <=
+              headerH + navH
+            ) {
+              if (tool.getSystem() === "ios") {
+                $(this)
+                  .find(".date-div")
+                  .addClass("sticky")
+                  .css({ top: headerH + navH + "px" });
+              } else {
+                $(this)
+                  .find(".date-div")
+                  .css({ position: "fixed", top: headerH + navH + "px" });
+                $(this)
+                  .find(".occupy-div")
+                  .show();
               }
-              tool.InitiateGroupList(moduleName,container);
-          },
-          //table底部横条过渡效果
-          changePos:function() {
-              this.$nextTick(function(){
-                  var activePos = $('.nav .active-item').position();
-                  $('.nav-border').stop().css({
-                      left: activePos.left,
-                      width: $('.nav .active-item').width()
-                  });
-              })
-          },
+            } else {
+              if (tool.getSystem() === "ios") {
+                $(this)
+                  .find(".date-div")
+                  .removeClass("sticky")
+                  .css({ top: "0px" });
+              } else {
+                $(this)
+                  .find(".date-div")
+                  .css({ position: "static" });
+                $(this)
+                  .find(".occupy-div")
+                  .hide();
+              }
+            }
+          });
+        });
+      }, 100);
+    },
 
-          //点击关注/取消关注
-          followToggle:function(){
+    //点击去详情页
+    goInfoPage: function(id) {
+      var _self = this;
+      $("#organizationsList,#contactsList").on(
+        "click",
+        "div.group-item",
+        function(event) {
+          var target = $(event.target);
+          if (!target.hasClass("group-item")) {
+            target = target.closest("div.group-item");
+            if (target == undefined) {
+              return;
+            }
+          }
+          var url = target.attr("data-url") || "";
+          _self.$router.push(url);
+        }
+      );
+    },
 
-              $("#organizationsList").on("click",".item-stars-icon",function(event){
+    //列表展开收起
+    groupToggle: function() {
+      $("#organizationsList,#contactsList").on("click","div.date-div",
+        function(event) {
+          //todo....
+          var target = $(event.target);
+          var fromType = target.parents("div[data-fromType]").attr("data-fromType")  || "";
+          var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+          if(tool.isNullOrEmptyObject(groupID)){
+                return;
+          }
+          console.log(target);
+          console.log(fromType);
+          console.log(groupID);
 
-                  event.stopPropagation();
-                  var target = $(event.target);
-                  if(target.hasClass('calc-shoucang')){
-                      //取消关注
-                      target.removeClass('calc-shoucang').addClass('calc-shoucang1');
-                      $.toast("取消关注", 1500, function() {});
-                  }else{
-                      //关注
-                      target.removeClass('calc-shoucang1').addClass('calc-shoucang');
-                      $.toast("关注成功", 1500, function() {});
-                  }
-              })
-          },
+          tool.InitiateInnerDataList(fromType,groupID,target,function(containerObj){
+                // if (!containerObj.hasClass("date-div")) {
+                //     containerObj = containerObj.closest("div.date-div");
+                //     if (containerObj == undefined) {
+                //         return;
+                //     }
+                // }
+                if (containerObj.hasClass("open")) {
+                    containerObj
+                    .removeClass("open")
+                    .siblings(".group-item-list")
+                    .slideUp(500);
+                } else {
+                    containerObj
+                    .addClass("open")
+                    .siblings(".group-item-list")
+                    .slideDown(500);
+                }
+          });
+        }
+      );
+    },
+
+    //切换页面
+    switchPage: function(num, e) {
+      var _self = this;
+      var el = e.target;
+      if (num === undefined) return;
+      $(el)
+        .addClass("active-item")
+        .siblings()
+        .removeClass("active-item");
+      _self.changePos();
+      _self.showPage = num;
+
+      var container = null;
+      var moduleName = "";
+      if (num == 0) {
+        _self.searchData = _self.OrganizationsSearch;
+
+        moduleName = "organizations";
+        container = $("#organizationsList");
+      } else {
+        _self.searchData = _self.ContactsSearch;
+
+        moduleName = "contacts";
+        container = $("#contactsList");
       }
 
+      //渲染数据
+      tool.InitiateGroupList(moduleName, container, function(containerObj) {
+        if (tool.isNullOrEmptyObject(containerObj)) {
+          _self.noData = true;
+          return;
+        }
+        if (!containerObj.html()) {
+          _self.noData = true;
+        } else {
+          _self.noData = false;
+        }
+      });
+    },
 
-}
+    //table底部横条过渡效果
+    changePos: function() {
+      this.$nextTick(function() {
+        var activePos = $(".nav .active-item").position();
+        $(".nav-border")
+          .stop()
+          .css({
+            left: activePos.left,
+            width: $(".nav .active-item").width()
+          });
+      });
+    },
+
+    //点击关注/取消关注
+    followToggle: function() {
+      $("#organizationsList").on("click", ".item-stars-icon", function(event) {
+        event.stopPropagation();
+        var target = $(event.target);
+        if (target.hasClass("calc-shoucang")) {
+          //取消关注
+          target.removeClass("calc-shoucang").addClass("calc-shoucang1");
+          $.toast("取消关注", 1500, function() {});
+        } else {
+          //关注
+          target.removeClass("calc-shoucang1").addClass("calc-shoucang");
+          $.toast("关注成功", 1500, function() {});
+        }
+      });
+    }
+  }
+};
 </script>
 
 
 <style scoped>
 @import "../../assets/css/common/commonlist.css";
-
 </style>
-
-<style>
-/*列表分组 style */
-/* .group-div{border-bottom:1px solid #fff;}
-.date-div{
-  height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
-  width: 100%;color:#000;
-  box-sizing: border-box;
-  z-index:89;
-  top:0;
-}
-.item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;
-text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem!important;color:#ccc;}
-.calc-shoucang{color:#ff5a21}
-.date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
-.group-name{font-size: 0.3rem;}
-.occupy-div{height:0.7rem;display:none;}
-.group-item-list{display: none;} */
-
-
-
-
-/*list----style----*/
-/* .group-item{background:#fff;position:relative;}
-.item-block{padding:5px 10px 5px 0.8rem;}
-.group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
-top:0px;position:absolute;}
-.item-div{font-size: 0.25rem;line-height: 0.4rem;}
-.item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;} */
-
-/*Contacts list  style*/
-/* .item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;
-text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;
-border-radius: 5px;font-size:0.6rem!important;color:#3cadf9;}
-.contacts-item-block{padding:5px 10px 5px 1.3rem;} */
-</style>
-
