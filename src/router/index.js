@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
 import Index from '@/components/Index'
-import Main from '@/components/Main'
+
 import Login from '@/components/Login'
 
 import Meetinglist from '@/components/pages/Meetinglist'
@@ -23,10 +23,10 @@ import AddRouteOrRoom from '@/components/pages/AddRouteOrRoom'
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
 
-import Opportunities from '@/components/pages/Opportunities'
+
 import Opportunitiesinfo from '@/components/pages/Opportunitiesinfo'
 
-import Organizations from '@/components/pages/Organizations'
+
 import Organizationsinfo from '@/components/pages/Organizationsinfo'
 
 import Contacts from '@/components/pages/Contacts'
@@ -36,18 +36,10 @@ import Contactsinfo from '@/components/pages/Contactsinfo'
 import Previewfile from '@/components/pages/Previewfile'
 import Uploadinput from '@/components/pages/Uploadinput'
 
-import Report from '@/components/pages/Report'
+// import Report from '@/components/pages/Report'
 
-// import About from '@/components/pages/About'
-// import General from '@/components/pages/General'
 
-// import Calendar from '@/components/pages/Calendar'
-
-// import Calendarsearch from '@/components/pages/Calendarsearch'
-// import Calendarlist from '@/components/pages/Calendarlist'
-// import Calendarinfo from '@/components/pages/Calendarinfo'
 import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
-
 
 import Selectlist from '@/components/common/Selectlist'
 import Sharelist from '@/components/pages/Sharelist'
@@ -90,14 +82,6 @@ const router =  new Router({
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
 
 
-
-    { path: '/main',name:'main',component: Main,
-      meta: {
-        keepAlive: true,
-        isBack:false
-      }
-    },
-
     { path: '/search',name:'search',component: Search,
       meta: {
         keepAlive: true,
@@ -111,14 +95,14 @@ const router =  new Router({
       }
     },
 
-    {
-      path:'/opportunities',name:'opportunities',component:Opportunities,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-        fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      }
-    },
+    // {
+    //   path:'/opportunities',name:'opportunities',component:Opportunities,
+    //   meta: {
+    //     keepAlive: true,
+    //     isBack:false,
+    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
+    //   }
+    // },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
       meta: {
         keepAlive: true,
@@ -136,13 +120,13 @@ const router =  new Router({
     },
 
 
-    { path:'/organizations',name:'organizations',component:Organizations,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-        fromSave:false,  //当在详情页面保存后回到列表页面刷新
-      }
-    },
+    // { path:'/organizations',name:'organizations',component:Organizations,
+    //   meta: {
+    //     keepAlive: true,
+    //     isBack:false,
+    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
+    //   }
+    // },
     { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
       meta: {
         keepAlive: true,
@@ -167,35 +151,16 @@ const router =  new Router({
     },
 
 
-    // { path:'/about',component:About},
-    // { path:'/general',component:General},
     { path:'/uploadinput',component:Uploadinput},
 
     //报表
-    { path:'/report',name:'report',component:Report,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-      }
-    },
-
-    //日程
-    // { path:'/calendar',name:'calendar',component:Calendar,
+    // { path:'/report',name:'report',component:Report,
     //   meta: {
     //     keepAlive: true,
     //     isBack:false,
-    //     fromSave:false,  //当在详情页面保存后回到日历页面刷新
     //   }
     // },
-    // { path:'/calendarsearch',name:'calendarsearch',component:Calendarsearch},
 
-    // { path:'/calendarlist',name:'calendarlist',component:Calendarlist,
-    //   meta: {
-    //     keepAlive: true,
-    //     isBack:false,
-    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
-    //   }
-    // },
     { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Contactsinfo,
       meta: {
         keepAlive: true,
@@ -208,7 +173,7 @@ const router =  new Router({
     { path:'/sharelist',name:'sharelist',component:Sharelist},
     { path:'/personcharge',name:'personcharge',component:Personcharge},
     { path:'/poweruser',name:'poweruser',component:Poweruser},
-    
+
 
 
 

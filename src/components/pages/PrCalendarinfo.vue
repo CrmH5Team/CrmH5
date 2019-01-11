@@ -97,8 +97,6 @@
 
 <script>
 import Infoheader from '../common/Infoheader'
-import Datetimepicker from '../common/Datetimepicker'
-import Picker from '../common/Picker'
 import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
 // import commoninfo from '../common/commoninfo.js'
@@ -110,8 +108,6 @@ export default {
     // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
-        Datetimepicker,
-        Picker,
         Infofooter,
         Uploadfile
     },
