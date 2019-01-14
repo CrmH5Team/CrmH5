@@ -11,18 +11,18 @@
             </div>
             <div class="TripList">
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-T"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-T"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Title"></textarea>
+                            <textarea placeholder="Title"></textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-jibie"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-jibie"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="员工级别"></textarea>
+                            <textarea placeholder="员工级别"></textarea>
                         </p>
                     </div>
                 </div>
@@ -31,10 +31,10 @@
 
             <div class="meeting">
                 <div class="headerBlock">
-                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                    <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                     <div class="headerBlockContent f16">meeting</div>
                     <div class="headerBlockRightIcon">
-                        <router-link to='/addmeeting'><span class="mui-icon calcfont calc-jia"></span></router-link>
+                        <router-link to='/addmeeting'><span class="calcfont calc-jia"></span></router-link>
                     </div>
                 </div>
                 <div class="shuoming" v-show="isHiddenShuoMing">
@@ -43,50 +43,50 @@
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">MSN 05789 年度检查会议</div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">01/Jan - 02/Jan 全天</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">China Eastern Airlines</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">Niki Zu (Fleet Manager)</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">MSN 05789 年度检查会议</div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">01/Jan - 02/Jan 全天</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">China Eastern Airlines</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">Niki Zu (Fleet Manager)</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
@@ -95,10 +95,10 @@
             </div>
             <div class="route">
                 <div class="headerBlock">
-                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-route"></span></div>
+                    <div class="headerBlockLeftIcon"><span class="calcfont calc-route"></span></div>
                     <div class="headerBlockContent f16">路线/机票申请</div>
                     <div class="headerBlockRightIcon" @click="routeClick">
-                        <span class="mui-icon calcfont calc-jia"></span>
+                        <span class="calcfont calc-jia"></span>
                     </div>
                 </div>
                 <div class="shuoming" v-show="isHiddenShuoMing">
@@ -107,30 +107,30 @@
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">MU726 31/Dec 07:40 - 31/Dec 09:30</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">MU726 31/Dec 07:40 - 31/Dec 09:30</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
@@ -139,39 +139,39 @@
             </div>
             <div class="room">
                 <div class="headerBlock">
-                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-zhusu"></span></div>
+                    <div class="headerBlockLeftIcon"><span class="calcfont calc-zhusu"></span></div>
                     <div class="headerBlockContent f16">住宿</div>
                     <div class="headerBlockRightIcon" @click="roomClick">
-                        <span class="mui-icon calcfont calc-jia"></span>
+                        <span class="calcfont calc-jia"></span>
                     </div>
                 </div>
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">MU726 31/Dec 07:40 - 31/Dec 09:30</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
-                            <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
+                            <div class="headerBlockRightIcon"><span class="calcfont calc-delete"></span></div>
                         </div>
                         <div class="dataList">
                             <div class="dataListCell headerBlock">
-                                <div class="headerBlockLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                                <div class="headerBlockLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                                 <div class="headerBlockContent f14">MU726 31/Dec 07:40 - 31/Dec 09:30</div>
-                                <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                                <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                             </div>
                         </div>
 
@@ -181,14 +181,14 @@
             <div class="budget">
                 <div class="budgetHeader">
                     <div class="headerBlock">
-                        <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-yusuan"></span></div>
+                        <div class="headerBlockLeftIcon"><span class="calcfont calc-yusuan"></span></div>
                         <div class="headerBlockContent f16">预算</div>
-                        <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
+                        <div class="headerBlockRightIcon iconHidden"><span class="calcfont calc-jia"></span></div>
                     </div>
                 </div>
 
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon iconHidden"><span class="mui-icon calcfont calc-tixing1"></span></div>
+                    <div class="ListCellLeftIcon iconHidden"><span class="calcfont calc-tixing1"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft">
                             <div class="ListCellContentLeftText reminderTiShi">住宿费用是否超出报销限额</div>
@@ -202,23 +202,23 @@
                         </div>
                     </div>
                     <div class="ListCell" v-show="isHiddenYuanying">
-                        <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="mui-icon calcfont calc-T"></span></div>
+                        <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="calcfont calc-T"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="请输入原因"></textarea>
+                                <textarea placeholder="请输入原因"></textarea>
                             </p>
                         </div>
                     </div>
                     <div class="ListCell">
-                        <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="mui-icon calcfont calc-T"></span></div>
+                        <div class="ListCellLeftIcon textLeftIcon iconHidden"><span class="calcfont calc-T"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="预算合计"></textarea>
+                                <textarea placeholder="预算合计"></textarea>
                             </p>
                         </div>
                     </div>
                     <div class="ListCell">
-                        <div class="ListCellLeftIcon iconHidden"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                        <div class="ListCellLeftIcon iconHidden"><span class="calcfont calc-huiyi"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
                                 <div class="ListCellContentLeftText">币别</div>
@@ -226,12 +226,12 @@
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText">人民币</div>
                             </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                            <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="expense" style="display:none">
+            <div class="expense">
                 <div class="expenseBtn" @click="expenseClick">Expense Claim Form</div>
             </div>
         </div>
@@ -240,11 +240,7 @@
 
 <script>
 import Infoheader from '../common/Infoheader'
-import InfoRightPanel from '../common/InfoRightPanel'
-
-import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
-
 import Mixins from '../../mixins'
 import eventBus from '../common/Event';
 
@@ -252,9 +248,7 @@ export default {
     // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
-        Infofooter,
         Uploadfile,
-        InfoRightPanel
     },
     data() {
         return {
@@ -263,11 +257,8 @@ export default {
             saveHidden: true,
             submitIconHidden: true,
             ptitle: 'Trip detail',
-            isShowMenuList: false,
             isHiddenShuoMing: false,
             isHiddenYuanying: false,
-            scrollTop: 0, //记录滚动条的位置
-            // isShowMore: false,
 
         }
     },
@@ -291,7 +282,7 @@ export default {
             });
         })
         eventBus.$on('delete', function (data) {
-            console.log(data);
+            console.log('data');
         });
 
     },
@@ -319,29 +310,15 @@ export default {
                 }
             })
         },
-        // 开关事件
-        allDayClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true all");
-            } else {
-                console.log("false all");
-            }
-
-        },
         reminderSwitch: function (e) {
             var $this = this;
             if ($(e.target).is(":checked") == true) {
                 console.log('true');
-                // $this.$nextTick(function(){
                 $this.isHiddenYuanying = true;
-                // })
 
             } else {
                 console.log('false');
-
-                //   $this.$nextTick(function(){
                 $this.isHiddenYuanying = false;
-                // })
             }
         },
 
@@ -353,5 +330,7 @@ export default {
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
 @import "../../assets/css/pages/tripinfo.css";
-
+.expense{
+    display: none;
+}
 </style>

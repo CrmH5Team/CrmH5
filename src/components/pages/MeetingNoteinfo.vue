@@ -4,9 +4,9 @@
 
     <div class="scroll-div">
         <div class="box">
-            <div class="CalendarList">
+            <div class="meetingNoteList">
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-huiyi"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">Meeting Nature</div>
@@ -14,11 +14,11 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Firsting Meeting with Eastern Airlines</div>
                         </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">Start</div>
@@ -26,11 +26,11 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">01/Jan</div>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">End</div>
@@ -38,11 +38,11 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">16/Nov 16:00</div>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">对内/对外</div>
@@ -50,31 +50,19 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">对外</div>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListSpecialCell specialCell" id="Organization">
                     <div class="ListSpecialCellField">
-                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent">Opportunity</div>
-                        <div class="ListSpecialCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListSpecialCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">中国东方航空公司</div>
                 </div>
-                <!-- <div class="ListCell">
-                <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-                <div class="ListCellContent">
-                    <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Organization</div>
-                    </div>
-                    <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">中国东方航空公司</div>
-                    </div>
-                    <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
-                </div>
-            </div> -->
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">Contact</div>
@@ -82,22 +70,22 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Niki</div>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beiwanglu"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            <textarea placeholder="Memo ( Suggested length within 200 words)"></textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListSpecialCell specialCell visible">
                     <div class="ListSpecialCellField">
-                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent">Linked with Business</div>
-                        <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
                 </div>
@@ -107,7 +95,7 @@
 
             <div class="busOpportunities">
                 <div class="ListCell" @click="goinDealOrOpportunity">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yidu"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">查看关联的交易/商业机会</div>
@@ -115,7 +103,7 @@
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText"></div>
                         </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
             </div>
@@ -128,11 +116,8 @@
 
 <script>
 import Infoheader from '../common/Infoheader'
-import InfoRightPanel from '../common/InfoRightPanel'
 import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
-// import commoninfo from '../common/commoninfo.js'
-
 import Mixins from '../../mixins'
 import eventBus from '../common/Event';
 
@@ -142,18 +127,13 @@ export default {
         Infoheader,
         Infofooter,
         Uploadfile,
-        InfoRightPanel
     },
     data() {
         return {
             moreHiddenIcon: false,
             delHidden: false,
-            saveHidden:true,
+            saveHidden: true,
             ptitle: 'MeetingNote detail',
-            isShowMenuList: false,
-            scrollTop: 0, //记录滚动条的位置
-            // isShowMore: false,
-
         }
     },
 
@@ -169,8 +149,6 @@ export default {
         var $this = this;
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
-        // var _self = this;
         this.$nextTick(function () {
             //将textarea设置为高度自适应
             $("textarea").each(function (index, cur) {
@@ -179,7 +157,6 @@ export default {
         })
         eventBus.$on('delete', function (data) {
             console.log(data);
-            // alert(data);
         });
 
     },
@@ -193,47 +170,6 @@ export default {
             })
         },
 
-        // 开关事件
-        allDayClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true all");
-            } else {
-                console.log("false all");
-            }
-
-        },
-        reminderSwitch: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true remind");
-            } else {
-                console.log("false remind");
-            }
-        },
-        reminderClick: function (e) {
-            $.alert('System will send email noticafication for Initiator in advance.', "Tip", "", "Ok");
-        },
-        VisibilityTiShiClick: function (e) {
-            $.alert('Public: This record will be seen by everyone.Private: This record will be seen only by Initiator and Initiator’s superior user.Share with others: This record will be seen only by Initiator and Initiator’s superior user, and selected user or group.', "Tip", "", "Ok");
-
-        },
-        moreClick: function (e) {
-            console.log("gengduo");
-            // this.isShowMore = !this.isShowMore;
-            var thisBtn = e.target;
-            if ($(".showMoreList").css("display") == 'none') {
-                $(".showMoreList").slideDown(500, function () {
-                    $("#moreIcon").removeClass("calc-shousuojiantou");
-                    $("#moreIcon").addClass("calc-shousuoshangjiantou");
-                });
-
-            } else {
-
-                $(".showMoreList").slideUp(500, function () {
-                    $("#moreIcon").removeClass("calc-shousuoshangjiantou");
-                    $("#moreIcon").addClass("calc-shousuojiantou");
-                });
-            }
-        }
     }
 
 }
