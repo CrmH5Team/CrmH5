@@ -4,7 +4,7 @@
     <header class="mui-bar mui-bar-nav">
 
           <a v-if="isMain" @click="showRightPanel" class="calcfont calc-yonghu1 right"></a>
-          <a v-if="isMain" @click="goNotification" class="calcfont calc-youxiang1 right">
+          <a v-if="isMain" @click="goNotification" class="calcfont calc-mailbox right">
               <span class="count">2</span>
           </a>
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
@@ -93,8 +93,8 @@ header.mui-bar {
     /* padding-right: 10px;
     padding-left: 10px; */
 }
-.calc-youxiang1{margin-right:-10px;z-index: 10;}
-.calc-youxiang1::before{vertical-align:middle;}
+.calc-mailbox{margin-right:-10px;z-index: 10;}
+.calc-mailbox::before{vertical-align:middle;}
 .calc-liebiao{
   font-size: 0.6rem;
   padding: 0.15rem 10px;
