@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-noshoucang guanZhu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <!-- <textarea autoHeight="true" placeholder="" readonly disabled>Follow it</textarea> -->
@@ -228,12 +228,12 @@ export default {
         },
         followClick: function (e) {
             console.log("收藏");
-            if ($(".guanZhu").hasClass("calc-shoucang1")) {
+            if ($(".guanZhu").hasClass("calc-noshoucang")) {
                 $(".guanZhu").addClass("calc-shoucang");
-                $(".guanZhu").removeClass("calc-shoucang1")
+                $(".guanZhu").removeClass("calc-noshoucang")
                 $.toast("关注成功", 1500, function () {});
             } else {
-                $(".guanZhu").addClass("calc-shoucang1");
+                $(".guanZhu").addClass("calc-noshoucang");
                 $(".guanZhu").removeClass("calc-shoucang")
                 $.toast("取消关注", 1500, function () {});
             }
