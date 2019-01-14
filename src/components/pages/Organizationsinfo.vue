@@ -239,7 +239,6 @@ export default {
 
         },
         followClick: function (e) {
-            //console.log("收藏");
             console.log("收藏");
             if ($(".guanZhu").hasClass("calc-noshoucang")) {
                 $(".guanZhu").addClass("calc-shoucang");
