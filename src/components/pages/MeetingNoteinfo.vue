@@ -97,7 +97,7 @@
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent">Linked with Business</div>
-                        <div class="ListSpecialCellRightIcon rightIconHidden"><span class="mui-icon calcfont calc-you"></span></div>
+                        <div class="ListSpecialCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
                 </div>

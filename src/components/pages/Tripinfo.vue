@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shijianjibiezhongdingyiguize"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-jibie"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea autoHeight="true" placeholder="员工级别"></textarea>
@@ -43,7 +43,7 @@
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">MSN 05789 年度检查会议</div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">MSN 05789 年度检查会议</div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -95,7 +95,7 @@
             </div>
             <div class="route">
                 <div class="headerBlock">
-                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-icon-test3"></span></div>
+                    <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-route"></span></div>
                     <div class="headerBlockContent f16">路线/机票申请</div>
                     <div class="headerBlockRightIcon" @click="routeClick">
                         <span class="mui-icon calcfont calc-jia"></span>
@@ -107,7 +107,7 @@
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -148,7 +148,7 @@
                 <div class="contentList">
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="contentListCell">
                         <div class="contentListCellHeader headerBlock">
-                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                            <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                             <div class="headerBlockContent f14">香港 - 上海 </div>
                             <div class="headerBlockRightIcon"><span class="mui-icon calcfont calc-delete"></span></div>
                         </div>
@@ -182,7 +182,7 @@
                 <div class="budgetHeader">
                     <div class="headerBlock">
                         <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-yusuan"></span></div>
-                        <div class="headerBlockContent f16">住宿</div>
+                        <div class="headerBlockContent f16">预算</div>
                         <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
                     </div>
                 </div>

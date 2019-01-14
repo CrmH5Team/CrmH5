@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-iconset0264"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-icaocode"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea data-field="ICAOCode" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" autoHeight="true" data-lanid="800_ICAO编码"></textarea>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span></div>
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijingli"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
@@ -90,7 +90,11 @@
                     </div>
                 </div>
                 <div class="ListCell">
+<<<<<<< HEAD
                     <div data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-shoucang1'}" class="ListCellLeftIcon textLeftIcon" @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+=======
+                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-noshoucang guanZhu"></span></div>
+>>>>>>> cfa76ae3d89c5d4b0a184c2690665447bedab016
                     <div class="ListCellLeftText">
                         <p class="textareaP lanText" data-lanid="786_关注"></p>
                     </div>
@@ -236,12 +240,13 @@ export default {
         },
         followClick: function (e) {
             //console.log("收藏");
-            if ($(".guanZhu").hasClass("calc-shoucang1")) {
+            console.log("收藏");
+            if ($(".guanZhu").hasClass("calc-noshoucang")) {
                 $(".guanZhu").addClass("calc-shoucang");
-                $(".guanZhu").removeClass("calc-shoucang1")
+                $(".guanZhu").removeClass("calc-noshoucang")
                 $.toast("关注成功", 1500, function () {});
             } else {
-                $(".guanZhu").addClass("calc-shoucang1");
+                $(".guanZhu").addClass("calc-noshoucang");
                 $(".guanZhu").removeClass("calc-shoucang")
                 $.toast("取消关注", 1500, function () {});
             }

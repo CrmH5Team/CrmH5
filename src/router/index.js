@@ -43,7 +43,7 @@ import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
 
 import Selectlist from '@/components/common/Selectlist'
 import Sharelist from '@/components/pages/Sharelist'
-import Personcharge from '@/components/pages/Personcharge'
+import Groupselectlist from '@/components/common/Groupselectlist'
 import Poweruser from '@/components/pages/Poweruser'
 
 Vue.use(Router)
@@ -171,7 +171,7 @@ const router =  new Router({
 
     { path:'/selectlist',name:'selectlist',component:Selectlist},
     { path:'/sharelist',name:'sharelist',component:Sharelist},
-    { path:'/personcharge',name:'personcharge',component:Personcharge},
+    { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
     { path:'/poweruser',name:'poweruser',component:Poweruser},
 
 

@@ -212,7 +212,7 @@
             <div class="switch-text lanText" data-lanid="775_分享后发送邮件"></div>
             <div class="switch right">
               <div class="weui-cell__ft">
-                <input class="weui-switch" type="checkbox">
+                <input @click="sendEmailSwitch" class="weui-switch" type="checkbox">
               </div>
             </div>
           </div>
@@ -302,6 +302,14 @@ export default {
     ).trigger("click");
   },
   methods: {
+    // 发送邮件开关
+    sendEmailSwitch: function (e) {
+        if ($(e.target).is(":checked") == true) {
+            console.log("true");
+        } else {
+            console.log("false");
+        }
+    },
     //清除缓存
     ClearCache: function() {
       var _self = this;

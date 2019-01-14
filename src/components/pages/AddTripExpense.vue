@@ -74,7 +74,7 @@
                     <div class="contentList">
                         <div class="contentListCell">
                             <div class="contentListCellHeader headerBlock">
-                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                                 <div class="headerBlockContent f14">31/Dec - 04/Jan 4晚</div>
                                 <div class="headerBlockRightContent">补充完整</div>
                             </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="transportation">
                     <div class="headerBlock">
-                        <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-icon-test3"></span></div>
+                        <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-route"></span></div>
                         <div class="headerBlockContent f16">交通费</div>
                         <div class="headerBlockRightIcon iconHidden" @click="routeClick">
                             <span class="mui-icon calcfont calc-jia"></span>
@@ -106,7 +106,7 @@
                     <div class="contentList">
                         <div class="contentListCell">
                             <div class="contentListCellHeader headerBlock">
-                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhaonumbered5"></span></div>
+                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
                                 <div class="headerBlockContent f14">香港 - 上海 </div>
                                 <div class="headerBlockRightContent">补充完整</div>
                             </div>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="contentListCell">
                             <div class="contentListCellHeader headerBlock">
-                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhaonumbered5"></span></div>
+                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calcfont calc-bianhao"></span></div>
                                 <div class="headerBlockContent f14">上海 - 香港</div>
                                 <div class="headerBlockRightContent">补充完整</div>
                             </div>
@@ -157,7 +157,7 @@
                     <div class="contentList">
                         <div class="contentListCell">
                             <div class="contentListCellHeader headerBlock">
-                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhaonumbered5"></span></div>
+                                <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-bianhao"></span></div>
                                 <div class="headerBlockContent f14">招待费</div>
                                 <div class="headerBlockRightContent">补充完整</div>
                             </div>
