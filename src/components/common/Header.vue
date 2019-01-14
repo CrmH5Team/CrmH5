@@ -93,8 +93,8 @@ header.mui-bar {
     /* padding-right: 10px;
     padding-left: 10px; */
 }
-.calc-youxiang1{margin-right:-10px;z-index: 10;}
-.calc-youxiang1::before{vertical-align:middle;}
+.calc-mailbox{margin-right:-10px;z-index: 10;}
+.calc-mailbox::before{vertical-align:middle;}
 .calc-liebiao{
   font-size: 0.6rem;
   padding: 0.15rem 10px;
