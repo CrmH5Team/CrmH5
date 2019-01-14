@@ -9,7 +9,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="English">Air China</textarea>
+                            <textarea data-field="ShortNameEN" data-fieldControlType="textareaVal" class="lanInputPlaceHolder" data-lanid="733_英文名称" autoHeight="true"></textarea>
                         </p>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-CH"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="China">中国国际航空公司</textarea>
+                            <textarea data-field="ShortNameCN" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="32_中文名称" autoHeight="true"></textarea>
                         </p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-iconset0264"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea autoHeight="true" placeholder="ICAO Code"></textarea>
+                            <textarea data-field="ICAOCode" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" autoHeight="true" data-lanid="800_ICAO编码"></textarea>
                         </p>
                     </div>
                 </div>
@@ -33,22 +33,10 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Business Sector</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Airline</div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell visible">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Region/Area</div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Asia Pacific</div>
+                            <div data-field="BusinessType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -57,10 +45,22 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Country</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">China</div>
+                            <div data-field="CountryID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"></div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div data-field="CityID" data-fieldControlType="picker" data-fieldVal="" class="ListCellContentRightText"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -69,10 +69,10 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Account Manager</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Jessie Zhao</div>
+                            <div data-field="AccountManager" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -81,21 +81,18 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehuguanli"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Existing Customer?</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="787_是否为现有客户"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Yes</div>
+                            <div data-field="ExistingCustomer" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="YesOrNo" class="ListCellContentRightText"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
+                    <div data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-shoucang1'}" class="ListCellLeftIcon textLeftIcon" @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
                     <div class="ListCellLeftText">
-                        <p class="textareaP">
-                            <!-- <textarea autoHeight="true" placeholder="" readonly disabled>Follow it</textarea> -->
-                            Follow it
-                        </p>
+                        <p class="textareaP lanText" data-lanid="786_关注"></p>
                     </div>
                 </div>
             </div>
@@ -105,7 +102,7 @@
                         <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shenqingpingji"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="Rating"></textarea>
+                                <textarea data-field="Rating" data-fieldControlType="textareaInput" autoHeight="true" class="lanInputPlaceHolder" data-lanid="788_评级"></textarea>
                             </p>
                         </div>
                     </div>
@@ -113,7 +110,7 @@
                         <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="address"></textarea>
+                                <textarea data-field="RegistrationAddress" data-fieldControlType="textareaInput" autoHeight="true" class="lanInputPlaceHolder" data-lanid="251_地址"></textarea>
                             </p>
                         </div>
                     </div>
@@ -121,7 +118,7 @@
                         <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea autoHeight="true" placeholder="Remarks"></textarea>
+                                <textarea data-field="Remark" data-fieldControlType="textareaInput" autoHeight="true" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
                             </p>
                         </div>
                     </div>
@@ -132,7 +129,7 @@
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">联系人</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText"></div>
@@ -143,7 +140,8 @@
                 </div>
                 <!-- <Uploadfile></Uploadfile> -->
 
-                <Infofooter> </Infofooter>
+                <!-- <Infofooter :modifiedtime="modifiedtime" :modifiedby="modifiedby"> </Infofooter> -->
+                <Infofooter></Infofooter>
 
             </div>
         </div>
@@ -158,9 +156,8 @@ import Infoheader from '../common/Infoheader'
 import InfoRightPanel from '../common/InfoRightPanel'
 import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
-// import commoninfo from '../common/commoninfo.js'
 
-import Mixins from '../../mixins'
+//import Mixins from '../../mixins'
 import eventBus from '../common/Event';
 
 export default {
@@ -181,8 +178,8 @@ export default {
             isShowMenuList: false,
             isShowSendBtn: false,
             scrollTop: 0, //记录滚动条的位置
-            // isShowMore: false,
-
+            // modifiedtime:"1/Jan/2019",
+            // modifiedby:"Dylan Xu",
         }
     },
 
@@ -195,19 +192,30 @@ export default {
     },
 
     created: function () {
-        var $this = this;
-
     },
     mounted: function () {
+        //lanTool.updateLanVersion();
+        document.activeElement.blur();
+
+        //挂载元素后，清空控件值，再渲染控件
+        tool.ClearControlData(function(){
+            //渲染控件
+            tool.InitiateInfoPageControl();
+        });
+
+        // //查询数据
+        // var id = this.$route.params.id;
+        // console.log("id:" + id);
+
         this.$nextTick(function () {
             //将textarea设置为高度自适应
             $("textarea").each(function (index, cur) {
                 tool.autoTextarea(cur);
             });
-        })
+        });
+
         eventBus.$on('delete', function (data) {
             console.log(data);
-            // alert(data);
         });
     },
     methods: {
@@ -227,7 +235,7 @@ export default {
 
         },
         followClick: function (e) {
-            console.log("收藏");
+            //console.log("收藏");
             if ($(".guanZhu").hasClass("calc-shoucang1")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-shoucang1")

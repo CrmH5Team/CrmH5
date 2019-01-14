@@ -223,6 +223,11 @@
 	 * 公司分组内部数据接口
 	 */
 	tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
+	/*
+	 * 下拉数据接口
+	 */
+	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
+
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -1371,7 +1376,7 @@
 				<div class="group-item-list organizations-list">
 				{InnerList}
 				</div>`;
-				innerTemplate = `<div class=" group-item" data-url="/organizationsinfo/{AutoID}">
+				innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
 				<div class="item-stars-icon calcfont calc-shoucang"></div>
 				<div class="item-block">
 				  <div class="item-div item-first-div">
@@ -1404,7 +1409,6 @@
 			QueryCondiction: []
 		};
 		tool.showLoading();
-
 		$.ajax({
 			async: true,
 			type: "post",
@@ -1426,7 +1430,7 @@
 				}
 
 				//渲染组数据
-				 for (var i = 0; i < data.length; i++) {
+				for (var i = 0; i < data.length; i++) {
 					var tempStr = innerTemplate;
 					for (var key in data[i]) {
 						tempStr = tempStr.replace("{" + key + "}", (data[i][key] || ""));
@@ -1458,57 +1462,154 @@
 		});
 	};
 
+	/*
+	*渲染控件
+	*/
+	tool.InitiateInfoPageControl = function () {
+		//console.log("InitiateInfoPageControl");
+		//1>渲染下拉控件
+		$("[data-fieldControlType='picker']").each(function (index, obj) {
+			var _curObj = $(this);
+			var fromId = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(fromId)) {
+				return true;
+			}
+
+			var urlTemp = tool.AjaxBaseUrl();
+			var controlName = tool.CommonDataServiceHandle_Query;
+			var code = _curObj.attr("Code") || "";
+			var typeValue = _curObj.attr("TypeValue") || "";
+			if (tool.isNullOrEmptyObject(code)) {
+				return true;
+			}
+
+			//传入参数
+			var jsonDatasTemp = {
+				CurrentLanguageVersion: lanTool.currentLanguageVersion,
+				UserName: tool.UserName(),
+				_ControlName: controlName,
+				_RegisterCode: tool.RegisterCode(),
+				Code: code,
+				TypeValue: typeValue
+			};
+			tool.showLoading();
+			$.ajax({
+				async: true,
+				type: "post",
+				url: urlTemp,
+				data: jsonDatasTemp,
+				success: function (data) {
+					//console.log(JSON.stringify(data));
+					data = tool.jObject(data);
+					//console.log(data);
+					if (data._ReturnStatus == false) {
+						tool.showText(tool.getMessage(data));
+						console.log(tool.getMessage(data));
+						return true;
+					}
+
+					data = data._OnlyOneData || [];
+					var pickervalues = [];
+					for(var i = 0;i<data.length;i++){
+						if(tool.isNullOrEmptyObject(data[i])){
+							continue;
+						}
+						pickervalues.push(data[i]["text"]);
+					}
+
+					setTimeout(() => {
+						//写入标题
+						var titleLV = _curObj.parents('div.rightContent:first').siblings("div.leftContent").children("div.ListCellContentLeftText").attr("data-lanid") || "";
+						var titleVal = lanTool.lanContent(titleLV);
+
+						//渲染下拉数据
+						_curObj.picker({
+							sourceDataObj: data,
+							fromId: fromId,
+							jqueryObj: _curObj,
+							title: titleVal,//标题
+							toolbarCloseText: lanTool.lanContent('569_确认'),//确认
+							toolbarCancleText: lanTool.lanContent('570_取消'),//取消
+							cols: [
+								{
+									textAlign: 'center',
+									values: pickervalues
+								},
+							],
+							onOpen: function (data) {
+								console.log(data);
+								var valueTemp = _curObj.text() || "";
+								if (valueTemp == "") {
+									if (
+										data.params != undefined &&
+										data.params.cols != undefined &&
+										data.params.cols.length >= 1 &&
+										data.params.cols[0].values != undefined &&
+										data.params.cols[0].values.length >= 1
+									) {
+										valueTemp = data.params.cols[0].values[0];
+									}
+								}
+								var dataFieldVal = "";
+								for(var i = 0;i<data.params.sourceDataObj.length;i++){
+									if(valueTemp == data.params.sourceDataObj[i]["text"]){
+										dataFieldVal = data.params.sourceDataObj[i]["id"];
+										break;
+									}
+								}
+								_curObj.text(valueTemp);
+								_curObj.attr('data-fieldVal', dataFieldVal);
+								_curObj.picker("setValue", [valueTemp]);
+							},
+							onChange: function (data, value) {
+								var valueTemp = data.value[0] || "";
+								var dataFieldVal = "";
+								for(var i = 0;i<data.params.sourceDataObj.length;i++){
+									if(valueTemp == data.params.sourceDataObj[i]["text"]){
+										dataFieldVal = data.params.sourceDataObj[i]["id"];
+										break;
+									}
+								}
+								_curObj.text(valueTemp);
+								_curObj.attr('data-fieldVal', dataFieldVal);
+								_curObj.picker("setValue", valueTemp);
+							}
+						});
+
+					}, 100);
+
+				},
+				error: function (jqXHR, type, error) {
+					console.log(error);
+					tool.hideLoading();
+					return true;
+				},
+				complete: function () {
+					tool.hideLoading();
+					//隐藏虚拟键盘
+					document.activeElement.blur();
+				}
+			});
+
+		});
+	};
+
+	/*
+	* 清空控件数据
+	*/
+	tool.ClearControlData = function (myCallBack) {
+		//console.log("ClearControlData");
+
+		$("[data-fieldControlType='textareaInput']").val("");
+		$("[data-fieldControlType='picker']").text("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='divText']").val("");
+		if (!tool.isNullOrEmptyObject(myCallBack)) {
+			myCallBack();
+		}
+	};
+
 }(top.window.tool = {}, jQuery));
 
-
-// /* 
-// *加载操作
-// */
-// ; (function (loading, $) {
-// 	/*
-// 	  loading
-// 	  type:loading类型（1，2，3） 
-// 	  message:显示文字
-// 	*/
-// 	loading.show = function (message, type) {
-
-// 		if ($('.weui-mask_transparent').length > 0) {
-// 			return;
-// 		}
-
-// 		type = tool.isNullOrEmptyObject(type) ? 2 : type;
-// 		var html = '';
-// 		message = tool.isNullOrEmptyObject(message) ? "Loading..." : message;
-
-// 		if (type == 2) {
-// 			html += '<div class="weui-loadmore loadmore-position">';
-// 			html += '<div class="no_bg_loading">';
-// 			html += '<i class="weui-loading"></i><span class="weui-loadmore__tips">' + message + '</span>';
-// 			html += '</div>';
-
-// 		} else if (type == 3) {
-// 			html += '<div class="weui-loadmore loadmore-position">';
-// 			html += '<div class="bg_black_loading">';
-// 			html += '<i class="weui-loading"></i>';
-// 			html += '<div><span class="weui-loadmore__tips">' + message + '</span></div>';
-// 			html += '</div></div>';
-
-// 		} else {
-// 			html += '<div class="weui-loadmore loadmore-position">';
-// 			html += '<div class="bg_black_loading"><i class="weui-loading"></i></div>';
-// 			html += '</div>';
-// 		}
-
-// 		$("<div class='weui-mask_transparent'></div>").appendTo(document.body);
-// 		var dialog = $(html).appendTo(document.body);
-// 		dialog.show();
-// 	},
-
-// 		loading.hidden = function () {
-// 			$(".weui-mask_transparent,.loadmore-position").remove();
-// 		}
-
-// })(top.window.loading = {}, jQuery)
 
 /*
  * 多语言
@@ -1601,7 +1702,7 @@
 	//根据多语言自动别名获取当前语言内容
 	win.lanContent = lan.lanContent = function (id) {
 
-		// console.log("lan.lanContent");
+		// console.log(id);
 		// console.log(lan.Data);
 
 		if (tool.isNullOrEmptyObject(id)) {
@@ -1649,15 +1750,13 @@
 
 	//更新当前语言版本
 	lan.updateLanVersion = function ($parent) {
-		// console.log("lan.updateLanVersion");
-		// console.log("lan.currentLanguageVersion:"+lan.currentLanguageVersion);
+		//console.log("lan.updateLanVersion");
+		//console.log("lan.currentLanguageVersion:"+lan.currentLanguageVersion);
 		if (!lan.currentLanguageVersion) {
 			return;
 		}
 
 		if (lan.currentLanguageVersion) {
-			// console.log($(".lanText").length);
-
 			//text
 			$(".lanText", $parent || $('body')).each(function () {
 				$(this).text(

@@ -196,8 +196,63 @@ export default {
   beforeRouteEnter: function(to, from, next) {
     if (from.name === "contactsinfo" || from.name === "selectlist") {
       to.meta.isBack = true;
+    }else{
+      to.meta.isBack = false;
     }
     next();
+  },
+  activated:function(){
+            // //进入新增页面
+            // if($this.id == ''){
+            //     //除新增状态从selectlist回来 以外都清楚数据
+            //     if(!$this.$route.meta.isBack || $this.isFirstEnter){
+            //         //清空数据
+            //         commoninfo.clearObj($this.moduleData);
+            //         if('assigned_user_id' in $this.moduleData){
+            //             $this.moduleData.assigned_user_id = {
+            //                 text:tool.getStorageItem(tool.cache_UserRealName) || "",
+            //                 value:tool.getStorageItem(tool.cache_UserId) || ""
+            //             }
+            //         }
+
+            //         $this.pageTitle = lanTool.lanContent("217_新增");
+            //         $this.isAdd = true;
+
+            //         eventBus.$emit('initDatePickerEvent',$this.isAdd);
+            //         eventBus.$emit('initPickerEvent',$this.isAdd);
+
+            //     }
+
+            // }else{
+
+            //     //需要请求数据                                        //上传文件成功后回来（在编辑中用到）
+            //     if(!$this.$route.meta.isBack || $this.isFirstEnter || $this.$route.meta.fromSave){
+            //         //先清空数据
+            //         commoninfo.clearObj($this.moduleData);
+            //         $this.pageTitle = '';
+            //         eventBus.$emit('initDatePickerEvent',true);
+            //         eventBus.$emit('initPickerEvent',true);
+
+            //         commoninfo.requeryData($this.id, $this.querySingleUrl, $this.moduleData, eventBus,function(){
+
+            //             $this.$nextTick(function(){
+            //                  $this.isAdd = false;
+            //                  eventBus.$emit('initDatePickerEvent',$this.isAdd);
+            //                  eventBus.$emit('initPickerEvent',$this.isAdd);
+            //             })
+
+            //         });
+
+
+            //     }
+            // }
+
+            // $this.$route.meta.isBack = false;
+            // $this.isFirstEnter = false;
+
+            // if($this.$route.meta.fromSave != undefined){
+            //     $this.$route.meta.fromSave = false;
+            // }
   },
   mounted: function() {
     lanTool.updateLanVersion();
@@ -224,6 +279,8 @@ export default {
     _self.goInfoPage();
     _self.followToggle();
     _self.watchScroll();
+
+    
   },
   methods: {
     //监听滚动固定
@@ -274,25 +331,32 @@ export default {
 
     //点击去详情页
     goInfoPage: function(id) {
-      var _self = this;
-      // $("#organizationsList,#contactsList").on("click","div.group-item",
-      $("div.date-div").on('click',
-        function(event) {
-          var target = $(event.target);
-          if (!target.hasClass("group-item")) {
-            target = target.closest("div.group-item");
-            if (target == undefined) {
-              return;
-            }
-          }
-          var url = target.attr("data-url") || "";
-          _self.$router.push(url);
-        }
-      );
+      //var _self = this;
+      //console.log($("div.group-item").length);
+      // $("div.group-item").on('click',
+      //   function(event) {
+      //     var target = $(event.target);
+      //     console.log(target);
+      //     if (!target.hasClass("group-item")) {
+      //       target = target.closest("div.group-item");
+      //       if (tool.isNullOrEmptyObject(target)) {
+      //         return;
+      //       }
+      //     }
+
+      //     var url = target.attr("data-url") || "";
+      //     if(tool.isNullOrEmptyObject(url)){
+      //       return;
+      //     }
+
+      //     _self.$router.push(url);
+      //   }
+      // );
     },
 
     //列表展开收起
     groupToggle: function() {
+      var _self = this;
       $("#organizationsList,#contactsList").on(
         "click",
         "div.date-div",
@@ -334,6 +398,29 @@ export default {
                   .addClass("open")
                   .siblings(".group-item-list")
                   .slideDown(500);
+
+                  $("div.item-block").on('click',
+                    function(event) {
+                      var target = $(event.target);
+                      console.log(target);
+                      if(target.hasClass("item-stars-icon")){
+                        return;
+                      }
+                      if (!target.hasClass("group-item")) {
+                        target = target.closest("div.group-item");
+                        if (tool.isNullOrEmptyObject(target)) {
+                          return;
+                        }
+                      }
+
+                      var url = target.attr("data-url") || "";
+                      if(tool.isNullOrEmptyObject(url)){
+                        return;
+                      }
+
+                      _self.$router.push(url);
+                    }
+                  );
             });
           }
         }

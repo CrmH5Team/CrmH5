@@ -5,6 +5,7 @@
 	"Api_UserLogin":"Api_UserLogin",
 	"Api_OrganizationsHandle_Group":"Api_OrganizationsHandle_Group",
 	"Api_OrganizationsHandle_GroupInnerData":"Api_OrganizationsHandle_GroupInnerData",
+	"CommonDataServiceHandle_Query":"CommonDataServiceHandle_Query",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

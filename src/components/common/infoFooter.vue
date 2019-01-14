@@ -4,10 +4,11 @@
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
         <div class="ListCellContent">
             <div class="ListCellContentLeft leftContent">
-                <div class="ListCellContentLeftText">Updated Time</div>
+                <div class="ListCellContentLeftText lanText" data-lanid="801_更新时间"></div>
             </div>
             <div class="ListCellContentRight rightContent">
-                <div class="ListCellContentRightText">13/Nov/2018 15:00</div>
+                <!-- <div class="ListCellContentRightText">{{modifiedtime}}</div> -->
+                <div data-field="LastUpdateTime" data-fieldControlType="divText" class="ListCellContentRightText"></div>
             </div>
         </div>
     </div>
@@ -15,10 +16,11 @@
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chuangjianren"></span></div>
         <div class="ListCellContent">
             <div class="ListCellContentLeft leftContent">
-                <div class="ListCellContentLeftText">Updated by</div>
+                <div class="ListCellContentLeftText lanText" data-lanid="802_更新者"></div>
             </div>
             <div class="ListCellContentRight rightContent">
-                <div class="ListCellContentRightText">Cheryl Xiong</div>
+                <!-- <div class="ListCellContentRightText">{{modifiedby}}</div> -->
+                <div data-field="LastUpdateUserName" data-fieldControlType="divText" class="ListCellContentRightText"></div>
             </div>
         </div>
     </div>
@@ -27,15 +29,20 @@
 
 <script>
 export default {
-
     mounted: function () {
+        var _self = this;
         lanTool.updateLanVersion();
-        $('.input-row .footerInput').on('click', function () {
-            document.activeElement.blur();
-        })
-    },
-    props: ['createdtime', 'modifiedtime', 'modifiedby']
+        // console.log(_self.modifiedtime);
+        // console.log(_self.modifiedby);
 
+        // $('.input-row .footerInput').on('click', function () {
+        //     document.activeElement.blur();
+        // });
+    },
+    //props: ['modifiedtime', 'modifiedby'],
+    created:function(){
+        
+    }
 }
 </script>
 

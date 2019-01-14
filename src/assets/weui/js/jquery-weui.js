@@ -4029,8 +4029,8 @@ Device/OS Detection
           scrollToInput: true,
           inputReadOnly: true,
           toolbar: true,
-          toolbarCloseText: '完成',
-          toolbarCancleText:'取消',
+        //   toolbarCloseText: lanTool.lanContent('569_确认'),
+        //   toolbarCancleText: lanTool.lanContent('570_取消'),
           title: '请选择',
           toolbarTemplate: '<div class="toolbar">\
           <div class="toolbar-inner">\
@@ -4040,7 +4040,8 @@ Device/OS Detection
           </div>\
           </div>',
           jqueryObj:{},
-          fromId:""
+          fromId:"",
+          sourceDataObj:[]
       };
       params = params || {};
       for (var def in defaults) {
@@ -4049,6 +4050,7 @@ Device/OS Detection
           }
       }
       p.params = params;
+      console.log(p.params);
       p.cols = [];
       p.initialized = false;
 
@@ -4643,13 +4645,14 @@ Device/OS Detection
           return;
       }
 
-      _curObj = $("#"+_curObj.attr("data-fromid")||"");
+      //_curObj = $("#"+_curObj.attr("data-fromid")||"");
+      _curObj = $("[data-field='"+ (_curObj.attr("data-fromid")||"") +"']:first");
       if(!_curObj){
         return;
       }
 
       _curObj.text("");
-      _curObj.attr('data-val',"");
+      _curObj.attr('data-fieldVal',"");
       _curObj.picker("setValue", []);
 
       $.closePicker(pickerToClose);
