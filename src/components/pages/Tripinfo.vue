@@ -182,7 +182,7 @@
                 <div class="budgetHeader">
                     <div class="headerBlock">
                         <div class="headerBlockLeftIcon"><span class="mui-icon calcfont calc-yusuan"></span></div>
-                        <div class="headerBlockContent f16">住宿</div>
+                        <div class="headerBlockContent f16">预算</div>
                         <div class="headerBlockRightIcon iconHidden"><span class="mui-icon calcfont calc-jia"></span></div>
                     </div>
                 </div>
