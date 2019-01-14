@@ -90,11 +90,7 @@
                     </div>
                 </div>
                 <div class="ListCell">
-<<<<<<< HEAD
-                    <div data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-shoucang1'}" class="ListCellLeftIcon textLeftIcon" @click="followClick"><span class="mui-icon calcfont calc-shoucang1 guanZhu"></span></div>
-=======
-                    <div class="ListCellLeftIcon textLeftIcon" @click="followClick"><span  class="mui-icon calcfont calc-noshoucang guanZhu"></span></div>
->>>>>>> cfa76ae3d89c5d4b0a184c2690665447bedab016
+                    <div data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-shoucang1'}" class="ListCellLeftIcon textLeftIcon" @click="followClick"><span class="mui-icon calcfont calc-noshoucang guanZhu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP lanText" data-lanid="786_关注"></p>
                     </div>
