@@ -4,7 +4,7 @@
     <header class="mui-bar mui-bar-nav">
 
           <a v-if="isMain" @click="showRightPanel" class="calcfont calc-yonghu1 right"></a>
-          <a v-if="isMain" @click="goNotification" class="calcfont calc-youxiang1 right">
+          <a v-if="isMain" @click="goNotification" class="calcfont calc-mailbox right">
               <span class="count">2</span>
           </a>
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
