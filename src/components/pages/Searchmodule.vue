@@ -82,14 +82,27 @@ export default {
                     if(resulterow){
                         var valueDiv = el.closest('.item-row-flex').next();
                         valueDiv.html('');
+                        var val = '';
+                        var text = '';
                         $.each(sData.value,function(index,item){
-                            valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                            // valueDiv.append('<span style="display:inline-block;padding:0 5px 5px 0;" data-value='+ item.value +'>'+ item.text +'</span>');
+                            val = val + ',' + item.value;
+                            text += ','+item.text;
                         })
+                        valueDiv.attr('data-value',val);
+                        valueDiv.text(text);
+
                     }else{
                         el.html('');
+                        var val = '';
+                        var text = '';
                         $.each(sData.value,function(index,item){
-                            el.append('<span style="display:inline-block;padding-left:5px;" data-value='+ item.value +'>'+ item.text +'</span>');
+                            // el.append('<span style="display:inline-block;padding-left:5px;" data-value='+ item.value +'>'+ item.text +'</span>');
+                            val = val + ',' + item.value;
+                            text += ','+item.text;
                         })
+                        el.attr('data-value',val);
+                        el.text(text);
                     }
 
                     eventBus.selectListData = null;
