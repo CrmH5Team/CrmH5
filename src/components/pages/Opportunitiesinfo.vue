@@ -138,7 +138,7 @@
             <div class="meetingRecordList">
                 <div class="meetingRecordListCell">
                     <div class="headerDiv">
-                        <div class="headerDivLeftIcon"><span class="calcfont calc-bianhaonumbered5"></span></div>
+                        <div class="headerDivLeftIcon"><span class="calcfont calc-bianhao"></span></div>
                         <div class="headerDivContent">
                             <div class="content">MSN 05789 机身检查会议2</div>
                         </div>

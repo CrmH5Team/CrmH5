@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-web-icon-"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhutishi"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea autoHeight="true" placeholder="备注"></textarea>

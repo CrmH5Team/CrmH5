@@ -6,7 +6,7 @@
         <h1 class="mui-title f18">{{title}}</h1>
         <div class="leftView">
             <a v-show="submitIcon" class="calcfont calc-tijiao right" id="tijiao"></a>
-            <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo1 right" id="gengduo"></a>
+            <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
             <a @click="save" v-show="saveIcon" class="calcfont calc-gou right" id="save"></a>
             <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
         </div>

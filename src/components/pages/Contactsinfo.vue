@@ -30,7 +30,7 @@
                     <div class="ListSpecialCellContent">Air China</div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-zhiwei-"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-zhiwei"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea autoHeight="true" placeholder="Title">Fleet Planning Manager</textarea>

@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-iconset0264"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-icaocode"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
                             <textarea autoHeight="true" placeholder="ICAO Code"></textarea>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijinglixianxing-copy"></span></div>
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijingli"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText">Account Manager</div>
