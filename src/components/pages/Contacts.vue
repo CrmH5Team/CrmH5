@@ -402,7 +402,7 @@ export default {
                   $("div.item-block").on('click',
                     function(event) {
                       var target = $(event.target);
-                      console.log(target);
+                      // console.log(target);
                       if(target.hasClass("item-stars-icon")){
                         return;
                       }

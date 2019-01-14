@@ -36,7 +36,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="BusinessType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"></div>
+                            <input type="text" data-field="BusinessType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="CountryID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"></div>
+                            <input type="text" data-field="CountryID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="CityID" data-fieldControlType="picker" data-fieldVal="" class="ListCellContentRightText"></div>
+                            <input type="text" data-field="CityID" data-fieldControlType="picker" data-fieldVal="" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="AccountManager" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"></div>
+                            <input type="text" data-field="AccountManager" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -84,7 +84,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="787_是否为现有客户"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="ExistingCustomer" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="YesOrNo" class="ListCellContentRightText"></div>
+                            <input type="text" data-field="ExistingCustomer" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="YesOrNo" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -118,7 +118,7 @@
                         <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea data-field="Remark" data-fieldControlType="textareaInput" autoHeight="true" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
+                                <textarea data-field="OtherRemark" data-fieldControlType="textareaInput" autoHeight="true" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
                             </p>
                         </div>
                     </div>
@@ -196,16 +196,25 @@ export default {
     mounted: function () {
         //lanTool.updateLanVersion();
         document.activeElement.blur();
+        
+        var id = this.$route.params.id;
+        var fromType = "Organizationsinfo";
+        //console.log("autoID:" + id);
 
-        //挂载元素后，清空控件值，再渲染控件
+        //清空页面数据
         tool.ClearControlData(function(){
             //渲染控件
-            tool.InitiateInfoPageControl();
+            tool.InitiateInfoPageControl(function(){
+                //渲染数据
+                tool.IniInfoData(fromType,id,function(){
+
+                });
+            });
         });
 
-        // //查询数据
-        // var id = this.$route.params.id;
-        // console.log("id:" + id);
+        
+
+        
 
         this.$nextTick(function () {
             //将textarea设置为高度自适应

@@ -4050,7 +4050,7 @@ Device/OS Detection
           }
       }
       p.params = params;
-      console.log(p.params);
+    //   console.log(p.params);
       p.cols = [];
       p.initialized = false;
 
@@ -4182,6 +4182,9 @@ Device/OS Detection
           col.setValue = function (newValue, transition, valueCallbacks) {
               if (typeof transition === 'undefined') transition = '';
               var newActiveIndex = col.wrapper.find('.picker-item[data-picker-value="' + newValue + '"]').index();
+
+              //todo...
+
               if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
                   col.value = col.displayValue = newValue;
                   return;
@@ -4522,7 +4525,6 @@ Device/OS Detection
                   });
               }
           }
-
       }
 
       if (!p.inline) $('html').on('click', closeOnHTMLClick);
@@ -4624,6 +4626,11 @@ Device/OS Detection
 
       if (p.inline) {
           p.open();
+      }
+
+      //获取当前控件的源数据
+      p.getSourceDataObj = function(){
+          return p.params.sourceDataObj || [];
       }
 
       return p;
