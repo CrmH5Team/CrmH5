@@ -110,7 +110,7 @@ width: 100%;border: 0;outline: none;}
 .tips{padding:0 10px;line-height:36px;color: rgb(102, 102, 102);}
 .item{width: 50%;box-sizing: border-box;padding-left: 10px;line-height: 36px;vertical-align: middle;}
 .item .text{margin-left: 10px;}
-
+.item label{display:inline-block;}
 
 .anniu {
   position:fixed;
