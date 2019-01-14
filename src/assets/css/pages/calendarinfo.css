@@ -292,7 +292,7 @@ textarea::placeholder
 
 
 .showMoreList {
-    display: none;
+    display: block;
 }
 .updateList,.documentList{
     margin-top: 0.2rem;

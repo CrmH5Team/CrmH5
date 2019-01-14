@@ -1,0 +1,257 @@
+.tipBox {
+    background-color: #ffffff;
+    padding: 0.1rem 0.3rem;
+}
+
+.tipContent {
+    height: 0.4rem;
+    line-height: 0.4rem;
+    background-color: rgb(242, 242, 242);
+    border: solid 1px rgb(242, 242, 242);
+    border-radius: 5px;
+    color: rgb(102, 102, 102);
+}
+
+.tipContent span,
+    {
+    color: red;
+}
+
+#closingDate {
+    display: none;
+}
+
+/* 会议记录添加列*/
+.meetingRecord {
+    margin-top: 10px;
+    /* padding: 5px 0; */
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    background-color: #fff;
+}
+
+.headerBlock {
+    position: relative;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    display: flex;
+    padding: 10px 0;
+}
+
+.headerBlock:after {
+    position: absolute;
+    content: '';
+    left: 0.6rem;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.headerBlock .headerBlockLeftIcon {
+    width: 0.6rem;
+    margin: auto 0;
+}
+
+.headerBlock .headerBlockLeftIcon .calcfont {
+    font-size: 0.44rem;
+    color: #8a8a8a;
+}
+
+.headerBlock .headerBlockContent {
+    width: calc(100% - 1.16rem);
+    margin: auto 0;
+    color: #FF5A21;
+}
+
+.contentListCell .headerBlockContent {
+    color: #000000;
+}
+
+.headerBlock .headerBlockRightIcon {
+    width: 0.56rem;
+    text-align: right;
+    margin: auto 0;
+}
+
+.headerBlock .headerBlockRightIcon .calcfont {
+    font-size: 0.4rem;
+    color: #FF5A21;
+}
+
+.contentListCell .headerBlockRightIcon .calcfont {
+    color: #8a8a8a;
+}
+
+/* 会议记录列表 */
+.meetingRecordList {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    background-color: #fff;
+}
+
+.meetingRecordList .headerDiv {
+    position: relative;
+    height: 0.6rem;
+    display: flex;
+    padding: 10px 0;
+}
+
+.headerDiv .headerDivLeftIcon {
+    width: 0.6rem;
+    margin: auto 0;
+}
+
+.headerDiv .headerDivContent {
+    width: calc(70% - 1rem);
+    margin: auto 0;
+    font-size: 0.28rem;
+}
+
+.headerDiv .headerDivRightBtn {
+    width: calc(30%);
+    margin: auto 0;
+    color: #2A79C8;
+    font-size: 0.28rem;
+    text-align: center;
+
+}
+
+.headerDiv .headerDivRightDelete {
+    width: 0.4rem;
+    margin: auto 0;
+}
+
+.headerDivRightDelete .calcfont {
+    font-size: 0.4rem;
+    color: #aaaaaa;
+}
+
+.meetingRecordList .headerDiv:after {
+    position: absolute;
+    content: '';
+    left: 0.6rem;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.headerDiv .headerDivLeftIcon .calcfont {
+    font-size: 0.44rem;
+    color: rgb(33, 42, 50);
+}
+
+.airlinesName {
+    position: relative;
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.airlinesName .airlinesNameContent {
+    padding-left: 0.6rem;
+}
+
+.airlinesName:after {
+    position: absolute;
+    content: '';
+    left: 0.6rem;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.meetingRemark {
+    position: relative;
+    padding: 0.1rem 0;
+    padding-left: 0.6rem;
+}
+
+.meetingRemark:after {
+    position: absolute;
+    content: '';
+    left: 0.6rem;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.meetingRemark p {
+    font-size: 0.28rem;
+    line-height: 0.34rem;
+}
+
+.meetingDocList {
+    padding-left: 0.6rem;
+}
+
+.meetingDocList .docListCell {
+    position: relative;
+    display: flex;
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.meetingDocList .docListCell:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #F5F5DC;
+}
+
+.docListCell .docListCellLeft {
+    width: 60%;
+    font-size: 0.28rem;
+    color: #2A79C8;
+}
+
+.docListCell .docListCellRight {
+    width: 40%;
+    font-size: 0.28rem;
+}
+
+.docListCellLeftContent span {
+    color: #FF5A21;
+}
+
+/* 分享模块 */
+.shareBlock {
+    margin-top: 10px;
+    padding: 0.1rem 0;
+    background-color: #fff;
+}
+
+.shareBlock .shareTip {
+    font-size: 0.28rem;
+    line-height: 0.34rem;
+    padding-left: 0.9rem;
+    padding-right: 0.3rem;
+    color: rgb(102, 102, 102);
+}
+
+.shareTip span {
+    color: red;
+}
+
+.accessBlock {
+    margin-top: 10px;
+}
+
+.accessBlock .ListCellContentLeftText {
+    font-weight: 700;
+}
+
+.leftContent {
+    width: calc(100% - 0.32rem) !important;
+}
+
+span.calcfont.calc-shoucang {
+    color: #FF5A21 !important;
+}
