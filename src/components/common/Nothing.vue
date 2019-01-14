@@ -1,12 +1,7 @@
 <template>
 <div class="nothing-div">
-
-<picture>
-  <source srcset="../../assets/images/nothing.svg" type="image/svg+xml">
-  <img class="nothing-img" src="../../assets/images/nothing.png">
-</picture>
-
-<div class="f12 nothing-text">NO DATA</div>
+  <icon name="nothing" scale="10"></icon>
+  <div class="f12 nothing-text">NO DATA</div>
 </div>
 </template>
 

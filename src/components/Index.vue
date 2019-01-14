@@ -187,10 +187,7 @@
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
     <div id="right-content" class="right-content">
       <div class="user-info f14">
-        <picture>
-          <source srcset="../assets/images/user.svg" type="image/svg+xml">
-          <img class="user-img" src="../assets/images/user.png">
-        </picture>
+        <icon name="user" scale="10"></icon>
         <div class="userName"></div>
         <div class="userTitle"></div>
         <div class="userDepartment"></div>

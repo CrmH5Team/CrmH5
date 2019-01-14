@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import router from './router'
 
+import Icon from 'vue-svg-icon/Icon.vue'
+Vue.component('icon', Icon)
+
 // import axios from 'axios'
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // Vue.prototype.$axios = axios
