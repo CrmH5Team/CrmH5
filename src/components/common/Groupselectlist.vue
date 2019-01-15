@@ -23,7 +23,7 @@
                           <span class="calcfont calc-delete"></span>
                           <span @click="clickSearch" class="search-placeholder f16">
                                   <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
+                          <span class="" data-lanid="208_搜索">search</span>
                           </span>
                       </div>
                   </div>
@@ -112,7 +112,7 @@ export default {
     created: function () {
     },
     mounted: function () {
-        lanTool.updateLanVersion();
+        // lanTool.updateLanVersion();
 
         // this.getData();
         this.search();
@@ -163,6 +163,7 @@ export default {
 
         saveHandler: function () {
             var $this = this;
+            console.log($this.userCheckedValue);
             // var arr = {
             //     field: $this.field,
             //     value: []
@@ -263,6 +264,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/pages/Sharelist.css";
-.selectList-scroll{padding-top:0.88rem;}
+@import "../../assets/css/pages/groupselectlist.css";
 </style>
