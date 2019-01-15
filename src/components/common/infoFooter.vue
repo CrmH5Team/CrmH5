@@ -1,5 +1,5 @@
 <template>
-<div class="updateList">
+<div class="updateList HideWhenNew">
     <div class="ListCell">
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
         <div class="ListCellContent">

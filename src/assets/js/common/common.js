@@ -9,6 +9,12 @@
 			.indexOf(m[3].toLowerCase()) >= 0;
 	};
 
+	//把fromStr替换成toStr
+	String.prototype.ReplaceAll=function(fromStr,toStr){
+		var reg=new RegExp(fromStr,"g"); //创建正则RegExp对象   
+		return this.replace(reg,toStr); 
+	}
+
 	//是否包含指定字符串，忽略大小写
 	String.prototype.indexOfIgnoreCase = function () {
 		var bi = arguments[arguments.length - 1];
@@ -231,7 +237,14 @@
 	 * 查询公司明细数据接口
 	 */
 	tool.Api_OrganizationsHandle_QuerySingle = "Api_OrganizationsHandle_QuerySingle";
-
+	/*
+	 * 公司保存/修改接口
+	 */
+	tool.Api_OrganizationsHandle_SaveOrUpdate = "Api_OrganizationsHandle_SaveOrUpdate";
+	/*
+	 * 添加/取消关注接口
+	 */
+	tool.Api_OrganizationsHandle_UserFollow = "Api_OrganizationsHandle_UserFollow";
 	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
@@ -301,6 +314,8 @@
 		return data;
 	};
 
+	//localStorage
+	//localStorage的生命周期是永久性的。假若使用localStorage存储数据，即使关闭浏览器，也不会让数据消失，除非主动的去删除数据
 	/*获取应用存储区中保存的键值对的个数*/
 	tool.getStorageLength = function () {
 		if (tool.isNull(keyName)) {
@@ -365,7 +380,8 @@
 		return true;
 	};
 
-	//	sessionStorage
+	//sessionStorage
+	//sessionStorage 的生命周期是在浏览器关闭前。也就是说，在整个浏览器未关闭前，其数据一直都是存在的
 	/*通过键(key)检索获取应用存储sessionStorage的值*/
 	tool.getSessionStorageItem = function (keyName) {
 		if (tool.isNull(keyName)) {
@@ -1015,6 +1031,22 @@
 		return message;
 	};
 
+	//合并JSON对象
+	tool.combineJObject = function(jObject1,jObjct2){
+		if(tool.isNullOrEmptyObject(jObject1)){
+			jObject1 = {};
+		}
+		if(tool.isNullOrEmptyObject(jObjct2)){
+			jObjct2 = {};
+		}
+
+		for(var key in jObject1){
+			jObjct2[key] = jObject1[key]||"";
+		}
+
+		return jObjct2;
+	}
+
 	//纯文本
 	tool.showText = function (msg) {
 		if (tool.isNullOrEmptyObject(msg)) {
@@ -1380,7 +1412,7 @@
 				{InnerList}
 				</div>`;
 				innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
-				<div class="item-stars-icon calcfont calc-shoucang"></div>
+				<div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
 				<div class="item-block">
 				  <div class="item-div item-first-div">
 					  <span>{ShortName}</span><span class="right">{ICAOCode}</span>
@@ -1436,7 +1468,9 @@
 				for (var i = 0; i < data.length; i++) {
 					var tempStr = innerTemplate;
 					for (var key in data[i]) {
-						tempStr = tempStr.replace("{" + key + "}", (data[i][key] || ""));
+						// console.log(key);
+						tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+						// console.log(tempStr);
 					}
 
 					contentHtmlStr += tempStr;
@@ -1471,9 +1505,38 @@
 	*/
 	tool.ClearControlData = function (myCallBack) {
 		$("[data-fieldControlType='textareaInput']").val("");
-		$("[data-fieldControlType='picker']").text("").attr("data-fieldVal", "");
-		$("[data-fieldControlType='divText']").val("");
+		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='divText']").text("");
+		$("[data-fieldControlType='icon']").each(function(index,curObj){
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			//icon类型对象
+			var dataValObj = _curObj.attr("data-fieldVal") || "{}";
+			dataValObj = tool.jObject(dataValObj);
 
+			//获取应该显示的icon
+			var fieldVal = _curObj.attr["data-defaultVal"] || "";
+			fieldVal = fieldVal.toLowerCase();
+			var iconClass = dataValObj[fieldVal] || "";
+			if (tool.isNullOrEmptyObject(iconClass)) {
+				return true;
+			}
+			
+			//移除其他class
+			for (var key in dataValObj) {
+				if (key == fieldVal) {
+					continue;
+				}
+
+				var classNameTemp = dataValObj[key] || "";
+				_curObj.removeClass(classNameTemp);
+			}
+
+			//添加class
+			_curObj.addClass(iconClass);
+		});
 		if (!tool.isNullOrEmptyObject(myCallBack)) {
 			myCallBack();
 		}
@@ -1527,8 +1590,8 @@
 					data = data._OnlyOneData || [];
 					//var pickervalues = [];
 					var pickerDisplays = [];
-					for(var i = 0;i<data.length;i++){
-						if(tool.isNullOrEmptyObject(data[i])){
+					for (var i = 0; i < data.length; i++) {
+						if (tool.isNullOrEmptyObject(data[i])) {
 							continue;
 						}
 						//pickervalues.push(data[i]["id"]);
@@ -1564,7 +1627,7 @@
 								//console.log("displayTemp:"+displayTemp);
 								_curObj.picker("setValue", [displayTemp]);
 							},
-							onChange: function (data,valueTemp,displayTemp) {
+							onChange: function (data, valueTemp, displayTemp) {
 								//console.log(data);
 								//console.log("valueTemp:"+valueTemp);
 								//console.log("displayTemp:"+displayTemp);
@@ -1575,8 +1638,8 @@
 
 								var valueTemp = "";
 								var displayTemp = data.displayValue[0] || "";
-								for(var i=0;i<data.params.sourceDataObj.length;i++){
-									if(displayTemp == data.params.sourceDataObj[i]["text"]){
+								for (var i = 0; i < data.params.sourceDataObj.length; i++) {
+									if (displayTemp == data.params.sourceDataObj[i]["text"]) {
 										valueTemp = data.params.sourceDataObj[i]["id"];
 										break;
 									}
@@ -1609,35 +1672,40 @@
 		//3>渲染弹出选择控件
 
 		//4>渲染数据
-		if(!tool.isNullOrEmptyObject(myCallBack)){
+		if (!tool.isNullOrEmptyObject(myCallBack)) {
 			myCallBack();
 		}
 	};
 	/*
 	* 渲染数据
 	*/
-	tool.IniInfoData = function(fromType,autoID,myCallBack){
+	tool.IniInfoData = function (fromType, autoID, myCallBack) {
 		// console.log(fromType);
 		// console.log(autoID);
 
-		if(tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID)){
-			return;	
+		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID)) {
+			return;
 		}
+		//新增的情况下id=-1
+		if (Number(autoID) <= 0) {
+			return;
+		}
+
 		var urlTemp = tool.AjaxBaseUrl();
 		var controlName = "";
-		if(fromType == "Organizationsinfo"){
+		if (fromType == "Organizationsinfo") {
 			controlName = tool.Api_OrganizationsHandle_QuerySingle;
-		}else if(fromType == "Contactsinfo"){
+		} else if (fromType == "Contactsinfo") {
 			controlName = "";
-		}else if(fromType == "Meetinginfo"){
+		} else if (fromType == "Meetinginfo") {
 			controlName = "";
-		}else if(fromType == "Tripinfo"){
+		} else if (fromType == "Tripinfo") {
 			controlName = "";
-		}else if(fromType == "MeetingNoteinfo"){
+		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
-		}else if(fromType == "Opportunitiesinfo"){
+		} else if (fromType == "Opportunitiesinfo") {
 			controlName = "";
-		}else {
+		} else {
 			return;
 		}
 		//console.log("controlName:"+controlName);
@@ -1648,7 +1716,7 @@
 			UserName: tool.UserName(),
 			_ControlName: controlName,
 			_RegisterCode: tool.RegisterCode(),
-			AutoID:autoID
+			AutoID: autoID
 		};
 		tool.showLoading();
 		$.ajax({
@@ -1666,33 +1734,295 @@
 				}
 
 				data = data._OnlyOneData || [];
-				// console.log(data);
 
 				//控件赋值操作
 				//1>picker
-				$("[data-fieldControlType='picker']").each(function(index,obj){
+				$("[data-fieldControlType='picker']").each(function (index, obj) {
 					var _curObj = $(this);
-					if(tool.isNullOrEmptyObject(_curObj)){
-						return true;	
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
 					}
-					var dataField = _curObj.attr("data-field")||"";
-					if(tool.isNullOrEmptyObject(dataField)){
-						return true;	
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
 					}
-					// console.log("dataField:"+dataField);
-					// console.log("dataField_Name:"+dataField+"_Name");
+
 					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField+"_Name"] || "";
-					// console.log(fieldVal);
-					// console.log(fieldDisplay);
+					var fieldDisplay = data[dataField + "_Name"] || "";
 
 					_curObj.val(fieldDisplay);
-					_curObj.attr("data-fieldVal",fieldVal);
+					_curObj.attr("data-fieldVal", fieldVal);
 				});
 
 				//2>textareaInput
-				//3>icon
-				//4>divText
+				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+					var fieldVal = data[dataField] || "";
+					_curObj.val(fieldVal);
+				});
+
+				//3>divText
+				$("[data-fieldControlType='divText']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+					var fieldVal = data[dataField] || "";
+					_curObj.text(fieldVal);
+				});
+
+				//4>icon
+				$("[data-fieldControlType='icon']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+					//icon对象
+					var dataValObj = _curObj.attr("data-fieldVal") || "{}";
+					dataValObj = tool.jObject(dataValObj);
+
+					//获取应该显示的icon
+					var fieldVal = data[dataField] || "";
+					fieldVal = fieldVal.toLowerCase();
+					var iconClass = dataValObj[fieldVal] || "";
+					if (tool.isNullOrEmptyObject(iconClass)) {
+						return true;
+					}
+					
+					//移除其他class
+					for (var key in dataValObj) {
+						if (key == fieldVal) {
+							continue;
+						}
+
+						var classNameTemp = dataValObj[key] || "";
+						_curObj.removeClass(classNameTemp);
+					}
+					//添加class
+					_curObj.addClass(iconClass);
+
+				});
+
+				if (!tool.isNullOrEmptyObject(myCallBack)) {
+					myCallBack();
+				}
+			},
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				tool.hideLoading();
+				return true;
+			},
+			complete: function () {
+				tool.hideLoading();
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		});
+	}
+
+	/*
+	* 保存/修改详情页数据
+	*/
+	tool.SaveOrUpdateData = function (fromType, autoID, _self,myCallBack) {
+		// console.log("fromType:" + fromType);
+		// console.log("autoID:" + autoID);
+
+		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID)) {
+			return;
+		}
+		//新增的情况下id=-1
+		if (Number(autoID) <= 0) {
+			autoID = "";
+		}
+
+		var urlTemp = tool.AjaxBaseUrl();
+		var controlName = "";
+		if (fromType == "Organizationsinfo") {
+			controlName = tool.Api_OrganizationsHandle_SaveOrUpdate;
+		} else if (fromType == "Contactsinfo") {
+			controlName = "";
+		} else if (fromType == "Meetinginfo") {
+			controlName = "";
+		} else if (fromType == "Tripinfo") {
+			controlName = "";
+		} else if (fromType == "MeetingNoteinfo") {
+			controlName = "";
+		} else if (fromType == "Opportunitiesinfo") {
+			controlName = "";
+		} else {
+			return;
+		}
+		// console.log("controlName:" + controlName);
+
+		//获取控件字段值
+		var jObject = {};
+		//1>picker
+		$("[data-fieldControlType='picker']").each(function (index, obj) {
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+
+			var fieldVal = _curObj.attr("data-fieldVal") || "";
+			jObject[dataField] = fieldVal;			
+		});
+		//2>textareaInput
+		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+			var fieldVal = _curObj.val() || "";
+			jObject[dataField] = fieldVal;
+		});
+
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			_RegisterCode: tool.RegisterCode(),
+			AutoID: autoID
+		};
+		//合并数据
+		jsonDatasTemp = tool.combineJObject(jsonDatasTemp,jObject);
+		//console.log(jsonDatasTemp);
+		//return;
+		tool.showLoading();
+
+		$.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function (data) {
+				data = tool.jObject(data);
+				console.log(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return true;
+				}
+
+				//data = data._OnlyOneData || [];
+				//保存成功后刷新当前页面
+				var routeName = _self.$route.name;
+				var routers = _self.$router.options.routes;
+				var curRouter;
+				//保存成功后跳转到列表页面
+				for(var i = 0;i<routers.length;i++){
+					if(routeName == routers[i].name){
+						curRouter = routers[i];
+						break;
+					}
+				}
+				if(tool.isNullOrEmptyObject(curRouter)){
+					return;
+				}
+				routeName = curRouter.meta.listName;
+				for(var i = 0;i<routers.length;i++){
+					if(routeName == routers[i].name){
+						routers[i].fromSave = true;
+						break;
+					}
+				}
+				if (!tool.isNullOrEmptyObject(myCallBack)) {
+					myCallBack();
+				}
+
+				//返回到上一页
+				_self.$router.back(-1);
+			},
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				tool.hideLoading();
+				return true;
+			},
+			complete: function () {
+				tool.hideLoading();
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		});
+	}
+
+	/*
+	* 添加/取消关注
+	*/
+	tool.UserFollow = function(fromType,autoID,actionType,myCallBack){
+		console.log("fromType:" + fromType);
+		console.log("autoID:" + autoID);
+		console.log("actionType:" + actionType);
+
+		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID) || tool.isNullOrEmptyObject(actionType)) {
+			return;
+		}
+
+		var urlTemp = tool.AjaxBaseUrl();
+		var controlName = "";
+		if (fromType == "Organizationsinfo") {
+			controlName = tool.Api_OrganizationsHandle_UserFollow;
+		} else if (fromType == "Contactsinfo") {
+			controlName = "";
+		} else if (fromType == "Meetinginfo") {
+			controlName = "";
+		} else if (fromType == "Tripinfo") {
+			controlName = "";
+		} else if (fromType == "MeetingNoteinfo") {
+			controlName = "";
+		} else if (fromType == "Opportunitiesinfo") {
+			controlName = "";
+		} else {
+			return;
+		}
+
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			_RegisterCode: tool.RegisterCode(),
+			AutoID: autoID,
+			ActionType:actionType
+		};
+		tool.showLoading();
+
+		$.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function (data) {
+				data = tool.jObject(data);
+				console.log(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return true;
+				}
 
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
 					myCallBack();

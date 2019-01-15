@@ -320,7 +320,7 @@ export default {
           //重新加载多语言
           lanTool.waitExcute(false, true, function() {
             //window.location.reload();
-            _self.$router.go(0); //todo 以后增加刷新机制
+            _self.$router.go(0); //todo 以后增加刷新机制以后增加刷新机制
           });
         },
         function() {}

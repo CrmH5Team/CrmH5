@@ -7,6 +7,8 @@
 	"Api_OrganizationsHandle_GroupInnerData":"Api_OrganizationsHandle_GroupInnerData",
 	"CommonDataServiceHandle_Query":"CommonDataServiceHandle_Query",
 	"Api_OrganizationsHandle_QuerySingle":"Api_OrganizationsHandle_QuerySingle",
+	"Api_OrganizationsHandle_SaveOrUpdate":"Api_OrganizationsHandle_SaveOrUpdate",
+	"Api_OrganizationsHandle_UserFollow":"Api_OrganizationsHandle_UserFollow",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

@@ -6,10 +6,10 @@
         <div class="box">
             <div class="OrganizationsList">
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en1"></span></div>
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-en"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea data-field="ShortNameEN" data-fieldControlType="textareaVal" class="lanInputPlaceHolder" data-lanid="733_英文名称" autoHeight="true"></textarea>
+                            <textarea data-field="ShortNameEN" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="733_英文名称" autoHeight="true"></textarea>
                         </p>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="ListCell visible">
+                <div class="ListCell">
                     <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-icaocode"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CityID" data-fieldControlType="picker" data-fieldVal="" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CityID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -89,8 +89,8 @@
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="ListCell">
-                    <div data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-shoucang1'}" class="ListCellLeftIcon textLeftIcon" @click="followClick"><span class="mui-icon calcfont calc-noshoucang guanZhu"></span></div>
+                <div class="ListCell HideWhenNew">
+                    <div class="ListCellLeftIcon textLeftIcon" @click="followToggle"><span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP lanText" data-lanid="786_关注"></p>
                     </div>
@@ -124,7 +124,7 @@
                     </div>
 
                 </div>
-                <div class="contactList">
+                <div class="contactList HideWhenNew">
                     <div class="ListCell" @click="goToContactsPage">
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
                         <div class="ListCellContent">
@@ -146,7 +146,7 @@
             </div>
         </div>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
+    <InfoRightPanel v-show="!isAddNew" :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
 
 </div>
 </template>
@@ -178,6 +178,7 @@ export default {
             isShowMenuList: false,
             isShowSendBtn: false,
             scrollTop: 0, //记录滚动条的位置
+            isAddNew:false//是否添加新纪录
             // modifiedtime:"1/Jan/2019",
             // modifiedby:"Dylan Xu",
         }
@@ -194,11 +195,39 @@ export default {
     created: function () {
     },
     mounted: function () {
-        //lanTool.updateLanVersion();
-        document.activeElement.blur();
+        var _self = this;
+        this.$nextTick(function () {
+            //将textarea设置为高度自适应
+            $("textarea").each(function (index, cur) {
+                tool.autoTextarea(cur);
+            });
+        });
+
+        eventBus.$on('delete', function (data) {
+            console.log(data);
+        });
+
+        _self.savePageData();
+    },
+    activated:function(){
         
-        var id = this.$route.params.id;
+        lanTool.updateLanVersion();
+        document.activeElement.blur();
+        var _self = this;
+        var id = _self.$route.params.id;
         var fromType = "Organizationsinfo";
+
+        //若是新增，则隐藏新增不需要显示的模块
+        if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
+            $(".HideWhenNew").hide();
+            _self.isAddNew = true;
+        }else{
+            $(".HideWhenNew").show();
+            _self.isAddNew = false;
+        }
+
+        console.log("_self.isAddNew:"+_self.isAddNew);
+
         //console.log("autoID:" + id);
 
         //清空页面数据
@@ -210,21 +239,6 @@ export default {
 
                 });
             });
-        });
-
-        
-
-        
-
-        this.$nextTick(function () {
-            //将textarea设置为高度自适应
-            $("textarea").each(function (index, cur) {
-                tool.autoTextarea(cur);
-            });
-        });
-
-        eventBus.$on('delete', function (data) {
-            console.log(data);
         });
     },
     methods: {
@@ -241,19 +255,39 @@ export default {
             } else {
                 console.log("false all");
             }
-
         },
-        followClick: function (e) {
-            console.log("收藏");
-            if ($(".guanZhu").hasClass("calc-noshoucang")) {
-                $(".guanZhu").addClass("calc-shoucang");
-                $(".guanZhu").removeClass("calc-noshoucang")
-                $.toast("关注成功", 1500, function () {});
+        followToggle: function (e) {
+            var _self = this;
+            var autoID = _self.$route.params.id;
+            var fromType = "Organizationsinfo";
+            var actionType;
+            if ($(".guanZhu").hasClass("calc-shoucang")) {
+               //取消关注
+                actionType = 0;
             } else {
-                $(".guanZhu").addClass("calc-noshoucang");
-                $(".guanZhu").removeClass("calc-shoucang")
-                $.toast("取消关注", 1500, function () {});
+                //添加关注
+                actionType = 1;
             }
+
+            tool.UserFollow(fromType,autoID,actionType,function(){
+              if ($(".guanZhu").hasClass("calc-shoucang")) {
+                    //取消关注
+                    $(".guanZhu").removeClass("calc-shoucang").addClass("calc-noshoucang");
+                } else {
+                    //添加关注
+                    $(".guanZhu").removeClass("calc-noshoucang").addClass("calc-shoucang");
+                }
+          });
+        },
+        savePageData:function(e){
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Organizationsinfo";
+            $("#save").off().on("click",function(){
+                //console.log("save");
+                tool.SaveOrUpdateData(fromType, id,_self, function(){
+                });
+            });
         }
     }
 

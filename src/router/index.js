@@ -95,14 +95,6 @@ const router =  new Router({
       }
     },
 
-    // {
-    //   path:'/opportunities',name:'opportunities',component:Opportunities,
-    //   meta: {
-    //     keepAlive: true,
-    //     isBack:false,
-    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
-    //   }
-    // },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
       meta: {
         keepAlive: true,
@@ -119,47 +111,34 @@ const router =  new Router({
       }
     },
 
-
-    // { path:'/organizations',name:'organizations',component:Organizations,
-    //   meta: {
-    //     keepAlive: true,
-    //     isBack:false,
-    //     fromSave:false,  //当在详情页面保存后回到列表页面刷新
-    //   }
-    // },
-    { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-      }
-    },
-
-
+    //联系人
     { path:'/contacts',name:'contacts',component:Contacts,
       meta: {
         keepAlive: true,
         isBack:false,
-        fromSave:false,  //当在详情页面保存后回到列表页面刷新
+        fromSave:false  //当在详情页面保存后回到列表页面刷新
       }
     },
-    { path:'/contactsof',name:'contactsof',component:Contactsof},
+    { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+        listName:'contacts'
+      }
+    },
     { path:'/contactsinfo/:id',name:'contactsinfo',component:Contactsinfo,
       meta: {
         keepAlive: true,
         isBack:false,
+        listName:'contacts'
       }
     },
+    { path:'/contactsof',name:'contactsof',component:Contactsof},
 
 
     { path:'/uploadinput',component:Uploadinput},
 
-    //报表
-    // { path:'/report',name:'report',component:Report,
-    //   meta: {
-    //     keepAlive: true,
-    //     isBack:false,
-    //   }
-    // },
+
 
     { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Contactsinfo,
       meta: {
@@ -172,11 +151,7 @@ const router =  new Router({
     { path:'/selectlist',name:'selectlist',component:Selectlist},
     { path:'/sharelist',name:'sharelist',component:Sharelist},
     { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
-    { path:'/poweruser',name:'poweruser',component:Poweruser},
-
-
-
-
+    { path:'/poweruser',name:'poweruser',component:Poweruser}
   ]
 })
 

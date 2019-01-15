@@ -4185,10 +4185,16 @@ Device/OS Detection
 
               //todo...
 
-              if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
-                  col.value = col.displayValue = newValue;
-                  return;
-              }
+            //   if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
+            //       col.value = col.displayValue = newValue;
+            //       return;
+            //   }
+
+            if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
+                col.value = col.displayValue = '';
+                newActiveIndex = 0;
+            }
+            
               var newTranslate = -newActiveIndex * itemHeight + maxTranslate;
               // Update wrapper
               col.wrapper.transition(transition);
@@ -4652,15 +4658,16 @@ Device/OS Detection
           return;
       }
 
-      //_curObj = $("#"+_curObj.attr("data-fromid")||"");
+      
       _curObj = $("[data-field='"+ (_curObj.attr("data-fromid")||"") +"']:first");
+      console.log(_curObj);
       if(!_curObj){
         return;
       }
 
-      _curObj.text("");
-      _curObj.attr('data-fieldVal',"");
-      _curObj.picker("setValue", []);
+      _curObj.val('');
+      _curObj.attr('data-fieldval',"");
+      //_curObj.picker("setValue", []);
 
       $.closePicker(pickerToClose);
     }

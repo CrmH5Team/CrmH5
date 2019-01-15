@@ -15,7 +15,7 @@
 
       <div v-show="showPage == 0" class="pageList">
         <div class="add-btn-div">
-          <router-link to="/organizationsinfo/0" class="add-div">
+          <router-link to="/organizationsinfo/-1" class="add-div">
             <span class="calcfont calc-add"></span>
             <span class="add-text lanText" data-lanid="792_添加公司"></span>
           </router-link>
@@ -27,7 +27,7 @@
 
       <div v-show="showPage == 1" class="pageList">
         <div class="add-btn-div">
-          <router-link to="/contactsinfo/0" class="add-div">
+          <router-link to="/contactsinfo/-1" class="add-div">
             <span class="calcfont calc-add"></span>
             <span class="add-text lanText" data-lanid="793_添加联系人"></span>
           </router-link>
@@ -63,7 +63,7 @@ export default {
       title: lanTool.lanContent("175_联系人"),
       showPage: 0,
       noData: true, //没数据
-      isFirstEnter: false, //是否第一次进入，默认false
+      //isCreated: false, //是否第一次进入，默认false
 
       //侧滑数据模型
       rigthPanelData: [
@@ -194,93 +194,68 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    if (from.name === "contactsinfo" || from.name === "selectlist") {
+    // console.log(to);
+    // console.log(from);
+
+    if (from.name === "Organizationsinfo" || from.name === "Contactsinfo") {
       to.meta.isBack = true;
     }else{
       to.meta.isBack = false;
     }
     next();
   },
+  created:function(){
+    //this.isCreated = true;
+  },
   activated:function(){
-            // //进入新增页面
-            // if($this.id == ''){
-            //     //除新增状态从selectlist回来 以外都清楚数据
-            //     if(!$this.$route.meta.isBack || $this.isFirstEnter){
-            //         //清空数据
-            //         commoninfo.clearObj($this.moduleData);
-            //         if('assigned_user_id' in $this.moduleData){
-            //             $this.moduleData.assigned_user_id = {
-            //                 text:tool.getStorageItem(tool.cache_UserRealName) || "",
-            //                 value:tool.getStorageItem(tool.cache_UserId) || ""
-            //             }
-            //         }
+    lanTool.updateLanVersion();
+        var _self = this;
+        _self.searchData = _self.OrganizationsSearch;
 
-            //         $this.pageTitle = lanTool.lanContent("217_新增");
-            //         $this.isAdd = true;
+        //渲染数据
+        tool.InitiateGroupList("organizations", $("#organizationsList"), function(
+          containerObj
+        ) {
+          if (tool.isNullOrEmptyObject(containerObj)) {
+            _self.noData = true;
+            return;
+          }
+          if (!containerObj.html()) {
+            _self.noData = true;
+          } else {
+            _self.noData = false;
+          }
+        });
 
-            //         eventBus.$emit('initDatePickerEvent',$this.isAdd);
-            //         eventBus.$emit('initPickerEvent',$this.isAdd);
+        var _fromSave = _self.$route.meta.fromSave;
+        var _isBack = _self.$route.meta.isBack;
 
-            //     }
+        console.log("_fromSave:"+_fromSave);
+        console.log("_isBack:"+_isBack);
 
-            // }else{
+        //若为true,则需要刷新
+        if(_fromSave || !_isBack){
+          _self.changePos();
+          _self.showPage = 0;
+        }else{
+          //若为false,则不需要刷新
+        }
 
-            //     //需要请求数据                                        //上传文件成功后回来（在编辑中用到）
-            //     if(!$this.$route.meta.isBack || $this.isFirstEnter || $this.$route.meta.fromSave){
-            //         //先清空数据
-            //         commoninfo.clearObj($this.moduleData);
-            //         $this.pageTitle = '';
-            //         eventBus.$emit('initDatePickerEvent',true);
-            //         eventBus.$emit('initPickerEvent',true);
+        _self.$route.meta.fromSave = false;
+        _self.$route.meta.isBack = false;
+        // _self.isCreated = false;
 
-            //         commoninfo.requeryData($this.id, $this.querySingleUrl, $this.moduleData, eventBus,function(){
-
-            //             $this.$nextTick(function(){
-            //                  $this.isAdd = false;
-            //                  eventBus.$emit('initDatePickerEvent',$this.isAdd);
-            //                  eventBus.$emit('initPickerEvent',$this.isAdd);
-            //             })
-
-            //         });
-
-
-            //     }
-            // }
-
-            // $this.$route.meta.isBack = false;
-            // $this.isFirstEnter = false;
-
-            // if($this.$route.meta.fromSave != undefined){
-            //     $this.$route.meta.fromSave = false;
-            // }
+        // $this.$route.meta.isBack = false;
+        // $this.isFirstEnter = false;
+        // $this.$route.meta.fromSave = false;
   },
   mounted: function() {
-    lanTool.updateLanVersion();
     var _self = this;
-    _self.searchData = _self.OrganizationsSearch;
-
-    //渲染数据
-    tool.InitiateGroupList("organizations", $("#organizationsList"), function(
-      containerObj
-    ) {
-      if (tool.isNullOrEmptyObject(containerObj)) {
-        _self.noData = true;
-        return;
-      }
-      if (!containerObj.html()) {
-        _self.noData = true;
-      } else {
-        _self.noData = false;
-      }
-    });
-
     _self.changePos();
     _self.groupToggle();
-    _self.goInfoPage();
     _self.followToggle();
     _self.watchScroll();
 
-    
   },
   methods: {
     //监听滚动固定
@@ -328,33 +303,7 @@ export default {
         });
       }, 100);
     },
-
-    //点击去详情页
-    goInfoPage: function(id) {
-      //var _self = this;
-      //console.log($("div.group-item").length);
-      // $("div.group-item").on('click',
-      //   function(event) {
-      //     var target = $(event.target);
-      //     console.log(target);
-      //     if (!target.hasClass("group-item")) {
-      //       target = target.closest("div.group-item");
-      //       if (tool.isNullOrEmptyObject(target)) {
-      //         return;
-      //       }
-      //     }
-
-      //     var url = target.attr("data-url") || "";
-      //     if(tool.isNullOrEmptyObject(url)){
-      //       return;
-      //     }
-
-      //     _self.$router.push(url);
-      //   }
-      // );
-    },
-
-    //列表展开收起
+    //列表展开/收起
     groupToggle: function() {
       var _self = this;
       $("#organizationsList,#contactsList").on(
@@ -426,8 +375,7 @@ export default {
         }
       );
     },
-
-    //切换页面
+    //切换标签页
     switchPage: function(num, e) {
       var _self = this;
       var el = e.target;
@@ -479,21 +427,33 @@ export default {
           });
       });
     },
-
-    //点击关注/取消关注
+    //添加/取消关注
     followToggle: function() {
-      $("#organizationsList").on("click", ".item-stars-icon", function(event) {
-        event.stopPropagation();
-        var target = $(event.target);
-        if (target.hasClass("calc-shoucang")) {
-          //取消关注
-          target.removeClass("calc-shoucang").addClass("calc-shoucang1");
-          $.toast("取消关注", 1500, function() {});
-        } else {
-          //关注
-          target.removeClass("calc-shoucang1").addClass("calc-shoucang");
-          $.toast("关注成功", 1500, function() {});
-        }
+      $("#organizationsList").on("click", ".item-stars-icon", function() {
+          var _curObj = $(this);
+          var fromType = "Organizationsinfo";
+          var autoID = _curObj.attr("data-autoid") || "";
+          
+          var actionType;
+          if(_curObj.hasClass("calc-shoucang"))
+          {
+            //取消关注
+            actionType = 0;
+          }else{
+            //添加关注
+            actionType = 1;
+          }
+
+          tool.UserFollow(fromType,autoID,actionType,function(){
+              if(_curObj.hasClass("calc-shoucang"))
+              {
+                //取消关注
+                _curObj.removeClass("calc-shoucang").addClass("calc-noshoucang");
+              }else{
+                //添加关注
+                _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
+              }
+          });
       });
     }
   }
