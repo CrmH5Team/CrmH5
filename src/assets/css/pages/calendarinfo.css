@@ -1,3 +1,4 @@
+
 .scroll-div {
     /* position: fixed; */
     /* top: 0.88rem;
@@ -11,6 +12,7 @@
     -webkit-overflow-scrolling: touch; */
     padding-top: 0.88rem;
     background-color: #fff;
+    line-height: 0.21rem;
     /* background-color: #FFFFFF */
 }
 .box{
@@ -239,7 +241,7 @@ textarea::placeholder
 .visible:after {
     background-color: #F6E78B;
 }
-.ListCell input {
+.ListCell .switch input {
     /* outline: none; */
     width: 80%;
 }
@@ -401,14 +403,14 @@ textarea::placeholder
   visibility: hidden;
   position: fixed;bottom:0;z-index: -1;
 }
-.ListCellContentRight input{
+.ListCellContentRight.rightContent input{
     outline: none;
     text-align: right;
     border: none;
     /* height:0.5rem;
     line-height: 0.5rem; */
     font-size: 0.28rem;
-    width:100% !important;
+    width:100%;
     overflow: hidden;  /*溢出隐藏*/
     text-overflow: ellipsis; /*以省略号...显示*/
     white-space: nowrap;  /*强制不换行*/
