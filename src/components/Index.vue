@@ -53,7 +53,7 @@
       <div class="tips">
         <div class="tips-box f14">
           <span class="calcfont calc-tishi1"></span>
-          <span class="tips-text">你有3场会议需要上传会议记录。</span>
+          <div class="tips-text">你有<span>3</span>场会议需要上传会议记录。</div>
           <router-link to="/meetinglist" class="right upload-now a">立刻去上传</router-link>
         </div>
       </div>
