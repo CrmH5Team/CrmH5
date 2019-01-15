@@ -401,3 +401,15 @@ textarea::placeholder
   visibility: hidden;
   position: fixed;bottom:0;z-index: -1;
 }
+.ListCellContentRight input{
+    outline: none;
+    text-align: right;
+    border: none;
+    /* height:0.5rem;
+    line-height: 0.5rem; */
+    font-size: 0.28rem;
+    width:100% !important;
+    overflow: hidden;  /*溢出隐藏*/
+    text-overflow: ellipsis; /*以省略号...显示*/
+    white-space: nowrap;  /*强制不换行*/
+}
