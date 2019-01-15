@@ -31,11 +31,11 @@
                       <div class="ListCellContentLeftText">CRM Document Type</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <div class="picker ListCellContentRightText"
+                      <input class="picker ListCellContentRightText"
                           data-field="cf_765"
                           id="document-type"
                           data-val=""
-                      ></div>
+                      />
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
@@ -272,6 +272,6 @@ header a {
 }
 
 .page-content{padding-top: 0.88rem;}
-
+.rightContent .ListCellContentRightText{height:0.4rem;}
 
 </style>
