@@ -36,27 +36,27 @@
                   </div>
                   <!-- 列表 -->
                   <div v-if="!notUserData" class="dataList select-user-list">
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan1</span>
                             <span class="power f12 right">123</span>
                       </div>
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan2</span>
                             <span class="power f12 right">123</span>
                       </div>
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan3</span>
                             <span class="power f12 right">123</span>
                       </div>
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan4</span>
                             <span class="power f12 right">123</span>
                       </div>
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan5</span>
                             <span class="power f12 right">123</span>
                       </div>
-                      <div class="child-list-item f14">
+                      <div class="list-item f14">
                             <span>alan16</span>
                             <span class="power f12 right">123</span>
                       </div>
@@ -86,7 +86,7 @@
                   <!-- 列表 -->
                   <div v-if="!notGroupData" class="dataList select-group-list">
                       <div v-for="item in groupData" class="group-div">
-                          <div  class="item-div" @click="groupToggle">
+                          <div  class="item-div f14" @click="groupToggle">
                               {{item.groupName}}
                               <!-- <label class="checkbox-label" @click.stop>
                                   <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
@@ -378,9 +378,10 @@ export default {
                 $('#userInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('.child-list-item').show();
+                        listDom.find('.list-item').show();
+
                     } else {
-                        listDom.find('.child-list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        listDom.find('.list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
                 $('#groupInput').unbind().bind('input', function () {

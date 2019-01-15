@@ -28,14 +28,14 @@
       </div>
 
         <!-- 列表 -->
-        <div v-if="!notData && selectType==='checkbox'" class="dataList checkboxList">
+        <div v-if="!notData && selectType=='checkbox'" class="dataList checkboxList">
             <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="checkbox-label">
                     <input type="checkbox" :name="field" :value="item.value" v-model="checkboxValue"/><i class="checkbox"></i><span class="radios f14">{{item.text}}</span>
                 </label>
             </div>
         </div>
-        <div v-else-if="!notData && selectType==='radio'" class="dataList">
+        <div v-else-if="!notData && selectType=='radio'" class="dataList">
             <div v-for="item in dataArray" :key="item.value" class="item-div">
                 <label class="radios-label">
                     <input type="radio" :name="field" :value="item.value" v-model="radioValue"/><i class="radios"></i><span class="f14">{{item.text}}</span>
@@ -44,11 +44,11 @@
         </div>
 
         <!-- 没数据 -->
-        <nothing v-else="notData" style="padding-top:0.8rem;"></nothing>
+        <nothing v-else style="padding-top:0.8rem;"></nothing>
 
 
     </div>
-    <div v-if="selectType==='checkbox'" class="selectAll">
+    <div v-if="selectType=='checkbox'" class="selectAll">
         <div class="item-div">
             <label class="checkbox-label">
                           <input @click="selectAll" type="checkbox" name="sex"/><i class="checkbox checkAll"></i>

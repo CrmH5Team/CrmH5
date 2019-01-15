@@ -24,9 +24,11 @@
                     :data-resulteRow="item.resulteRow"
                     ></div>
 
-                  <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div>
+                  <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
+                  <input v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id"/>
 
-                  <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div>
+                  <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
+                  <input v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true"/>
 
               </div>
               <div v-if="item.resulteRow" class="select-list-value"></div>
@@ -105,7 +107,7 @@ export default {
 .search-rows{background: #fff;width:100%;overflow: hidden;}
 .item-row{padding:0px 15px;box-sizing: border-box;line-height: 40px;
 border-bottom: 1px solid beige;}
-.item-row .calcfont{color:#cdcdcd;position:absolute;top:0;right:-6px;}
+.item-row .calcfont{color:#cdcdcd;position:absolute;top:0;right:-6px;z-index: 1;}
 
 .search-input{
   width: 100%;
@@ -142,8 +144,8 @@ border-bottom: 1px solid beige;}
   text-overflow: ellipsis;
 }
 .row-cell-ft{
-  width:60%;
-  overflow: hidden;
+  width:60%;position: relative;z-index: 2;
+  overflow: hidden;display:block;
   white-space: nowrap;
   text-overflow: ellipsis;
   box-sizing: border-box;color:rgb(102, 102, 102);

@@ -57,7 +57,8 @@ export default {
         //选择文件后触发 一次选择一张图片
         inputFiles: function () {
 
-            loading.show(3, lanTool.lanContent("172_加载中..."));
+            // loading.show(3, lanTool.lanContent("172_加载中..."));
+            tool.showLoading();
 
             var $this = this;
 
@@ -80,7 +81,8 @@ export default {
                     }
                 });
 
-                loading.hidden();
+                // loading.hidden();
+                tool.hideLoading();
                 $('#selectFile').val('');
             };
         },
@@ -108,7 +110,8 @@ export default {
         }
     },
     deactivated: function () {
-        loading.hidden();
+        // loading.hidden();
+        tool.hideLoading();
     }
 
 }
