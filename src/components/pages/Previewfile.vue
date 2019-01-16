@@ -59,13 +59,13 @@
                                             <p data-field="filesize">{{(data.filesize/1024/1024).toFixed(2)}}M</p>
                                         </li>
 
-                                        
+
                                     </ul>
                                 </aside>
                     </div>
                     <div class="drawerFile_content" slot="content">
-                                <!-- 页面的主体内容 --> 
-                                
+                                <!-- 页面的主体内容 -->
+
                     </div>
             </vue-drawer-layout>
 
@@ -74,7 +74,7 @@
 </div>
 
 
-    
+
 </template>
 <script>
 
@@ -85,7 +85,7 @@ export default {
     components:{
         'vue-drawer-layout':DrawerLayout
     },
-        
+
     data(){
         return {
             data:null, //文件信息
@@ -100,8 +100,8 @@ export default {
     },
     created:function(){
         var self = this;
-        self.data = self.$route.query; 
-        console.log(self.data);       
+        self.data = self.$route.query;
+        console.log(self.data);
     },
     mounted:function(){
 
@@ -117,7 +117,7 @@ export default {
             onOpen:function(){
                 if(this.config.items.length < 2){
                     $('.swiper-pagination').hide();
-                    $this.isOpen = true; 
+                    $this.isOpen = true;
                 }
             },
             onClose:function(){
@@ -125,16 +125,16 @@ export default {
             }
         })
 
-        
-        loading.show(3,lanTool.lanContent("172_加载中..."));
+
+        tool.showLoading();
         //图片
-        if(tool.isFileImage($this.data.filename)) { 
+        if(tool.isFileImage($this.data.filename)) {
             $this.showDownload = true;
             $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + $this.data.attachmentpath + '" data-preview-src="" data-preview-group="1">');
             $('.image').off().on('click',function(){
                 $this.photo.open();
             });
-            loading.hidden();
+            tool.hideLoading();
             return ;
 
         }else if(tool.isFileVideo($this.data.filename)){
@@ -147,12 +147,12 @@ export default {
                 $(".drawerFile_content").html('<video name="media" style="width:100%; height:auto" src="' + $this.data.attachmentpath + '" controls></video>');
             }
 
-            loading.hidden();
+            tool.hideLoading();
             return;
         }
 
         //其他文件
-        //请求地址 
+        //请求地址
         var urlTemp =
             tool.combineRequestUrl(
                 tool.getConfigValue(tool.config_ajaxUrl),
@@ -175,10 +175,10 @@ export default {
             dataType: 'json',
             beforeSend: function(data) {},
             success: function(data) {
-                
+
                 data = tool.jObject(data);
                 if(data.Result != 1) {
-                    loading.hidden();
+                    tool.hideLoading();
                     toast.show(data.Msg);
                     return false;
                 }
@@ -189,20 +189,20 @@ export default {
                     toast.show(lanTool.lanContent("2_操作失败！"));
                     return false;
                 }
-                var fileData123 = window.atob(data.FileData); 
+                var fileData123 = window.atob(data.FileData);
                 // PDFJS.workerSrc = '../../assets/pdfjs/build/pdf.worker.js';
                 var loadingTask = PDFJS.getDocument({
                     data: fileData123
                 });
 
                 loadingTask.promise.then(function(pdf) {
-                    loading.hidden();
+                    tool.hideLoading();
                     //加载第一页第一页数据
                     $this.numPages = pdf.numPages;
-                    $this.thePDF = pdf; 
+                    $this.thePDF = pdf;
                     $this.LoadFile($this.currPage);
                 }, function(reason) {
-                    loading.hidden();
+                    tool.hideLoading();
                     console.error(reason);
                 });
 
@@ -211,12 +211,12 @@ export default {
                     $this.currPage--;
                     if($this.currPage == 0) {
                         $this.currPage = 1;
-                        
+
                         toast.show(lanTool.lanContent("288_已经是第一页！"));
                     } else {
                         $this.LoadFile($this.currPage);
                     }
-                    
+
                 })
 
                 $(".drawerFile_content").on("click",".next-btn",function(event){
@@ -228,10 +228,10 @@ export default {
                         $this.LoadFile($this.currPage);
                     }
 
-                })      
+                })
             },
             error: function(jqXHR, type, error) {
-                loading.hidden();
+                tool.hideLoading();
                 console.error('error');
             }
         });
@@ -292,14 +292,14 @@ export default {
         //下载
         download:function(){
 
-            if(tool.isFileImage(this.data.filename)) { 
+            if(tool.isFileImage(this.data.filename)) {
                 toast.show('长按保存图片');
                 return false;
-            }else{ 
+            }else{
                 /*
-                var myFrame= document.createElement("iframe"); 
-                    myFrame.src = this.data.attachmentpath; 
-                    myFrame.style.display = "none"; 
+                var myFrame= document.createElement("iframe");
+                    myFrame.src = this.data.attachmentpath;
+                    myFrame.style.display = "none";
                     document.body.appendChild(myFrame);
                 */
 
@@ -308,11 +308,11 @@ export default {
 
                 //    var a = document.createElement('a');
                 //        a.href = this.data.attachmentpath;
-                     
+
             }
-            
+
         },
-       
+
     },
     beforeDestroy:function(){
 
@@ -335,7 +335,7 @@ export default {
 header{position: fixed;width: 100%;left: 0;top: 0;z-index:1;}
 header.mui-bar {
   line-height: 0.2rem;
-	background: #3cadf9;
+	background: #f8f2dc;
 }
 .mui-title {
 	right: 118px;
@@ -373,7 +373,10 @@ header.mui-bar {
 
 }
 header .mui-title,
-header a {	color: #fff;}
+header a {
+  color: #333;
+  font-weight: 400;
+}
 
 
 .file_box{position:fixed;z-index: 1;left:0;right:0;top:0.88rem;bottom:0;overflow-y:scroll;}
@@ -389,7 +392,7 @@ header a {	color: #fff;}
     -khtml-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
-    user-select: text; 
+    user-select: text;
 }
 
 
@@ -401,7 +404,7 @@ header a {	color: #fff;}
 .btn-div{position: absolute;font-size:0.3rem;left:0;right:0;bottom:0.4rem;z-index:3;line-height:0.4rem;
 text-align: center;opacity: 0.6;}
 .canvas-btn{color:333;padding:5px;background:rgba(0,0,0,0.1);border-radius:2px;}
-.pre-btn{margin-right:20px;} 
+.pre-btn{margin-right:20px;}
 
 
 </style>
