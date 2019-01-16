@@ -140,7 +140,8 @@ export default {
           queryValue: "",
           queryComparison:"=",
           Code:"DropDowList_ViewBaseCountryInf",
-          TypeValue:""
+          TypeValue:"",
+          selectType:"radio"
         },
         {
           queryfield: "CityID",
@@ -152,17 +153,19 @@ export default {
           queryValue: "",
           queryComparison:"=",
           Code:"DropDowList_ViewBaseCountryCity",
-          TypeValue:""
+          TypeValue:"",
+          selectType:"radio"
         },
         {
-          queryfield: "CityID",
-          text: lanTool.lanContent("702_城市"),
+          queryfield: "AccountManager",
+          text: lanTool.lanContent("785_客户经理"),
           fieldControlType: "selectList",
           queryType: "string",
           queryFormat:"",
           queryRelation:"and",
           queryValue: "",
-          queryComparison:"="
+          queryComparison:"=",
+          selectType:"radio"
         }
       ],
       ContactsSearch: [

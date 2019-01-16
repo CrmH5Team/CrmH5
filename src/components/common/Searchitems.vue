@@ -1,19 +1,25 @@
 <template>
-
 <div class="search-rows f14">
-
       <div v-for="item in searchData" class="item-row">
           <!-- 手动输入 -->
-          <div v-if="item.type === 'input'">
-              <input class="f14 search-input" type="text" :placeholder="item.text"/>
+          <div v-if="item.fieldControlType =='textareaInput'">
+              <input class="f14 search-input" type="text" 
+              :placeholder="item.text" 
+              :data-field="item.queryfield" 
+              :data-fieldControlType="item.fieldControlType" 
+              :data-queryType="item.queryType" 
+              :data-queryFormat="item.queryFormat" 
+              :data-queryRelation="item.queryRelation" 
+              :data-queryValue="item.queryValue" 
+              :data-queryComparison="item.queryComparison" 
+              />
           </div>
           <div v-else>
               <div class="item-row-flex">
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
-
-                  <div
-                    v-if="item.type==='selectlist'"
+                  <!-- <div
+                    v-if="item.type==='selectList'"
                     class="selectList row-cell-ft"
                     :data-url="item.queryUrl"
                     :data-field="item.field"
@@ -22,24 +28,57 @@
                     :data-title="item.text"
                     :data-type="item.selectType"
                     :data-resulteRow="item.resulteRow"
+                    ></div> -->
+                    <div
+                    v-if="item.type=='selectList'" 
+                    class="selectList row-cell-ft" 
+                    :data-field="item.queryfield" 
+                    :data-fieldControlType="item.fieldControlType" 
+                    data-fieldVal= "" 
+                    :data-selectType="item.selectType"
+                    :data-Code="item.Code"
+                    :data-TypeValue="item.TypeValue"
+                    :data-queryType="item.queryType" 
+                    :data-queryFormat="item.queryFormat" 
+                    :data-queryRelation="item.queryRelation" 
+                    :data-queryValue="item.queryValue" 
+                    :data-queryComparison="item.queryComparison" 
                     ></div>
 
                   <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
-                  <input v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id"/>
+                  <input v-else-if="item.type==='picker'" class="picker row-cell-ft"               
+                    :data-field="item.queryfield" 
+                    :data-fieldControlType="item.fieldControlType" 
+                    data-fieldVal= ""
+                    :data-Code="item.Code"
+                    :data-TypeValue="item.TypeValue"
+                    :data-queryType="item.queryType" 
+                    :data-queryFormat="item.queryFormat" 
+                    :data-queryRelation="item.queryRelation" 
+                    :data-queryValue="item.queryValue" 
+                    :data-queryComparison="item.queryComparison" 
+                    />
 
                   <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
-                  <input v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true"/>
-
+                  <input v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" 
+                    :data-field="item.queryfield" 
+                    :data-fieldControlType="item.fieldControlType" 
+                    data-fieldVal= ""
+                    :data-Code="item.Code"
+                    :data-TypeValue="item.TypeValue"
+                    :data-queryType="item.queryType" 
+                    :data-queryFormat="item.queryFormat" 
+                    :data-queryRelation="item.queryRelation" 
+                    :data-queryValue="item.queryValue" 
+                    :data-queryComparison="item.queryComparison" 
+                    data-minute="true"
+                  />
               </div>
               <div v-if="item.resulteRow" class="select-list-value"></div>
           </div>
       </div>
-
 </div>
-
 </template>
-
-
 
 
 <script>
@@ -54,53 +93,22 @@ export default {
         }
     },
     props:['searchData'],
-
-    mounted:function(){
-
-
+    created:function(){
+        // console.log("created");
     },
-
+    mounted:function(){
+        // console.log("mounted");
+    },
+    activated:function(){
+        // console.log("activated");
+    },
     methods: {
         //点击调起列表组件
         callSelectList:function(event){
-            var el = event.target,
-                self = this;
-                document.activeElement.blur();
-            var url = $(el).attr('data-url') || '';
-            var dataLinkfrom = $(el).attr('data-linkfrom') || '';
-                if(dataLinkfrom){
-                    // url = o.moduleData[dataLinkfrom];
-                }
-            var fieldValue = $(el).attr('data-val') || '',
-                fieldName = $(el).attr('data-field') || '',
-                title = $(el).attr('data-title') || '',
-                selectType = $(el).attr('data-type') || '',
-                parameter = {
-                    'field':fieldName,
-                    'url':url,
-                    'title':title,
-                    'value':fieldValue,
-                    'selectType':selectType
-                };
-                self.$router.push({
-                                path: '/selectlist',
-                                query: parameter
-                })
-
         },
     }
-
-
 }
 </script>
-
-
-
-
-
-
-
-
 
 
 <style scoped>
@@ -153,9 +161,5 @@ border-bottom: 1px solid beige;}
 }
 .select-list-value{
    color:rgb(102, 102, 102);text-align:left;line-height:16px;
-   /* display: none; */
 }
-/* .select-list-value span{display:inline-block;padding:0 5px 5px 0;} */
-/* .selectList{width:100%;height:40px;border:0;outline: none;} */
-
 </style>

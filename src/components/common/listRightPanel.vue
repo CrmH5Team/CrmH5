@@ -126,12 +126,9 @@ export default {
         goSearchPage:function(){
             var _self = this;
             var parameter = {
-                // 'selectView':_self.classificationValue,
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.searchData
             };
-            //console.log(JSON.stringify(parameter));
-            //tool.setSessionStorageItem('searchData',JSON.stringify(parameter));
             _self.$router.push({
                   name:"searchmodule",
                   params:{

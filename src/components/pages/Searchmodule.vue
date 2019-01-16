@@ -1,18 +1,8 @@
 <template>
 <div>
     <my-header class="header" :title="title"></my-header>
-
-    <!-- <div class="nav">
-        <div @click="switchPage(0,$event)" class="nav-item f16 active-item">{{searchData[0].module}}</div>
-        <div @click="switchPage(1,$event)" class="nav-item f16" >{{searchData[1].module}}</div>
-        <div class="nav-border"></div>
-    </div> -->
-
-
     <div class="search-box">
           <search-items :searchData="searchData"></search-items>
-
-          <!-- <search-items :key="searchData[1].module" v-if="showPage == 1" :searchData="searchData[1].searchItems"></search-items> -->
     </div>
 
     <div class="anniu">
@@ -33,43 +23,24 @@ export default {
         return {
             title:'Search',
             searchData:[],
-            // selectView:'',
-            dataFilter:[],
-            // showPage:0,
+            dataFilter:[]
         }
     },
     created () {
-        var _self = this;
-        var queryParamTemp = _self.$route.params.paramStr;
-        var sessionData = tool.jObject(queryParamTemp);
-        
-        //console.log(sessionData);
-        if(!tool.isNullOrEmptyObject(sessionData)){
-            _self.searchData = sessionData.dataModule;
-            _self.dataFilter = sessionData.dataFilter;
-        }
+
     },
     mounted:function(){
-
 
     },
     activated:function(){
         var _self = this;
-        var queryParamTemp = _self.$route.params.paramStr;
-        var sessionData = tool.jObject(queryParamTemp);
-        console.log(sessionData);
-        
-        if(!tool.isNullOrEmptyObject(sessionData)){
-            _self.searchData = sessionData.dataModule;
-            _self.dataFilter = sessionData.dataFilter;
-
-            _self.$nextTick(function(){
-                //用common中的方法初始化
-                initial.initPicker();
-                initial.initDatePicker();
-            })
+        var paramStr = _self.$route.params.paramStr;
+        var paramObj = tool.jObject(paramStr);
+        //console.log(paramObj);
+        if(!tool.isNullOrEmptyObject(paramObj)){
+            _self.searchData = paramObj.dataModule;
+            _self.dataFilter = paramObj.dataFilter;
         }
-        _self.handleSelectlist();
     },
     methods:{
 
