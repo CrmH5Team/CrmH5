@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="checkbox" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -178,9 +178,10 @@ export default {
             isShowMenuList: false,
             isShowSendBtn: false,
             scrollTop: 0, //记录滚动条的位置
-            isAddNew:false//是否添加新纪录
+            isAddNew:false,//是否添加新纪录
             // modifiedtime:"1/Jan/2019",
             // modifiedby:"Dylan Xu",
+            isFirstEnter:false//是否首次进入
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -193,6 +194,7 @@ export default {
     },
 
     created: function () {
+        this.isFirstEnter = true;
     },
     mounted: function () {
         var _self = this;
@@ -210,7 +212,7 @@ export default {
         _self.savePageData();
     },
     activated:function(){
-        
+
         lanTool.updateLanVersion();
         document.activeElement.blur();
         var _self = this;
@@ -229,34 +231,48 @@ export default {
 
         var _isBack = _self.$route.meta.isBack;
         //若为true,则需要刷新
-        if(!_isBack){
+        if(!_isBack || _self.isFirstEnter){
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
                 tool.InitiateInfoPageControl(_self,function(){
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
+                      _self.isFirstEnter = false;
+                      if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+                            return;
+                        }
 
+                        //更新selectlist控件的结果
+                        var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+                        if(tool.isNullOrEmptyObject(curObj)){
+                            return;
+                        }
+                        curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+                        curObj.val(eventBus.selectListData.value.text);
+
+                        //清空全局变量
+                        eventBus.selectListData = null;
                     });
                 });
             });
-        }else{
-            //若为false,则不需要刷新
-            //console.log(eventBus.selectListData);
-
-            if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+        }
+        else{
+          _self.isFirstEnter = false;
+          if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                 return;
             }
-          
-          var curObj = $("[data-field='"+  eventBus.selectListData. field +"']");
-          if(tool.isNullOrEmptyObject(curObj)){
-              return;
-          }
-          curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-          curObj.val(eventBus.selectListData.value.text);
 
-          //清空全局变量
-          eventBus.selectListData = null;
+            //更新selectlist控件的结果
+            var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+            if(tool.isNullOrEmptyObject(curObj)){
+                return;
+            }
+            curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+            curObj.val(eventBus.selectListData.value.text);
+
+            //清空全局变量
+            eventBus.selectListData = null;
         }
     },
     methods: {

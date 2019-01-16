@@ -60,12 +60,12 @@ export default {
   },
   data() {
     return {
-      isRefresh:false,//是否刷新
       key: "contacts",
       title: lanTool.lanContent("175_联系人"),
       showPage: 0,
       noData: true, //没数据
       queryCondiction:[],//过滤条件数组
+      isFirstEnter:false,//是否首次进入
       //isCreated: false, //是否第一次进入，默认false
       //侧滑数据模型
       rigthPanelData: [
@@ -74,7 +74,7 @@ export default {
           type: "checkbox",
           default: "allData",
           items: [
-            // { 
+            // {
             //   text: "全部",//lanTool.lanContent("795_全部"),
             //   queryfield: "allData",
             //   queryType: "string",
@@ -230,10 +230,10 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    // console.log(from);
-    // console.log(to);
+    console.log(from);
+    console.log(to);
 
-    if (from.name === "Organizationsinfo" || from.name === "Contactsinfo") {
+    if (from.name == "organizationsinfo" || from.name == "contactsinfo") {
       to.meta.isBack = true;
     }else{
       to.meta.isBack = false;
@@ -241,12 +241,23 @@ export default {
     next();
   },
   created:function(){
-
+    this.isFirstEnter = true;
   },
   activated:function(){
     lanTool.updateLanVersion();
         var _self = this;
         _self.searchData = _self.OrganizationsSearch;
+
+        var _fromSave = _self.$route.meta.fromSave;
+        var _isBack = _self.$route.meta.isBack;
+
+        console.log("_fromSave:"+_fromSave);
+        console.log("_isBack:"+_isBack);
+
+        //若为true,则需要刷新
+        if(_fromSave || !_isBack || _self.isFirstEnter){
+          // _self.changePos();
+          // _self.showPage = 0;
 
         //渲染数据
         var fromType = "organizations";
@@ -264,22 +275,13 @@ export default {
           }
         });
 
-        var _fromSave = _self.$route.meta.fromSave;
-        var _isBack = _self.$route.meta.isBack;
-
-        console.log("_fromSave:"+_fromSave);
-        console.log("_isBack:"+_isBack);
-
-        //若为true,则需要刷新
-        if(_fromSave || !_isBack){
-          _self.changePos();
-          _self.showPage = 0;
         }else{
           //若为false,则不需要刷新
         }
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
+        _self.isFirstEnter = false;
   },
   deactivated:function(){
       // eventBus.$off('listRightChangeEvent');
@@ -296,7 +298,7 @@ export default {
       var _self = this;
       _self.queryCondiction = data;
       //执行监听的这个动作
-      _self.RefreshCurPageGroupData(); 
+      _self.RefreshCurPageGroupData();
     },
     //监听滚动固定
     watchScroll: function() {
