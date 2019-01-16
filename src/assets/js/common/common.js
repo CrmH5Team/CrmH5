@@ -1549,11 +1549,12 @@
 	*渲染控件
 	*/
 	tool.InitiateInfoPageControl = function (self,myCallBack) {
-		//console.log("InitiateInfoPageControl");
+		// console.log("InitiateInfoPageControl");
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
 			var _curObj = $(this);
 			var fromId = _curObj.attr("data-field") || "";
+			console.log(fromId);
 			if (tool.isNullOrEmptyObject(fromId)) {
 				return true;
 			}
@@ -1562,6 +1563,7 @@
 			var controlName = tool.CommonDataServiceHandle_Query;
 			var code = _curObj.attr("Code") || "";
 			var typeValue = _curObj.attr("TypeValue") || "";
+
 			if (tool.isNullOrEmptyObject(code)) {
 				return true;
 			}

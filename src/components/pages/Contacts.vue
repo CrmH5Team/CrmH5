@@ -166,7 +166,9 @@ export default {
           queryRelation:"and",
           queryValue: "",
           queryComparison:"=",
-          selectType:"radio"
+          Code:"DropDowList_AccountManager",
+          TypeValue:"",
+          selectType:"radio",
         }
       ],
       ContactsSearch: [

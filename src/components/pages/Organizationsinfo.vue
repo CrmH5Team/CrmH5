@@ -249,7 +249,7 @@ export default {
                             return;
                         }
                         curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-                        curObj.val(eventBus.selectListData.value.text);
+                        curObj.text(eventBus.selectListData.value.text);
 
                         //清空全局变量
                         eventBus.selectListData = null;
