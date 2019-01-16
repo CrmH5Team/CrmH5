@@ -86,7 +86,7 @@ export default {
       OrganizationsSearch: [
         {          
           queryfield: "ShortNameEN",
-          text: lantool.lanContent("733_英文名称"),
+          text: lanTool.lanContent("733_英文名称"),
           fieldControlType: "textareaInput",
           queryType: "string",
           queryFormat:"",
@@ -96,7 +96,7 @@ export default {
         },
         {
           queryfield: "ShortNameCN",
-          text: lantool.lanContent("32_中文名称"),
+          text: lanTool.lanContent("32_中文名称"),
           fieldControlType: "textareaInput",
           queryType: "string",
           queryFormat:"",
@@ -106,7 +106,7 @@ export default {
         },
         {
           queryfield: "BusinessType",
-          text: lantool.lanContent("695_业务分类"),
+          text: lanTool.lanContent("695_业务分类"),
           fieldControlType: "picker",
           queryType: "string",
           queryFormat:"",
@@ -118,7 +118,7 @@ export default {
         },
         {
           queryfield: "CountryID",
-          text: lantool.lanContent("701_国家"),
+          text: lanTool.lanContent("701_国家"),
           fieldControlType: "selectList",
           queryType: "string",
           queryFormat:"",
@@ -130,7 +130,7 @@ export default {
         },
         {
           queryfield: "CityID",
-          text: lantool.lanContent("702_城市"),
+          text: lanTool.lanContent("702_城市"),
           fieldControlType: "selectList",
           queryType: "string",
           queryFormat:"",
@@ -142,7 +142,7 @@ export default {
         },
         {
           queryfield: "CityID",
-          text: lantool.lanContent("702_城市"),
+          text: lanTool.lanContent("702_城市"),
           fieldControlType: "selectList",
           queryType: "string",
           queryFormat:"",

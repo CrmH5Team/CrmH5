@@ -40,8 +40,10 @@ export default {
     },
     created () {
         var _self = this;
-        var sessionData = JSON.parse(tool.getSessionStorageItem('searchData'));
-        console.log(sessionData);
+        var queryParamTemp = _self.$route.params.paramStr;
+        var sessionData = tool.jObject(queryParamTemp);
+        
+        //console.log(sessionData);
         if(!tool.isNullOrEmptyObject(sessionData)){
             _self.searchData = sessionData.dataModule;
             _self.dataFilter = sessionData.dataFilter;
@@ -52,9 +54,11 @@ export default {
 
     },
     activated:function(){
-
         var _self = this;
-        var sessionData = JSON.parse(tool.getSessionStorageItem('searchData'));
+        var queryParamTemp = _self.$route.params.paramStr;
+        var sessionData = tool.jObject(queryParamTemp);
+        console.log(sessionData);
+        
         if(!tool.isNullOrEmptyObject(sessionData)){
             _self.searchData = sessionData.dataModule;
             _self.dataFilter = sessionData.dataFilter;
@@ -63,11 +67,9 @@ export default {
                 //用common中的方法初始化
                 initial.initPicker();
                 initial.initDatePicker();
-
             })
         }
         _self.handleSelectlist();
-
     },
     methods:{
 

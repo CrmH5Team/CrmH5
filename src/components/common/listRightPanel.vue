@@ -119,12 +119,15 @@ export default {
                 // 'selectView':_self.classificationValue,
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.searchData
-            }
-            tool.setSessionStorageItem('searchData',JSON.stringify(parameter));
+            };
+            //console.log(JSON.stringify(parameter));
+            //tool.setSessionStorageItem('searchData',JSON.stringify(parameter));
             _self.$router.push({
-                  path: '/searchmodule',
-                  // query: parameter
-            })
+                  name:"searchmodule",
+                  params:{
+                      paramStr:JSON.stringify(parameter)
+                  }
+            });
         },
 
         //点击侧滑中的确定按钮

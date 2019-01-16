@@ -88,7 +88,7 @@ const router =  new Router({
         isBack:false
       }
     },
-    { path: '/searchmodule',name:'searchmodule',component: Searchmodule,
+    { path: '/searchmodule/:paramStr',name:'searchmodule',component: Searchmodule,
       meta: {
         keepAlive: true,
         isBack:false
