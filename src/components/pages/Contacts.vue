@@ -84,52 +84,71 @@ export default {
       searchData: {},
 
       OrganizationsSearch: [
-        {
-          type: "input",
-          field: "name",
+        {          
+          queryfield: "ShortNameEN",
+          text: lantool.lanContent("733_英文名称"),
+          fieldControlType: "textareaInput",
           queryType: "string",
-          text: "Organization Name 公司名称",
-          value: ""
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"like"
         },
         {
-          type: "picker",
-          field: "cf_765",
+          queryfield: "ShortNameCN",
+          text: lantool.lanContent("32_中文名称"),
+          fieldControlType: "textareaInput",
           queryType: "string",
-          text: "Business Sector 业务分类",
-          value: "",
-          id: Number(new Date().valueOf()) + count++
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"like"
         },
         {
-          type: "picker",
-          field: "cf_771",
+          queryfield: "BusinessType",
+          text: lantool.lanContent("695_业务分类"),
+          fieldControlType: "picker",
           queryType: "string",
-          text: "Area / Region 区域",
-          value: "",
-          id: Number(new Date().valueOf()) + count++
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"=",
+          Code:"DropDowList_ViewBaseAllTypes",
+          TypeValue:"Companybusinesstype"
         },
         {
-          type: "selectlist",
-          field: "related_to",
+          queryfield: "CountryID",
+          text: lantool.lanContent("701_国家"),
+          fieldControlType: "selectList",
           queryType: "string",
-          queryUrl: "Accounts/Query",
-          text: "Country 国家",
-          selectType: "radio",
-          value: {
-            text: "",
-            value: ""
-          }
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"=",
+          Code:"DropDowList_ViewBaseCountryInf",
+          TypeValue:""
         },
         {
-          type: "selectlist",
-          field: "related_to",
+          queryfield: "CityID",
+          text: lantool.lanContent("702_城市"),
+          fieldControlType: "selectList",
           queryType: "string",
-          queryUrl: "Accounts/Query",
-          text: "Account Manager 客户经理",
-          selectType: "radio",
-          value: {
-            text: "",
-            value: ""
-          }
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"=",
+          Code:"DropDowList_ViewBaseCountryCity",
+          TypeValue:""
+        },
+        {
+          queryfield: "CityID",
+          text: lantool.lanContent("702_城市"),
+          fieldControlType: "selectList",
+          queryType: "string",
+          queryFormat:"",
+          queryRelation:"and",
+          queryValue: "",
+          queryComparison:"="
         }
       ],
       ContactsSearch: [

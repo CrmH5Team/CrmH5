@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CountryID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CityID" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="AccountManager" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"/>
+                            <input type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
