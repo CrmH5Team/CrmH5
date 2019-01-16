@@ -12,15 +12,9 @@
           <div class="search-box">
               <span class="calcfont calc-sousuo input-search-icon"></span>
               <input
-                      @blur="blurHandler"
-                      type="search"
-                      id="searchInput"
-                      class="search-input lanInputPlaceHolder" data-lanid="208_搜索" placeholder=""  />
-              <span class="calcfont calc-delete"></span>
-              <span @click="clickSearch" class="search-placeholder f16">
-                      <span class="calcfont calc-sousuo"></span>
-              <span class="lanText" data-lanid="208_搜索"></span>
-              </span>
+                  type="text"
+                  id="searchInput"
+                  class="search-input lanInputPlaceHolder" data-lanid="208_搜索" placeholder=""/>
           </div>
       </div>
         <!-- 列表 -->
@@ -60,9 +54,6 @@ export default {
     },
     data() {
         return {
-            languageData: {
-                'search': lanTool.lanContent('780_搜索'),
-            },
             notData:false, //没数据
             dataArray: [],//存放全部数据
             field:"",
@@ -93,10 +84,11 @@ export default {
         if (this.selectType === 'checkbox') {
             $(".selectList-scroll").css("padding-bottom", "50px");
         }
-
-        this.getData();
-        this.search();
-        this.iniVal();
+        var _self = this;
+        _self.getData(function(){
+            _self.iniVal();
+        });
+        _self.search();
     },
     methods: {
         selectAll: function (e) {
@@ -111,41 +103,64 @@ export default {
                     self.checkboxValue = [];
                 }
         },
-        clickSearch: function (e) {
-            $(e.target).closest('.search').addClass('search-active');
-            document.activeElement.blur();
-            $(e.target).siblings('.search-input').focus();
-        },
-        //失去焦点
-        blurHandler: function (e) {
-            document.activeElement.blur();
-            // $(e.target).val('');
-            //$(e.target).closest('.search').removeClass('search-active');
-        },
+
         backHandler: function () {
             this.$router.back(-1);
         },
         //渲染已经选择的的数据
         iniVal:function(){
             var self = this;
-            //console.log(self.value);
+
             if(tool.isNullOrEmptyObject(self.value)){
                 return;
             }
 
             var valArrTemp = self.value.split(",");
-            for(var i=0;i<valArrTemp.length;i++){
-                if(self.selectType === 'radio'){
-                    //radio
-                    self.radioValue = valArrTemp[i];
-                }else{
-                    //checkbox
-                    self.checkboxValue.push(valArrTemp[i]);
-                }
-            }
+            self.$nextTick(function(){
+                var toTopH = [];
+                for(var i=0;i<valArrTemp.length;i++){
+                    if(self.selectType === 'radio'){
+                        //radio
+                        self.radioValue = valArrTemp[i];
 
-            //todo 页面定位到已选中的记录
+                        //radio 滚动条定位
+                        var curObj = $("input[value='"+ valArrTemp[i] +"']").closest('.item-div');
+                        var scrollTo = curObj.offset().top;
+                        toTopH.push(scrollTo);
+                    }else{
+                        //checkbox
+                        self.checkboxValue.push(valArrTemp[i]);
+
+                        var curObj = $("input[value='"+ valArrTemp[i] +"']").closest('.item-div');
+                        var scrollTo = curObj.offset().top;
+                        toTopH.push(scrollTo);
+                    }
+                }
+
+                self.scrollTo(toTopH);
+
+            })
         },
+        //滚动条定位到已选中的记录
+        scrollTo:function(arr){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(arr)){
+                    return;
+            }
+            // console.log(arr);
+            _self.$nextTick(function(){
+                var headerH = $('header').height();
+                var scrollToH = 0;
+                if(_self.selectType === 'radio'){
+                    scrollToH = arr[0];
+                }else{
+                    //获取最小值
+                    scrollToH = Math.min.apply(Math, arr);
+                }
+                $(window).scrollTop(scrollToH - headerH);
+            })
+        },
+
         saveHandler: function () {
             var $this = this;
             var returnObj = {
@@ -187,60 +202,64 @@ export default {
             eventBus.$emit('updataSelectList', returnObj);
             $this.$router.back(-1);
         },
-        getData: function () {
+        getData: function (mycallback) {
             var $this = this;
             if (tool.isNullOrEmptyObject($this.code)) {
                 return;
             }
 
             var urlTemp = tool.AjaxBaseUrl();
-			var controlName = tool.CommonDataServiceHandle_Query;
+            var controlName = tool.CommonDataServiceHandle_Query;
 
-			//传入参数
-			var jsonDatasTemp = {
-				CurrentLanguageVersion: lanTool.currentLanguageVersion,
-				UserName: tool.UserName(),
-				_ControlName: controlName,
-				_RegisterCode: tool.RegisterCode(),
-				Code: $this.code,
-				TypeValue: $this.typeValue
-            };
+            //传入参数
+            var jsonDatasTemp = {
+                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                    UserName: tool.UserName(),
+                    _ControlName: controlName,
+                    _RegisterCode: tool.RegisterCode(),
+                    Code: $this.code,
+                    TypeValue: $this.typeValue
+                };
             tool.showLoading();
-			$.ajax({
-				async: true,
-				type: "post",
-				url: urlTemp,
-				data: jsonDatasTemp,
-				success: function (data) {
-					data = tool.jObject(data);
-					// console.log(data);
-					if (data._ReturnStatus == false) {
-                        $this.notData = true;
-						tool.showText(tool.getMessage(data));
-						console.log(tool.getMessage(data));
-						return true;
-					}
+            $.ajax({
+              async: true,
+              type: "post",
+              url: urlTemp,
+              data: jsonDatasTemp,
+              success: function (data) {
+                  data = tool.jObject(data);
+                  // console.log(data);
+                  if (data._ReturnStatus == false) {
+                                $this.notData = true;
+                    tool.showText(tool.getMessage(data));
+                    console.log(tool.getMessage(data));
+                    return true;
+                  }
 
-                    data = data._OnlyOneData || [];
-                    $this.dataArray = data;
-                    if(data.length<=0){
-                        $this.notData = true;
-                    }else{
-                        $this.notData = false;
-                    }
-				},
-				error: function (jqXHR, type, error) {
-                    $this.notData = true;
-					console.log(error);
-					tool.hideLoading();
-					return true;
-				},
-				complete: function () {
-					tool.hideLoading();
-					//隐藏虚拟键盘
-					document.activeElement.blur();
-				}
-			});
+                  data = data._OnlyOneData || [];
+                  $this.dataArray = data;
+                  if(data.length<=0){
+                      $this.notData = true;
+                  }else{
+                      $this.notData = false;
+                  }
+
+                  if(!tool.isNullOrEmptyObject(mycallback)){
+                    mycallback();
+                  }
+              },
+              error: function (jqXHR, type, error) {
+                  $this.notData = true;
+                  console.log(error);
+                  tool.hideLoading();
+                  return true;
+              },
+              complete: function () {
+                  tool.hideLoading();
+                  //隐藏虚拟键盘
+                  document.activeElement.blur();
+              }
+            });
         },
 
         //筛选
@@ -255,7 +274,7 @@ export default {
                         listDom.find('div.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
-            });           
+            });
         },
 
     },
