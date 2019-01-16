@@ -80,14 +80,14 @@ export default {
             });
         }
     },
-
     mounted:function(){
         lanTool.updateLanVersion();
     },
     activated:function(){
         eventBus.$on('showRightPanelEvent',this.panelToggle);
+
         //触发父亲事件
-        this.conStructQueryCondition(this.dataFilter);
+        //this.conStructQueryCondition(this.dataFilter);
     },
     methods: {
         //侧滑
@@ -148,8 +148,9 @@ export default {
             }
         },
         conStructQueryCondition:function(arr){
+            var self = this;
             arr = arr || [];
-            console.log("arr:"+arr);
+            //console.log("arr:"+arr);
             var queryCondiction = [];
             for(var i = 0;i<arr.length;i++){
                 var _curObj = $("[value='"+ $.trim(arr[i]) +"']");
@@ -170,7 +171,8 @@ export default {
             }
 
             //触发父类的事件
-            eventBus.$emit('listRightChangeEvent',queryCondiction);
+            console.log("子组件触发父组件事件");
+            self.$parent.setQuerycondition(queryCondiction);
         }
     },
     deactivated:function(){

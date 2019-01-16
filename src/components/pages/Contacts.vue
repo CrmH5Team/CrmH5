@@ -60,13 +60,13 @@ export default {
   },
   data() {
     return {
+      isRefresh:false,//是否刷新
       key: "contacts",
       title: lanTool.lanContent("175_联系人"),
       showPage: 0,
       noData: true, //没数据
       queryCondiction:[],//过滤条件数组
       //isCreated: false, //是否第一次进入，默认false
-
       //侧滑数据模型
       rigthPanelData: [
         {
@@ -97,7 +97,6 @@ export default {
       ],
       //搜索页面数据模型
       searchData: {},
-
       OrganizationsSearch: [
         {
           queryfield: "ShortNameEN",
@@ -228,8 +227,8 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    // console.log(to);
     // console.log(from);
+    // console.log(to);
 
     if (from.name === "Organizationsinfo" || from.name === "Contactsinfo") {
       to.meta.isBack = true;
@@ -239,7 +238,7 @@ export default {
     next();
   },
   created:function(){
-    //this.isCreated = true;
+
   },
   activated:function(){
     lanTool.updateLanVersion();
@@ -265,8 +264,8 @@ export default {
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
 
-        // console.log("_fromSave:"+_fromSave);
-        // console.log("_isBack:"+_isBack);
+        console.log("_fromSave:"+_fromSave);
+        console.log("_isBack:"+_isBack);
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack){
@@ -278,21 +277,9 @@ export default {
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
-
-        eventBus.$on('listRightChangeEvent',function(data){
-          // console.log("listRightChangeEvent");
-          _self.queryCondiction = data;
-          // console.log(_self.queryCondiction)
-          //刷新页面，就不执行监听的这个动作
-          if(_fromSave || !_isBack){
-          }else{
-            //不刷新页面，则执行监听的这个动作
-            _self.RefreshCurPageGroupData(); 
-          }
-        });
   },
   deactivated:function(){
-      eventBus.$off('listRightChangeEvent');
+      // eventBus.$off('listRightChangeEvent');
   },
   mounted: function() {
     var _self = this;
@@ -302,6 +289,12 @@ export default {
     _self.watchScroll();
   },
   methods: {
+    setQuerycondition:function(data){
+      var _self = this;
+      _self.queryCondiction = data;
+      //执行监听的这个动作  
+      _self.RefreshCurPageGroupData(); 
+    },
     //监听滚动固定
     watchScroll: function() {
       var _self = this;
@@ -444,7 +437,6 @@ export default {
         fromType = "contacts";
         container = $("#contactsList");
       }
-
       //渲染数据
       tool.InitiateGroupList(fromType, container,_self.queryCondiction, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
@@ -458,7 +450,6 @@ export default {
         }
       });
     },
-
     //table底部横条过渡效果
     changePos: function() {
       this.$nextTick(function() {

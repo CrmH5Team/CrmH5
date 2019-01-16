@@ -1990,7 +1990,7 @@
 				routeName = curRouter.meta.listName;
 				for(var i = 0;i<routers.length;i++){
 					if(routeName == routers[i].name){
-						routers[i].fromSave = true;
+						routers[i].meta.fromSave = true;
 						break;
 					}
 				}
