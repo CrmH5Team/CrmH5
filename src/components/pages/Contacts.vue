@@ -74,15 +74,15 @@ export default {
           type: "checkbox",
           default: "allData",
           items: [
-            { 
-              text: "全部",//lanTool.lanContent("795_全部"),
-              queryfield: "allData",
-              queryType: "string",
-              queryFormat:"",
-              queryRelation:"and",
-              queryValue: "",
-              queryComparison:"="
-            },
+            // { 
+            //   text: "全部",//lanTool.lanContent("795_全部"),
+            //   queryfield: "allData",
+            //   queryType: "string",
+            //   queryFormat:"",
+            //   queryRelation:"and",
+            //   queryValue: "",
+            //   queryComparison:"="
+            // },
             {
               text: "关注的公司",//lanTool.lanContent("796_关注的公司"),
               queryfield: "MyFollowData",
@@ -292,7 +292,7 @@ export default {
     setQuerycondition:function(data){
       var _self = this;
       _self.queryCondiction = data;
-      //执行监听的这个动作  
+      //执行监听的这个动作
       _self.RefreshCurPageGroupData(); 
     },
     //监听滚动固定

@@ -67,18 +67,18 @@ export default {
     },
     props:['panelData','searchData'],
     created:function(){
-        var _self = this;
-        if(_self.panelData.length >= 1){
-            $.each(this.panelData,function(key,value){
-                // console.log(value);
-                if(value.type === 'radio' && value.default){
-                    _self.viewValue = value.default;
-                }else if(value.type === 'checkbox' && value.default){
-                    //_self.dataFilter[0] = value.default;
-                    _self.dataFilter.push(value.default);
-                }
-            });
-        }
+        // var _self = this;
+        // if(_self.panelData.length >= 1){
+        //     $.each(this.panelData,function(key,value){
+        //         // console.log(value);
+        //         if(value.type === 'radio' && value.default){
+        //             _self.viewValue = value.default;
+        //         }else if(value.type === 'checkbox' && value.default){
+        //             //_self.dataFilter[0] = value.default;
+        //             _self.dataFilter.push(value.default);
+        //         }
+        //     });
+        // }
     },
     mounted:function(){
         lanTool.updateLanVersion();
