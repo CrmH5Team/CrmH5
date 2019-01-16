@@ -49,6 +49,7 @@
 import Header from "../common/Listheader";
 import Listrightpanel from "../common/Listrightpanel";
 import Nothing from "../common/Nothing";
+import eventBus from '../common/Event';
 
 var count = 0;
 export default {
@@ -275,6 +276,10 @@ export default {
     _self.followToggle();
     _self.watchScroll();
 
+    eventBus.$on('listRightChangeEvent',function(data){
+        console.log(data);
+    })
+
   },
   methods: {
     //监听滚动固定
@@ -477,6 +482,9 @@ export default {
           });
       });
     }
+  },
+  beforeDestroy:function(){
+      eventBus.$off('listRightChangeEvent');
   }
 };
 </script>
