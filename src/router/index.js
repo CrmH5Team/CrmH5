@@ -55,32 +55,9 @@ const router =  new Router({
     { path: '/login',name:'login', component: Login },
 
     { path: '/index',name:'index', component:Index },
-    { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
+
     { path: '/notification',name:'notification', component:Notification },
-
-    { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo },
-
-    { path: '/prcalendarinfo/:id',name:'prcalendarinfo', component:PrCalendarinfo },
-
-
-    { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
-      meta: {
-        keepAlive: true,
-        isBack:false
-      }
-    },
-    { path: '/business',name:'business', component:Business,
-      meta: {
-        keepAlive: true,
-        isBack:false
-      }
-    },
-    { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
-    { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
-    { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },
-    { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
-    { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
-
+    { path: '/meetinglist',name:'meetinglist', component: Meetinglist},
 
     { path: '/search',name:'search',component: Search,
       meta: {
@@ -95,6 +72,47 @@ const router =  new Router({
       }
     },
 
+
+    { path: '/prcalendarinfo/:id',name:'prcalendarinfo', component:PrCalendarinfo },
+
+    { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
+    { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo },
+    { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
+      //添加住宿/机票
+    { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
+     //添加会议
+    { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
+    //会议记录
+    { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },
+    //上传文件
+    { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+      }
+    },
+    //文档查看
+    { path:'/previewfile',name:'previewfile',component:Previewfile},
+
+    //添加出差报销单
+    { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
+
+
+
+
+
+
+    { path: '/business',name:'business', component:Business,
+      meta: {
+        keepAlive: true,
+        isBack:false
+      }
+    },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
       meta: {
         keepAlive: true,
@@ -102,14 +120,8 @@ const router =  new Router({
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
       }
     },
-    { path:'/previewfile',name:'previewfile',component:Previewfile},
 
-    { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-      }
-    },
+
 
     //联系人
     { path:'/contacts',name:'contacts',component:Contacts,
@@ -133,20 +145,8 @@ const router =  new Router({
         listName:'contacts'
       }
     },
+
     { path:'/contactsof',name:'contactsof',component:Contactsof},
-
-
-    { path:'/uploadinput',component:Uploadinput},
-
-
-
-    { path:'/calendarlistinfo/:id',name:'calendarlistinfo',component:Contactsinfo,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-      }
-    },
-
 
     { path:'/selectlist',name:'selectlist',component:Selectlist},
     { path:'/sharelist',name:'sharelist',component:Sharelist},
