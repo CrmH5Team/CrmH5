@@ -35,7 +35,7 @@
 
 
                   <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
-                  <input v-else-if="item.fieldControlType==='picker'" class="picker row-cell-ft"
+                  <input v-else-if="item.fieldControlType=='picker'" class="picker row-cell-ft"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
@@ -142,7 +142,7 @@ export default {
             });
           });
         });
-      }, 200);
+      }, 500);
     } else {
       _self.isFirstEnter = false;
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
