@@ -64,17 +64,18 @@ export default {
       title: lanTool.lanContent("175_联系人"),
       showPage: 0,
       noData: true, //没数据
+      queryCondiction:[],//过滤条件数组
       //isCreated: false, //是否第一次进入，默认false
 
       //侧滑数据模型
       rigthPanelData: [
         {
-          groupText: lanTool.lanContent("794_数据筛选"),
+          groupText: "数据筛选",//lanTool.lanContent("794_数据筛选"),
           type: "checkbox",
-          default: "allContactss",
+          default: "allData",
           items: [
             { 
-              text: lanTool.lanContent("795_全部"),
+              text: "全部",//lanTool.lanContent("795_全部"),
               queryfield: "allData",
               queryType: "string",
               queryFormat:"",
@@ -83,7 +84,7 @@ export default {
               queryComparison:"="
             },
             {
-              text: lanTool.lanContent("796_关注的公司"),
+              text: "关注的公司",//lanTool.lanContent("796_关注的公司"),
               queryfield: "MyFollowData",
               queryType: "string",
               queryFormat:"",
@@ -246,9 +247,10 @@ export default {
         _self.searchData = _self.OrganizationsSearch;
 
         //渲染数据
-        tool.InitiateGroupList("organizations", $("#organizationsList"), function(
-          containerObj
-        ) {
+        var fromType = "organizations";
+        var containerObj = $("#organizationsList");
+
+        tool.InitiateGroupList("organizations", $("#organizationsList"), _self.queryCondiction, function(containerObj) {
           if (tool.isNullOrEmptyObject(containerObj)) {
             _self.noData = true;
             return;
@@ -263,8 +265,8 @@ export default {
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
 
-        console.log("_fromSave:"+_fromSave);
-        console.log("_isBack:"+_isBack);
+        // console.log("_fromSave:"+_fromSave);
+        // console.log("_isBack:"+_isBack);
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack){
@@ -276,11 +278,21 @@ export default {
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
-        // _self.isCreated = false;
 
-        // $this.$route.meta.isBack = false;
-        // $this.isFirstEnter = false;
-        // $this.$route.meta.fromSave = false;
+        eventBus.$on('listRightChangeEvent',function(data){
+          // console.log("listRightChangeEvent");
+          _self.queryCondiction = data;
+          // console.log(_self.queryCondiction)
+          //刷新页面，就不执行监听的这个动作
+          if(_fromSave || !_isBack){
+          }else{
+            //不刷新页面，则执行监听的这个动作
+            _self.RefreshCurPageGroupData(); 
+          }
+        });
+  },
+  deactivated:function(){
+      eventBus.$off('listRightChangeEvent');
   },
   mounted: function() {
     var _self = this;
@@ -288,11 +300,6 @@ export default {
     _self.groupToggle();
     _self.followToggle();
     _self.watchScroll();
-
-    eventBus.$on('listRightChangeEvent',function(data){
-        console.log(data);
-    })
-
   },
   methods: {
     //监听滚动固定
@@ -425,21 +432,21 @@ export default {
       _self.showPage = num;
 
       var container = null;
-      var moduleName = "";
+      var fromType = "";
       if (num == 0) {
         _self.searchData = _self.OrganizationsSearch;
 
-        moduleName = "organizations";
+        fromType = "organizations";
         container = $("#organizationsList");
       } else {
         _self.searchData = _self.ContactsSearch;
 
-        moduleName = "contacts";
+        fromType = "contacts";
         container = $("#contactsList");
       }
 
       //渲染数据
-      tool.InitiateGroupList(moduleName, container, function(containerObj) {
+      tool.InitiateGroupList(fromType, container,_self.queryCondiction, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
           _self.noData = true;
           return;
@@ -493,11 +500,42 @@ export default {
                 _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
               }
           });
+      })
+    },
+    //刷新当前激活的page的分组数据
+    RefreshCurPageGroupData : function(){
+      var _self = this;
+      //console.log(_self.showPage);
+      var num = _self.showPage;
+      var container = null;
+      var fromType = "";
+      if (num == 0) {
+        _self.searchData = _self.OrganizationsSearch;
+
+        fromType = "organizations";
+        container = $("#organizationsList");
+      } else {
+        _self.searchData = _self.ContactsSearch;
+        fromType = "contacts";
+        container = $("#contactsList");
+      }
+
+      //渲染数据
+      tool.InitiateGroupList(fromType, container,_self.queryCondiction, function(containerObj) {
+        if (tool.isNullOrEmptyObject(containerObj)) {
+          _self.noData = true;
+          return;
+        }
+        if (!containerObj.html()) {
+          _self.noData = true;
+        } else {
+          _self.noData = false;
+        }
       });
     }
   },
   beforeDestroy:function(){
-      eventBus.$off('listRightChangeEvent');
+      // eventBus.$off('listRightChangeEvent');
   }
 };
 </script>

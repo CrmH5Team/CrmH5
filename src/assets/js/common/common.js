@@ -1258,9 +1258,12 @@
 	*noData:是否无数据
 	*myCallBack:回调函数
 	*/
-	tool.InitiateGroupList = function (fromType, containerObj, myCallBack) {
+	tool.InitiateGroupList = function (fromType, containerObj, queryCondiction,myCallBack) {
 		//清空容器内容
 		containerObj.html('');
+
+		console.log("common");
+		console.log(queryCondiction);
 
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
 			return;
@@ -1305,7 +1308,7 @@
 			UserName: tool.UserName(),
 			_ControlName: controlName,
 			_RegisterCode: tool.RegisterCode(),
-			QueryCondiction: []
+			QueryCondiction: queryCondiction
 		};
 		tool.showLoading();
 

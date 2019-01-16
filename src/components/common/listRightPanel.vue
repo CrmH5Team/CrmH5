@@ -10,14 +10,18 @@
             <div v-if="item.type=='radio'" class="right-block-items">
                 <div v-for="radio in item.items" class="radios-div" >
                       <label class="radios-label">
-                          <input type="radio" name="classification" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
+                          <input type="radio" name="radiosGroup" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
                       </label>
                 </div>
             </div>
             <div v-if="item.type=='checkbox'" class="right-block-items">
                 <div v-for="checkbox in item.items" class="checkbox-div">
                           <label class="checkbox-label">
-                              <input type="checkbox" name="datafilter" :value="checkbox.value" v-model="dataFilter"/><i class="checkbox"></i>
+                              <input type="checkbox" name="checkboxGroup"
+                              :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType" 
+                              :data-queryFormat="checkbox.queryFormat"  :data-queryRelation="checkbox.queryRelation"
+                              :value="checkbox.queryfield" :data-queryComparison="checkbox.queryComparison" v-model="dataFilter"/>
+                              <i class="checkbox"></i>
                               <span>{{checkbox.text}}</span>
                           </label>
                 </div>
@@ -46,42 +50,45 @@ export default {
     data(){
         return {
             showPanel:false,
-
             viewValue:'',  //右侧分类
             dataFilter:[],
         }
     },
     watch:{
+        //视图切换使用
         viewValue:function(newVule){
             eventBus.$emit('changeViewEvent',newVule);
         },
+        //数据过滤
         dataFilter:function(newVule){
-            eventBus.$emit('listRightChangeEvent',newVule);
+            var _self = this;
+           _self.conStructQueryCondition(newVule);
         }
-
     },
     props:['panelData','searchData'],
     created:function(){
         var _self = this;
         if(_self.panelData.length >= 1){
             $.each(this.panelData,function(key,value){
+                // console.log(value);
                 if(value.type === 'radio' && value.default){
                     _self.viewValue = value.default;
                 }else if(value.type === 'checkbox' && value.default){
-                    _self.dataFilter[0] = value.default;
+                    //_self.dataFilter[0] = value.default;
+                    _self.dataFilter.push(value.default);
                 }
-            })
+            });
         }
     },
 
     mounted:function(){
         lanTool.updateLanVersion();
-
     },
     activated:function(){
         eventBus.$on('showRightPanelEvent',this.panelToggle);
+        //触发父亲事件
+        this.conStructQueryCondition(this.dataFilter);
     },
-
     methods: {
         //侧滑
         panelToggle:function(){
@@ -115,7 +122,6 @@ export default {
             }
 
         },
-
         //点击侧滑中的search
         goSearchPage:function(){
             var _self = this;
@@ -133,7 +139,6 @@ export default {
                   }
             });
         },
-
         //点击侧滑中的确定按钮
         okBtn:function(){
             var _self = this;
@@ -142,6 +147,31 @@ export default {
                   return false;
             }
         },
+        conStructQueryCondition:function(arr){
+            arr = arr || [];
+            console.log("arr:"+arr);
+            var queryCondiction = [];
+            for(var i = 0;i<arr.length;i++){
+                var _curObj = $("[value='"+ $.trim(arr[i]) +"']");
+                if(tool.isNullOrEmptyObject(_curObj)){
+                    continue;
+                }
+
+                var queryCondictionObj = 
+                {
+                    Field : _curObj.attr("data-queryfield") || "",
+                    Type : _curObj.attr("data-querytype") || "string",
+                    Format : _curObj.attr("data-queryformat") || "",
+                    Relation : _curObj.attr("data-queryrelation") || "and",
+                    Value : _curObj.attr("value") || "",
+                    Comparison : _curObj.attr("data-querycomparison") || "string",
+                };
+                queryCondiction.push(queryCondictionObj);
+            }
+
+            //触发父类的事件
+            eventBus.$emit('listRightChangeEvent',queryCondiction);
+        }
     },
     deactivated:function(){
         eventBus.$off('showRightPanelEvent');
