@@ -1,5 +1,6 @@
 <template>
 <div class="search-rows f14">
+
       <div v-for="item in searchData" class="item-row">
           <!-- 手动输入 -->
           <div v-if="item.fieldControlType =='textareaInput'">
@@ -14,7 +15,9 @@
               :data-queryComparison="item.queryComparison"
               />
           </div>
+
           <div v-else>
+
               <div class="item-row-flex">
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
@@ -24,8 +27,8 @@
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
                     :data-selectType="item.selectType"
-                    :data-Code="item.Code"
-                    :data-TypeValue="item.TypeValue"
+                    :Code="item.Code"
+                    :TypeValue="item.TypeValue"
                     :data-queryType="item.queryType"
                     :data-queryFormat="item.queryFormat"
                     :data-queryRelation="item.queryRelation"
@@ -39,8 +42,8 @@
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
-                    :data-Code="item.Code"
-                    :data-TypeValue="item.TypeValue"
+                    :Code="item.Code"
+                    :TypeValue="item.TypeValue"
                     :data-queryType="item.queryType"
                     :data-queryFormat="item.queryFormat"
                     :data-queryRelation="item.queryRelation"
@@ -53,8 +56,8 @@
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
-                    :data-Code="item.Code"
-                    :data-TypeValue="item.TypeValue"
+                    :Code="item.Code"
+                    :TypeValue="item.TypeValue"
                     :data-queryType="item.queryType"
                     :data-queryFormat="item.queryFormat"
                     :data-queryRelation="item.queryRelation"
@@ -63,22 +66,25 @@
                     data-minute="true"
                   />
               </div>
+
               <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="resulte-row"
                 :data-field="item.queryfield"
                 :data-fieldControlType="item.fieldControlType"
                 data-fieldVal= ""
                 :data-selectType="item.selectType"
-                :data-Code="item.Code"
-                :data-TypeValue="item.TypeValue"
+                :Code="item.Code"
+                :TypeValue="item.TypeValue"
                 :data-queryType="item.queryType"
                 :data-queryFormat="item.queryFormat"
                 :data-queryRelation="item.queryRelation"
                 :data-queryValue="item.queryValue"
                 :data-queryComparison="item.queryComparison"
               ></div>
+
           </div>
+
       </div>
-    </div>
+
   </div>
 </template>
 
