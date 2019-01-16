@@ -54,7 +54,11 @@ export default {
     watch:{
         viewValue:function(newVule){
             eventBus.$emit('changeViewEvent',newVule);
+        },
+        dataFilter:function(newVule){
+            eventBus.$emit('listRightChangeEvent',newVule);
         }
+
     },
     props:['panelData','searchData'],
     created:function(){

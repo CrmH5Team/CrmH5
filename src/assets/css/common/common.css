@@ -270,7 +270,7 @@ label.radios-label input:disabled:checked + .radios:after {
   height:0.7rem;line-height:0.7rem;background:#e9cfae;padding:0 10px;font-size: 12px;
   width: 100%;color:#000;box-sizing: border-box;z-index:89;top:0;
 }
-.list-group-div .item-stars-icon{display: inline-block;width: 0.6rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:5px;left:0.1rem;font-size:0.5rem;color:#ccc;}
+.list-group-div .item-stars-icon{display: inline-block;width: 0.8rem;height:0.6rem;line-height:0.6rem;text-align:center;position: absolute;top:2px;left:0;font-size:0.4rem;color:#ccc;}
 .list-group-div .calc-shoucang{color:#ff5a21}
 .list-group-div .date-div .calcfont{color:#ff5a21;margin-right:5px;vertical-align:bottom;font-size:18px;}
 .list-group-div .group-name{font-size: 0.3rem;}
@@ -355,9 +355,9 @@ margin-right: 5px;}
 .organizations-list .item-block{padding:5px 10px 5px 0.8rem;}
 .organizations-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
 top:0px;position:absolute;}
-.organizations-list .item-div{font-size: 0.25rem;line-height: 0.4rem;}
-.organizations-list .item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
-
+.organizations-list .item-div{line-height:1;padding:5px 0;}
+.organizations-list .item-first-div{font-weight: 600;color:#ff5a21;}
+.organizations-list .item-first-div .right{font-weight: 100;}
 
 
 
