@@ -171,7 +171,7 @@ export default {
     data() {
         return {
             moreHiddenIcon: true,
-            delHidden: false,
+            delHidden: true,
             saveHidden: true,
             ptitle: 'Organizationsinfo detail',
             itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
