@@ -72,10 +72,23 @@ export default {
           type: "checkbox",
           default: "allContactss",
           items: [
-            { text: lanTool.lanContent("795_全部"), value: "allContactss" },
+            { 
+              text: lanTool.lanContent("795_全部"),
+              queryfield: "allData",
+              queryType: "string",
+              queryFormat:"",
+              queryRelation:"and",
+              queryValue: "",
+              queryComparison:"="
+            },
             {
               text: lanTool.lanContent("796_关注的公司"),
-              value: "publicContacts"
+              queryfield: "MyFollowData",
+              queryType: "string",
+              queryFormat:"",
+              queryRelation:"and",
+              queryValue: "",
+              queryComparison:"="
             }
           ]
         }
