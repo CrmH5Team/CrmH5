@@ -160,7 +160,7 @@ export default {
     data() {
         return {
             moreHiddenIcon: true,
-            delHidden: false,
+            delHidden: true,
             saveHidden: true,
             ptitle: 'contact detail',
             itemsData: ['Calndar(3)', 'Opportunities(2)'],
