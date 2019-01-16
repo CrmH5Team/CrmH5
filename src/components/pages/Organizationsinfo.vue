@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -253,7 +253,7 @@ export default {
               return;
           }
           curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-          curObj.val(eventBus.selectListData.value.text);
+          curObj.text(eventBus.selectListData.value.text);
 
           //清空全局变量
           eventBus.selectListData = null;

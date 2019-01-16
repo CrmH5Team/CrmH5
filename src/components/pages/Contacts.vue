@@ -141,7 +141,8 @@ export default {
           queryComparison:"=",
           Code:"DropDowList_ViewBaseCountryInf",
           TypeValue:"",
-          selectType:"radio"
+          selectType:"radio",
+          resulteRow:true
         },
         {
           queryfield: "CityID",

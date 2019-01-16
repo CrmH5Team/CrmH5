@@ -1509,7 +1509,7 @@
 	tool.ClearControlData = function (myCallBack) {
 		$("[data-fieldControlType='textareaInput']").val("");
 		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
-		$("[data-fieldControlType='selectList']").val("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='divText']").text("");
 		$("[data-fieldControlType='icon']").each(function(index,curObj){
 			var _curObj = $(this);
@@ -1798,7 +1798,7 @@
 					var fieldVal = data[dataField] || "";
 					var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.val(fieldDisplay);
+					_curObj.text(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
 				});
 				//3>textareaInput

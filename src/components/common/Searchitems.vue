@@ -18,20 +18,8 @@
               <div class="item-row-flex">
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
-                  <!-- <div
-                    v-if="item.type==='selectList'"
-                    class="selectList row-cell-ft"
-                    :data-url="item.queryUrl"
-                    :data-field="item.field"
-                    :data-val="item.value.value"
-                    @click="callSelectList($event)"
-                    :data-title="item.text"
-                    :data-type="item.selectType"
-                    :data-resulteRow="item.resulteRow"
-                    ></div> -->
-                    <div
-                    v-if="item.type=='selectList'" 
-                    class="selectList row-cell-ft" 
+                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="selectList row-cell-ft" />
+                    <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft" 
                     :data-field="item.queryfield" 
                     :data-fieldControlType="item.fieldControlType" 
                     data-fieldVal= "" 
@@ -42,11 +30,12 @@
                     :data-queryFormat="item.queryFormat" 
                     :data-queryRelation="item.queryRelation" 
                     :data-queryValue="item.queryValue" 
-                    :data-queryComparison="item.queryComparison" 
-                    ></div>
+                    :data-queryComparison="item.queryComparison"
+                    />
+                      
 
                   <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
-                  <input v-else-if="item.type==='picker'" class="picker row-cell-ft"               
+                  <input v-else-if="item.fieldControlType==='picker'" class="picker row-cell-ft"               
                     :data-field="item.queryfield" 
                     :data-fieldControlType="item.fieldControlType" 
                     data-fieldVal= ""
@@ -60,7 +49,7 @@
                     />
 
                   <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
-                  <input v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" 
+                  <input v-else-if="item.fieldControlType=='datepicker'" class="datepicker row-cell-ft" 
                     :data-field="item.queryfield" 
                     :data-fieldControlType="item.fieldControlType" 
                     data-fieldVal= ""
@@ -74,7 +63,19 @@
                     data-minute="true"
                   />
               </div>
-              <div v-if="item.resulteRow" class="select-list-value"></div>
+              <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="" 
+                :data-field="item.queryfield" 
+                :data-fieldControlType="item.fieldControlType" 
+                data-fieldVal= "" 
+                :data-selectType="item.selectType"
+                :data-Code="item.Code"
+                :data-TypeValue="item.TypeValue"
+                :data-queryType="item.queryType" 
+                :data-queryFormat="item.queryFormat" 
+                :data-queryRelation="item.queryRelation" 
+                :data-queryValue="item.queryValue" 
+                :data-queryComparison="item.queryComparison"
+              />
           </div>
       </div>
 </div>
@@ -94,7 +95,9 @@ export default {
     },
     props:['searchData'],
     created:function(){
-        // console.log("created");
+        console.log(this.searchData);
+
+        //console.log("created");
     },
     mounted:function(){
         // console.log("mounted");
