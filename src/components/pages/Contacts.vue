@@ -84,7 +84,7 @@ export default {
       searchData: {},
 
       OrganizationsSearch: [
-        {          
+        {
           queryfield: "ShortNameEN",
           text: lanTool.lanContent("733_英文名称"),
           fieldControlType: "textareaInput",
@@ -358,7 +358,7 @@ export default {
                 }
                 //清空容器内容
                 parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
-            });           
+            });
           } else {
             //若是收起
             tool.InitiateInnerDataList(fromType, groupID, target, function(containerObj) {
@@ -448,11 +448,13 @@ export default {
     },
     //添加/取消关注
     followToggle: function() {
-      $("#organizationsList").on("click", ".item-stars-icon", function() {
+      $("#organizationsList").on("click", ".item-stars-icon", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
           var _curObj = $(this);
           var fromType = "Organizationsinfo";
           var autoID = _curObj.attr("data-autoid") || "";
-          
+
           var actionType;
           if(_curObj.hasClass("calc-shoucang"))
           {

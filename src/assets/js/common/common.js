@@ -11,8 +11,8 @@
 
 	//把fromStr替换成toStr
 	String.prototype.ReplaceAll=function(fromStr,toStr){
-		var reg=new RegExp(fromStr,"g"); //创建正则RegExp对象   
-		return this.replace(reg,toStr); 
+		var reg=new RegExp(fromStr,"g"); //创建正则RegExp对象
+		return this.replace(reg,toStr);
 	}
 
 	//是否包含指定字符串，忽略大小写
@@ -1413,7 +1413,7 @@
 				</div>`;
 				innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
 				<div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
-				<div class="item-block">
+				<div class="item-block f14">
 				  <div class="item-div item-first-div">
 					  <span>{ShortName}</span><span class="right">{ICAOCode}</span>
 				  </div>
@@ -1523,7 +1523,7 @@
 			if (tool.isNullOrEmptyObject(iconClass)) {
 				return true;
 			}
-			
+
 			//移除其他class
 			for (var key in dataValObj) {
 				if (key == fieldVal) {
@@ -1803,7 +1803,7 @@
 					if (tool.isNullOrEmptyObject(iconClass)) {
 						return true;
 					}
-					
+
 					//移除其他class
 					for (var key in dataValObj) {
 						if (key == fieldVal) {
@@ -1883,7 +1883,7 @@
 			}
 
 			var fieldVal = _curObj.attr("data-fieldVal") || "";
-			jObject[dataField] = fieldVal;			
+			jObject[dataField] = fieldVal;
 		});
 		//2>textareaInput
 		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
