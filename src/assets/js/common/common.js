@@ -1509,6 +1509,7 @@
 	tool.ClearControlData = function (myCallBack) {
 		$("[data-fieldControlType='textareaInput']").val("");
 		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='selectList']").val("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='divText']").text("");
 		$("[data-fieldControlType='icon']").each(function(index,curObj){
 			var _curObj = $(this);
@@ -1547,9 +1548,9 @@
 	/*
 	*渲染控件
 	*/
-	tool.InitiateInfoPageControl = function (myCallBack) {
+	tool.InitiateInfoPageControl = function (self,myCallBack) {
 		//console.log("InitiateInfoPageControl");
-		//1>渲染下拉控件
+		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
 			var _curObj = $(this);
 			var fromId = _curObj.attr("data-field") || "";
@@ -1669,12 +1670,39 @@
 			});
 
 		});
+		//2>渲染selectList
+		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off().on('click',function(){
+			var _curObj = $(this);
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = _curObj.parents("div.rightContent:first").siblings("div.leftContent:first").children("div.ListCellContentLeftText:first").text()||"";
 
-		//2>渲染时间控件
+			// console.log(dataField);
+			// console.log(code);
+			// console.log(typeValue);
+			// console.log(value);
+			// console.log(selectType);
+			// console.log(title);
+			// return;
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType
+			};
+			self.$router.push({
+				path: '/selectlist',
+				query: parameter
+			})
 
-		//3>渲染弹出选择控件
+		});
 
-		//4>渲染数据
+		//执行回调函数
 		if (!tool.isNullOrEmptyObject(myCallBack)) {
 			myCallBack();
 		}
@@ -1756,8 +1784,24 @@
 					_curObj.val(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
 				});
+				//2>selectList
+				$("[data-fieldControlType='selectList']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
 
-				//2>textareaInput
+					var fieldVal = data[dataField] || "";
+					var fieldDisplay = data[dataField + "_Name"] || "";
+
+					_curObj.val(fieldDisplay);
+					_curObj.attr("data-fieldVal", fieldVal);
+				});
+				//3>textareaInput
 				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -1770,8 +1814,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.val(fieldVal);
 				});
-
-				//3>divText
+				//4>divText
 				$("[data-fieldControlType='divText']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -1784,8 +1827,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.text(fieldVal);
 				});
-
-				//4>icon
+				//5>icon
 				$("[data-fieldControlType='icon']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {

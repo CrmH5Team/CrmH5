@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" class="ListCellContentRightText"/>
+                            <input type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" class="ListCellContentRightText"/>
+                            <input type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -183,11 +183,11 @@ export default {
             // modifiedby:"Dylan Xu",
         }
     },
-
     beforeRouteEnter: function (to, from, next) {
-        //如果是从以下路由回来的就不用刷新页面
         if (from.name === 'selectlist') {
             to.meta.isBack = true;
+        }else{
+            to.meta.isBack = false;
         }
         next();
     },
@@ -225,21 +225,39 @@ export default {
             $(".HideWhenNew").show();
             _self.isAddNew = false;
         }
+        //console.log("_self.isAddNew:"+_self.isAddNew);
 
-        console.log("_self.isAddNew:"+_self.isAddNew);
+        var _isBack = _self.$route.meta.isBack;
+        //若为true,则需要刷新
+        if(!_isBack){
+            //清空页面数据
+            tool.ClearControlData(function(){
+                //渲染控件
+                tool.InitiateInfoPageControl(_self,function(){
+                    //渲染数据
+                    tool.IniInfoData(fromType,id,function(){
 
-        //console.log("autoID:" + id);
-
-        //清空页面数据
-        tool.ClearControlData(function(){
-            //渲染控件
-            tool.InitiateInfoPageControl(function(){
-                //渲染数据
-                tool.IniInfoData(fromType,id,function(){
-
+                    });
                 });
             });
-        });
+        }else{
+            //若为false,则不需要刷新
+            //console.log(eventBus.selectListData);
+
+            if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+                return;
+            }
+          
+          var curObj = $("[data-field='"+  eventBus.selectListData. field +"']");
+          if(tool.isNullOrEmptyObject(curObj)){
+              return;
+          }
+          curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+          curObj.val(eventBus.selectListData.value.text);
+
+          //清空全局变量
+          eventBus.selectListData = null;
+        }
     },
     methods: {
         //跳转到联系人界面事件
