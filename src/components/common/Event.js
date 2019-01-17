@@ -16,8 +16,8 @@ const eventBus = new Vue({
         });
         //queryCondiction
         this.$on('queryCondiction', (val)=>{
-            this.queryCondictionData = val[0];
-            this.fromSearchBtn = val[1];
+            this.queryCondictionData = val.queryCondiction;
+            this.fromSearchBtn = val.isFromConfirm;
         })
     },
 
