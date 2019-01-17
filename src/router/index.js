@@ -110,7 +110,8 @@ const router =  new Router({
     { path: '/business',name:'business', component:Business,
       meta: {
         keepAlive: true,
-        isBack:false
+        isBack:false,
+        fromSave:false  //当在详情页面保存后回到列表页面刷新
       }
     },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,

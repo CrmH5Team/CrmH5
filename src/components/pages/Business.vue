@@ -17,8 +17,8 @@
                     </router-link>
               </div>
               <!-- 列表 -->
-              <div v-if="!notDealPipeline" id="dealpipelineList"></div>
-              <nothing v-if="notDealPipeline" style="padding-top:0.8rem;"></nothing>
+              <div v-show="!noData" id="dealpipelineList"></div>
+              <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
 
         <div v-show="showPage == 1" class="pageList">
@@ -29,8 +29,8 @@
                     </router-link>
               </div>
               <!-- 列表 -->
-              <div v-if="!notOpportunities" id="opportunitiesList"></div>
-              <nothing v-if="notOpportunities" style="padding-top:0.8rem;"></nothing>
+              <div v-show="!noData" id="opportunitiesList"></div>
+              <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
 
 
@@ -58,9 +58,11 @@ export default {
     data(){
         return {
             title:'Business',
-            showPage:0,
-            notDealPipeline:true,   //没数据
-            notOpportunities:true, //没数据
+            showPage: 0,
+            noData: true, //没数据
+            queryCondiction:[],//右侧checkbox条件
+            queryCondictionData:[],//综合查询条件
+            isFirstEnter:false,//是否首次进入
 
             //侧滑数据模型
             rigthPanelData:[
@@ -226,19 +228,75 @@ export default {
 
         }
     },
+    created:function(){
+      this.isFirstEnter = true;
+    },
     mounted:function(){
         var _self = this;
-
-        _self.searchData = _self.dealPipelineSearch;
-        tool.InitiateGroupList('dealPipeline',$('#dealpipelineList'));
-
         _self.changePos();
         _self.watchScroll();
-        _self.goInfoPage();
         _self.groupToggle();
         _self.followToggle();
     },
+    activated:function(){
+        lanTool.updateLanVersion();
+        var _self = this;
+
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        eventBus.queryCondictionData = null;
+
+        //获取是否是从搜索页面点击确定按钮返回来的标志
+        var fromSearchBtn = eventBus.fromSearchBtn || false;
+        eventBus.fromSearchBtn = false;
+
+        var _fromSave = _self.$route.meta.fromSave;
+        var _isBack = _self.$route.meta.isBack;
+
+        //若为true,则需要刷新
+        if(_fromSave || !_isBack || _self.isFirstEnter ){
+
+            _self.searchData = _self.dealPipelineSearch;
+            //渲染数据
+            var fromType = "dealPipeline";
+            var containerObj = $("#dealpipelineList");
+
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction,"Field");
+            tool.InitiateGroupList(fromType, containerObj, allQueryData, function(containerObj) {
+              if (tool.isNullOrEmptyObject(containerObj)) {
+                _self.noData = true;
+                return;
+              }
+              if (!containerObj.html()) {
+                _self.noData = true;
+              } else {
+                _self.noData = false;
+              }
+            });
+
+        }else{
+          //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
+              if(fromSearchBtn){
+                  _self.RefreshCurPageGroupData();
+              }
+        }
+
+        _self.$route.meta.fromSave = false;
+        _self.$route.meta.isBack = false;
+        _self.isFirstEnter = false;
+
+    },
     methods:{
+        setQuerycondition:function(data){
+          var _self = this;
+          _self.queryCondiction = data;
+          // console.log(_self.queryCondiction);
+          //执行监听的这个动作
+          _self.RefreshCurPageGroupData();
+        },
+        setQueryconditionOnlyData:function(data){
+          var _self = this;
+          _self.queryCondiction = data;
+        },
         //监听滚动固定
         watchScroll:function(){
             var _self = this;
@@ -274,7 +332,10 @@ export default {
 
         //列表展开收起
         groupToggle:function(){
-            $("#dealpipelineList,#opportunitiesList").on("click","div.date-div",function(event){
+            $("#dealpipelineList,#opportunitiesList").on(
+              "click",
+              "div.date-div",
+              function(event){
                 var target = $(event.target);
                 if(!target.hasClass('date-div')){
                     target = target.closest('div.date-div');
@@ -282,27 +343,61 @@ export default {
                         return;
                     }
                 }
-                if(target.hasClass('open')){
-                    target.removeClass('open').siblings('.group-item-list').slideUp(500);
-                }else{
-                    target.addClass('open').siblings('.group-item-list').slideDown(500);
-                }
-            })
-        },
+                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
 
-        //点击去详情页
-        goInfoPage:function(id){
-            var _self = this;
-            $("#dealpipelineList,#opportunitiesList").on("click","div.group-item",function(event){
-                var target = $(event.target);
-                if(!target.hasClass('group-item')){
-                    target = target.closest('div.group-item');
-                    if(target == undefined){
-                        return;
-                    }
+                if (tool.isNullOrEmptyObject(groupID)) {
+                  return;
                 }
-                var url = target.attr('data-url') || '';
-                _self.$router.push(url);
+
+                //若是展开
+                if (target.hasClass("open")) {
+                    target
+                    .removeClass("open")
+                    .siblings(".group-item-list")
+                    .slideUp(500,function(){
+                        var parentContainerObj = target.parents("div.group-div:first");
+                        if (tool.isNullOrEmptyObject(parentContainerObj)) {
+                          return;
+                        }
+                        //清空容器内容
+                        parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+                    });
+                }else {
+                  //若是收起
+                  var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+                  tool.InitiateInnerDataList(fromType, groupID, target, allQueryData,function(containerObj) {
+                        containerObj
+                        .addClass("open")
+                        .siblings(".group-item-list")
+                        .slideDown(500);
+
+                        //点击去详情页
+                        $("div.item-block").on('click',
+                          function(event) {
+                            var target = $(event.target);
+                            // console.log(target);
+                            if(target.hasClass("item-stars-icon")){
+                              return;
+                            }
+                            if (!target.hasClass("group-item")) {
+                              target = target.closest("div.group-item");
+                              if (tool.isNullOrEmptyObject(target)) {
+                                return;
+                              }
+                            }
+
+                            var url = target.attr("data-url") || "";
+                            if(tool.isNullOrEmptyObject(url)){
+                              return;
+                            }
+
+                            _self.$router.push(url);
+                          }
+                        );
+                  });
+                }
+
             })
         },
 
@@ -311,27 +406,41 @@ export default {
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
-            $(el).addClass('active-item').siblings().removeClass('active-item');
+            $(el)
+              .addClass("active-item")
+              .siblings()
+              .removeClass("active-item");
             _self.changePos();
             _self.showPage = num;
 
             var container = null;
-            var moduleName = '';
+            var fromType = "";
             if(num == 0){
                 _self.searchData = _self.dealPipelineSearch;
 
-                moduleName = 'dealPipeline';
+                fromType = 'dealPipeline';
                 container = $('#dealpipelineList');
             }else{
                 _self.searchData = _self.opportunitiesSearch;
 
-                moduleName = 'opportunities';
+                fromType = 'opportunities';
                 container = $('#opportunitiesList');
             }
-            tool.InitiateGroupList(moduleName,container);
-
-
+            //渲染数据
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+              if (tool.isNullOrEmptyObject(containerObj)) {
+                _self.noData = true;
+                return;
+              }
+              if (!containerObj.html()) {
+                _self.noData = true;
+              } else {
+                _self.noData = false;
+              }
+            });
         },
+
         //table底部横条过渡效果
         changePos:function() {
             this.$nextTick(function(){
@@ -345,22 +454,69 @@ export default {
 
         //点击关注/取消关注
         followToggle:function(){
+            var _self = this;
 
-            $("#dealpipelineList,#opportunitiesList").on("click",".item-stars-icon",function(event){
+            $("#dealpipelineList,#opportunitiesList").on("click",".item-stars-icon",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                var _curObj = $(this);
 
-                event.stopPropagation();
-                var target = $(event.target);
-                if(target.hasClass('calc-shoucang')){
-                    //取消关注
-                    target.removeClass('calc-shoucang').addClass('calc-shoucang1');
-                    $.toast("取消关注", 1500, function() {});
+                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                var autoID = _curObj.attr("data-autoid") || "";
+                var actionType;
+                if(_curObj.hasClass("calc-shoucang"))
+                {
+                  //取消关注
+                  actionType = 0;
                 }else{
-                    //关注
-                    target.removeClass('calc-shoucang1').addClass('calc-shoucang');
-                    $.toast("关注成功", 1500, function() {});
+                  //添加关注
+                  actionType = 1;
                 }
+
+                tool.UserFollow(fromType,autoID,actionType,function(){
+                    if(_curObj.hasClass("calc-shoucang"))
+                    {
+                      //取消关注
+                      _curObj.removeClass("calc-shoucang").addClass("calc-noshoucang");
+                    }else{
+                      //添加关注
+                      _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
+                    }
+                });
             })
         },
+
+        //刷新当前激活的page的分组数据
+        RefreshCurPageGroupData : function(){
+          var _self = this;
+          var num = _self.showPage;
+          var container = null;
+          var fromType = "";
+          if (num == 0) {
+            _self.searchData = _self.dealPipelineSearch;
+
+            fromType = "dealPipeline";
+            container = $("#dealpipelineList");
+          } else {
+            _self.searchData = _self.opportunitiesSearch;
+            fromType = "opportunities";
+            container = $("#opportunitiesList");
+          }
+
+          //渲染数据
+          var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+          tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+            if (tool.isNullOrEmptyObject(containerObj)) {
+              _self.noData = true;
+              return;
+            }
+            if (!containerObj.html()) {
+              _self.noData = true;
+            } else {
+              _self.noData = false;
+            }
+          });
+        }
     },
 
 }
@@ -371,24 +527,3 @@ export default {
 </style>
 
 
-
-
-<style >
-
-/*列表 style*/
-/* .group-item{background:#fff;position:relative;}
-.item-block{padding:5px 10px 5px 0.8rem;}
-.group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;top:0px;position:absolute;}
-.item-div{line-height: 0.4rem;}
-.item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
-box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
-margin-right: 5px;}
-.itme-div-span{vertical-align: middle;}
-.item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height: 0.3rem;}
-.dete-div{padding-left:40px;}
-.blue-color{color:#3cadf9;}
-.padding-bottom-5{padding-bottom: 5px;}
-.padding-top-5{padding-top: 5px;} */
-
-
-</style>

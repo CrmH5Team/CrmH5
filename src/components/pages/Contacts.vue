@@ -253,6 +253,13 @@ export default {
   created:function(){
     this.isFirstEnter = true;
   },
+  mounted: function() {
+    var _self = this;
+    _self.changePos();
+    _self.groupToggle();
+    _self.followToggle();
+    _self.watchScroll();
+  },
   activated:function(){
         lanTool.updateLanVersion();
         var _self = this;
@@ -280,8 +287,8 @@ export default {
             var fromType = "organizations";
             var containerObj = $("#organizationsList");
 
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-            tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction,"Field");
+            tool.InitiateGroupList(fromType, containerObj, allQueryData, function(containerObj) {
               if (tool.isNullOrEmptyObject(containerObj)) {
                 _self.noData = true;
                 return;
@@ -303,17 +310,6 @@ export default {
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
-        eventBus.backFromSearch = false;
-  },
-  deactivated:function(){
-      // eventBus.$off('listRightChangeEvent');
-  },
-  mounted: function() {
-    var _self = this;
-    _self.changePos();
-    _self.groupToggle();
-    _self.followToggle();
-    _self.watchScroll();
   },
   methods: {
 
