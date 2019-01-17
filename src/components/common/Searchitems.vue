@@ -21,6 +21,7 @@
               <div class="item-row-flex">
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
+
                     <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft" ></div>
                     <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft"
                     :data-field="item.queryfield"
@@ -84,7 +85,7 @@
                 :data-lanid="item.datalanid"
                 :data-clickObj="item.clickObj"
               ></div>
-              <div class="resulte-row"></div>
+              <div v-else class="resulte-row"></div>
 
           </div>
 

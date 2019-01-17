@@ -1,6 +1,11 @@
 <template>
   <div>
-    <my-header class="header" :title="title"></my-header>
+    <header class="mui-bar mui-bar-nav">
+          <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
+          <h1 class="mui-title f18">{{title}}</h1>
+    </header>
+
+
     <div class="search-box">
       <search-items :searchData="searchData"></search-items>
     </div>
@@ -12,11 +17,10 @@
 </template>
 
 <script>
-import Header from "../common/Header";
+
 import Searchitems from "../common/Searchitems";
 export default {
   components: {
-    "my-header": Header,
     "search-items": Searchitems
   },
   data() {
@@ -30,12 +34,12 @@ export default {
     };
   },
   created() {
-    console.log("created");
+    // console.log("created");
     this.isFirstEnter = true;
   },
   mounted: function() {},
   beforeRouteEnter: function(to, from, next) {
-    console.log("beforeRouteEnter");
+    // console.log("beforeRouteEnter");
     if (from.name === "selectlist") {
       to.meta.isBack = true;
     } else {
@@ -44,22 +48,25 @@ export default {
     next();
   },
   activated: function() {
-    console.log("activated");
+    // console.log("activated");
     var _self = this;
 
     setTimeout(function() {
+
       _self.Clear = lanTool.lanContent("627_清空");
       _self.OK = lanTool.lanContent("545_确定");
       var paramStr = _self.$route.params.paramStr;
       var paramObj = tool.jObject(paramStr);
-      console.log(paramObj);
+      // console.log(paramObj);
       if (!tool.isNullOrEmptyObject(paramObj)) {
         _self.searchData = paramObj.dataModule;
         //_self.dataFilter = paramObj.dataFilter;
       }
+
       var _isBack = _self.$route.meta.isBack;
-      console.log("_self.isFirstEnter:" + _self.isFirstEnter);
-      console.log("_isBack:" + _isBack);
+
+      // console.log("_self.isFirstEnter:" + _self.isFirstEnter);
+      // console.log("_isBack:" + _isBack);
 
       //若为true,则需要刷新
       if (!_isBack || _self.isFirstEnter) {
@@ -117,30 +124,36 @@ export default {
     }, 200);
   },
   methods: {
-    //构造查询条件
-    constructFilter: function(e) {
-      var _self = this;
-      var _curObj = e.target;
-      this.$nextTick(function() {
-        console.log("constructFilter");
-        tool.ConstructQueryCondiction(_self, function(queryCondictionTemp) {
-          //console.log("myCallBack");
-          //console.log(queryCondictionTemp);
-          eventBus.$emit("queryCondiction", queryCondictionTemp);
-          _self.$router.back(-1);
+      //构造查询条件
+      constructFilter: function(e) {
+        var _self = this;
+        var _curObj = e.target;
+        this.$nextTick(function() {
+          // console.log("constructFilter");
+          tool.ConstructQueryCondiction(_self, function(queryCondictionTemp) {
+            //console.log("myCallBack");
+            //console.log(queryCondictionTemp);
+            eventBus.$emit("queryCondiction", queryCondictionTemp);
+            _self.$router.back(-1);
+          });
         });
-      });
-    },
-    //清空查询条件
-    clearFilter: function(e) {
-      var _self = this;
-      var _curObj = e.target;
-      this.$nextTick(function() {
-        console.log("clearFilter");
-        //清空页面数据
-        tool.ClearControlData();
-      });
-    }
+      },
+      //清空查询条件
+      clearFilter: function(e) {
+        var _self = this;
+        var _curObj = e.target;
+        this.$nextTick(function() {
+          console.log("clearFilter");
+          //清空页面数据
+          tool.ClearControlData();
+        });
+      },
+
+      //点击左上角返回
+      back:function(){
+          eventBus.$emit("backFromSearch", true);
+          this.$router.back(-1);
+      },
   }
 };
 </script>
@@ -148,21 +161,43 @@ export default {
 
 
 <style scoped>
-.header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
+/*头部*/
+header{position: relative;}
+header.mui-bar {
+  background: #f8f2dc;
+  overflow: hidden;
 }
-.search-box {
-  position: fixed;
-  top: 0.88rem;
-  bottom: 0.9rem;
-  left: 0;
-  right: 0;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+.mui-title {
+	right: 40px;
+    left: 40px;
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    /* font-size: 0.34rem; */
+    margin: 0;
+    text-overflow: ellipsis;
+    position: absolute;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: 0.88rem;
 }
+.calcfont{
+    font-size: 0.48rem;
+    text-align: center;
+    padding: 0.2rem 10px;
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+}
+header .mui-title,header a {
+	color: #333;
+}
+
+
 
 /*底部按钮*/
 .anniu {

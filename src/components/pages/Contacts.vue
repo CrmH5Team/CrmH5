@@ -49,7 +49,7 @@
 import Header from "../common/Listheader";
 import Listrightpanel from "../common/Listrightpanel";
 import Nothing from "../common/Nothing";
-import eventBus from '../common/Event';
+// import eventBus from '../common/Event';
 
 var count = 0;
 export default {
@@ -241,8 +241,8 @@ export default {
   beforeRouteEnter: function(to, from, next) {
     // console.log(from);
     // console.log(to);
-
-    if (from.name == "organizationsinfo" || from.name == "contactsinfo" || from.name == "searchmodule") {
+    //
+    if (from.name == "organizationsinfo" || from.name == "contactsinfo") {
       to.meta.isBack = true;
     }else{
       to.meta.isBack = false;
@@ -261,13 +261,21 @@ export default {
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
-        console.log("_fromSave:"+_fromSave);
-        console.log("_isBack:"+_isBack);
+        // console.log("_fromSave:"+_fromSave);
+        // console.log("_isBack:"+_isBack);
+        // console.log("isFirstEnter:"+_self.isFirstEnter);
+
+        //获取是否是从搜索页面返回来的标志
+        var backFromSearch = eventBus.backFromSearch || false;
 
         //若为true,则需要刷新
-        if(_fromSave || !_isBack || _self.isFirstEnter){
+        if(_fromSave || !_isBack || _self.isFirstEnter ){
           // _self.changePos();
           // _self.showPage = 0;
+
+            if(backFromSearch){
+              return ;
+            }
 
             _self.searchData = _self.OrganizationsSearch;
             //渲染数据
@@ -294,6 +302,7 @@ export default {
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
+        eventBus.backFromSearch = false;
   },
   deactivated:function(){
       // eventBus.$off('listRightChangeEvent');
@@ -309,7 +318,7 @@ export default {
     setQuerycondition:function(data){
       var _self = this;
       _self.queryCondiction = data;
-      console.log(_self.queryCondiction);
+      // console.log(_self.queryCondiction);
       //执行监听的这个动作
       _self.RefreshCurPageGroupData();
     },

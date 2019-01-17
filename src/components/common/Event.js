@@ -5,7 +5,8 @@ const eventBus = new Vue({
     data(){
         return {
             selectListData:null,
-            queryCondictionData:null
+            queryCondictionData:null,
+            backFromSearch:false
         }
     },
     created:function(){
@@ -16,6 +17,10 @@ const eventBus = new Vue({
         //queryCondiction
         this.$on('queryCondiction', (val)=>{
             this.queryCondictionData = val;
+        })
+        //从列表侧滑搜索页返回事件
+        this.$on('backFromSearch', (val)=>{
+            this.backFromSearch = val;
         })
     },
 
