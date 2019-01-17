@@ -84,6 +84,7 @@
                 :data-lanid="item.datalanid"
                 :data-clickObj="item.clickObj"
               ></div>
+              <div class="resulte-row"></div>
 
           </div>
 
@@ -98,7 +99,7 @@ export default {
   components: {},
   data() {
     return {
-      
+
     };
   },
   props: ["searchData"],
@@ -112,7 +113,7 @@ export default {
     // console.log("activated");
   },
   methods: {
-      
+
   }
 };
 </script>
@@ -145,25 +146,17 @@ border-bottom: 1px solid beige;}
 
 .item-row-flex{
     position: relative;
-
     align-items:center;
-    /* line-height: 40px; */
-    /* display:-webkit-box;
-    display:-moz-box; */
     display:flex;
-    /* -webkit-box-orient:horizontal;
-    -moz-box-orient:horizontal;
-    box-orient:horizontal; */
-
 }
-.row-cell-bd {
+.item-row-flex .row-cell-bd {
   width: 40%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding:10px 0;
+  padding-top:10px;
 }
-.row-cell-ft{
+.item-row-flex .row-cell-ft{
   width:60%;
   position: relative;z-index: 2;
   overflow: hidden;display:block;
@@ -171,9 +164,10 @@ border-bottom: 1px solid beige;}
   text-overflow: ellipsis;
   box-sizing: border-box;color:rgb(102, 102, 102);
   text-align: right;
-  padding:10px 10px 10px 0;
+  padding:10px 10px 0 0;
 }
-.resulte-row{word-wrap : break-word ;}
+.item-row-flex input.row-cell-ft{height: 30px;}
+.resulte-row{word-wrap : break-word;padding-bottom:10px;}
 .select-list-value{
    color:rgb(102, 102, 102);text-align:left;line-height:16px;
 }

@@ -242,7 +242,7 @@ export default {
     // console.log(from);
     // console.log(to);
 
-    if (from.name == "organizationsinfo" || from.name == "contactsinfo") {
+    if (from.name == "organizationsinfo" || from.name == "contactsinfo" || from.name == "searchmodule") {
       to.meta.isBack = true;
     }else{
       to.meta.isBack = false;
