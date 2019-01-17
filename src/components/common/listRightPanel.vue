@@ -152,10 +152,7 @@ export default {
         //点击侧滑中的确定按钮
         okBtn:function(){
             var _self = this;
-            if(_self.dataFilter.length <=0){
-                  $.alert("数据筛选必须选一个", "提示", function() {},'好的');
-                  return false;
-            }
+            _self.panelToggle();
         },
         conStructQueryCondition:function(arr){
             var self = this;

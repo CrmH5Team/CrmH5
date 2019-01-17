@@ -61,7 +61,8 @@ export default {
   data() {
     return {
       key: "contacts",
-      title: lanTool.lanContent("175_联系人"),
+      title: lanTool.lanContent("630_联系人"),
+
       showPage: 0,
       noData: true, //没数据
       queryCondiction:[],//右侧checkbox条件
@@ -251,6 +252,7 @@ export default {
   },
   created:function(){
     this.isFirstEnter = true;
+    console.log(this.title);
   },
   activated:function(){
         lanTool.updateLanVersion();
