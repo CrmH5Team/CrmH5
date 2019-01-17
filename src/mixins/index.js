@@ -107,8 +107,8 @@ export default{
                     commoninfo.clearObj($this.moduleData);
                     if('assigned_user_id' in $this.moduleData){
                         $this.moduleData.assigned_user_id = {
-                            text:tool.getStorageItem(tool.cache_UserRealName) || "",
-                            value:tool.getStorageItem(tool.cache_UserId) || ""
+                            text:tool.getSessionStorageItem(tool.cache_UserRealName) || "",
+                            value:tool.getSessionStorageItem(tool.cache_UserId) || ""
                         }
                     }
 

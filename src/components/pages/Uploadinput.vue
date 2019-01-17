@@ -80,8 +80,8 @@ export default {
             notecontent:'',
             folderid:'',
             assigned_user_id:{
-                text:tool.getStorageItem(tool.cache_UserRealName) || "",
-                value:tool.getStorageItem(tool.cache_UserId) || ""
+                text:tool.getSessionStorageItem(tool.cache_UserRealName) || "",
+                value:tool.getSessionStorageItem(tool.cache_UserId) || ""
             },
             languageData:{
                 folderid:lanTool.lanContent('284_请选择文件夹'),
@@ -161,7 +161,7 @@ export default {
             //构造传入参数
             var jsonDatas = {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
-                SessionName: tool.getStorageItem(tool.cache_SessionName) || "",
+                SessionName: tool.getSessionStorageItem(tool.cache_SessionName) || "",
                 notes_title: $this.notes_title || "",
                 filename: $this.fileName || "",
                 filesize:$this.fileSize || '',

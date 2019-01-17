@@ -161,7 +161,7 @@ export default {
         //请求的传入参数
         var jsonDatasTemp = {
             "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-            "SessionName": tool.getStorageItem(tool.cache_SessionName) || "",
+            "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
             "id": $this.data.notesid, //文件id
             "FilePath": $this.data.attachmentpath
         };

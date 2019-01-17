@@ -334,11 +334,11 @@ export default {
         lanTool.lanContent("779_是否确认注销？"),
         function() {
           //清除所有缓存
-          tool.removeStoragItem(tool.cache_RegisterCode);
-          tool.removeStoragItem(tool.cache_UserName);
-          tool.removeStoragItem(tool.cache_CurUser);
-          tool.removeStoragItem(tool.cache_loginUserName);
-          tool.removeStoragItem(tool.cache_loginPwd);
+          tool.removeSessionStoragItem(tool.cache_RegisterCode);
+          tool.removeSessionStoragItem(tool.cache_UserName);
+          tool.removeSessionStoragItem(tool.cache_CurUser);
+          tool.removeSessionStoragItem(tool.cache_loginUserName);
+          tool.removeSessionStoragItem(tool.cache_loginPwd);
           _self.$router.push("/Login");
         },
         function() {}

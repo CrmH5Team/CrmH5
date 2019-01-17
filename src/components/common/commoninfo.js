@@ -63,8 +63,8 @@ export default {
         var jsonDatasTemp = {
             "CurrentLanguageVersion": lanTool.currentLanguageVersion,
             "id": id,
-            "SessionName": tool.getStorageItem(tool.cache_SessionName) || "",
-            "TimeZoneValue": tool.getStorageItem(tool.cache_TimeZoneValue) || ""
+            "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
+            "TimeZoneValue": tool.getSessionStorageItem(tool.cache_TimeZoneValue) || ""
         };
         return $.ajax({
 			async: true,
@@ -81,9 +81,9 @@ export default {
     assembleData:function(id, moduleData, saveOrUpdateUrl, o){ 
         // var copyData = this.deepClone(moduleData);
         var jsonDatasTemp = {};
-        jsonDatasTemp["SessionName"] = tool.getStorageItem(tool.cache_SessionName) || "";
+        jsonDatasTemp["SessionName"] = tool.getSessionStorageItem(tool.cache_SessionName) || "";
         jsonDatasTemp["id"] = id || "";
-        jsonDatasTemp["TimeZoneValue"] = tool.getStorageItem(tool.cache_TimeZoneValue) || "";
+        jsonDatasTemp["TimeZoneValue"] = tool.getSessionStorageItem(tool.cache_TimeZoneValue) || "";
                 
         //从子组件获取填到原来的数据模型中，获取每个子组件的value属性
         $.each(moduleData,function(key,val){

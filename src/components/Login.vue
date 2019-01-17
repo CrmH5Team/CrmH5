@@ -40,8 +40,8 @@ export default {
     return {
       currentLanguageText: "English",
       activeEyes: false,
-      userName: tool.getStorageItem(tool.cache_loginUserName) || "",
-      userPwd: tool.getStorageItem(tool.cache_loginPwd) || "",
+      userName: tool.getSessionStorageItem(tool.cache_loginUserName) || "",
+      userPwd: tool.getSessionStorageItem(tool.cache_loginPwd) || "",
       isDisable: false //防止登陆按钮重复提交
     };
   },
@@ -100,18 +100,18 @@ export default {
           
           //注册码
           var _registerCode = data[tool.cache_RegisterCode] || "";
-          tool.setStoragItem(tool.cache_RegisterCode, _registerCode);
+          tool.setSessionStorageItem(tool.cache_RegisterCode, _registerCode);
           
           //用户名
           var _userName = data["UserName"] || "";
-          tool.setStoragItem(tool.cache_UserName, _userName);
+          tool.setSessionStorageItem(tool.cache_UserName, _userName);
 
           //登陆对象
-          tool.setStoragItem(tool.cache_CurUser, JSON.stringify(data));
+          tool.setSessionStorageItem(tool.cache_CurUser, JSON.stringify(data));
 
           //将登陆信息缓存起来，下次登陆的时候，自动从缓存中取数赋值
-          tool.setStoragItem(tool.cache_loginUserName, self.userName || "");
-          tool.setStoragItem(tool.cache_loginPwd, self.userPwd || "");
+          tool.setSessionStorageItem(tool.cache_loginUserName, self.userName || "");
+          tool.setSessionStorageItem(tool.cache_loginPwd, self.userPwd || "");
 
           self.$router.push("/index");          
 

@@ -289,8 +289,8 @@ export default {
             //请求的传入参数
             var jsonDatasTemp = {
                 "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                "SessionName": tool.getStorageItem(tool.cache_SessionName) || "",
-                "TimeZoneValue": tool.getStorageItem(tool.cache_TimeZoneValue) || "",
+                "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
+                "TimeZoneValue": tool.getSessionStorageItem(tool.cache_TimeZoneValue) || "",
                 "Year":calendarObj.currentYear,
                 "Month":calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
             };
@@ -379,8 +379,8 @@ export default {
                 //请求的传入参数
                 var jsonDatasTemp = {
                     "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                    "SessionName": tool.getStorageItem(tool.cache_SessionName) || "",
-                    "TimeZoneValue": tool.getStorageItem(tool.cache_TimeZoneValue) || "",
+                    "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
+                    "TimeZoneValue": tool.getSessionStorageItem(tool.cache_TimeZoneValue) || "",
                     "Date":currentDate
                 };
 

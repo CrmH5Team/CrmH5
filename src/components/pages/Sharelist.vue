@@ -310,11 +310,11 @@ export default {
             var jsonDatasTemp = {
                 "CurrentLanguageVersion": lanTool.currentLanguageVersion,
                 "IsUsePager": false,
-                "SessionName": tool.getStorageItem(tool.cache_SessionName) || "",
+                "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
                 "QueryCondiction": [],
                 "_QueryType": "SelectList", //查询类型
-                "IsAdmin": tool.getStorageItem(tool.cache_isadmin) || "off", //当前用户是否管理员
-                "UserId": tool.getStorageItem(tool.cache_UserId) || ""
+                "IsAdmin": tool.getSessionStorageItem(tool.cache_isadmin) || "off", //当前用户是否管理员
+                "UserId": tool.getSessionStorageItem(tool.cache_UserId) || ""
             };
 
             loading.show(3, lanTool.lanContent("172_加载中..."));

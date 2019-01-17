@@ -356,69 +356,55 @@
 
 	//localStorage
 	//localStorage的生命周期是永久性的。假若使用localStorage存储数据，即使关闭浏览器，也不会让数据消失，除非主动的去删除数据
-	/*获取应用存储区中保存的键值对的个数*/
-	tool.getStorageLength = function () {
-		if (tool.isNull(keyName)) {
-			return "";
-		}
+	// /*获取应用存储区中保存的键值对的个数*/
+	// tool.getStorageLength = function () {
+	// 	if (tool.isNull(keyName)) {
+	// 		return "";
+	// 	}
 
-		//	        var isRunInPlus = mui.os.plus;
-		//	        var sysStorage = isRunInPlus ? plus.storage : localStorage;
+	// 	var sysStorage = localStorage;
+	// 	return sysStorage.getLength();
+	// };
 
-		var sysStorage = localStorage;
-		return sysStorage.getLength();
-	};
+	// /*通过键(key)检索获取应用存储的值*/
+	// tool.getStorageItem = function (keyName) {
+	// 	if (tool.isNull(keyName)) {
+	// 		return "";
+	// 	}
+		
+	// 	var sysStorage = localStorage;
+	// 	return sysStorage.getItem(keyName);
+	// };
 
-	/*通过键(key)检索获取应用存储的值*/
-	tool.getStorageItem = function (keyName) {
-		if (tool.isNull(keyName)) {
-			return "";
-		}
+	// /*修改或添加键值(key-value)对数据到应用数据存储中*/
+	// tool.setStoragItem = function (keyName, value) {
+	// 	if (tool.isNull(keyName)) {
+	// 		return false;
+	// 	}
 
-		//var isRunInPlus = mui.os.plus;
-		//var sysStorage = isRunInPlus ? plus.storage : localStorage;
-		var sysStorage = localStorage;
+	// 	var sysStorage = localStorage;
+	// 	sysStorage.setItem(keyName, value);
+	// 	return true;
+	// };
 
-		return sysStorage.getItem(keyName);
-	};
+	// /*通过key值删除键值对存储的数据*/
+	// tool.removeStoragItem = function (keyName) {
+	// 	if (tool.isNull(keyName)) {
+	// 		return false;
+	// 	}
 
-	/*修改或添加键值(key-value)对数据到应用数据存储中*/
-	tool.setStoragItem = function (keyName, value) {
-		if (tool.isNull(keyName)) {
-			return false;
-		}
+	// 	var sysStorage = localStorage;
+	// 	sysStorage.removeItem(keyName);
+	// 	return true;
+	// };
 
-		//var isRunInPlus = mui.os.plus;
-		//var sysStorage = isRunInPlus ? plus.storage : localStorage;
-		var sysStorage = localStorage;
-
-		sysStorage.setItem(keyName, value);
-		return true;
-	};
-
-	/*通过key值删除键值对存储的数据*/
-	tool.removeStoragItem = function (keyName) {
-		if (tool.isNull(keyName)) {
-			return false;
-		}
-
-		//var isRunInPlus = mui.os.plus;
-		//var sysStorage = isRunInPlus ? plus.storage : localStorage;
-		var sysStorage = localStorage;
-
-		sysStorage.removeItem(keyName);
-		return true;
-	};
-
-	/*通过key值删除键值对存储的数据*/
-	tool.clearStoragItem = function () {
-		//var isRunInPlus = mui.os.plus;
-		//var sysStorage = isRunInPlus ? plus.storage : localStorage;
-		var sysStorage = localStorage; console.log('clearStoragItem');
-
-		sysStorage.clear();
-		return true;
-	};
+	// /*通过key值删除键值对存储的数据*/
+	// tool.clearStoragItem = function () {
+	// 	var sysStorage = localStorage; 
+	// 	//console.log('clearStoragItem');
+	// 	sysStorage.clear();
+	// 	return true;
+	// };
 
 	//sessionStorage
 	//sessionStorage 的生命周期是在浏览器关闭前。也就是说，在整个浏览器未关闭前，其数据一直都是存在的
@@ -438,7 +424,14 @@
 		sessionStorage.setItem(keyName, value);
 		return true;
 	};
-
+	/*通过key值删除键值对存储的数据*/
+	tool.removeSessionStoragItem = function (keyName) {
+		if (tool.isNull(keyName)) {
+			return false;
+		}
+		sessionStorage.removeItem(keyName);
+		return true;
+	};
 	/*通过key值删除键值对存储的数据*/
 	tool.clearSessionStorageItem = function () {
 		sessionStorage.clear();
@@ -521,7 +514,7 @@
 		var jsonTemp = {};
 
 		//从缓存读取配置数据
-		jsonTemp = tool.getStorageItem(tool.cache_Config);
+		jsonTemp = tool.getSessionStorageItem(tool.cache_Config);
 
 		if (!tool.isNullOrEmptyObject(jsonTemp)) {
 			jsonTemp = tool.jObject(jsonTemp);
@@ -538,7 +531,7 @@
 
 				jsonTemp = tool.jObject(data);
 				//写入缓存
-				tool.setStoragItem(tool.cache_Config, JSON.stringify(jsonTemp));
+				tool.setSessionStorageItem(tool.cache_Config, JSON.stringify(jsonTemp));
 			});
 		} catch (err) {
 			console.log(err);
@@ -582,7 +575,7 @@
 		configJSON[keyName] = keyValue;
 
 		//写入缓存
-		tool.setStoragItem(tool.cache_Config, JSON.stringify(configJSON));
+		tool.setSessionStorageItem(tool.cache_Config, JSON.stringify(configJSON));
 	}
 
 	/*
@@ -591,7 +584,7 @@
 	tool.setConfig = function (cfgJSON) {
 		cfgJSON = tool.jObject(cfgJSON);
 		//写入缓存
-		tool.setStoragItem(tool.cache_Config, JSON.stringify(cfgJSON));
+		tool.setSessionStorageItem(tool.cache_Config, JSON.stringify(cfgJSON));
 	}
 
 	/*
@@ -1144,7 +1137,7 @@
 
 	//当前登陆对象
 	tool.CurUser = function () {
-		var curUserStr = tool.getStorageItem(tool.cache_CurUser);
+		var curUserStr = tool.getSessionStorageItem(tool.cache_CurUser);
 		if (tool.isNullOrEmptyObject(curUserStr)) {
 			return {};
 		}
@@ -1152,11 +1145,11 @@
 	}
 	//注册码
 	tool.RegisterCode = function () {
-		return tool.getStorageItem(tool.cache_RegisterCode) || "";
+		return tool.getSessionStorageItem(tool.cache_RegisterCode) || "";
 	}
 	//用户名
 	tool.UserName = function () {
-		return tool.getStorageItem(tool.cache_UserName) || "";
+		return tool.getSessionStorageItem(tool.cache_UserName) || "";
 	}
 
 	//模板
@@ -2576,7 +2569,7 @@
 		return [];
 
 		//若缓存有数据，则返回缓存的数据
-		var cacheDataStr = tool.getStorageItem(tool.config_allTypesData);
+		var cacheDataStr = tool.getSessionStorageItem(tool.config_allTypesData);
 		if (!tool.isNullOrEmptyObject(cacheDataStr)) {
 			allTypeList.Data = tool.jObject(cacheDataStr);
 			return true;
@@ -2620,7 +2613,7 @@
 						allTypeList.Data = funResult.Data;
 
 						//写入缓存
-						tool.setStoragItem(tool.config_allTypesData, JSON.stringify(allTypeList.Data));
+						tool.setSessionStorageItem(tool.config_allTypesData, JSON.stringify(allTypeList.Data));
 						return true;
 					},
 					error: function (jqXHR, type, error) {
