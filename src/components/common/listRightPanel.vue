@@ -52,6 +52,7 @@ export default {
             showPanel:false,
             viewValue:'',  //右侧分类
             dataFilter:[],
+            isParentFirstEnter:false,  //存储赋组件是否是新创建
         }
     },
     watch:{
@@ -62,23 +63,31 @@ export default {
         //数据过滤
         dataFilter:function(newVule){
             var _self = this;
-           _self.conStructQueryCondition(newVule);
+            if(!_self.isParentFirstEnter){
+
+                _self.conStructQueryCondition(newVule);
+            }else{
+                _self.isParentFirstEnter = false;
+            }
+
         }
     },
     props:['panelData','searchData'],
     created:function(){
-        // var _self = this;
-        // if(_self.panelData.length >= 1){
-        //     $.each(this.panelData,function(key,value){
-        //         // console.log(value);
-        //         if(value.type === 'radio' && value.default){
-        //             _self.viewValue = value.default;
-        //         }else if(value.type === 'checkbox' && value.default){
-        //             //_self.dataFilter[0] = value.default;
-        //             _self.dataFilter.push(value.default);
-        //         }
-        //     });
-        // }
+        var _self = this;
+        _self.isParentFirstEnter = _self.$parent.isFirstEnter;
+
+        if(_self.panelData.length >= 1){
+            $.each(this.panelData,function(key,value){
+                // console.log(value);
+                if(value.type === 'radio' && value.default){
+                    _self.viewValue = value.default;
+                }else if(value.type === 'checkbox' && value.default){
+                    //_self.dataFilter[0] = value.default;
+                    _self.dataFilter.push(value.default);
+                }
+            });
+        }
     },
     mounted:function(){
         lanTool.updateLanVersion();

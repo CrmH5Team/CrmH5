@@ -75,15 +75,15 @@ export default {
           type: "checkbox",
           default: "allData",
           items: [
-            // {
-            //   text: "全部",//lanTool.lanContent("795_全部"),
-            //   queryfield: "allData",
-            //   queryType: "string",
-            //   queryFormat:"",
-            //   queryRelation:"and",
-            //   queryValue: "",
-            //   queryComparison:"="
-            // },
+            {
+              text: "全部",//lanTool.lanContent("795_全部"),
+              queryfield: "allData",
+              queryType: "string",
+              queryFormat:"",
+              queryRelation:"and",
+              queryValue: "",
+              queryComparison:"="
+            },
             {
               text: "关注的公司",//lanTool.lanContent("796_关注的公司"),
               queryfield: "MyFollowData",
@@ -239,8 +239,8 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    console.log(from);
-    console.log(to);
+    // console.log(from);
+    // console.log(to);
 
     if (from.name == "organizationsinfo" || from.name == "contactsinfo") {
       to.meta.isBack = true;
@@ -256,13 +256,11 @@ export default {
         lanTool.updateLanVersion();
         var _self = this;
 
-
         _self.queryCondictionData = eventBus.queryCondictionData || [];
         eventBus.queryCondictionData = null;
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
-
         console.log("_fromSave:"+_fromSave);
         console.log("_isBack:"+_isBack);
 
@@ -276,18 +274,18 @@ export default {
             var fromType = "organizations";
             var containerObj = $("#organizationsList");
 
-        var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
-        tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
-          if (tool.isNullOrEmptyObject(containerObj)) {
-            _self.noData = true;
-            return;
-          }
-          if (!containerObj.html()) {
-            _self.noData = true;
-          } else {
-            _self.noData = false;
-          }
-        });
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+            tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
+              if (tool.isNullOrEmptyObject(containerObj)) {
+                _self.noData = true;
+                return;
+              }
+              if (!containerObj.html()) {
+                _self.noData = true;
+              } else {
+                _self.noData = false;
+              }
+            });
 
         }else{
           //若为false,则不需要刷新
