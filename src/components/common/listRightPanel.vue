@@ -18,7 +18,7 @@
                 <div v-for="checkbox in item.items" class="checkbox-div">
                           <label class="checkbox-label">
                               <input type="checkbox" name="checkboxGroup"
-                              :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType" 
+                              :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType"
                               :data-queryFormat="checkbox.queryFormat"  :data-queryRelation="checkbox.queryRelation"
                               :value="checkbox.queryfield" :data-queryComparison="checkbox.queryComparison" v-model="dataFilter"/>
                               <i class="checkbox"></i>
@@ -129,12 +129,16 @@ export default {
                 'dataFilter':_self.dataFilter,
                 'dataModule':_self.searchData
             };
-            _self.$router.push({
-                  name:"searchmodule",
-                  params:{
-                      paramStr:JSON.stringify(parameter)
-                  }
-            });
+            _self.panelToggle();
+            _self.$nextTick(function(){
+                  _self.$router.push({
+                        name:"searchmodule",
+                        params:{
+                            paramStr:JSON.stringify(parameter)
+                        }
+                  });
+            })
+
         },
         //点击侧滑中的确定按钮
         okBtn:function(){
@@ -155,7 +159,7 @@ export default {
                     continue;
                 }
 
-                var queryCondictionObj = 
+                var queryCondictionObj =
                 {
                     Field : _curObj.attr("data-queryfield") || "",
                     Type : _curObj.attr("data-querytype") || "string",

@@ -220,7 +220,39 @@
 	/*
 	 * 用户登陆接口
 	 */
-	tool.Api_UserLogin = "Api_UserLogin";
+  tool.Api_UserLogin = "Api_UserLogin";
+  /*
+	 * 会议分组接口
+	 */
+	tool.Api_MeetingHandle_Group = "Api_MeetingHandle_Group";
+	/*
+	 * 会议分组内部数据接口
+	 */
+  tool.Api_MeetingHandle_GroupInnerData = "Api_MeetingHandle_GroupInnerData";
+  /*
+	 * 行程分组接口
+	 */
+	tool.Api_TripHandle_Group = "Api_TripHandle_Group";
+	/*
+	 * 行程分组内部数据接口
+	 */
+  tool.Api_TripHandle_GroupInnerData = "Api_TripHandle_GroupInnerData";
+  /*
+	 * Dealpipeline分组接口
+	 */
+	tool.Api_DealpipelineHandle_Group = "Api_DealpipelineHandle_Group";
+	/*
+	 * Dealpipeline分组内部数据接口
+	 */
+  tool.Api_DealpipelineHandle_GroupInnerData = "Api_DealpipelineHandle_GroupInnerData";
+  /*
+	 * Opportunities分组接口
+	 */
+	tool.Api_OpportunitiesHandle_Group = "Api_OpportunitiesHandle_Group";
+	/*
+	 * Opportunities分组内部数据接口
+	 */
+  tool.Api_OpportunitiesHandle_GroupInnerData = "Api_OpportunitiesHandle_GroupInnerData";
 	/*
 	 * 公司分组接口
 	 */
@@ -228,7 +260,15 @@
 	/*
 	 * 公司分组内部数据接口
 	 */
-	tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
+  tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
+  /*
+	 * 联系人分组接口
+	 */
+	tool.Api_ContactsHandle_Group = "Api_ContactsHandle_Group";
+	/*
+	 * 联系人分组内部数据接口
+	 */
+	tool.Api_ContactsHandle_GroupInnerData = "Api_ContactsHandle_GroupInnerData";
 	/*
 	 * 下拉数据接口
 	 */
@@ -1120,98 +1160,123 @@
 	}
 
 	//模板
-	tool.meetingTemplate =
+	// tool.meetingTemplate =
+	// 	`<div class="list-group-div group-div">
+	// 	<div class="date-div">
+	// 		<span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
+	// 		  </div>
+	// 	<div class="occupy-div"></div>
+	// 	<div class="group-item-list meeting-list">
+	// 		<div class="data-events-item f12" data-url="/meetinginfo/12" >
+	// 			<div class="item-title">Meeting with Eastern Airlines</div>
+	// 			<div class="item-time f12">
+	// 			  <span class="calcfont calc-gengxinshijian"></span>
+	// 			  <span class="time-text">14:30-17:00</span>
+	// 			</div>
+	// 			<div class="item-address">China Eastern Airlines</div>
+	// 			<div class="item-initiator">Niki (Fleet Planning Manager)</div>
+	// 		</div>
+	// 	</div>
+	// </div>
+	// `;
+  tool.meetingGroupTemplate =
+  `<div class="list-group-div group-div">
+      <div class="date-div" >
+        <span class="calcfont calc-rili1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
+      </div>
+    </div>
+  `;
+	// tool.tripTemplate =
+	// 	`<div class="list-group-div group-div">
+	// 	  <div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
+	// 	  <div class="occupy-div"></div>
+	// 	  <div class="group-item-list trip-list" >
+	// 		  <div class=" data-events-item f12" data-url="/tripinfo/12">
+	// 			  <div class="item-title">
+	// 				<span>1115-1116东航会议出差上海</span>
+	// 				<span class="right">审批已通过</span>
+	// 			  </div>
+	// 			  <div class="item-time f12">
+	// 				<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+	// 			  </div>
+	// 			  <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+	// 			  <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+	// 			  <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+	// 		  </div>
+	// 	  </div>
+	//   </div>
+  // `;
+  tool.tripGroupTemplate =
+    `<div class="list-group-div group-div">
+        <div class="date-div" >
+          <span class="calcfont calc-rili1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
+        </div>
+      </div>
+  `;
+	// tool.dealPipelineTemplate =
+	// 	`<div class="list-group-div group-div">
+	// 	  <div class="date-div" >
+	// 		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
+	// 	  </div>
+	// 	  <div class="occupy-div"></div>
+	// 	  <div class="group-item-list dealPipeline-list" >
+	// 		  <div class=" group-item f14" data-url="/opportunitiesinfo/12">
+	// 			  <div class="item-stars-icon calcfont calc-shoucang"></div>
+	// 			  <div class="item-block">
+	// 				<div class="item-div item-first-div blue-color">
+	// 					A320-200 sales project2 for
+	// 				</div>
+	// 				<div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+	// 				<div class="item-div blue-color padding-bottom-5">
+	// 					<span>In Progress</span>
+	// 				</div>
+	// 				<div class="item-div">
+	// 					<div class="item-new">new</div>
+	// 					<span class="itme-div-span">First Proposal discussion</span>
+	// 				</div>
+	// 				<div class="item-div dete-div">
+	// 				  <span>01/Jan/2019</span>
+	// 				</div>
+	// 			  </div>
+	// 		  </div>
+	// 	  </div>
+	// </div>
+  // `;
+  tool.dealPipelineGroupTemplate =
+    `<div class="list-group-div group-div">
+        <div class="date-div" >
+          <span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
+        </div>
+      </div>
+  `;
+	// tool.opportunitiesTemplate =
+	// 	`<div class="list-group-div group-div">
+	// 	  <div class="date-div" >
+	// 		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
+	// 	  </div>
+	// 	  <div class="occupy-div"></div>
+	// 	  <div class="group-item-list opportunities-list" >
+	// 		  <div class="group-item f14" data-url="/opportunitiesinfo/12">
+	// 			  <div class="item-stars-icon calcfont calc-shoucang"></div>
+	// 			  <div class="item-block">
+	// 				  <div class="item-div item-first-div blue-color">
+	// 					  A320-200 sales project2 for
+	// 				  </div>
+	// 				  <div class="item-div blue-color padding-bottom-5 padding-top-5">
+	// 					  <span>In Progress</span>
+	// 				  </div>
+	// 				  <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+	// 			  </div>
+	// 		  </div>
+	// 	  </div>
+	//   </div>
+  // `;
+  tool.opportunitiesGroupTemplate =
 		`<div class="list-group-div group-div">
-		<div class="date-div">
-			<span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
-			  </div>
-		<div class="occupy-div"></div>
-		<div class="group-item-list meeting-list">
-			<div class="data-events-item f12" data-url="/meetinginfo/12" >
-				<div class="item-title">Meeting with Eastern Airlines</div>
-				<div class="item-time f12">
-				  <span class="calcfont calc-gengxinshijian"></span>
-				  <span class="time-text">14:30-17:00</span>
-				</div>
-				<div class="item-address">China Eastern Airlines</div>
-				<div class="item-initiator">Niki (Fleet Planning Manager)</div>
-			</div>
-		</div>
-	</div>
-	`;
-
-	tool.tripTemplate =
-		`<div class="list-group-div group-div">
-		  <div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
-		  <div class="occupy-div"></div>
-		  <div class="group-item-list trip-list" >
-			  <div class=" data-events-item f12" data-url="/tripinfo/12">
-				  <div class="item-title">
-					<span>1115-1116东航会议出差上海</span>
-					<span class="right">审批已通过</span>
-				  </div>
-				  <div class="item-time f12">
-					<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
-				  </div>
-				  <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
-				  <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
-				  <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
-			  </div>
-		  </div>
+	  <div class="date-div" >
+		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
 	  </div>
-	`;
-
-
-	tool.dealPipelineTemplate =
-		`<div class="list-group-div group-div">
-		  <div class="date-div" >
-			  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-		  </div>
-		  <div class="occupy-div"></div>
-		  <div class="group-item-list dealPipeline-list" >
-			  <div class=" group-item f14" data-url="/opportunitiesinfo/12">
-				  <div class="item-stars-icon calcfont calc-shoucang"></div>
-				  <div class="item-block">
-					<div class="item-div item-first-div blue-color">
-						A320-200 sales project2 for
-					</div>
-					<div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-					<div class="item-div blue-color padding-bottom-5">
-						<span>In Progress</span>
-					</div>
-					<div class="item-div">
-						<div class="item-new">new</div>
-						<span class="itme-div-span">First Proposal discussion</span>
-					</div>
-					<div class="item-div dete-div">
-					  <span>01/Jan/2019</span>
-					</div>
-				  </div>
-			  </div>
-		  </div>
 	</div>
-	`;
-	tool.opportunitiesTemplate =
-		`<div class="list-group-div group-div">
-		  <div class="date-div" >
-			  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-		  </div>
-		  <div class="occupy-div"></div>
-		  <div class="group-item-list opportunities-list" >
-			  <div class="group-item f14" data-url="/opportunitiesinfo/12">
-				  <div class="item-stars-icon calcfont calc-shoucang"></div>
-				  <div class="item-block">
-					  <div class="item-div item-first-div blue-color">
-						  A320-200 sales project2 for
-					  </div>
-					  <div class="item-div blue-color padding-bottom-5 padding-top-5">
-						  <span>In Progress</span>
-					  </div>
-					  <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-				  </div>
-			  </div>
-		  </div>
-	  </div>
 	`;
 	// tool.organizationsTemplate =
 	// `<div class="list-group-div group-div">
@@ -1244,27 +1309,34 @@
 	  </div>
 	</div>
 	`;
-	tool.contactsTemplate =
+	// tool.contactsTemplate =
+	// 	`<div class="list-group-div group-div">
+	//   <div class="date-div" >
+	// 	  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
+	//   </div>
+	//   <div class="occupy-div"></div>
+	//   <div class="group-item-list contacts-list" >
+	// 	  <div class="  group-item" data-url="/contactsinfo/12">
+	// 		  <div class="item-user-icon calcfont calc-fuzeren1"></div>
+	// 		  <div class="item-block contacts-item-block">
+	// 			<div class="item-div item-first-div">Todd Scott</div>
+	// 			<div class="item-div">Fleet Planning Manager</div>
+	// 			<div class="item-div"><span>Air China</span><span class="right">China</span></div>
+	// 			<div class="item-div">
+	// 			  <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+	// 			</div>
+	// 			<div class="item-div">Airlines, Computer info Services</div>
+	// 		  </div>
+	// 	  </div>
+	//   </div>
+	// </div>
+  // `;
+  tool.contactsGroupTemplate =
 		`<div class="list-group-div group-div">
-	  <div class="date-div" >
-		  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-	  </div>
-	  <div class="occupy-div"></div>
-	  <div class="group-item-list contacts-list" >
-		  <div class="  group-item" data-url="/contactsinfo/12">
-			  <div class="item-user-icon calcfont calc-fuzeren1"></div>
-			  <div class="item-block contacts-item-block">
-				<div class="item-div item-first-div">Todd Scott</div>
-				<div class="item-div">Fleet Planning Manager</div>
-				<div class="item-div"><span>Air China</span><span class="right">China</span></div>
-				<div class="item-div">
-				  <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-				</div>
-				<div class="item-div">Airlines, Computer info Services</div>
-			  </div>
-		  </div>
-	  </div>
-	</div>
+      <div class="date-div" >
+    	  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}"></span><span class="right">（{GroupRowCount}）</span>
+      </div>
+    </div>
 	`;
 
 	/*
@@ -1289,28 +1361,28 @@
 		var contentHtmlStr = "";
 		switch (fromType) {
 			case "meeting":
-				template = tool.meetingTemplate;
-				controlName = "";
+				template = tool.meetingGroupTemplate;
+				controlName = tool.Api_MeetingHandle_Group;
 				break;
 			case "trip":
-				template = tool.tripTemplate;
-				controlName = "";
+				template = tool.tripGroupTemplate;
+				controlName = tool.Api_TripHandle_Group;
 				break;
 			case "dealPipeline":
-				template = tool.dealPipelineTemplate;
-				controlName = "";
+				template = tool.dealPipelineGroupTemplate;
+				controlName = tool.Api_DealpipelineHandle_Group;
 				break;
 			case "opportunities":
-				template = tool.opportunitiesTemplate;
-				controlName = "";
+				template = tool.opportunitiesGroupTemplate;
+				controlName = tool.Api_OpportunitiesHandle_Group;
 				break;
 			case "organizations":
 				template = tool.organizationsGroupTemplate;
 				controlName = tool.Api_OrganizationsHandle_Group;
 				break;
 			case "contacts":
-				template = tool.contactsTemplate;
-				controlName = "";
+				template = tool.contactsGroupTemplate;
+				controlName = tool.Api_ContactsHandle_Group;
 				break;
 		}
 
@@ -1410,21 +1482,83 @@
 		var controlName = "";
 		var contentHtmlStr = "";
 		switch (fromType) {
-			case "meeting":
-				outerTemplate = tool.meetingTemplate;
-				controlName = "";
+      case "meeting":
+        controlName = tool.Api_MeetingHandle_GroupInnerData;
+        outerTemplate = `<div class="occupy-div"></div>
+        <div class="group-item-list meeting-list">
+        {InnerList}
+        </div>`;
+        innerTemplate = `<div class="data-events-item f12" data-url="/meetinginfo/12" >
+                            <div class="item-title">Meeting with Eastern Airlines</div>
+                            <div class="item-time f12">
+                              <span class="calcfont calc-gengxinshijian"></span>
+                              <span class="time-text">14:30-17:00</span>
+                            </div>
+                            <div class="item-address">China Eastern Airlines</div>
+                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                        </div>`;
 				break;
 			case "trip":
-				outerTemplate = tool.tripTemplate;
-				controlName = "";
+        controlName = tool.Api_TripHandle_GroupInnerData;
+        outerTemplate = `<div class="occupy-div"></div>
+        <div class="group-item-list trip-list">
+        {InnerList}
+        </div>`;
+        innerTemplate = `<div class=" data-events-item f12" data-url="/tripinfo/12">
+                            <div class="item-title">
+                                <span>1115-1116东航会议出差上海</span>
+                                <span class="right">审批已通过</span>
+                            </div>
+                            <div class="item-time f12">
+                                <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
+                            </div>
+                            <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
+                            <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
+                            <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
+                        </div>`;
 				break;
 			case "dealPipeline":
-				outerTemplate = tool.dealPipelineTemplate;
-				controlName = "";
+        controlName = tool.Api_DealpipelineHandle_GroupInnerData;
+        outerTemplate = `<div class="occupy-div"></div>
+        <div class="group-item-list dealPipeline-list-list">
+        {InnerList}
+        </div>`;
+        innerTemplate = `<div class=" group-item f14" data-url="/opportunitiesinfo/12">
+                            <div class="item-stars-icon calcfont calc-shoucang"></div>
+                            <div class="item-block">
+                                <div class="item-div item-first-div blue-color">
+                                  A320-200 sales project2 for
+                                </div>
+                                <div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+                                <div class="item-div blue-color padding-bottom-5">
+                                  <span>In Progress</span>
+                                </div>
+                                <div class="item-div">
+                                  <div class="item-new">new</div>
+                                  <span class="itme-div-span">First Proposal discussion</span>
+                                </div>
+                                <div class="item-div dete-div">
+                                  <span>01/Jan/2019</span>
+                                </div>
+                            </div>
+                        </div>`;
 				break;
 			case "opportunities":
-				outerTemplate = tool.opportunitiesTemplate;
-				controlName = "";
+        controlName = tool.Api_OpportunitiesHandle_GroupInnerData;
+        outerTemplate = `<div class="occupy-div"></div>
+        <div class="group-item-list opportunities-list" >
+        {InnerList}
+        </div>`;
+        innerTemplate = `<div class="group-item f14" data-url="/opportunitiesinfo/12">
+                            <div class="item-stars-icon calcfont calc-shoucang"></div>
+                            <div class="item-block">
+                                <div class="item-div item-first-div blue-color">A320-200 sales project2 for</div>
+                                <div class="item-div blue-color padding-bottom-5 padding-top-5">
+                                  <span>In Progress</span>
+                                </div>
+                                <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+                            </div>
+                        </div>`;
 				break;
 			case "organizations":
 				controlName = tool.Api_OrganizationsHandle_GroupInnerData;
@@ -1433,23 +1567,38 @@
 				{InnerList}
 				</div>`;
 				innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
-				<div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
-				<div class="item-block f14">
-				  <div class="item-div item-first-div">
-					  <span>{ShortName}</span><span class="right">{ICAOCode}</span>
-				  </div>
-				  <div class="item-div">
-					  <span>{BusinessType}</span><span class="right">{AccountManager}</span>
-				  </div>
-				  <div class="item-div">
-					<span>{CountryName}</span><span class="right">{CityName}</span>
-				  </div>
-				</div>
-			</div>`;
+                          <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
+                          <div class="item-block f14">
+                            <div class="item-div item-first-div">
+                              <span>{ShortName}</span><span class="right">{ICAOCode}</span>
+                            </div>
+                            <div class="item-div">
+                              <span>{BusinessType}</span><span class="right">{AccountManager}</span>
+                            </div>
+                            <div class="item-div">
+                              <span>{CountryName}</span><span class="right">{CityName}</span>
+                            </div>
+                          </div>
+                        </div>`;
 				break;
-			case "contacts":
-				outerTemplate = tool.contactsTemplate;
-				controlName = "";
+      case "contacts":
+        controlName = tool.Api_ContactsHandle_GroupInnerData;
+				outerTemplate = `<div class="occupy-div"></div>
+        <div class="group-item-list contacts-list" >
+        {InnerList}
+        </div>`;
+        innerTemplate = `<div class="group-item" data-url="/contactsinfo/{AutoID}">
+                            <div class="item-user-icon calcfont calc-fuzeren1" data-autoid={AutoID}></div>
+                            <div class="item-block contacts-item-block">
+                                <div class="item-div item-first-div">Todd Scott</div>
+                                <div class="item-div">Fleet Planning Manager</div>
+                                <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                                <div class="item-div">
+                                  <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                                </div>
+                                <div class="item-div">Airlines, Computer info Services</div>
+                            </div>
+                        </div>`;
 				break;
 		}
 

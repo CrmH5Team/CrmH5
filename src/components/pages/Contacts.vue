@@ -255,7 +255,7 @@ export default {
   activated:function(){
         lanTool.updateLanVersion();
         var _self = this;
-        _self.searchData = _self.OrganizationsSearch;
+
 
         _self.queryCondictionData = eventBus.queryCondictionData || [];
         eventBus.queryCondictionData = null;
@@ -271,9 +271,10 @@ export default {
           // _self.changePos();
           // _self.showPage = 0;
 
-        //渲染数据
-        var fromType = "organizations";
-        var containerObj = $("#organizationsList");
+            _self.searchData = _self.OrganizationsSearch;
+            //渲染数据
+            var fromType = "organizations";
+            var containerObj = $("#organizationsList");
 
         var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
         tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
