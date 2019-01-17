@@ -163,7 +163,7 @@
                 <input
                   data-field="IsPublic"
                   data-lanid="803_可访问"
-                  data-field-control-type="picker"
+                  data-fieldControlType="picker"
                   data-field-val
                   code="DropDowList_DtbAllTypes"
                   TypeValue="Accessabletype"
@@ -188,7 +188,7 @@
                 <div
                   class="ListCellContentRightText"
                   data-field="Initiator"
-                  data-fieldcontroltype="groupSelectList"
+                  data-fieldcontroltype="selectList"
                   data-lanid="825_负责人"
                   data-fieldval
                   data-selecttype="checkbox"
@@ -312,6 +312,8 @@ export default {
     //console.log("_self.isAddNew:"+_self.isAddNew);
 
     var _isBack = _self.$route.meta.isBack;
+    console.log('_isBack'+_isBack);
+    console.log('_self.isFirstEnter'+_self.isFirstEnter);
     //若为true,则需要刷新
     if (!_isBack || _self.isFirstEnter) {
       //清空页面数据
@@ -345,7 +347,7 @@ export default {
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
         return;
       }
-
+        console.log(eventBus.selectListData);
       //更新selectlist控件的结果
       var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
       if (tool.isNullOrEmptyObject(curObj)) {

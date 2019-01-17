@@ -221,7 +221,7 @@
 	 * 用户登陆接口
 	 */
   	tool.Api_UserLogin = "Api_UserLogin";
-	
+
 	/*
 	 * 公司分组接口
 	 */
@@ -350,7 +350,7 @@
 	// 	if (tool.isNull(keyName)) {
 	// 		return "";
 	// 	}
-		
+
 	// 	var sysStorage = localStorage;
 	// 	return sysStorage.getItem(keyName);
 	// };
@@ -379,7 +379,7 @@
 
 	// /*通过key值删除键值对存储的数据*/
 	// tool.clearStoragItem = function () {
-	// 	var sysStorage = localStorage; 
+	// 	var sysStorage = localStorage;
 	// 	//console.log('clearStoragItem');
 	// 	sysStorage.clear();
 	// 	return true;
@@ -1081,7 +1081,7 @@
 			allArr.push(arr1);
 		}
 		// console.log(arr1KeyArray);
-		
+
 		for(var i=0;i<arr2.length;i++){
 			var uniqueKeyValue = arr2[i][uniqueKey]||"";
 			// console.log(uniqueKeyValue);
@@ -1855,7 +1855,7 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
-			
+
 			var parameter = {
 				'field':dataField,
 				'code':code,
@@ -1886,7 +1886,7 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
-			
+
 			var parameter = {
 				'field':dataField,
 				'code':code,
@@ -1931,7 +1931,7 @@
 		if (fromType == "Organizationsinfo") {
 			controlName = tool.Api_OrganizationsHandle_QuerySingle;
 		} else if (fromType == "Contactsinfo") {
-			controlName = "";
+			controlName = tool.Api_ContactsHandle_QuerySingle;
 		} else if (fromType == "Meetinginfo") {
 			controlName = "";
 		} else if (fromType == "Tripinfo") {
@@ -1961,7 +1961,7 @@
 			data: jsonDatasTemp,
 			success: function (data) {
 				data = tool.jObject(data);
-				//console.log(data);
+				console.log(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
@@ -2320,7 +2320,7 @@
 			if(tool.isNullOrEmptyObject(value)){
 				return true;
 			}
-			var queryCondictionObj = 
+			var queryCondictionObj =
 			{
 				Field:_curObj.attr("data-field") || "",
 				Type:_curObj.attr("data-querytype") || "",
@@ -2341,7 +2341,7 @@
 			if(tool.isNullOrEmptyObject(value)){
 				return true;
 			}
-			var queryCondictionObj = 
+			var queryCondictionObj =
 			{
 				Field:_curObj.attr("data-field") || "",
 				Type:_curObj.attr("data-querytype") || "",
@@ -2362,7 +2362,7 @@
 			if(tool.isNullOrEmptyObject(value)){
 				return true;
 			}
-			var queryCondictionObj = 
+			var queryCondictionObj =
 			{
 				Field:_curObj.attr("data-field") || "",
 				Type:_curObj.attr("data-querytype") || "",
