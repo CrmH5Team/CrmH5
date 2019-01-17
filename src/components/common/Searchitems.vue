@@ -21,7 +21,7 @@
               <div class="item-row-flex">
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
-                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="selectList row-cell-ft" ></div>
+                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft" ></div>
                     <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
@@ -34,6 +34,7 @@
                     :data-queryRelation="item.queryRelation"
                     :data-queryValue="item.queryValue"
                     :data-queryComparison="item.queryComparison"
+                    :data-lanid="item.datalanid"
                     ></div>
 
 
@@ -49,6 +50,7 @@
                     :data-queryRelation="item.queryRelation"
                     :data-queryValue="item.queryValue"
                     :data-queryComparison="item.queryComparison"
+                    :data-lanid="item.datalanid"
                     />
 
                   <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
@@ -79,6 +81,8 @@
                 :data-queryRelation="item.queryRelation"
                 :data-queryValue="item.queryValue"
                 :data-queryComparison="item.queryComparison"
+                :data-lanid="item.datalanid"
+                :data-clickObj="item.clickObj"
               ></div>
 
           </div>
@@ -94,85 +98,22 @@ export default {
   components: {},
   data() {
     return {
-      isFirstEnter: false //是否首次进入
+      
     };
   },
   props: ["searchData"],
   created: function() {
-    //console.log("created");
-    this.isFirstEnter = true;
+    // console.log("created");
   },
   mounted: function() {
     // console.log("mounted");
   },
-  beforeRouteEnter: function(to, from, next) {
-      alert("beforeRouteEnter");
-    if (from.name === "selectlist") {
-      to.meta.isBack = true;
-    } else {
-      to.meta.isBack = false;
-    }
-    next();
-  },
   activated: function() {
-    var _self = this;
-    console.log("activated");
-    var _isBack = _self.$route.meta.isBack;
-
-    //若为true,则需要刷新
-    if (!_isBack || _self.isFirstEnter) {
-      setTimeout(function() {
-        //控件渲染
-        _self.$nextTick(function() {
-          //清空页面数据
-          tool.ClearControlData(function() {
-            //渲染控件
-            tool.InitiateInfoPageControl(_self, function() {
-              _self.isFirstEnter = false;
-              if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
-                return;
-              }
-
-              //更新selectlist控件的结果
-              var curObj = $(
-                "[data-field='" + eventBus.selectListData.field + "']"
-              );
-              if (tool.isNullOrEmptyObject(curObj)) {
-                return;
-              }
-              curObj.attr("data-fieldval", eventBus.selectListData.value.id);
-              curObj.text(eventBus.selectListData.value.text);
-
-              //清空全局变量
-              eventBus.selectListData = null;
-            });
-          });
-        });
-      }, 500);
-    } else {
-      _self.isFirstEnter = false;
-      if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
-        return;
-      }
-
-      //更新selectlist控件的结果
-      var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-      if (tool.isNullOrEmptyObject(curObj)) {
-        return;
-      }
-
-      var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-      if (tool.isNullOrEmptyObject(curObj)) {
-        return;
-      }
-      curObj.attr("data-fieldval", eventBus.selectListData.value.id);
-      curObj.text(eventBus.selectListData.value.text);
-
-      //清空全局变量
-      eventBus.selectListData = null;
-    }
+    // console.log("activated");
   },
-  methods: {}
+  methods: {
+      
+  }
 };
 </script>
 

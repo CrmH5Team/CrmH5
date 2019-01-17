@@ -64,7 +64,8 @@ export default {
       title: lanTool.lanContent("175_联系人"),
       showPage: 0,
       noData: true, //没数据
-      queryCondiction:[],//过滤条件数组
+      queryCondiction:[],//右侧checkbox条件
+      queryCondictionData:[],//综合查询条件
       isFirstEnter:false,//是否首次进入
       //isCreated: false, //是否第一次进入，默认false
       //侧滑数据模型
@@ -128,7 +129,8 @@ export default {
           queryValue: "",
           queryComparison:"=",
           Code:"DropDowList_ViewBaseAllTypes",
-          TypeValue:"Companybusinesstype"
+          TypeValue:"Companybusinesstype",
+          datalanid:"695_业务分类"
         },
         {
           queryfield: "CountryID",
@@ -142,7 +144,9 @@ export default {
           Code:"DropDowList_ViewBaseCountryInf",
           TypeValue:"",
           selectType:"radio",
-          resulteRow:true
+          resulteRow:true,
+          clickObj:"CountryIDClickObj",
+          datalanid:"701_国家"
         },
         {
           queryfield: "CityID",
@@ -155,7 +159,8 @@ export default {
           queryComparison:"=",
           Code:"DropDowList_ViewBaseCountryCity",
           TypeValue:"",
-          selectType:"radio"
+          selectType:"radio",
+          datalanid:"702_城市"
         },
         {
           queryfield: "AccountManager",
@@ -169,6 +174,7 @@ export default {
           Code:"DropDowList_AccountManager",
           TypeValue:"",
           selectType:"radio",
+          datalanid:"785_客户经理"
         }
       ],
       ContactsSearch: [
@@ -247,9 +253,12 @@ export default {
     this.isFirstEnter = true;
   },
   activated:function(){
-    lanTool.updateLanVersion();
+        lanTool.updateLanVersion();
         var _self = this;
         _self.searchData = _self.OrganizationsSearch;
+
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        eventBus.queryCondictionData = null;
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
@@ -266,7 +275,8 @@ export default {
         var fromType = "organizations";
         var containerObj = $("#organizationsList");
 
-        tool.InitiateGroupList("organizations", $("#organizationsList"), _self.queryCondiction, function(containerObj) {
+        var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+        tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
           if (tool.isNullOrEmptyObject(containerObj)) {
             _self.noData = true;
             return;
@@ -387,7 +397,8 @@ export default {
             });
           } else {
             //若是收起
-            tool.InitiateInnerDataList(fromType, groupID, target, function(containerObj) {
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+            tool.InitiateInnerDataList(fromType, groupID, target, allQueryData,function(containerObj) {
                   containerObj
                   .addClass("open")
                   .siblings(".group-item-list")
@@ -446,7 +457,8 @@ export default {
         container = $("#contactsList");
       }
       //渲染数据
-      tool.InitiateGroupList(fromType, container,_self.queryCondiction, function(containerObj) {
+      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+      tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
           _self.noData = true;
           return;
@@ -520,7 +532,8 @@ export default {
       }
 
       //渲染数据
-      tool.InitiateGroupList(fromType, container,_self.queryCondiction, function(containerObj) {
+      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+      tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
           _self.noData = true;
           return;

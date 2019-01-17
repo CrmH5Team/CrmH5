@@ -1047,6 +1047,21 @@
 		return jObjct2;
 	}
 
+	//合并数组
+	tool.combineArray = function(arr1,arr2){
+		if(tool.isNullOrEmptyObject(arr1)){
+			arr1 = [];
+		}
+		if(tool.isNullOrEmptyObject(arr2)){
+			arr2 = []
+		}
+		for(var i=0;i<arr2.length;i++){
+			arr1.push(arr2[i]);
+		}
+
+		return arr1;
+	}
+
 	//纯文本
 	tool.showText = function (msg) {
 		if (tool.isNullOrEmptyObject(msg)) {
@@ -1262,7 +1277,7 @@
 		//清空容器内容
 		containerObj.html('');
 
-		console.log("common");
+		console.log("common_InitiateGroupList");
 		console.log(queryCondiction);
 
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
@@ -1308,7 +1323,7 @@
 			UserName: tool.UserName(),
 			_ControlName: controlName,
 			_RegisterCode: tool.RegisterCode(),
-			QueryCondiction: queryCondiction
+			QueryCondiction: JSON.stringify(queryCondiction)
 		};
 		tool.showLoading();
 
@@ -1371,10 +1386,13 @@
 	*noData:是否无数据
 	*myCallBack:回调函数
 	*/
-	tool.InitiateInnerDataList = function (fromType, groupID, containerObj, myCallBack) {
+	tool.InitiateInnerDataList = function (fromType, groupID, containerObj,queryCondiction, myCallBack) {
 		// console.log(fromType);
 		// console.log(groupID);
 		// console.log(containerObj);
+		console.log("common_InitiateInnerDataList");
+		console.log(queryCondiction);
+
 		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(groupID) || tool.isNullOrEmptyObject(containerObj)) {
 			return;
 		}
@@ -1444,7 +1462,7 @@
 			_ControlName: controlName,
 			GroupID: groupID,
 			_RegisterCode: tool.RegisterCode(),
-			QueryCondiction: []
+			QueryCondiction: JSON.stringify(queryCondiction)
 		};
 		tool.showLoading();
 		$.ajax({
@@ -1549,12 +1567,12 @@
 	*渲染控件
 	*/
 	tool.InitiateInfoPageControl = function (self,myCallBack) {
-		// console.log("InitiateInfoPageControl");
+		console.log("InitiateInfoPageControl");
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
 			var _curObj = $(this);
+			console.log(_curObj);
 			var fromId = _curObj.attr("data-field") || "";
-			console.log(fromId);
 			if (tool.isNullOrEmptyObject(fromId)) {
 				return true;
 			}
@@ -1606,8 +1624,7 @@
 
 					setTimeout(() => {
 						//写入标题
-						var titleLV = _curObj.parents('div.rightContent:first').siblings("div.leftContent").children("div.ListCellContentLeftText").attr("data-lanid") || "";
-						var titleVal = lanTool.lanContent(titleLV);
+						var titleVal = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
 
 						//渲染下拉数据
 						_curObj.picker({
@@ -1672,23 +1689,19 @@
 			});
 
 		});
+
 		//2>渲染selectList
+		//2-1>同一行的selectList
 		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off().on('click',function(){
 			var _curObj = $(this);
+			console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
-			var title = _curObj.parents("div.rightContent:first").siblings("div.leftContent:first").children("div.ListCellContentLeftText:first").text()||"";
-
-			// console.log(dataField);
-			// console.log(code);
-			// console.log(typeValue);
-			// console.log(value);
-			// console.log(selectType);
-			// console.log(title);
-			// return;
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			
 			var parameter = {
 				'field':dataField,
 				'code':code,
@@ -1701,7 +1714,37 @@
 				path: '/selectlist',
 				query: parameter
 			})
+		});
+		//2-2>不同一行的selectList
+		//console.log($("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).length);
+		$("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+			//查找子类
+			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
+			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return;
+			}
+			console.log(_curObj);
 
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType
+			};
+			self.$router.push({
+				path: '/selectlist',
+				query: parameter
+			})
 		});
 
 		//执行回调函数
@@ -1932,7 +1975,21 @@
 			var fieldVal = _curObj.attr("data-fieldVal") || "";
 			jObject[dataField] = fieldVal;
 		});
-		//2>textareaInput
+		//2>selectList
+		$("[data-fieldControlType='selectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+
+			var fieldVal = _curObj.attr("data-fieldVal") || "";
+			jObject[dataField] = fieldVal;
+		});
+		//3>textareaInput
 		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 			var _curObj = $(this);
 			if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2086,6 +2143,83 @@
 				document.activeElement.blur();
 			}
 		});
+	}
+
+	/*
+	* 构造综合查询条件
+	*/
+	tool.ConstructQueryCondiction = function(_self,myCallBack){
+		var queryCondiction = [];
+		//构造查询条件
+		//1>picker
+		$("[data-fieldControlType='picker']").each(function (index, obj) {
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.attr("data-fieldval") || "";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj = 
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+		//2>selectList
+		$("[data-fieldControlType='selectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.attr("data-fieldval") || "";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj = 
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+		//3>textareaInput
+		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.val()||"";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj = 
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+
+		//console.log(queryCondiction);
+		//执行回调函数
+		if(!tool.isNullOrEmptyObject(myCallBack)){
+			myCallBack(queryCondiction);
+		}
 	}
 
 }(top.window.tool = {}, jQuery));

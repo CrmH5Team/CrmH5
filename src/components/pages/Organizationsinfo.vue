@@ -36,7 +36,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="BusinessType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
+                            <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -48,7 +48,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="CountryID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="CountryID" data-fieldControlType="selectList" data-lanid="701_国家" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="CityID" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="AccountManager" data-fieldControlType="selectList" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div type="text" data-field="AccountManager" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
@@ -287,14 +287,14 @@ export default {
                 path: '/contactsof',
             })
         },
-        // 开关事件
-        allDayClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true all");
-            } else {
-                console.log("false all");
-            }
-        },
+        // // 开关事件
+        // allDayClick: function (e) {
+        //     if ($(e.target).is(":checked") == true) {
+        //         console.log("true all");
+        //     } else {
+        //         console.log("false all");
+        //     }
+        // },
         followToggle: function (e) {
             var _self = this;
             var autoID = _self.$route.params.id;
