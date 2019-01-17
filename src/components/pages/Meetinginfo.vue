@@ -9,11 +9,11 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-T"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Title">Firsting Meeting with Eastern Airlines</textarea>
+                            <textarea data-field="Title" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
                         </p>
                     </div>
                 </div>
-                <div class="ListCell visible">
+                <!-- <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft">
@@ -26,15 +26,16 @@
 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="ListCell visible">
                         <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">Start</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText">16/Nov 15:00</div>
+                                <!-- <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="StartTime" class="ListCellContentRightText"/> -->
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -43,10 +44,11 @@
                         <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">End</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText">16/Nov 16:00</div>
+                                <!-- <input type="text" data-field="" data-fieldControlType="" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="EndTime" class="ListCellContentRightText"/> -->
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -55,10 +57,10 @@
                         <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">对内/对外</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">对外</div>
+                                <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InsideOrOutside" class="ListCellContentRightText"/>
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -66,7 +68,7 @@
                     <div class="ListSpecialCell visible" id="Organization">
                         <div class="ListSpecialCellField">
                             <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
-                            <div class="ListSpecialCellFieldContent">Organization</div>
+                            <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                             <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
                         <div class="ListSpecialCellContent">Organization</div>
@@ -75,10 +77,10 @@
                         <div class="ListCellLeftIcon"><span class="calcfont calc-kehulianxiren"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">Contact</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">Contact</div>
+                                <div type="text" data-field="ContactsID" data-fieldControlType="selectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseContactsInf" data-selectType="radio" class="ListCellContentRightText"/>
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -87,7 +89,7 @@
                         <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
-                                <textarea placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                                <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
                             </p>
                         </div>
                     </div>
@@ -98,7 +100,7 @@
                         <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText">查看会议记录</div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="849_查看会议记录"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
                                 <div class="ListCellContentRightText"></div>
