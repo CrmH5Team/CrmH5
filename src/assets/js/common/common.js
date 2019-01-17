@@ -293,7 +293,6 @@
 	 * refreshSessionTime:刷新Session时间
 	 */
 	tool.config_refreshSessionTime = "refreshSessionTime";
-
 	/*
 	 * lanData:多语言数据
 	 */
@@ -1081,18 +1080,43 @@
 	}
 
 	//合并数组
-	tool.combineArray = function(arr1,arr2){
+	tool.combineArray = function(arr1,arr2,uniqueKey){
+		var allArr = [];
+		// console.log(arr1);
+		// console.log(arr2);
+
 		if(tool.isNullOrEmptyObject(arr1)){
 			arr1 = [];
 		}
 		if(tool.isNullOrEmptyObject(arr2)){
 			arr2 = []
 		}
+		var arr1KeyArray = [];
+		for(var i = 0;i<arr1.length;i++){
+			var valTemp = arr1[i][uniqueKey] || "";
+			if(tool.isNullOrEmptyObject(valTemp)){
+				continue;
+			}
+			arr1KeyArray.push(valTemp);
+			allArr.push(arr1);
+		}
+		// console.log(arr1KeyArray);
+		
 		for(var i=0;i<arr2.length;i++){
-			arr1.push(arr2[i]);
+			var uniqueKeyValue = arr2[i][uniqueKey]||"";
+			// console.log(uniqueKeyValue);
+			if(tool.isNullOrEmptyObject(uniqueKeyValue)){
+				continue;
+			}
+			//是否存在相同的值
+			var index = $.inArray(uniqueKeyValue, arr1);
+			//不存在
+			if(index <= 0){
+				allArr.push(arr2[i]);
+			}
 		}
 
-		return arr1;
+		return allArr;
 	}
 
 	//纯文本
@@ -2377,7 +2401,7 @@
 	lan.currentLanguageVersion = tool.getConfigValue(tool.config_currentLanguageVersion) || 1;
 
 	//多语言数据
-	lan.Data = [];
+	lan.Data = tool.getConfigValue(tool.config_lanData) || [];
 
 	//多语言加载完成对象
 	lan.ready = $.Deferred();
@@ -2420,7 +2444,7 @@
 						lan.Data = data._OnlyOneData;
 						var configJSONTemp = tool.getConfigJSON();
 						configJSONTemp[tool.config_currentLanguageVersion] = lan.currentLanguageVersion;
-						// configJSONTemp[tool.config_lanData] = lan.Data;
+						configJSONTemp[tool.config_lanData] = lan.Data;
 						tool.setConfig(configJSONTemp);
 
 						//console.log(lan.Data);

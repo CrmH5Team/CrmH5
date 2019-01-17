@@ -274,7 +274,7 @@ export default {
             var fromType = "organizations";
             var containerObj = $("#organizationsList");
 
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             tool.InitiateGroupList("organizations", $("#organizationsList"), allQueryData, function(containerObj) {
               if (tool.isNullOrEmptyObject(containerObj)) {
                 _self.noData = true;
@@ -309,6 +309,7 @@ export default {
     setQuerycondition:function(data){
       var _self = this;
       _self.queryCondiction = data;
+      console.log(_self.queryCondiction);
       //执行监听的这个动作
       _self.RefreshCurPageGroupData();
     },
@@ -396,7 +397,7 @@ export default {
             });
           } else {
             //若是收起
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             tool.InitiateInnerDataList(fromType, groupID, target, allQueryData,function(containerObj) {
                   containerObj
                   .addClass("open")
@@ -456,7 +457,7 @@ export default {
         container = $("#contactsList");
       }
       //渲染数据
-      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
       tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
           _self.noData = true;
@@ -531,7 +532,7 @@ export default {
       }
 
       //渲染数据
-      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction);
+      var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
       tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
         if (tool.isNullOrEmptyObject(containerObj)) {
           _self.noData = true;

@@ -181,7 +181,8 @@ export default {
             }
 
             //触发父类的事件
-            console.log("子组件触发父组件事件");
+            // console.log("子组件触发父组件事件");
+            // console.log(queryCondiction);
             self.$parent.setQuerycondition(queryCondiction);
         }
     },
