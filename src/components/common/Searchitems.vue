@@ -22,8 +22,8 @@
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
 
-                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft" ></div>
-                    <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft"
+                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft f12" ></div>
+                    <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft f12"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
@@ -40,7 +40,7 @@
 
 
                   <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
-                  <input v-else-if="item.fieldControlType=='picker'" class="picker row-cell-ft"
+                  <input v-else-if="item.fieldControlType=='picker'" class="picker row-cell-ft f12"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
@@ -55,7 +55,7 @@
                     />
 
                   <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
-                  <input v-else-if="item.fieldControlType=='datepicker'" class="datepicker row-cell-ft"
+                  <input v-else-if="item.fieldControlType=='datepicker'" class="datepicker row-cell-ft f12"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
@@ -70,7 +70,7 @@
                   />
               </div>
 
-              <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="resulte-row"
+              <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="resulte-row f12"
                 :data-field="item.queryfield"
                 :data-fieldControlType="item.fieldControlType"
                 data-fieldVal= ""
@@ -85,7 +85,7 @@
                 :data-lanid="item.datalanid"
                 :data-clickObj="item.clickObj"
               ></div>
-              <div v-else class="resulte-row"></div>
+              <div v-else class="resulte-row f12"></div>
 
           </div>
 
@@ -168,7 +168,7 @@ border-bottom: 1px solid beige;}
   padding:10px 10px 0 0;
 }
 .item-row-flex input.row-cell-ft{height: 30px;}
-.resulte-row{word-wrap : break-word;padding-bottom:10px;}
+.resulte-row{word-wrap : break-word;padding-bottom:10px;color:#666;}
 .select-list-value{
    color:rgb(102, 102, 102);text-align:left;line-height:16px;
 }
