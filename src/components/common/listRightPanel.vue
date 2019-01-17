@@ -62,14 +62,8 @@ export default {
         },
         //数据过滤
         dataFilter:function(newVule){
-            var _self = this;
-            if(!_self.isParentFirstEnter){
-
-                _self.conStructQueryCondition(newVule);
-            }else{
-                _self.isParentFirstEnter = false;
-            }
-
+             var _self = this;
+            _self.conStructQueryCondition(newVule);
         }
     },
     props:['panelData','searchData'],
@@ -157,7 +151,7 @@ export default {
         conStructQueryCondition:function(arr){
             var self = this;
             arr = arr || [];
-            //console.log("arr:"+arr);
+            // console.log(arr);
             var queryCondiction = [];
             for(var i = 0;i<arr.length;i++){
                 var _curObj = $("[value='"+ $.trim(arr[i]) +"']");
@@ -178,9 +172,15 @@ export default {
             }
 
             //触发父类的事件
-            // console.log("子组件触发父组件事件");
-            // console.log(queryCondiction);
-            self.$parent.setQuerycondition(queryCondiction);
+            //console.log("子组件触发父组件事件");
+            //console.log(queryCondiction);
+            // console.log("self.isParentFirstEnter:"+self.isParentFirstEnter);
+            if(self.isParentFirstEnter){
+              self.$parent.setQueryconditionOnlyData(queryCondiction);
+            }else{
+              self.$parent.setQuerycondition(queryCondiction);
+            }
+            self.isParentFirstEnter = false;
         }
     },
     deactivated:function(){
