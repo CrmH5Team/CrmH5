@@ -29,7 +29,7 @@
         </div>
 
         <div class="right-content-block">
-            <div class="right-block-title">Other 其他</div>
+            <div class="right-block-title lanText" data-lanid="847_其他"></div>
             <div class="right-block-items">
                 <div class="other-search" id="OtherSearchBtn" @click="goSearchPage">
                     <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div @click="okBtn" class="right-btn-div f16">OK确认</div>
+        <div @click="okBtn" class="right-btn-div f16 lanText" data-lanid="569_确认"></div>
     </div>
 
 
@@ -90,9 +90,9 @@ export default {
         }
     },
     mounted:function(){
-        lanTool.updateLanVersion();
     },
     activated:function(){
+        lanTool.updateLanVersion();
         eventBus.$on('showRightPanelEvent',this.panelToggle);
 
         //触发父亲事件
