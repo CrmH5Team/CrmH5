@@ -58,12 +58,12 @@
 
                     <div v-show="showPage==1" class="pageList">
                         <!-- 增加trip按钮 -->
-                        <div class="add-btn-div">
+                        <!-- <div class="add-btn-div">
                               <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
                                   <span class="add-text">And Trip</span>
                               </div>
-                        </div>
+                        </div> -->
 
                         <!-- trip list -->
                         <div v-if="!notTrip" class="list">

@@ -30,12 +30,12 @@
               </div>
 
               <div class="pageList" v-show="showPage == 1">
-                    <div class="add-btn-div">
+                    <!-- <div class="add-btn-div">
                           <router-link to="/tripinfo/0" class="add-div">
                               <span class="calcfont calc-add"></span>
                               <span class="add-text">And Trip</span>
                           </router-link>
-                    </div>
+                    </div> -->
                     <!-- 列表 -->
                     <div v-if="!notTrip" id="tripList"></div>
                     <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
