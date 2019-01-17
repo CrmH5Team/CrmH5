@@ -1,5 +1,6 @@
 <template>
-<div class="updateList HideWhenNew">
+<!-- <div class="updateList HideWhenNew"> -->
+    <div class="updateList">
     <div class="ListCell">
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-shijian"></span></div>
         <div class="ListCellContent">
@@ -32,16 +33,8 @@ export default {
     mounted: function () {
         var _self = this;
         lanTool.updateLanVersion();
-        // console.log(_self.modifiedtime);
-        // console.log(_self.modifiedby);
-
-        // $('.input-row .footerInput').on('click', function () {
-        //     document.activeElement.blur();
-        // });
     },
-    //props: ['modifiedtime', 'modifiedby'],
-    created:function(){
-        
+    created:function(){   
     }
 }
 </script>

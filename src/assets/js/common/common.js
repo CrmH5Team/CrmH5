@@ -220,39 +220,8 @@
 	/*
 	 * 用户登陆接口
 	 */
-  tool.Api_UserLogin = "Api_UserLogin";
-  /*
-	 * 会议分组接口
-	 */
-	tool.Api_MeetingHandle_Group = "Api_MeetingHandle_Group";
-	/*
-	 * 会议分组内部数据接口
-	 */
-  tool.Api_MeetingHandle_GroupInnerData = "Api_MeetingHandle_GroupInnerData";
-  /*
-	 * 行程分组接口
-	 */
-	tool.Api_TripHandle_Group = "Api_TripHandle_Group";
-	/*
-	 * 行程分组内部数据接口
-	 */
-  tool.Api_TripHandle_GroupInnerData = "Api_TripHandle_GroupInnerData";
-  /*
-	 * Dealpipeline分组接口
-	 */
-	tool.Api_DealpipelineHandle_Group = "Api_DealpipelineHandle_Group";
-	/*
-	 * Dealpipeline分组内部数据接口
-	 */
-  tool.Api_DealpipelineHandle_GroupInnerData = "Api_DealpipelineHandle_GroupInnerData";
-  /*
-	 * Opportunities分组接口
-	 */
-	tool.Api_OpportunitiesHandle_Group = "Api_OpportunitiesHandle_Group";
-	/*
-	 * Opportunities分组内部数据接口
-	 */
-  tool.Api_OpportunitiesHandle_GroupInnerData = "Api_OpportunitiesHandle_GroupInnerData";
+  	tool.Api_UserLogin = "Api_UserLogin";
+	
 	/*
 	 * 公司分组接口
 	 */
@@ -260,19 +229,7 @@
 	/*
 	 * 公司分组内部数据接口
 	 */
-  tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
-  /*
-	 * 联系人分组接口
-	 */
-	tool.Api_ContactsHandle_Group = "Api_ContactsHandle_Group";
-	/*
-	 * 联系人分组内部数据接口
-	 */
-	tool.Api_ContactsHandle_GroupInnerData = "Api_ContactsHandle_GroupInnerData";
-	/*
-	 * 下拉数据接口
-	 */
-	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
+	tool.Api_OrganizationsHandle_GroupInnerData = "Api_OrganizationsHandle_GroupInnerData";
 	/*
 	 * 查询公司明细数据接口
 	 */
@@ -285,6 +242,29 @@
 	 * 添加/取消关注接口
 	 */
 	tool.Api_OrganizationsHandle_UserFollow = "Api_OrganizationsHandle_UserFollow";
+
+	/*
+	 * 联系人分组接口
+	 */
+	tool.Api_ContactsHandle_Group = "Api_ContactsHandle_Group";
+	/*
+	 * 联系人分组内部数据接口
+	 */
+	tool.Api_ContactsHandle_GroupInnerData = "Api_ContactsHandle_GroupInnerData";
+	/*
+	 * 查询联系人明细数据接口
+	 */
+	tool.Api_ContactsHandle_QuerySingle = "Api_ContactsHandle_QuerySingle";
+	/*
+	 * 联系人保存/修改接口
+	 */
+	tool.Api_ContactsHandle_SaveOrUpdate = "Api_ContactsHandle_SaveOrUpdate";
+
+	/*
+	 * 下拉数据接口
+	 */
+	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
+
 	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
@@ -1379,19 +1359,23 @@
 		switch (fromType) {
 			case "meeting":
 				template = tool.meetingGroupTemplate;
-				controlName = tool.Api_MeetingHandle_Group;
+				//controlName = tool.Api_MeetingHandle_Group;
+				controlName = "";
 				break;
 			case "trip":
 				template = tool.tripGroupTemplate;
-				controlName = tool.Api_TripHandle_Group;
+				//controlName = tool.Api_TripHandle_Group;
+				controlName = "";
 				break;
 			case "dealPipeline":
 				template = tool.dealPipelineGroupTemplate;
-				controlName = tool.Api_DealpipelineHandle_Group;
+				//controlName = tool.Api_DealpipelineHandle_Group;
+				controlName = "";
 				break;
 			case "opportunities":
 				template = tool.opportunitiesGroupTemplate;
-				controlName = tool.Api_OpportunitiesHandle_Group;
+				//controlName = tool.Api_OpportunitiesHandle_Group;
+				controlName = "";
 				break;
 			case "organizations":
 				template = tool.organizationsGroupTemplate;
@@ -1500,7 +1484,8 @@
 		var contentHtmlStr = "";
 		switch (fromType) {
       case "meeting":
-        controlName = tool.Api_MeetingHandle_GroupInnerData;
+		//controlName = tool.Api_MeetingHandle_GroupInnerData;
+		controlName = "";
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list meeting-list">
         {InnerList}
@@ -1516,7 +1501,8 @@
                         </div>`;
 				break;
 			case "trip":
-        controlName = tool.Api_TripHandle_GroupInnerData;
+		// controlName = tool.Api_TripHandle_GroupInnerData;
+		controlName = "";
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list trip-list">
         {InnerList}
@@ -1535,7 +1521,8 @@
                         </div>`;
 				break;
 			case "dealPipeline":
-        controlName = tool.Api_DealpipelineHandle_GroupInnerData;
+		// controlName = tool.Api_DealpipelineHandle_GroupInnerData;
+		controlName = "";
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list dealPipeline-list-list">
         {InnerList}
@@ -1561,7 +1548,8 @@
                         </div>`;
 				break;
 			case "opportunities":
-        controlName = tool.Api_OpportunitiesHandle_GroupInnerData;
+		// controlName = tool.Api_OpportunitiesHandle_GroupInnerData;
+		controlName = "";
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list opportunities-list" >
         {InnerList}
@@ -1600,20 +1588,20 @@
 				break;
       case "contacts":
         controlName = tool.Api_ContactsHandle_GroupInnerData;
-				outerTemplate = `<div class="occupy-div"></div>
+		outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list contacts-list" >
         {InnerList}
         </div>`;
         innerTemplate = `<div class="group-item" data-url="/contactsinfo/{AutoID}">
                             <div class="item-user-icon calcfont calc-fuzeren1" data-autoid={AutoID}></div>
                             <div class="item-block contacts-item-block">
-                                <div class="item-div item-first-div">Todd Scott</div>
-                                <div class="item-div">Fleet Planning Manager</div>
-                                <div class="item-div"><span>Air China</span><span class="right">China</span></div>
+                                <div class="item-div item-first-div">{EnglishName}</div>
+                                <div class="item-div">{Title}</div>
+                                <div class="item-div"><span>{CompanyID}</span><span class="right">{CountryName}</span></div>
                                 <div class="item-div">
-                                  <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
+                                  <span>{Email}</span><span class="right">{TelPhone}</span>
                                 </div>
-                                <div class="item-div">Airlines, Computer info Services</div>
+                                <div class="item-div">{BusinessType},{DepartmentName}</div>
                             </div>
                         </div>`;
 				break;
@@ -1911,6 +1899,11 @@
 				path: '/selectlist',
 				query: parameter
 			})
+		});
+
+		//3>渲染textarea
+		$("textarea").each(function (index, cur) {
+			tool.autoTextarea(cur);
 		});
 
 		//执行回调函数
