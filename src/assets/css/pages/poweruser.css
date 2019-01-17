@@ -87,87 +87,34 @@ header {
 
 /*搜索框style*/
 .search {
-    padding:10px;
+  padding:10px;
 }
 .search-box{
-    line-height: 34px;
-    position: relative;
-    background:#f2f2f2;
+  line-height: 34px;
+  position: relative;
+  background:#f2f2f2;
 }
-
-.search-active .search-input {
-    text-align: left;
-    color: inherit;
-}
-
-.search .input-search-icon {
-    display: none;
-    position: absolute;
-    top: 8px;
-    left:10px;
-}
-
-.search-active .input-search-icon {
-    display: block;
-}
-
 .search-input {
-    padding: 10px 15px 10px 32px;
-    box-sizing: border-box;
-    height: 34px;
-    text-align: center;
-    border: 0;
-    font-size: 16px;
-    width: 100%;
-    font-size: 14px;
-    color: #999;
-    line-height: 14px;
-    outline: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    background: #f2f2f2;
-    border-radius: 8px;
+  padding: 10px 15px 10px 32px;
+  box-sizing: border-box;
+  height: 34px;
+  border: 0;
+  font-size: 16px;
+  width: 100%;
+  font-size: 14px;
+  color: #999;
+  line-height: 14px;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: #f2f2f2;
+  border-radius: 8px;
 }
-
-.search .calc-delete {
-    padding: 0;
-    width: auto;
-    color: #999;
-    font-size: 16px;
-    display: none;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    z-index: 1;
-}
-
-.search-placeholder {
-    padding-left:32px;
-    line-height: 34px;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: inline-block;
-    height: 34px;
-    text-align:left;
-    color: #999;
-    border: 0;
-    border-radius: 8px;
-    background:#f2f2f2;
-}
-
-.search-active .search-placeholder {
-    display: none;
-}
-
 .search .calc-sousuo {
-    padding: 0;
-    color: #333;
-    position: absolute;
-    left:5px;top:6px;
-    width:23px;height: 23px;text-align: center;line-height: 23px;
+  padding: 0;
+  color: #333;
+  position: absolute;
+  left:5px;top:6px;
+  width:23px;height: 23px;text-align: center;line-height: 23px;
 }
 
 

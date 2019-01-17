@@ -27,11 +27,6 @@
                                   id="userInput"
                                   key="userInput"
                                   class="search-input" data-lanid="208_搜索" placeholder="search"/>
-                          <span class="calcfont calc-delete"></span>
-                          <span @click="clickSearch" class="search-placeholder f16">
-                                  <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
-                          </span>
                       </div>
                   </div>
                   <!-- 列表 -->
@@ -76,11 +71,6 @@
                                   id="groupInput"
                                   key="groupInput"
                                   class="search-input" data-lanid="208_搜索" placeholder="search"  />
-                          <span class="calcfont calc-delete"></span>
-                          <span @click="clickSearch" class="search-placeholder f16">
-                                  <span class="calcfont calc-sousuo"></span>
-                          <span class="lanText" data-lanid="208_搜索">search</span>
-                          </span>
                       </div>
                   </div>
                   <!-- 列表 -->
