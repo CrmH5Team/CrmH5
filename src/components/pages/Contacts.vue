@@ -249,7 +249,7 @@ export default {
   activated:function(){
     lanTool.updateLanVersion();
         var _self = this;
-        _self.searchData = _self.OrganizationsSearch;
+
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
@@ -262,21 +262,22 @@ export default {
           // _self.changePos();
           // _self.showPage = 0;
 
-        //渲染数据
-        var fromType = "organizations";
-        var containerObj = $("#organizationsList");
+            _self.searchData = _self.OrganizationsSearch;
+            //渲染数据
+            var fromType = "organizations";
+            var containerObj = $("#organizationsList");
 
-        tool.InitiateGroupList("organizations", $("#organizationsList"), _self.queryCondiction, function(containerObj) {
-          if (tool.isNullOrEmptyObject(containerObj)) {
-            _self.noData = true;
-            return;
-          }
-          if (!containerObj.html()) {
-            _self.noData = true;
-          } else {
-            _self.noData = false;
-          }
-        });
+            tool.InitiateGroupList("organizations", $("#organizationsList"), _self.queryCondiction, function(containerObj) {
+                if (tool.isNullOrEmptyObject(containerObj)) {
+                  _self.noData = true;
+                  return;
+                }
+                if (!containerObj.html()) {
+                  _self.noData = true;
+                } else {
+                  _self.noData = false;
+                }
+            });
 
         }else{
           //若为false,则不需要刷新
