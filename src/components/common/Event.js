@@ -6,7 +6,7 @@ const eventBus = new Vue({
         return {
             selectListData:null,
             queryCondictionData:null,
-            backFromSearch:false
+            fromSearchBtn:false  //标志是否是从搜索页面点击确定按钮过来
         }
     },
     created:function(){
@@ -16,11 +16,8 @@ const eventBus = new Vue({
         });
         //queryCondiction
         this.$on('queryCondiction', (val)=>{
-            this.queryCondictionData = val;
-        })
-        //从列表侧滑搜索页返回事件
-        this.$on('backFromSearch', (val)=>{
-            this.backFromSearch = val;
+            this.queryCondictionData = val[0];
+            this.fromSearchBtn = val[1];
         })
     },
 

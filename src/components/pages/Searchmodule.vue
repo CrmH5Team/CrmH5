@@ -10,8 +10,8 @@
       <search-items :searchData="searchData"></search-items>
     </div>
     <div class="anniu">
-      <div class="clear-btn" @click="clearFilter">{{Clear}}</div>
-      <div class="sure-btn" @click="constructFilter">{{OK}}</div>
+      <div class="clear-btn lanText" data-lanid="627_清空" @click="clearFilter"></div>
+      <div class="sure-btn lanText" data-lanid="545_确定" @click="constructFilter"></div>
     </div>
   </div>
 </template>
@@ -29,8 +29,8 @@ export default {
       title: "Search",
       searchData: [],
       dataFilter: [],
-      Clear: "",
-      OK: ""
+      // Clear: "",
+      // OK: ""
     };
   },
   created() {
@@ -49,12 +49,13 @@ export default {
   },
   activated: function() {
     // console.log("activated");
+    lanTool.updateLanVersion();
     var _self = this;
 
     setTimeout(function() {
 
-      _self.Clear = lanTool.lanContent("627_清空");
-      _self.OK = lanTool.lanContent("545_确定");
+      // _self.Clear = lanTool.lanContent("627_清空");
+      // _self.OK = lanTool.lanContent("545_确定");
       var paramStr = _self.$route.params.paramStr;
       var paramObj = tool.jObject(paramStr);
       // console.log(paramObj);
@@ -133,7 +134,7 @@ export default {
           tool.ConstructQueryCondiction(_self, function(queryCondictionTemp) {
             //console.log("myCallBack");
             //console.log(queryCondictionTemp);
-            eventBus.$emit("queryCondiction", queryCondictionTemp);
+            eventBus.$emit("queryCondiction", [queryCondictionTemp,true]);
             _self.$router.back(-1);
           });
         });
@@ -151,7 +152,6 @@ export default {
 
       //点击左上角返回
       back:function(){
-          eventBus.$emit("backFromSearch", true);
           this.$router.back(-1);
       },
   }
