@@ -369,7 +369,7 @@ export default {
     //查看有权限访问的同事跳转事件
     goToShareList: function() {
       this.$router.push({
-        path: "/sharelist",
+        path: "/poweruser",
         query: {
           name: "Colleagues with access"
         }
