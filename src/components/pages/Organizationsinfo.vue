@@ -170,7 +170,7 @@ export default {
     },
     data() {
         return {
-            moreHiddenIcon: true,
+            moreHiddenIcon: false,
             delHidden: true,
             saveHidden: true,
             ptitle: 'Organizationsinfo detail',
