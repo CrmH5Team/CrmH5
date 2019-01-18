@@ -8,9 +8,7 @@
         <!-- 新增状态头部icon显示   -->
         <div v-if="isAddNew" class="leftView">
             <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
-            <!-- <a @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
-            <!-- <a @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a> -->
         </div>
         <!-- 编辑状态头部icon显示   -->
         <div v-else class="leftView">
@@ -25,8 +23,8 @@
 </template>
 
 <script>
-import event from './Event.js'
-import eventBus from './Event.js';
+// import event from './Event.js'
+// import eventBus from './Event.js';
 export default {
     data() {
         return {
