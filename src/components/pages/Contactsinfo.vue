@@ -176,7 +176,7 @@
             </div>
           </div>
 
-          <div class="ListCell visible">
+          <div class="ListCell visible initiatorObj">
             <div class="ListCellLeftIcon">
               <span class="calcfont calc-fuzerenicon"></span>
             </div>
@@ -188,13 +188,13 @@
                 <div
                   class="ListCellContentRightText"
                   data-field="Initiator"
-                  data-fieldcontroltype="selectList"
+                  data-fieldcontroltype="groupSelectList"
                   data-lanid="825_负责人"
                   data-fieldval=""
                   data-selecttype="checkbox"
                   code="DropDowList_PopedomTeamVsUser"
                   typevalue=""
-                  dara-fromType="6"
+                  data-fromType="6"
                 ></div>
               </div>
               <div class="ListCellRightIcon">
@@ -322,7 +322,24 @@ export default {
       //清空页面数据
       tool.ClearControlData(function() {
         //渲染控件
-        tool.InitiateInfoPageControl(_self, function() {
+        tool.InitiateInfoPageControl(_self,id, function() {
+
+           //控制data-field="Initiator"显示和隐藏
+           $("[data-field='IsPublic']").on('change',function(){
+               var curObj = $(this);
+               if(tool.isNullOrEmptyObject(curObj)){
+                   return;
+               }
+            //    console.log(curObj);
+            //    console.log(curObj.attr("data-fieldval"));
+               var fieldval = curObj.attr("data-fieldval");
+               if(fieldval == "23"){
+                   $(".initiatorObj").hide();
+               }else{
+                   $(".initiatorObj").show();
+               }
+           });
+
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
             console.log(eventBus.selectListData);

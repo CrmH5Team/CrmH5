@@ -12,7 +12,6 @@
                       <div class="search-box">
                           <span class="calcfont calc-sousuo input-search-icon"></span>
                           <input
-                                  @blur="blurHandler"
                                   type="text"
                                   id="searchInput"
                                   class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""  />
@@ -22,12 +21,13 @@
                   <div v-if="!notData" class="dataList select-user-list">
                       <div v-for="item in userData" class="group-div">
                           <div :data-id="item.id" class="item-div f14" @click="groupToggle">{{item.text}}
+                              <span class="f14 right memCount"></span>
                           </div>
                           <div class="child-list">
                               <div v-for="member in item.nodes" class="child-list-item f14">
                                     <div class="margin10">
                                             <label class="user-checkbox checkbox-label" @click.stop>
-                                                <input type="checkbox" name="group" :value="member.id" v-model="userCheckedValue"/>
+                                                <input type="checkbox" name="group" :data-pid="member.pid" :value="member.id" v-model="userCheckedValue"/>
                                                 <i class="checkbox"></i>
                                                 <span class="f14">{{member.text}}</span>
                                                 <!-- <span class="power f12 right">Responsible by</span> -->
@@ -94,8 +94,32 @@ export default {
             value: "", //已选数据
             selectType:"", //判断是否多选
             fromType:"",//来源类型
-            fromID:"",//来源记录Id
+            fromID:""//来源记录Id
         }
+    },
+    watch:{
+        userCheckedValue:function(newValue){
+            // console.log(newValue);
+            var _self = this;
+            if(tool.isNullOrEmptyObject(newValue)){ 
+                //newValue
+                $("span.memCount").text("(0)");
+                return;
+            }
+
+            _self.$nextTick(function(){
+                $("div.item-div").each(function(){
+                    var pObj = $(this);
+                    if(tool.isNullOrEmptyObject(pObj)){
+                        return true;
+                    }
+
+                    var memCount = "(" + (pObj.siblings("div.child-list").find("input[type='checkbox']:checked").length || 0) + ")";
+                    pObj.find("span.memCount").text(memCount);
+                });
+            });
+            
+        },
     },
     created: function () {
         this.field = this.$route.query.field;
@@ -129,6 +153,9 @@ export default {
 
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.CommonDataServiceHandle_Query;
+            
+            // console.log(_self.fromType);
+            // console.log(_self.fromID);
 
             //传入参数
             var jsonDatasTemp = {
@@ -159,6 +186,7 @@ export default {
 
                   data = data._OnlyOneData || [];
                   _self.userData = data;
+
                   if(data.length<=0){
                       _self.notData = true;
                   }else{

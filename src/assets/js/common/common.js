@@ -1918,6 +1918,8 @@
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
 			var fromType = _curObj.attr("data-fromType") ||"";
+			
+			console.log("fromType:"+fromType);
 
 			var parameter = {
 				'field':dataField,
@@ -1927,7 +1929,7 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				'fromType':fromType,
-				'fromID':id,
+				'fromID':id
 			};
 			self.$router.push({
 				path: '/groupselectlist',
@@ -1960,7 +1962,7 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				'fromType':fromType,
-				'fromID':id,
+				'fromID':id
 			};
 			self.$router.push({
 				path: '/groupselectlist',
