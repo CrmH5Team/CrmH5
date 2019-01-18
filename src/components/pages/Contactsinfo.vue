@@ -26,7 +26,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="EnglishName"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="848_姓名"
                 ></textarea>
@@ -52,10 +52,10 @@
               data-field="CompanyID"
               data-fieldcontroltype="selectList"
               data-lanid="790_公司"
-              data-fieldval
+              data-fieldval=""
               data-selecttype="radio"
-              code="DropDowList_AccountManager"
-              typevalue
+              code="DropDowList_ViewBaseCompanyBaseInf"
+              typevalue = ""
               data-clickobj="CompanyIDClickObj"
             ></div>
           </div>
@@ -67,7 +67,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="Title"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="696_职位"
                 ></textarea>
@@ -82,7 +82,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="Email"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="697_邮箱"
                 ></textarea>
@@ -97,7 +97,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="TelPhone"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="704_办公电话"
                 ></textarea>
@@ -112,7 +112,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="Phone"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="705_移动电话"
                 ></textarea>
@@ -127,7 +127,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="Fax"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="703_传真"
                 ></textarea>
@@ -142,7 +142,7 @@
               <p class="textareaP">
                 <textarea
                   data-field="ContactRemark"
-                  data-field-control-type="textareaInput"
+                  data-fieldcontroltype="textareaInput"
                   class="lanInputPlaceHolder"
                   data-lanid="699_备注"
                 ></textarea>
@@ -163,7 +163,7 @@
                 <input
                   data-field="IsPublic"
                   data-lanid="803_可访问"
-                  data-field-control-type="picker"
+                  data-fieldcontroltype="picker"
                   data-field-val
                   code="DropDowList_DtbAllTypes"
                   TypeValue="Accessabletype"
@@ -190,10 +190,11 @@
                   data-field="Initiator"
                   data-fieldcontroltype="groupSelectList"
                   data-lanid="825_负责人"
-                  data-fieldval
+                  data-fieldval=""
                   data-selecttype="checkbox"
-                  code="DropDowList_AccountManager"
-                  typevalue
+                  code="DropDowList_PopedomTeamVsUser"
+                  typevalue=""
+                  dara-fromType="6"
                 ></div>
               </div>
               <div class="ListCellRightIcon">
@@ -309,18 +310,22 @@ export default {
       $(".HideWhenNew").show();
       _self.isAddNew = false;
     }
-    //console.log("_self.isAddNew:"+_self.isAddNew);
-
+    
     var _isBack = _self.$route.meta.isBack;
+
+    console.log("_isBack:"+_isBack);
+    console.log("_self.isFirstEnter:"+_self.isFirstEnter);
+
     //若为true,则需要刷新
     if (!_isBack || _self.isFirstEnter) {
+        _self.isFirstEnter = false;
       //清空页面数据
       tool.ClearControlData(function() {
         //渲染控件
         tool.InitiateInfoPageControl(_self, function() {
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
-            _self.isFirstEnter = false;
+            console.log(eventBus.selectListData);
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
               return;
             }
@@ -341,6 +346,7 @@ export default {
         });
       });
     } else {
+        console.log(eventBus.selectListData);
       _self.isFirstEnter = false;
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
         return;

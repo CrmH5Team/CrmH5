@@ -1720,7 +1720,7 @@
 	/*
 	*渲染控件
 	*/
-	tool.InitiateInfoPageControl = function (self,myCallBack) {
+	tool.InitiateInfoPageControl = function (self,id,myCallBack) {
 		console.log("InitiateInfoPageControl");
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
@@ -1867,7 +1867,7 @@
 			self.$router.push({
 				path: '/selectlist',
 				query: parameter
-			})
+			});
 		});
 		//2-2>不同一行的selectList
 		//console.log($("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).length);
@@ -1898,12 +1898,74 @@
 			self.$router.push({
 				path: '/selectlist',
 				query: parameter
-			})
+			});
 		});
 
 		//3>渲染textarea
 		$("textarea").each(function (index, cur) {
 			tool.autoTextarea(cur);
+		});
+
+		//4>渲染groupSelectList
+		//4-1>同一行的groupSelectList
+		$("[data-fieldControlType='groupSelectList']").attr("readonly","readonly").off().on('click',function(){
+			var _curObj = $(this);
+			console.log(_curObj);
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			var fromType = _curObj.attr("data-fromType") ||"";
+
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType,
+				'fromType':fromType,
+				'fromID':id,
+			};
+			self.$router.push({
+				path: '/groupselectlist',
+				query: parameter
+			});
+		});
+		//4-2>不同一行的groupSelectList
+		$("#"+$("[data-fieldControlType='groupSelectList'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+			//查找子类
+			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
+			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return;
+			}
+			console.log(_curObj);
+
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			var fromType = _curObj.attr("data-fromType") ||"";
+
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType,
+				'fromType':fromType,
+				'fromID':id,
+			};
+			self.$router.push({
+				path: '/groupselectlist',
+				query: parameter
+			});
 		});
 
 		//执行回调函数
@@ -2005,7 +2067,24 @@
 					_curObj.text(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
 				});
-				//3>textareaInput
+				//3>groupSelectList
+				$("[data-fieldControlType='groupSelectList']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+
+					var fieldVal = data[dataField] || "";
+					var fieldDisplay = data[dataField + "_Name"] || "";
+
+					_curObj.text(fieldDisplay);
+					_curObj.attr("data-fieldVal", fieldVal);
+				});
+				//4>textareaInput
 				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2018,7 +2097,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.val(fieldVal);
 				});
-				//4>divText
+				//5>divText
 				$("[data-fieldControlType='divText']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2031,7 +2110,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.text(fieldVal);
 				});
-				//5>icon
+				//6>icon
 				$("[data-fieldControlType='icon']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {

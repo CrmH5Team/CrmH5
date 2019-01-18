@@ -14,7 +14,7 @@
               <input
                   type="text"
                   id="searchInput"
-                  class="search-input lanInputPlaceHolder" data-lanid="208_搜索" placeholder=""/>
+                  class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""/>
           </div>
       </div>
         <!-- 列表 -->
@@ -56,10 +56,10 @@ export default {
         return {
             notData:false, //没数据
             dataArray: [],//存放全部数据
-            field:"",
-            code:"",
-            typeValue:"",
-            title: "",
+            field:"",//来源字段名
+            code:"",//执行动作名
+            typeValue:"",//具体动作
+            title: "",//标题
             value: "", //已选数据
             selectType:"",  //判断是否多选
             radioValue:"",
@@ -76,7 +76,6 @@ export default {
     },
     mounted: function () {
         lanTool.updateLanVersion();
-
         //清空输入框
         $("#searchInput").val("");
 
@@ -84,10 +83,13 @@ export default {
         if (this.selectType === 'checkbox') {
             $(".selectList-scroll").css("padding-bottom", "50px");
         }
+
+        //加载数据
         var _self = this;
         _self.getData(function(){
             _self.iniVal();
         });
+        //监听搜索
         _self.search();
     },
     methods: {
@@ -103,7 +105,6 @@ export default {
                     self.checkboxValue = [];
                 }
         },
-
         backHandler: function () {
             this.$router.back(-1);
         },
@@ -230,7 +231,7 @@ export default {
                   data = tool.jObject(data);
                   // console.log(data);
                   if (data._ReturnStatus == false) {
-                                $this.notData = true;
+                    $this.notData = true;
                     tool.showText(tool.getMessage(data));
                     console.log(tool.getMessage(data));
                     return true;

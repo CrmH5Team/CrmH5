@@ -2,52 +2,45 @@
 <div>
     <header class="header sticky">
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
-
         <h1 class="header-title f18">{{title||''}}</h1>
-
         <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
     </header>
 
     <div class="selectList-scroll">
-
             <div class="user-page">
                   <div class="search ">
                       <div class="search-box">
                           <span class="calcfont calc-sousuo input-search-icon"></span>
                           <input
                                   @blur="blurHandler"
-                                  type="search"
-                                  id="userInput"
-                                  key="userInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
+                                  type="text"
+                                  id="searchInput"
+                                  class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""  />
                       </div>
                   </div>
                   <!-- 列表 -->
                   <div v-if="!notData" class="dataList select-user-list">
                       <div v-for="item in userData" class="group-div">
-                          <div  class="item-div f14" @click="groupToggle">{{item.groupName}}
+                          <div :data-id="item.id" class="item-div f14" @click="groupToggle">{{item.text}}
                           </div>
                           <div class="child-list">
-                              <div v-for="member in item.groupMember" class="child-list-item f14">
+                              <div v-for="member in item.nodes" class="child-list-item f14">
                                     <div class="margin10">
                                             <label class="user-checkbox checkbox-label" @click.stop>
-                                                <input type="checkbox" name="group" :value="member.value" v-model="userCheckedValue"/>
+                                                <input type="checkbox" name="group" :value="member.id" v-model="userCheckedValue"/>
                                                 <i class="checkbox"></i>
                                                 <span class="f14">{{member.text}}</span>
-                                                <span class="power f12 right">Responsible by</span>
+                                                <!-- <span class="power f12 right">Responsible by</span> -->
                                             </label>
                                     </div>
                               </div>
                           </div>
                       </div>
                   </div>
-
                   <!-- 没数据 -->
                   <nothing v-if="notData" style="padding-top:0.8rem;"></nothing>
-
             </div>
     </div>
-
 </div>
 </template>
 
@@ -60,60 +53,152 @@ export default {
     data() {
         return {
             languageData: {
-                'search': lanTool.lanContent('208_搜索'), //208_搜索
+                'search': lanTool.lanContent('780_搜索'), 
             },
             notData:false,
             //用户数据
             userData: [
-                {
-                  groupName:'group1',
-                  value:'group1',
-                  groupMember:[
-                      {text:'Alan1',value:'Alan1'},
-                      {text:'Alan2',value:'Alan2'},
-                      {text:'Alan3',value:'Alan3'},
-                  ]
-                },
-                {
-                  groupName:'group2',
-                  value:'group2',
-                  groupMember:[
-                      {text:'Alan4',value:'Alan4'},
-                      {text:'Alan5',value:'Alan5'},
-                      {text:'Alan6',value:'Alan6'},
-                  ]
-                },
-                {
-                  groupName:'group3',
-                  value:'group3',
-                  groupMember:[
-                      {text:'Alan7',value:'Alan7'},
-                      {text:'Alan8',value:'Alan8'},
-                      {text:'Alan9',value:'Alan9'},
-                  ]
-                },
+                // {
+                //   id:'group1',
+                //   text:'group1',
+                //   nodes:[
+                //       {text:'Alan1',id:'Alan1'},
+                //       {text:'Alan2',id:'Alan2'},
+                //       {text:'Alan3',id:'Alan3'},
+                //   ]
+                // },
+                // {
+                //   id:'group2',
+                //   text:'group2',
+                //   nodes:[
+                //       {text:'Alan4',id:'Alan4'},
+                //       {text:'Alan5',id:'Alan5'},
+                //       {text:'Alan6',id:'Alan6'},
+                //   ]
+                // },
+                // {
+                //   id:'group3',
+                //   text:'group3',
+                //   nodes:[
+                //       {text:'Alan7',id:'Alan7'},
+                //       {text:'Alan8',id:'Alan8'},
+                //       {text:'Alan9',id:'Alan9'},
+                //   ]
+                // }
             ],
-
-            // queryUrl: null,
-            // field: null,
-            title: 'Colleagues with access',
-            // value: '', //默认值数据
-
-            // radioValue:'',
-
             userCheckedValue:[],
+            field:"",//来源字段名
+            code:"",//执行动作名
+            typeValue:"",//具体动作
+            title: "",//标题
+            value: "", //已选数据
+            selectType:"", //判断是否多选
+            fromType:"",//来源类型
+            fromID:"",//来源记录Id
         }
     },
     created: function () {
+        this.field = this.$route.query.field;
+        this.code = this.$route.query.code;
+        this.typeValue = this.$route.query.typeValue;
+        this.title = this.$route.query.title;
+        this.value = this.$route.query.value;
+        this.selectType = this.$route.query.selectType;
+        this.fromType = this.$route.query.fromType;
+        this.fromID = this.$route.query.fromID;
     },
     mounted: function () {
-        // lanTool.updateLanVersion();
-
-        // this.getData();
+        lanTool.updateLanVersion();
+        //清空输入框
+        $("#searchInput").val("");
+        //加载数据
+        var _self = this;
+        _self.getData(function(){
+            _self.iniVal();
+        });
+        //监听搜索
         this.search();
-
     },
     methods: {
+        //获取数据
+        getData:function(mycallback){
+            var _self = this;
+            if (tool.isNullOrEmptyObject(_self.code)) {
+                return;
+            }
+
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.CommonDataServiceHandle_Query;
+
+            //传入参数
+            var jsonDatasTemp = {
+                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                    UserName: tool.UserName(),
+                    _ControlName: controlName,
+                    _RegisterCode: tool.RegisterCode(),
+                    Code: _self.code,
+                    TypeValue: _self.typeValue,
+                    FromType:_self.fromType||"",
+                    FromID:_self.fromID||"",
+                };
+            tool.showLoading();
+            $.ajax({
+              async: true,
+              type: "post",
+              url: urlTemp,
+              data: jsonDatasTemp,
+              success: function (data) {
+                  data = tool.jObject(data);
+                  // console.log(data);
+                  if (data._ReturnStatus == false) {
+                    _self.notData = true;
+                    tool.showText(tool.getMessage(data));
+                    console.log(tool.getMessage(data));
+                    return true;
+                  }
+
+                  data = data._OnlyOneData || [];
+                  _self.userData = data;
+                  if(data.length<=0){
+                      _self.notData = true;
+                  }else{
+                      _self.notData = false;
+                  }
+
+                  if(!tool.isNullOrEmptyObject(mycallback)){
+                    mycallback();
+                  }
+              },
+              error: function (jqXHR, type, error) {
+                  _self.notData = true;
+                  console.log(error);
+                  tool.hideLoading();
+                  return true;
+              },
+              complete: function () {
+                  tool.hideLoading();
+                  //隐藏虚拟键盘
+                  document.activeElement.blur();
+              }
+            });
+        },
+        //渲染已经选择的数据
+        iniVal:function(){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(_self.value)){
+                return;
+            }
+             var valArrTemp = _self.value.split(",");
+             _self.$nextTick(function(){
+                 for(var i = 0;i< valArrTemp.length;i++){
+                     if(tool.isNullOrEmptyObject((valArrTemp[i]||""))){
+                         continue;
+                     }
+
+                     _self.userCheckedValue.push(valArrTemp[i]);
+                 }
+             });
+        },
         //点击分组收起展开
         groupToggle:function(e){
             document.activeElement.blur();
@@ -135,112 +220,22 @@ export default {
                 // }
             }
         },
-
-
-
-
         clickSearch: function (e) {
             $(e.target).closest('.search').addClass('search-active');
             document.activeElement.blur();
             $(e.target).siblings('.search-input').focus();
         },
-
-        //失去焦点
-        blurHandler: function (e) {
-            // document.activeElement.blur();
-            // $(e.target).val('');
-            // $(e.target).closest('.search').removeClass('search-active');
-        },
-
         backHandler: function () {
             this.$router.back(-1);
         },
-
         saveHandler: function () {
-            var $this = this;
-            console.log($this.userCheckedValue);
-            // var arr = {
-            //     field: $this.field,
-            //     value: []
-            // };
-            // $.each($this.dataArray,function(index, item){
-
-            //     if(($this.selectType === 'radio' && $this.radioValue === item.value) ||
-            //       ($this.selectType === 'checkbox' && $this.checkboxValue.indexOf(item.value)>=0 )){
-            //         var t = {};
-            //         t.text = item.text;
-            //         t.value = item.value;
-            //         arr.value.push(t);
-            //     }
-
-            // })
-            // eventBus.$emit('updataSelectList', arr);
-            // $this.$router.back(-1);
-
+            
         },
-
-        getData: function () {
-            var $this = this;
-            if ($this.queryUrl == undefined) return;
-
-            //请求地址
-            var urlTemp = tool.combineRequestUrl(
-                tool.getConfigValue(tool.config_ajaxUrl),
-                $this.queryUrl);
-
-            //请求的传入参数
-            var jsonDatasTemp = {
-                "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                "IsUsePager": false,
-                "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
-                "QueryCondiction": [],
-                "_QueryType": "SelectList", //查询类型
-                "IsAdmin": tool.getSessionStorageItem(tool.cache_isadmin) || "off", //当前用户是否管理员
-                "UserId": tool.getSessionStorageItem(tool.cache_UserId) || ""
-            };
-
-            loading.show(3, lanTool.lanContent("172_加载中..."));
-            $.ajax({
-                async: true,
-                type: "post",
-                url: urlTemp,
-                data: {
-                    jsonDatas: JSON.stringify(jsonDatasTemp)
-                },
-                dataType: 'json',
-                success: function (data) {
-                    loading.hidden();
-                    if (data.Result != 1) {
-                        toast.show(data.Msg);
-                        return;
-                    }
-                    $this.dataArray = data.Data.Rows;
-
-                    $this.$nextTick(function () {
-                        // if ($this.data.text && $this.data.value) {
-                        //     $this.LocateCurentItem($this.data.value);
-                        // }
-                        // $this.selectItem();
-                    })
-
-                    //如果是多选，显示底部全选按钮
-                    if($this.selectType === 'checkbox'){
-                        $('.selectAll').show();
-                    }
-
-                },
-                error: function (jqXHR, type, error) {
-                    console.log("error");
-                    loading.hidden();
-                }
-            })
-        },
-
         //筛选
         search: function () {
             this.$nextTick(function () {
                 var listDom = $('.dataList');
-                $('#userInput').unbind().bind('input', function () {
+                $('#searchInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
                         listDom.find('.child-list-item').show().closest('.group-div').show();
@@ -251,10 +246,8 @@ export default {
                     }
                 })
             })
-        },
-
-    },
-
+        }
+    }
 }
 </script>
 
