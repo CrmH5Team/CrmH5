@@ -27,40 +27,40 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">16/Nov 15:00</div>
-                                <!-- <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="StartTime" class="ListCellContentRightText"/> -->
-                            </div>
-                            <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                         </div>
-                    </div>
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText">16/Nov 16:00</div>
-                                <!-- <input type="text" data-field="" data-fieldControlType="" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="EndTime" class="ListCellContentRightText"/> -->
-                            </div>
-                            <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">16/Nov 15:00</div>
+                            <!-- <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="StartTime" class="ListCellContentRightText"/> -->
                         </div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InsideOrOutside" class="ListCellContentRightText"/>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText">16/Nov 16:00</div>
+                            <!-- <input type="text" data-field="" data-fieldControlType="" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="EndTime" class="ListCellContentRightText"/> -->
+                        </div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InsideOrOutside" class="ListCellContentRightText"/>
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -71,7 +71,7 @@
                             <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                             <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
-                        <div class="ListSpecialCellContent">Organization</div>
+                        <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInf" typevalue="" data-clickobj="CompanyIDClickObj"></div>
                     </div>
                     <div class="ListCell visible">
                         <div class="ListCellLeftIcon"><span class="calcfont calc-kehulianxiren"></span></div>
@@ -80,7 +80,7 @@
                                 <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div type="text" data-field="ContactsID" data-fieldControlType="selectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseContactsInf" data-selectType="radio" class="ListCellContentRightText"/>
+                                <div type="text" data-field="ContactsID" data-fieldControlType="selectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseContactsInf" data-selectType="radio" class="ListCellContentRightText" />
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -132,8 +132,8 @@ export default {
             ptitle: 'Meeting detail',
             isShowMenuList: false,
             isAddNew: false, //是否添加新纪录
-            operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
-            onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
+            operation: true, //控制详情页header按钮，ture:显示可操作，false:隐藏
+            onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
         }
     },
 
