@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <Infoheader :isAddNew="isAddNew" :operation="operation" :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
       <div class="box">
@@ -269,7 +269,7 @@ export default {
       isShowSendBtn: true,
 
       isAddNew: false, //是否添加新纪录
-      operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
+      // operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
       onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
       isFirstEnter: false //是否首次进入
     };

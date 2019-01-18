@@ -6,11 +6,10 @@
 
 
           <!-- calendar视图 -->
-        <calendar  class="calendar-view"></calendar>
-
+        <calendar v-show="viewType=='calendarView'" class="calendar-view"></calendar>
 
           <!-- list 视图 -->
-        <div  class="list-view" style="display:none;">
+        <div v-show="viewType=='listView'"  class="list-view">
               <div class="nav sticky">
                   <div @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item">Meeting</div>
                   <div @click="switchPage(1,'trip',$event)" class="nav-item f16" >Trip</div>
@@ -71,7 +70,8 @@ export default {
 
             showPage:0, //list视图控制显示meeting(0)或者trip(1)
 
-            selectView:'calendarVeiw',
+            viewType:'', //展示视图类型  calendarView, listView
+
             dataFilter:['mySchedule'],
 
              //侧滑数据模型
@@ -79,9 +79,9 @@ export default {
                 {
                   groupText:'View视图',
                   type:'radio',
-                  default:'calendarVeiw',
+                  default:'calendarView',
                   items:[
-                      {text:'Calendar Veiw',value:'calendarVeiw'},
+                      {text:'Calendar Veiw',value:'calendarView'},
                       {text:'List View',value:'listView'}
                   ]
                 },
@@ -217,21 +217,21 @@ export default {
         var _self = this;
 
         eventBus.$on('changeViewEvent',function(data){
-            if(data === '' || data === undefined) return;
-            if(data === 'listView'){
-                $('.calendar-view').hide();
-                $('.list-view').show();
+            // if(data === '' || data === undefined) return;
+            // if(data === 'listView'){
+            //     $('.calendar-view').hide();
+            //     $('.list-view').show();
 
-                if(_self.showPage == 0){
-                    tool.InitiateGroupList('meeting',$('#meetingList'));
-                }else{
-                    tool.InitiateGroupList('trip',$('#tripList'));
-                }
-            }else{
-                $('.calendar-view').show();
-                $('.list-view').hide();
-            }
-            // _self.selectView = data;
+            //     if(_self.showPage == 0){
+            //         tool.InitiateGroupList('meeting',$('#meetingList'));
+            //     }else{
+            //         tool.InitiateGroupList('trip',$('#tripList'));
+            //     }
+            // }else{
+            //     $('.calendar-view').show();
+            //     $('.list-view').hide();
+            // }
+            _self.viewType = data;
         })
 
         _self.searchData = _self.meetingSearch;
@@ -347,6 +347,9 @@ export default {
                 });
             })
         },
+        setQuerycondition:function(){
+
+        }
     },
 
 }
