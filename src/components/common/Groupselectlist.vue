@@ -21,7 +21,7 @@
                   <div v-if="!notData" class="dataList select-user-list">
                       <div v-for="item in userData" class="group-div">
                           <div :data-id="item.id" class="item-div f14" @click="groupToggle">{{item.text}}
-                              <span class="f14 right memCount"></span>
+                              <span class="f14 right memCount">(0)</span>
                           </div>
                           <div class="child-list">
                               <div v-for="member in item.nodes" class="child-list-item f14">
@@ -118,8 +118,7 @@ export default {
                     pObj.find("span.memCount").text(memCount);
                 });
             });
-            
-        },
+        }
     },
     created: function () {
         this.field = this.$route.query.field;
@@ -257,7 +256,39 @@ export default {
             this.$router.back(-1);
         },
         saveHandler: function () {
+            var _self = this;
+            var returnObj = {
+                field: _self.field,
+                value: {}
+            };
+
+            var valArr = _self.userCheckedValue || [];
+            var idArr = [];
+            var textArr = [];
+            for(var i = 0; i < valArr.length;i++){
+                var idTemp = valArr[i];
+                var textTemp = $.trim($("input[value='"+ idTemp +"']:first").siblings("span:first").text()) || "";
+                
+                //若已经加过
+                if($.inArray(idTemp,idArr)>=0){
+                    continue;
+                }
+
+                idArr.push(idTemp);
+                textArr.push(textTemp);
+            }
+
+            console.log(idArr);
+            console.log(textArr);
+
+            returnObj["value"] = {
+                id : idArr.join(","),
+                text : textArr.join(",")
+            };
             
+            //console.log(returnObj);
+            eventBus.$emit('updataSelectList', returnObj);
+            _self.$router.back(-1);
         },
         //筛选
         search: function () {

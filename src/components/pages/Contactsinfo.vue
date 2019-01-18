@@ -275,7 +275,7 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    if (from.name === "selectlist") {
+    if (from.name == "selectlist" || from.name == "groupselectlist") {
       to.meta.isBack = true;
     } else {
       to.meta.isBack = false;
@@ -337,6 +337,11 @@ export default {
                }
            });
 
+           //渲染textarea
+            $("textarea").each(function (index, cur) {
+                tool.autoTextarea(cur);
+            });
+
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
             console.log(eventBus.selectListData);
@@ -365,7 +370,6 @@ export default {
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
         return;
       }
-    console.log(eventBus.selectListData);
       //更新selectlist控件的结果
       var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
       if (tool.isNullOrEmptyObject(curObj)) {

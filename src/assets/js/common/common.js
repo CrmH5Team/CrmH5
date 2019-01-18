@@ -999,6 +999,7 @@
 		addEvent('propertychange', change);
 		addEvent('input', change);
 		addEvent('focus', change);
+		addEvent('change', change);
 		change();
 	};
 
@@ -1725,7 +1726,7 @@
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
 			var _curObj = $(this);
-			console.log(_curObj);
+			// console.log(_curObj);
 			var fromId = _curObj.attr("data-field") || "";
 			if (tool.isNullOrEmptyObject(fromId)) {
 				return true;
@@ -1848,7 +1849,7 @@
 		//2-1>同一行的selectList
 		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off().on('click',function(){
 			var _curObj = $(this);
-			console.log(_curObj);
+			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
@@ -1878,7 +1879,7 @@
 			if(tool.isNullOrEmptyObject(_curObj)){
 				return;
 			}
-			console.log(_curObj);
+			// console.log(_curObj);
 
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
@@ -1902,15 +1903,15 @@
 		});
 
 		//3>渲染textarea
-		$("textarea").each(function (index, cur) {
-			tool.autoTextarea(cur);
-		});
+		// $("textarea").each(function (index, cur) {
+		// 	tool.autoTextarea(cur);
+		// });
 
 		//4>渲染groupSelectList
 		//4-1>同一行的groupSelectList
 		$("[data-fieldControlType='groupSelectList']").attr("readonly","readonly").off().on('click',function(){
 			var _curObj = $(this);
-			console.log(_curObj);
+			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
@@ -1944,7 +1945,7 @@
 			if(tool.isNullOrEmptyObject(_curObj)){
 				return;
 			}
-			console.log(_curObj);
+			// console.log(_curObj);
 
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
@@ -2025,7 +2026,7 @@
 			data: jsonDatasTemp,
 			success: function (data) {
 				data = tool.jObject(data);
-				console.log(data);
+				// console.log(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
@@ -2264,7 +2265,7 @@
 			data: jsonDatasTemp,
 			success: function (data) {
 				data = tool.jObject(data);
-				console.log(data);
+				// console.log(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
@@ -2361,7 +2362,7 @@
 			data: jsonDatasTemp,
 			success: function (data) {
 				data = tool.jObject(data);
-				console.log(data);
+				// console.log(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));

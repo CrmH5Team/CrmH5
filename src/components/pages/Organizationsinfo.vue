@@ -188,7 +188,7 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        if (from.name == 'selectlist' || from.name == 'contactsof') {
+        if (from.name == 'selectlist' || from.name == 'contactsof' || from.name == "groupselectlist") {
             to.meta.isBack = true;
         }else{
             to.meta.isBack = false;
@@ -222,10 +222,12 @@ export default {
             _self.operation = true;
         }
 
-        // console.log(111111111111111111);
-        // console.log($('.updateList'));
-
         var _isBack = _self.$route.meta.isBack;
+        
+        _self.$nextTick(function(){
+
+        });
+
         //若为true,则需要刷新
         if(!_isBack || _self.isFirstEnter){
             _self.isFirstEnter = false;
@@ -235,6 +237,12 @@ export default {
                 tool.InitiateInfoPageControl(_self,id,function(){
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
+
+                        //渲染textarea
+                        $("textarea").each(function (index, cur) {
+                            tool.autoTextarea(cur);
+                        });
+                        
                       if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                             return;
                         }
