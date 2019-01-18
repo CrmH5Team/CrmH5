@@ -134,7 +134,11 @@ export default {
           tool.ConstructQueryCondiction(_self, function(queryCondictionTemp) {
             //console.log("myCallBack");
             //console.log(queryCondictionTemp);
-            eventBus.$emit("queryCondiction", [queryCondictionTemp,true]);
+            eventBus.$emit("queryCondiction",
+            {
+              queryCondiction:queryCondictionTemp,
+              isFromConfirm:true
+            });
             _self.$router.back(-1);
           });
         });

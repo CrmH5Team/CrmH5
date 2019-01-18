@@ -124,7 +124,8 @@
                     </div>
 
                 </div>
-                <div class="contactList HideWhenNew">
+                <!-- HideWhenNew -->
+                <div v-show="!isAddNew" class="contactList">
                     <div class="ListCell" @click="goToContactsPage">
                         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
                         <div class="ListCellContent">
@@ -185,7 +186,7 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        if (from.name === 'selectlist') {
+        if (from.name == 'selectlist' || from.name == 'contactsof') {
             to.meta.isBack = true;
         }else{
             to.meta.isBack = false;
@@ -216,7 +217,9 @@ export default {
             $(".HideWhenNew").show();
             _self.isAddNew = false;
         }
-        //console.log("_self.isAddNew:"+_self.isAddNew);
+
+        // console.log(111111111111111111);
+        // console.log($('.updateList'));
 
         var _isBack = _self.$route.meta.isBack;
         //若为true,则需要刷新
@@ -257,13 +260,8 @@ export default {
             if(tool.isNullOrEmptyObject(curObj)){
                 return;
             }
-          
-          var curObj = $("[data-field='"+  eventBus.selectListData. field +"']");
-          if(tool.isNullOrEmptyObject(curObj)){
-              return;
-          }
-          curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-          curObj.text(eventBus.selectListData.value.text);
+            curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+            curObj.text(eventBus.selectListData.value.text);
 
             //清空全局变量
             eventBus.selectListData = null;

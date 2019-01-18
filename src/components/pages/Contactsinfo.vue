@@ -188,7 +188,7 @@
                 <div
                   class="ListCellContentRightText"
                   data-field="Initiator"
-                  data-fieldcontroltype="groupSelectList"
+                  data-fieldcontroltype="selectList"
                   data-lanid="825_负责人"
                   data-fieldval=""
                   data-selecttype="checkbox"
@@ -351,13 +351,8 @@ export default {
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
         return;
       }
-
+    console.log(eventBus.selectListData);
       //更新selectlist控件的结果
-      var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-      if (tool.isNullOrEmptyObject(curObj)) {
-        return;
-      }
-
       var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
       if (tool.isNullOrEmptyObject(curObj)) {
         return;
@@ -373,7 +368,7 @@ export default {
     //查看有权限访问的同事跳转事件
     goToShareList: function() {
       this.$router.push({
-        path: "/sharelist",
+        path: "/poweruser",
         query: {
           name: "Colleagues with access"
         }
