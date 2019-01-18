@@ -344,11 +344,12 @@ export default {
 
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
+
+            //场景：当在selectList页面按刷新按钮再回到详情页
             console.log(eventBus.selectListData);
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
               return;
             }
-
             //更新selectlist控件的结果
             var curObj = $(
               "[data-field='" + eventBus.selectListData.field + "']"
