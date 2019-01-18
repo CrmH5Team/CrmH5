@@ -1,11 +1,7 @@
 <template>
   <div>
-    <Infoheader
-      :moreIcon="moreHiddenIcon"
-      :delHidden="delHidden"
-      :saveIcon="saveHidden"
-      :title="ptitle"
-    ></Infoheader>
+
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
       <div class="box">
@@ -267,15 +263,14 @@ export default {
   },
   data() {
     return {
-      moreHiddenIcon: true,
-      delHidden: true,
-      saveHidden: true,
       ptitle: "contact detail",
       itemsData: ["Calndar(3)", "Opportunities(2)"],
       isShowMenuList: false,
       isShowSendBtn: true,
 
       isAddNew: false, //是否添加新纪录
+      // operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
+      onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
       isFirstEnter: false //是否首次进入
     };
   },
@@ -306,11 +301,13 @@ export default {
     if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
       $(".HideWhenNew").hide();
       _self.isAddNew = true;
+      _self.operation = false;
     } else {
       $(".HideWhenNew").show();
       _self.isAddNew = false;
+      _self.operation = true;
     }
-    
+
     var _isBack = _self.$route.meta.isBack;
 
     console.log("_isBack:"+_isBack);

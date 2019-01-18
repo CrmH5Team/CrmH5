@@ -81,8 +81,18 @@ const router =  new Router({
         isBack:false
       }
     },
-    { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo },
-    { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo },
+    { path: '/meetinginfo/:id',name:'meetinginfo', component:Meetinginfo,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+      }
+    },
+    { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+      }
+    },
       //添加住宿/机票
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
      //添加会议
