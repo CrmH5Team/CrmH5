@@ -159,7 +159,7 @@ import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
 
 //import Mixins from '../../mixins'
-import eventBus from '../common/Event';
+// import eventBus from '../common/Event';
 
 export default {
     // mixins: [Mixins.PAGE_INFO],
@@ -215,15 +215,12 @@ export default {
         if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
-            _self.operation = false;
+            // _self.operation = false;
         }else{
             $(".HideWhenNew").show();
             _self.isAddNew = false;
-            _self.operation = true;
+            // _self.operation = true;
         }
-
-        // console.log(111111111111111111);
-        // console.log($('.updateList'));
 
         var _isBack = _self.$route.meta.isBack;
         //若为true,则需要刷新
@@ -235,6 +232,8 @@ export default {
                 tool.InitiateInfoPageControl(_self,id,function(){
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
+
+                      //场景：当在selectList页面按刷新按钮再回到详情页
                       if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                             return;
                         }
