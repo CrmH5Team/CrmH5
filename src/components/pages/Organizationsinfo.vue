@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :saveIcon="saveHidden" :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -171,15 +171,17 @@ export default {
     },
     data() {
         return {
-            moreHiddenIcon: false,
-            delHidden: true,
-            saveHidden: true,
+
             ptitle: 'Organizationsinfo detail',
             itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
             isShowMenuList: false,
             isShowSendBtn: false,
             scrollTop: 0, //记录滚动条的位置
+
             isAddNew:false,//是否添加新纪录
+            operation:true,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
+            onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
+
             // modifiedtime:"1/Jan/2019",
             // modifiedby:"Dylan Xu",
             isFirstEnter:false//是否首次进入
@@ -213,9 +215,11 @@ export default {
         if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
+            _self.operation = false;
         }else{
             $(".HideWhenNew").show();
             _self.isAddNew = false;
+            _self.operation = true;
         }
 
         // console.log(111111111111111111);

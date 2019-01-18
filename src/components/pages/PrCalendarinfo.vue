@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :moreIcon="moreHiddenIcon" :delHidden="delHidden" :title="ptitle"></Infoheader>
+    <Infoheader :onlyView="onlyView" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="PrCalendarList">
@@ -109,6 +109,11 @@ export default {
             moreHiddenIcon: false,
             delHidden: false,
             ptitle: 'PrCalendar detail',
+
+            isAddNew: true, //控制详情页header按钮,ture:隐藏勾勾，false:显示勾勾
+            operation:false,//控制详情页header按钮，ture:显示可操作，false:隐藏
+            onlyView:true, //页面只能查看
+
         }
     },
 
@@ -141,7 +146,7 @@ export default {
             }
 
         },
-   
+
     }
 
 }

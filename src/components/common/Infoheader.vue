@@ -4,11 +4,20 @@
         <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
         <h1 class="mui-title f18">{{title}}</h1>
-        <div class="leftView">
-            <a v-show="submitIcon" class="calcfont calc-tijiao right" id="tijiao"></a>
-            <a v-show="moreIcon" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
-            <a @click="save" v-show="saveIcon" class="calcfont calc-gou right" id="save"></a>
-            <a v-show="delHidden" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+
+        <!-- 新增状态头部icon显示   -->
+        <div v-if="isAddNew" class="leftView">
+            <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
+            <!-- <a @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
+            <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
+            <!-- <a @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a> -->
+        </div>
+        <!-- 编辑状态头部icon显示   -->
+        <div v-else class="leftView">
+            <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
+            <a v-if="operation && !onlyView" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
+            <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
+            <a v-if="!onlyView" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
         </div>
 
     </header>
@@ -21,20 +30,18 @@ import eventBus from './Event.js';
 export default {
     data() {
         return {
-            // moreIcon: true,
-            // delHidden: true,
-            // submitIcon: false
         }
     },
-    props: {
-        title: String,
-        pageType: String,
-        moreIcon: Boolean,
-        delHidden: Boolean,
-        submitIcon: Boolean,
-        saveIcon:Boolean
+    props:{
+
+        title:String,
+        isAddNew:Boolean, //是否是新增状态, 父组件不传默认为false
+        operation:Boolean, //侧滑是否可操作, 父组件不传默认为false
+        onlyView:Boolean, //标志页面只能查看,父组件不传默认为false
     },
+    // props:['title','isAddNew','operation'],
     mounted: function () {
+      console.log('onlyView:'+ this.onlyView);
 
     },
     methods: {
