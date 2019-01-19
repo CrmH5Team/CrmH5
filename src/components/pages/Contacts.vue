@@ -282,6 +282,8 @@ export default {
         if(_fromSave || !_isBack || _self.isFirstEnter ){
 
             //modify by Dylan 默认刷新的时候选择第一个标签页
+            //这里其实可以根据来源于联系人、公司详情页，或者是别的页面，来判断切换哪儿个标签页，
+            //目前暴力锁定第一个标签页
             //_self.searchData = _self.OrganizationsSearch;
             // //渲染数据
             // var fromType = "organizations";
