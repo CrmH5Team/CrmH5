@@ -1432,7 +1432,12 @@
 				for (var i = 0; i < data.length; i++) {
 					var tempStr = template;
 					for (var key in data[i]) {
-						tempStr = tempStr.replace("{" + key + "}", (data[i][key] || ""));
+
+						// if(key == "GroupRowCount"){
+						// 	console.log(data[i][key] || "");
+						// }
+						
+						tempStr = tempStr.replace("{" + key + "}", data[i][key]);
 					}
 
 					contentHtmlStr += tempStr;

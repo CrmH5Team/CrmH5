@@ -197,6 +197,7 @@ export default {
     },
     created: function () {
         this.isFirstEnter = true;
+        this.onlyView = this.$route.query.onlyView || false;
     },
     mounted: function () {
         

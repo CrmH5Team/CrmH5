@@ -299,6 +299,7 @@ export default {
   },
   created: function() {
     this.isFirstEnter = true;
+    this.onlyView = this.$route.query.onlyView || false;
   },
   mounted: function() {
     
@@ -341,7 +342,7 @@ export default {
         tool.InitiateInfoPageControl(_self,id, function() {
 
            //控制data-field="Initiator"显示和隐藏
-           $("[data-field='IsPublic']").on('change',function(){
+           $("[data-field='IsPublic']").off('change').on('change',function(){
                var curObj = $(this);
                if(tool.isNullOrEmptyObject(curObj)){
                    return;
@@ -355,6 +356,8 @@ export default {
                    $(".initiatorObj").show();
                }
            });
+
+           //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
 
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
@@ -412,15 +415,24 @@ export default {
         }
       });
     },
-    //查看公司信息跳转事件
+    //查看公司信息
     goToOrganizationsInfo: function() {
       var _self = this;
-      var companyID =  $("[data-field='CompanyID']:first").attr("CompanyID") || "";
+      var companyID =  $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
       if(tool.isNullOrEmptyObject(companyID)){
           return;
       }
+      
+      //设置公司信息页面只读
       var urlTemp = "/organizationsinfo/" + companyID;
-      _self.$router.push(url);
+      var parameter = 
+      {
+          onlyView : true
+      };
+      _self.$router.push({
+            path: urlTemp,
+            query: parameter
+        });
     },
     savePageData: function(e) {
         var _self = this;

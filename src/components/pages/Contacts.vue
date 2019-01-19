@@ -255,7 +255,6 @@ export default {
   },
   mounted: function() {
     var _self = this;
-    
   },
   activated:function(){
         var _self = this;
