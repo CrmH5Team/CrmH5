@@ -188,7 +188,7 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        if (from.name == 'selectlist' || from.name == 'contactsof' || from.name == "groupselectlist") {
+        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'contactsof' ) {
             to.meta.isBack = true;
         }else{
             to.meta.isBack = false;
@@ -199,15 +199,18 @@ export default {
         this.isFirstEnter = true;
     },
     mounted: function () {
+        
+    },
+    activated:function(){
         var _self = this;
         //监听保存
         _self.savePageData();
-    },
-    activated:function(){
+        //监听删除
+        _self.deleteData();
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
-        var _self = this;
+        // var _self = this;
         var id = _self.$route.params.id;
         var fromType = "Organizationsinfo";
 
@@ -215,18 +218,12 @@ export default {
         if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
-            // _self.operation = false;
         }else{
             $(".HideWhenNew").show();
             _self.isAddNew = false;
-            // _self.operation = true;
         }
 
         var _isBack = _self.$route.meta.isBack;
-        
-        _self.$nextTick(function(){
-
-        });
 
         //若为true,则需要刷新
         if(!_isBack || _self.isFirstEnter){
@@ -287,14 +284,6 @@ export default {
                 path: '/contactsof',
             })
         },
-        // // 开关事件
-        // allDayClick: function (e) {
-        //     if ($(e.target).is(":checked") == true) {
-        //         console.log("true all");
-        //     } else {
-        //         console.log("false all");
-        //     }
-        // },
         followToggle: function (e) {
             var _self = this;
             var autoID = _self.$route.params.id;
@@ -325,6 +314,15 @@ export default {
             $("#save").off().on("click",function(){
                 //console.log("save");
                 tool.SaveOrUpdateData(fromType, id,_self, function(){
+                });
+            });
+        },
+        deleteData:function(e){
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Organizationsinfo";
+            $("#delete").off().on("click",function(){
+                tool.DeleteData(fromType, id,_self, function(){
                 });
             });
         }

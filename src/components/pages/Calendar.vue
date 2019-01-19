@@ -158,7 +158,7 @@ export default {
         this.changePos();
     },
     beforeRouteEnter:function(to, from, next){
-        if(from.name === 'calendarlistinfo' || from.name === 'calendarlist'){
+        if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
             to.meta.isBack = true;
         }
         next();

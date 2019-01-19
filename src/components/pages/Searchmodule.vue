@@ -40,7 +40,7 @@ export default {
   mounted: function() {},
   beforeRouteEnter: function(to, from, next) {
     // console.log("beforeRouteEnter");
-    if (from.name === "selectlist") {
+    if (from.name == "selectlist"|| from.name == "groupselectlist") {
       to.meta.isBack = true;
     } else {
       to.meta.isBack = false;

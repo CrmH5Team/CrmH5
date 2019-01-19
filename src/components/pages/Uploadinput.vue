@@ -91,7 +91,7 @@ export default {
     },
     beforeRouteEnter:function(to, from, next){
         //如果是从以下路由回来的就不用刷新页面
-        if(from.name === 'selectlist'){
+        if(from.name == 'selectlist'){
             to.meta.isBack = true;
         }
         next(vm=>{

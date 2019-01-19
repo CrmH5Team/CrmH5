@@ -102,7 +102,7 @@ export default {
       },
 
       beforeRouteEnter:function(to, from, next){
-            // if(from.name === 'contactsinfo' || from.name === 'selectlist'){
+            // if(from.name == 'contactsinfo' || from.name == 'selectlist'){
             //     to.meta.isBack = true;
             // }
             next();

@@ -242,6 +242,10 @@
 	 * 添加/取消关注接口
 	 */
 	tool.Api_OrganizationsHandle_UserFollow = "Api_OrganizationsHandle_UserFollow";
+	/*
+	 * 公司删除注接口
+	 */
+	tool.Api_OrganizationsHandle_Delete = "Api_OrganizationsHandle_Delete";
 
 	/*
 	 * 联系人分组接口
@@ -259,6 +263,10 @@
 	 * 联系人保存/修改接口
 	 */
 	tool.Api_ContactsHandle_SaveOrUpdate = "Api_ContactsHandle_SaveOrUpdate";
+	/*
+	 * 联系人删除接口
+	 */
+	tool.Api_ContactsHandle_Delete = "Api_ContactsHandle_Delete";
 
 	/*
 	 * 下拉数据接口
@@ -1683,6 +1691,7 @@
 		$("[data-fieldControlType='textareaInput']").val("");
 		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='groupSelectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='divText']").text("");
 		$("[data-fieldControlType='icon']").each(function(index,curObj){
 			var _curObj = $(this);
@@ -2186,7 +2195,7 @@
 		if (fromType == "Organizationsinfo") {
 			controlName = tool.Api_OrganizationsHandle_SaveOrUpdate;
 		} else if (fromType == "Contactsinfo") {
-			controlName = "";
+			controlName = tool.Api_ContactsHandle_SaveOrUpdate;
 		} else if (fromType == "Meetinginfo") {
 			controlName = "";
 		} else if (fromType == "Tripinfo") {
@@ -2230,7 +2239,21 @@
 			var fieldVal = _curObj.attr("data-fieldVal") || "";
 			jObject[dataField] = fieldVal;
 		});
-		//3>textareaInput
+		//3>groupSelectList
+		$("[data-fieldControlType='groupSelectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+
+			var fieldVal = _curObj.attr("data-fieldVal") || "";
+			jObject[dataField] = fieldVal;
+		});
+		//4>textareaInput
 		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 			var _curObj = $(this);
 			if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2312,6 +2335,111 @@
 				document.activeElement.blur();
 			}
 		});
+	}
+
+	/*
+	* 删除数据
+	*/
+	tool.DeleteData = function(fromType, autoID, _self,myCallBack){
+		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID)) {
+			return;
+		}
+		//新增的情况下id=-1
+		if (Number(autoID) <= 0) {
+			return;
+		}
+
+		var urlTemp = tool.AjaxBaseUrl();
+		var controlName = "";
+		if (fromType == "Organizationsinfo") {
+			controlName = tool.Api_OrganizationsHandle_Delete;
+		} else if (fromType == "Contactsinfo") {
+			controlName = tool.Api_ContactsHandle_Delete;
+		} else if (fromType == "Meetinginfo") {
+			controlName = "";
+		} else if (fromType == "Tripinfo") {
+			controlName = "";
+		} else if (fromType == "MeetingNoteinfo") {
+			controlName = "";
+		} else if (fromType == "Opportunitiesinfo") {
+			controlName = "";
+		} else {
+			return;
+		}
+		
+		var idArr = [];
+		idArr.push(autoID);
+
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			_RegisterCode: tool.RegisterCode(),
+			AutoID: JSON.stringify(idArr)
+		};
+
+		tool.showConfirm(
+			lanTool.lanContent("593_您确定要删除数据吗？"),
+			function() {
+			  
+				$.ajax({
+					async: true,
+					type: "post",
+					url: urlTemp,
+					data: jsonDatasTemp,
+					success: function (data) {
+						data = tool.jObject(data);
+						// console.log(data);
+						if (data._ReturnStatus == false) {
+							tool.showText(tool.getMessage(data));
+							console.log(tool.getMessage(data));
+							return true;
+						}
+		
+						//data = data._OnlyOneData || [];
+						//删除成功后跳转到列表页面
+						var routeName = _self.$route.name;
+						var routers = _self.$router.options.routes;
+						var curRouter;
+						for(var i = 0;i<routers.length;i++){
+							if(routeName == routers[i].name){
+								curRouter = routers[i];
+								break;
+							}
+						}
+						if(tool.isNullOrEmptyObject(curRouter)){
+							return;
+						}
+						routeName = curRouter.meta.listName;
+						for(var i = 0;i<routers.length;i++){
+							if(routeName == routers[i].name){
+								routers[i].meta.fromSave = true;
+								break;
+							}
+						}
+						if (!tool.isNullOrEmptyObject(myCallBack)) {
+							myCallBack();
+						}
+		
+						//返回到上一页
+						_self.$router.back(-1);
+					},
+					error: function (jqXHR, type, error) {
+						console.log(error);
+						tool.hideLoading();
+						return true;
+					},
+					complete: function () {
+						tool.hideLoading();
+						//隐藏虚拟键盘
+						document.activeElement.blur();
+					}
+				});
+
+			},
+			function() {}
+		  );	
 	}
 
 	/*
