@@ -254,11 +254,13 @@ export default {
     this.isFirstEnter = true;
   },
   mounted: function() {
+    var _self = this;
+    
   },
   activated:function(){
         var _self = this;
-        _self.changePos();
         _self.groupToggle();
+        _self.changePos();
         _self.followToggle();
         _self.watchScroll();
 
@@ -281,10 +283,9 @@ export default {
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter ){
 
+            _self.searchData = _self.OrganizationsSearch;
+            
             //modify by Dylan 默认刷新的时候选择第一个标签页
-            //这里其实可以根据来源于联系人、公司详情页，或者是别的页面，来判断切换哪儿个标签页，
-            //目前暴力锁定第一个标签页
-            //_self.searchData = _self.OrganizationsSearch;
             // //渲染数据
             // var fromType = "organizations";
             // var containerObj = $("#organizationsList");
@@ -301,6 +302,7 @@ export default {
             //     _self.noData = false;
             //   }
             // });
+
             $("#companySwitchPage").trigger("click");
             //end modify
 
@@ -376,7 +378,7 @@ export default {
     //列表展开/收起
     groupToggle: function() {
       var _self = this;
-      $("#organizationsList,#contactsList").on(
+      $("#organizationsList,#contactsList").off("click","div.date-div").on(
         "click",
         "div.date-div",
         function(event) {
@@ -419,7 +421,7 @@ export default {
                   .siblings(".group-item-list")
                   .slideDown(500);
 
-                  $("div.item-block").on('click',
+                  $("div.item-block").off('click').on('click',
                     function(event) {
                       var target = $(event.target);
                       // console.log(target);
@@ -499,7 +501,7 @@ export default {
     },
     //添加/取消关注
     followToggle: function() {
-      $("#organizationsList").on("click", ".item-stars-icon", function(e) {
+      $("#organizationsList").off("click", ".item-stars-icon").on("click", ".item-stars-icon", function(e) {
           e.preventDefault();
           e.stopPropagation();
           var _curObj = $(this);
