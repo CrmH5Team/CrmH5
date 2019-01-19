@@ -281,9 +281,21 @@ export default {
     methods: {
         //跳转到联系人界面事件
         goToContactsPage: function () {
-            this.$router.push({
-                path: '/contactsof',
-            })
+            var _self = this;
+             var companyID = _self.$route.params.id || "";
+             if(tool.isNullOrEmptyObject(companyID)){
+                 return;
+             }
+
+            var urlTemp = "/contactsof";
+            var parameter = 
+            {
+                companyID : companyID
+            };
+            _self.$router.push({
+                path: urlTemp,
+                query: parameter
+            });
         },
         followToggle: function (e) {
             var _self = this;

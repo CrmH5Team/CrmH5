@@ -39,7 +39,7 @@ export default {
     },
     // props:['title','isAddNew','operation'],
     mounted: function () {
-      console.log('onlyView:'+ this.onlyView);
+    //   console.log('onlyView:'+ this.onlyView);
 
     },
     methods: {
