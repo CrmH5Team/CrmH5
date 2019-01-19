@@ -4,12 +4,12 @@
 
     <div id="page-content" class="page-content">
       <div class="nav sticky">
-        <div
+        <div id="companySwitchPage"
           @click="switchPage(0,$event)"
           class="nav-item f16 active-item lanText"
           data-lanid="790_公司"
         ></div>
-        <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="791_联系人"></div>
+        <div id="contactSwitchPage" @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="791_联系人"></div>
         <div class="nav-border"></div>
       </div>
 
@@ -254,15 +254,16 @@ export default {
     this.isFirstEnter = true;
   },
   mounted: function() {
-    var _self = this;
-    _self.changePos();
-    _self.groupToggle();
-    _self.followToggle();
-    _self.watchScroll();
   },
   activated:function(){
-        lanTool.updateLanVersion();
         var _self = this;
+        _self.changePos();
+        _self.groupToggle();
+        _self.followToggle();
+        _self.watchScroll();
+
+        lanTool.updateLanVersion();
+        // var _self = this;
 
         _self.queryCondictionData = eventBus.queryCondictionData || [];
         eventBus.queryCondictionData = null;
@@ -279,26 +280,27 @@ export default {
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter ){
-          // _self.changePos();
-          // _self.showPage = 0;
 
-            _self.searchData = _self.OrganizationsSearch;
-            //渲染数据
-            var fromType = "organizations";
-            var containerObj = $("#organizationsList");
+            //modify by Dylan 默认刷新的时候选择第一个标签页
+            //_self.searchData = _self.OrganizationsSearch;
+            // //渲染数据
+            // var fromType = "organizations";
+            // var containerObj = $("#organizationsList");
 
-            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction,"Field");
-            tool.InitiateGroupList(fromType, containerObj, allQueryData, function(containerObj) {
-              if (tool.isNullOrEmptyObject(containerObj)) {
-                _self.noData = true;
-                return;
-              }
-              if (!containerObj.html()) {
-                _self.noData = true;
-              } else {
-                _self.noData = false;
-              }
-            });
+            // var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction,"Field");
+            // tool.InitiateGroupList(fromType, containerObj, allQueryData, function(containerObj) {
+            //   if (tool.isNullOrEmptyObject(containerObj)) {
+            //     _self.noData = true;
+            //     return;
+            //   }
+            //   if (!containerObj.html()) {
+            //     _self.noData = true;
+            //   } else {
+            //     _self.noData = false;
+            //   }
+            // });
+            $("#companySwitchPage").trigger("click");
+            //end modify
 
         }else{
           //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
