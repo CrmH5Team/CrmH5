@@ -9,7 +9,7 @@
             </div>
             <div class="ListCellContentRight rightContent">
                 <!-- <div class="ListCellContentRightText">{{modifiedtime}}</div> -->
-                <div data-field="LastUpdateTime" data-fieldControlType="divText" class="ListCellContentRightText"></div>
+                <div data-field="LastUpdateTime" data-fieldControlType="divText" data-formatType="DateTime" data-format="d/MMM/yyyy HH:mm" class="ListCellContentRightText"></div>
             </div>
         </div>
     </div>

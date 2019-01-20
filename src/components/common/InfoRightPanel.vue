@@ -13,7 +13,7 @@
             <div class="right-content-header f16">Operation</div>
             <div class="right-content-list f14">
                 <div class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
-                <div class="right-content-list-cell" v-show="isShowSend"><span class="mui-icon calcfont calc-icon-share"></span>Share with Colleagues</div>
+                <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList" ><span class="mui-icon calcfont calc-icon-share"></span>Share with Colleagues</div>
                 <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div>
             </div>
         </div>
@@ -28,16 +28,24 @@ export default {
             showPanel: false,
             classificationValue: '', //右侧分类
             dataFilter: [],
+            rightPanelFromTypeNew:"",
+            rightPanelFromIDNew:""
         }
     },
-    props: ['items', 'isShowList', 'isShowSend', 'isShowClose'],
+    props: ['items', 'isShowList', 'isShowSend', 'isShowClose','rightPanelFromType','rightPanelFromID'],
+    watch: {
+        rightPanelFromType:function(newVal,oldVal){
+            this.rightPanelFromTypeNew = newVal;
+        },
+        rightPanelFromID:function(newVal,oldVal){
+            this.rightPanelFromIDNew = newVal;
+        }
+    },
     created: function () {
 
     },
-
     mounted: function () {
         // eventBus.$on('gengduo', this.panelToggle);
-
     },
     activated: function () {
         eventBus.$on('gengduo', this.panelToggle);
@@ -75,9 +83,21 @@ export default {
                     });
                 })
             }
-
         },
-
+        //跳转到分享列表
+        showShareList:function(){
+            var _self = this;
+            // console.log(this.rightPanelFromTypeNew);
+            // console.log(this.rightPanelFromIDNew);
+            var parameter = {
+                rightPanelFromType : this.rightPanelFromTypeNew,//来源类型
+                rightPanelFromID : this.rightPanelFromIDNew//来源ID
+            };
+            _self.$router.push({
+                path: '/sharelist',
+                query: parameter
+            });
+        }
     },
     deactivated:function(){
         eventBus.$off('gengduo');

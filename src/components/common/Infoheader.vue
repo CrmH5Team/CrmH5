@@ -14,6 +14,7 @@
         <div v-else class="leftView">
             <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
             <!-- <a v-if="operation && !onlyView" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
+            <a @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
             <a v-if="!onlyView" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
         </div>
@@ -28,38 +29,43 @@
 export default {
     data() {
         return {
+            rightPanelFromTypeNew :"",
+            rightPanelFromIDNew :""
         }
     },
     props:{
-
         title:String,
         isAddNew:Boolean, //是否是新增状态, 父组件不传默认为false
         // operation:Boolean, //侧滑是否可操作, 父组件不传默认为false
         onlyView:Boolean, //标志页面只能查看,父组件不传默认为false
+        rightPanelFromType:String,
+        rightPanelFromID:String
     },
-    // props:['title','isAddNew','operation'],
-    mounted: function () {
-    //   console.log('onlyView:'+ this.onlyView);
+    watch: {
+    },
+    created:function(){
 
+    },
+    //props:['title','isAddNew','operation'],
+    mounted: function () {
     },
     methods: {
 
         //保存动作
         save: function () {
-            eventBus.$emit('save', 'saveData');
+            //eventBus.$emit('save', 'saveData');
         },
         delClick: function () {
-            eventBus.$emit('delete');
+            //eventBus.$emit('delete');
         },
         moreClick: function () {
+            //触发gengduo事件
             eventBus.$emit('gengduo');
         },
         back: function () {
             this.$router.back(-1);
         }
-
     }
-
 }
 </script>
 

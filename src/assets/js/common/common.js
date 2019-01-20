@@ -269,6 +269,15 @@
 	tool.Api_ContactsHandle_Delete = "Api_ContactsHandle_Delete";
 
 	/*
+	 * 查询数据分享接口
+	 */
+	tool.Api_DataShareInfHandle_Query = "Api_DataShareInfHandle_Query";
+	/*
+	 * 数据分享接口
+	 */
+	tool.Api_DataShareInfHandle_SaveOrUpdate = "Api_DataShareInfHandle_SaveOrUpdate";
+
+	/*
 	 * 下拉数据接口
 	 */
 	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
@@ -979,9 +988,11 @@
 			minHeight = parseFloat(getStyle('height'));
 		elem.style.resize = 'none';
 		var change = function () {
+			console.log("autoTextarea");
 			var scrollTop, height,
 				padding = 0,
 				style = elem.style;
+			// elem._length = 0;
 			if (elem._length === elem.value.length) return;
 			elem._length = elem.value.length;
 			if (!isFirefox && !isOpera) {
@@ -1107,6 +1118,21 @@
 
 		return allArr;
 	}
+
+	/*
+    *修改时间格式
+    */
+   tool.ChangeTimeFormat = function (value,newFormat,oldFormat) {
+		if (tool.isNullOrEmptyObject(value) || tool.isNullOrEmptyObject(newFormat)) {
+			return "";
+		}
+
+		oldFormat = oldFormat || "yyyy-MM-dd HH:mm:ss";
+
+		//value = new Date(value.DateTimeStrFormat("yyyy-MM-dd HH:mm:ss")).FormatNew("d/MMM/yyyy HH:mm");
+		value = new Date(value.DateTimeStrFormat(oldFormat)).FormatNew(newFormat);
+		return value;
+   }
 
 	//纯文本
 	tool.showText = function (msg) {
@@ -2124,7 +2150,23 @@
 					if (tool.isNullOrEmptyObject(dataField)) {
 						return true;
 					}
+
 					var fieldVal = data[dataField] || "";
+
+					//数据格式化
+					var formatType = _curObj.attr("data-formatType") || "";
+					var format = _curObj.attr("data-format") || "";
+					console.log("formatType");
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+						//时间格式化
+						if(formatType.toLowerCase() == "datetime" || formatType.toLowerCase() == "date"){
+							fieldVal = fieldVal.ReplaceAll("T"," ");
+							fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+						}else{
+							//数字格式化
+						}
+					}
+
 					_curObj.text(fieldVal);
 				});
 				//6>icon
