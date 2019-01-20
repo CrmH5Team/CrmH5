@@ -195,13 +195,7 @@ export default {
             // }
 
             // _self.$router.push(url);
-
           },
       }
 }
 </script>
-
-
-<style scoped>
-@import "../../assets/css/pages/Contactsof.css";
-</style>
