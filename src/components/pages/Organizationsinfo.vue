@@ -206,7 +206,7 @@ export default {
         var _self = this;
 
         this.onlyView = this.$route.query.onlyView || false;
-        
+
         //监听保存
         _self.savePageData();
         //监听删除

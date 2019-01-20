@@ -54,13 +54,13 @@
         <div class="tips-box f14">
           <span class="calcfont calc-tishi1"></span>
           <div class="tips-text">你有<span>3</span>场会议需要上传会议记录。</div>
-          <router-link to="/meetinglist" class="right upload-now a">立刻去上传</router-link>
+          <router-link to="/meetinglist" class="right upload-now a lanText" data-lanid="870_立刻去上传"></router-link>
         </div>
       </div>
 
       <div class="group-title">
-        <div class="title-text f14">最近7天要参加的会议</div>
-        <router-link to="/tripmeeting" class="check-all right f14 a">查看全部&gt;&gt;</router-link>
+        <div class="title-text f14 lanText" data-lanid="872_最近7天要参加的会议"></div>
+        <router-link to="/tripmeeting" class="check-all right f14 a lanText" data-lanid="871_查看全部">查看全部&gt;&gt;</router-link>
       </div>
 
       <!-- 没有数据   -->

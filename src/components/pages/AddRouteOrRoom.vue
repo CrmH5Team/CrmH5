@@ -8,7 +8,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="出发地"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="873_出发地"></textarea>
                     </p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="目的地"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="874_目的地"></textarea>
                     </p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="火车/航班号"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="875_火车/航班号"></textarea>
                     </p>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="出发时间"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="876_出发时间"></textarea>
                     </p>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="到达时间"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="877_到达时间"></textarea>
                     </p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="开始日期"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="878_开始日期"></textarea>
                     </p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="结束日期"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="879_结束日期"></textarea>
                     </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="晚数"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="880_晚数"></textarea>
                     </p>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shuxing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="城市"></textarea>
+                        <textarea class="lanInputPlaceHolder" data-lanid="881_城市"></textarea>
                     </p>
                 </div>
             </div>
@@ -99,7 +99,7 @@ export default {
             moreHiddenIcon: false,
             delHidden: false,
             saveHidden: false,
-            ptitle: '添加路线/机票申请',
+            ptitle: lanTool.lanContent("882_添加路线/机票申请"),
             isShowMenuList: false,
             scrollTop: 0, //记录滚动条的位置
             // isShowMore: false,
@@ -120,10 +120,10 @@ export default {
       var id = this.$route.query.id;
       if (id == "route") {
           this.isRoute = true;
-          this.ptitle = "添加路线/机票申请";
+          this.ptitle = lanTool.lanContent("882_添加路线/机票申请");
       } else {
            this.isRoute = false;
-           this.ptitle = "添加住宿";
+           this.ptitle = lanTool.lanContent("883_添加住宿");
       }
       console.log(">>>>" + id);
       

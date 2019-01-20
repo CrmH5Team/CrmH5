@@ -6,7 +6,7 @@
         <div class="box">
             <div class="tipBox">
                 <div class="tipContent">
-                    <p class="f12"><span>* </span>请注意，该报销申请单将自动同步到OA系统。</p>
+                    <p class="f12"><span class="red">* </span><span>请注意，该报销申请单将自动同步到OA系统。</span></p>
                 </div>
             </div>
             <div class="TripList">

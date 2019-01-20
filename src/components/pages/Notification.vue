@@ -15,16 +15,16 @@
                   <div :class="{alreadyRead:item.already}">
                       <div class="item-title">{{item.title}}</div>
                       <div class="item-div">
-                          <span>标题：</span><div class="item-div-text">{item.mallTitle}</div>
+                          <span class="lanText" data-lanid="862_标题：">标题：</span><div class="item-div-text">{{item.mallTitle}}</div>
                       </div>
                       <div class="item-div">
-                          <span>时间：</span><div class="item-div-text">{{item.time}}</div>
+                          <span class="lanText" data-lanid="863_时间：">时间：</span><div class="item-div-text">{{item.time}}</div>
                       </div>
                       <div class="item-div">
-                          <span>备忘：</span><span>{{item.remarks}}</span>
+                          <span class="lanText" data-lanid="864_备忘：">备忘：</span><span>{{item.remarks}}</span>
                       </div>
                       <div>
-                          <router-link class="a" to="">view查看</router-link>
+                          <router-link class="a lanText" data-lanid="865_查看" to="" >查看</router-link>
                       </div>
                     </div>
               </div>
@@ -42,7 +42,7 @@
 export default {
     data(){
         return {
-            title:'Notification',
+            title:lanTool.lanContent('866_通知'),
             dataArray:[],
         }
     },
@@ -71,8 +71,8 @@ export default {
             var _self = this;
             if(_self.dataArray.length < 1) return;
             $.confirm({
-              title: '提示',
-              text: '全部标记为已读吗？',
+              title: lanTool.lanContent("586_提示"),
+              text:  lanTool.lanContent("853_是否全部标记为已读？"),
               onOK: function () {
                   $.each(_self.dataArray,function(index,item){
                       item.already = true;
@@ -89,8 +89,8 @@ export default {
             if(_self.dataArray.length < 1) return;
 
             $.confirm({
-              title: '提示',
-              text: '确定清空所有数据吗？',
+              title: lanTool.lanContent("586_提示"),
+              text: lanTool.lanContent("861_确实要清除所有数据吗？"),
               onOK: function () {
                   _self.dataArray = [];
               },

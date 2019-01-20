@@ -5,10 +5,10 @@
     <div class="page-content">
 
         <div class="input-box">
-            <input class="input" type="text" placeholder="Enter Keywords输入关键字" />
+            <input class="input lanInputPlaceHolder" type="text" data-lanid="854_输入关键字" />
         </div>
 
-        <div class="tips f14">你想要搜什么？</div>
+        <div class="tips f14 lanText" data-lanid="855_您要搜索什么？"></div>
         <div class="items">
               <div
                 class="item left"
@@ -38,7 +38,6 @@
 // require('swiper/dist/css/swiper.css')
 // import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // import Searchitems from '../common/Searchitems'
-
 import Header from '../common/Header'
 
 export default {
@@ -50,7 +49,7 @@ export default {
     },
     data() {
         return {
-            title: 'Search',
+            title: lanTool.lanContent('780_搜索'),
 
             module:[
                 {text:'Meeting',value:'Meeting'},
