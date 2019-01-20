@@ -213,7 +213,7 @@
               </div>
             </div>
           </div>
-          <div class="ListCell tip">
+          <div class="ListCell tip initiatorObj">
             <div class="tipBox">
               <p class="f14">
                 <span>*</span>

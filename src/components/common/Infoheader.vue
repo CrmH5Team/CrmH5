@@ -60,7 +60,7 @@ export default {
         },
         moreClick: function () {
             //触发gengduo事件
-            eventBus.$emit('gengduo');
+            eventBus.$emit('gengduoEvent');
         },
         back: function () {
             this.$router.back(-1);

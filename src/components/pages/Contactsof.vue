@@ -175,28 +175,7 @@ export default {
           backHandler: function () {
               this.$router.back(-1);
           },
-          //点击去详情页
-          goInfoPage:function(id){
 
-            // var target = $(event.target);
-            // // console.log(target);
-            // if(target.hasClass("item-stars-icon")){
-            // return;
-            // }
-            // if (!target.hasClass("group-item")) {
-            // target = target.closest("div.group-item");
-            // if (tool.isNullOrEmptyObject(target)) {
-            //     return;
-            // }
-            // }
-
-            // var url = target.attr("data-url") || "";
-            // if(tool.isNullOrEmptyObject(url)){
-            // return;
-            // }
-
-            // _self.$router.push(url);
-          },
       }
 }
 </script>

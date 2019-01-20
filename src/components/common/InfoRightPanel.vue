@@ -14,7 +14,7 @@
             <div class="right-content-list f14">
                 <div class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
                 <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList" ><span class="mui-icon calcfont calc-icon-share"></span>Share with Colleagues</div>
-                <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div>
+                <!-- <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div> -->
             </div>
         </div>
     </div>
@@ -45,10 +45,9 @@ export default {
 
     },
     mounted: function () {
-        // eventBus.$on('gengduo', this.panelToggle);
     },
     activated: function () {
-        eventBus.$on('gengduo', this.panelToggle);
+        eventBus.$on('gengduoEvent', this.panelToggle);
     },
     methods: {
         //侧滑
@@ -93,17 +92,17 @@ export default {
                 rightPanelFromType : this.rightPanelFromTypeNew,//来源类型
                 rightPanelFromID : this.rightPanelFromIDNew//来源ID
             };
-            _self.$router.push({
-                path: '/sharelist',
-                query: parameter
-            });
+            _self.panelToggle();
+            _self.$nextTick(function(){
+                _self.$router.push({
+                    path: '/sharelist',
+                    query: parameter
+                });
+            })
         }
     },
     deactivated:function(){
-        eventBus.$off('gengduo');
-    },
-    beforeDestroy: function () {
-        // eventBus.$off('gengduo');
+        eventBus.$off('gengduoEvent');
     }
 
 }
