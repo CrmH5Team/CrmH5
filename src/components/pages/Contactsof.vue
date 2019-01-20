@@ -12,7 +12,7 @@
                 </div>
           </div>
 
-          <div class="List">
+          <div id="contactsList" class="group-item-list contacts-list">
               <!-- <div class="group-item" data-url="/contactsinfo/9">
                     <div class="item-user-icon calcfont calc-fuzeren1"></div>
                     <div class="item-block contacts-item-block">
@@ -68,7 +68,7 @@ export default {
             //清空数据
             var _self = this;
             _self.noData = true;
-            var container = $('.List');
+            var container = $('#contactsList');
             if(tool.isNullOrEmptyObject(container)){
                 container.html('');
             }
@@ -151,10 +151,11 @@ export default {
                             if(tool.isNullOrEmptyObject(curObj)){
                                 return;
                             }
-                            var urlTemp = target.attr("data-url") || "";
+                            var urlTemp = curObj.attr("data-url") || "";
                             if(tool.isNullOrEmptyObject(urlTemp)){
                                 return;
                             }
+                            console.log(123);
                             _self.$router.push(urlTemp);
                         });
                     },0);
@@ -199,3 +200,46 @@ export default {
       }
 }
 </script>
+
+<style scoped>
+/*页面头部style*/
+header {
+  position: fixed; width: 100%;
+  top: 0; left: 0; z-index: 99;
+  line-height: 0.2rem;
+  background: #f8f2dc;
+}
+.mui-title{
+    display: inline-block;
+    overflow: hidden;
+    width: auto;
+    max-width: 75%;
+    font-size: 0.34rem;
+    margin: 0 0 0 -10px;
+    text-overflow: ellipsis;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 0.88rem;
+}
+.header .calcfont{
+    font-size: 0.48rem;
+    text-align: center;
+    padding: 0.2rem 10px;
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+}
+header .mui-title,header a {color: #333;font-weight: 400;}
+
+.page-content{ padding-top: 0.88rem;}
+
+/*增加按钮*/
+.add-btn-div{text-align: center;}
+.add-div{height:38px;line-height:38px;text-align: center;display:inline-block;margin: 0 auto;padding:0 15px;}
+.add-div .calcfont{color:#ff5a21;}
+.add-div .add-text{vertical-align: middle;color:#ff5a21;}
+
+</style>
