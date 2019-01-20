@@ -191,6 +191,7 @@ export default {
                     TypeValue: "",
                     selectType: "checkbox",
                     datalanid: "825_负责人",
+                    fromType:"6"
                 },
                 {
                     queryfield: "CompanyID",

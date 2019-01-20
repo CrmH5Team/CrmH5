@@ -22,8 +22,8 @@
                   <span class="calcfont calc-you f18"></span>
                   <div class="row-cell-bd">{{item.text}}</div>
 
-                    <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft f12" ></div>
-                    <div v-else-if="item.fieldControlType=='selectList'&&!item.resulteRow" class="selectList row-cell-ft f12"
+                    <div v-if="(item.fieldControlType=='selectList'||item.fieldControlType=='groupSelectList')&&item.resulteRow" :id="item.clickObj" class="selectList row-cell-ft f12" ></div>
+                    <div v-else-if="(item.fieldControlType=='selectList'||item.fieldControlType=='groupSelectList')&&!item.resulteRow" class="selectList row-cell-ft f12"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     data-fieldVal= ""
@@ -36,8 +36,8 @@
                     :data-queryValue="item.queryValue"
                     :data-queryComparison="item.queryComparison"
                     :data-lanid="item.datalanid"
+                    :data-fromType="item.fromType"
                     ></div>
-
 
                   <!-- <div v-else-if="item.type==='picker'" class="picker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id">{{item.value}}</div> -->
                   <input v-else-if="item.fieldControlType=='picker'" class="picker row-cell-ft f12"
@@ -70,7 +70,7 @@
                   />
               </div>
 
-              <div v-if="item.fieldControlType=='selectList'&&item.resulteRow" class="resulte-row f12"
+              <div v-if="(item.fieldControlType=='selectList'||item.fieldControlType=='groupSelectList')&&item.resulteRow" class="resulte-row f12"
                 :data-field="item.queryfield"
                 :data-fieldControlType="item.fieldControlType"
                 data-fieldVal= ""

@@ -76,7 +76,7 @@ export default {
           //清空页面数据
           tool.ClearControlData(function() {
             //渲染控件
-            tool.InitiateInfoPageControl(_self,"",function() {
+            tool.InitiateInfoPageControl(_self,"-1",function() {
               _self.isFirstEnter = false;
               if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
