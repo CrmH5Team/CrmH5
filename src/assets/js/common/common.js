@@ -269,6 +269,15 @@
 	tool.Api_ContactsHandle_Delete = "Api_ContactsHandle_Delete";
 
 	/*
+	 * 查询数据分享接口
+	 */
+	tool.Api_DataShareInfHandle_Query = "Api_DataShareInfHandle_Query";
+	/*
+	 * 数据分享接口
+	 */
+	tool.Api_DataShareInfHandle_SaveOrUpdate = "Api_DataShareInfHandle_SaveOrUpdate";
+
+	/*
 	 * 下拉数据接口
 	 */
 	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
@@ -979,9 +988,11 @@
 			minHeight = parseFloat(getStyle('height'));
 		elem.style.resize = 'none';
 		var change = function () {
+			console.log("autoTextarea");
 			var scrollTop, height,
 				padding = 0,
 				style = elem.style;
+			// elem._length = 0;
 			if (elem._length === elem.value.length) return;
 			elem._length = elem.value.length;
 			if (!isFirefox && !isOpera) {

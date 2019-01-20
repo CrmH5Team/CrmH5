@@ -145,9 +145,9 @@ export default {
           Code:"DropDowList_ViewBaseCountryInf",
           TypeValue:"",
           selectType:"radio",
+          datalanid:"701_国家",
           resulteRow:true,
-          clickObj:"CountryIDClickObj",
-          datalanid:"701_国家"
+          clickObj:"CountryIDClickObj"
         },
         {
           queryfield: "CityID",

@@ -197,13 +197,16 @@ export default {
     },
     created: function () {
         this.isFirstEnter = true;
-        this.onlyView = this.$route.query.onlyView || false;
+        
     },
     mounted: function () {
         
     },
     activated:function(){
         var _self = this;
+
+        this.onlyView = this.$route.query.onlyView || false;
+        
         //监听保存
         _self.savePageData();
         //监听删除
@@ -238,6 +241,8 @@ export default {
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
+                            // console.log("change textarea");
+                            $(cur).height('25');
                             tool.autoTextarea(cur);
                         });
                         

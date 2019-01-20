@@ -258,7 +258,7 @@
         </div>
       </div>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
+    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn" :rightPanelFromType="rightPanelFromType" :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
   </div>
 </template>
 
@@ -286,11 +286,14 @@ export default {
       isAddNew: false, //是否添加新纪录
       // operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
       onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
-      isFirstEnter: false //是否首次进入
+      isFirstEnter: false, //是否首次进入
+
+      rightPanelFromType:"",//传给右侧菜单用的参数
+      rightPanelFromID:""//传给右侧菜单用的参数
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    if (from.name == "selectlist" || from.name == "groupselectlist") {
+    if (from.name == "selectlist" || from.name == "groupselectlist" || from.name == "sharelist") {
       to.meta.isBack = true;
     } else {
       to.meta.isBack = false;
@@ -299,7 +302,6 @@ export default {
   },
   created: function() {
     this.isFirstEnter = true;
-    this.onlyView = this.$route.query.onlyView || false;
   },
   mounted: function() {
     
@@ -314,6 +316,11 @@ export default {
     lanTool.updateLanVersion();
     document.activeElement.blur();
     // var _self = this;
+
+    _self.onlyView = this.$route.query.onlyView || false;
+    _self.rightPanelFromType = "6";
+    _self.rightPanelFromID = _self.$route.params.id || "";
+
     var id = _self.$route.params.id;
     var fromType = "Contactsinfo";
 
@@ -364,6 +371,8 @@ export default {
 
             //渲染textarea
             $("textarea").each(function (index, cur) {
+                // console.log("change textarea");
+                $(cur).height('25');
                 tool.autoTextarea(cur);
             });
 
@@ -435,12 +444,14 @@ export default {
         });
     },
     savePageData: function(e) {
+        // console.log("savePageData");
+
         var _self = this;
         var id = _self.$route.params.id;
-        console.log(_self);
-        console.log("id:"+id);
+        // console.log(_self);
+        // console.log("id:"+id);
         var fromType = "Contactsinfo";
-        $("#save").off().on("click",function(){
+        $("#save").off("click").on("click",function(){
             tool.SaveOrUpdateData(fromType, id,_self, function(){
             });
         });
