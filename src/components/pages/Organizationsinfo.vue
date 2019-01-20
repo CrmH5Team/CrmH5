@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -179,7 +179,7 @@ export default {
             scrollTop: 0, //记录滚动条的位置
 
             isAddNew:false,//是否添加新纪录
-            // operation:true,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
+            operation:false,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
 
             // modifiedtime:"1/Jan/2019",
@@ -197,10 +197,10 @@ export default {
     },
     created: function () {
         this.isFirstEnter = true;
-        
+
     },
     mounted: function () {
-        
+
     },
     activated:function(){
         var _self = this;
@@ -245,7 +245,7 @@ export default {
                             $(cur).height('25');
                             tool.autoTextarea(cur);
                         });
-                        
+
                         //场景：当在selectList页面按刷新按钮再回到详情页
                         if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                             return;
@@ -293,7 +293,7 @@ export default {
              }
 
             var urlTemp = "/contactsof";
-            var parameter = 
+            var parameter =
             {
                 companyID : companyID
             };
