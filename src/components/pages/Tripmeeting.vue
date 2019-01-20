@@ -77,7 +77,7 @@ export default {
              //侧滑数据模型
             rigthPanelData:[
                 {
-                  groupText:'View视图',
+                  groupText:lanTool.lanContent('867_视图'),
                   type:'radio',
                   default:'calendarView',
                   items:[
@@ -86,7 +86,7 @@ export default {
                   ]
                 },
                 {
-                  groupText:'Data Filter 数据筛选',
+                  groupText:lanTool.lanContent('856_数据筛选'),
                   type:'checkbox',
                   default:'mySchedule',
                   items:[
@@ -105,14 +105,14 @@ export default {
                       type:'input',
                       field:'name',
                       queryType:'string',
-                      text:'Organization Name 公司名称',
+                      text:lanTool.lanContent('726_公司名称'),
                       value:'',
                   },
                   {
                       type:'picker',
                       field:'cf_765',
                       queryType:'string',
-                      text:'Business Sector 业务分类',
+                      text:lanTool.lanContent('868_业务分类'),
                       value:'',
                       id:Number((new Date()).valueOf()) + count++
                   },
@@ -120,7 +120,7 @@ export default {
                     type:'picker',
                     field:'cf_771',
                     queryType:'string',
-                    text:'Area / Region 区域',
+                    text:lanTool.lanContent('869_区域'),
                     value:'',
                     id:Number((new Date()).valueOf()) + count++
                   },
@@ -129,7 +129,7 @@ export default {
                       field:'related_to',
                       queryType:'string',
                       queryUrl:"Accounts/Query",
-                      text:'Country 国家',
+                      text:lanTool.lanContent('701_国家'),
                       selectType:'radio',
                       resulteRow:false, //第二行显示结果
                       value:{
@@ -142,7 +142,7 @@ export default {
                       field:'related_to_1',
                       queryType:'string',
                       queryUrl:"Accounts/Query",
-                      text:'Account Manager 客户经理',
+                      text:lanTool.lanContent('785_客户经理'),
                       selectType:'radio',
                       resulteRow:false, //第二行显示结果
                       value:{
@@ -163,7 +163,7 @@ export default {
                       type:'picker',
                       field:'cf_765',
                       queryType:'string',
-                      text:'Status 状态',
+                      text:lanTool.lanContent('860_状态'),
                       value:'',
                       id:Number((new Date()).valueOf()) + count++
                   },
@@ -172,7 +172,7 @@ export default {
                       field:'related_to_2',
                       queryType:'string',
                       queryUrl:"Accounts/Query",
-                      text:'Initiator发起人',
+                      text:lanTool.lanContent('711_发起人'),
                       selectType:'checkbox',
                       resulteRow:false, //第二行显示结果
                       value:{
@@ -185,7 +185,7 @@ export default {
                       field:'related_to_3',
                       queryType:'string',
                       queryUrl:"Accounts/Query",
-                      text:'Organization公司',
+                      text:lanTool.lanContent('790_公司'),
                       selectType:'checkbox',
                       resulteRow:true, //第二行显示结果
                       value:{
@@ -197,7 +197,7 @@ export default {
                       type:'picker',
                       field:'cf_765',
                       queryType:'string',
-                      text:'Business Sector 业务分类',
+                      text:lanTool.lanContent('868_业务分类'),
                       value:'',
                       id:Number((new Date()).valueOf()) + count++
                   },
@@ -205,7 +205,7 @@ export default {
                     type:'picker',
                     field:'cf_771',
                     queryType:'string',
-                    text:'Area / Region 区域',
+                    text:lanTool.lanContent('869_区域'),
                     value:'',
                     id:Number((new Date()).valueOf()) + count++
                   }

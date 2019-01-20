@@ -238,6 +238,7 @@ export default {
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
+                            $(cur).height("25");
                             tool.autoTextarea(cur);
                         });
                         
