@@ -209,20 +209,20 @@ export default {
             $("#inline-calendar").calendar({
                 multiple:false,
                     monthNames:[
-                    lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
-                    lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
-                    lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
-                    lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
-                    lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
-                    lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
+                    lanTool.lanContent('915_一月'),lanTool.lanContent('916_二月'),
+                    lanTool.lanContent('917_三月'),lanTool.lanContent('918_四月'),
+                    lanTool.lanContent('919_五月'),lanTool.lanContent('920_六月'),
+                    lanTool.lanContent('921_七月'),lanTool.lanContent('922_八月'),
+                    lanTool.lanContent('923_九月'),lanTool.lanContent('924_十月'),
+                    lanTool.lanContent('925_十一月'),lanTool.lanContent('926_十二月')
                 ],
                 monthNamesShort:[
-                    lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
-                    lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
-                    lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
-                    lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
-                    lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
-                    lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
+                    lanTool.lanContent('915_一月'),lanTool.lanContent('916_二月'),
+                    lanTool.lanContent('917_三月'),lanTool.lanContent('918_四月'),
+                    lanTool.lanContent('919_五月'),lanTool.lanContent('920_六月'),
+                    lanTool.lanContent('921_七月'),lanTool.lanContent('922_八月'),
+                    lanTool.lanContent('923_九月'),lanTool.lanContent('924_十月'),
+                    lanTool.lanContent('925_十一月'),lanTool.lanContent('926_十二月')
                 ],
                 dayNames:[
                     lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
@@ -378,7 +378,7 @@ export default {
 /*日历style*/
 .picker-calendar-week-days::after{background:beige!important;}
 .picker-calendar-row:after{background:beige!important;}
-/* #inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;} */
+#inline-calendar .toolbar{font-size: 0.25rem!important;}
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
 .picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;overflow: hidden;color:#000!important;}
 .toolbar .toolbar-inner,.toolbar .toolbar-inner,.picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only,.picker-calendar-month-picker, .picker-calendar-year-picker,.picker-calendar-month-picker .current-month-value, .picker-calendar-year-picker .current-month-value, .picker-calendar-month-picker .current-year-value, .picker-calendar-year-picker .current-year-value,.picker-calendar-year-picker,.picker-calendar-year-picker .current-year-value {height: 0.9rem!important;line-height: 0.9rem!important;}
