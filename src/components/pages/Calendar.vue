@@ -14,7 +14,7 @@
                 <!-- tab切换 -->
                 <div class="calendar-nav">
                       <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
-                      <div  class="nav-item f16 lanText" data-lanid="819_出差"></div>
+                      <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                       <div class="calendar-nav-border"></div>
                 </div>
 
@@ -23,33 +23,35 @@
                     <div v-show="showPage==0" class="pageList">
                         <!-- 增加meeting按钮 -->
                         <div class="add-btn-div">
-                              <div class="add-div" @click="goInfoPage()">
+                              <!-- <div class="add-div" @click="goInfoPage($event)" data-autoID="-1"> -->
+                              <div class="add-div" data-autoID="-1">
                                   <span class="calcfont calc-add"></span>
                                   <span class="add-text lanText" data-lanid="886_新增会议"></span>
                               </div>
                         </div>
                         <!-- meeting list -->
-                        <div v-if="!notMeeting" class="list meeting-list">
-                              <div class="data-events-item f12" @click="goInfoPage(5)">
-                                    <div class="item-title">Meeting with Eastern Airlines</div>
+                        <div v-if="!notMeeting" id="meetingList" class="list meeting-list">
+                            <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click="goInfoPage($event)"  :data-autoID="meetingData.AutoID"> -->
+                                <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID">
+                            <div class="item-title">{{meetingData.MeetingTitle}}</div>
+                            <div class="item-time f12">
+                                <span class="calcfont calc-gengxinshijian"></span>
+                                <span class="time-text">{{meetingData.BeginTime|MeetingTimeFormat}}-{{meetingData.EndTime|MeetingTimeFormat}}</span>
+                                <span class="right">{{meetingData.Realname}}</span>
+                            </div>
+                                <div class="item-address">{{meetingData.CompanyID}}</div>
+                                <div class="item-initiator">{{meetingData.ContactsID|formatContactsID}}{{meetingData.Title|formatTitle}}</div>
+                            </div>
+                              <!--<div class="data-events-item f12" data-url="/organizationsinfo/{AutoID}">
+                                    <div class="item-title">{MeetingTitle}</div>
                                     <div class="item-time f12">
                                         <span class="calcfont calc-gengxinshijian"></span>
-                                        <span class="time-text">14:30-17:00</span>
-                                        <span class="right">Cheryl Xiong</span>
+                                        <span class="time-text">{BeginTime}-{EndTime}</span>
+                                        <span class="right">{Realname}</span>
                                     </div>
-                                    <div class="item-address">China Eastern Airlines</div>
-                                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                              </div>
-                              <div class="data-events-item f12" @click="goInfoPage(8)">
-                                    <div class="item-title">Meeting with Eastern Airlines</div>
-                                    <div class="item-time f12">
-                                        <span class="calcfont calc-gengxinshijian"></span>
-                                        <span class="time-text">14:30-17:00</span>
-                                        <span class="right">Cheryl Xiong</span>
-                                    </div>
-                                    <div class="item-address">China Eastern Airlines</div>
-                                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                              </div>
+                                    <div class="item-address">{CompanyID}</div>
+                                    <div class="item-initiator">{ContactsID} ({Title})</div>
+                            </div>-->
                         </div>
                         <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
 
@@ -141,6 +143,34 @@ export default {
            isFirstEnter:false, // 是否第一次进入，默认false
            notTrip:false,   //没数据
            notMeeting:false, //没数据
+           calendarObjGlobal:null, //日历控件对象
+        //    meetingInnerTemplate : `<div class="data-events-item f12" data-url="/organizationsinfo/{AutoID}">
+        //                             <div class="item-title">{MeetingTitle}</div>
+        //                             <div class="item-time f12">
+        //                                 <span class="calcfont calc-gengxinshijian"></span>
+        //                                 <span class="time-text">{BeginTime}-{EndTime}</span>
+        //                                 <span class="right">{Realname}</span>
+        //                             </div>
+        //                             <div class="item-address">{CompanyID}</div>
+        //                             <div class="item-initiator">{ContactsID} ({Title})</div>
+        //             </div>`,
+            meetingDatas:[]
+        }
+    },
+    filters:{
+        formatContactsID:function(val){
+            if(tool.isNullOrEmptyObject(val)){
+                return "";
+            }
+
+            return val + " ";
+        },
+        formatTitle:function(val){
+            if(tool.isNullOrEmptyObject(val)){
+                return "";
+            }
+
+            return "(" + val + ")";
         }
     },
     created:function(){
@@ -157,6 +187,8 @@ export default {
         next();
     },
     activated:function(){
+        lanTool.updateLanVersion();
+
         if(!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave){
             this.initCalendar();
         }
@@ -167,23 +199,27 @@ export default {
     },
     methods:{
         //点击去详情页
-        goInfoPage:function(id){
-            var _self = this,
-                url = "";
-            if(id === undefined){
-              id = '';
-            }
+        goInfoPage:function(){
+            var _self = this;
+                $("[data-autoID]").off('click').on('click',function(){
+                    var curObj = $(this);
+                    console.log(curObj);
+                    if(tool.isNullOrEmptyObject(curObj)){
+                        return;
+                    }
+                var autoID = curObj.attr("data-autoID") || "";
+                if(tool.isNullOrEmptyObject(autoID)){
+                    return;
+                }
+                //meetinginfo
+                var url = "/meetinginfo/"+autoID;
+                _self.$router.push(url);
 
-            if(_self.showPage == 0){
-                url = '/meetinginfo/{"AutoID":"'+ id +'"}';
-            }else{
-                url = '/tripinfo/{"AutoID":"'+ id +'"}';
-            }
-              _self.$router.push(url);
+            });
         },
-
         //tab切换页面
         switchPage:function(num, e){
+            console.log("switchPage");
             var _self = this;
             var el = e.target;
             if(num === undefined) return;
@@ -244,8 +280,6 @@ export default {
                 onDayClick:function(p, dayContainer, year, month, day){
                     month = parseInt(month) + 1;
                     var dateStr = year + "-" + month + "-" +day;
-                    console.log("日期："+ dateStr);
-                    return;
                     _self.getEventsByDate(dateStr);
                 },
                 onOpen:function (p){
@@ -259,17 +293,167 @@ export default {
             });
 
         },
-        //获取日历事件
-        setCalendarEvent:function(calendarObj){
-
-        },
-
-        //根据指定的年月日，返回事件列表
-        getEventsByDate:function(currentDate){
-                var $this = this;
-                if(!currentDate){
-                    return ;
+        //获取当月的会议记录
+        setCalendarEvent:function(calendarObj,myCallBack){
+                console.log("setCalendarEvent");
+                var _self = this;
+                if(tool.isNullOrEmptyObject(calendarObj)){
+                    return;
                 }
+                _self.calendarObjGlobal = calendarObj;
+
+                var urlTemp = tool.AjaxBaseUrl();
+                var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
+                //传入参数
+                var jsonDatasTemp = {
+                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                    UserName: tool.UserName(),
+                    _ControlName: controlName,
+                    _RegisterCode: tool.RegisterCode(),
+                    Year:calendarObj.currentYear,
+                    Month:calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
+                };
+                tool.showLoading();
+                $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                    }
+
+                    data = data._OnlyOneData.Rows || [];
+                    if(data.length <=0){
+                        return true;
+                    }
+                    
+                    for(var i =0;i<data.length;i++){
+                        var dateTemp = new Date(data[i]);
+                        if(!dateTemp){
+                             continue;
+                        }
+                        var yearTemp =dateTemp.getFullYear();
+                        var monthTemp = dateTemp.getMonth();
+                        var dayTemp = dateTemp.getDate();
+                        $('.picker-calendar-row div[data-year="'+  yearTemp +'"][data-month="'+ monthTemp +'"][data-day="'+ dayTemp +'"]').addClass('calendar-event');
+                    }
+
+                    if (!tool.isNullOrEmptyObject(myCallBack)) {
+                        myCallBack();
+                    }
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    tool.hideLoading();
+                    _self.notMeeting = true;
+                    return true;
+                },
+                complete: function () {
+                    tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
+        },
+        //根据指定的年月日，返回事件列表
+        getEventsByDate:function(currentDate,myCallBack){
+            var _self = this;
+            //var containerObj = $(".meeting-list");
+            // var containerObj = $("#meetingList");
+            // console.log(containerObj);
+            // if(tool.isNullOrEmptyObject(containerObj)){
+            //     return;
+            // }
+            //清空数据
+            // containerObj.html('');
+            _self.notMeeting = true;
+
+            // console.log(currentDate);
+            // console.log("getEventsByDate");
+            if(tool.isNullOrEmptyObject(currentDate)){
+                _self.notMeeting = true;
+                return;
+            }
+
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                Date:currentDate
+            };
+            tool.showLoading();
+            $.ajax({
+            async: true,
+            type: "post",
+            url: urlTemp,
+            data: jsonDatasTemp,
+            success: function (data) {
+                data = tool.jObject(data);
+                // console.log(data);
+                if (data._ReturnStatus == false) {
+                    tool.showText(tool.getMessage(data));
+                    console.log(tool.getMessage(data));
+                    _self.notMeeting = true;
+                    return true;
+                }
+
+                data = data._OnlyOneData.Rows || [];
+                if(data.length <=0){
+                    _self.notMeeting = true;
+                    return true;
+                }
+                
+                //modify by Dylan 改用v-model绑定数据
+                //因为子控件的渲染不能用jq,否则会append不进去
+                // var htmlStr = "";
+                // for(var i =0;i<data.length;i++){
+                //     var teplateTemp = _self.meetingInnerTemplate;
+                //     for(var key in data[i]){
+                //         teplateTemp = teplateTemp.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+                //     }
+                //     htmlStr += teplateTemp;
+                // }
+//                console.log(htmlStr);
+
+                // containerObj.append(htmlStr);
+                // _self.notMeeting = false;
+                // console.log(containerObj.html());
+
+                _self.meetingDatas = data;
+                _self.notMeeting = false;
+                //end modify
+
+                // console.log(myCallBack);
+                if (!tool.isNullOrEmptyObject(myCallBack)) {
+                    myCallBack();
+                }
+
+                _self.$nextTick(function(){
+                    _self.goInfoPage();
+                });
+            },
+            error: function (jqXHR, type, error) {
+                console.log(error);
+                tool.hideLoading();
+                _self.notMeeting = true;
+                return true;
+            },
+            complete: function () {
+                tool.hideLoading();
+                //隐藏虚拟键盘
+                document.activeElement.blur();
+            }
+        });
         }
     }
 
