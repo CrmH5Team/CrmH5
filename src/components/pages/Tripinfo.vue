@@ -6,7 +6,7 @@
         <div class="box">
             <div class="tipBox">
                 <div class="tipContent">
-                    <p class="f12"><span>* </span>请注意，该出差申请将自动同步到OA系统。</p>
+                    <p class="f12"><span class="red">* </span><span class="zhuyi lanText" data-lanid="910_请注意，该出差申请将自动同步到OA系统。"></span></p>
                 </div>
             </div>
             <div class="TripList">
@@ -22,7 +22,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-jibie"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="员工级别"></textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="911_员工级别"></textarea>
                         </p>
                     </div>
                 </div>
@@ -32,13 +32,13 @@
             <div class="meeting">
                 <div class="headerBlock">
                     <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
-                    <div class="headerBlockContent f16">meeting</div>
+                    <div class="headerBlockContent f16 lanText" data-lanid="818_会议"></div>
                     <div class="headerBlockRightIcon">
                         <router-link to='/addmeeting'><span class="calcfont calc-jia"></span></router-link>
                     </div>
                 </div>
                 <div class="shuoming" v-show="isHiddenShuoMing">
-                    <div class="shuomingContent f14">请至少添加一条会议记录！</div>
+                    <div class="shuomingContent f14 lanText" data-lanid="912_请至少添加一条会议记录！"></div>
                 </div>
                 <div class="contentList">
                     <div class="contentListCell">
@@ -96,13 +96,13 @@
             <div class="route">
                 <div class="headerBlock">
                     <div class="headerBlockLeftIcon"><span class="calcfont calc-route"></span></div>
-                    <div class="headerBlockContent f16">路线/机票申请</div>
+                    <div class="headerBlockContent f16 lanText" data-lanid="913_路线/机票申请"></div>
                     <div class="headerBlockRightIcon" @click="routeClick">
                         <span class="calcfont calc-jia"></span>
                     </div>
                 </div>
                 <div class="shuoming" v-show="isHiddenShuoMing">
-                    <div class="shuomingContent f14">请至少添加一条会议记录！</div>
+                    <div class="shuomingContent f14 lanText" data-lanid="912_请至少添加一条会议记录！"></div>
                 </div>
                 <div class="contentList">
                     <div class="contentListCell">

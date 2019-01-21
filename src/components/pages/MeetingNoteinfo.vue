@@ -9,7 +9,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Meeting Nature</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="714_会议性质"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Firsting Meeting with Eastern Airlines</div>
@@ -21,7 +21,7 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Start</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">01/Jan</div>
@@ -33,7 +33,7 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">End</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间">End</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">16/Nov 16:00</div>
@@ -45,7 +45,7 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">对内/对外</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="821_对内/对外">对内/对外</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">对外</div>
@@ -56,7 +56,7 @@
                 <div class="ListSpecialCell specialCell" id="Organization">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
-                        <div class="ListSpecialCellFieldContent">Opportunity</div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">中国东方航空公司</div>
@@ -65,7 +65,7 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Contact</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Niki</div>
@@ -77,14 +77,14 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListSpecialCell specialCell visible">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
-                        <div class="ListSpecialCellFieldContent">Linked with Business</div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
@@ -98,7 +98,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">查看关联的交易/商业机会</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="896_查看关联的交易/商业机会"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText"></div>
