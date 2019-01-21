@@ -4,7 +4,7 @@
 
       <div class="page-content">
           <div class="tips f12">
-              <div>请点击以下列表，并上传对应的会议记录。</div>
+              <div class="lanText" data-lanid="895_请点击以下列表，并上传对应的会议记录。">请点击以下列表，并上传对应的会议记录。</div>
           </div>
 
           <div class="group-item-list meeting-list">

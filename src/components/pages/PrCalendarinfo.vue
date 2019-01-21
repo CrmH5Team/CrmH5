@@ -8,7 +8,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-mingcheng"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea placeholder="Title">Event Name 1</textarea>
+                        <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
                     </p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="ListCellLeftIcon"><span class="calcfont calc-rili1"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText">Date</div>
+                        <div class="ListCellContentLeftText lanText" data-lanid="907_日期"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
                         <div class="ListCellContentRightText">8/Nov/2018
@@ -37,7 +37,7 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-renyuanguanli"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea placeholder="请输入邮箱" class="email">cherylxiong@calc.com.hk</textarea>
+                        <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="908_请输入邮箱"></textarea>
                     </p>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <div class="ListCellLeftIcon"><span class="calcfont calc-tixing1"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft">
-                        <div class="ListCellContentLeftText reminderTiShi">Reminder<span class="calcfont calc-tishi"></span></div>
+                        <div class="ListCellContentLeftText reminderTiShi lanText" data-lanid="722_提醒"><span class="calcfont calc-tishi"></span></div>
                     </div>
                     <div class="ListCellContentRight switch">
                         <div class="weui-cell__ft">
@@ -59,7 +59,7 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Send Email Before</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="909_提前发送邮件"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">1h</div>
@@ -71,7 +71,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-youxianji"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Priority</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="716_优先级"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Normal</div>
@@ -83,7 +83,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beizhutishi"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="备注"></textarea>
+                           <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
                         </p>
                     </div>
                 </div>

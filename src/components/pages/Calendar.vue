@@ -26,7 +26,7 @@
                         <div class="add-btn-div">
                               <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
-                                  <span class="add-text lanText" data-lanid="885_增加机会">And Meeting</span>
+                                  <span class="add-text lanText" data-lanid="886_新增会议"></span>
                               </div>
                         </div>
                         <!-- meeting list -->
@@ -61,7 +61,7 @@
                         <div class="add-btn-div">
                               <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
-                                  <span class="add-text">And Trip</span>
+                                  <span class="add-text lanText" data-lanid="887_新增出差"></span>
                               </div>
                         </div>
 
@@ -234,16 +234,16 @@ export default {
                     lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
                 ],
                 dayNames:[
-                    lanTool.lanContent('325_周日'),lanTool.lanContent('326_周一'),
-                    lanTool.lanContent('327_周二'),lanTool.lanContent('328_周三'),
-                    lanTool.lanContent('329_周四'),lanTool.lanContent('330_周五'),
-                    lanTool.lanContent('331_周六')
+                    lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
+                    lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
+                    lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
+                    lanTool.lanContent('894_周六')
                 ],
                 dayNamesShort:[
-                    lanTool.lanContent('325_周日'),lanTool.lanContent('326_周一'),
-                    lanTool.lanContent('327_周二'),lanTool.lanContent('328_周三'),
-                    lanTool.lanContent('329_周四'),lanTool.lanContent('330_周五'),
-                    lanTool.lanContent('331_周六')
+                     lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
+                    lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
+                    lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
+                    lanTool.lanContent('894_周六')
                 ],
                 dateFormat:'yyyy-mm-dd',
                 yearPicker:true,

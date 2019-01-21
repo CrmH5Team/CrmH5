@@ -289,14 +289,17 @@ export default {
         goToContactsPage: function () {
             var _self = this;
              var companyID = _self.$route.params.id || "";
-             if(tool.isNullOrEmptyObject(companyID)){
-                 return;
-             }
-             console.log("companyID:"+companyID);
+             var companyName = $('[data-field="ShortNameEN"]').val() || '';
+
+            if(tool.isNullOrEmptyObject(companyID) || tool.isNullOrEmptyObject(companyName)){
+                return;
+            }
             var urlTemp = "/contactsof";
+
             var parameter =
             {
-                companyID : companyID
+                companyID : companyID,
+                companyName:companyName
             };
             _self.$router.push({
                 path: urlTemp,

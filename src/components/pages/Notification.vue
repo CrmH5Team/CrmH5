@@ -10,18 +10,20 @@
 
     <div class="page-content">
 
-        <div class="notification-list">
-              <div v-for="item in dataArray" class="item f14 ">
-                  <div :class="{alreadyRead:item.already}">
-                      <div class="item-title">{{item.title}}</div>
+
+
+        <div id="list" class="notification-list">
+              <div class="item f14 ">
+                  <div class="alreadyRead">
+                      <div class="item-title">title</div>
                       <div class="item-div">
-                          <span class="lanText" data-lanid="862_标题：">标题：</span><div class="item-div-text">{{item.mallTitle}}</div>
+                          <span class="lanText" data-lanid="862_标题：">标题：</span><div class="item-div-text">mallTitle</div>
                       </div>
                       <div class="item-div">
-                          <span class="lanText" data-lanid="863_时间：">时间：</span><div class="item-div-text">{{item.time}}</div>
+                          <span class="lanText" data-lanid="863_时间：">时间：</span><div class="item-div-text">time</div>
                       </div>
                       <div class="item-div">
-                          <span class="lanText" data-lanid="864_备忘：">备忘：</span><span>{{item.remarks}}</span>
+                          <span class="lanText" data-lanid="864_备忘：">备忘：</span><span>remarks</span>
                       </div>
                       <div>
                           <router-link class="a lanText" data-lanid="865_查看" to="" >查看</router-link>
@@ -61,11 +63,51 @@ export default {
             _self.dataArray.push(item);
         }
 
+        _self.createList();
+
     },
     methods:{
         back:function(){
             this.$router.back(-1);
         },
+
+        //渲染列表
+        createList:function(){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(_self.dataArray)){
+              return ;
+            }
+
+            var listDom = '';
+
+            for(var i=0; i<= _self.dataArray.length; i++){
+
+                  listDom = `<div class="item f14 ">
+                                <div class="alreadyRead">
+                                    <div class="item-title">title</div>
+                                    <div class="item-div">
+                                        <span class="lanText" data-lanid="862_标题：">标题：</span><div class="item-div-text">mallTitle</div>
+                                    </div>
+                                    <div class="item-div">
+                                        <span class="lanText" data-lanid="863_时间：">时间：</span><div class="item-div-text">time</div>
+                                    </div>
+                                    <div class="item-div">
+                                        <span class="lanText" data-lanid="864_备忘：">备忘：</span><span>remarks</span>
+                                    </div>
+                                    <div>
+                                        <a class="a lanText" data-lanid="865_查看" to="" >查看</a>
+                                    </div>
+                                  </div>
+                            </div>`;
+
+
+            }
+
+            // $('#list').append(listDom);
+
+        },
+
+
         //标志已读
         setAlready:function(){
             var _self = this;

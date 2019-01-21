@@ -16,7 +16,12 @@
     {
     color: red;
 }
-
+span.red{
+    color: red;
+}
+span.zhuyi{
+    color: #666
+}
 #closingDate {
     display: none;
 }
