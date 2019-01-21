@@ -80,9 +80,9 @@ export default {
 
             var listDom = '';
 
-            for(var i=0; i<= _self.dataArray.length; i++){
+            for(var i=0; i< _self.dataArray.length; i++){
 
-                  listDom = `<div class="item f14 ">
+                  listDom += `<div class="item f14 ">
                                 <div class="alreadyRead">
                                     <div class="item-title">title</div>
                                     <div class="item-div">
@@ -102,8 +102,12 @@ export default {
 
 
             }
+            _self.$nextTick(function(){
+                  console.log($('#list'));
+                  $('#list').append(listDom);
+            })
 
-            // $('#list').append(listDom);
+
 
         },
 
