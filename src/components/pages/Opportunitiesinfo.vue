@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -10,7 +10,7 @@
                 </div>
             </div>
             <!-- opportunities的属性列表 -->
-            <div class="OpportunitiesList" v-if="true">
+            <div class="OpportunitiesList" v-if="showPage=='0'">
                 <div class="ListCell">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                     <div class="ListCellContent">
@@ -234,8 +234,10 @@ export default {
             isShowClose: false,
             isShowSend: true,
 
+            showPage:'',//记录列表页是从哪个模块进来的
+
             isAddNew: false, //是否添加新纪录
-            // operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
+            operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
 
             isFirstEnter:false//是否首次进入
@@ -252,6 +254,7 @@ export default {
 
     created: function () {
         this.isFirstEnter = true;
+
     },
     mounted: function () {
         var _self = this;
@@ -274,6 +277,8 @@ export default {
         document.activeElement.blur();
         var _self = this;
         var id = _self.$route.params.id;
+
+        _self.showPage = _self.$route.query.showPage || '';
 
         var fromType = "Opportunitiesinfo";
 
@@ -353,7 +358,6 @@ export default {
         },
         //收藏事件
         followClick: function (e) {
-            console.log("收藏");
             if ($(".guanZhu").hasClass("calc-noshoucang")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-noshoucang")
@@ -369,7 +373,6 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "Opportunitiesinfo";
             $("#save").off().on("click",function(){
-                //console.log("save");
                 tool.SaveOrUpdateData(fromType, id,_self, function(){
                 });
             });
