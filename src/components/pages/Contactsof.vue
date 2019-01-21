@@ -6,10 +6,10 @@
       </header>
       <div id="page-content" class="page-content">
           <div class="add-btn-div">
-                <div class="add-div" data-url="/contactsinfo/{AutoID}">
+                <router-link  class="add-div" to="/contactsinfo/-1">
                     <span class="calcfont calc-add"></span>
                     <span class="add-text lanText" data-lanid="793_添加联系人"></span>
-                </div>
+                </router-link>
           </div>
 
           <div id="contactsList" class="group-item-list contacts-list">

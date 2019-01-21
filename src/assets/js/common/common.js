@@ -1366,7 +1366,7 @@
   tool.contactsGroupTemplate =
 		`<div class="list-group-div group-div">
       <div class="date-div" >
-    	  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
+    	  <span class="calcfont calc-gongsixinxi" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
       </div>
     </div>
 	`;
