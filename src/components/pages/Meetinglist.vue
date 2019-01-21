@@ -7,7 +7,7 @@
               <div>请点击以下列表，并上传对应的会议记录。</div>
           </div>
 
-          <div class="list">
+          <div class="group-item-list meeting-list">
                 <div class="data-events-item f12" @click="goInfoPage(1)">
                     <div class="item-title">Meeting with Eastern Airlines</div>
                     <div class="item-time f12">
@@ -18,6 +18,16 @@
                     <div class="item-address">China Eastern Airlines</div>
                     <div class="item-initiator">Niki (Fleet Planning Manager)</div>
                 </div>
+                <div class="data-events-item f12" @click="goInfoPage(57)">
+                    <div class="item-title">Meeting with Eastern Airlines</div>
+                    <div class="item-time f12">
+                      <span class="calcfont calc-gengxinshijian"></span>
+                      <span class="time-text">14:30-17:00</span>
+                    </div>
+                    <div class="item-address">China Eastern Airlines</div>
+                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                </div>
+
                 <div class="data-events-item f12" @click="goInfoPage(15)">
                     <div class="item-title">Meeting with Eastern Airlines</div>
                     <div class="item-time f12">
@@ -75,11 +85,11 @@ export default {
 .tips{margin: 5px 0;background: #f2f2f2;height: 26px;line-height: 26px;box-sizing: border-box;padding-left: 10px;}
 
 /*列表*/
-.data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
+/* .data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
 .item-time .calc-gengxinshijian{color:#ff5a21;}
 .time-text{vertical-align: middle;}
 .item-address{font-weight: 600;}
-.data-events p{height: 50px;line-height: 50px;}
+.data-events p{height: 50px;line-height: 50px;} */
 </style>

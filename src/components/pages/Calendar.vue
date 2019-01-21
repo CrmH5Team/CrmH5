@@ -30,7 +30,7 @@
                               </div>
                         </div>
                         <!-- meeting list -->
-                        <div v-if="!notMeeting" class="list">
+                        <div v-if="!notMeeting" class="list meeting-list">
                               <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">Meeting with Eastern Airlines</div>
                                     <div class="item-time f12">
@@ -66,7 +66,7 @@
                         </div>
 
                         <!-- trip list -->
-                        <div v-if="!notTrip" class="list">
+                        <div v-if="!notTrip" class="list trip-list">
                               <div class="data-events-item f12" @click="goInfoPage(5)">
                                     <div class="item-title">
                                         <span>1115-1116东航会议出差上海</span>
@@ -145,8 +145,8 @@ export default {
           //  week:'',
 
            isFirstEnter:false, // 是否第一次进入，默认false
-           notTrip:true,   //没数据
-           notMeeting:true, //没数据
+           notTrip:false,   //没数据
+           notMeeting:false, //没数据
         }
     },
     created:function(){
@@ -501,14 +501,13 @@ export default {
 
 
 /* 列表 style*/
-.data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
+/* .data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
 .item-time{color:#333;}
 .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
-.time-text{/*vertical-align: middle;*/}
 .trip-time-text{font-size:11px;color:#666666;}
 .item-address{font-weight: 600;}
-.data-events p{height: 50px;line-height: 50px;}
+.data-events p{height: 50px;line-height: 50px;} */
 
 </style>
 
