@@ -293,7 +293,7 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    if (from.name == "selectlist" || from.name == "groupselectlist" || from.name == "sharelist") {
+    if (from.name == "selectlist" || from.name == "groupselectlist" || from.name == "sharelist" || from.name == "organizationsinfo") {
       to.meta.isBack = true;
     } else {
       to.meta.isBack = false;
