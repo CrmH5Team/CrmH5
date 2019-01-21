@@ -258,7 +258,12 @@
         </div>
       </div>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn" :rightPanelFromType="rightPanelFromType" :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
+    <InfoRightPanel
+      :isShowClose="isShowClose"
+      :isShowSend="isShowSendBtn"
+      :rightPanelFromType="rightPanelFromType"
+      :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
+
   </div>
 </template>
 
@@ -279,20 +284,21 @@ export default {
   data() {
     return {
       ptitle: "contact detail",
-      itemsData: ["Calndar(3)", "Opportunities(2)"],
-      isShowMenuList: false,
-      isShowSendBtn: true,
 
       isAddNew: false, //是否添加新纪录
       operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
       onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
+
       isFirstEnter: false, //是否首次进入
 
       companyID:"",//从Contactsof页面过来保存公司id
       companyName:'',//从Contactsof页面过来保存公司Name
 
       rightPanelFromType:"",//传给右侧菜单用的参数
-      rightPanelFromID:""//传给右侧菜单用的参数
+      rightPanelFromID:"",//传给右侧菜单用的参数
+      isShowSendBtn: true,  //侧滑是否显示分享给同事选项
+      isShowClose:false, //侧滑是否显示关闭这个商业机会选项
+
     };
   },
   beforeRouteEnter: function(to, from, next) {
@@ -361,7 +367,7 @@ export default {
                if(tool.isNullOrEmptyObject(curObj)){
                    return;
                }
-               
+
                var fieldval = curObj.attr("data-fieldval");
                if(fieldval == "23"){
                    $(".initiatorObj").hide();

@@ -147,7 +147,11 @@
             </div>
         </div>
     </div>
-    <InfoRightPanel :items="itemsData" :isShowList="isShowMenuList" :isShowSend="isShowSendBtn"></InfoRightPanel>
+    <InfoRightPanel
+      :isShowClose="isShowClose"
+      :isShowSend="isShowSendBtn"
+      :rightPanelFromType="rightPanelFromType"
+      :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
 
 </div>
 </template>
@@ -173,10 +177,8 @@ export default {
         return {
 
             ptitle: 'Organizationsinfo detail',
-            itemsData: ['Contacts(5)', ' Opportunities(2)', 'Calndar(3)', 'Airline database'],
-            isShowMenuList: false,
-            isShowSendBtn: false,
-            scrollTop: 0, //记录滚动条的位置
+
+            // scrollTop: 0, //记录滚动条的位置
 
             isAddNew:false,//是否添加新纪录
             operation:false,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
@@ -184,7 +186,12 @@ export default {
 
             // modifiedtime:"1/Jan/2019",
             // modifiedby:"Dylan Xu",
-            isFirstEnter:false//是否首次进入
+            isFirstEnter:false,//是否首次进入
+
+            rightPanelFromType:"",//传给右侧菜单用的参数
+            rightPanelFromID:"",//传给右侧菜单用的参数
+            isShowSendBtn: false,  //侧滑是否显示分享给同事选项
+            isShowClose:false, //侧滑是否显示关闭这个商业机会选项
         }
     },
     beforeRouteEnter: function (to, from, next) {

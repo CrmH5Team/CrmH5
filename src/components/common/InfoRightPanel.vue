@@ -3,12 +3,12 @@
 
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
     <div id="right-content" class="right-content">
-        <div right-content-block id="dataBlock" v-show="isShowList">
+        <!-- <div right-content-block id="dataBlock" v-show="items.length>0">
             <div class="right-content-header f16">Related Data</div>
             <div class="right-content-list f14" v-for="item in items">
                 <div class="right-content-list-cell"><span class="mui-icon calcfont calc-guanxi"></span>{{item}}</div>
             </div>
-        </div>
+        </div> -->
         <div right-content-block id="generalBlock">
             <div class="right-content-header f16">Operation</div>
             <div class="right-content-list f14">
@@ -32,7 +32,7 @@ export default {
             rightPanelFromIDNew:""
         }
     },
-    props: ['items', 'isShowList', 'isShowSend', 'isShowClose','rightPanelFromType','rightPanelFromID'],
+    props: ['isShowSend', 'isShowClose','rightPanelFromType','rightPanelFromID'],
     watch: {
         rightPanelFromType:function(newVal,oldVal){
             this.rightPanelFromTypeNew = newVal;
