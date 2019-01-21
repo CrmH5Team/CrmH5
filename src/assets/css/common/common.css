@@ -282,6 +282,9 @@ label.radios-label input:disabled:checked + .radios:after {
 .list-group-div .occupy-div{height:0.7rem;display:none;}
 .list-group-div .group-item-list{display: none;}
 
+/*首页分组默认展开*/
+.list-group-div .index-meeting-list{display:block;}
+
 
 
 
@@ -363,6 +366,14 @@ top:0px;position:absolute;}
 .organizations-list .item-div{line-height:1;padding:5px 0;}
 .organizations-list .item-first-div{font-weight: 600;color:#ff5a21;}
 .organizations-list .item-first-div .right{font-weight: 100;}
+.organizations-list .item-div .left-text{display:inline-block;max-width:75%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
+.organizations-list .item-div .right-text{display:inline-block;max-width:20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
 
 
 
