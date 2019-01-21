@@ -88,7 +88,7 @@
 .tips-box .upload-now{position: absolute;right:10px;}
 
 .group-title{height: 40px;padding: 0 10px; display: flex;align-items :center;position: relative;}
-.title-text{font-weight: 600;display: inline-block;}
+.title-text{font-weight: 600;display: inline-block;width: 85%;}
 .check-all{display: inline-block;position: absolute;right:10px;}
 
 
