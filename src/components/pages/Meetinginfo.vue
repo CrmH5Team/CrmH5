@@ -28,7 +28,7 @@
                         </div>
                     </div> -->
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="ListCell visible">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-time"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
