@@ -75,6 +75,7 @@ const router =  new Router({
 
     { path: '/prcalendarinfo/:id',name:'prcalendarinfo', component:PrCalendarinfo },
 
+    //会议&出差
     { path: '/tripmeeting',name:'tripmeeting', component:Tripmeeting,
       meta: {
         keepAlive: true,
@@ -85,12 +86,14 @@ const router =  new Router({
       meta: {
         keepAlive: true,
         isBack:false,
+        listName:"tripmeeting"
       }
     },
     { path: '/tripinfo/:id',name:'tripinfo', component:Tripinfo,
       meta: {
         keepAlive: true,
         isBack:false,
+        listName:"tripmeeting"
       }
     },
       //添加住宿/机票

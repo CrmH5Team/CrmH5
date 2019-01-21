@@ -1,7 +1,6 @@
 <template>
 <div>
         <div class="calendar">
-
             <div id="inline-calendar"></div>
 
             <div class="calendarDataList">
@@ -128,9 +127,7 @@
 </template>
 
 
-
 <script>
-
 import Nothing from "../common/Nothing"
 export default {
     components: {
@@ -141,9 +138,6 @@ export default {
            dateEvents:[],//一天中事件数据
            hasEvents:true, //一天中是否有事件数据
            showPage:0,
-          //  date:'',
-          //  week:'',
-
            isFirstEnter:false, // 是否第一次进入，默认false
            notTrip:false,   //没数据
            notMeeting:false, //没数据
@@ -153,21 +147,20 @@ export default {
         this.isFirstEnter = true;
     },
     mounted:function(){
-        this.initCalendar();
-
         this.changePos();
     },
     beforeRouteEnter:function(to, from, next){
-        if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
+        //if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
+        if(from.name == 'calendarlistinfo'){
             to.meta.isBack = true;
         }
         next();
     },
     activated:function(){
-
         if(!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave){
             this.initCalendar();
         }
+
         this.$route.meta.isBack = false;
         this.$route.meta.fromSave = false;
         this.isFirstEnter = false;
@@ -189,7 +182,7 @@ export default {
               _self.$router.push(url);
         },
 
-        //table切换页面
+        //tab切换页面
         switchPage:function(num, e){
             var _self = this;
             var el = e.target;
@@ -211,13 +204,67 @@ export default {
 
         //初始化日历
         initCalendar:function(){
-            var $this = this;
-            $("#inline-calendar").remove();
-            $('.calendar').prepend('<div id="inline-calendar"></div>');
+            var _self = this;
 
+            // $("#inline-calendar").remove();
+            // $('.calendar').prepend('<div id="inline-calendar"></div>');
+
+            // $("#inline-calendar").calendar({
+            //     multiple:false,
+            //     monthNames:[
+            //         lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
+            //         lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
+            //         lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
+            //         lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
+            //         lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
+            //         lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
+            //     ],
+            //     monthNamesShort:[
+            //         lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
+            //         lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
+            //         lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
+            //         lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
+            //         lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
+            //         lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
+            //     ],
+            //     dayNames:[
+            //         lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
+            //         lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
+            //         lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
+            //         lanTool.lanContent('894_周六')
+            //     ],
+            //     dayNamesShort:[
+            //          lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
+            //         lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
+            //         lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
+            //         lanTool.lanContent('894_周六')
+            //     ],
+            //     dateFormat:'yyyy-mm-dd',
+            //     yearPicker:true,
+            //     value:[ (new Date()).FormatNew('yyyy-MM-dd')], //默认选择的日期
+            //     onChange: function(p, values, displayValues) {
+            //     },
+            //     onDayClick:function(p, dayContainer, year, month, day){
+            //         month = parseInt(month) + 1;
+            //         var dateStr = year + "-" + month + "-" +day;
+            //         $this.getEventsByDate(dateStr);
+            //         console.log("日期："+ dateStr);
+            //     },
+            //     onOpen:function (p){
+            //     },
+            //     onMonthAdd:function(p, monthContainer){
+
+            //         setTimeout(function(){
+            //             // $this.setCalendarEvent(p);
+            //         },1);
+            //     }
+            // });
+
+
+            //日历控件初始化
             $("#inline-calendar").calendar({
                 multiple:false,
-                monthNames:[
+                    monthNames:[
                     lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
                     lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
                     lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
@@ -251,18 +298,21 @@ export default {
                 onChange: function(p, values, displayValues) {
                 },
                 onDayClick:function(p, dayContainer, year, month, day){
-                    month = parseInt(month) + 1;
+                    month = parseInt(month)+1;
+                    //console.log("onDayClick:"+p.currentYear+","+p.currentMonth);
                     var dateStr = year + "-" + month + "-" +day;
-                    $this.getEventsByDate(dateStr);
-                    console.log("日期："+ dateStr);
+                    //console.log("日期："+ dateStr);
+                    //展示选中的日期
+                    //$(".date").text(dateStr);
+                    //getEventsByDate(dateStr);
                 },
                 onOpen:function (p){
                 },
                 onMonthAdd:function(p, monthContainer){
-
-                    setTimeout(function(){
-                        // $this.setCalendarEvent(p);
-                    },1);
+                    // setTimeout(function(){
+                    //     //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
+                    //     setCalendarEvent(p);
+                    // });
                 }
             });
 
@@ -528,7 +578,7 @@ export default {
 /*日历style*/
 .picker-calendar-week-days::after{background:beige!important;}
 .picker-calendar-row:after{background:beige!important;}
-#inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;}
+/* #inline-calendar .toolbar{display:none!important;font-size: 0.25rem!important;} */
 .picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only{height: 0.9rem!important;line-height: 0.9rem!important;}
 .picker-calendar-week-days .picker-calendar-week-day{line-height: 0.9rem!important;overflow: hidden;color:#000!important;}
 .toolbar .toolbar-inner,.toolbar .toolbar-inner,.picker-calendar-month-picker a.icon-only, .picker-calendar-year-picker a.icon-only,.picker-calendar-month-picker, .picker-calendar-year-picker,.picker-calendar-month-picker .current-month-value, .picker-calendar-year-picker .current-month-value, .picker-calendar-month-picker .current-year-value, .picker-calendar-year-picker .current-year-value,.picker-calendar-year-picker,.picker-calendar-year-picker .current-year-value {height: 0.9rem!important;line-height: 0.9rem!important;}

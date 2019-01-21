@@ -8,7 +8,7 @@
           <!-- calendar视图 -->
         <calendar v-show="viewType=='calendarView'" class="calendar-view"></calendar>
 
-          <!-- list 视图 -->
+        <!-- list 视图 -->
         <div v-show="viewType=='listView'"  class="list-view">
               <div class="nav sticky">
                   <div @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
