@@ -39,6 +39,21 @@ window.eventBus = eventBus;
 
 Vue.config.productionTip = false
 
+//会议时间格式化
+Vue.filter('MeetingTimeFormat',function(value){
+  var format = "d/MMM/yyyy HH:mm";
+  value = value.ReplaceAll("T"," ");
+  value = tool.ChangeTimeFormat(value,format);
+  // var dateTimeTemp = new Date(value);
+  // if(tool.isNullOrEmptyObject(dateTimeTemp)){
+  //   return;
+  // }
+
+  // console.log(value);
+
+  return value;
+});
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -47,14 +62,12 @@ new Vue({
   created () {
       // console.log(this.$myConfig);
   }
-})
-
-
+});
 
  //iOS 里有一组双指手势操作的事件：gesturestart、gesturechange、gestureend
 document.addEventListener('gesturestart', function (event) {
     event.preventDefault();
-})
+});
 
 //禁止iOS 10+ safari浏览器页面双击放大
 var lastTouchEnd = 0;
@@ -69,5 +82,3 @@ document.addEventListener('touchend', function (event) {
 document.addEventListener('touchmove', function (event) {
   if (event.scale !== 1) { event.preventDefault(); }
 }, false);
-
-

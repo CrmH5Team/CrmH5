@@ -283,6 +283,15 @@
 	tool.CommonDataServiceHandle_Query = "CommonDataServiceHandle_Query";
 
 	/*
+	 * 查询日历事件节点接口
+	 */
+	tool.Api_MeetingHandle_QueryCalendarMonthEventNode = "Api_MeetingHandle_QueryCalendarMonthEventNode";
+	/*
+	 * 根据传入的时间获取当天的会议记录接口
+	 */
+	tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate = "Api_MeetingHandle_QueryCalendarGetMeetingByDate";
+
+	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
 	tool.config_currentLanguageVersion = "currentLanguageVersion";
