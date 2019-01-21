@@ -4,8 +4,8 @@
 
     <div id="page-content" class="page-content">
         <div class="nav sticky">
-            <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Deal Pipeline</div>
-            <div @click="switchPage(1,$event)" class="nav-item f16" >Opportunities</div>
+            <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="820_交易" ></div>
+            <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="649_商业机会"></div>
             <div class="nav-border"></div>
         </div>
 

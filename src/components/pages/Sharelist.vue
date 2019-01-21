@@ -21,9 +21,8 @@
               type="search"
               id="userInput"
               key="userInput"
-              class="search-input"
+              class="search-input lanInputPlaceHolder"
               data-lanid="208_搜索"
-              placeholder="search"
             >
           </div>
         </div>

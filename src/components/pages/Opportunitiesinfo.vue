@@ -6,7 +6,7 @@
         <div class="box">
             <div class="tipBox">
                 <div class="tipContent">
-                    <p class="f12"><span>* </span> 请注意，该商业机会已关闭，仅允许被查看。</p>
+                    <p class="f12"><span class="red">* </span> <span class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></span></p>
                 </div>
             </div>
             <!-- opportunities的属性列表 -->
@@ -15,7 +15,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Business Types</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="903_业务类型"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Opportunity</div>
@@ -27,14 +27,14 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-yewujihui"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Title">MSN03092 Sales to Eastern Airlines</textarea>
+                             <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
                         </p>
                     </div>
                 </div>
                 <div class="ListSpecialCell" id="Organization">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
-                        <div class="ListSpecialCellFieldContent">Organization</div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent">Organization</div>
@@ -43,7 +43,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-fuzerenicon"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Contact</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Niki zhu</div>
@@ -55,7 +55,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
                         </p>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-fengxianyujing"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Risk Tips"></textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="904_风险提示"></textarea>
                         </p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     <div class="ListCellLeftIcon " @click="followClick"><span class="calcfont calc-noshoucang guanZhu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Follow it</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="902_关注">Follow it</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Unfollowed</div>
@@ -86,7 +86,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Business Types</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="903_业务类型"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Opportunity</div>
@@ -98,7 +98,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-jiaoyi"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Title">MSN03092 Sales to Eastern Airlines</textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
                         </p>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea placeholder="Memo ( Suggested length within 200 words)"></textarea>
+                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
                         </p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="ListCellLeftIcon " @click="followClick"><span class="calcfont calc-noshoucang guanZhu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Follow it</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="902_关注"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Unfollowed</div>
@@ -127,7 +127,7 @@
             <div class="meetingRecord">
                 <div class="headerBlock">
                     <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
-                    <div class="headerBlockContent f16">meeting Note</div>
+                    <div class="headerBlockContent f16 lanText" data-lanid="901_会议记录"></div>
                     <div class="headerBlockRightIcon" @click="addMeetingClick"><span class="calcfont calc-jia"></span></div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
                             <div class="content">MSN 05789 机身检查会议2</div>
                         </div>
                         <div class="headerDivRightBtn" @click="viewCompleteClick">
-                            <div class="rightBtn">查看完整
+                            <div class="rightBtn lanText" data-lanid="900_查看完整">
 
                             </div>
                         </div>
@@ -175,13 +175,13 @@
             </div>
             <div class="shareBlock">
                 <div class="shareTip">
-                    <p><span>* </span>请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。</p>
+                    <p><span>* </span><span class="zhuyi lanText" data-lanid="899_请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。"></span></p>
                 </div>
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-fuzerenicon"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Responsible by</div>
+                            <div class="ListCellContentLeft TextlanText" data-lanid="825_负责人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <div class="ListCellContentRightText">Niki zhu</div>
@@ -196,7 +196,7 @@
                     <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText">Colleagues with access查看有权限访问的同事</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="898_查看有权限访问的同事"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -357,11 +357,11 @@ export default {
             if ($(".guanZhu").hasClass("calc-noshoucang")) {
                 $(".guanZhu").addClass("calc-shoucang");
                 $(".guanZhu").removeClass("calc-noshoucang")
-                $.toast("关注成功", 1500, function () {});
+                $.toast(lanTool.lanContent('906_关注成功'), 1500, function () {});
             } else {
                 $(".guanZhu").addClass("calc-noshoucang");
                 $(".guanZhu").removeClass("calc-shoucang")
-                $.toast("取消关注", 1500, function () {});
+                $.toast(lanTool.lanContent('905_取消关注'), 1500, function () {});
             }
         },
         savePageData:function(e){

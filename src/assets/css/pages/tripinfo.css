@@ -15,7 +15,12 @@
 .tipContent span {
     color: red;
 }
-
+span.red{
+    color: red;
+}
+span.zhuyi{
+    color: #666;
+}
 .TripList {
     padding-bottom: 5px;
     background-color: #ffffff;
