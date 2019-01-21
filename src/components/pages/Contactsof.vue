@@ -156,8 +156,15 @@ export default {
                             if(tool.isNullOrEmptyObject(urlTemp)){
                                 return;
                             }
-                            console.log(123);
-                            _self.$router.push(urlTemp);
+
+                            var parameter =
+                            {
+                                onlyView : true
+                            };
+                            _self.$router.push({
+                              path: urlTemp,
+                              query: parameter
+                            });
                         });
                     },0);
                 },
