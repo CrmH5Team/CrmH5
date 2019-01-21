@@ -988,7 +988,7 @@
 			minHeight = parseFloat(getStyle('height'));
 		elem.style.resize = 'none';
 		var change = function () {
-			console.log("autoTextarea");
+			// console.log("autoTextarea");
 			var scrollTop, height,
 				padding = 0,
 				style = elem.style;
