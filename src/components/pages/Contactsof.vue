@@ -6,10 +6,10 @@
       </header>
       <div id="page-content" class="page-content">
           <div class="add-btn-div">
-                <router-link  class="add-div" to="/contactsinfo/-1">
+                <div @click="addContacts" class="add-div" data-link="/contactsinfo/-1">
                     <span class="calcfont calc-add"></span>
                     <span class="add-text lanText" data-lanid="793_添加联系人"></span>
-                </router-link>
+                </div>
           </div>
 
           <div id="contactsList" class="group-item-list contacts-list">
@@ -38,12 +38,14 @@ export default {
         return {
             title:'Contacts',
             companyID:"",//公司id
+            companyName:'',//公司名字
             noData: true, //没数据
         }
       },
       created:function(){
             this.companyID = this.$route.query.companyID || "";
-            console.log("this.companyID:"+this.companyID);
+            this.companyName = this.$route.query.companyName || "";
+            // console.log("this.companyID:"+this.companyID);
       },
       beforeRouteEnter:function(to, from, next){
             // 这个页面一直都需要刷新
@@ -64,6 +66,29 @@ export default {
           },200);
       },
       methods: {
+          //新增联系人
+          addContacts:function(e){
+              var _self = this;
+              var target =  $(e.target);
+              if (!target.hasClass('add-div')) {
+                  target = target.parents("div.add-div:first");
+                  if (tool.isNullOrEmptyObject(target)) {
+                      return;
+                  }
+              }
+              var urlTemp = target.attr('data-link')||'';
+              var parameter =
+              {
+                  onlyView : false,
+                  companyID:_self.companyID,
+                  companyName:_self.companyName
+              };
+              _self.$router.push({
+                path: urlTemp,
+                query: parameter
+              });
+
+          },
           //获取列表数据
           getListData:function(){
             //清空数据

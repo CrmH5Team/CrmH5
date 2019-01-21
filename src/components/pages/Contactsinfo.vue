@@ -288,6 +288,9 @@ export default {
       onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
       isFirstEnter: false, //是否首次进入
 
+      companyID:"",//从Contactsof页面过来保存公司id
+      companyName:'',//从Contactsof页面过来保存公司Name
+
       rightPanelFromType:"",//传给右侧菜单用的参数
       rightPanelFromID:""//传给右侧菜单用的参数
     };
@@ -317,7 +320,10 @@ export default {
     document.activeElement.blur();
     // var _self = this;
 
-    _self.onlyView = this.$route.query.onlyView || false;
+    _self.onlyView = _self.$route.query.onlyView || false;
+    _self.companyID = _self.$route.query.companyID || '';
+    _self.companyName = _self.$route.query.companyName || '';
+
     _self.rightPanelFromType = "6";
     _self.rightPanelFromID = _self.$route.params.id || "";
 
@@ -329,6 +335,7 @@ export default {
       $(".HideWhenNew").hide();
       _self.isAddNew = true;
       _self.operation = false;
+
     } else {
       $(".HideWhenNew").show();
       _self.isAddNew = false;
@@ -337,8 +344,8 @@ export default {
 
     var _isBack = _self.$route.meta.isBack;
 
-    console.log("_isBack:"+_isBack);
-    console.log("_self.isFirstEnter:"+_self.isFirstEnter);
+    // console.log("_isBack:"+_isBack);
+    // console.log("_self.isFirstEnter:"+_self.isFirstEnter);
 
     //若为true,则需要刷新
     if (!_isBack || _self.isFirstEnter) {
@@ -354,8 +361,6 @@ export default {
                if(tool.isNullOrEmptyObject(curObj)){
                    return;
                }
-            //    console.log(curObj);
-            //    console.log(curObj.attr("data-fieldval"));
                var fieldval = curObj.attr("data-fieldval");
                if(fieldval == "23"){
                    $(".initiatorObj").hide();
@@ -363,8 +368,18 @@ export default {
                    $(".initiatorObj").show();
                }
            });
-
            //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
+
+           //给公司字段赋初始值
+           if(!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)){
+               var obj = $('[data-field="CompanyID"]');
+               if(tool.isNullOrEmptyObject(obj)){
+                 return ;
+               }
+               obj.attr('data-fieldval',_self.companyID);
+               obj.text(_self.companyName);
+           }
+
 
           //渲染数据
           tool.IniInfoData(fromType, id, function() {
@@ -377,7 +392,7 @@ export default {
             });
 
             //场景：当在selectList页面按刷新按钮再回到详情页
-            console.log(eventBus.selectListData);
+            // console.log(eventBus.selectListData);
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
               return;
             }
@@ -397,7 +412,6 @@ export default {
         });
       });
     } else {
-        console.log(eventBus.selectListData);
       _self.isFirstEnter = false;
       if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
         return;
@@ -461,7 +475,7 @@ export default {
         var id = _self.$route.params.id;
         var fromType = "Contactsinfo";
         $("#delete").off().on("click",function(){
-            console.log("delete");
+            // console.log("delete");
             tool.DeleteData(fromType, id,_self, function(){
             });
         });
