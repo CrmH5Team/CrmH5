@@ -94,8 +94,8 @@
                         </div>
                     </div>
                 </div>
-                <Infofooter> </Infofooter>
-                <div class="meetingRecord">
+                <Infofooter class="HideWhenNew"> </Infofooter>
+                <div class="meetingRecord HideWhenNew">
                     <div class="ListCell" @click="meetingRecordClick">
                         <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                         <div class="ListCellContent">
@@ -132,7 +132,6 @@ export default {
             ptitle: 'Meeting detail',
             isShowMenuList: false,
             isAddNew: false, //是否添加新纪录
-            // operation: true, //控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
         }
     },
@@ -141,6 +140,8 @@ export default {
         //如果是从以下路由回来的就不用刷新页面
         if (from.name == 'selectlist') {
             to.meta.isBack = true;
+        } else {
+            to.meta.isBack = false;
         }
         next();
     },
@@ -149,33 +150,59 @@ export default {
         var $this = this;
     },
     mounted: function () {
-        this.$nextTick(function () {
-            //将textarea设置为高度自适应
-            $("textarea").each(function (index, cur) {
-                tool.autoTextarea(cur);
-            });
-        })
         eventBus.$on('delete', function (data) {
             console.log(data);
         });
 
     },
+    activated: function () {
+        var _self = this;
+        //监听保存
+        _self.savePageData();
+        //监听删除
+        _self.deleteData();
+        var id = _self.$route.params.id;
+        console.log("_self.$route.params.id:" + id);
+        var fromType = "Meetinginfo";
+        //若是新增，则隐藏新增不需要显示的模块
+        if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
+            $(".HideWhenNew").hide();
+            _self.isAddNew = true;
+            _self.operation = false;
+
+        } else {
+            $(".HideWhenNew").show();
+            _self.isAddNew = false;
+            _self.operation = false;
+        }
+    },
     methods: {
+
+        deleteData: function (e) {
+            console.log("deleteData");
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Meetinginfo";
+            $("#delete").off().on("click", function () {
+                tool.DeleteData(fromType, id, _self, function () {});
+            });
+        },
+
+        savePageData: function (e) {
+            console.log("savepageData");
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Meetinginfo";
+            $("#save").off("click").on("click", function () {
+                 console.log("savepageData");
+                tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            });
+        },
         meetingRecordClick: function () {
             this.$router.push({
                 path: '/MeetingNoteinfo/{"AutoID":""}',
             })
         },
-        // 开关事件
-        allDayClick: function (e) {
-            if ($(e.target).is(":checked") == true) {
-                console.log("true all");
-            } else {
-                console.log("false all");
-            }
-
-        },
-
     }
 
 }

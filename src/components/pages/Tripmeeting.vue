@@ -18,9 +18,9 @@
 
               <div class="pageList" v-show="showPage == 0">
                     <div class="add-btn-div">
-                          <router-link to="/meetinginfo/0" class="add-div">
+                          <router-link to="/meetinginfo/-1" class="add-div">
                               <span class="calcfont calc-add"></span>
-                              <span class="add-text lanText" data-lanid="914_添加会议"></span>
+                              <span class="add-text lanText" data-lanid="886_新增会议"></span>
                           </router-link>
                     </div>
                     <!-- 列表 -->
