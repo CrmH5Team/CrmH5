@@ -11,7 +11,7 @@
                       <span class="date-text">2018-11-16 Thursday</span>
                 </div>
 
-                <!-- table切换 -->
+                <!-- tab切换 -->
                 <div class="calendar-nav">
                       <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
                       <div  class="nav-item f16 lanText" data-lanid="819_出差"></div>
@@ -35,7 +35,7 @@
                                     <div class="item-time f12">
                                         <span class="calcfont calc-gengxinshijian"></span>
                                         <span class="time-text">14:30-17:00</span>
-                                        <!-- <span class="right">Cheryl Xiong</span> -->
+                                        <span class="right">Cheryl Xiong</span>
                                     </div>
                                     <div class="item-address">China Eastern Airlines</div>
                                     <div class="item-initiator">Niki (Fleet Planning Manager)</div>
@@ -205,62 +205,6 @@ export default {
         //初始化日历
         initCalendar:function(){
             var _self = this;
-
-            // $("#inline-calendar").remove();
-            // $('.calendar').prepend('<div id="inline-calendar"></div>');
-
-            // $("#inline-calendar").calendar({
-            //     multiple:false,
-            //     monthNames:[
-            //         lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
-            //         lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
-            //         lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
-            //         lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
-            //         lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
-            //         lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
-            //     ],
-            //     monthNamesShort:[
-            //         lanTool.lanContent('313_一月'),lanTool.lanContent('314_二月'),
-            //         lanTool.lanContent('315_三月'),lanTool.lanContent('316_四月'),
-            //         lanTool.lanContent('317_五月'),lanTool.lanContent('318_六月'),
-            //         lanTool.lanContent('319_七月'),lanTool.lanContent('320_八月'),
-            //         lanTool.lanContent('321_九月'),lanTool.lanContent('322_十月'),
-            //         lanTool.lanContent('323_十一月'),lanTool.lanContent('324_十二月')
-            //     ],
-            //     dayNames:[
-            //         lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
-            //         lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
-            //         lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
-            //         lanTool.lanContent('894_周六')
-            //     ],
-            //     dayNamesShort:[
-            //          lanTool.lanContent('888_周日'),lanTool.lanContent('889_周一'),
-            //         lanTool.lanContent('890_周二'),lanTool.lanContent('891_周三'),
-            //         lanTool.lanContent('892_周四'),lanTool.lanContent('893_周五'),
-            //         lanTool.lanContent('894_周六')
-            //     ],
-            //     dateFormat:'yyyy-mm-dd',
-            //     yearPicker:true,
-            //     value:[ (new Date()).FormatNew('yyyy-MM-dd')], //默认选择的日期
-            //     onChange: function(p, values, displayValues) {
-            //     },
-            //     onDayClick:function(p, dayContainer, year, month, day){
-            //         month = parseInt(month) + 1;
-            //         var dateStr = year + "-" + month + "-" +day;
-            //         $this.getEventsByDate(dateStr);
-            //         console.log("日期："+ dateStr);
-            //     },
-            //     onOpen:function (p){
-            //     },
-            //     onMonthAdd:function(p, monthContainer){
-
-            //         setTimeout(function(){
-            //             // $this.setCalendarEvent(p);
-            //         },1);
-            //     }
-            // });
-
-
             //日历控件初始化
             $("#inline-calendar").calendar({
                 multiple:false,
@@ -298,178 +242,34 @@ export default {
                 onChange: function(p, values, displayValues) {
                 },
                 onDayClick:function(p, dayContainer, year, month, day){
-                    month = parseInt(month)+1;
-                    //console.log("onDayClick:"+p.currentYear+","+p.currentMonth);
+                    month = parseInt(month) + 1;
                     var dateStr = year + "-" + month + "-" +day;
-                    //console.log("日期："+ dateStr);
-                    //展示选中的日期
-                    //$(".date").text(dateStr);
-                    //getEventsByDate(dateStr);
+                    console.log("日期："+ dateStr);
+                    return;
+                    _self.getEventsByDate(dateStr);
                 },
                 onOpen:function (p){
                 },
                 onMonthAdd:function(p, monthContainer){
-                    // setTimeout(function(){
-                    //     //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
-                    //     setCalendarEvent(p);
-                    // });
+                    setTimeout(function(){
+                        //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
+                        _self.setCalendarEvent(p);
+                    },0);
                 }
             });
 
         },
-
         //获取日历事件
         setCalendarEvent:function(calendarObj){
-            var $this = this;
-            if(!calendarObj){
-                return ;
-            }
-            var calendarObjGlobal = calendarObj;
-
-            //清除事件样式
-            $(".picker-calendar-day").removeClass('calendar-event');
-            //清空列表数据
-            // $(".calendarDataListUl").empty();
-
-            //请求地址
-            var urlTemp =
-                tool.combineRequestUrl(
-                    tool.getConfigValue(tool.config_ajaxUrl),
-                    tool.getConfigValue(tool.ajaxUrl_Events_GetEventDays)
-                );
-            //请求的传入参数
-            var jsonDatasTemp = {
-                "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
-                "TimeZoneValue": tool.getSessionStorageItem(tool.cache_TimeZoneValue) || "",
-                "Year":calendarObj.currentYear,
-                "Month":calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
-            };
-
-            // loading.show(3,lanTool.lanContent("172_加载中..."));
-            $.ajax({
-                async: true,
-                type: "post",
-                url: urlTemp,
-                data: {
-                    jsonDatas: JSON.stringify(jsonDatasTemp)
-                },
-                dataType: 'json',
-                success: function(data) {
-
-                    //数据渲染
-                    // loading.hidden();
-                    if(data.Result != 1) {
-                        toast.show(data.Msg);
-                        return;
-                    }
-
-                    var dateArray = data.Data || [];
-                        if(dateArray.length<=0){
-                            return;
-                        }
-
-                    //写入样式
-                    for(var i=0,length =dateArray.length;i<length;i++){
-                        var dateTempArray = dateArray[i].split(" ");
-                        var dateTemp = new Date(dateTempArray[0]);
-                        if(!dateTemp){
-                            return;
-                        }
-                        var year =dateTemp.getFullYear();
-                        var monthTemp = dateTemp.getMonth();
-                        var day = dateTemp.getDate();
-
-                        $('.picker-calendar-row div[data-year="'+  year+'"][data-month="'+ monthTemp +'"][data-day="'+ day +'"]').addClass('calendar-event');
-                    }
-
-                    //判断当前的日历视图中是否有激活的天，若有，则执行getEventsByDate
-                    var selectedDayObj = $("div.picker-calendar-day-selected:first");
-
-                    if(!selectedDayObj){
-                        return;
-                    }
-
-                    var year = selectedDayObj.attr("data-year") ||"";
-                    var month = selectedDayObj.attr("data-month") ||"";
-                    var day = selectedDayObj.attr("data-day") ||"";
-                    if(!year || !month || !day){
-                        return;
-                    }
-                    month = parseInt(month)+1;
-
-                    var dateStr = year + "-" + month + "-" +day;
-                    $this.getEventsByDate(dateStr);
-                },
-                error: function(jqXHR, type, error) {
-                    console.log("error");
-                    // loading.hidden();
-                }
-            });
 
         },
 
         //根据指定的年月日，返回事件列表
         getEventsByDate:function(currentDate){
-
                 var $this = this;
                 if(!currentDate){
                     return ;
                 }
-
-                //写入当前时间
-                // $this.date = currentDate;
-                // $this.week = tool.getWeekDayStr(currentDate);
-
-                //请求地址
-                var urlTemp =
-                    tool.combineRequestUrl(
-                        tool.getConfigValue(tool.config_ajaxUrl),
-                        tool.getConfigValue(tool.ajaxUrl_Events_GetEventsByDate)
-                    );
-                //请求的传入参数
-                var jsonDatasTemp = {
-                    "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                    "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
-                    "TimeZoneValue": tool.getSessionStorageItem(tool.cache_TimeZoneValue) || "",
-                    "Date":currentDate
-                };
-
-                $this.dateEvents = [];
-
-                // loading.show(3,lanTool.lanContent("172_加载中..."));
-                $.ajax({
-                    async: true,
-                    type: "post",
-                    url: urlTemp,
-                    data: {
-                        jsonDatas: JSON.stringify(jsonDatasTemp)
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-
-                        //数据渲染
-                        // loading.hidden();
-                        if(data.Result != 1) {
-                            toast.show(data.Msg);
-                            return;
-                        }
-
-                        $this.dateEvents = data.Data || [];
-
-                        if($this.dateEvents.length<=0){
-                            $this.hasEvents = false;
-                            return;
-                        }else{
-                            $this.hasEvents = true;
-                        }
-                    },
-                    error: function(jqXHR, type, error) {
-                        console.log("error");
-                        // loading.hidden();
-                    }
-                });
-
         }
     }
 
