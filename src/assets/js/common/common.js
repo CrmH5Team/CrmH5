@@ -1462,7 +1462,7 @@
 						// if(key == "GroupRowCount"){
 						// 	console.log(data[i][key] || "");
 						// }
-						
+
 						tempStr = tempStr.replace("{" + key + "}", data[i][key]);
 					}
 
@@ -1615,13 +1615,16 @@
                           <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
                           <div class="item-block f14">
                             <div class="item-div item-first-div">
-                              <span>{ShortName}</span><span class="right">{ICAOCode}</span>
+                              <span class="left-text">{ShortName}</span>
+                              <span class="right-text right">{ICAOCode}</span>
                             </div>
                             <div class="item-div">
-                              <span>{BusinessType}</span><span class="right">{AccountManager}</span>
+                              <span class="left-text">{BusinessType}</span>
+                              <span class="right-text right">{AccountManager}</span>
                             </div>
                             <div class="item-div">
-                              <span>{CountryName}</span><span class="right">{CityName}</span>
+                              <span class="left-text">{CountryName}</span>
+                              <span class="right-text right">{CityName}</span>
                             </div>
                           </div>
                         </div>`;
@@ -1959,7 +1962,7 @@
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
 			var fromType = _curObj.attr("data-fromType") ||"";
-			
+
 			console.log("fromType:"+fromType);
 
 			var parameter = {
@@ -2413,7 +2416,7 @@
 		} else {
 			return;
 		}
-		
+
 		var idArr = [];
 		idArr.push(autoID);
 
@@ -2429,7 +2432,7 @@
 		tool.showConfirm(
 			lanTool.lanContent("593_您确定要删除数据吗？"),
 			function() {
-			  
+
 				$.ajax({
 					async: true,
 					type: "post",
@@ -2443,7 +2446,7 @@
 							console.log(tool.getMessage(data));
 							return true;
 						}
-		
+
 						//data = data._OnlyOneData || [];
 						//删除成功后跳转到列表页面
 						var routeName = _self.$route.name;
@@ -2468,7 +2471,7 @@
 						if (!tool.isNullOrEmptyObject(myCallBack)) {
 							myCallBack();
 						}
-		
+
 						//返回到上一页
 						_self.$router.back(-1);
 					},
@@ -2486,7 +2489,7 @@
 
 			},
 			function() {}
-		  );	
+		  );
 	}
 
 	/*
