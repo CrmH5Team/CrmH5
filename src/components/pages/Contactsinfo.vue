@@ -354,13 +354,14 @@ export default {
       tool.ClearControlData(function() {
         //渲染控件
         tool.InitiateInfoPageControl(_self,id, function() {
-
+           console.log("hiddenisor");
            //控制data-field="Initiator"显示和隐藏
            $("[data-field='IsPublic']").off('change').on('change',function(){
                var curObj = $(this);
                if(tool.isNullOrEmptyObject(curObj)){
                    return;
                }
+               
                var fieldval = curObj.attr("data-fieldval");
                if(fieldval == "23"){
                    $(".initiatorObj").hide();

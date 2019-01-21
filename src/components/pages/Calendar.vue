@@ -15,7 +15,7 @@
                 <!-- table切换 -->
                 <div class="calendar-nav">
                       <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
-                      <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="819_出差"></div>
+                      <div  class="nav-item f16 lanText" data-lanid="819_出差"></div>
                       <div class="calendar-nav-border"></div>
                 </div>
 
@@ -254,6 +254,7 @@ export default {
                     month = parseInt(month) + 1;
                     var dateStr = year + "-" + month + "-" +day;
                     $this.getEventsByDate(dateStr);
+                    console.log("日期："+ dateStr);
                 },
                 onOpen:function (p){
                 },
@@ -537,7 +538,7 @@ i.icon.icon-next, i.icon.icon-prev{width: 0.35rem!important;height: 0.35rem!impo
 .current-month-value,.current-year-value{font-size: 16px!important;}
 .picker-calendar-week-days + .picker-calendar-months{height: 6rem!important;}
 .weui-picker-calendar,.weui-picker-calendar .picker-modal-inner{height: auto!important;}
-.picker-calendar-day.picker-calendar-day-selected span{background:#ff5a21;}
+.picker-calendar-day.picker-calendar-day-selected span{background:#ff5a21 !important;}
 .picker-calendar-day.picker-calendar-day-today span{}
 /*日历style -----end---*/
 

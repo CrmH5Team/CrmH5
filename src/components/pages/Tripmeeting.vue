@@ -11,8 +11,8 @@
           <!-- list 视图 -->
         <div v-show="viewType=='listView'"  class="list-view">
               <div class="nav sticky">
-                  <div @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item">Meeting</div>
-                  <div @click="switchPage(1,'trip',$event)" class="nav-item f16" >Trip</div>
+                  <div @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
+                  <div  class="nav-item f16 lanText" data-lanid="819_出差"></div>
                   <div class="nav-border"></div>
               </div>
 
@@ -20,7 +20,7 @@
                     <div class="add-btn-div">
                           <router-link to="/meetinginfo/0" class="add-div">
                               <span class="calcfont calc-add"></span>
-                              <span class="add-text">And Meeting</span>
+                              <span class="add-text lanText" data-lanid="914_添加会议"></span>
                           </router-link>
                     </div>
                     <!-- 列表 -->
@@ -29,12 +29,12 @@
               </div>
 
               <div class="pageList" v-show="showPage == 1">
-                    <!-- <div class="add-btn-div">
+                    <div class="add-btn-div">
                           <router-link to="/tripinfo/0" class="add-div">
                               <span class="calcfont calc-add"></span>
-                              <span class="add-text">And Trip</span>
+                              <span class="add-text lanText" data-lanid="887_新增出差"></span>
                           </router-link>
-                    </div> -->
+                    </div>
                     <!-- 列表 -->
                     <div v-if="!notTrip" id="tripList"></div>
                     <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
@@ -64,7 +64,7 @@ export default {
     },
     data(){
         return {
-            title:'Trip&Meeting',
+            title:lanTool.lanContent('781_出差&会议'),
             notTrip:true,   //没数据
             notMeeting:true, //没数据
 
@@ -93,7 +93,7 @@ export default {
                       {text:'My Schedule',value:'mySchedule'},
                       {text:'From My Direct Team Member',value:'fromMyDirectTeamMember'},
                       {text:'From My All Team Member',value:'fromMyAllTeamMember'},
-                      {text:'PR Calendar',value:'pRCalendar'},
+                    //   {text:'PR Calendar',value:'pRCalendar'},
                   ]
                 },
 

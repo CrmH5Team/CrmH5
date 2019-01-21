@@ -1765,6 +1765,7 @@
 	*渲染控件
 	*/
 	tool.InitiateInfoPageControl = function (self,id,myCallBack) {
+		console.log("id:"+id);
 		console.log("InitiateInfoPageControl");
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {

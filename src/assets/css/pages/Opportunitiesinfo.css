@@ -4,7 +4,7 @@
 }
 
 .tipContent {
-    height: 0.4rem;
+    height: auto;
     line-height: 0.4rem;
     background-color: rgb(242, 242, 242);
     border: solid 1px rgb(242, 242, 242);
