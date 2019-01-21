@@ -6,7 +6,7 @@
         <div class="box">
             <div class="tipBox">
                 <div class="tipContent">
-                    <p class="f12"><span class="red">* </span><span>请注意，该报销申请单将自动同步到OA系统。</span></p>
+                    <p class="f12"><span class="red">* </span><span class="zhuyi">请注意，该报销申请单将自动同步到OA系统。</span></p>
                 </div>
             </div>
             <div class="TripList">
@@ -333,7 +333,12 @@ export default {
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
 @import "../../assets/css/pages/tripinfo.css";
-
+span.red{
+    color: red;
+}
+span.zhuyi{
+    color: #666;
+}
 .tripRecord {
     margin: 10px 0;
 }

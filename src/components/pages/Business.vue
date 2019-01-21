@@ -144,7 +144,7 @@ export default {
                     field:'related_to',
                     queryType:'string',
                     queryUrl:"Accounts/Query",
-                    text:'Country 国家',
+                    text:lanTool.lanContent("701_国家"),
                     selectType:'radio',
                     value:{
                         text:'',

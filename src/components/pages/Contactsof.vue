@@ -43,6 +43,7 @@ export default {
       },
       created:function(){
             this.companyID = this.$route.query.companyID || "";
+            console.log("this.companyID:"+this.companyID);
       },
       beforeRouteEnter:function(to, from, next){
             // 这个页面一直都需要刷新

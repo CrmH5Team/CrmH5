@@ -14,8 +14,8 @@
 
                 <!-- table切换 -->
                 <div class="calendar-nav">
-                      <div @click="switchPage(0,$event)" class="nav-item f16 active-item">Meeting</div>
-                      <div @click="switchPage(1,$event)" class="nav-item f16" >Trip</div>
+                      <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
+                      <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                       <div class="calendar-nav-border"></div>
                 </div>
 
@@ -26,7 +26,7 @@
                         <div class="add-btn-div">
                               <div class="add-div" @click="goInfoPage()">
                                   <span class="calcfont calc-add"></span>
-                                  <span class="add-text">And Meeting</span>
+                                  <span class="add-text lanText" data-lanid="885_增加机会">And Meeting</span>
                               </div>
                         </div>
                         <!-- meeting list -->

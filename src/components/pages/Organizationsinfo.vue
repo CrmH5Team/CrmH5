@@ -216,6 +216,7 @@ export default {
         document.activeElement.blur();
         // var _self = this;
         var id = _self.$route.params.id;
+        console.log("_self.$route.params.id:"+id);
         var fromType = "Organizationsinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
@@ -291,7 +292,7 @@ export default {
              if(tool.isNullOrEmptyObject(companyID)){
                  return;
              }
-
+             console.log("companyID:"+companyID);
             var urlTemp = "/contactsof";
             var parameter =
             {
