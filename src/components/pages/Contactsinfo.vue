@@ -296,7 +296,7 @@ export default {
     };
   },
   beforeRouteEnter: function(to, from, next) {
-    if (from.name == "selectlist" || from.name == "groupselectlist" || from.name == "sharelist" || from.name == "organizationsinfo") {
+    if (from.name == "selectlist" || from.name == "groupselectlist" || from.name == "sharelist" || from.name == "organizationsinfo" || from.name == "poweruser") {
       to.meta.isBack = true;
     } else {
       to.meta.isBack = false;
@@ -431,11 +431,17 @@ export default {
   methods: {
     //查看有权限访问的同事跳转事件
     goToShareList: function() {
+      var companyID =  $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
+      if(tool.isNullOrEmptyObject(companyID)){
+          return;
+      }
+      var parameter =
+      {
+          companyID : companyID
+      };
       this.$router.push({
         path: "/poweruser",
-        query: {
-          name: "Colleagues with access"
-        }
+        query: parameter
       });
     },
     //查看公司信息

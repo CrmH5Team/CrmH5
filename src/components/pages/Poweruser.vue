@@ -5,7 +5,6 @@
 
         <h1 class="header-title f18">{{title||''}}</h1>
 
-        <!-- <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a> -->
     </header>
 
     <div class="nav sticky">
@@ -22,7 +21,6 @@
                       <div class="search-box">
                           <span class="calcfont calc-sousuo input-search-icon"></span>
                           <input
-                                  @blur="blurHandler"
                                   type="search"
                                   id="userInput"
                                   key="userInput"
@@ -66,7 +64,6 @@
                       <div class="search-box">
                           <span class="calcfont calc-sousuo input-search-icon"></span>
                           <input
-                                  @blur="blurHandler"
                                   type="search"
                                   id="groupInput"
                                   key="groupInput"
@@ -108,12 +105,12 @@ export default {
     },
     data() {
         return {
-            languageData: {
-                'search': lanTool.lanContent('208_搜索'), //208_搜索
-            },
+            title: 'Share with',
 
             notUserData:false, //没数据
             notGroupData:false, //没数据
+
+            companyID:'', //公司id
 
             //用户数据
             userData: [
@@ -176,12 +173,7 @@ export default {
                 },
             ],
 
-            queryUrl: null,
-            field: null,
-            title: 'Share with',
-            value: '', //默认值数据
 
-            radioValue:'',
 
             userCheckedValue:[],
             groupCheckedValue:[],
@@ -191,18 +183,13 @@ export default {
         }
     },
     created: function () {
-        this.queryUrl = this.$route.query.url;
-        this.field = this.$route.query.field;
-        this.value = this.$route.query.value;
+        this.companyID = this.$route.query.companyID;
     },
     mounted: function () {
         lanTool.updateLanVersion();
-
-
-        // this.getData();
+        this.getData();
         this.search();
         this.changePos();
-
     },
     methods: {
         //点击分组收起展开
@@ -244,119 +231,65 @@ export default {
             })
         },
 
-        selectAll: function (type,e) {
-            document.activeElement.blur();
-            var self = this;
-                var el = e.target,
-                    t = $(e.target).is(":checked");
-                if (t) {
-                    if(type === 'user'){
-                        $.each(self.userData,function(index,item){
-                            self.userCheckedValue.push(item.value);
-                        })
-                    }else{
-                        $.each(self.groupData,function(index,item){
-                            self.groupCheckedValue.push(item.value);
-                        })
-                    }
-
-                } else {
-                    self.userCheckedValue = [];
-                    self.groupCheckedValue = [];
-                }
-        },
-        clickSearch: function (e) {
-            $(e.target).closest('.search').addClass('search-active');
-            document.activeElement.blur();
-            $(e.target).siblings('.search-input').focus();
-        },
-
-        //失去焦点
-        blurHandler: function (e) {
-            // document.activeElement.blur();
-            // $(e.target).val('');
-            // $(e.target).closest('.search').removeClass('search-active');
-        },
 
         backHandler: function () {
             this.$router.back(-1);
         },
 
-        saveHandler: function () {
-            var $this = this;
-            // var arr = {
-            //     field: $this.field,
-            //     value: []
-            // };
-            // $.each($this.dataArray,function(index, item){
-
-            //     if(($this.selectType === 'radio' && $this.radioValue === item.value) ||
-            //       ($this.selectType === 'checkbox' && $this.checkboxValue.indexOf(item.value)>=0 )){
-            //         var t = {};
-            //         t.text = item.text;
-            //         t.value = item.value;
-            //         arr.value.push(t);
-            //     }
-
-            // })
-            // eventBus.$emit('updataSelectList', arr);
-            // $this.$router.back(-1);
-
-        },
 
         getData: function () {
-            var $this = this;
-            if ($this.queryUrl == undefined) return;
-
-            //请求地址
-            var urlTemp = tool.combineRequestUrl(
-                tool.getConfigValue(tool.config_ajaxUrl),
-                $this.queryUrl);
-
-            //请求的传入参数
+            var _self = this;
+            if(tool.isNullOrEmptyObject(_self.companyID)){
+                return ;
+            }
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.CommonDataServiceHandle_Query;
+            //传入参数
             var jsonDatasTemp = {
-                "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-                "IsUsePager": false,
-                "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
-                "QueryCondiction": [],
-                "_QueryType": "SelectList", //查询类型
-                "IsAdmin": tool.getSessionStorageItem(tool.cache_isadmin) || "off", //当前用户是否管理员
-                "UserId": tool.getSessionStorageItem(tool.cache_UserId) || ""
+                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                    UserName: tool.UserName(),
+                    _ControlName: controlName,
+                    _RegisterCode: tool.RegisterCode(),
+                    // Code: $this.code,
+                    // TypeValue: $this.typeValue
             };
 
-            loading.show(3, lanTool.lanContent("172_加载中..."));
+            tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
                 url: urlTemp,
-                data: {
-                    jsonDatas: JSON.stringify(jsonDatasTemp)
-                },
-                dataType: 'json',
+                data: jsonDatasTemp,
+                // dataType: 'json',
                 success: function (data) {
-                    loading.hidden();
-                    if (data.Result != 1) {
-                        toast.show(data.Msg);
-                        return;
+                    data = tool.jObject(data);
+                    console.log(data);
+                    if (data._ReturnStatus == false) {
+                      _self.notData = true;
+                      tool.showText(tool.getMessage(data));
+                      // console.log(tool.getMessage(data));
+                      return true;
                     }
-                    $this.dataArray = data.Data.Rows;
 
-                    $this.$nextTick(function () {
+
+                    _self.$nextTick(function () {
                         // if ($this.data.text && $this.data.value) {
                         //     $this.LocateCurentItem($this.data.value);
                         // }
                         // $this.selectItem();
                     })
 
-                    //如果是多选，显示底部全选按钮
-                    if($this.selectType === 'checkbox'){
-                        $('.selectAll').show();
-                    }
+
 
                 },
                 error: function (jqXHR, type, error) {
                     console.log("error");
-                    loading.hidden();
+                    tool.hideLoading();
+                },
+                complete: function () {
+                    tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
                 }
             })
         },
