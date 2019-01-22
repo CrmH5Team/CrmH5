@@ -14,7 +14,7 @@
                 <!-- tab切换 -->
                 <div class="calendar-nav">
                       <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
-                      <div class="nav-item f16 lanText" data-lanid="819_出差"></div>
+                      <div @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                       <div class="calendar-nav-border"></div>
                 </div>
 
@@ -24,24 +24,34 @@
                         <!-- 增加meeting按钮 -->
                         <div class="add-btn-div">
                               <!-- <div class="add-div" @click="goInfoPage($event)" data-autoID="-1"> -->
-                              <div class="add-div" @click.stop="goInfoPage(-1,$event)">
+                              <div class="add-div" data-autoID="-1">
                                   <span class="calcfont calc-add"></span>
                                   <span class="add-text lanText" data-lanid="886_新增会议"></span>
                               </div>
                         </div>
                         <!-- meeting list -->
                         <div v-if="!notMeeting" id="meetingList" class="list meeting-list">
-                            <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
-                                <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID"> -->
+                            <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click="goInfoPage($event)"  :data-autoID="meetingData.AutoID"> -->
+                                <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID">
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
-                                <span class="time-text">{{meetingData.BeginTime|MeetingTimeFormat}}~{{meetingData.EndTime|MeetingTimeFormat}}</span>
+                                <span class="time-text">{{meetingData.BeginTime|MeetingTimeFormat}}-{{meetingData.EndTime|MeetingTimeFormat}}</span>
                                 <span class="right">{{meetingData.Realname}}</span>
                             </div>
                                 <div class="item-address">{{meetingData.CompanyID}}</div>
                                 <div class="item-initiator">{{meetingData.ContactsID|formatContactsID}}{{meetingData.Title|formatTitle}}</div>
                             </div>
+                              <!--<div class="data-events-item f12" data-url="/organizationsinfo/{AutoID}">
+                                    <div class="item-title">{MeetingTitle}</div>
+                                    <div class="item-time f12">
+                                        <span class="calcfont calc-gengxinshijian"></span>
+                                        <span class="time-text">{BeginTime}-{EndTime}</span>
+                                        <span class="right">{Realname}</span>
+                                    </div>
+                                    <div class="item-address">{CompanyID}</div>
+                                    <div class="item-initiator">{ContactsID} ({Title})</div>
+                            </div>-->
                         </div>
                         <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
 
@@ -161,13 +171,6 @@ export default {
             }
 
             return "(" + val + ")";
-        },
-        MeetingTimeFormat:function(val){
-            var format = "d/MMM/yyyy HH:mm";
-            val = val.ReplaceAll("T"," ");
-            val = tool.ChangeTimeFormat(val,format);
-
-            return val;
         }
     },
     created:function(){
@@ -196,15 +199,23 @@ export default {
     },
     methods:{
         //点击去详情页
-        goInfoPage:function(autoID,el){
-            console.log("goInfoPage");
+        goInfoPage:function(){
             var _self = this;
-            var targetObj = $(el.target);
-            if(tool.isNullOrEmptyObject(targetObj) || tool.isNullOrEmptyObject(autoID)){
-                return;
-            }
-            var url = "/meetinginfo/"+autoID;
-            _self.$router.push(url);          
+                $("[data-autoID]").off('click').on('click',function(){
+                    var curObj = $(this);
+                    console.log(curObj);
+                    if(tool.isNullOrEmptyObject(curObj)){
+                        return;
+                    }
+                var autoID = curObj.attr("data-autoID") || "";
+                if(tool.isNullOrEmptyObject(autoID)){
+                    return;
+                }
+                //meetinginfo
+                var url = "/meetinginfo/"+autoID;
+                _self.$router.push(url);
+
+            });
         },
         //tab切换页面
         switchPage:function(num, e){
@@ -280,6 +291,7 @@ export default {
                     },0);
                 }
             });
+
         },
         //获取当月的会议记录
         setCalendarEvent:function(calendarObj,myCallBack){
@@ -335,23 +347,6 @@ export default {
                     if (!tool.isNullOrEmptyObject(myCallBack)) {
                         myCallBack();
                     }
-
-                    _self.$nextTick(function(){
-                        //判断当前的日历视图中是否有激活的天，若有，则执行getEventsByDate
-                        var selectedDayObj = $("div.picker-calendar-day-selected:first");
-                        if(!selectedDayObj){
-                            return;
-                        }
-                        var year = selectedDayObj.attr("data-year") ||"";
-                        var month = selectedDayObj.attr("data-month") ||"";
-                        var day = selectedDayObj.attr("data-day") ||"";
-                        if(tool.isNullOrEmptyObject(year) || tool.isNullOrEmptyObject(month) || tool.isNullOrEmptyObject(day)){
-                            return;
-                        }
-                        month = parseInt(month)+1;
-                        var dateStr = year + "-" + month + "-" +day;
-                        _self.getEventsByDate(dateStr);
-                    });
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
@@ -378,6 +373,9 @@ export default {
             //清空数据
             // containerObj.html('');
             _self.notMeeting = true;
+
+            // console.log(currentDate);
+            // console.log("getEventsByDate");
             if(tool.isNullOrEmptyObject(currentDate)){
                 _self.notMeeting = true;
                 return;
@@ -439,6 +437,10 @@ export default {
                 if (!tool.isNullOrEmptyObject(myCallBack)) {
                     myCallBack();
                 }
+
+                _self.$nextTick(function(){
+                    _self.goInfoPage();
+                });
             },
             error: function (jqXHR, type, error) {
                 console.log(error);
