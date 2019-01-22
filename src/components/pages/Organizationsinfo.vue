@@ -204,6 +204,8 @@ export default {
 
     },
     activated: function () {
+        //每次进入详情滚动条滚动到顶部
+        $(window).scrollTop(0);
         var _self = this;
 
         this.onlyView = this.$route.query.onlyView || false;

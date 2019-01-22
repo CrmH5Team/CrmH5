@@ -286,6 +286,8 @@ export default {
     },
     mounted: function () {},
     activated: function () {
+        //每次进入详情滚动条滚动到顶部
+        $(window).scrollTop(0);
         var _self = this;
         //监听保存
         _self.savePageData();
