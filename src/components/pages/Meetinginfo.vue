@@ -370,10 +370,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
-            $("#delete").off().on("click", function () {
-                // console.log("delete");
-                tool.DeleteData(fromType, id, _self, function () {});
-            });
+            setTimeout(function(){
+                $("#delete").off("click").on("click", function () {
+                    // console.log("delete");
+                    tool.DeleteData(fromType, id, _self, function () {});
+                });
+            },0);
         },
         savePageData: function (e) {
             var _self = this;
@@ -381,7 +383,6 @@ export default {
             var fromType = "Meetinginfo";
             $("#save").off("click").on("click", function () {
                 tool.SaveOrUpdateData(fromType, id, _self, function () {
-
                 });
             });
         },

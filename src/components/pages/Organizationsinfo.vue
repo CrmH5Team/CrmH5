@@ -477,16 +477,23 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            $("#save").off().on("click", function () {
-                //console.log("save");
-                tool.SaveOrUpdateData(fromType, id, _self, function () {});
-            });
+            // $("#save").off().on("click", function () {
+            //     //console.log("save");
+            //     tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            // });
+            setTimeout(function(){
+                $("#delete").off("click").on("click", function () {
+                    // console.log("delete");
+                    tool.DeleteData(fromType, id, _self, function () {});
+                });
+            },0);
         },
         deleteData: function (e) {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            $("#delete").off().on("click", function () {
+            
+            $("#delete").off("click").on("click", function () {
                 tool.DeleteData(fromType, id, _self, function () {});
             });
         }

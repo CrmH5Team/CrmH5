@@ -1745,6 +1745,7 @@
 	tool.ClearControlData = function (myCallBack) {
 		$("[data-fieldControlType='textareaInput']").val("");
 		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='dateTimePicker']").val("");
 		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='groupSelectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='linkSelectList']").text("").attr("data-fieldVal", "");
@@ -2351,7 +2352,7 @@
 						fieldVal = fieldVal.ReplaceAll("T"," ");
 						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
 					}
-					
+
 					_curObj.val(fieldVal);
 				});
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
@@ -2564,6 +2565,7 @@
 	* 删除数据
 	*/
 	tool.DeleteData = function(fromType, autoID, _self,myCallBack){
+		// console.log("DeleteData");
 		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(autoID)) {
 			return;
 		}
