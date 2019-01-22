@@ -38,118 +38,122 @@
                         <div class="ListCellContentRight rightContent">
                             <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
                         </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div data-field="CountryID" data-fieldControlType="selectList" data-lanid="701_国家" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText" />
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-nationaarea"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="701_国家"></div>
                         </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div data-field="CountryID" data-fieldControlType="selectList" data-lanid="701_国家" data-fieldVal="" Code="DropDowList_ViewBaseCountryInf" data-selectType="radio" class="ListCellContentRightText"/>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" Filter="" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText" />
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-diqiuquanqiu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijingli"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div data-field="AccountManager" data-fieldControlType="selectList" data-lanid="785_客户经理" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText" />
-                            </div>
-                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-chengshijingli"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div data-field="AccountManager" data-fieldControlType="selectList" data-lanid="785_客户经理" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListCell">
-                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehuguanli"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="787_是否为现有客户"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <input type="text" data-field="ExistingCustomer" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="YesOrNo" class="ListCellContentRightText"/>
+                </div>
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-kehuguanli"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="787_是否为现有客户"></div>
                         </div>
-                                <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                            </div>
+                        <div class="ListCellContentRight rightContent">
+                            <input type="text" data-field="ExistingCustomer" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="YesOrNo" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCell HideWhenNew">
-                            <div class="ListCellLeftIcon textLeftIcon" @click="followToggle"><span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span></div>
-                            <div class="ListCellLeftText">
-                                <p class="textareaP lanText" data-lanid="786_关注"></p>
-                            </div>
-                        </div>
+                        <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>
-                    <div class="showMoreList" style="display:block">
-                        <div class="MoreList">
-                            <div class="ListCell">
-                                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shenqingpingji"></span></div>
-                                <div class="ListCellLeftText">
-                                    <p class="textareaP">
-                                        <textarea data-field="Rating" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="788_评级"></textarea>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ListCell">
-                                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
-                                <div class="ListCellLeftText">
-                                    <p class="textareaP">
-                                        <textarea data-field="RegistrationAddress" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="251_地址"></textarea>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="ListCell">
-                                <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
-                                <div class="ListCellLeftText">
-                                    <p class="textareaP">
-                                        <textarea data-field="OtherRemark" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- HideWhenNew -->
-                        <div v-show="!isAddNew" class="contactList">
-                            <div class="ListCell" @click="goToContactsPage">
-                                <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
-                                <div class="ListCellContent">
-                                    <div class="ListCellContentLeft leftContent">
-                                        <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
-                                    </div>
-                                    <div class="ListCellContentRight rightContent">
-                                        <div class="ListCellContentRightText"></div>
-                                    </div>
-                                    <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <Uploadfile></Uploadfile> -->
-
-                        <!-- <Infofooter :modifiedtime="modifiedtime" :modifiedby="modifiedby"> </Infofooter> -->
-                        <Infofooter v-show="!isAddNew"></Infofooter>
-
+                </div>
+                <div class="ListCell HideWhenNew">
+                    <div class="ListCellLeftIcon textLeftIcon" @click="followToggle"><span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP lanText" data-lanid="786_关注"></p>
                     </div>
                 </div>
             </div>
-            <InfoRightPanel :isShowClose="isShowClose" :isShowSend="isShowSendBtn" :rightPanelFromType="rightPanelFromType" :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
+            <div class="showMoreList" style="display:block">
+                <div class="MoreList">
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-shenqingpingji"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea data-field="Rating" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="788_评级"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-location"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea data-field="RegistrationAddress" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="251_地址"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ListCell">
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="mui-icon calcfont calc-beizhu"></span></div>
+                        <div class="ListCellLeftText">
+                            <p class="textareaP">
+                                <textarea data-field="OtherRemark" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="580_备注"></textarea>
+                            </p>
+                        </div>
+                    </div>
 
+                </div>
+                <!-- HideWhenNew -->
+                <div v-show="!isAddNew" class="contactList">
+                    <div class="ListCell" @click="goToContactsPage">
+                        <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-lianxiren2"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <div class="ListCellContentRightText"></div>
+                            </div>
+                            <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <Uploadfile></Uploadfile> -->
+
+                <!-- <Infofooter :modifiedtime="modifiedtime" :modifiedby="modifiedby"> </Infofooter> -->
+                <Infofooter v-show="!isAddNew"></Infofooter>
+
+            </div>
         </div>
+    </div>
+    <InfoRightPanel
+      :isShowClose="isShowClose"
+      :isShowSend="isShowSendBtn"
+      :rightPanelFromType="rightPanelFromType"
+      :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
+
+</div>
 </template>
 
 <script>
@@ -174,36 +178,36 @@ export default {
 
             ptitle: 'Organizationsinfo detail',
 
-            // scrollTop: 0, //记录滚动条的位置
-
-            isAddNew: false, //是否添加新纪录
-            operation: false, //控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
-            onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
+            isAddNew:false,//是否添加新纪录
+            operation:false,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
+            onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
 
             // modifiedtime:"1/Jan/2019",
             // modifiedby:"Dylan Xu",
-            isFirstEnter: false, //是否首次进入
+            isFirstEnter:false,//是否首次进入
 
-            rightPanelFromType: "", //传给右侧菜单用的参数
-            rightPanelFromID: "", //传给右侧菜单用的参数
-            isShowSendBtn: false, //侧滑是否显示分享给同事选项
-            isShowClose: false, //侧滑是否显示关闭这个商业机会选项
+            rightPanelFromType:"",//传给右侧菜单用的参数
+            rightPanelFromID:"",//传给右侧菜单用的参数
+            isShowSendBtn: false,  //侧滑是否显示分享给同事选项
+            isShowClose:false, //侧滑是否显示关闭这个商业机会选项
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'contactsof') {
+        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'contactsof' ) {
             to.meta.isBack = true;
-        } else {
+        }else{
             to.meta.isBack = false;
         }
         next();
     },
     created: function () {
         this.isFirstEnter = true;
+    },
+    mounted: function () {
+        var _self = this;
 
     },
-    mounted: function () {},
-    activated: function () {
+    activated:function(){
         var _self = this;
 
         this.onlyView = this.$route.query.onlyView || false;
@@ -217,14 +221,14 @@ export default {
         document.activeElement.blur();
         // var _self = this;
         var id = _self.$route.params.id;
-        console.log("_self.$route.params.id:" + id);
+        console.log("_self.$route.params.id:"+id);
         var fromType = "Organizationsinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
-        if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
+        if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
-        } else {
+        }else{
             $(".HideWhenNew").show();
             _self.isAddNew = false;
         }
@@ -232,22 +236,17 @@ export default {
         var _isBack = _self.$route.meta.isBack;
 
         //若为true,则需要刷新
-        if (!_isBack || _self.isFirstEnter) {
+        if(!_isBack || _self.isFirstEnter){
             // _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //则联动清空城市
                 $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
-                tool.InitiateInfoPageControl(_self, id, function () {
-                    //渲染textarea 新增详情不能进入渲染数据的方法，在这里刷一下高度自适应
-                    $("textarea").each(function (index, cur) {
-                        // console.log("change textarea");
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
+                tool.InitiateInfoPageControl(_self,id,function(){
+
                     //渲染数据
-                    tool.IniInfoData(fromType, id, function () {
+                    tool.IniInfoData(fromType,id,function(){
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
@@ -257,16 +256,16 @@ export default {
                         });
 
                         //场景：当在selectList页面按刷新按钮再回到详情页
-                        if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
+                        if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                             return;
                         }
 
                         //更新selectlist控件的结果
-                        var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-                        if (tool.isNullOrEmptyObject(curObj)) {
+                        var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+                        if(tool.isNullOrEmptyObject(curObj)){
                             return;
                         }
-                        curObj.attr("data-fieldval", eventBus.selectListData.value.id);
+                        curObj.attr("data-fieldval",eventBus.selectListData.value.id);
                         curObj.text(eventBus.selectListData.value.text);
 
                         //若是国家字段，则根据国家值，初始化城市
@@ -307,18 +306,22 @@ export default {
                     });
                 });
             });
-        } else {
-            // _self.isFirstEnter = false;
-            if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
+
+            //设置滚动条位置
+            $(window).scrollTop(0);
+
+        }else{
+          // _self.isFirstEnter = false;
+          if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                 return;
             }
 
             //更新selectlist控件的结果
-            var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-            if (tool.isNullOrEmptyObject(curObj)) {
+            var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+            if(tool.isNullOrEmptyObject(curObj)){
                 return;
             }
-            curObj.attr("data-fieldval", eventBus.selectListData.value.id);
+            curObj.attr("data-fieldval",eventBus.selectListData.value.id);
             curObj.text(eventBus.selectListData.value.text);
 
             //若是国家字段，则根据国家值，初始化城市
@@ -359,22 +362,24 @@ export default {
 
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
+
     },
     methods: {
         //跳转到联系人界面事件
         goToContactsPage: function () {
             var _self = this;
-            var companyID = _self.$route.params.id || "";
-            var companyName = $('[data-field="ShortNameEN"]').val() || '';
+             var companyID = _self.$route.params.id || "";
+             var companyName = $('[data-field="ShortNameEN"]').val() || '';
 
-            if (tool.isNullOrEmptyObject(companyID) || tool.isNullOrEmptyObject(companyName)) {
+            if(tool.isNullOrEmptyObject(companyID) || tool.isNullOrEmptyObject(companyName)){
                 return;
             }
             var urlTemp = "/contactsof";
 
-            var parameter = {
-                companyID: companyID,
-                companyName: companyName
+            var parameter =
+            {
+                companyID : companyID,
+                companyName:companyName
             };
             _self.$router.push({
                 path: urlTemp,
@@ -387,38 +392,40 @@ export default {
             var fromType = "Organizationsinfo";
             var actionType;
             if ($(".guanZhu").hasClass("calc-shoucang")) {
-                //取消关注
+               //取消关注
                 actionType = 0;
             } else {
                 //添加关注
                 actionType = 1;
             }
 
-            tool.UserFollow(fromType, autoID, actionType, function () {
-                if ($(".guanZhu").hasClass("calc-shoucang")) {
+            tool.UserFollow(fromType,autoID,actionType,function(){
+              if ($(".guanZhu").hasClass("calc-shoucang")) {
                     //取消关注
                     $(".guanZhu").removeClass("calc-shoucang").addClass("calc-noshoucang");
                 } else {
                     //添加关注
                     $(".guanZhu").removeClass("calc-noshoucang").addClass("calc-shoucang");
                 }
-            });
+          });
         },
-        savePageData: function (e) {
+        savePageData:function(e){
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            $("#save").off().on("click", function () {
+            $("#save").off().on("click",function(){
                 //console.log("save");
-                tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                tool.SaveOrUpdateData(fromType, id,_self, function(){
+                });
             });
         },
-        deleteData: function (e) {
+        deleteData:function(e){
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            $("#delete").off().on("click", function () {
-                tool.DeleteData(fromType, id, _self, function () {});
+            $("#delete").off().on("click",function(){
+                tool.DeleteData(fromType, id,_self, function(){
+                });
             });
         }
     }

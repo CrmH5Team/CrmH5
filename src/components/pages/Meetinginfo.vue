@@ -9,7 +9,7 @@
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-T"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea data-field="MeetingTitle" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
+                            <textarea data-field="Title" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="710_标题"></textarea>
                         </p>
                     </div>
                 </div>
@@ -22,7 +22,8 @@
                         <div class="ListCellContentRight switch">
                             <div class="weui-cell__ft">
                                 <input @click="allDayClick" class="weui-switch" type="checkbox">
-                            </div>
+
+</div>
                             </div>
                         </div>
                     </div> -->
@@ -33,8 +34,8 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <!-- <div class="ListCellContentRightText">16/Nov 15:00</div> -->
-                            <input type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" class="ListCellContentRightText"/>
+                            <div class="ListCellContentRightText">16/Nov 15:00</div>
+                            <!-- <input type="text" data-field="" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="StartTime" class="ListCellContentRightText"/> -->
                         </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -120,17 +121,18 @@ import Mixins from '../../mixins'
 import eventBus from '../common/Event';
 
 export default {
+    // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
         Infofooter,
     },
     data() {
         return {
+
             ptitle: 'Meeting detail',
             isShowMenuList: false,
             isAddNew: false, //是否添加新纪录
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
-            isFirstEnter: false //是否首次进入
         }
     },
 
@@ -143,8 +145,9 @@ export default {
         }
         next();
     },
+
     created: function () {
-        this.isFirstEnter = true;
+        var $this = this;
     },
     mounted: function () {},
     activated: function () {
@@ -153,9 +156,6 @@ export default {
         _self.savePageData();
         //监听删除
         _self.deleteData();
-        lanTool.updateLanVersion();
-        document.activeElement.blur();
-
         var id = _self.$route.params.id;
         console.log("_self.$route.params.id:" + id);
         var fromType = "Meetinginfo";
@@ -297,7 +297,9 @@ export default {
         }
     },
     methods: {
+
         deleteData: function (e) {
+            console.log("deleteData");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
@@ -306,7 +308,9 @@ export default {
                 tool.DeleteData(fromType, id, _self, function () {});
             });
         },
+
         savePageData: function (e) {
+            console.log("savepageData");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Meetinginfo";
@@ -316,9 +320,9 @@ export default {
                 });
             });
         },
-        viewMeetingNote: function () {
+        meetingRecordClick: function () {
             this.$router.push({
-                path: '/MeetingNoteinfo/-1',
+                path: '/MeetingNoteinfo/{"AutoID":""}',
             })
         },
     }
