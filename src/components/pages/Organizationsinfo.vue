@@ -72,7 +72,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="785_客户经理"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="AccountManager" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div data-field="AccountManager" data-fieldControlType="selectList" data-lanid="785_客户经理" data-fieldVal="" Code="DropDowList_AccountManager" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>

@@ -16,10 +16,10 @@
                 <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText lanText" data-lanid="903_业务类型"></div>
+                        <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <div class="ListCellContentRightText">Opportunity</div>
+                        <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
                     </div>
                     <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                 </div>
@@ -36,7 +36,7 @@
             </div>
 
             <!-- opportunities 模块才有 的属性 -->
-            <div class="OpportunitiesList" v-if="showPage=='1'">
+            <div class="OpportunitiesList" v-show="showPage=='1'">
                   <!-- 公司 -->
                   <div class="ListSpecialCell" id="Organization">
                       <div class="ListSpecialCellField">
@@ -44,7 +44,17 @@
                           <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                           <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
-                      <div class="ListSpecialCellContent">Organization</div>
+                      <div
+                        class="ListSpecialCellContent"
+                        data-field="CompanyID"
+                        data-fieldcontroltype="selectList"
+                        data-lanid="790_公司"
+                        data-fieldval=""
+                        data-selecttype="radio"
+                        code="DropDowList_ViewBaseCompanyBaseInf"
+                        typevalue = ""
+                        data-clickobj="CompanyIDClickObj"
+                      ></div>
                   </div>
                   <!-- 联系人 -->
                   <div class="ListCell">
@@ -82,16 +92,24 @@
             </div>
 
             <!-- 关注 -->
-            <div class="ListCell">
+            <!-- <div class="ListCell">
                 <div class="ListCellLeftIcon " @click="followClick"><span class="calcfont calc-noshoucang guanZhu"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText lanText" data-lanid="902_关注"></div>
+                        <div class="ListCellContentLeftText lanText" data-lanid="786_关注"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
                         <div class="ListCellContentRightText">Unfollowed</div>
                     </div>
                     <div class="ListCellRightIcon iconHidden"><span class="calcfont calc-you"></span></div>
+                </div>
+            </div> -->
+            <div class="ListCell HideWhenNew">
+                <div class="ListCellLeftIcon textLeftIcon" @click="followToggle">
+                  <span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span>
+                </div>
+                <div class="ListCellLeftText">
+                    <p class="textareaP lanText" data-lanid="786_关注"></p>
                 </div>
             </div>
 
@@ -151,16 +169,27 @@
             <!-- 负责人 -->
             <div class="shareBlock">
                 <div class="shareTip">
-                    <p><span>* </span><span class="zhuyi lanText" data-lanid="899_请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。"></span></p>
+                    <p><span>* </span><span class="zhuyi lanText"
+                    data-lanid="899_请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。"></span></p>
                 </div>
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-fuzerenicon"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeft TextlanText" data-lanid="825_负责人"></div>
+                            <div class="ListCellContentLeft lanText" data-lanid="825_负责人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Niki zhu</div>
+                            <div
+                              class="ListCellContentRightText"
+                              data-field="Initiator"
+                              data-fieldcontroltype="groupSelectList"
+                              data-lanid="825_负责人"
+                              data-fieldval=""
+                              data-selecttype="checkbox"
+                              code="DropDowList_PopedomTeamVsUser"
+                              typevalue=""
+                              data-fromType="6"
+                            ></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -169,11 +198,13 @@
 
             <!-- 查看有权限访问的同事 -->
             <div v-show="!isAddNew" class="accessBlock">
-                <div class="ListCell">
-                    <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
+                <div class="ListCell" @click="goToShareList">
+                    <div class="ListCellLeftIcon">
+                        <span class="calcfont calc-yidu"></span>
+                    </div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="898_查看有权限访问的同事"></div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="852_查看有权限访问的同事"></div>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -198,11 +229,8 @@
 import Infoheader from '../common/Infoheader'
 import InfoRightPanel from '../common/InfoRightPanel'
 import Infofooter from '../common/infoFooter'
-// import Mixins from '../../mixins'
-// import eventBus from '../common/Event';
 
 export default {
-    // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
         Infofooter,
@@ -211,9 +239,6 @@ export default {
     data() {
         return {
             ptitle: 'Opportunities detail',
-
-            isShowClose: false,
-            isShowSend: true,
 
             showPage:'',//记录列表页是从哪个模块进来的
             isAddNew: false, //是否添加新纪录
@@ -232,7 +257,7 @@ export default {
     beforeRouteEnter: function (to, from, next) {
 
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist') {
+        if (from.name == 'selectlist' || from.name == 'meetingNoteinfo') {
             to.meta.isBack = true;
         }
         next();
@@ -258,7 +283,6 @@ export default {
 
     },
     activated:function(){
-
         lanTool.updateLanVersion();
         document.activeElement.blur();
         var _self = this;
@@ -331,10 +355,25 @@ export default {
 
     },
     methods: {
+        //查看有权限访问的同事跳转事件
+        goToShareList: function() {
+          var companyID =  $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
+          if(tool.isNullOrEmptyObject(companyID)){
+              return;
+          }
+          var parameter =
+          {
+              companyID : companyID
+          };
+          this.$router.push({
+            path: "/poweruser",
+            query: parameter
+          });
+        },
         //添加会议记录
         addMeetingClick: function () {
             this.$router.push({
-                path: '/MeetingNoteinfo/{"AutoID":""}',
+                path: '/MeetingNoteinfo/-1',
             })
         },
         //查看完整会议记录
@@ -355,6 +394,7 @@ export default {
                 $.toast(lanTool.lanContent('905_取消关注'), 1500, function () {});
             }
         },
+        //保存
         savePageData:function(e){
             var _self = this;
             var id = _self.$route.params.id;
@@ -363,7 +403,31 @@ export default {
                 tool.SaveOrUpdateData(fromType, id,_self, function(){
                 });
             });
-        }
+        },
+        //关注
+        followToggle: function (e) {
+            var _self = this;
+            var autoID = _self.$route.params.id;
+            var fromType = "Opportunitiesinfo";
+            var actionType;
+            if ($(".guanZhu").hasClass("calc-shoucang")) {
+               //取消关注
+                actionType = 0;
+            } else {
+                //添加关注
+                actionType = 1;
+            }
+
+            tool.UserFollow(fromType,autoID,actionType,function(){
+              if ($(".guanZhu").hasClass("calc-shoucang")) {
+                    //取消关注
+                    $(".guanZhu").removeClass("calc-shoucang").addClass("calc-noshoucang");
+                } else {
+                    //添加关注
+                    $(".guanZhu").removeClass("calc-noshoucang").addClass("calc-shoucang");
+                }
+          });
+        },
     }
 
 }

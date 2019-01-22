@@ -100,8 +100,7 @@ const router =  new Router({
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
      //添加会议
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
-    //会议记录
-    { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo },
+
     //上传文件
     { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
       meta: {
@@ -128,6 +127,14 @@ const router =  new Router({
       }
     },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+        fromSave:false,  //当在文件上传保存后回到详情页面刷新
+      }
+    },
+    //会议记录
+    { path: '/meetingNoteinfo/:id',name:'meetingNoteinfo', component:MeetingNoteinfo,
       meta: {
         keepAlive: true,
         isBack:false,
