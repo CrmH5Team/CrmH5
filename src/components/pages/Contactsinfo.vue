@@ -322,93 +322,111 @@ export default {
       })
   },
   activated: function() {
-    var _self = this;
-    //监听保存
-    _self.savePageData();
-    //监听删除
-    _self.deleteData();
+        var _self = this;
+        //监听保存
+        _self.savePageData();
+        //监听删除
+        _self.deleteData();
 
-    lanTool.updateLanVersion();
-    document.activeElement.blur();
+        lanTool.updateLanVersion();
+        document.activeElement.blur();
 
-    _self.onlyView = _self.$route.query.onlyView || false;
-    _self.companyID = _self.$route.query.companyID || '';
-    _self.companyName = _self.$route.query.companyName || '';
+        _self.onlyView = _self.$route.query.onlyView || false;
+        _self.companyID = _self.$route.query.companyID || '';
+        _self.companyName = _self.$route.query.companyName || '';
 
-    _self.rightPanelFromType = "6";
-    _self.rightPanelFromID = _self.$route.params.id || "";
+        _self.rightPanelFromType = "6";
+        _self.rightPanelFromID = _self.$route.params.id || "";
 
-    var id = _self.$route.params.id;
-    var fromType = "Contactsinfo";
+        var id = _self.$route.params.id;
+        var fromType = "Contactsinfo";
 
-    //若是新增，则隐藏新增不需要显示的模块
-    if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
-      $(".HideWhenNew").hide();
-      _self.isAddNew = true;
-      _self.operation = false;
+        //若是新增，则隐藏新增不需要显示的模块
+        if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
+          $(".HideWhenNew").hide();
+          _self.isAddNew = true;
+          _self.operation = false;
 
-    } else {
-      $(".HideWhenNew").show();
-      _self.isAddNew = false;
-      _self.operation = true;
-    }
+        } else {
+          $(".HideWhenNew").show();
+          _self.isAddNew = false;
+          _self.operation = true;
+        }
 
-    var _isBack = _self.$route.meta.isBack;
+        var _isBack = _self.$route.meta.isBack;
 
-    //若为true,则需要刷新
-    if (!_isBack || _self.isFirstEnter) {
-        _self.isFirstEnter = false;
-      //清空页面数据
-      tool.ClearControlData(function() {
-        //渲染控件
-        tool.InitiateInfoPageControl(_self,id, function() {
-           console.log("hiddenisor");
-           //控制data-field="Initiator"显示和隐藏
-           $("[data-field='IsPublic']").off('change').on('change',function(){
-               var curObj = $(this);
-               if(tool.isNullOrEmptyObject(curObj)){
-                   return;
-               }
+        //若为true,则需要刷新
+        if (!_isBack || _self.isFirstEnter) {
+            // _self.isFirstEnter = false;
+          //清空页面数据
+          tool.ClearControlData(function() {
+            //渲染控件
+            tool.InitiateInfoPageControl(_self,id, function() {
+              console.log("hiddenisor");
+              //控制data-field="Initiator"显示和隐藏
+              $("[data-field='IsPublic']").off('change').on('change',function(){
+                  var curObj = $(this);
+                  if(tool.isNullOrEmptyObject(curObj)){
+                      return;
+                  }
 
-               var fieldval = curObj.attr("data-fieldval");
-               if(fieldval == "23"){
-                   $(".initiatorObj").hide();
-               }else{
-                   $(".initiatorObj").show();
-               }
-           });
-           //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
+                  var fieldval = curObj.attr("data-fieldval");
+                  if(fieldval == "23"){
+                      $(".initiatorObj").hide();
+                  }else{
+                      $(".initiatorObj").show();
+                  }
+              });
+              //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
 
-           //给公司字段赋初始值
-           if(!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)){
-               var obj = $('[data-field="CompanyID"]');
-               if(tool.isNullOrEmptyObject(obj)){
-                 return ;
-               }
-               obj.attr('data-fieldval',_self.companyID);
-               obj.text(_self.companyName);
-           }
+              //给公司字段赋初始值
+              if(!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)){
+                  var obj = $('[data-field="CompanyID"]');
+                  if(tool.isNullOrEmptyObject(obj)){
+                    return ;
+                  }
+                  obj.attr('data-fieldval',_self.companyID);
+                  obj.text(_self.companyName);
+              }
 
 
-          //渲染数据
-          tool.IniInfoData(fromType, id, function() {
+              //渲染数据
+              tool.IniInfoData(fromType, id, function() {
 
-            //渲染textarea
-            $("textarea").each(function (index, cur) {
-                // console.log("change textarea");
-                $(cur).height('25');
-                tool.autoTextarea(cur);
+                //渲染textarea
+                $("textarea").each(function (index, cur) {
+                    // console.log("change textarea");
+                    $(cur).height('25');
+                    tool.autoTextarea(cur);
+                });
+
+                //场景：当在selectList页面按刷新按钮再回到详情页
+                // console.log(eventBus.selectListData);
+                if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
+                  return;
+                }
+                //更新selectlist控件的结果
+                var curObj = $(
+                  "[data-field='" + eventBus.selectListData.field + "']"
+                );
+                if (tool.isNullOrEmptyObject(curObj)) {
+                  return;
+                }
+                curObj.attr("data-fieldval", eventBus.selectListData.value.id);
+                curObj.text(eventBus.selectListData.value.text);
+
+                //清空全局变量
+                eventBus.selectListData = null;
+              });
             });
-
-            //场景：当在selectList页面按刷新按钮再回到详情页
-            // console.log(eventBus.selectListData);
+          });
+        } else {
+            // _self.isFirstEnter = false;
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
               return;
             }
             //更新selectlist控件的结果
-            var curObj = $(
-              "[data-field='" + eventBus.selectListData.field + "']"
-            );
+            var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
             if (tool.isNullOrEmptyObject(curObj)) {
               return;
             }
@@ -417,25 +435,11 @@ export default {
 
             //清空全局变量
             eventBus.selectListData = null;
-          });
-        });
-      });
-    } else {
-      _self.isFirstEnter = false;
-      if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
-        return;
-      }
-      //更新selectlist控件的结果
-      var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
-      if (tool.isNullOrEmptyObject(curObj)) {
-        return;
-      }
-      curObj.attr("data-fieldval", eventBus.selectListData.value.id);
-      curObj.text(eventBus.selectListData.value.text);
+        }
+        _self.$route.meta.isBack = false;
+        _self.isFirstEnter = false;
 
-      //清空全局变量
-      eventBus.selectListData = null;
-    }
+
   },
   methods: {
     //查看有权限访问的同事跳转事件
