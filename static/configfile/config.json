@@ -22,6 +22,8 @@
 	"Api_MeetingHandle_SaveOrUpdate":"Api_MeetingHandle_SaveOrUpdate",
 	"Api_MeetingHandle_Delete":"Api_MeetingHandle_Delete",
 	"Api_MeetingHandle_QuerySingle":"Api_MeetingHandle_QuerySingle",
+	"Api_MeetingHandle_Group":"Api_MeetingHandle_Group",
+	"Api_MeetingHandle_GroupInnerData":"Api_MeetingHandle_GroupInnerData",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

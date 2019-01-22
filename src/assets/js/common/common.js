@@ -302,6 +302,15 @@
 	 * 查询会议详情接口
 	 */
 	tool.Api_MeetingHandle_QuerySingle = "Api_MeetingHandle_QuerySingle";
+	/*
+	 * 查询会议分组接口
+	 */
+	tool.Api_MeetingHandle_Group = "Api_MeetingHandle_Group";
+	/*
+	 * 查询会议展开列表接口
+	 */
+	tool.Api_MeetingHandle_GroupInnerData = "Api_MeetingHandle_GroupInnerData";
+
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -1415,8 +1424,7 @@
 		switch (fromType) {
 			case "meeting":
 				template = tool.meetingGroupTemplate;
-				//controlName = tool.Api_MeetingHandle_Group;
-				controlName = "";
+				controlName = tool.Api_MeetingHandle_Group;
 				break;
 			case "trip":
 				template = tool.tripGroupTemplate;
@@ -1546,7 +1554,7 @@
 		switch (fromType) {
       case "meeting":
 		//controlName = tool.Api_MeetingHandle_GroupInnerData;
-		controlName = "";
+		controlName = tool.Api_MeetingHandle_GroupInnerData;
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list meeting-list">
         {InnerList}
