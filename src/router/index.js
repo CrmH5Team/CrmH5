@@ -45,6 +45,7 @@ import Selectlist from '@/components/common/Selectlist'
 import Sharelist from '@/components/pages/Sharelist'
 import Groupselectlist from '@/components/common/Groupselectlist'
 import Poweruser from '@/components/pages/Poweruser'
+import Linkedpage from '@/components/pages/Linkedpage'
 
 Vue.use(Router)
 
@@ -141,6 +142,7 @@ const router =  new Router({
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
       }
     },
+    { path:'/linkedpage',name:'linkedpage',component:Linkedpage },
 
 
 
