@@ -290,6 +290,15 @@
 	 * 根据传入的时间获取当天的会议记录接口
 	 */
 	tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate = "Api_MeetingHandle_QueryCalendarGetMeetingByDate";
+	/*
+	 * 保存/修改会议接口
+	 */
+	tool.Api_MeetingHandle_SaveOrUpdate = "Api_MeetingHandle_SaveOrUpdate";
+	/*
+	 * 删除会议接口
+	 */
+	tool.Api_MeetingHandle_Delete = "Api_MeetingHandle_Delete";
+	
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -1774,8 +1783,8 @@
 	*渲染控件
 	*/
 	tool.InitiateInfoPageControl = function (self,id,myCallBack) {
-		console.log("id:"+id);
-		console.log("InitiateInfoPageControl");
+		// console.log("id:"+id);
+		// console.log("InitiateInfoPageControl");
 		//1>渲染picker
 		$("[data-fieldControlType='picker']").each(function (index, obj) {
 			var _curObj = $(this);
@@ -2035,7 +2044,7 @@
 		//5>渲染dateTimePicker
 		$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
 			var _curObj = $(this);
-			console.log(_curObj);
+			// console.log(_curObj);
 			var fromId = _curObj.attr("data-field") || "";
 			if (tool.isNullOrEmptyObject(fromId)) {
 				return true;
@@ -2227,7 +2236,24 @@
 					_curObj.text(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
 				});
-				//4>textareaInput
+				//4>linkSelectList
+				$("[data-fieldControlType='linkSelectList']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+
+					var fieldVal = data[dataField] || "";
+					var fieldDisplay = data[dataField + "_Name"] || "";
+
+					_curObj.text(fieldDisplay);
+					_curObj.attr("data-fieldVal", fieldVal);
+				});
+				//5>textareaInput
 				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2240,7 +2266,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.val(fieldVal);
 				});
-				//5>divText
+				//6>divText
 				$("[data-fieldControlType='divText']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2269,7 +2295,7 @@
 
 					_curObj.text(fieldVal);
 				});
-				//6>icon
+				//7>icon
 				$("[data-fieldControlType='icon']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2304,7 +2330,20 @@
 					_curObj.addClass(iconClass);
 
 				});
+				//8>dateTimePicker
+				$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
 
+					var fieldVal = data[dataField] || "";
+					_curObj.val(fieldVal);
+				});
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
 					myCallBack();
 				}
@@ -2344,7 +2383,7 @@
 		} else if (fromType == "Contactsinfo") {
 			controlName = tool.Api_ContactsHandle_SaveOrUpdate;
 		} else if (fromType == "Meetinginfo") {
-			controlName = "";
+			controlName = tool.Api_MeetingHandle_SaveOrUpdate;
 		} else if (fromType == "Tripinfo") {
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {
@@ -2400,7 +2439,21 @@
 			var fieldVal = _curObj.attr("data-fieldVal") || "";
 			jObject[dataField] = fieldVal;
 		});
-		//4>textareaInput
+		//4>linkSelectList
+		$("[data-fieldControlType='linkSelectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+
+			var fieldVal = _curObj.attr("data-fieldVal") || "";
+			jObject[dataField] = fieldVal;
+		});
+		//5>textareaInput
 		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 			var _curObj = $(this);
 			if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2413,7 +2466,20 @@
 			var fieldVal = _curObj.val() || "";
 			jObject[dataField] = fieldVal;
 		});
+		//6>dateTimePicker
+		$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
 
+			var fieldVal = _curObj.val() || "";
+			jObject[dataField] = fieldVal;
+		});
 		//传入参数
 		var jsonDatasTemp = {
 			CurrentLanguageVersion: lanTool.currentLanguageVersion,
@@ -2503,7 +2569,7 @@
 		} else if (fromType == "Contactsinfo") {
 			controlName = tool.Api_ContactsHandle_Delete;
 		} else if (fromType == "Meetinginfo") {
-			controlName = "";
+			controlName = tool.Api_MeetingHandle_Delete;
 		} else if (fromType == "Tripinfo") {
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {

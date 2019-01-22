@@ -444,11 +444,8 @@ export default {
         },
         savePageData: function (e) {
             // console.log("savePageData");
-
             var _self = this;
             var id = _self.$route.params.id;
-            // console.log(_self);
-            // console.log("id:"+id);
             var fromType = "Contactsinfo";
             $("#save").off("click").on("click", function () {
                 tool.SaveOrUpdateData(fromType, id, _self, function () {});

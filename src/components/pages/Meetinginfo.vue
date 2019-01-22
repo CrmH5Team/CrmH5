@@ -79,7 +79,7 @@
                                 <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div type="text" data-field="ContactsID" data-fieldControlType="" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
+                                <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -158,7 +158,7 @@ export default {
         document.activeElement.blur();
 
         var id = _self.$route.params.id;
-        console.log("_self.$route.params.id:" + id);
+        // console.log("_self.$route.params.id:" + id);
         var fromType = "Meetinginfo";
         //若是新增，则隐藏新增不需要显示的模块
         if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
@@ -197,7 +197,7 @@ export default {
                     if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                         return;
                     }
-                    console.log(eventBus.selectListData.field);
+                    // console.log(eventBus.selectListData.field);
                     //更新selectlist控件的结果
                     var curObj = $(
                         "[data-field='" + eventBus.selectListData.field + "']"
@@ -253,7 +253,7 @@ export default {
             return;
             }
             //更新selectlist控件的结果
-            console.log(eventBus.selectListData.field);
+            // console.log(eventBus.selectListData.field);
             var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
             if (tool.isNullOrEmptyObject(curObj)) {
                 return;
