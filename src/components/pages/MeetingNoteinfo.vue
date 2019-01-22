@@ -13,7 +13,14 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="714_会议性质"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Firsting Meeting with Eastern Airlines</div>
+                            <input type="text"
+                              data-field="BusinessType"
+                              data-lanid="714_会议性质"
+                              data-fieldControlType="picker"
+                              data-fieldVal=""
+                              Code="DropDowList_ViewBaseAllTypes"
+                              TypeValue="Companybusinesstype"
+                              class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -49,7 +56,14 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="821_对内/对外">对内/对外</div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">对外</div>
+                            <input type="text"
+                              data-field="BusinessType"
+                              data-lanid="821_对内/对外"
+                              data-fieldControlType="picker"
+                              data-fieldVal=""
+                              Code="DropDowList_ViewBaseAllTypes"
+                              TypeValue="Companybusinesstype"
+                              class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -79,7 +93,16 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Niki</div>
+                            <div
+                              class="ListCellContentRightText"
+                              data-field=""
+                              data-fieldcontroltype="selectList"
+                              data-lanid="791_联系人"
+                              data-fieldval=""
+                              data-selecttype="radio"
+                              code=""
+                              typevalue = ""
+                            ></div>
                         </div>
                         <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -152,7 +175,7 @@ export default {
 
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist') {
+        if (from.name == 'selectlist' || from.name == 'uploadinput') {
             to.meta.isBack = true;
         }
         next();
@@ -196,6 +219,13 @@ export default {
             tool.ClearControlData(function(){
                 //渲染控件
                 tool.InitiateInfoPageControl(_self,id,function(){
+
+                    //渲染textarea
+                    $("textarea").each(function (index, cur) {
+                        $(cur).height('25');
+                        tool.autoTextarea(cur);
+                    });
+
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
 
@@ -217,6 +247,10 @@ export default {
                     });
                 })
             })
+
+            //设置滚动条位置
+            $(window).scrollTop(0);
+
         }else{
             _self.isFirstEnter = false;
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
