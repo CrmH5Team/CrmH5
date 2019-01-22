@@ -53,10 +53,19 @@
                     <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="821_对内/对外">对内/对外</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="821_对内/对外"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">对外</div>
+                            <!-- <div class="ListCellContentRightText">对外</div> -->
+                            <input type="text" 
+                              data-field="BusinessType" 
+                              data-lanid="821_对内/对外" 
+                              data-fieldControlType="picker" 
+                              data-fieldVal="" 
+                              Code="DropDowList_ViewBaseAllTypes" 
+                              TypeValue="Companybusinesstype" 
+                              class="ListCellContentRightText"/>
+
                         </div>
                         <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -86,7 +95,16 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">Niki</div>
+                            <div
+                              class="ListCellContentRightText"
+                              data-field=""
+                              data-fieldcontroltype="selectList"
+                              data-lanid="791_联系人"
+                              data-fieldval=""
+                              data-selecttype="radio"
+                              code=""
+                              typevalue = ""
+                            ></div>
                         </div>
                         <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -169,16 +187,6 @@ export default {
         this.isFirstEnter = true;
     },
     mounted: function () {
-        // this.$nextTick(function () {
-        //     //将textarea设置为高度自适应
-        //     $("textarea").each(function (index, cur) {
-        //         tool.autoTextarea(cur);
-        //     });
-        // })
-        // eventBus.$on('delete', function (data) {
-        //     console.log(data);
-        // });
-
     },
     activated:function(){
         lanTool.updateLanVersion();
@@ -231,6 +239,9 @@ export default {
                     });
                 })
             })
+
+            //设置滚动条位置
+            $(window).scrollTop(0);
         }else{
 
             _self.isFirstEnter = false;

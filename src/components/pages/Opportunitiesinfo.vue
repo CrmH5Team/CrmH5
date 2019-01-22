@@ -265,15 +265,7 @@ export default {
     created: function () {
         this.isFirstEnter = true;
     },
-    mounted: function () {
-        var _self = this;
-        _self.$nextTick(function () {
-            //将textarea设置为高度自适应
-            $("textarea").each(function (index, cur) {
-                tool.autoTextarea(cur);
-            });
-        })
-    },
+    mounted: function () {},
     activated:function(){
         lanTool.updateLanVersion();
         document.activeElement.blur();
@@ -337,6 +329,9 @@ export default {
                     });
                 })
             })
+
+            //设置滚动条位置
+            $(window).scrollTop(0);
 
         }else{
 
