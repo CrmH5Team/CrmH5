@@ -5,7 +5,7 @@
         :isAddNew="isAddNew"
         :onlyView="onlyView"
         :operation="operation"
-        :onlyMore="onlyMore"
+
         :title="ptitle"></Infoheader>
 
 
