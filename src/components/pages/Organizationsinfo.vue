@@ -342,6 +342,38 @@ export default {
 
         }else{
           // _self.isFirstEnter = false;
+
+
+            var filterTemp =  $("[data-field='CountryID']").attr("data-fieldVal", );
+            if(!tool.isNullOrEmptyObject(filterTemp)){
+                //添加CityID的事件
+                $("[data-field='CountryID']").attr("Filter",filterTemp);
+                $("[data-field='CityID']").off('click').on('click', function () {
+                    var _curObj = $(this);
+                    // console.log(_curObj);
+                    var dataField = _curObj.attr("data-field") || "";
+                    var code = _curObj.attr("Code") || "";
+                    var filter = _curObj.attr("Filter") || "";
+                    var typeValue = _curObj.attr("TypeValue") || "";
+                    var value = _curObj.attr("data-fieldVal") || "";
+                    var selectType = _curObj.attr("data-selectType") || "";
+                    var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                    var parameter = {
+                        'field': dataField,
+                        'code': code,
+                        "typeValue": typeValue,
+                        'title': title,
+                        'value': value, //已经选择的值
+                        'selectType': selectType,
+                        "filter": filter
+                    };
+                    _self.$router.push({
+                        path: '/selectlist',
+                        query: parameter
+                    });
+                });
+            }
+
           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                 return;
             }

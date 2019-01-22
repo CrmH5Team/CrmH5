@@ -298,7 +298,10 @@
 	 * 删除会议接口
 	 */
 	tool.Api_MeetingHandle_Delete = "Api_MeetingHandle_Delete";
-	
+	/*
+	 * 查询会议详情接口
+	 */
+	tool.Api_MeetingHandle_QuerySingle = "Api_MeetingHandle_QuerySingle";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -2148,7 +2151,7 @@
 		} else if (fromType == "Contactsinfo") {
 			controlName = tool.Api_ContactsHandle_QuerySingle;
 		} else if (fromType == "Meetinginfo") {
-			controlName = "";
+			controlName = tool.Api_MeetingHandle_QuerySingle;
 		} else if (fromType == "Tripinfo") {
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {
@@ -2283,8 +2286,8 @@
 					//数据格式化
 					var formatType = _curObj.attr("data-formatType") || "";
 					var format = _curObj.attr("data-format") || "";
-					console.log("formatType");
-					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+					// console.log("formatType");
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
 						//时间格式化
 						if(formatType.toLowerCase() == "datetime" || formatType.toLowerCase() == "date"){
 							fieldVal = fieldVal.ReplaceAll("T"," ");
@@ -2343,6 +2346,12 @@
 					}
 
 					var fieldVal = data[dataField] || "";
+					var format = _curObj.attr("data-format") || "";
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+						fieldVal = fieldVal.ReplaceAll("T"," ");
+						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+					}
+					
 					_curObj.val(fieldVal);
 				});
 				if (!tool.isNullOrEmptyObject(myCallBack)) {

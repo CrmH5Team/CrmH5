@@ -34,7 +34,7 @@
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <!-- <div class="ListCellContentRightText">16/Nov 15:00</div> -->
-                            <input type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" class="ListCellContentRightText"/>
+                            <input type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <!-- <div class="ListCellContentRightText">16/Nov 16:00</div> -->
-                            <input type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" class="ListCellContentRightText"/>
+                            <input type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -186,6 +186,36 @@ export default {
                 //渲染数据
                 tool.IniInfoData(fromType, id, function() {
 
+                    //添加ContactsID的事件
+                    var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval")||"";
+                    if(!tool.isNullOrEmptyObject(filterTemp)){
+                         $("[data-field='ContactsID']").attr("Filter",filterTemp);
+                        $("[data-field='ContactsID']").off('click').on('click',function(){
+                            var _curObj = $(this);
+                            // console.log(_curObj);
+                            var dataField = _curObj.attr("data-field") ||"";
+                            var code = _curObj.attr("Code") ||"";
+                            var filter = _curObj.attr("Filter") ||"";
+                            var typeValue = _curObj.attr("TypeValue") ||"";
+                            var value = _curObj.attr("data-fieldVal") ||"";
+                            var selectType = _curObj.attr("data-selectType") ||"";
+                            var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+                            var parameter = {
+                                'field':dataField,
+                                'code':code,
+                                "typeValue":typeValue,
+                                'title':title,
+                                'value':value,//已经选择的值
+                                'selectType':selectType,
+                                "filter":filter
+                            };
+                            _self.$router.push({
+                                path: '/selectlist',
+                                query: parameter
+                            });
+                        });
+                    }
+
                     //渲染textarea
                     $("textarea").each(function (index, cur) {
                         $(cur).height('25');
@@ -248,6 +278,36 @@ export default {
             });
         });
         } else {
+            //添加ContactsID的事件
+            var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval")||"";
+            if(!tool.isNullOrEmptyObject(filterTemp)){
+                    $("[data-field='ContactsID']").attr("Filter",filterTemp);
+                $("[data-field='ContactsID']").off('click').on('click',function(){
+                    var _curObj = $(this);
+                    // console.log(_curObj);
+                    var dataField = _curObj.attr("data-field") ||"";
+                    var code = _curObj.attr("Code") ||"";
+                    var filter = _curObj.attr("Filter") ||"";
+                    var typeValue = _curObj.attr("TypeValue") ||"";
+                    var value = _curObj.attr("data-fieldVal") ||"";
+                    var selectType = _curObj.attr("data-selectType") ||"";
+                    var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+                    var parameter = {
+                        'field':dataField,
+                        'code':code,
+                        "typeValue":typeValue,
+                        'title':title,
+                        'value':value,//已经选择的值
+                        'selectType':selectType,
+                        "filter":filter
+                    };
+                    _self.$router.push({
+                        path: '/selectlist',
+                        query: parameter
+                    });
+                });
+            }
+
             _self.isFirstEnter = false;
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
             return;
