@@ -1,14 +1,12 @@
 <template>
 <div>
-    <header class="">
-        <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
-        <h1 class="header-title f18">{{ptitle}}</h1>
-        <div class="leftView" v-show="!onlyView">
-            <a v-show="operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
-            <a class="calcfont calc-gou right" id="save"></a>
-            <a v-show="!isAddNew" class="calcfont calc-shanchu right" id="delete"></a>
-        </div>
-    </header>
+
+    <Infoheader
+        :isAddNew="isAddNew"
+        :onlyView="onlyView"
+        :operation="operation"
+        :onlyMore="onlyMore"
+        :title="ptitle"></Infoheader>
 
 
 
@@ -472,20 +470,14 @@ export default {
             });
         },
 
-        back:function(){
-            this.$router.back(-1);
-        },
-        moreClick: function () {
-            //触发右侧 gengduoEvent 事件
-            eventBus.$emit('gengduoEvent');
-        },
+
     }
 };
 </script>
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-@import "../../assets/css/common/infoheader.css";
+
 
 .accessView,
 .organizationMessage {
