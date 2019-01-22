@@ -2592,6 +2592,8 @@
 			return;
 		}
 
+		console.log(controlName);
+
 		var idArr = [];
 		idArr.push(autoID);
 

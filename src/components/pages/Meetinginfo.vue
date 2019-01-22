@@ -369,7 +369,7 @@ export default {
         deleteData: function (e) {
             var _self = this;
             var id = _self.$route.params.id;
-            var fromType = "Contactsinfo";
+            var fromType = "Meetinginfo";
             setTimeout(function(){
                 $("#delete").off("click").on("click", function () {
                     // console.log("delete");

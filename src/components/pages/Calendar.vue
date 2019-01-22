@@ -283,6 +283,9 @@ export default {
         },
         //获取当月的会议记录
         setCalendarEvent:function(calendarObj,myCallBack){
+                //先清空样式
+                $("div.calendar-event").removeClass("calendar-event");
+
                 console.log("setCalendarEvent");
                 var _self = this;
                 if(tool.isNullOrEmptyObject(calendarObj)){
@@ -330,6 +333,7 @@ export default {
                         var monthTemp = dateTemp.getMonth();
                         var dayTemp = dateTemp.getDate();
                         $('.picker-calendar-row div[data-year="'+  yearTemp +'"][data-month="'+ monthTemp +'"][data-day="'+ dayTemp +'"]').addClass('calendar-event');
+
                     }
 
                     if (!tool.isNullOrEmptyObject(myCallBack)) {
