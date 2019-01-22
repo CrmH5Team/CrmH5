@@ -1914,6 +1914,7 @@
 			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
@@ -1925,7 +1926,8 @@
 				"typeValue":typeValue,
 				'title':title,
 				'value':value,//已经选择的值
-				'selectType':selectType
+				'selectType':selectType,
+				"filter":filter
 			};
 			self.$router.push({
 				path: '/selectlist',
@@ -1945,6 +1947,7 @@
 
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
@@ -1956,7 +1959,8 @@
 				"typeValue":typeValue,
 				'title':title,
 				'value':value,//已经选择的值
-				'selectType':selectType
+				'selectType':selectType,
+				"filter":filter
 			};
 			self.$router.push({
 				path: '/selectlist',
@@ -1976,6 +1980,7 @@
 			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
@@ -1992,7 +1997,8 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				'fromType':fromType,
-				'fromID':id
+				'fromID':id,
+				"filter":filter
 			};
 			self.$router.push({
 				path: '/groupselectlist',
@@ -2011,6 +2017,7 @@
 
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
 			var typeValue = _curObj.attr("TypeValue") ||"";
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
@@ -2025,7 +2032,8 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				'fromType':fromType,
-				'fromID':id
+				'fromID':id,
+				"filter":filter
 			};
 			self.$router.push({
 				path: '/groupselectlist',
@@ -2116,6 +2124,7 @@
 			myCallBack();
 		}
 	};
+
 	/*
 	* 渲染数据
 	*/
