@@ -1,6 +1,15 @@
 <template>
 <div>
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
+
+    <header class="">
+        <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
+        <h1 class="header-title f18">{{ptitle}}</h1>
+        <div class="leftView" v-show="!onlyView">
+            <!-- <a v-show="operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
+            <a class="calcfont calc-gou right" id="save"></a>
+            <a v-show="!isAddNew" class="calcfont calc-shanchu right" id="delete"></a>
+        </div>
+    </header>
 
     <div class="scroll-div">
         <div class="box">
@@ -175,7 +184,6 @@ export default {
             ptitle: 'Organizationsinfo detail',
 
             isAddNew: false, //是否添加新纪录
-            operation: false, //控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
 
             // modifiedtime:"1/Jan/2019",
@@ -492,10 +500,14 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            
+
             $("#delete").off("click").on("click", function () {
                 tool.DeleteData(fromType, id, _self, function () {});
             });
+        },
+
+        back:function(){
+            this.$router.back(-1);
         }
     }
 
@@ -504,6 +516,7 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
+@import "../../assets/css/common/infoheader.css";
 
 .ListCell .mui-icon.calcfont.calc-shoucang {
     color: #FF5A21 !important;
