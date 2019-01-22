@@ -122,6 +122,7 @@
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                     <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
+
                 </div>
             </div>
 

@@ -31,11 +31,14 @@
                       <div class="ListCellContentLeftText">CRM Document Type</div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <input class="picker ListCellContentRightText"
-                          data-field="cf_765"
-                          id="document-type"
-                          data-val=""
-                      />
+                      <input type="text" 
+                          data-field="BusinessType" 
+                          data-lanid="文档类型" 
+                          data-fieldControlType="picker" 
+                          data-fieldVal="" 
+                          Code="DropDowList_ViewBaseAllTypes" 
+                          TypeValue="Companybusinesstype" 
+                          class="ListCellContentRightText"/>
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
@@ -46,7 +49,10 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class=" calcfont calc-bianji1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea autoHeight="true" placeholder="Description描述"></textarea>
+                        <textarea data-field="" 
+                            data-fieldControlType="textareaInput" 
+                            class="lanInputPlaceHolder" 
+                            data-lanid="710_标题"></textarea>
                     </p>
                 </div>
             </div>
@@ -67,8 +73,9 @@
 export default {
     data(){
         return {
-            pageTitle:lanTool.lanContent('281_添加信息'),
+            pageTitle:'文件上传',
             // fromPage:null,  //保存上一页来源
+
             file:null,
             fileName:'',
             fileSize:null,
@@ -79,14 +86,11 @@ export default {
             notes_title:'',
             notecontent:'',
             folderid:'',
+
             assigned_user_id:{
                 text:tool.getSessionStorageItem(tool.cache_UserRealName) || "",
                 value:tool.getSessionStorageItem(tool.cache_UserId) || ""
             },
-            languageData:{
-                folderid:lanTool.lanContent('284_请选择文件夹'),
-                // selectPerson:lanTool.lanContent('203_请选择负责人'),
-            }
         }
     },
     beforeRouteEnter:function(to, from, next){
@@ -112,7 +116,6 @@ export default {
     },
 
     mounted:function(){
-        lanTool.updateLanVersion();
 
         this.$nextTick(function () {
             //将textarea设置为高度自适应
@@ -126,16 +129,30 @@ export default {
     },
 
     activated:function(){
+        lanTool.updateLanVersion();
+        var _self = this;
 
-        if(!this.$route.meta.isBack || this.isFirstEnter){
 
-            this.file = this.$route.params.file;
-            this.fileName = this.$route.params.fileName;
-            this.fileSize = this.$route.params.fileSize;
-            this.id = this.$route.params.id;
+        if(!_self.$route.meta.isBack || _self.isFirstEnter){
 
-            this.notes_title = '';
+            _self.file = _self.$route.params.file;
+            _self.fileName = _self.$route.params.fileName;
+            _self.fileSize = _self.$route.params.fileSize;
+            _self.id = _self.$route.params.id;
 
+            _self.notes_title = '';
+
+            //清空页面数据
+            tool.ClearControlData(function(){
+                //渲染控件
+                tool.InitiateInfoPageControl(_self, -1, function(){ 
+                      //渲染textarea
+                      $("textarea").each(function (index, cur) {
+                          $(cur).height('25');
+                          tool.autoTextarea(cur);
+                      });
+                })
+            })
         }
 
         this.$route.meta.isBack = false;
@@ -149,29 +166,25 @@ export default {
         },
 
         saveHandler:function(){
-            var $this = this;
+            var _self = this;
 
-            //请求地址
-            var urlTemp =
-                tool.combineRequestUrl(
-                    tool.getConfigValue(tool.config_ajaxUrl),
-                    tool.getConfigValue(tool.ajaxUrl_FileOperation_FileUpload)
-                );
+            var jobject = {};
+            jObject['fileName'] = _self.fileName;
+            jObject['fileName'] = $('[data-field=""]').attr('data-fieldval') || '';
+            jObject['fileName'] = $('[data-field=""]').val() || '';           
 
-            //构造传入参数
-            var jsonDatas = {
+            var urlTemp = tool.AjaxBaseUrl();
+            //传入参数
+            var jsonDatasTemp = {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
-                SessionName: tool.getSessionStorageItem(tool.cache_SessionName) || "",
-                notes_title: $this.notes_title || "",
-                filename: $this.fileName || "",
-                filesize:$this.fileSize || '',
-
-                notecontent: $this.notecontent || "",
-                folderid: $this.folderid || "",
-                id: $this.id || '',
-                assigned_user_id: $this.assigned_user_id.value || "",
-                fileBase64Str: $this.file
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: autoID
             };
+
+            //合并数据
+		        jsonDatasTemp = tool.combineJObject(jsonDatasTemp,jobject);
 
             var formData = new FormData();
                 formData.append('file', $this.file);
@@ -180,40 +193,43 @@ export default {
                 tool.showLoading();
                 $.ajax({
                     async: true,
-                    type: "POST",
+                    type: "post",
                     url: urlTemp,
-                    data: { jsonDatas: JSON.stringify(jsonDatas) },
-                    success: function(data) {
-                        tool.hideLoading();
-                        data = tool.jObject(data);
+                    data: jsonDatasTemp,
+                    success: function (data) {
+                      data = tool.jObject(data);
+                      // console.log(data);
+                      if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                      }
+                      //把列表页路由参数isBack改为fase（使上一页刷新）,并返回上一页
+                      // var routeName = _self.$route.name;
+                      var routers = $this.$router.options.routes;
 
-                        toast.show(data.Msg);
-                        if(data.Result != 1) {
-                            return false;
-                        }
-
-                        // $this.$router.back(-1);
-
-                        //把列表页路由参数isBack改为fase（使上一页刷新）,并返回上一页
-                        var routeName = $this.$route.name;
-                        var routers = $this.$router.options.routes;
-                        $.each(routers,function(index,item){
-
-                            if(item.name === 'opportunitiesinfo'){
-                                item.meta.fromSave = true;
-                                $this.$router.back(-1);
-                                return ;
-                            }
-                        })
-
+                      $.each(routers,function(index,item){
+                          if(item.name === 'meetingNoteinfo'){
+                              item.meta.fromSave = true;
+                              $this.$router.back(-1);
+                              return ;
+                          }
+                      })
+                      
                     },
-                    error: function() {
-                        tool.hideLoading();
+                    error: function (jqXHR, type, error) {
+                      console.log(error);
+                      tool.hideLoading();
+                      return true;
+                    },
+                    complete: function () {
+                      tool.hideLoading();
+                      //隐藏虚拟键盘
+                      document.activeElement.blur();
                     }
-                });
+                })   
+        },
 
-
-        }
     },
     beforeDestroy:function(){
 
