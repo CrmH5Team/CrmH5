@@ -128,7 +128,7 @@
                 <div class="meetingRecordList">
                     <div class="meetingRecordListCell">
                         <div class="headerDiv">
-                            <div class="headerDivLeftIcon"><span class="calcfont calc-xinxi1"></span></div>
+                            <div class="headerDivLeftIcon"><span @click="deleteRecord(9,$event)" class="calcfont calc-xinxi1"></span></div>
                             <div class="headerDivContent">
                                 <div class="content">MSN 05789 机身检查会议2</div>
                             </div>
@@ -448,6 +448,54 @@ export default {
                     _self.onlyView = true;
                 })
             })
+        },
+
+        //删除会议记录 id：会议记录id
+        deleteRecord:function(id,e){
+            var _self = this;
+            var target = $(e.target);
+            if(tool.isNullOrEmptyObject(id)){
+                return ;
+            }
+
+            tool.showConfirm('确定删除吗？',function(){
+                var urlTemp = tool.AjaxBaseUrl();
+                //传入参数
+                var jsonDatasTemp = {
+                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                    UserName: tool.UserName(),
+                    _ControlName: '',
+                    _RegisterCode: tool.RegisterCode(),
+                    // AutoID: autoID
+                };
+                tool.showLoading();
+                $.ajax({
+                    async: true,
+                    type: "post",
+                    url: urlTemp,
+                    data: jsonDatasTemp,
+                    success: function (data) {
+                      data = tool.jObject(data);
+                      tool.hideLoading();
+
+                      if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                      }
+
+                      //移除dom
+                      target.closest('.meetingRecordList').remove();
+
+                    },
+                    error: function (jqXHR, type, error) {
+                      console.log(error);
+                      tool.hideLoading();
+                      return true;
+                    }
+                })
+            })
+
         }
     }
 
