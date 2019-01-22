@@ -205,7 +205,7 @@ export default {
     },
     mounted: function () {
         var _self = this;
-        
+
     },
     activated:function(){
         var _self = this;
@@ -274,7 +274,7 @@ export default {
 
             //设置滚动条位置
             $(window).scrollTop(0);
-            
+
         }else{
           // _self.isFirstEnter = false;
           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
@@ -295,7 +295,7 @@ export default {
 
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
-        
+
     },
     methods: {
         //跳转到联系人界面事件

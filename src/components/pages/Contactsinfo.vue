@@ -413,7 +413,7 @@ export default {
                 });
               });
             });
-            
+
             //设置滚动条位置
             $(window).scrollTop(0);
 
