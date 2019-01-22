@@ -12,7 +12,7 @@
         <div right-content-block id="generalBlock">
             <div class="right-content-header f16">Operation</div>
             <div class="right-content-list f14">
-                <div class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
+                <div id="rightPanelCloseThis" class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
                 <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList" ><span class="mui-icon calcfont calc-icon-share"></span>Share with Colleagues</div>
                 <!-- <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div> -->
             </div>

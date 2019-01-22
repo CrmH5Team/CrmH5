@@ -17,6 +17,10 @@
             <a v-if="!onlyView && operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
             <a v-if="!onlyView" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+
+             <!-- onlyMore只有Opportunitiesinfo文件用到 不传默认为fase  -->
+            <a v-if="onlyMore" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
+
         </div>
 
     </header>
@@ -38,6 +42,7 @@ export default {
         isAddNew:Boolean, //是否是新增状态, 父组件不传默认为false
         operation:Boolean, //侧滑是否可操作, 父组件不传默认为false
         onlyView:Boolean, //标志页面只能查看,父组件不传默认为false
+        onlyMore:Boolean,  //只有Opportunitiesinfo文件用到 不传默认为fase
         rightPanelFromType:String,
         rightPanelFromID:String
     },
@@ -129,7 +134,6 @@ header.mui-bar {
     margin-left: -0.2rem;
     padding-right: 0.2rem;
     padding-left: 0.2rem;
-
 }
 
 .right {
@@ -139,11 +143,9 @@ header.mui-bar {
 
 #delete:after {
     clear: both;
-
 }
 
-header .mui-title,
-header a {
+header .mui-title,header a {
     color: #333333;
 }
 </style>

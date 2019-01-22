@@ -1,11 +1,16 @@
 <template>
 <div>
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
+    <Infoheader
+        :isAddNew="isAddNew"
+        :onlyView="onlyView"
+        :operation="operation"
+        :onlyMore="onlyMore"
+        :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
 
-            <div v-if="false" class="tipBox">
+            <div v-show="showTips" class="tipBox">
                 <div class="tipContent">
                     <p class="f12"><span class="red">* </span> <span class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></span></p>
                 </div>
@@ -214,6 +219,7 @@
         </div>
     </div>
     <InfoRightPanel
+      ref="rightPanel"
       :isShowClose="isShowClose"
       :isShowSend="isShowSendBtn"
       :rightPanelFromType="rightPanelFromType"
@@ -241,15 +247,16 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
+            onlyMore:false,//控制页面头部icon，控制只显示更多操作按钮
 
             isFirstEnter:false,//是否首次进入
-
             rightPanelFromType:"",//传给右侧菜单用的参数
             rightPanelFromID:"",//传给右侧菜单用的参数
             isShowSendBtn: true,  //侧滑是否显示分享给同事选项
             isShowClose:true, //侧滑是否显示关闭这个商业机会选项
 
             id:'', //dealPipeline id
+            showTips:false,
         }
     },
 
@@ -269,9 +276,11 @@ export default {
     activated:function(){
         lanTool.updateLanVersion();
         document.activeElement.blur();
+
         var _self = this;
         //保存
         _self.savePageData();
+        _self.rightPanelCloseThis();
 
         _self.id = _self.$route.params.id;
 
@@ -423,6 +432,23 @@ export default {
                 }
           });
         },
+
+        //右侧点击关闭这个
+        rightPanelCloseThis:function(){
+            var _self = this;
+            $('#rightPanelCloseThis').off().on('click',function(){
+                tool.showConfirm('确定关闭吗？',function(){
+
+                    //调子组件 收起侧滑方法
+                    _self.$refs.rightPanel.panelToggle();
+                    //显示提示
+                    _self.showTips = true;
+                    //头部按钮
+                    _self.onlyMore = true;
+                    _self.onlyView = true;
+                })
+            })
+        }
     }
 
 }
