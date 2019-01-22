@@ -63,6 +63,7 @@ export default {
             value: "", //已选数据
             selectType:"",  //判断是否多选
             radioValue:"",
+            filter:"",//过滤条件
             checkboxValue:[]
         }
     },
@@ -73,6 +74,7 @@ export default {
         this.title = this.$route.query.title;
         this.value = this.$route.query.value;
         this.selectType = this.$route.query.selectType;
+        this.filter = this.$route.query.filter;
     },
     mounted: function () {
         lanTool.updateLanVersion();
@@ -219,7 +221,8 @@ export default {
                     _ControlName: controlName,
                     _RegisterCode: tool.RegisterCode(),
                     Code: $this.code,
-                    TypeValue: $this.typeValue
+                    TypeValue: $this.typeValue,
+                    Filter:$this.filter
                 };
             tool.showLoading();
             $.ajax({

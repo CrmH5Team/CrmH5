@@ -1,16 +1,11 @@
 <template>
 <div>
-    <Infoheader
-        :isAddNew="isAddNew"
-        :onlyView="onlyView"
-        :operation="operation"
-        :onlyMore="onlyMore"
-        :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
 
-            <div v-show="showTips" class="tipBox">
+            <div v-if="false" class="tipBox">
                 <div class="tipContent">
                     <p class="f12"><span class="red">* </span> <span class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></span></p>
                 </div>
@@ -69,15 +64,7 @@
                               <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                           </div>
                           <div class="ListCellContentRight rightContent">
-                              <div
-                                class="ListCellContentRightText"
-                                data-field=""
-                                data-fieldcontroltype="selectList"
-                                data-lanid="791_联系人"
-                                data-fieldval=""
-                                data-selecttype="radio"
-                                Code=""
-                              ></div>
+                              <div class="ListCellContentRightText">Niki zhu</div>
                           </div>
                           <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
@@ -105,6 +92,18 @@
             </div>
 
             <!-- 关注 -->
+            <!-- <div class="ListCell">
+                <div class="ListCellLeftIcon " @click="followClick"><span class="calcfont calc-noshoucang guanZhu"></span></div>
+                <div class="ListCellContent">
+                    <div class="ListCellContentLeft leftContent">
+                        <div class="ListCellContentLeftText lanText" data-lanid="786_关注"></div>
+                    </div>
+                    <div class="ListCellContentRight rightContent">
+                        <div class="ListCellContentRightText">Unfollowed</div>
+                    </div>
+                    <div class="ListCellRightIcon iconHidden"><span class="calcfont calc-you"></span></div>
+                </div>
+            </div> -->
             <div class="ListCell HideWhenNew">
                 <div class="ListCellLeftIcon textLeftIcon" @click="followToggle">
                   <span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span>
@@ -120,9 +119,7 @@
                     <div class="headerBlock">
                         <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                         <div class="headerBlockContent f16 lanText" data-lanid="901_会议记录"></div>
-                        <div class="headerBlockRightIcon">
-                          <span class="calcfont calc-jia" @click="goRecord($event)" data-url="/MeetingNoteinfo/-1"></span>
-                        </div>
+                        <div class="headerBlockRightIcon" @click="addMeetingClick"><span class="calcfont calc-jia"></span></div>
                     </div>
                 </div>
                 <div class="meetingRecordList">
@@ -132,8 +129,9 @@
                             <div class="headerDivContent">
                                 <div class="content">MSN 05789 机身检查会议2</div>
                             </div>
-                            <div class="headerDivRightBtn" >                                                            <!--数据渲染要修改id-->
-                                <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/9">
+                            <div class="headerDivRightBtn" @click="viewCompleteClick">
+                                <div class="rightBtn lanText" data-lanid="900_查看完整">
+
                                 </div>
                             </div>
                             <div class="headerDivRightDelete">
@@ -219,7 +217,6 @@
         </div>
     </div>
     <InfoRightPanel
-      ref="rightPanel"
       :isShowClose="isShowClose"
       :isShowSend="isShowSendBtn"
       :rightPanelFromType="rightPanelFromType"
@@ -247,23 +244,20 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
-            onlyMore:false,//控制页面头部icon，控制只显示更多操作按钮
 
             isFirstEnter:false,//是否首次进入
+
             rightPanelFromType:"",//传给右侧菜单用的参数
             rightPanelFromID:"",//传给右侧菜单用的参数
             isShowSendBtn: true,  //侧滑是否显示分享给同事选项
             isShowClose:true, //侧滑是否显示关闭这个商业机会选项
-
-            id:'', //dealPipeline id
-            showTips:false,
         }
     },
 
     beforeRouteEnter: function (to, from, next) {
 
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == 'groupselectlist' || from.name == 'meetingNoteinfo' || from.name == 'poweruser') {
+        if (from.name == 'selectlist' || from.name == 'meetingNoteinfo') {
             to.meta.isBack = true;
         }
         next();
@@ -272,24 +266,34 @@ export default {
     created: function () {
         this.isFirstEnter = true;
     },
-    mounted: function () {},
+    mounted: function () {
+        var _self = this;
+        //监听保存
+        _self.savePageData();
+
+        // this.$nextTick(function () {
+        //     //将textarea设置为高度自适应
+        //     $("textarea").each(function (index, cur) {
+        //         tool.autoTextarea(cur);
+        //     });
+        // })
+        // eventBus.$on('delete', function (data) {
+        //     console.log(data);
+        // });
+
+    },
     activated:function(){
         lanTool.updateLanVersion();
         document.activeElement.blur();
-
         var _self = this;
-        //保存
-        _self.savePageData();
-        _self.rightPanelCloseThis();
-
-        _self.id = _self.$route.params.id;
+        var id = _self.$route.params.id;
 
         _self.showPage = _self.$route.query.showPage || '';
 
         var fromType = "Opportunitiesinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
-        if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
+        if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
             // _self.operation = false;
@@ -298,28 +302,17 @@ export default {
             _self.isAddNew = false;
             // _self.operation = true;
         }
-
         var _isBack = _self.$route.meta.isBack;
-        //是否是从上传文档后返回
-        var _fromSave = _self.$route.meta.fromSave;
-
         //若为true,则需要刷新
-        if(_fromSave || !_isBack || _self.isFirstEnter){
+        if(!_isBack || _self.isFirstEnter){
 
-            // _self.isFirstEnter = false;
+            _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
-                tool.InitiateInfoPageControl(_self, _self.id, function(){
-
-                    //渲染textarea
-                    $("textarea").each(function (index, cur) {
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
-
+                tool.InitiateInfoPageControl(_self,id,function(){
                     //渲染数据
-                    tool.IniInfoData(fromType, _self.id, function(){
+                    tool.IniInfoData(fromType,id,function(){
                           //场景：当在selectList页面按刷新按钮再回到详情页
                           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                                 return;
@@ -339,12 +332,9 @@ export default {
                 })
             })
 
-            //设置滚动条位置
-            $(window).scrollTop(0);
-
         }else{
 
-            // _self.isFirstEnter = false;
+            _self.isFirstEnter = false;
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
             }
@@ -362,49 +352,55 @@ export default {
             eventBus.selectListData = null;
         }
 
-        _self.$route.meta.fromSave = false;
-        _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
-
 
     },
     methods: {
         //查看有权限访问的同事跳转事件
         goToShareList: function() {
-          var _self = this;
-          var dealID =  _self.id || "";
-          if(tool.isNullOrEmptyObject(dealID)){
+          var companyID =  $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
+          if(tool.isNullOrEmptyObject(companyID)){
               return;
           }
           var parameter =
           {
-              sourceID : dealID
+              companyID : companyID
           };
           this.$router.push({
             path: "/poweruser",
             query: parameter
           });
         },
-
-        //查看/添加  会议记录
-        goRecord: function (e) {
-            var _self = this;
-            var tager = $(e.target);
-            var url = tager.attr('data-url') || '';
-            if(tool.isNullOrEmptyObject(url)){
-                return;
-            }
-            _self.$router.push({
-                path: url,
+        //添加会议记录
+        addMeetingClick: function () {
+            this.$router.push({
+                path: '/MeetingNoteinfo/-1',
             })
+        },
+        //查看完整会议记录
+        viewCompleteClick: function () {
+            this.$router.push({
+                path: '/MeetingNoteinfo/{"AutoID":""}',
+            })
+        },
+        //收藏事件
+        followClick: function (e) {
+            if ($(".guanZhu").hasClass("calc-noshoucang")) {
+                $(".guanZhu").addClass("calc-shoucang");
+                $(".guanZhu").removeClass("calc-noshoucang")
+                $.toast(lanTool.lanContent('906_关注成功'), 1500, function () {});
+            } else {
+                $(".guanZhu").addClass("calc-noshoucang");
+                $(".guanZhu").removeClass("calc-shoucang")
+                $.toast(lanTool.lanContent('905_取消关注'), 1500, function () {});
+            }
         },
         //保存
         savePageData:function(e){
             var _self = this;
-
+            var id = _self.$route.params.id;
             var fromType = "Opportunitiesinfo";
             $("#save").off().on("click",function(){
-                tool.SaveOrUpdateData(fromType, _self.id, _self, function(){
+                tool.SaveOrUpdateData(fromType, id,_self, function(){
                 });
             });
         },
@@ -432,23 +428,6 @@ export default {
                 }
           });
         },
-
-        //右侧点击关闭这个
-        rightPanelCloseThis:function(){
-            var _self = this;
-            $('#rightPanelCloseThis').off().on('click',function(){
-                tool.showConfirm('确定关闭吗？',function(){
-
-                    //调子组件 收起侧滑方法
-                    _self.$refs.rightPanel.panelToggle();
-                    //显示提示
-                    _self.showTips = true;
-                    //头部按钮
-                    _self.onlyMore = true;
-                    _self.onlyView = true;
-                })
-            })
-        }
     }
 
 }

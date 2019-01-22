@@ -94,7 +94,8 @@ export default {
             value: "", //已选数据
             selectType:"", //判断是否多选
             fromType:"",//来源类型
-            fromID:""//来源记录Id
+            fromID:"",//来源记录Id
+            filter:""//过滤条件
         }
     },
     watch:{
@@ -129,6 +130,7 @@ export default {
         this.selectType = this.$route.query.selectType;
         this.fromType = this.$route.query.fromType;
         this.fromID = this.$route.query.fromID;
+        this.filter = this.$route.query.filter;
     },
     mounted: function () {
         lanTool.updateLanVersion();
@@ -166,6 +168,7 @@ export default {
                     TypeValue: _self.typeValue,
                     FromType:_self.fromType||"",
                     FromID:_self.fromID||"",
+                    Filter:_self.filter||""
                 };
             tool.showLoading();
             $.ajax({

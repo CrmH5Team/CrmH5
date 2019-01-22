@@ -69,7 +69,7 @@ export default {
     },
     activated:function(){
 
-        lanTool.updateLanVersion();
+        // this.handleSelectlist();
     },
     methods:{
         //选择搜索模块

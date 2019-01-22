@@ -91,9 +91,9 @@ export default {
     },
     beforeRouteEnter:function(to, from, next){
         //如果是从以下路由回来的就不用刷新页面
-        // if(from.name == 'selectlist'){
-        //     to.meta.isBack = true;
-        // }
+        if(from.name == 'selectlist'){
+            to.meta.isBack = true;
+        }
         next(vm=>{
             // console.log(vm);
             // vm.fromPage = from.name;
@@ -177,14 +177,14 @@ export default {
                 formData.append('file', $this.file);
                 formData.append("jsonDatas",JSON.stringify(jsonDatas));
 
-                tool.showLoading();
+                loading.show(3,lanTool.lanContent("172_加载中..."));
                 $.ajax({
                     async: true,
                     type: "POST",
                     url: urlTemp,
                     data: { jsonDatas: JSON.stringify(jsonDatas) },
                     success: function(data) {
-                        tool.hideLoading();
+                        loading.hidden();
                         data = tool.jObject(data);
 
                         toast.show(data.Msg);
@@ -208,7 +208,7 @@ export default {
 
                     },
                     error: function() {
-                        tool.hideLoading();
+                        loading.hidden();
                     }
                 });
 
