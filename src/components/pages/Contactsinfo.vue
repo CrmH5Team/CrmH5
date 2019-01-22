@@ -313,7 +313,13 @@ export default {
     this.isFirstEnter = true;
   },
   mounted: function() {
-
+      var _self = this;
+      _self.$nextTick(function () {
+          //将textarea设置为高度自适应
+          $("textarea").each(function (index, cur) {
+              tool.autoTextarea(cur);
+          });
+      })
   },
   activated: function() {
     var _self = this;
@@ -324,7 +330,6 @@ export default {
 
     lanTool.updateLanVersion();
     document.activeElement.blur();
-    // var _self = this;
 
     _self.onlyView = _self.$route.query.onlyView || false;
     _self.companyID = _self.$route.query.companyID || '';
@@ -349,9 +354,6 @@ export default {
     }
 
     var _isBack = _self.$route.meta.isBack;
-
-    // console.log("_isBack:"+_isBack);
-    // console.log("_self.isFirstEnter:"+_self.isFirstEnter);
 
     //若为true,则需要刷新
     if (!_isBack || _self.isFirstEnter) {
