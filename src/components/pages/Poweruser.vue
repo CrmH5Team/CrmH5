@@ -110,7 +110,7 @@ export default {
             notUserData:false, //没数据
             notGroupData:false, //没数据
 
-            companyID:'', //公司id
+            sourceID:'', //来源id
 
             //用户数据
             userData: [
@@ -183,7 +183,7 @@ export default {
         }
     },
     created: function () {
-        this.companyID = this.$route.query.companyID;
+        this.sourceID = this.$route.query.sourceID;
     },
     mounted: function () {
         lanTool.updateLanVersion();
@@ -239,7 +239,7 @@ export default {
 
         getData: function () {
             var _self = this;
-            if(tool.isNullOrEmptyObject(_self.companyID)){
+            if(tool.isNullOrEmptyObject(_self.sourceID)){
                 return ;
             }
             var urlTemp = tool.AjaxBaseUrl();
