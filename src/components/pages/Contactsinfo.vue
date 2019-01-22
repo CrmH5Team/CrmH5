@@ -313,13 +313,6 @@ export default {
     this.isFirstEnter = true;
   },
   mounted: function() {
-      var _self = this;
-      _self.$nextTick(function () {
-          //将textarea设置为高度自适应
-          $("textarea").each(function (index, cur) {
-              tool.autoTextarea(cur);
-          });
-      })
   },
   activated: function() {
         var _self = this;
