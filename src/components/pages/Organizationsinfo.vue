@@ -60,7 +60,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
+                            <div data-field="CityID" data-fieldControlType="linkSelectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                     </div>

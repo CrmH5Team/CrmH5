@@ -1744,6 +1744,7 @@
 		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='groupSelectList']").text("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='linkSelectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='divText']").text("");
 		$("[data-fieldControlType='icon']").each(function(index,curObj){
 			var _curObj = $(this);
