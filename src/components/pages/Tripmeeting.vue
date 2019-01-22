@@ -214,8 +214,11 @@ export default {
         }
     },
     mounted:function(){
-        var _self = this;
-
+     
+    },
+    activated: function () {
+       var _self = this;
+          _self.viewType = "calendarView";
         eventBus.$on('changeViewEvent',function(data){
             // if(data === '' || data === undefined) return;
             // if(data === 'listView'){
@@ -241,7 +244,6 @@ export default {
         _self.groupToggle();
         _self.goInfoPage();
         _self.watchScroll();
-
     },
     methods:{
         //监听滚动固定
