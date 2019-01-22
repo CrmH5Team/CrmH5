@@ -351,68 +351,72 @@ export default {
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
             // _self.isFirstEnter = false;
-          //清空页面数据
-          tool.ClearControlData(function() {
-            //渲染控件
-            tool.InitiateInfoPageControl(_self,id, function() {
-              console.log("hiddenisor");
-              //控制data-field="Initiator"显示和隐藏
-              $("[data-field='IsPublic']").off('change').on('change',function(){
-                  var curObj = $(this);
-                  if(tool.isNullOrEmptyObject(curObj)){
-                      return;
-                  }
+            //清空页面数据
+            tool.ClearControlData(function() {
+              //渲染控件
+              tool.InitiateInfoPageControl(_self,id, function() {
+                console.log("hiddenisor");
+                //控制data-field="Initiator"显示和隐藏
+                $("[data-field='IsPublic']").off('change').on('change',function(){
+                    var curObj = $(this);
+                    if(tool.isNullOrEmptyObject(curObj)){
+                        return;
+                    }
 
-                  var fieldval = curObj.attr("data-fieldval");
-                  if(fieldval == "23"){
-                      $(".initiatorObj").hide();
-                  }else{
-                      $(".initiatorObj").show();
-                  }
-              });
-              //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
-
-              //给公司字段赋初始值
-              if(!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)){
-                  var obj = $('[data-field="CompanyID"]');
-                  if(tool.isNullOrEmptyObject(obj)){
-                    return ;
-                  }
-                  obj.attr('data-fieldval',_self.companyID);
-                  obj.text(_self.companyName);
-              }
-
-
-              //渲染数据
-              tool.IniInfoData(fromType, id, function() {
-
-                //渲染textarea
-                $("textarea").each(function (index, cur) {
-                    // console.log("change textarea");
-                    $(cur).height('25');
-                    tool.autoTextarea(cur);
+                    var fieldval = curObj.attr("data-fieldval");
+                    if(fieldval == "23"){
+                        $(".initiatorObj").hide();
+                    }else{
+                        $(".initiatorObj").show();
+                    }
                 });
+                //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
 
-                //场景：当在selectList页面按刷新按钮再回到详情页
-                // console.log(eventBus.selectListData);
-                if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
-                  return;
+                //给公司字段赋初始值
+                if(!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)){
+                    var obj = $('[data-field="CompanyID"]');
+                    if(tool.isNullOrEmptyObject(obj)){
+                      return ;
+                    }
+                    obj.attr('data-fieldval',_self.companyID);
+                    obj.text(_self.companyName);
                 }
-                //更新selectlist控件的结果
-                var curObj = $(
-                  "[data-field='" + eventBus.selectListData.field + "']"
-                );
-                if (tool.isNullOrEmptyObject(curObj)) {
-                  return;
-                }
-                curObj.attr("data-fieldval", eventBus.selectListData.value.id);
-                curObj.text(eventBus.selectListData.value.text);
 
-                //清空全局变量
-                eventBus.selectListData = null;
+
+                //渲染数据
+                tool.IniInfoData(fromType, id, function() {
+
+                  //渲染textarea
+                  $("textarea").each(function (index, cur) {
+                      // console.log("change textarea");
+                      $(cur).height('25');
+                      tool.autoTextarea(cur);
+                  });
+
+                  //场景：当在selectList页面按刷新按钮再回到详情页
+                  // console.log(eventBus.selectListData);
+                  if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
+                    return;
+                  }
+                  //更新selectlist控件的结果
+                  var curObj = $(
+                    "[data-field='" + eventBus.selectListData.field + "']"
+                  );
+                  if (tool.isNullOrEmptyObject(curObj)) {
+                    return;
+                  }
+                  curObj.attr("data-fieldval", eventBus.selectListData.value.id);
+                  curObj.text(eventBus.selectListData.value.text);
+
+                  //清空全局变量
+                  eventBus.selectListData = null;
+                });
               });
             });
-          });
+            
+            //设置滚动条位置
+            $(window).scrollTop(0);
+
         } else {
             // _self.isFirstEnter = false;
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {

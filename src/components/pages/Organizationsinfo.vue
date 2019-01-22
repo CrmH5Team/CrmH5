@@ -178,8 +178,6 @@ export default {
 
             ptitle: 'Organizationsinfo detail',
 
-            // scrollTop: 0, //记录滚动条的位置
-
             isAddNew:false,//是否添加新纪录
             operation:false,//控制详情页header中侧滑操作按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
@@ -204,9 +202,10 @@ export default {
     },
     created: function () {
         this.isFirstEnter = true;
-
     },
     mounted: function () {
+        var _self = this;
+        
     },
     activated:function(){
         var _self = this;
@@ -272,8 +271,11 @@ export default {
                     });
                 });
             });
-        }
-        else{
+
+            //设置滚动条位置
+            $(window).scrollTop(0);
+            
+        }else{
           // _self.isFirstEnter = false;
           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                 return;
@@ -293,6 +295,7 @@ export default {
 
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
+        
     },
     methods: {
         //跳转到联系人界面事件
