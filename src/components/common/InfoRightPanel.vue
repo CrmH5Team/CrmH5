@@ -47,6 +47,7 @@ export default {
     mounted: function () {
     },
     activated: function () {
+        lanTool.updateLanVersion();
         eventBus.$on('gengduoEvent', this.panelToggle);
     },
     methods: {
