@@ -60,7 +60,7 @@
                                 <div class="ListCellContentLeftText lanText" data-lanid="702_城市"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <div data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText" />
+                                <div data-field="CityID" data-fieldControlType="selectList" data-lanid="702_城市" Filter="" data-fieldVal="" Code="DropDowList_ViewBaseCountryCity" data-selectType="radio" class="ListCellContentRightText" />
                             </div>
                             <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>
@@ -236,6 +236,8 @@ export default {
             // _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
+                //则联动清空城市
+                $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
                     //渲染textarea 新增详情不能进入渲染数据的方法，在这里刷一下高度自适应
@@ -267,6 +269,39 @@ export default {
                         curObj.attr("data-fieldval", eventBus.selectListData.value.id);
                         curObj.text(eventBus.selectListData.value.text);
 
+                        //若是国家字段，则根据国家值，初始化城市
+                        if (eventBus.selectListData.field == "CountryID") {
+                            //联动清空城市
+                            $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
+                            //添加CityID的事件
+                            $("[data-field='CityID']").attr("Filter", eventBus.selectListData.value.id);
+                            $("[data-field='CityID']").off('click').on('click', function () {
+                                var _curObj = $(this);
+                                // console.log(_curObj);
+                                var dataField = _curObj.attr("data-field") || "";
+                                var code = _curObj.attr("Code") || "";
+                                var filter = _curObj.attr("Filter") || "";
+                                var typeValue = _curObj.attr("TypeValue") || "";
+                                var value = _curObj.attr("data-fieldVal") || "";
+                                var selectType = _curObj.attr("data-selectType") || "";
+                                var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                                var parameter = {
+                                    'field': dataField,
+                                    'code': code,
+                                    "typeValue": typeValue,
+                                    'title': title,
+                                    'value': value, //已经选择的值
+                                    'selectType': selectType,
+                                    "filter": filter
+                                };
+                                _self.$router.push({
+                                    path: '/selectlist',
+                                    query: parameter
+                                });
+                            });
+
+                        }
+
                         //清空全局变量
                         eventBus.selectListData = null;
                     });
@@ -286,6 +321,38 @@ export default {
             curObj.attr("data-fieldval", eventBus.selectListData.value.id);
             curObj.text(eventBus.selectListData.value.text);
 
+            //若是国家字段，则根据国家值，初始化城市
+            if (eventBus.selectListData.field == "CountryID") {
+                //清空数据,移除点击事件
+                $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
+                //添加CityID的事件
+                $("[data-field='CityID']").attr("Filter", eventBus.selectListData.value.id);
+                $("[data-field='CityID']").off('click').on('click', function () {
+                    var _curObj = $(this);
+                    // console.log(_curObj);
+                    var dataField = _curObj.attr("data-field") || "";
+                    var code = _curObj.attr("Code") || "";
+                    var filter = _curObj.attr("Filter") || "";
+                    var typeValue = _curObj.attr("TypeValue") || "";
+                    var value = _curObj.attr("data-fieldVal") || "";
+                    var selectType = _curObj.attr("data-selectType") || "";
+                    var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                    var parameter = {
+                        'field': dataField,
+                        'code': code,
+                        "typeValue": typeValue,
+                        'title': title,
+                        'value': value, //已经选择的值
+                        'selectType': selectType,
+                        "filter": filter
+                    };
+                    _self.$router.push({
+                        path: '/selectlist',
+                        query: parameter
+                    });
+                });
+
+            }
             //清空全局变量
             eventBus.selectListData = null;
         }
