@@ -30,7 +30,7 @@
                               </div>
                         </div>
                         <!-- meeting list -->
-                        <div v-if="!notMeeting" id="meetingList" class="list meeting-list">
+                        <div v-if="!notMeeting" id="calendarMeetingList" class="list meeting-list">
                             <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
                                 <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID"> -->
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
@@ -269,6 +269,7 @@ export default {
                 onDayClick:function(p, dayContainer, year, month, day){
                     month = parseInt(month) + 1;
                     var dateStr = year + "-" + month + "-" +day;
+                    console.log("dateStr:"+dateStr);
                     _self.getEventsByDate(dateStr);
                 },
                 onOpen:function (p){

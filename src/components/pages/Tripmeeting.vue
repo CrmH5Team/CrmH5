@@ -277,7 +277,7 @@ export default {
         })
 
         _self.searchData = _self.meetingSearch;
-        tool.InitiateGroupList('meeting', $('#meetingList'));
+        //tool.InitiateGroupList('meeting', $('#meetingList'));
 
         _self.changePos();
         _self.groupToggle();
