@@ -85,27 +85,27 @@ export default {
             };
         },
 
-        goInfo: function (data) {
-            this.$router.push({
-                path: '/previewfile',
-                query: data
-            })
-        },
+        // goInfo: function (data) {
+        //     this.$router.push({
+        //         path: '/previewfile',
+        //         query: data
+        //     })
+        // },
 
         //弹出文件上传
         actionSheet: function () {
             $("#selectFile").trigger('click');
         },
 
-        toggle: function (e) {
-            if ($(e.target).hasClass('calc-xia')) {
-                $(e.target).removeClass('calc-xia').addClass('calc-shang');
-                $(e.target).next('.downlistbox').hide(10);
-            } else {
-                $(e.target).removeClass('calc-shang').addClass('calc-xia');
-                $(e.target).next('.downlistbox').show(10);
-            }
-        }
+        // toggle: function (e) {
+        //     if ($(e.target).hasClass('calc-xia')) {
+        //         $(e.target).removeClass('calc-xia').addClass('calc-shang');
+        //         $(e.target).next('.downlistbox').hide(10);
+        //     } else {
+        //         $(e.target).removeClass('calc-shang').addClass('calc-xia');
+        //         $(e.target).next('.downlistbox').show(10);
+        //     }
+        // }
     },
     deactivated: function () {
 
