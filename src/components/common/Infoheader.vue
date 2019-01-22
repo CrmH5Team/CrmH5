@@ -16,7 +16,7 @@
             <!-- <a v-if="operation && !onlyView" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
             <a v-if="!onlyView && operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
-            <a v-if="!onlyView" @click="delClick" class="calcfont calc-gou calc-shanchu right" id="delete"></a>
+            <a v-if="!onlyView" @click="delClick" class="calcfont calc-shanchu right" id="delete"></a>
         </div>
 
     </header>
