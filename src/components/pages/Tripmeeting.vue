@@ -10,7 +10,7 @@
         <!-- list 视图 -->
         <div v-show="viewType=='listView'" class="list-view">
             <div class="nav sticky">
-                <div id="meetingPanel" @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
+                <div id="meetingPanel" @click="switchPage(0,$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
                 <div class="nav-item f16 lanText" data-lanid="819_出差"></div>
                 <div class="nav-border"></div>
             </div>
@@ -69,10 +69,8 @@ export default {
             notMeeting: true, //没数据
 
             showPage: 0, //list视图控制显示meeting(0)或者trip(1)
-
-            viewType: '', //展示视图类型  calendarView, listView
-
-            dataFilter: ['mySchedule'],
+            viewType: 'calendarView', //展示视图类型  calendarView, listView
+            isFirstEnter: false, //是否首次进入
 
             //侧滑数据模型
             rigthPanelData: [{
@@ -270,15 +268,22 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        // console.log(from);
-        // console.log(to);
-        //
+        console.log('beforeRouteEnter');
         if (from.name == "tripinfo" || from.name == "meetinginfo" || from.name == "searchmodule") {
             to.meta.isBack = true;
         } else {
             to.meta.isBack = false;
         }
         next();
+    },
+    // beforeRouteLeave:function(to, from, next){
+    //     if(to.name == 'index'){
+    //         this.$destroy();
+    //     }
+    //     next();
+    // },
+    created: function () {
+        this.isFirstEnter = true;
     },
     mounted: function () {
 
@@ -315,7 +320,9 @@ export default {
             }
         }
 
-
+        _self.$route.meta.fromSave = false;
+        _self.$route.meta.isBack = false;
+        _self.isFirstEnter = false;
 
         eventBus.$on('updataListEvent', function () {
             _self.RefreshCurPageGroupData();
@@ -323,8 +330,6 @@ export default {
          eventBus.$on('changeViewEvent', function (data) {
              _self.viewType = data;
         })
-        // _self.searchData = _self.meetingSearch;
-        //tool.InitiateGroupList('meeting', $('#meetingList'));
 
     },
     deactivated:function(){
@@ -408,7 +413,7 @@ export default {
         },
 
         //切换页面
-        switchPage: function (num, name, e) {
+        switchPage: function (num, e) {
             var _self = this;
             var el = e.target;
             if (num === undefined) return;
