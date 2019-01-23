@@ -1494,6 +1494,7 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
+				tool.hideLoading();
 				data = tool.jObject(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
@@ -1541,7 +1542,7 @@
 				return;
 			},
 			complete: function () {
-				tool.hideLoading();
+				//tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}
@@ -1727,6 +1728,7 @@
 			success: function (data) {
 				data = tool.jObject(data);
 				// console.log(data);
+				tool.hideLoading();
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
@@ -1773,7 +1775,7 @@
 				return;
 			},
 			complete: function () {
-				tool.hideLoading();
+				//tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}
@@ -1888,6 +1890,7 @@
 				url: urlTemp,
 				data: jsonDatasTemp,
 				success: function (data) {
+					tool.hideLoading();
 					//console.log(JSON.stringify(data));
 					data = tool.jObject(data);
 					//console.log(data);
@@ -1968,7 +1971,7 @@
 					return true;
 				},
 				complete: function () {
-					tool.hideLoading();
+					//tool.hideLoading();
 					//隐藏虚拟键盘
 					document.activeElement.blur();
 				}
@@ -2243,6 +2246,7 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
+				tool.hideLoading();
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
@@ -2429,7 +2433,7 @@
 				return true;
 			},
 			complete: function () {
-				tool.hideLoading();
+				//tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}
@@ -2568,13 +2572,13 @@
 		//console.log(jsonDatasTemp);
 		//return;
 		tool.showLoading();
-
 		$.ajax({
 			async: true,
 			type: "post",
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
+				tool.hideLoading();
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
@@ -2582,7 +2586,6 @@
 					console.log(tool.getMessage(data));
 					return true;
 				}
-
 				//data = data._OnlyOneData || [];
 				//保存成功后刷新当前页面
 				var routeName = _self.$route.name;
@@ -2613,12 +2616,12 @@
 				_self.$router.back(-1);
 			},
 			error: function (jqXHR, type, error) {
-				console.log(error);
 				tool.hideLoading();
+				console.log(error);
 				return true;
 			},
 			complete: function () {
-				tool.hideLoading();
+				//tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}
@@ -2680,6 +2683,7 @@
 					url: urlTemp,
 					data: jsonDatasTemp,
 					success: function (data) {
+						tool.hideLoading();
 						data = tool.jObject(data);
 						// console.log(data);
 						if (data._ReturnStatus == false) {
@@ -2722,7 +2726,7 @@
 						return true;
 					},
 					complete: function () {
-						tool.hideLoading();
+						//tool.hideLoading();
 						//隐藏虚拟键盘
 						document.activeElement.blur();
 					}
@@ -2780,6 +2784,7 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
+				tool.hideLoading();
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
@@ -2793,12 +2798,12 @@
 				}
 			},
 			error: function (jqXHR, type, error) {
-				console.log(error);
 				tool.hideLoading();
+				console.log(error);
 				return true;
 			},
 			complete: function () {
-				tool.hideLoading();
+				//tool.hideLoading();
 				//隐藏虚拟键盘
 				document.activeElement.blur();
 			}

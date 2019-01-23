@@ -54,6 +54,11 @@ export default {
     },
     //props:['title','isAddNew','operation'],
     mounted: function () {
+
+    },
+    activated:function(){
+        // console.log("onlyView:"+this.onlyView);
+        // console.log("type:"+typeof(this.onlyView));
     },
     methods: {
 

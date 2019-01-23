@@ -304,7 +304,11 @@ export default {
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-        _self.onlyView = _self.$route.query.onlyView || false;
+        //Boolean()
+        // console.log("onlyView:"+_self.$route.query.onlyView);
+        // console.log("type:"+typeof(_self.$route.query.onlyView));
+
+        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
         _self.companyID = _self.$route.query.companyID || '';
         _self.companyName = _self.$route.query.companyName || '';
 
@@ -467,10 +471,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
-            $("#delete").off().on("click", function () {
-                // console.log("delete");
-                tool.DeleteData(fromType, id, _self, function () {});
-            });
+            setTimeout(function () {
+                $("#delete").off().on("click", function () {
+                    // console.log("delete");
+                    tool.DeleteData(fromType, id, _self, function () {});
+                });
+            }, 0);
         },
 
 

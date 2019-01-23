@@ -215,7 +215,11 @@ export default {
         $(window).scrollTop(0);
         var _self = this;
 
-        this.onlyView = this.$route.query.onlyView || false;
+        //Boolean()
+        // console.log("onlyView:"+_self.$route.query.onlyView);
+        // console.log("type:"+typeof(_self.$route.query.onlyView));
+
+        this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
         //监听保存
         _self.savePageData();
@@ -493,10 +497,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-
-            $("#delete").off("click").on("click", function () {
-                tool.DeleteData(fromType, id, _self, function () {});
-            });
+            setTimeout(function () {
+                $("#delete").off("click").on("click", function () {
+                    tool.DeleteData(fromType, id, _self, function () {});
+                });  
+            }, 0);
+            
         },
 
 

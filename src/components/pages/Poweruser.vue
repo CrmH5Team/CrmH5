@@ -214,6 +214,7 @@ export default {
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function(data) {
+                    tool.hideLoading();
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -258,7 +259,7 @@ export default {
                     return true;
                 },
                 complete: function() {
-                    tool.hideLoading();
+                    // tool.hideLoading();
                     //隐藏虚拟键盘
                     document.activeElement.blur();
                 }

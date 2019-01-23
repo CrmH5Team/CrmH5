@@ -3505,6 +3505,7 @@ if (typeof define === 'function' && define.amd) {
   };
 
   var hide = function(callback) {
+    console.log("hide");
     $(".weui-mask_transparent").remove();
     var done = false;
     var $el = $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
@@ -3541,6 +3542,8 @@ if (typeof define === 'function' && define.amd) {
     }
     // show('<i class="' + iconClassName + ' weui-icon_toast"></i><p class="weui-toast_content">' + (text || "已经完成") + '</p>', className);
     show('<i class="' + iconClassName + ' weui-icon_toast"></i><div class="weui-toast_content">' + (text || "已经完成") + '</div>', className);
+
+    console.log("duration:"+duration);
 
     setTimeout(function() {
       hide(callback);
