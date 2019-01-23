@@ -24,7 +24,7 @@
 
     <div class="anniu f16">
         <!-- <div class="clear-btn">Clear</div> -->
-        <div class="sure-btn">OK</div>
+        <div class="sure-btn lanText" data-lanid="941_确定"></div>
     </div>
 
 
@@ -68,7 +68,8 @@ export default {
 
     },
     activated:function(){
-
+         lanTool.updateLanVersion();
+         this.title = lanTool.lanContent('780_搜索');
         // this.handleSelectlist();
     },
     methods:{
