@@ -23,8 +23,8 @@
                     </router-link>
                 </div>
                 <!-- 列表 -->
-                <div v-if="!notMeeting" id="meetingList"></div>
-                <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
+                <div v-show="!noData" id="meetingList" data-fromtype="meeting"></div>
+                <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
             </div>
 
             <div class="pageList" v-show="showPage == 1">
@@ -35,8 +35,8 @@
                     </router-link>
                 </div>
                 <!-- 列表 -->
-                <div v-if="!notTrip" id="tripList"></div>
-                <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
+                <div v-show="!noData" id="tripList" data-fromtype="trip"></div>
+                <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
             </div>
 
         </div>
@@ -65,8 +65,8 @@ export default {
     data() {
         return {
             title: lanTool.lanContent('781_出差&会议'),
-            notTrip: true, //没数据
-            notMeeting: true, //没数据
+            noData: true, //没数据
+
 
             showPage: 0, //list视图控制显示meeting(0)或者trip(1)
             viewType: 'calendarView', //展示视图类型  calendarView, listView
@@ -401,7 +401,11 @@ export default {
 
         //列表展开收起
         groupToggle: function () {
-            $("#meetingList,#tripList").on("click", "div.date-div", function (event) {
+            var _self = this;
+            $("#meetingList,#tripList").off("click", "div.date-div").on(
+              "click",
+              "div.date-div",
+              function (event) {
                 var target = $(event.target);
                 if (!target.hasClass('date-div')) {
                     target = target.closest('div.date-div');
@@ -409,17 +413,72 @@ export default {
                         return;
                     }
                 }
-                if (target.hasClass('open')) {
-                    target.removeClass('open').siblings('.group-item-list').slideUp(500);
-                } else {
-                    target.addClass('open').siblings('.group-item-list').slideDown(500);
+                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+
+                if (tool.isNullOrEmptyObject(groupID)) {
+                    return;
                 }
+
+                //若是展开
+                if (target.hasClass("open")) {
+                    target
+                        .removeClass("open")
+                        .siblings(".group-item-list")
+                        .slideUp(500, function () {
+                            var parentContainerObj = target.parents("div.group-div:first");
+                            if (tool.isNullOrEmptyObject(parentContainerObj)) {
+                                return;
+                            }
+                            //清空容器内容
+                            parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+                        });
+                }else {
+                    //若是收起
+                    var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+                    tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
+                        containerObj
+                            .addClass("open")
+                            .siblings(".group-item-list")
+                            .slideDown(500);
+
+                        $("div.item-block").off('click').on('click',
+                            function (event) {
+                                var target = $(event.target);
+                                // console.log(target);
+                                if (target.hasClass("item-stars-icon")) {
+                                    return;
+                                }
+                                if (!target.hasClass("group-item")) {
+                                    target = target.closest("div.group-item");
+                                    if (tool.isNullOrEmptyObject(target)) {
+                                        return;
+                                    }
+                                }
+
+                                var url = target.attr("data-url") || "";
+                                if (tool.isNullOrEmptyObject(url)) {
+                                    return;
+                                }
+
+                                _self.$router.push(url);
+                            }
+                        );
+                    });
+                }
+
+                // if (target.hasClass('open')) {
+                //     target.removeClass('open').siblings('.group-item-list').slideUp(500);
+                // } else {
+                //     target.addClass('open').siblings('.group-item-list').slideDown(500);
+                // }
             })
         },
 
         //切换页面
         switchPage: function (num, e) {
             var _self = this;
+
             var el = e.target;
             if (num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
@@ -431,19 +490,21 @@ export default {
             var fromType = '';
             if (_self.showPage == 0) {
                 _self.searchData = _self.meetingSearch;
-
                 fromType = 'meeting';
                 container = $('#meetingList');
             } else {
                 _self.searchData = _self.tripSearch;
-
                 fromType = 'trip';
                 container = $('#tripList');
             }
+            // console.log(container);
 
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+
+              console.log(111111111);
+              // console.log(containerObj);
               if (tool.isNullOrEmptyObject(containerObj)) {
                 _self.noData = true;
                 return;
@@ -454,6 +515,7 @@ export default {
                 _self.noData = false;
               }
             });
+
         },
 
         //table底部横条过渡效果

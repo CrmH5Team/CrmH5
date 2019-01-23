@@ -1562,14 +1562,15 @@
         <div class="group-item-list meeting-list">
         {InnerList}
         </div>`;
-        innerTemplate = `<div class="data-events-item f12" data-url="/meetinginfo/12" >
-                            <div class="item-title">Meeting with Eastern Airlines</div>
+        innerTemplate = `<div class="data-events-item f12" data-url="/meetinginfo/{AutoID}" >
+                            <div class="item-title">{MeetingTitle}</div>
                             <div class="item-time f12">
                               <span class="calcfont calc-gengxinshijian"></span>
-                              <span class="time-text">14:30-17:00</span>
+                              <span class="time-text">{BeginTime}~{EndTime}</span>
+                              <span class="right">{Realname}</span>
                             </div>
-                            <div class="item-address">China Eastern Airlines</div>
-                            <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                            <div class="item-address">{CompanyID}</div>
+                            <div class="item-initiator">{ContactsID}{Title}</div>
                         </div>`;
 				break;
 			case "trip":
@@ -1718,8 +1719,14 @@
 				for (var i = 0; i < data.length; i++) {
 					var tempStr = innerTemplate;
 					for (var key in data[i]) {
+            if(fromType == "meeting"){
+              var valTemp = tool.FormatMeetingFieldVal(key,data[i][key]);
+              tempStr = tempStr.ReplaceAll("{" + key + "}", (valTemp || ""));
+            }else{
+              tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+            }
 						// console.log(key);
-						tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+
 						// console.log(tempStr);
 					}
 
@@ -1747,7 +1754,29 @@
 				document.activeElement.blur();
 			}
 		});
-	};
+  };
+
+  //获取会议记录字段值
+  tool.FormatMeetingFieldVal = function(fieldName,fieldVal){
+    if(tool.isNull(fieldName) || tool.isNullOrEmptyObject(fieldVal)){
+        return"";
+    }
+
+    if(fieldName == "BeginTime" || fieldName == "EndTime"){
+      var format = "d/MMM/yyyy HH:mm";
+      fieldVal = fieldVal.ReplaceAll("T", " ");
+      fieldVal = tool.ChangeTimeFormat(fieldVal, format);
+    }else if(fieldName == "ContactsID"){
+      fieldVal = fieldVal + " ";
+    }else if(fieldName == "Title"){
+      fieldVal = "(" + fieldVal + ")";
+    }
+    else{
+      return fieldVal || "";
+    }
+
+    return fieldVal;
+  }
 
 
 	/*
@@ -2132,7 +2161,7 @@
 					},
 				});
 			});
-		
+
 		});
 
 		//执行回调函数
@@ -2884,7 +2913,7 @@
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
-		
+
 
 		//console.log(queryCondiction);
 		//执行回调函数

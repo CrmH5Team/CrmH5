@@ -30,7 +30,7 @@
                     </div>
                     <!-- meeting list -->
                     <div v-show="!notMeeting" id="calendarMeetingList" class="list meeting-list">
-                        <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
+                        <div v-for="meetingData in meetingDatas" :key="meetingData.AutoID" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
                             <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID"> -->
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
                             <div class="item-time f12">
@@ -165,6 +165,10 @@ export default {
             return "(" + val + ")";
         },
         MeetingTimeFormat: function (val) {
+          if (tool.isNullOrEmptyObject(val)) {
+                return "";
+          }
+
             var format = "d/MMM/yyyy HH:mm";
             val = val.ReplaceAll("T", " ");
             val = tool.ChangeTimeFormat(val, format);
@@ -486,7 +490,6 @@ export default {
                     _self.notMeeting = false;
                     //end modify
 
-                    // console.log(myCallBack);
                     if (!tool.isNullOrEmptyObject(myCallBack)) {
                         myCallBack();
                     }
