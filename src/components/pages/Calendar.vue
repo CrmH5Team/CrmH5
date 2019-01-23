@@ -130,6 +130,9 @@ export default {
             hasEvents: true, //一天中是否有事件数据
             showPage: 0,
             isFirstEnter: false, // 是否第一次进入，默认false
+            queryCondiction: [], //右侧checkbox条件
+            queryCondictionData: [], //综合查询条件
+
             notTrip: false, //没数据
             notMeeting: false, //没数据
             calendarObjGlobal: null, //日历控件对象
@@ -189,7 +192,7 @@ export default {
         if (!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave) {
             if (this.isFirstEnter) {
                 this.initCalendar();
-            }           
+            }
             if (!tool.isNullOrEmptyObject(_self.calendarObjGlobal)) {
                 _self.setCalendarEvent(_self.calendarObjGlobal);
             }
@@ -198,6 +201,9 @@ export default {
         eventBus.$on('updataCalendarEvent', function () {
             _self.setCalendarEvent(_self.calendarObjGlobal);
         });
+
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        eventBus.queryCondictionData = null;
 
         // if(this.isFirstEnter){
         //     this.initCalendar();
@@ -314,6 +320,7 @@ export default {
             }
             // _self.calendarObjGlobal = calendarObj;
 
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -323,7 +330,8 @@ export default {
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
                 Year: calendarObj.currentYear,
-                Month: calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
+                Month: calendarObj.currentMonth + 1, //因为日历的月份是从0开始，因此此处+1
+                QueryCondiction: JSON.stringify(allQueryData)
             };
             tool.showLoading();
             $.ajax({
@@ -410,6 +418,7 @@ export default {
                 return;
             }
 
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
             //传入参数
@@ -418,7 +427,8 @@ export default {
                 UserName: tool.UserName(),
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
-                Date: currentDate
+                Date: currentDate,
+                QueryCondiction: JSON.stringify(allQueryData)
             };
             tool.showLoading();
             $.ajax({

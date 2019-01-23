@@ -71,6 +71,8 @@ export default {
             showPage: 0, //list视图控制显示meeting(0)或者trip(1)
             viewType: 'calendarView', //展示视图类型  calendarView, listView
             isFirstEnter: false, //是否首次进入
+            queryCondiction: [], //右侧checkbox条件
+            queryCondictionData: [], //综合查询条件
 
             //侧滑数据模型
             rigthPanelData: [{
