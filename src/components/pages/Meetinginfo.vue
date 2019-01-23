@@ -33,37 +33,35 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <!-- <div class="ListCellContentRightText">16/Nov 15:00</div> -->
-                            <input type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
+                            <input id="startdate" type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell visible">
-                    <div class="ListCellLeftIcon"><span class="calcfont calc-time"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <!-- <div class="ListCellContentRightText">16/Nov 16:00</div> -->
-                            <input type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                    </div>
-                </div>
-                <div class="ListCell visible">
-                    <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="MeetingType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InternalExternaltype" class="ListCellContentRightText"/>
-                            </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                        </div>
                     </div>
-                </div>
+                    <div class="ListCell visible">
+                        <div class="ListCellLeftIcon"><span class="calcfont calc-time"></span></div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
+                            </div>
+                            <div class="ListCellContentRight rightContent">
+                                <input id="enddate" type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
+                        </div>
+                                <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                            </div>
+                        </div>
+                        <div class="ListCell visible">
+                            <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft leftContent">
+                                    <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
+                                </div>
+                                <div class="ListCellContentRight rightContent">
+                                    <input type="text" data-field="MeetingType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InternalExternaltype" class="ListCellContentRightText"/>
+                            </div>
+                                    <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                                </div>
+                            </div>
                             <div class="ListSpecialCell visible" id="Organization">
                                 <div class="ListSpecialCellField">
                                     <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
@@ -193,34 +191,34 @@ export default {
                     tool.IniInfoData(fromType, id, function () {
 
                         //添加ContactsID的事件
-                    var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval")||"";
-                    if(!tool.isNullOrEmptyObject(filterTemp)){
-                         $("[data-field='ContactsID']").attr("Filter",filterTemp);
-                        $("[data-field='ContactsID']").off('click').on('click',function(){
-                            var _curObj = $(this);
-                            // console.log(_curObj);
-                            var dataField = _curObj.attr("data-field") ||"";
-                            var code = _curObj.attr("Code") ||"";
-                            var filter = _curObj.attr("Filter") ||"";
-                            var typeValue = _curObj.attr("TypeValue") ||"";
-                            var value = _curObj.attr("data-fieldVal") ||"";
-                            var selectType = _curObj.attr("data-selectType") ||"";
-                            var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
-                            var parameter = {
-                                'field':dataField,
-                                'code':code,
-                                "typeValue":typeValue,
-                                'title':title,
-                                'value':value,//已经选择的值
-                                'selectType':selectType,
-                                "filter":filter
-                            };
-                            _self.$router.push({
-                                path: '/selectlist',
-                                query: parameter
+                        var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
+                        if (!tool.isNullOrEmptyObject(filterTemp)) {
+                            $("[data-field='ContactsID']").attr("Filter", filterTemp);
+                            $("[data-field='ContactsID']").off('click').on('click', function () {
+                                var _curObj = $(this);
+                                // console.log(_curObj);
+                                var dataField = _curObj.attr("data-field") || "";
+                                var code = _curObj.attr("Code") || "";
+                                var filter = _curObj.attr("Filter") || "";
+                                var typeValue = _curObj.attr("TypeValue") || "";
+                                var value = _curObj.attr("data-fieldVal") || "";
+                                var selectType = _curObj.attr("data-selectType") || "";
+                                var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                                var parameter = {
+                                    'field': dataField,
+                                    'code': code,
+                                    "typeValue": typeValue,
+                                    'title': title,
+                                    'value': value, //已经选择的值
+                                    'selectType': selectType,
+                                    "filter": filter
+                                };
+                                _self.$router.push({
+                                    path: '/selectlist',
+                                    query: parameter
+                                });
                             });
-                        });
-                    }
+                        }
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
@@ -280,35 +278,35 @@ export default {
 
                         //清空全局变量
                         eventBus.selectListData = null;
-                         });
-                     });
+                    });
                 });
+            });
 
         } else {
             _self.isFirstEnter = false;
-            
+
             //添加ContactsID的事件
-            var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval")||"";
-            if(!tool.isNullOrEmptyObject(filterTemp)){
-                    $("[data-field='ContactsID']").attr("Filter",filterTemp);
-                $("[data-field='ContactsID']").off('click').on('click',function(){
+            var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
+            if (!tool.isNullOrEmptyObject(filterTemp)) {
+                $("[data-field='ContactsID']").attr("Filter", filterTemp);
+                $("[data-field='ContactsID']").off('click').on('click', function () {
                     var _curObj = $(this);
                     // console.log(_curObj);
-                    var dataField = _curObj.attr("data-field") ||"";
-                    var code = _curObj.attr("Code") ||"";
-                    var filter = _curObj.attr("Filter") ||"";
-                    var typeValue = _curObj.attr("TypeValue") ||"";
-                    var value = _curObj.attr("data-fieldVal") ||"";
-                    var selectType = _curObj.attr("data-selectType") ||"";
-                    var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+                    var dataField = _curObj.attr("data-field") || "";
+                    var code = _curObj.attr("Code") || "";
+                    var filter = _curObj.attr("Filter") || "";
+                    var typeValue = _curObj.attr("TypeValue") || "";
+                    var value = _curObj.attr("data-fieldVal") || "";
+                    var selectType = _curObj.attr("data-selectType") || "";
+                    var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
                     var parameter = {
-                        'field':dataField,
-                        'code':code,
-                        "typeValue":typeValue,
-                        'title':title,
-                        'value':value,//已经选择的值
-                        'selectType':selectType,
-                        "filter":filter
+                        'field': dataField,
+                        'code': code,
+                        "typeValue": typeValue,
+                        'title': title,
+                        'value': value, //已经选择的值
+                        'selectType': selectType,
+                        "filter": filter
                     };
                     _self.$router.push({
                         path: '/selectlist',
@@ -370,20 +368,48 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Meetinginfo";
-            setTimeout(function(){
+            setTimeout(function () {
                 $("#delete").off("click").on("click", function () {
                     // console.log("delete");
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
-            },0);
+            }, 0);
         },
         savePageData: function (e) {
             var _self = this;
-            var id = _self.$route.params.id;
-            var fromType = "Meetinginfo";
             $("#save").off("click").on("click", function () {
-                tool.SaveOrUpdateData(fromType, id, _self, function () {
-                });
+                //判断元素是否存在
+                console.log("startdate.length:" + $("#startdate").length);
+                if ($("#startdate").length > 0) {
+                    //开始日期和结束日期进行对比
+                    var startdate = $("#startdate").val();
+                    var enddate = $("#enddate").val();
+
+                    var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
+                    var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
+
+                    var tips = lanTool.lanContent('933_温馨提示');
+                    var sure = lanTool.lanContent("545_确定");
+
+                    var d1 = new Date(startdate.replace(/\-/g, "\/"));
+                    var d2 = new Date(enddate.replace(/\-/g, "\/"));
+                    console.log(startdate);
+                    console.log(enddate);
+                    //开始日期或者结束日期其中一个为空，一个不为空
+                    if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
+                        $.alert(dateEmptyAlert, tips,"", sure);
+                        return;
+                    } 
+                   else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
+                        $.alert(compareAlert, tips,"", sure);
+                        return;
+                    } else {
+                        var id = _self.$route.params.id;
+                        var fromType = "Meetinginfo";
+                        tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                    }
+                }
+
             });
         },
         viewMeetingNote: function () {

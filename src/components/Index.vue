@@ -60,7 +60,10 @@
 
       <div class="group-title">
         <div class="title-text f14 lanText" data-lanid="872_最近7天要参加的会议"></div>
-        <router-link to="/tripmeeting" class="check-all right f14 a lanText" data-lanid="871_查看全部">查看全部&gt;&gt;</router-link>
+        <router-link to="/tripmeeting"
+          class="check-all right f14 a">
+              <span class="">更多</span>&gt;&gt;
+        </router-link>
       </div>
 
       <!-- 没有数据   -->
@@ -69,7 +72,7 @@
       <div v-if="!nothing" class="list-view">
 
         <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open">
+            <div class="f14 date-div open" @click="groupToggle">
                 <span class="calcfont calc-richeng" ></span>
                 <span class="group-name" data-groupID="{GroupID}">2018-11-16 Thursday</span>
                 <span class="right">（3）</span>
@@ -116,7 +119,7 @@
         </div>
 
         <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open">
+            <div class="f14 date-div open" @click="groupToggle">
                 <span class="calcfont calc-richeng" ></span>
                 <span class="group-name" data-groupID="{GroupID}">2018-12-16 Thursday</span>
                 <span class="right">（3）</span>
@@ -163,7 +166,7 @@
         </div>
 
         <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open">
+            <div class="f14 date-div open" @click="groupToggle">
                 <span class="calcfont calc-richeng" ></span>
                 <span class="group-name" data-groupID="{GroupID}">2019-01-16 Thursday</span>
                 <span class="right">（3）</span>
@@ -480,12 +483,12 @@ export default {
       if (_curObj.hasClass("open")) {
         _curObj
           .removeClass("open")
-          .siblings(".data-events")
+          .siblings(".group-item-list")
           .slideUp(400);
       } else {
         _curObj
           .addClass("open")
-          .siblings(".data-events")
+          .siblings(".group-item-list")
           .slideDown(400);
       }
     },

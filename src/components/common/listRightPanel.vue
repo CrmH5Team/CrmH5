@@ -58,7 +58,14 @@ export default {
     watch:{
         //视图切换使用
         viewValue:function(newVule){
-            eventBus.$emit('changeViewEvent',newVule);
+            if(newVule == 'calendarView'){
+                eventBus.$emit('updataCalendarEvent',newVule);
+            }else{
+                eventBus.$emit('updataListEvent',newVule);
+            }
+
+            eventBus.$emit('updataListEvent',newVule);
+
         },
         //数据过滤
         dataFilter:function(newVule){
