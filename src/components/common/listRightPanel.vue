@@ -1,4 +1,5 @@
 <template>
+
 <div>
 
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
@@ -203,8 +204,16 @@ export default {
             // console.log("self.isParentFirstEnter:"+self.isParentFirstEnter);
             if(self.isParentFirstEnter){
               self.$parent.setQueryconditionOnlyData(queryCondiction);
+
+              //触发calendar View 视图中筛选
+              eventBus.$emit('RightPanelCalendarOnlyDataEvent', queryCondiction);
+
             }else{
               self.$parent.setQuerycondition(queryCondiction);
+
+              //触发calendar View 视图中筛选
+              eventBus.$emit('RightPanelCalendarEvent', queryCondiction);
+
             }
             self.isParentFirstEnter = false;
         }

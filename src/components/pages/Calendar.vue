@@ -130,6 +130,9 @@ export default {
             hasEvents: true, //一天中是否有事件数据
             showPage: 0,
             isFirstEnter: false, // 是否第一次进入，默认false
+            queryCondiction: [], //右侧checkbox条件
+            queryCondictionData: [], //综合查询条件
+
             notTrip: false, //没数据
             notMeeting: false, //没数据
             calendarObjGlobal: null, //日历控件对象
@@ -186,11 +189,23 @@ export default {
         lanTool.updateLanVersion();
         var _self = this;
 
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        // eventBus.queryCondictionData = null; //在calendar组件中不能清空，不然父组件接收不到数据
+
+        //获取是否是从搜索页面点击确定按钮返回来的标志
+        var fromSearchBtn = eventBus.fromSearchBtn || false;
+        // eventBus.fromSearchBtn = false; //在calendar组件中不能清空，不然父组件接收不到数据
+
         if (!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave) {
             if (this.isFirstEnter) {
                 this.initCalendar();
-            }           
+            }
             if (!tool.isNullOrEmptyObject(_self.calendarObjGlobal)) {
+                _self.setCalendarEvent(_self.calendarObjGlobal);
+            }
+        }else{
+            // 若从搜索页面点击确定搜索按钮返回则从新请求当前月数据
+            if (fromSearchBtn) {
                 _self.setCalendarEvent(_self.calendarObjGlobal);
             }
         }
@@ -199,9 +214,12 @@ export default {
             _self.setCalendarEvent(_self.calendarObjGlobal);
         });
 
-        // if(this.isFirstEnter){
-        //     this.initCalendar();
-        // }
+        eventBus.$on('RightPanelCalendarOnlyDataEvent', function (data) {
+            _self.setQueryconditionOnlyData(data);
+        });
+        eventBus.$on('RightPanelCalendarEvent', function (data) {
+            _self.setQuerycondition(data);
+        });
 
         // this.$route.meta.isBack = false;
         // this.$route.meta.fromSave = false;
@@ -209,6 +227,8 @@ export default {
     },
     deactivated: function () {
         eventBus.$off('updataCalendarEvent');
+        eventBus.$off('RightPanelCalendarOnlyDataEvent');
+        eventBus.$off('RightPanelCalendarEvent');
     },
 
     methods: {
@@ -314,6 +334,7 @@ export default {
             }
             // _self.calendarObjGlobal = calendarObj;
 
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -323,7 +344,8 @@ export default {
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
                 Year: calendarObj.currentYear,
-                Month: calendarObj.currentMonth + 1 //因为日历的月份是从0开始，因此此处+1
+                Month: calendarObj.currentMonth + 1, //因为日历的月份是从0开始，因此此处+1
+                QueryCondiction: JSON.stringify(allQueryData)
             };
             tool.showLoading();
             $.ajax({
@@ -410,6 +432,7 @@ export default {
                 return;
             }
 
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
             //传入参数
@@ -418,7 +441,8 @@ export default {
                 UserName: tool.UserName(),
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
-                Date: currentDate
+                Date: currentDate,
+                QueryCondiction: JSON.stringify(allQueryData)
             };
             tool.showLoading();
             $.ajax({
@@ -479,7 +503,18 @@ export default {
                     document.activeElement.blur();
                 }
             });
-        }
+        },
+
+        setQuerycondition: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
+            //根据条件获取当前月份数据
+            _self.setCalendarEvent(_self.calendarObjGlobal);
+        },
+        setQueryconditionOnlyData: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
+        },
     }
 
 }

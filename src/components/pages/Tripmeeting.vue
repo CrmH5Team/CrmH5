@@ -71,6 +71,8 @@ export default {
             showPage: 0, //list视图控制显示meeting(0)或者trip(1)
             viewType: 'calendarView', //展示视图类型  calendarView, listView
             isFirstEnter: false, //是否首次进入
+            queryCondiction: [], //右侧checkbox条件
+            queryCondictionData: [], //综合查询条件
 
             //侧滑数据模型
             rigthPanelData: [{
@@ -426,19 +428,32 @@ export default {
             _self.showPage = num;
 
             var container = null;
-            var moduleName = '';
+            var fromType = '';
             if (_self.showPage == 0) {
                 _self.searchData = _self.meetingSearch;
 
-                moduleName = 'meeting';
+                fromType = 'meeting';
                 container = $('#meetingList');
             } else {
                 _self.searchData = _self.tripSearch;
 
-                moduleName = 'trip';
+                fromType = 'trip';
                 container = $('#tripList');
             }
-            tool.InitiateGroupList(moduleName, container);
+
+            //渲染数据
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+              if (tool.isNullOrEmptyObject(containerObj)) {
+                _self.noData = true;
+                return;
+              }
+              if (!containerObj.html()) {
+                _self.noData = true;
+              } else {
+                _self.noData = false;
+              }
+            });
         },
 
         //table底部横条过渡效果
@@ -455,7 +470,6 @@ export default {
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
-            // console.log(_self.queryCondiction);
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
