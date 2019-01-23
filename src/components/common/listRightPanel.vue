@@ -4,20 +4,20 @@
     <div id="mask" class="mask" @click="panelToggle" v-show="showPanel"></div>
     <div id="right-content" class="right-content">
 
-        <div v-for="item in panelData" class="right-content-block">
+        <div v-for="(item,index) in panelData" class="right-content-block">
             <div class="right-block-title">{{item.groupText}}</div>
 
             <div v-if="item.type=='radio'" class="right-block-items">
                 <div v-for="radio in item.items" class="radios-div" >
                       <label class="radios-label">
-                          <input type="radio" name="radiosGroup" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
+                          <input type="radio" :name="index" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
                       </label>
                 </div>
             </div>
             <div v-if="item.type=='checkbox'" class="right-block-items">
                 <div v-for="checkbox in item.items" class="checkbox-div">
                           <label class="checkbox-label">
-                              <input type="checkbox" name="checkboxGroup"
+                              <input type="checkbox" :name="index"
                               :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType"
                               :data-queryFormat="checkbox.queryFormat"  :data-queryRelation="checkbox.queryRelation"
                               :value="checkbox.queryfield" :data-queryComparison="checkbox.queryComparison" v-model="dataFilter"/>
@@ -59,12 +59,12 @@ export default {
         //视图切换使用
         viewValue:function(newVule){
             if(newVule == 'calendarView'){
-                eventBus.$emit('updataCalendarEvent',newVule);
+                eventBus.$emit('updataCalendarEvent');
             }else{
-                eventBus.$emit('updataListEvent',newVule);
+                eventBus.$emit('updataListEvent');
             }
 
-            eventBus.$emit('updataListEvent',newVule);
+            eventBus.$emit('changeViewEvent',newVule);
 
         },
         //数据过滤
@@ -78,17 +78,26 @@ export default {
         var _self = this;
         _self.isParentFirstEnter = _self.$parent.isFirstEnter;
 
-        if(_self.panelData.length >= 1){
-            $.each(this.panelData,function(key,value){
-                // console.log(value);
-                if(value.type === 'radio' && value.default){
-                    _self.viewValue = value.default;
-                }else if(value.type === 'checkbox' && value.default){
-                    //_self.dataFilter[0] = value.default;
-                    _self.dataFilter.push(value.default);
-                }
-            });
-        }
+        _self.viewValue = _self.panelData[0].default;
+
+        // if(_self.panelData.length >= 1){
+        //     $.each(_self.panelData,function(key,value){
+        //         // console.log(value);
+        //         if(value.type == 'radio' && value.default){
+        //             _self.viewValue = value.default;
+        //         }else if(value.type == 'checkbox' && value.default){
+        //             //_self.dataFilter[0] = value.default;
+        //             _self.dataFilter.push(value.default);
+        //         }
+        //     });
+        // }
+
+        // if(){
+
+        // }
+
+
+
     },
     mounted:function(){
     },

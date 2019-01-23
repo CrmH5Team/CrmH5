@@ -68,7 +68,7 @@ export default {
             rigthPanelData:[
                 {
                   groupText: lanTool.lanContent("794_数据筛选"),
-                  type: "checkbox",
+                  type: "radio",
                   default: "allData",
                   items:[
                       {

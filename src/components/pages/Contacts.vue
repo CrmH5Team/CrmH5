@@ -66,7 +66,7 @@ export default {
             //侧滑数据模型
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
-                type: "checkbox",
+                type: "radio",
                 default: "allData",
                 items: [{
                         text: lanTool.lanContent("795_全部"),

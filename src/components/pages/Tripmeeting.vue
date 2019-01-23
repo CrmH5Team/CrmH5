@@ -10,7 +10,7 @@
         <!-- list 视图 -->
         <div v-show="viewType=='listView'" class="list-view">
             <div class="nav sticky">
-                <div @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
+                <div id="meetingPanel" @click="switchPage(0,'meeting',$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
                 <div class="nav-item f16 lanText" data-lanid="819_出差"></div>
                 <div class="nav-border"></div>
             </div>
@@ -91,16 +91,21 @@ export default {
                 },
                 {
                     groupText: lanTool.lanContent('856_数据筛选'),
-                    type: 'checkbox',
-                    default: 'mySchedule',
-                    items: [{
+                    type: 'radio',
+                    default: 'allData',
+                    items: [
+                        {
+                            text: lanTool.lanContent('795_全部'),
+                            value: 'allData'
+                        },
+                        {
                             text: lanTool.lanContent('930_我的日程'),
                             value: 'mySchedule'
                         },
-                        {
-                            text: lanTool.lanContent('931_我的团队成员'),
-                            value: 'fromMyDirectTeamMember'
-                        },
+                        // {
+                        //     text: lanTool.lanContent('931_我的团队成员'),
+                        //     value: 'fromMyDirectTeamMember'
+                        // },
                         {
                             text: lanTool.lanContent('932_所有团队成员'),
                             value: 'fromMyAllTeamMember'
@@ -277,21 +282,26 @@ export default {
 
             _self.searchData = _self.meetingSearch;
 
-            $("#companySwitchPage").trigger("click");
+            $("#meetingPanel").trigger("click");
 
+        }else{
+            //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
+            if (fromSearchBtn) {
+                _self.RefreshCurPageGroupData();
+            }
         }
 
 
 
-
-        eventBus.$on('updataListEvent', function (data) {
+        //视图切换
+        eventBus.$on('changeViewEvent', function (data) {
             _self.viewType = data;
         })
-
+        //更新数据
         eventBus.$on('updataListEvent', function () {
-            // _self.viewType = data;
-        })
 
+
+        })
         _self.searchData = _self.meetingSearch;
         //tool.InitiateGroupList('meeting', $('#meetingList'));
 
@@ -383,7 +393,6 @@ export default {
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
 
-            // $('.list-view .pageList').eq(num).show().siblings('.pageList').hide();
             _self.showPage = num;
 
             var container = null;
@@ -412,8 +421,52 @@ export default {
                 });
             })
         },
-        setQuerycondition: function () {
 
+
+
+        setQuerycondition: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
+            // console.log(_self.queryCondiction);
+            //执行监听的这个动作
+            _self.RefreshCurPageGroupData();
+        },
+        setQueryconditionOnlyData: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
+        },
+
+        //刷新当前激活的page的分组数据
+        RefreshCurPageGroupData: function () {
+            var _self = this;
+            //console.log(_self.showPage);
+            var num = _self.showPage;
+            var container = null;
+            var fromType = "";
+            if (num == 0) {
+                _self.searchData = _self.OrganizationsSearch;
+
+                fromType = "organizations";
+                container = $("#organizationsList");
+            } else {
+                _self.searchData = _self.ContactsSearch;
+                fromType = "contacts";
+                container = $("#contactsList");
+            }
+
+            //渲染数据
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
+                if (tool.isNullOrEmptyObject(containerObj)) {
+                    _self.noData = true;
+                    return;
+                }
+                if (!containerObj.html()) {
+                    _self.noData = true;
+                } else {
+                    _self.noData = false;
+                }
+            });
         }
     },
 
