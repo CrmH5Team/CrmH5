@@ -470,7 +470,6 @@ export default {
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
-            // console.log(_self.queryCondiction);
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
