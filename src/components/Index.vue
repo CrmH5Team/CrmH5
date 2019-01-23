@@ -62,7 +62,7 @@
         <div class="title-text f14 lanText" data-lanid="872_最近7天要参加的会议"></div>
         <router-link to="/tripmeeting"
           class="check-all right f14 a">
-              <span class="">更多</span>&gt;&gt;
+              <span class="lanText" data-lanid="936_更多"></span>&gt;&gt;
         </router-link>
       </div>
 
