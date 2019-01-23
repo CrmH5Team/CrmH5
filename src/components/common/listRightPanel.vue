@@ -47,7 +47,7 @@
             <div class="right-block-items">
                 <div class="other-search" id="OtherSearchBtn" @click="goSearchPage">
                     <span class="other-search-icon mui-icon calcfont calc-sousuo"></span>
-                    <label class="other-search-label">Search</label>
+                    <label class="other-search-label lanText" data-lanid="780_搜索"></label>
                 </div>
             </div>
         </div>

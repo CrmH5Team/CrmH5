@@ -24,7 +24,7 @@
                         <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
+                        <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="OpportunityBusinessTypes" class="ListCellContentRightText"/>
                     </div>
                     <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                 </div>
@@ -40,25 +40,25 @@
                 </div>
             </div>
 
-            <!-- opportunities 模块才有 的属性 -->
+            <!-- opportunities 模块才有的属性 -->
             <div class="OpportunitiesList" v-show="showPage=='1'">
                   <!-- 公司 -->
-                  <div class="ListSpecialCell" id="Organization">
+                  <div class="ListSpecialCell" id="CompanyIDClickObj">
                       <div class="ListSpecialCellField">
                           <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
                           <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                           <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
-                      <div
-                        class="ListSpecialCellContent"
-                        data-field="CompanyID"
-                        data-fieldcontroltype="selectList"
-                        data-lanid="790_公司"
-                        data-fieldval=""
-                        data-selecttype="radio"
-                        code="DropDowList_ViewBaseCompanyBaseInf"
-                        typevalue = ""
-                        data-clickobj="CompanyIDClickObj"
+                      <div 
+                      class="ListSpecialCellContent" 
+                      data-field="CompanyID" 
+                      data-fieldcontroltype="selectList" 
+                      data-lanid="790_公司" 
+                      data-fieldval="" 
+                      data-selecttype="radio" 
+                      code="DropDowList_ViewBaseCompanyBaseInf" 
+                      typevalue="" 
+                      data-clickObj="CompanyIDClickObj"
                       ></div>
                   </div>
                   <!-- 联系人 -->
@@ -261,14 +261,12 @@ export default {
     },
 
     beforeRouteEnter: function (to, from, next) {
-
         //如果是从以下路由回来的就不用刷新页面
         if (from.name == 'selectlist' || from.name == 'groupselectlist' || from.name == 'meetingNoteinfo' || from.name == 'poweruser') {
             to.meta.isBack = true;
         }
         next();
     },
-
     created: function () {
         this.isFirstEnter = true;
     },
@@ -292,11 +290,9 @@ export default {
         if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
-            // _self.operation = false;
         }else{
             $(".HideWhenNew").show();
             _self.isAddNew = false;
-            // _self.operation = true;
         }
 
         var _isBack = _self.$route.meta.isBack;
@@ -343,7 +339,6 @@ export default {
             $(window).scrollTop(0);
 
         }else{
-
             // _self.isFirstEnter = false;
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
@@ -365,8 +360,6 @@ export default {
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
         _self.isFirstEnter = false;
-
-
     },
     methods: {
         //查看有权限访问的同事跳转事件
@@ -385,8 +378,7 @@ export default {
             query: parameter
           });
         },
-
-        //查看/添加  会议记录
+        //查看/添加会议记录
         goRecord: function (e) {
             var _self = this;
             var tager = $(e.target);
@@ -432,7 +424,6 @@ export default {
                 }
           });
         },
-
         //右侧点击关闭这个
         rightPanelCloseThis:function(){
             var _self = this;
@@ -498,7 +489,6 @@ export default {
 
         }
     }
-
 }
 </script>
 

@@ -36,17 +36,17 @@
                         </p>
                     </div>
                 </div>
-                <div class="ListSpecialCell visible" id="Organization">
+                <div class="ListSpecialCell visible" id="CompanyIDClickObj">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon">
                             <span class="calcfont calc-gongsixinxi"></span>
                         </div>
-                        <div id="CompanyIDClickObj" class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon">
                             <span class="calcfont calc-you"></span>
                         </div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInf" typevalue="" data-clickobj="CompanyIDClickObj"></div>
+                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInf" typevalue="" data-clickObj="CompanyIDClickObj"></div>
                 </div>
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon textLeftIcon">
@@ -421,9 +421,10 @@ export default {
     methods: {
         //查看有权限访问的同事跳转事件
         goToShareList: function () {
+            var _self = this;
             var fromType = "6";
-            var fromID = $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
-            if (tool.isNullOrEmptyObject(fromID)) {
+            var fromID = _self.$route.params.id||"";
+            if(tool.isNullOrEmptyObject(fromID)){
                 return;
             }
             var parameter = {

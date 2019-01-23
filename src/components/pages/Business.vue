@@ -8,7 +8,6 @@
             <div id="opportunitiesSwitchPage" @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="649_商业机会"></div>
             <div class="nav-border"></div>
         </div>
-
         <div v-show="showPage == 0" class="pageList">
               <div class="add-btn-div">
                     <div @click="addBtn" data-link="/opportunitiesinfo/-1" class="add-div" >
@@ -20,7 +19,6 @@
               <div v-show="!noData" id="dealpipelineList"></div>
               <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
-
         <div v-show="showPage == 1" class="pageList">
               <div class="add-btn-div">
                     <div @click="addBtn" data-link="/opportunitiesinfo/-1" class="add-div" >
@@ -32,11 +30,7 @@
               <div v-show="!noData" id="opportunitiesList"></div>
               <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
-
-
     </div>
-
-
     <!--  右侧侧滑 -->
     <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
 
@@ -371,7 +365,6 @@ export default {
                 })
             },100)
         },
-
         //列表展开收起
         groupToggle:function(){
             $("#dealpipelineList,#opportunitiesList").on(
@@ -447,7 +440,6 @@ export default {
 
             })
         },
-
         //切换页面
         switchPage:function(num, e){
             var _self = this;

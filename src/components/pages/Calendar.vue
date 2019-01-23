@@ -339,6 +339,7 @@ export default {
             // _self.calendarObjGlobal = calendarObj;
 
             var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            console.log("allQueryData："+JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -402,7 +403,7 @@ export default {
                         }
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
-                        console.log("dateStr:"+dateStr);
+                        $(".date-text").text(dateStr+"  "+tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
                     });
                 },

@@ -68,7 +68,7 @@
                         <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
-                <div class="ListSpecialCell specialCell" id="Organization">
+                <div class="ListSpecialCell specialCell" id="CompanyIDClickObj">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
@@ -83,7 +83,7 @@
                         data-selecttype="radio"
                         code="DropDowList_ViewBaseCompanyBaseInf"
                         typevalue = ""
-                        data-clickobj="CompanyIDClickObj"
+                        data-clickObj="CompanyIDClickObj"
                       ></div>
                 </div>
                 <div class="ListCell">
