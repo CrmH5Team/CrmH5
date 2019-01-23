@@ -294,7 +294,10 @@ label.radios-label input:disabled:checked + .radios:after {
 .meeting-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
   left: 0; top: 0; position: absolute;
 }
-.meeting-list .item-title{font-weight: 600;color:#333;}
+.meeting-list .item-title{font-weight: 600;color:#333;width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
 .meeting-list .item-time{color:#333;}
 .meeting-list .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
 
