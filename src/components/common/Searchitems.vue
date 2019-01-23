@@ -55,14 +55,15 @@
                     />
 
                   <!-- <div v-else-if="item.type==='datepicker'" class="datepicker row-cell-ft" :data-field="item.field" :data-val="item.value" :id="item.id" data-minute="true">{{item.value}}</div> -->
-                  <input v-else-if="item.fieldControlType=='datepicker'" class="datepicker row-cell-ft f12"
+                  <input v-else-if="item.fieldControlType=='dateTimePicker'" class="dateTimePicker row-cell-ft f12"
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
+                    :data-TimeType="item.timeType"
                     data-fieldVal= ""
                     :Code="item.Code"
                     :TypeValue="item.TypeValue"
                     :data-queryType="item.queryType"
-                    :data-queryFormat="item.queryFormat"
+                    :data-format="item.queryFormat"
                     :data-queryRelation="item.queryRelation"
                     :data-queryValue="item.queryValue"
                     :data-queryComparison="item.queryComparison"
@@ -166,6 +167,10 @@ border-bottom: 1px solid beige;}
   box-sizing: border-box;color:rgb(102, 102, 102);
   text-align: right;
   padding:10px 10px 0 0;
+}
+.item-row-flex .dateTimePicker.row-cell-ft{
+   background: none;
+   border: none;
 }
 .item-row-flex input.row-cell-ft{height: 30px;}
 .resulte-row{word-wrap : break-word;padding-bottom:10px;color:#666;}
