@@ -311,6 +311,30 @@
 	 */
 	tool.Api_MeetingHandle_GroupInnerData = "Api_MeetingHandle_GroupInnerData";
 
+	/*
+	 * 销售机会分组接口
+	 */
+	tool.Api_OpportunityHandle_Group = "Api_OpportunityHandle_Group";
+	/*
+	 * 销售机会分组详情数据接口
+	 */
+	tool.Api_OpportunityHandle_GroupInnerData = "Api_OpportunityHandle_GroupInnerData";
+	/*
+	 * 销售机会详情接口
+	 */
+	tool.Api_OpportunityHandle_QuerySingle = "Api_OpportunityHandle_QuerySingle";
+	/*
+	 * 销售机会保存接口
+	 */
+	tool.Api_OpportunityHandle_SaveOrUpdate = "Api_OpportunityHandle_SaveOrUpdate";
+	/*
+	 * 销售机添加/删除关注接口
+	 */
+	tool.Api_OpportunityHandle_UserFollow = "Api_OpportunityHandle_UserFollow";
+	/*
+	 * 销售机删除接口
+	 */
+	tool.Api_OpportunityHandle_Delete = "Api_OpportunityHandle_Delete";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -2705,7 +2729,7 @@
 		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
 		} else if (fromType == "Opportunitiesinfo") {
-			controlName = "";
+			controlName = tool.Api_OpportunityHandle_UserFollow;
 		} else {
 			return;
 		}

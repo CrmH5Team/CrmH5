@@ -24,6 +24,12 @@
 	"Api_MeetingHandle_QuerySingle":"Api_MeetingHandle_QuerySingle",
 	"Api_MeetingHandle_Group":"Api_MeetingHandle_Group",
 	"Api_MeetingHandle_GroupInnerData":"Api_MeetingHandle_GroupInnerData",
+	"Api_OpportunityHandle_Group":"Api_OpportunityHandle_Group",
+	"Api_OpportunityHandle_GroupInnerData":"Api_OpportunityHandle_GroupInnerData",
+	"Api_OpportunityHandle_QuerySingle":"Api_OpportunityHandle_QuerySingle",
+	"Api_OpportunityHandle_SaveOrUpdate":"Api_OpportunityHandle_SaveOrUpdate",
+	"Api_OpportunityHandle_UserFollow":"Api_OpportunityHandle_UserFollow",
+	"Api_OpportunityHandle_Delete":"Api_OpportunityHandle_Delete",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

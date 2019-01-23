@@ -36,17 +36,17 @@
                         </p>
                     </div>
                 </div>
-                <div class="ListSpecialCell visible" id="Organization">
+                <div class="ListSpecialCell visible" id="CompanyIDClickObj">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon">
                             <span class="calcfont calc-gongsixinxi"></span>
                         </div>
-                        <div id="CompanyIDClickObj" class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon">
                             <span class="calcfont calc-you"></span>
                         </div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInf" typevalue="" data-clickobj="CompanyIDClickObj"></div>
+                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInf" typevalue="" data-clickObj="CompanyIDClickObj"></div>
                 </div>
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon textLeftIcon">
