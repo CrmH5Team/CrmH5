@@ -310,11 +310,15 @@ export default {
 
 
         })
+         eventBus.$on('changeViewEvent', function (data) {
+             _self.viewType = data;
+        })
         _self.searchData = _self.meetingSearch;
         //tool.InitiateGroupList('meeting', $('#meetingList'));
 
     },
     deactivated:function(){
+        eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
     },
     methods: {
