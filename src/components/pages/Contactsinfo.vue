@@ -223,7 +223,7 @@
                     </div>
 
                     <div class="accessView">
-                        <div class="ListCell" @click="goToShareList">
+                        <div class="ListCell" @click.stop="goToShareList">
                             <div class="ListCellLeftIcon">
                                 <span class="calcfont calc-yidu"></span>
                             </div>
@@ -421,12 +421,14 @@ export default {
     methods: {
         //查看有权限访问的同事跳转事件
         goToShareList: function () {
-            var companyID = $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
-            if (tool.isNullOrEmptyObject(companyID)) {
+            var fromType = "6";
+            var fromID = $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
+            if (tool.isNullOrEmptyObject(fromID)) {
                 return;
             }
             var parameter = {
-                companyID: companyID
+                fromType: fromType,
+                fromID:fromID
             };
             this.$router.push({
                 path: "/poweruser",
