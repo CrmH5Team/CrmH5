@@ -132,6 +132,7 @@ const router =  new Router({
         keepAlive: true,
         isBack:false,
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
+        listName:business
       }
     },
     //会议记录
@@ -140,6 +141,7 @@ const router =  new Router({
         keepAlive: true,
         isBack:false,
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
+        listName:opportunitiesinfo
       }
     },
     { path:'/linkedpage',name:'linkedpage',component:Linkedpage },
