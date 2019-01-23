@@ -293,11 +293,6 @@ export default {
 
 
 
-        //视图切换
-        eventBus.$on('changeViewEvent', function (data) {
-            _self.viewType = data;
-        })
-        //更新数据
         eventBus.$on('updataListEvent', function () {
 
 
