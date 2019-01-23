@@ -189,11 +189,23 @@ export default {
         lanTool.updateLanVersion();
         var _self = this;
 
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        // eventBus.queryCondictionData = null; //在calendar组件中不能清空，不然父组件接收不到数据
+
+        //获取是否是从搜索页面点击确定按钮返回来的标志
+        var fromSearchBtn = eventBus.fromSearchBtn || false;
+        // eventBus.fromSearchBtn = false; //在calendar组件中不能清空，不然父组件接收不到数据
+
         if (!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave) {
             if (this.isFirstEnter) {
                 this.initCalendar();
             }
             if (!tool.isNullOrEmptyObject(_self.calendarObjGlobal)) {
+                _self.setCalendarEvent(_self.calendarObjGlobal);
+            }
+        }else{
+            // 若从搜索页面点击确定搜索按钮返回则从新请求当前月数据
+            if (fromSearchBtn) {
                 _self.setCalendarEvent(_self.calendarObjGlobal);
             }
         }
@@ -208,12 +220,6 @@ export default {
         eventBus.$on('RightPanelCalendarEvent', function (data) {
             _self.setQuerycondition(data);
         });
-
-        _self.queryCondictionData = eventBus.queryCondictionData || [];
-          // console.log('calendar');
-          // console.log("calendardata:"+_self.queryCondictionData);
-
-        // eventBus.queryCondictionData = null;
 
         // this.$route.meta.isBack = false;
         // this.$route.meta.fromSave = false;
