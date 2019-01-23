@@ -291,11 +291,10 @@ export default {
       this.isFirstEnter = true;
     },
     mounted:function(){
-        var _self = this;
     },
     activated:function(){
-        lanTool.updateLanVersion();
         var _self = this;
+        lanTool.updateLanVersion();
         _self.changePos();
         _self.watchScroll();
         _self.groupToggle();
@@ -313,9 +312,7 @@ export default {
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter ){
-
             _self.searchData = _self.dealPipelineSearch;
-
             $("#dealPipelineSwitchPage").trigger("click");
 
         }else{

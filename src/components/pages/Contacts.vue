@@ -458,6 +458,7 @@ export default {
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
+                // console.log(containerObj.html());
                 if (tool.isNullOrEmptyObject(containerObj)) {
                     _self.noData = true;
                     return;
