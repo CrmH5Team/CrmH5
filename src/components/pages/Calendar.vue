@@ -121,6 +121,7 @@
 
 <script>
 import Nothing from "../common/Nothing"
+import eventBus from '../common/Event';
 export default {
     components: {
       'nothing':Nothing
@@ -176,24 +177,37 @@ export default {
     mounted:function(){
         this.changePos();
     },
-    beforeRouteEnter:function(to, from, next){
-        //if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
-        if(from.name == 'calendarlistinfo'){
-            to.meta.isBack = true;
-        }
-        next();
-    },
+    // beforeRouteEnter:function(to, from, next){
+    //     //if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
+    //     if(from.name == 'calendarlistinfo'){
+    //         to.meta.isBack = true;
+    //     }
+    //     next();
+    // },
     activated:function(){
         lanTool.updateLanVersion();
+        var _self = this;
 
         if(!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave){
             this.initCalendar();
         }
 
-        this.$route.meta.isBack = false;
-        this.$route.meta.fromSave = false;
+        eventBus.$on('updataCalendarEvent',function(){
+            _self.setCalendarEvent(_self.calendarObjGlobal);
+        });
+
+        // if(this.isFirstEnter){
+        //     this.initCalendar();
+        // }
+
+        // this.$route.meta.isBack = false;
+        // this.$route.meta.fromSave = false;
         this.isFirstEnter = false;
     },
+    deactivated:function(){
+        eventBus.$off('updataCalendarEvent');
+    },
+
     methods:{
         //点击去详情页
         goInfoPage:function(autoID,el){
@@ -204,8 +218,9 @@ export default {
                 return;
             }
             var url = "/meetinginfo/"+autoID;
-            _self.$router.push(url);          
+            _self.$router.push(url);
         },
+
         //tab切换页面
         switchPage:function(num, e){
             console.log("switchPage");
@@ -216,6 +231,7 @@ export default {
             _self.changePos();
             _self.showPage = num;
         },
+
         //table底部横条过渡效果
         changePos:function() {
             this.$nextTick(function(){
@@ -230,6 +246,7 @@ export default {
         //初始化日历
         initCalendar:function(){
             var _self = this;
+            _self.$nextTick(function(){
             //日历控件初始化
             $("#inline-calendar").calendar({
                 multiple:false,
@@ -277,22 +294,23 @@ export default {
                 onMonthAdd:function(p, monthContainer){
                     setTimeout(function(){
                         //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
+                        _self.calendarObjGlobal = p;
                         _self.setCalendarEvent(p);
                     },0);
                 }
             });
+            })
         },
         //获取当月的会议记录
         setCalendarEvent:function(calendarObj,myCallBack){
                 //先清空样式
                 $("div.calendar-event").removeClass("calendar-event");
 
-                console.log("setCalendarEvent");
                 var _self = this;
                 if(tool.isNullOrEmptyObject(calendarObj)){
                     return;
                 }
-                _self.calendarObjGlobal = calendarObj;
+                // _self.calendarObjGlobal = calendarObj;
 
                 var urlTemp = tool.AjaxBaseUrl();
                 var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
@@ -324,7 +342,7 @@ export default {
                     if(data.length <=0){
                         return true;
                     }
-                    
+
                     for(var i =0;i<data.length;i++){
                         var dateTemp = new Date(data[i]);
                         if(!dateTemp){
@@ -419,7 +437,7 @@ export default {
                     _self.notMeeting = true;
                     return true;
                 }
-                
+
                 //modify by Dylan 改用v-model绑定数据
                 //因为子控件的渲染不能用jq,否则会append不进去
                 // var htmlStr = "";

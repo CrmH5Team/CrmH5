@@ -255,34 +255,49 @@ export default {
 
     },
     activated: function () {
+
         lanTool.updateLanVersion();
         var _self = this;
-        _self.viewType = "calendarView";
-        eventBus.$on('changeViewEvent', function (data) {
-            // if(data === '' || data === undefined) return;
-            // if(data === 'listView'){
-            //     $('.calendar-view').hide();
-            //     $('.list-view').show();
+        _self.changePos();
+        _self.groupToggle();
+        _self.goInfoPage();
+        _self.watchScroll();
 
-            //     if(_self.showPage == 0){
-            //         tool.InitiateGroupList('meeting',$('#meetingList'));
-            //     }else{
-            //         tool.InitiateGroupList('trip',$('#tripList'));
-            //     }
-            // }else{
-            //     $('.calendar-view').show();
-            //     $('.list-view').hide();
-            // }
+        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        eventBus.queryCondictionData = null;
+
+        //获取是否是从搜索页面点击确定按钮返回来的标志
+        var fromSearchBtn = eventBus.fromSearchBtn || false;
+        eventBus.fromSearchBtn = false;
+
+        var _fromSave = _self.$route.meta.fromSave;
+        var _isBack = _self.$route.meta.isBack;
+
+        if (_fromSave || !_isBack || _self.isFirstEnter) {
+
+            _self.searchData = _self.meetingSearch;
+
+            $("#companySwitchPage").trigger("click");
+
+        }
+
+
+
+
+        eventBus.$on('updataListEvent', function (data) {
             _self.viewType = data;
+        })
+
+        eventBus.$on('updataListEvent', function () {
+            // _self.viewType = data;
         })
 
         _self.searchData = _self.meetingSearch;
         //tool.InitiateGroupList('meeting', $('#meetingList'));
 
-        _self.changePos();
-        _self.groupToggle();
-        _self.goInfoPage();
-        _self.watchScroll();
+    },
+    deactivated:function(){
+        eventBus.$off('changeViewEvent');
     },
     methods: {
         //监听滚动固定
