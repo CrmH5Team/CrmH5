@@ -269,6 +269,17 @@ export default {
 
         }
     },
+    beforeRouteEnter: function (to, from, next) {
+        // console.log(from);
+        // console.log(to);
+        //
+        if (from.name == "tripinfo" || from.name == "meetinginfo" || from.name == "searchmodule") {
+            to.meta.isBack = true;
+        } else {
+            to.meta.isBack = false;
+        }
+        next();
+    },
     mounted: function () {
 
     },
@@ -307,13 +318,12 @@ export default {
 
 
         eventBus.$on('updataListEvent', function () {
-
-
+            _self.RefreshCurPageGroupData();
         })
          eventBus.$on('changeViewEvent', function (data) {
              _self.viewType = data;
         })
-        _self.searchData = _self.meetingSearch;
+        // _self.searchData = _self.meetingSearch;
         //tool.InitiateGroupList('meeting', $('#meetingList'));
 
     },
@@ -434,8 +444,6 @@ export default {
             })
         },
 
-
-
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
@@ -456,14 +464,14 @@ export default {
             var container = null;
             var fromType = "";
             if (num == 0) {
-                _self.searchData = _self.OrganizationsSearch;
+                _self.searchData = _self.meetingSearch;
 
-                fromType = "organizations";
-                container = $("#organizationsList");
+                fromType = "meeting";
+                container = $("#meetingList");
             } else {
-                _self.searchData = _self.ContactsSearch;
-                fromType = "contacts";
-                container = $("#contactsList");
+                _self.searchData = _self.tripSearch;
+                fromType = "trip";
+                container = $("#tripList");
             }
 
             //渲染数据
