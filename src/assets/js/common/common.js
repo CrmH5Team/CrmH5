@@ -2800,7 +2800,49 @@
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
-		//3>textareaInput
+		//3>groupSelectList
+		$("[data-fieldControlType='groupSelectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.attr("data-fieldval") || "";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj =
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+		//4>linkSelectList
+		$("[data-fieldControlType='linkSelectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.attr("data-fieldval") || "";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj =
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+		//5>textareaInput
 		$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 			var _curObj = $(this);
 			if(tool.isNullOrEmptyObject(_curObj)){
@@ -2821,6 +2863,28 @@
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
+		//6>dateTimePicker
+		$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+			var _curObj = $(this);
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return true;
+			}
+			var value = _curObj.val()||"";
+			if(tool.isNullOrEmptyObject(value)){
+				return true;
+			}
+			var queryCondictionObj =
+			{
+				Field:_curObj.attr("data-field") || "",
+				Type:_curObj.attr("data-querytype") || "",
+				Format:_curObj.attr("data-queryformat") || "",
+				Relation:_curObj.attr("data-queryrelation") || "",
+				Value:value,
+				Comparison:_curObj.attr("data-querycomparison") || "",
+			};
+			queryCondiction.push(queryCondictionObj);
+		});
+		
 
 		//console.log(queryCondiction);
 		//执行回调函数

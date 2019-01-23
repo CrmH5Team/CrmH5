@@ -2,17 +2,14 @@
 <div>
     <header class="header sticky">
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
-
         <h1 class="header-title f18">{{title||''}}</h1>
-
     </header>
 
     <div class="nav sticky">
-        <div @click="switchPage(0,$event)" class="f16 nav-item active-item  lanText" data-lanid="631_用户"></div>
-        <div @click="switchPage(1,$event)" class="f16 nav-item  lanText" data-lanid="632_用户组" ></div>
+        <div id="navUser" @click="switchPage(0,$event)" class="f16 nav-item active-item  lanText" data-lanid="631_用户"></div>
+        <div id="navGroup" @click="switchPage(1,$event)" class="f16 nav-item  lanText" data-lanid="632_用户组" ></div>
         <div class="nav-border"></div>
     </div>
-
 
     <div class="selectList-scroll">
 
@@ -75,9 +72,6 @@
                       <div v-for="item in groupData" class="group-div">
                           <div  class="item-div f14" @click="groupToggle">
                               {{item.groupName}}
-                              <!-- <label class="checkbox-label" @click.stop>
-                                  <input type="checkbox" name="group" :value="item.value" v-model="groupCheckedValue"/><i class="checkbox"></i><span class="f14">{{item.groupName}}</span>
-                              </label> -->
                           </div>
                           <div class="child-list">
                               <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
@@ -106,90 +100,42 @@ export default {
     data() {
         return {
             title: 'Share with',
-
-            notUserData:false, //没数据
-            notGroupData:false, //没数据
-
-            sourceID:'', //来源id
-
+            noUserData:false, //没数据
+            noGroupData:false, //没数据
+            FromType: "", //来源类型
+            FromID: "", //来源ID
             //用户数据
             userData: [
-                {
-                  groupName:'group1',
-                  value:'group1',
-                  groupMember:[
-                      {text:'Alan1',value:'Alan1'},
-                      {text:'Alan2',value:'Alan2'},
-                      {text:'Alan3',value:'Alan3'},
-                  ]
-                },
-                {
-                  groupName:'group2',
-                  value:'group2',
-                  groupMember:[
-                      {text:'Alan4',value:'Alan4'},
-                      {text:'Alan5',value:'Alan5'},
-                      {text:'Alan6',value:'Alan6'},
-                  ]
-                },
-                {
-                  groupName:'group3',
-                  value:'group3',
-                  groupMember:[
-                      {text:'Alan7',value:'Alan7'},
-                      {text:'Alan8',value:'Alan8'},
-                      {text:'Alan9',value:'Alan9'},
-                  ]
-                },
+                // {
+                //   id:'group1',
+                //   text:'group1'
+                // }
             ],
             //组数据
             groupData:[
-                {
-                  groupName:'group1',
-                  value:'group1',
-                  groupMember:[
-                      {text:'Alan1',value:'Alan1'},
-                      {text:'Alan2',value:'Alan2'},
-                      {text:'Alan3',value:'Alan3'},
-                  ]
-                },
-                {
-                  groupName:'group2',
-                  value:'group2',
-                  groupMember:[
-                      {text:'Alan4',value:'Alan4'},
-                      {text:'Alan5',value:'Alan5'},
-                      {text:'Alan6',value:'Alan6'},
-                  ]
-                },
-                {
-                  groupName:'group3',
-                  value:'group3',
-                  groupMember:[
-                      {text:'Alan7',value:'Alan7'},
-                      {text:'Alan8',value:'Alan8'},
-                      {text:'Alan9',value:'Alan9'},
-                  ]
-                },
+                // {
+                //   id:'group1',
+                //   text:'group1'
+                // }
             ],
-
-
-
             userCheckedValue:[],
             groupCheckedValue:[],
-
-            showPage:0,
-
+            showPage:0
         }
     },
     created: function () {
-        this.sourceID = this.$route.query.sourceID;
+        this.FromType = this.$route.query.fromType;
+        this.FromID = this.$route.query.fromID;
     },
     mounted: function () {
         lanTool.updateLanVersion();
-        this.getData();
         this.search();
         this.changePos();
+
+         //默认触发第一个选项卡
+            setTimeout(function() {
+            $("#navUser").trigger("click");
+            }, 0);
     },
     methods: {
         //点击分组收起展开
@@ -209,7 +155,6 @@ export default {
                 }
             }
         },
-
         //切换页面
         switchPage:function(num, e){
             document.activeElement.blur();
@@ -219,6 +164,8 @@ export default {
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
             _self.showPage = num;
+
+            this.getData(_self.showPage);
         },
         //table底部横条过渡效果
         changePos:function() {
@@ -230,70 +177,97 @@ export default {
                 });
             })
         },
-
-
         backHandler: function () {
             this.$router.back(-1);
         },
-
-
-        getData: function () {
-            var _self = this;
-            if(tool.isNullOrEmptyObject(_self.sourceID)){
-                return ;
+        getData: function (curPageNum, mycallback) {
+            var isTeam = false;
+            //user
+            if (curPageNum == 0) {
+                _self.groupData = []
+                _self.noGroupData = true;
+                isTeam = false;
+            } else {
+                //group
+                _self.userData = [];
+                _self.noUserData = true;
+                isTeam = true;
             }
+            var _self = this;
+            var fromType = _self.FromType || "";
+            var fromID = _self.FromID || "";
+            var code = "DropDowList_AccessUserOrGroup";
+
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.CommonDataServiceHandle_Query;
             //传入参数
             var jsonDatasTemp = {
-                    CurrentLanguageVersion: lanTool.currentLanguageVersion,
-                    UserName: tool.UserName(),
-                    _ControlName: controlName,
-                    _RegisterCode: tool.RegisterCode(),
-                    // Code: $this.code,
-                    // TypeValue: $this.typeValue
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                Code:code,
+                FromType: fromType,
+                FromID: fromID,
+                IsTeam : isTeam
             };
-
             tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
                 url: urlTemp,
                 data: jsonDatasTemp,
-                // dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                     data = tool.jObject(data);
-                    console.log(data);
+                    // console.log(data);
                     if (data._ReturnStatus == false) {
-                      _self.notData = true;
-                      tool.showText(tool.getMessage(data));
-                      // console.log(tool.getMessage(data));
-                      return true;
+                        if (curPageNum == 0) {
+                        _self.noUserData = true;
+                        } else {
+                        _self.noGroupData = true;
+                        }
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
                     }
 
+                    data = data._OnlyOneData || [];
 
-                    _self.$nextTick(function () {
-                        // if ($this.data.text && $this.data.value) {
-                        //     $this.LocateCurentItem($this.data.value);
-                        // }
-                        // $this.selectItem();
-                    })
-
-
-
+                    if (data.length <= 0) {
+                        if (curPageNum == 0) {
+                            _self.userData = null;
+                            _self.noUserData = true;
+                        } else {
+                            _self.groupData = null;
+                            _self.noGroupData = true;
+                        }
+                    } else {
+                        if (curPageNum == 0) {
+                            _self.userData = data;
+                            _self.noUserData = false;
+                        } else {
+                            _self.groupData = data;
+                            _self.noGroupData = false;
+                        }
+                    }
                 },
-                error: function (jqXHR, type, error) {
-                    console.log("error");
+                error: function(jqXHR, type, error) {
+                    if (curPageNum == 0) {
+                        _self.noUserData = true;
+                    } else {
+                        _self.noGroupData = true;
+                    }
+                    console.log(error);
                     tool.hideLoading();
+                    return true;
                 },
-                complete: function () {
+                complete: function() {
                     tool.hideLoading();
                     //隐藏虚拟键盘
                     document.activeElement.blur();
                 }
-            })
+            });
         },
-
         //筛选
         search: function () {
             this.$nextTick(function () {
@@ -316,10 +290,8 @@ export default {
                     }
                 })
             })
-        },
-
-    },
-
+        }
+    }
 }
 </script>
 
