@@ -59,12 +59,12 @@ export default {
         //视图切换使用
         viewValue:function(newVule){
             if(newVule == 'calendarView'){
-                eventBus.$emit('updataCalendarEvent',newVule);
+                eventBus.$emit('updataCalendarEvent');
             }else{
-                eventBus.$emit('updataListEvent',newVule);
+                eventBus.$emit('updataListEvent');
             }
 
-            eventBus.$emit('updataListEvent',newVule);
+            eventBus.$emit('changeViewEvent',newVule);
 
         },
         //数据过滤

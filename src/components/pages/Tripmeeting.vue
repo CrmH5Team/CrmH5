@@ -284,12 +284,12 @@ export default {
 
 
 
-        eventBus.$on('updataListEvent', function (data) {
-            _self.viewType = data;
-        })
-
         eventBus.$on('updataListEvent', function () {
             // _self.viewType = data;
+        })
+
+        eventBus.$on('changeViewEvent', function (data) {
+            _self.viewType = data;
         })
 
         _self.searchData = _self.meetingSearch;
