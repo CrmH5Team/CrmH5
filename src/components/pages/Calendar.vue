@@ -399,7 +399,7 @@ export default {
                         }
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
-                        console.log("dateStr:"+dateStr);
+                        $(".date-text").text(dateStr+"  "+tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
                     });
                 },
