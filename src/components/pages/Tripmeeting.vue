@@ -426,19 +426,32 @@ export default {
             _self.showPage = num;
 
             var container = null;
-            var moduleName = '';
+            var fromType = '';
             if (_self.showPage == 0) {
                 _self.searchData = _self.meetingSearch;
 
-                moduleName = 'meeting';
+                fromType = 'meeting';
                 container = $('#meetingList');
             } else {
                 _self.searchData = _self.tripSearch;
 
-                moduleName = 'trip';
+                fromType = 'trip';
                 container = $('#tripList');
             }
-            tool.InitiateGroupList(moduleName, container);
+
+            //渲染数据
+            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+              if (tool.isNullOrEmptyObject(containerObj)) {
+                _self.noData = true;
+                return;
+              }
+              if (!containerObj.html()) {
+                _self.noData = true;
+              } else {
+                _self.noData = false;
+              }
+            });
         },
 
         //table底部横条过渡效果
