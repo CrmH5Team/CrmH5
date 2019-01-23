@@ -1,7 +1,7 @@
 <template>
 <div class="nothing-div">
   <icon name="nothing" scale="10"></icon>
-  <div class="f12 nothing-text">NO DATA</div>
+  <div class="f12 nothing-text lanText" data-lanid="937_没有数据" >NO DATA</div>
 </div>
 </template>
 

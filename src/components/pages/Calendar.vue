@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <!-- meeting list -->
-                    <div v-if="!notMeeting" id="calendarMeetingList" class="list meeting-list">
+                    <div v-show="!notMeeting" id="calendarMeetingList" class="list meeting-list">
                         <div v-for="meetingData in meetingDatas" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
                             <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID"> -->
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
@@ -42,7 +42,7 @@
                             <div class="item-initiator">{{meetingData.ContactsID|formatContactsID}}{{meetingData.Title|formatTitle}}</div>
                         </div>
                     </div>
-                    <nothing v-if="notMeeting" style="padding-top:0.8rem;"></nothing>
+                    <nothing v-show="notMeeting" style="padding-top:0.8rem;"></nothing>
 
                 </div>
 
@@ -56,7 +56,7 @@
                     </div>
 
                     <!-- trip list -->
-                    <div v-if="!notTrip" class="list trip-list">
+                    <div v-show="!notTrip" class="list trip-list">
                         <div class="data-events-item f12" @click="goInfoPage(5)">
                             <div class="item-title">
                                 <span>1115-1116东航会议出差上海</span>
@@ -107,7 +107,7 @@
                         </div>
 
                     </div>
-                    <nothing v-if="notTrip" style="padding-top:0.8rem;"></nothing>
+                    <nothing v-show="notTrip" style="padding-top:0.8rem;"></nothing>
 
                 </div>
             </div>
@@ -187,7 +187,12 @@ export default {
         var _self = this;
 
         if (!this.$route.meta.isBack || this.isFirstEnter || this.$route.meta.fromSave) {
-            this.initCalendar();
+            if (this.isFirstEnter) {
+                this.initCalendar();
+            }           
+            if (!tool.isNullOrEmptyObject(_self.calendarObjGlobal)) {
+                _self.setCalendarEvent(_self.calendarObjGlobal);
+            }
         }
 
         eventBus.$on('updataCalendarEvent', function () {
@@ -283,7 +288,6 @@ export default {
                     onDayClick: function (p, dayContainer, year, month, day) {
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
-                        console.log("dateStr:" + dateStr);
                         //展示选中的日期和星期
                         $(".date-text").text(dateStr+"  "+tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
@@ -338,6 +342,7 @@ export default {
 
                     data = data._OnlyOneData.Rows || [];
                     if (data.length <= 0) {
+                        _self.notMeeting = true;
                         return true;
                     }
 
@@ -371,6 +376,7 @@ export default {
                         }
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
+                        console.log("dateStr:"+dateStr);
                         _self.getEventsByDate(dateStr);
                     });
                 },
@@ -422,7 +428,7 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    // console.log(data);
+                    console.log("data:"+data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
                         console.log(tool.getMessage(data));
