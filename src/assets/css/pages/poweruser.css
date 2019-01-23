@@ -155,7 +155,16 @@ width: 100%;  left: 0;  bottom: 0;  position: absolute;
 /*选择组*/
 .select-group-list{background: #fff;}
 
-.select-group-list .item-div{background:#f8f2dc;position: relative;
+.select-group-list .list-item{line-height:1;padding:13px 10px;position: relative;}
+.select-group-list .list-item::after{
+content: "";  display: block;  height: 1px;  background: beige;
+width: 100%;  left: 0;  bottom: 0;  position: absolute;
+}
+.select-group-list .list-item .power{color: #666666;}
+
+
+
+/* .select-group-list .item-div{background:#f8f2dc;position: relative;
     padding: 10px;
     border-bottom: solid 1px beige;
     line-height: 20px;}
@@ -173,4 +182,5 @@ width: 100%;  left: 0;  bottom: 0;  position: absolute;
 .select-group-list .group-div .child-list-item::after{
   content: "";  display: block;  height: 1px;  background: beige;
   width: 100%;  left: 0;  bottom: 0;  position: absolute;
-}
+} */
+

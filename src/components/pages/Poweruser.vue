@@ -26,29 +26,9 @@
                   </div>
                   <!-- 列表 -->
                   <div v-if="!notUserData" class="dataList select-user-list">
-                      <div class="list-item f14">
-                            <span>alan1</span>
-                            <span class="power f12 right">123</span>
-                      </div>
-                      <div class="list-item f14">
-                            <span>alan2</span>
-                            <span class="power f12 right">123</span>
-                      </div>
-                      <div class="list-item f14">
-                            <span>alan3</span>
-                            <span class="power f12 right">123</span>
-                      </div>
-                      <div class="list-item f14">
-                            <span>alan4</span>
-                            <span class="power f12 right">123</span>
-                      </div>
-                      <div class="list-item f14">
-                            <span>alan5</span>
-                            <span class="power f12 right">123</span>
-                      </div>
-                      <div class="list-item f14">
-                            <span>alan16</span>
-                            <span class="power f12 right">123</span>
+                      <div v-for="item in userData" class="list-item f14">
+                            <span>{{item.text}}</span>
+                            <!-- <span class="power f12 right">123</span> -->
                       </div>
                   </div>
                   <!-- 没数据 -->
@@ -69,13 +49,9 @@
                   </div>
                   <!-- 列表 -->
                   <div v-if="!notGroupData" class="dataList select-group-list">
-                      <div v-for="item in groupData" class="group-div">
-                          <div  class="item-div f14" @click="groupToggle">
-                              {{item.groupName}}
-                          </div>
-                          <div class="child-list">
-                              <div v-for="member in item.groupMember" class="child-list-item f14">{{member.text}}</div>
-                          </div>
+                      <div v-for="item in groupData" class="list-item f14">
+                            <span>{{item.text}}</span>
+                            <!-- <span class="power f12 right">123</span> -->
                       </div>
                   </div>
                   <!-- 没数据 -->
@@ -99,24 +75,40 @@ export default {
     },
     data() {
         return {
-            title: 'Share with',
+            title: 'Poweruser',
             noUserData:false, //没数据
             noGroupData:false, //没数据
             FromType: "", //来源类型
             FromID: "", //来源ID
             //用户数据
             userData: [
-                // {
-                //   id:'group1',
-                //   text:'group1'
-                // }
+                {
+                  id:'group1',
+                  text:'group1'
+                },
+                {
+                  id:'group1',
+                  text:'group2'
+                },
+                {
+                  id:'group1',
+                  text:'group3'
+                },
+                {
+                  id:'group1',
+                  text:'group4'
+                }
             ],
             //组数据
             groupData:[
-                // {
-                //   id:'group1',
-                //   text:'group1'
-                // }
+                {
+                  id:'group1',
+                  text:'group1'
+                },
+                {
+                  id:'group1',
+                  text:'group2'
+                }
             ],
             userCheckedValue:[],
             groupCheckedValue:[],
@@ -271,22 +263,23 @@ export default {
         //筛选
         search: function () {
             this.$nextTick(function () {
-                var listDom = $('.dataList');
+                // var listDom = $('.dataList');
                 $('#userInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('.list-item').show();
+                        $('.select-user-list').find('.list-item').show();
 
                     } else {
-                        listDom.find('.list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        $('.select-user-list').find('.list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
                 $('#groupInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
                     if (queryStr === '') {
-                        listDom.find('.group-div').show();
+                        $('.select-group-list').find('.list-item').show();
+
                     } else {
-                        listDom.find('.group-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        $('.select-group-list').find('.list-item').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
             })
