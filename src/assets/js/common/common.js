@@ -1128,7 +1128,7 @@
 				continue;
 			}
 			arr1KeyArray.push(valTemp);
-			allArr.push(arr1);
+			allArr.push(arr1[i]);
 		}
 		// console.log(arr1KeyArray);
 
