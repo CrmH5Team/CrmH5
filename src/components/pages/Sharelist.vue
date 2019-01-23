@@ -385,11 +385,13 @@ export default {
       //清空另一组数据
       //user
       if (curPageNum == 0) {
+        $("#groupInput").val("");
         _self.groupData = []
         _self.groupCheckedValue = [];
         _self.noGroupData = true;
       } else {
         //group
+        $("#userInput").val("");
         _self.userData = [];
         _self.userCheckedValue = [];
         _self.noUserData = true;

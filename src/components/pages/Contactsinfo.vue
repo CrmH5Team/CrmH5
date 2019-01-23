@@ -421,9 +421,10 @@ export default {
     methods: {
         //查看有权限访问的同事跳转事件
         goToShareList: function () {
+            var _self = this;
             var fromType = "6";
-            var fromID = $("[data-field='CompanyID']:first").attr("data-fieldval") || "";
-            if (tool.isNullOrEmptyObject(fromID)) {
+            var fromID = _self.$route.params.id||"";
+            if(tool.isNullOrEmptyObject(fromID)){
                 return;
             }
             var parameter = {
