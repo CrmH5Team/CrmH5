@@ -59,15 +59,12 @@
                     :data-field="item.queryfield"
                     :data-fieldControlType="item.fieldControlType"
                     :data-TimeType="item.timeType"
-                    data-fieldVal= ""
-                    :Code="item.Code"
                     :TypeValue="item.TypeValue"
                     :data-queryType="item.queryType"
                     :data-format="item.queryFormat"
                     :data-queryRelation="item.queryRelation"
                     :data-queryValue="item.queryValue"
                     :data-queryComparison="item.queryComparison"
-                    data-minute="true"
                   />
               </div>
 
