@@ -77,6 +77,7 @@ export default {
             //侧滑数据模型
             rigthPanelData: [{
                     groupText: lanTool.lanContent('867_视图'),
+                    groupName:'view',
                     type: 'radio',
                     default: 'calendarView',
                     items: [{
@@ -91,26 +92,38 @@ export default {
                 },
                 {
                     groupText: lanTool.lanContent('856_数据筛选'),
+                    groupName:'dataFilter',
                     type: 'radio',
                     default: 'allData',
                     items: [
                         {
-                            text: lanTool.lanContent('795_全部'),
-                            value: 'allData'
+                            text: lanTool.lanContent("795_全部"),
+                            queryfield: "allData",
+                            queryType: "string",
+                            queryFormat: "",
+                            queryRelation: "and",
+                            queryValue: "",
+                            queryComparison: "="
                         },
                         {
-                            text: lanTool.lanContent('930_我的日程'),
-                            value: 'mySchedule'
+                            text: lanTool.lanContent("930_我的日程"),
+                            queryfield: "aaaaaaa",
+                            queryType: "string",
+                            queryFormat: "",
+                            queryRelation: "and",
+                            queryValue: "",
+                            queryComparison: "="
                         },
-                        // {
-                        //     text: lanTool.lanContent('931_我的团队成员'),
-                        //     value: 'fromMyDirectTeamMember'
-                        // },
                         {
                             text: lanTool.lanContent('932_所有团队成员'),
-                            value: 'fromMyAllTeamMember'
-                        },
-                        //   {text:'PR Calendar',value:'pRCalendar'},
+                            queryfield: "bbbbbb",
+                            queryType: "string",
+                            queryFormat: "",
+                            queryRelation: "and",
+                            queryValue: "",
+                            queryComparison: "="
+
+                        }
                     ]
                 },
 

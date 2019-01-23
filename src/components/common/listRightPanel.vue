@@ -7,14 +7,27 @@
         <div v-for="(item,index) in panelData" class="right-content-block">
             <div class="right-block-title">{{item.groupText}}</div>
 
-            <div v-if="item.type=='radio'" class="right-block-items">
+            <div v-if="item.type=='radio' && item.groupName =='view'" class="right-block-items">
                 <div v-for="radio in item.items" class="radios-div" >
                       <label class="radios-label">
-                          <input type="radio" :name="index" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
+                          <input type="radio" :name="item.groupName" :value="radio.value" v-model="viewValue"/><i class="radios"></i><span>{{radio.text}}</span>
                       </label>
                 </div>
             </div>
-            <div v-if="item.type=='checkbox'" class="right-block-items">
+
+            <div v-if="item.type=='radio' && item.groupName =='dataFilter'" class="right-block-items">
+                <div v-for="radio in item.items" class="radios-div">
+                          <label class="radios-label">
+                              <input type="radio" :name="item.groupName"
+                              :data-queryfield="radio.queryfield"  :data-queryType="radio.queryType"
+                              :data-queryFormat="radio.queryFormat"  :data-queryRelation="radio.queryRelation"
+                              :value="radio.queryfield" :data-queryComparison="radio.queryComparison" v-model="dataFilter"/>
+                              <i class="radios"></i>
+                              <span>{{radio.text}}</span>
+                          </label>
+                </div>
+            </div>
+            <!-- <div v-if="item.type=='checkbox'" class="right-block-items">
                 <div v-for="checkbox in item.items" class="checkbox-div">
                           <label class="checkbox-label">
                               <input type="checkbox" :name="index"
@@ -25,7 +38,7 @@
                               <span>{{checkbox.text}}</span>
                           </label>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="right-content-block">
@@ -51,7 +64,7 @@ export default {
         return {
             showPanel:false,
             viewValue:'',  //右侧分类
-            dataFilter:[],
+            dataFilter:'',
             isParentFirstEnter:false,  //存储赋组件是否是新创建
         }
     },
@@ -70,7 +83,9 @@ export default {
         //数据过滤
         dataFilter:function(newVule){
              var _self = this;
-            _self.conStructQueryCondition(newVule);
+             var filter = [];
+             filter.push(newVule);
+            _self.conStructQueryCondition(filter);
         }
     },
     props:['panelData','searchData'],
@@ -78,25 +93,18 @@ export default {
         var _self = this;
         _self.isParentFirstEnter = _self.$parent.isFirstEnter;
 
-        _self.viewValue = _self.panelData[0].default;
+        //赋初始值
+        if(tool.isNullOrEmptyObject(_self.panelData)){
+            return ;
+        }
+        $.each(_self.panelData,function(key,value){
 
-        // if(_self.panelData.length >= 1){
-        //     $.each(_self.panelData,function(key,value){
-        //         // console.log(value);
-        //         if(value.type == 'radio' && value.default){
-        //             _self.viewValue = value.default;
-        //         }else if(value.type == 'checkbox' && value.default){
-        //             //_self.dataFilter[0] = value.default;
-        //             _self.dataFilter.push(value.default);
-        //         }
-        //     });
-        // }
-
-        // if(){
-
-        // }
-
-
+            if(value.type == 'radio' && value.default && value.groupName == 'view'){
+                _self.viewValue = value.default;
+            }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
+                _self.dataFilter = value.default;
+            }
+        });
 
     },
     mounted:function(){
@@ -144,8 +152,10 @@ export default {
         //点击侧滑中的search
         goSearchPage:function(){
             var _self = this;
+            var dataFilter = [];
+                dataFilter.push(_self.dataFilter);
             var parameter = {
-                'dataFilter':_self.dataFilter,
+                'dataFilter':dataFilter,
                 'dataModule':_self.searchData
             };
             _self.panelToggle();

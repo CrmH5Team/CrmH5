@@ -66,6 +66,7 @@ export default {
             //侧滑数据模型
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
+                groupName:'dataFilter',
                 type: "radio",
                 default: "allData",
                 items: [{
