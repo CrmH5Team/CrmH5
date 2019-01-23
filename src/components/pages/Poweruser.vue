@@ -25,14 +25,14 @@
                       </div>
                   </div>
                   <!-- 列表 -->
-                  <div v-if="!notUserData" class="dataList select-user-list">
-                      <div v-for="item in userData" class="list-item f14">
+                  <div v-if="!noUserData" class="dataList select-user-list">
+                      <div v-for="item in userData" class="list-item f14" :data-id="item.id">
                             <span>{{item.text}}</span>
                             <!-- <span class="power f12 right">123</span> -->
                       </div>
                   </div>
                   <!-- 没数据 -->
-                  <nothing v-if="notUserData" style="padding-top:0.8rem;"></nothing>
+                  <nothing v-if="noUserData" style="padding-top:0.8rem;"></nothing>
 
             </div>
 
@@ -48,14 +48,14 @@
                       </div>
                   </div>
                   <!-- 列表 -->
-                  <div v-if="!notGroupData" class="dataList select-group-list">
-                      <div v-for="item in groupData" class="list-item f14">
+                  <div v-if="!noGroupData" class="dataList select-group-list">
+                      <div v-for="item in groupData" class="list-item f14" :data-id="item.id">
                             <span>{{item.text}}</span>
                             <!-- <span class="power f12 right">123</span> -->
                       </div>
                   </div>
                   <!-- 没数据 -->
-                  <nothing v-if="notGroupData" style="padding-top:0.8rem;"></nothing>
+                  <nothing v-if="noGroupData" style="padding-top:0.8rem;"></nothing>
             </div>
 
 
@@ -82,36 +82,36 @@ export default {
             FromID: "", //来源ID
             //用户数据
             userData: [
-                {
-                  id:'group1',
-                  text:'group1'
-                },
-                {
-                  id:'group1',
-                  text:'group2'
-                },
-                {
-                  id:'group1',
-                  text:'group3'
-                },
-                {
-                  id:'group1',
-                  text:'group4'
-                }
+                // {
+                //   id:'group1',
+                //   text:'group1'
+                // },
+                // {
+                //   id:'group1',
+                //   text:'group2'
+                // },
+                // {
+                //   id:'group1',
+                //   text:'group3'
+                // },
+                // {
+                //   id:'group1',
+                //   text:'group4'
+                // }
             ],
             //组数据
             groupData:[
-                {
-                  id:'group1',
-                  text:'group1'
-                },
-                {
-                  id:'group1',
-                  text:'group2'
-                }
+                // {
+                //   id:'group1',
+                //   text:'group1'
+                // },
+                // {
+                //   id:'group1',
+                //   text:'group2'
+                // }
             ],
-            userCheckedValue:[],
-            groupCheckedValue:[],
+            // userCheckedValue:[],
+            // groupCheckedValue:[],
             showPage:0
         }
     },
@@ -125,9 +125,9 @@ export default {
         this.changePos();
 
          //默认触发第一个选项卡
-            setTimeout(function() {
+        setTimeout(function() {
             $("#navUser").trigger("click");
-            }, 0);
+        }, 0);
     },
     methods: {
         //点击分组收起展开
@@ -173,14 +173,18 @@ export default {
             this.$router.back(-1);
         },
         getData: function (curPageNum, mycallback) {
+            console.log("getData");
+            var _self = this;
             var isTeam = false;
             //user
             if (curPageNum == 0) {
-                _self.groupData = []
+                $("#groupInput").val("");
+                _self.groupData = [];
                 _self.noGroupData = true;
                 isTeam = false;
             } else {
                 //group
+                $("#userInput").val("");
                 _self.userData = [];
                 _self.noUserData = true;
                 isTeam = true;
