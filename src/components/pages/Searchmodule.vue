@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       isFirstEnter: false, //是否首次进入
-      title: "Search",
+      title: lanTool.lanContent('780_搜索'),
       searchData: [],
       dataFilter: [],
       // Clear: "",
