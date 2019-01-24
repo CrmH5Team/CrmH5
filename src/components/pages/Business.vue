@@ -10,7 +10,7 @@
         </div>
         <div v-show="showPage == 0" class="pageList">
               <div class="add-btn-div">
-                    <div @click="addBtn" data-link="/opportunitiesinfo/-1" class="add-div" >
+                    <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div" >
                         <span class="calcfont calc-add"></span>
                         <span class="add-text lanText" data-lanid="884_增加交易"></span>
                     </div>
@@ -21,7 +21,7 @@
         </div>
         <div v-show="showPage == 1" class="pageList">
               <div class="add-btn-div">
-                    <div @click="addBtn" data-link="/opportunitiesinfo/-1" class="add-div" >
+                    <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div" >
                         <span class="calcfont calc-add"></span>
                         <span class="add-text lanText" data-lanid="885_增加机会"></span>
                     </div>
@@ -95,9 +95,7 @@ export default {
                       }
                   ]
                 },
-
             ],
-
             //侧滑搜索页面数据模型
             searchData:{},
             dealPipelineSearch:[
@@ -267,10 +265,7 @@ export default {
                     value:'',
                     id:Number((new Date()).valueOf()) + count++
                   }
-            ],
-
-
-
+            ]
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -300,8 +295,16 @@ export default {
         _self.groupToggle();
         _self.followToggle();
 
-        _self.queryCondictionData = eventBus.queryCondictionData || [];
-        eventBus.queryCondictionData = null;
+        // _self.queryCondictionData = eventBus.queryCondictionData || [];
+        // eventBus.queryCondictionData = null;
+        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
+            if(this.$route.meta.fromSave){
+                _self.queryCondictionData = [];
+            }else{
+                _self.queryCondictionData = eventBus.queryCondictionData;
+                eventBus.queryCondictionData = null;
+            }
+        }
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
@@ -562,7 +565,6 @@ export default {
             }
           });
         },
-
         //点击添加按钮跳转
         addBtn:function(e){
             var _self = this;
@@ -573,21 +575,19 @@ export default {
                     return;
                 }
             }
-            var urlTemp = target.attr('data-link')||'';
-
-            if(tool.isNullOrEmptyObject(urlTemp)){ return ;}
-
+            var urlTemp = target.attr('data-url')||'';
+            if(tool.isNullOrEmptyObject(urlTemp)){ 
+                return;
+            }
             var parameter = {
-                showPage : _self.showPage,
+                showPage : _self.showPage
             };
             _self.$router.push({
                 path:urlTemp,
                 query: parameter
             });
-
-        },
-    },
-
+        }
+    }
 }
 </script>
 

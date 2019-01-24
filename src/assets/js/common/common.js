@@ -1983,6 +1983,9 @@
 		//2-1>同一行的selectList
 		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off().on('click',function(){
 			var _curObj = $(this);
+			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
+				return;
+			}
 			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
@@ -2280,6 +2283,7 @@
 
 					_curObj.val(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
+					_curObj.trigger('change');
 				});
 				//2>selectList
 				$("[data-fieldControlType='selectList']").each(function (index, obj) {
