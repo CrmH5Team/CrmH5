@@ -244,8 +244,7 @@ export default {
         _self.watchScroll();
 
         lanTool.updateLanVersion();
-        // var _self = this;
-        e.Stopv
+
         if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
             if(this.$route.meta.fromSave){
                 _self.queryCondictionData = [];
