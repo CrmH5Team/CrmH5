@@ -49,15 +49,15 @@
                           <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                           <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
-                      <div 
-                      class="ListSpecialCellContent" 
-                      data-field="CompanyID" 
-                      data-fieldcontroltype="selectList" 
-                      data-lanid="790_公司" 
-                      data-fieldval="" 
-                      data-selecttype="radio" 
-                      code="DropDowList_ViewBaseCompanyBaseInf" 
-                      typevalue="" 
+                      <div
+                      class="ListSpecialCellContent"
+                      data-field="CompanyID"
+                      data-fieldcontroltype="selectList"
+                      data-lanid="790_公司"
+                      data-fieldval=""
+                      data-selecttype="radio"
+                      code="DropDowList_ViewBaseCompanyBaseInf"
+                      typevalue=""
                       data-clickObj="CompanyIDClickObj"
                       ></div>
                   </div>
@@ -308,20 +308,20 @@ export default {
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
 
-            // _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, _self.id, function(){
 
-                    //渲染textarea
-                    $("textarea").each(function (index, cur) {
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
-
                     //渲染数据
                     tool.IniInfoData(fromType, _self.id, function(){
+
+                          //渲染textarea
+                          $("textarea").each(function (index, cur) {
+                              $(cur).height('25');
+                              tool.autoTextarea(cur);
+                          });
+
                           //场景：当在selectList页面按刷新按钮再回到详情页
                           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                                 return;
@@ -345,7 +345,7 @@ export default {
             $(window).scrollTop(0);
 
         }else{
-            // _self.isFirstEnter = false;
+
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
             }
