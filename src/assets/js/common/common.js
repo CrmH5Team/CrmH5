@@ -1802,7 +1802,7 @@
     }
 
     return fieldVal;
-  }
+  };
 
 
 	/*
@@ -2191,6 +2191,12 @@
 
 		});
 
+		//6>渲染hideDivText
+		$("[data-fieldControlType='hideDivText']").each(function (index, obj) {
+			var _curObj = $(this);
+			_curObj.hide();
+		});
+
 		//执行回调函数
 		if (!tool.isNullOrEmptyObject(myCallBack)) {
 			myCallBack();
@@ -2438,7 +2444,7 @@
 				document.activeElement.blur();
 			}
 		});
-	}
+	};
 
 	/*
 	* 保存/修改详情页数据
@@ -2468,7 +2474,7 @@
 		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
 		} else if (fromType == "Opportunitiesinfo") {
-			controlName = "";
+			controlName = tool.Api_OpportunityHandle_SaveOrUpdate;
 		} else {
 			return;
 		}
@@ -2559,6 +2565,19 @@
 			var fieldVal = _curObj.val() || "";
 			jObject[dataField] = fieldVal;
 		});
+		//7>hideDivText
+		$("[data-fieldControlType='hideDivText']").each(function (index, obj) {
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+			var fieldVal = _curObj.text() || "";
+			jObject[dataField] = fieldVal;
+		});
 		//传入参数
 		var jsonDatasTemp = {
 			CurrentLanguageVersion: lanTool.currentLanguageVersion,
@@ -2626,7 +2645,7 @@
 				document.activeElement.blur();
 			}
 		});
-	}
+	};
 
 	/*
 	* 删除数据
@@ -2654,7 +2673,7 @@
 		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
 		} else if (fromType == "Opportunitiesinfo") {
-			controlName = "";
+			controlName = tool.Api_OpportunityHandle_Delete;
 		} else {
 			return;
 		}
@@ -2735,7 +2754,7 @@
 			},
 			function() {}
 		  );
-	}
+	};
 
 	/*
 	* 添加/取消关注
@@ -2808,7 +2827,7 @@
 				document.activeElement.blur();
 			}
 		});
-	}
+	};
 
 	/*
 	* 构造综合查询条件
@@ -2949,8 +2968,19 @@
 		if(!tool.isNullOrEmptyObject(myCallBack)){
 			myCallBack(queryCondiction);
 		}
-	}
+	};
 
+	//获取Public对象
+	tool.GetPublicObj = function(){
+		var curLV = lanTool.currentLanguageVersion;
+		var textTemp =  lanTool.lanContent("811_公开的");
+		var idTemp = 23;
+		return 
+		{
+			id = idTemp,
+			text = textTemp
+		}
+	};
 }(top.window.tool = {}, jQuery));
 
 
