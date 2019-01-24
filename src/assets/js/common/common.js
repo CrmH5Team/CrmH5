@@ -2979,11 +2979,12 @@
 		var curLV = lanTool.currentLanguageVersion;
 		var textTemp =  lanTool.lanContent("811_公开的");
 		var idTemp = 23;
-		return 
-		{
-			id = idTemp,
-			text = textTemp
-		}
+		var obj = {
+			id : idTemp,
+			text : textTemp
+		};
+
+		return obj;
 	};
 }(top.window.tool = {}, jQuery));
 
