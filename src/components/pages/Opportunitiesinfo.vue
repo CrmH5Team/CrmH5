@@ -399,7 +399,17 @@ export default {
                         }
                     });
                     //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
-                     //$("[data-field='IsPublic']").val('Pulic').attr("data-fieldval","23").trigger("change");
+                    // 如是新增状态 默认给data-field="Initiator"赋予23(公开)
+                    if (_self.isAddNew) {
+                        var publicObj = tool.GetPublicObj();
+                        if (!tool.isNullOrEmptyObject(publicObj)) {
+                            $("[data-field='IsPublic']")
+                                .val(publicObj.text || "")
+                                .attr("data-fieldVal", publicObj.id)
+                                .trigger("change");
+                        }
+                    }
+
 
                     //控制data-field="MatterOther"显示和隐藏
                     $("[data-field='Matter']").off('change input').on('change input', function () {
