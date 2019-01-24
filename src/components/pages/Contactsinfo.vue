@@ -165,20 +165,19 @@
                         </div>
                         <div class="ListCellContentRight rightContent">
                             <input
-                  data-field="IsPublic"
-                  data-lanid="803_可访问"
-                  data-fieldcontroltype="picker"
-                  data-field-val
-                  code="DropDowList_DtbAllTypes"
-                  TypeValue="Accessabletype"
-                  class="ListCellContentRightText"
-                >
-              </div>
-                            <div class="ListCellRightIcon">
-                                <span class="calcfont calc-you"></span>
-                            </div>
+                                data-field="IsPublic"
+                                data-lanid="803_可访问"
+                                data-fieldcontroltype="picker"
+                                data-field-val
+                                code="DropDowList_DtbAllTypes"
+                                TypeValue="Accessabletype"
+                                class="ListCellContentRightText"
+                            ></div>
+                        <div class="ListCellRightIcon">
+                            <span class="calcfont calc-you"></span>
                         </div>
                     </div>
+                </div>
 
                     <div class="ListCell visible initiatorObj">
                         <div class="ListCellLeftIcon">
@@ -222,7 +221,7 @@
                         </div>
                     </div>
 
-                    <div class="accessView">
+                    <div class="accessView initiatorObj">
                         <div class="ListCell" @click.stop="goToShareList">
                             <div class="ListCellLeftIcon">
                                 <span class="calcfont calc-yidu"></span>
