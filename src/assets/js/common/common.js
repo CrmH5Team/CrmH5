@@ -1932,8 +1932,9 @@
 								},
 							],
 							onOpen: function (data) {
-								//console.log(data);
-
+								// console.log("picker:"+data);
+								//收起键盘
+								document.activeElement.blur();
 								//var valueTemp = _curObj.attr("data-fieldval") ||"";
 								var displayTemp = _curObj.val() || "";
 								//console.log("displayTemp:"+displayTemp);
@@ -2178,6 +2179,8 @@
 					times:timeConfigArr,//HH:mm
 					years:yearConfigArr,//年
 					onOpen: function (pickerTemp,val1,val2) {
+						//隐藏虚拟键盘
+				         document.activeElement.blur();
 						if(tool.isNullOrEmptyObject(pickerTemp) || tool.isNullOrEmptyObject(pickerTemp.value) || pickerTemp.value.length<=0){
 							return;
 						}
