@@ -32,7 +32,10 @@ export default {
         }
     },
     mounted:function(){
-
+      
+    },
+    activated: function () {
+        lanTool.updateLanVersion();
     },
     methods:{
 

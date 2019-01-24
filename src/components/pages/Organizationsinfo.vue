@@ -1,12 +1,7 @@
 <template>
 <div>
 
-    <Infoheader
-        :isAddNew="isAddNew"
-        :onlyView="onlyView"
-        :operation="operation"
-
-        :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -183,7 +178,7 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation: false, //控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
-            onlyMore:false,
+            onlyMore: false,
 
             isFirstEnter: false, //是否首次进入
 
@@ -201,8 +196,8 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'contacts'){
+    beforeRouteLeave: function (to, from, next) {
+        if (to.name == 'contacts') {
             this.$destroy();
         }
         next();
@@ -216,7 +211,7 @@ export default {
     },
     activated: function () {
         //从列表获取详情名
-       this.ptitle = this.$route.query.infoName || lanTool.lanContent("792_添加公司");
+        this.ptitle = this.$route.query.infoName || lanTool.lanContent("792_添加公司");
         var _self = this;
 
         this.onlyView = Boolean(this.$route.query.onlyView) || false;
@@ -252,14 +247,18 @@ export default {
                 $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
-
+                    //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
+                    $("textarea").each(function (index, cur) {
+                        $(cur).height('25');
+                        tool.autoTextarea(cur);
+                    });
                     //渲染数据
                     tool.IniInfoData(fromType, id, function () {
 
-                        var filterTemp =  $("[data-field='CountryID']").attr("data-fieldVal", );
-                        if(!tool.isNullOrEmptyObject(filterTemp)){
+                        var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
+                        if (!tool.isNullOrEmptyObject(filterTemp)) {
                             //添加CityID的事件
-                            $("[data-field='CountryID']").attr("Filter",filterTemp);
+                            $("[data-field='CountryID']").attr("Filter", filterTemp);
                             $("[data-field='CityID']").off('click').on('click', function () {
                                 var _curObj = $(this);
                                 // console.log(_curObj);
@@ -347,11 +346,11 @@ export default {
             //设置滚动条位置
             $(window).scrollTop(0);
 
-        }else{
-            var filterTemp =  $("[data-field='CountryID']").attr("data-fieldVal", );
-            if(!tool.isNullOrEmptyObject(filterTemp)){
+        } else {
+            var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
+            if (!tool.isNullOrEmptyObject(filterTemp)) {
                 //添加CityID的事件
-                $("[data-field='CountryID']").attr("Filter",filterTemp);
+                $("[data-field='CountryID']").attr("Filter", filterTemp);
                 $("[data-field='CityID']").off('click').on('click', function () {
                     var _curObj = $(this);
                     // console.log(_curObj);
@@ -378,7 +377,7 @@ export default {
                 });
             }
 
-          if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+            if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
 
@@ -495,7 +494,6 @@ export default {
 
         },
 
-
     }
 
 }
@@ -503,7 +501,6 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-
 
 .ListCell .mui-icon.calcfont.calc-shoucang {
     color: #FF5A21 !important;

@@ -55,7 +55,7 @@ export default {
     data() {
         return {
             key: "contacts",
-            title: lanTool.lanContent("630_联系人"),
+            title: lanTool.lanContent("791_联系人"),
 
             showPage: 0,
             noData: true, //没数据
