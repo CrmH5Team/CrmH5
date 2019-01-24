@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div id="nav">
+      <div id="nav" class="sticky">
         <div class="weui-grids">
           <div class="weui-grid">
             <router-link to="/tripmeeting" class="js_grid">
@@ -71,7 +71,7 @@
       <!-- 列表 -->
       <div v-if="!notData" class="list-view" id="indexMeetingList">
 
-        <div v-for="group in groupData" class="month-event list-group-div group-div" data-fromtype="meeting">
+        <div v-for="group in groupData" :key="group.GroupID" class="month-event list-group-div group-div" data-fromtype="meeting">
             <div class="f14 date-div">
                 <span class="calcfont calc-richeng" ></span>
                 <span class="group-name" :data-groupid="group.GroupID">{{group.GroupName}}</span>
@@ -80,7 +80,7 @@
             <div class="occupy-div"></div>
             <div v-if="group.items.length > 0" class="group-item-list meeting-list index-meeting-list">
 
-                <div v-for="item in group.items" class="data-events-item f12" :data-url="'/meetinginfo/'+ item.AutoID">
+                <div v-for="item in group.items" :key="item.AutoID" class="data-events-item f12" :data-url="'/meetinginfo/'+ item.AutoID">
                     <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
@@ -273,34 +273,38 @@ export default {
         var searchH = parseFloat($("#searchBtn").innerHeight()) + 16;
         var navH = parseFloat($("#nav").innerHeight());
 
-        $(window).scroll(function() {
-          var scrollTop = $(this).scrollTop();
-          if (scrollTop >= searchH) {
-            if (tool.getSystem() === "ios") {
-              $("#nav")
-                .addClass("sticky")
-                .css({ top: headerH + "px" });
-            } else {
-              $("#nav").css({
-                position: "fixed",
-                top: headerH + "px"
-              });
-              $(".occupy-position")
+        $(".occupy-position")
                 .css({ height: navH + "px" })
                 .show();
-            }
-          } else {
-            if (tool.getSystem() === "ios") {
-              $("#nav")
-                .removeClass("sticky")
-                .css({ top: "0px" });
-            } else {
-              $(".occupy-position")
-                .css({ height: "0px" })
-                .hide();
-              $("#nav").css({ position: "static" });
-            }
-          }
+
+        $(window).scroll(function() {
+          var scrollTop = $(this).scrollTop();
+          // if (scrollTop >= searchH) {
+          //   if (tool.getSystem() === "ios") {
+          //     $("#nav")
+          //       .addClass("sticky")
+          //       .css({ top: headerH + "px" });
+          //   } else {
+          //     $("#nav").css({
+          //       position: "fixed",
+          //       top: headerH + "px"
+          //     });
+          //     $(".occupy-position")
+          //       .css({ height: navH + "px" })
+          //       .show();
+          //   }
+          // } else {
+          //   if (tool.getSystem() === "ios") {
+          //     $("#nav")
+          //       .removeClass("sticky")
+          //       .css({ top: "0px" });
+          //   } else {
+          //     $(".occupy-position")
+          //       .css({ height: "0px" })
+          //       .hide();
+          //     $("#nav").css({ position: "static" });
+          //   }
+          // }
 
           if ($(".month-event").length <= 0) return;
           $(".month-event").each(function() {
