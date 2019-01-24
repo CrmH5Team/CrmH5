@@ -563,9 +563,6 @@ export default {
 				data = data._OnlyOneData.Rows || [];
 				//无数据
 				if (data.length <= 0) {
-					if (!tool.isNullOrEmptyObject(myCallBack)) {
-						myCallBack(containerObj);
-					}
 					return;
 				}
 
