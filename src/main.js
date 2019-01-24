@@ -39,14 +39,35 @@ window.eventBus = eventBus;
 
 Vue.config.productionTip = false
 
-// //会议时间格式化
-// Vue.filter('MeetingTimeFormat',function(value){
-//   var format = "d/MMM/yyyy HH:mm";
-//   value = value.ReplaceAll("T"," ");
-//   value = tool.ChangeTimeFormat(value,format);
+//会议相关的格式化
+//formatContactsID
+Vue.filter('formatContactsID',function(val){
+    if (tool.isNullOrEmptyObject(val)) {
+      return "";
+    }
 
-//   return value;
-// });
+    return val + " ";
+});
+//formatTitle
+Vue.filter('formatTitle',function(val){
+    if (tool.isNullOrEmptyObject(val)) {
+      return "";
+    }
+
+    return val + " ";
+});
+//MeetingTimeFormat
+Vue.filter('MeetingTimeFormat',function(val){
+    if (tool.isNullOrEmptyObject(val)) {
+      return "";
+    }
+
+    var format = "d/MMM/yyyy HH:mm";
+    val = val.ReplaceAll("T", " ");
+    val = tool.ChangeTimeFormat(val, format);
+
+    return val;
+});
 
 
 /* eslint-disable no-new */

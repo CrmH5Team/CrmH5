@@ -150,31 +150,31 @@ export default {
         }
     },
     filters: {
-        formatContactsID: function (val) {
-            if (tool.isNullOrEmptyObject(val)) {
-                return "";
-            }
+        // formatContactsID: function (val) {
+        //     if (tool.isNullOrEmptyObject(val)) {
+        //         return "";
+        //     }
 
-            return val + " ";
-        },
-        formatTitle: function (val) {
-            if (tool.isNullOrEmptyObject(val)) {
-                return "";
-            }
+        //     return val + " ";
+        // },
+        // formatTitle: function (val) {
+        //     if (tool.isNullOrEmptyObject(val)) {
+        //         return "";
+        //     }
 
-            return "(" + val + ")";
-        },
-        MeetingTimeFormat: function (val) {
-          if (tool.isNullOrEmptyObject(val)) {
-                return "";
-          }
+        //     return "(" + val + ")";
+        // },
+        // MeetingTimeFormat: function (val) {
+        //   if (tool.isNullOrEmptyObject(val)) {
+        //         return "";
+        //   }
 
-            var format = "d/MMM/yyyy HH:mm";
-            val = val.ReplaceAll("T", " ");
-            val = tool.ChangeTimeFormat(val, format);
+        //     var format = "d/MMM/yyyy HH:mm";
+        //     val = val.ReplaceAll("T", " ");
+        //     val = tool.ChangeTimeFormat(val, format);
 
-            return val;
-        }
+        //     return val;
+        // }
     },
     created: function () {
         this.isFirstEnter = true;

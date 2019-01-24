@@ -4,7 +4,7 @@
 
     <div id="page-content" class="page-content">
       <!-- 搜索 -->
-      <div class="search-box">
+      <div class="search-box" style="display:none">
         <div @click="goSearch" class="search" id="searchBtn">
           <span class="search-icon mui-icon calcfont calc-sousuo"></span>
           <label class="f16 search-label lanText" data-lanid="780_搜索"></label>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="group-title">
-        <div class="title-text f14 lanText" data-lanid="872_最近7天要参加的会议"></div>
+        <div class="title-text f12 lanText" data-lanid="872_最近7天要参加的会议"></div>
         <router-link to="/tripmeeting"
           class="check-all right f14 a">
               <span class="lanText" data-lanid="936_更多"></span>&gt;&gt;
@@ -283,16 +283,19 @@ export default {
       dataFilter: ["my-calendar"]
     };
   },
+  created:function(){
+
+  },
   mounted: function() {
     lanTool.updateLanVersion();
     eventBus.$on("showIndexRightPanelEvent", this.panelToggle);
     this.watchScroll();
 
+    //赋用户信息
     var curUser = tool.CurUser();
     if (tool.isNullOrEmptyObject(curUser)) {
       return;
     }
-
     $(".userName").text(curUser.Realname || "");
     var curLV = lanTool.currentLanguageVersion;
     if (curLV == "1") {
@@ -335,6 +338,12 @@ export default {
         lanTool.currentLanguageVersion +
         "']:first"
     ).trigger("click");
+
+
+    //获取最近7天的会议分组数据
+    this.$nextTick(function(){
+      this.getRecentMeeting();
+    })
   },
   methods: {
     // 发送邮件开关
@@ -453,7 +462,6 @@ export default {
         });
       }, 100);
     },
-
     //点击去详情页
     goInfoPage: function(id) {
       var _self = this,
@@ -464,11 +472,9 @@ export default {
       url = '/meetinginfo/{"AutoID":"' + id + '"}';
       _self.$router.push(url);
     },
-
     goSearch: function() {
       this.$router.push("/search");
     },
-
     //点击分组收起展开
     groupToggle: function(e) {
       var el = e.target;
@@ -492,7 +498,6 @@ export default {
           .slideDown(400);
       }
     },
-
     //侧滑
     panelToggle: function() {
       var _self = this;
@@ -522,6 +527,60 @@ export default {
           });
         });
       }
+    },
+    //获取最近几天的会议分组数据
+    getRecentMeeting:function(){
+      //查询分组数据
+      //请求地址
+      var urlTemp = tool.AjaxBaseUrl();
+      var controlName = tool.Api_MeetingHandle_Group;
+      //传入参数
+      var jsonDatasTemp = {
+        CurrentLanguageVersion: lanTool.currentLanguageVersion,
+        UserName: tool.UserName(),
+        _ControlName: controlName,
+        _RegisterCode: tool.RegisterCode(),
+        QueryCondiction: [],
+        RecentDay:7
+      };
+      tool.showLoading();
+      
+		$.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function (data) {
+        tool.hideLoading();
+        data = tool.jObject(data);
+        console.log(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return;
+				}
+
+				data = data._OnlyOneData.Rows || [];
+				//无数据
+				if (data.length <= 0) {
+					if (!tool.isNullOrEmptyObject(myCallBack)) {
+						myCallBack(containerObj);
+					}
+					return;
+				}
+
+			},
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				tool.hideLoading();
+				return;
+			},
+			complete: function () {
+				//tool.hideLoading();
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		});
     }
   },
   beforeDestroy: function() {
