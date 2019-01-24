@@ -234,8 +234,6 @@
                 </div>
                 <Infofooter v-show="!isAddNew"></Infofooter>
 
-
-
             </div>
         </div>
         <InfoRightPanel :isShowClose="isShowClose" :isShowSend="isShowSendBtn" :rightPanelFromType="rightPanelFromType" :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
@@ -357,12 +355,12 @@ export default {
                     });
 
                     // 如是新增状态 默认给data-field="Initiator"赋予23(公开)
-                    if(_self.isAddNew){
+                    if (_self.isAddNew) {
                         var publicObj = tool.GetPublicObj();
-                        if(!tool.isNullOrEmptyObject(publicObj)){
+                        if (!tool.isNullOrEmptyObject(publicObj)) {
                             $("[data-field='IsPublic']")
-                                .val(publicObj.text||"")
-                                .attr("data-fieldVal",publicObj.id)
+                                .val(publicObj.text || "")
+                                .attr("data-fieldVal", publicObj.id)
                                 .trigger("change");
                         }
                     }
@@ -465,9 +463,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
-            $("#save").off("click").on("click", function () {
-                tool.SaveOrUpdateData(fromType, id, _self, function () {});
-            });
+            setTimeout(function () {
+                $("#save").off().on("click", function () {
+                    // console.log("save");
+                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                });
+            }, 0);
         },
         deleteData: function (e) {
             var _self = this;
@@ -530,7 +531,8 @@ export default {
 .tipBox p span {
     color: red;
 }
-.initiatorObj{
-  display:none;
+
+.initiatorObj {
+    display: none;
 }
 </style>

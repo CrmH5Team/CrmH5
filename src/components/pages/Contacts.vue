@@ -214,7 +214,7 @@ export default {
         };
     },
     beforeRouteEnter: function (to, from, next) {
-        // console.log(from);
+        console.log(from);
         // console.log(to);
         //
         if (from.name == "organizationsinfo" || from.name == "contactsinfo" || from.name == "searchmodule") {
@@ -245,10 +245,10 @@ export default {
 
         lanTool.updateLanVersion();
 
-        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
-            if(this.$route.meta.fromSave){
+        if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
+            if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
-            }else{
+            } else {
                 _self.queryCondictionData = eventBus.queryCondictionData;
                 eventBus.queryCondictionData = null;
             }
@@ -262,9 +262,9 @@ export default {
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
-        // console.log("_fromSave:"+_fromSave);
-        // console.log("_isBack:"+_isBack);
-        // console.log("isFirstEnter:"+_self.isFirstEnter);
+        console.log("_fromSave:"+_fromSave);
+        console.log("_isBack:"+_isBack);
+        console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if (_fromSave || !_isBack || _self.isFirstEnter) {
@@ -439,11 +439,11 @@ export default {
                                     //判断是Organizations列表还是contacts列表
                                     if ($(this).hasClass("contacts-item-block")) {
                                         console.log("contacts");
-                                        infoName = $(this).find(".item-first-div").text() ||"";
+                                        infoName = $(this).find(".item-first-div").text() || "";
                                         console.log("contactsinfoName:" + infoName);
                                     } else {
                                         console.log("Organizations");
-                                        infoName = $(this).find("span.left-text:first").text() ||"";
+                                        infoName = $(this).find("span.left-text:first").text() || "";
                                         console.log("OrganizationsinfoName:" + infoName);
                                     }
 
@@ -484,6 +484,11 @@ export default {
 
                 fromType = "contacts";
                 container = $("#contactsList");
+            }
+            //切换标签的时候清空模糊查询的数据
+            if (!tool.isNullOrEmptyObject(_self.queryCondictionData)) {
+                console.log("_self.queryCondictionData:" + JSON.stringify(_self.queryCondictionData));
+                _self.queryCondictionData = [];
             }
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
@@ -558,7 +563,6 @@ export default {
                 fromType = "contacts";
                 container = $("#contactsList");
             }
-
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
