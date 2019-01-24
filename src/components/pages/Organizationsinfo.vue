@@ -185,8 +185,6 @@ export default {
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
             onlyMore:false,
 
-            // modifiedtime:"1/Jan/2019",
-            // modifiedby:"Dylan Xu",
             isFirstEnter: false, //是否首次进入
 
             rightPanelFromType: "", //传给右侧菜单用的参数
@@ -217,13 +215,8 @@ export default {
 
     },
     activated: function () {
-        //每次进入详情滚动条滚动到顶部
-        $(window).scrollTop(0);
-        var _self = this;
 
-        //Boolean()
-        // console.log("onlyView:"+_self.$route.query.onlyView);
-        // console.log("type:"+typeof(_self.$route.query.onlyView));
+        var _self = this;
 
         this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
@@ -234,9 +227,9 @@ export default {
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
-        // var _self = this;
+
         var id = _self.$route.params.id;
-        console.log("_self.$route.params.id:" + id);
+        // console.log("_self.$route.params.id:" + id);
         var fromType = "Organizationsinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
@@ -252,19 +245,13 @@ export default {
 
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
-            // _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //则联动清空城市
                 $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
-                    //渲染textarea 新增详情不能进入渲染数据的方法，在这里刷一下高度自适应
-                    $("textarea").each(function (index, cur) {
-                        // console.log("change textarea");
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
+
                     //渲染数据
                     tool.IniInfoData(fromType, id, function () {
 
@@ -300,7 +287,6 @@ export default {
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
-                            // console.log("change textarea");
                             $(cur).height('25');
                             tool.autoTextarea(cur);
                         });
@@ -361,9 +347,6 @@ export default {
             $(window).scrollTop(0);
 
         }else{
-          // _self.isFirstEnter = false;
-
-
             var filterTemp =  $("[data-field='CountryID']").attr("data-fieldVal", );
             if(!tool.isNullOrEmptyObject(filterTemp)){
                 //添加CityID的事件
