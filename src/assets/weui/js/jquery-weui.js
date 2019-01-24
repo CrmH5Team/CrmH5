@@ -4197,7 +4197,7 @@ Device/OS Detection
                 col.value = col.displayValue = '';
                 newActiveIndex = 0;
             }
-            
+
               var newTranslate = -newActiveIndex * itemHeight + maxTranslate;
               // Update wrapper
               col.wrapper.transition(transition);
@@ -4661,7 +4661,7 @@ Device/OS Detection
           return;
       }
 
-      
+
       _curObj = $("[data-field='"+ (_curObj.attr("data-fromid")||"") +"']:first");
       console.log(_curObj);
       if(!_curObj){
@@ -4695,7 +4695,7 @@ Device/OS Detection
     container.show();
     container.on('touchstart',function(e){
         e.stopPropagation();
-        e.preventDefault();
+        //e.preventDefault();
     });
 
     container.addClass("weui-picker-container-visible");
