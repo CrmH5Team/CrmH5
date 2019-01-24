@@ -195,16 +195,14 @@ export default {
 
         //_self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null; //在calendar组件中不能清空，不然父组件接收不到数据
-        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
-            if(this.$route.meta.fromSave){
+        if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
+            if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
-            }else{
+            } else {
                 _self.queryCondictionData = eventBus.queryCondictionData;
             }
             //eventBus.queryCondictionData = null;
         }
-        
-        
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
@@ -217,7 +215,7 @@ export default {
             if (!tool.isNullOrEmptyObject(_self.calendarObjGlobal)) {
                 _self.setCalendarEvent(_self.calendarObjGlobal);
             }
-        }else{
+        } else {
             // 若从搜索页面点击确定搜索按钮返回则从新请求当前月数据
             if (fromSearchBtn) {
                 _self.setCalendarEvent(_self.calendarObjGlobal);
@@ -255,7 +253,21 @@ export default {
                 return;
             }
             var url = "/meetinginfo/" + autoID;
-            _self.$router.push(url);
+            //点击列表是获取到属性名传给详情
+            var infoName = null;
+            if($(el.target).hasClass("data-events-item"))
+            {
+                infoName =$(el.target).find(".item-title").text();
+            }
+            else{
+               infoName =$(el.target).parents(".data-events-item").children(".item-title").text() || "";
+            }           
+            _self.$router.push({
+                path: url,
+                query: {
+                    infoName: infoName
+                }
+            });
         },
 
         //tab切换页面
@@ -323,7 +335,7 @@ export default {
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
                         //展示选中的日期和星期
-                        $(".date-text").text(dateStr+"  "+tool.getWeekDayStr(dateStr));
+                        $(".date-text").text(dateStr + "  " + tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
                     },
                     onOpen: function (p) {},
@@ -348,8 +360,8 @@ export default {
             }
             // _self.calendarObjGlobal = calendarObj;
 
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-            console.log("allQueryData："+JSON.stringify(allQueryData));
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            console.log("allQueryData：" + JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -414,7 +426,7 @@ export default {
                         }
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
-                        $(".date-text").text(dateStr+"  "+tool.getWeekDayStr(dateStr));
+                        $(".date-text").text(dateStr + "  " + tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
                     });
                 },
@@ -448,8 +460,8 @@ export default {
                 return;
             }
 
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-            console.log("allQueryData："+JSON.stringify(allQueryData));
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            console.log("allQueryData：" + JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
             //传入参数
