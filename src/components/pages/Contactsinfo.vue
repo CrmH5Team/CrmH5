@@ -328,9 +328,9 @@ export default {
 
         var _isBack = _self.$route.meta.isBack;
 
-
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
+            _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //渲染控件
@@ -406,7 +406,7 @@ export default {
                 });
             });
         } else {
-
+            _self.isFirstEnter = false;
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
@@ -422,7 +422,6 @@ export default {
             eventBus.selectListData = null;
         }
         _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
 
     },
     methods: {

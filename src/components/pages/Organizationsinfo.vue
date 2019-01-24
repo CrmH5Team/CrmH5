@@ -239,6 +239,7 @@ export default {
 
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
+            _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //则联动清空城市
@@ -345,6 +346,8 @@ export default {
             $(window).scrollTop(0);
 
         } else {
+            _self.isFirstEnter = false;
+
             var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
             if (!tool.isNullOrEmptyObject(filterTemp)) {
                 //添加CityID的事件
@@ -424,7 +427,7 @@ export default {
         }
 
         _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
+
 
     },
     methods: {

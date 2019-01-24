@@ -364,6 +364,8 @@ export default {
             //清空全局变量
             eventBus.selectListData = null;
         }
+
+        _self.$route.meta.isBack = false;
     },
     methods: {
         deleteData: function (e) {
@@ -401,7 +403,7 @@ export default {
                     if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
                         $.alert(dateEmptyAlert, tips,"", sure);
                         return;
-                    } 
+                    }
                    else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
                         $.alert(compareAlert, tips,"", sure);
                         return;

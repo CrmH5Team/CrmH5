@@ -94,7 +94,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="ListCell visible" v-show="showPage==0">
                         <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                         <div class="ListCellContent">
@@ -150,7 +150,7 @@
 
             <!-- 会议记录 -->
             <div v-show="!isAddNew">
-                
+
                 <div class="meetingRecord">
                     <div class="headerBlock">
                         <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
@@ -353,7 +353,7 @@ export default {
         _self.rightPanelCloseThis();
         _self.id = _self.$route.params.id;
         _self.showPage = _self.$route.query.showPage || '';
-        console.log(_self.showPage);
+        // console.log(_self.showPage);
         var fromType = "Opportunitiesinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
@@ -369,13 +369,10 @@ export default {
         //是否是从上传文档后返回
         var _fromSave = _self.$route.meta.fromSave;
 
-        console.log("_fromSave:"+_fromSave);
-        console.log("_isBack:"+_isBack);
-        console.log("isFirstEnter:"+_self.isFirstEnter);
-
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
 
+            _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
@@ -452,6 +449,8 @@ export default {
 
         }else{
 
+            _self.isFirstEnter = false;
+
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
             }
@@ -471,7 +470,6 @@ export default {
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
     },
     methods: {
         //查看有权限访问的同事跳转事件
