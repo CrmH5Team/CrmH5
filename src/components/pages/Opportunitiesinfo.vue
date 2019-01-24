@@ -79,7 +79,7 @@
                                 data-lanid="791_联系人"
                                 data-fieldval=""
                                 data-selecttype="radio"
-                                Code=""
+                                Code="DropDowList_ViewBaseCompanyContactsByCompany"
                               ></div>
                           </div>
                           <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
@@ -223,7 +223,7 @@
                                 data-field="IsPublic"
                                 data-lanid="803_可访问"
                                 data-fieldcontroltype="picker"
-                                data-field-val
+                                data-fieldVal
                                 code="DropDowList_DtbAllTypes"
                                 TypeValue="Accessabletype"
                                 class="ListCellContentRightText"
