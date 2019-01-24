@@ -84,10 +84,10 @@
                     <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">{{item.BeginTime}}~{{item.EndTime}}</span>
+                      <span class="time-text">{{item.BeginTime|MeetingTimeFormat}}~{{item.EndTime|MeetingTimeFormat}}</span>
                     </div>
                     <div class="item-address">{{item.Realname}}</div>
-                    <div class="item-initiator">{{item.ContactsID}}{{item.Title}}</div>
+                    <div class="item-initiator">{{item.ContactsID|formatContactsID}}{{item.Title|formatTitle}}</div>
                 </div>
 
             </div>
@@ -340,16 +340,7 @@ export default {
         });
       }, 100);
     },
-    //点击去详情页
-    goInfoPage: function(id) {
-      var _self = this,
-        url = "";
-      if (id === undefined) {
-        id = "";
-      }
-      url = '/meetinginfo/{"AutoID":"' + id + '"}';
-      _self.$router.push(url);
-    },
+
     goSearch: function() {
       this.$router.push("/search");
     },
@@ -461,7 +452,7 @@ export default {
         UserName: tool.UserName(),
         _ControlName: controlName,
         _RegisterCode: tool.RegisterCode(),
-        QueryCondiction: [],
+        QueryCondiction: JSON.stringify([]),
         RecentDay:7
       };
       tool.showLoading();
@@ -523,7 +514,7 @@ export default {
         _ControlName: controlName,
         GroupID: groupID,
         _RegisterCode: tool.RegisterCode(),
-        QueryCondiction: [],
+        QueryCondiction: JSON.stringify([]),
         RecentDay:7
       };
       tool.showLoading();
