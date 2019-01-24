@@ -193,8 +193,18 @@ export default {
         lanTool.updateLanVersion();
         var _self = this;
 
-        _self.queryCondictionData = eventBus.queryCondictionData || [];
+        //_self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null; //在calendar组件中不能清空，不然父组件接收不到数据
+        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
+            if(this.$route.meta.fromSave){
+                _self.queryCondictionData = [];
+            }else{
+                _self.queryCondictionData = eventBus.queryCondictionData;
+            }
+            //eventBus.queryCondictionData = null;
+        }
+        
+        
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
@@ -439,6 +449,7 @@ export default {
             }
 
             var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            console.log("allQueryData："+JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
             //传入参数
@@ -459,7 +470,7 @@ export default {
                 success: function (data) {
                     tool.hideLoading();
                     data = tool.jObject(data);
-                    console.log("data:"+data);
+                    // console.log("data:"+data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
                         console.log(tool.getMessage(data));

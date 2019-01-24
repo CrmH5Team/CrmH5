@@ -102,25 +102,25 @@ export default {
                             queryType: "string",
                             queryFormat: "",
                             queryRelation: "and",
-                            queryValue: "",
+                            queryValue: "allData",
                             queryComparison: "="
                         },
                         {
                             text: lanTool.lanContent("930_我的日程"),
-                            queryfield: "aaaaaaa",
+                            queryfield: "myData",
                             queryType: "string",
                             queryFormat: "",
                             queryRelation: "and",
-                            queryValue: "",
+                            queryValue: "myData",
                             queryComparison: "="
                         },
                         {
-                            text: lanTool.lanContent('932_所有团队成员'),
-                            queryfield: "bbbbbb",
+                            text: lanTool.lanContent('942_其他同事的日程'),
+                            queryfield: "otherData",
                             queryType: "string",
                             queryFormat: "",
                             queryRelation: "and",
-                            queryValue: "",
+                            queryValue: "otherData",
                             queryComparison: "="
 
                         }
@@ -140,33 +140,33 @@ export default {
                     queryValue: "",
                     queryComparison: "like"
                 },
-                {
-                    queryfield: "BeginTime",
-                    text: lanTool.lanContent("712_开始时间"),
-                    fieldControlType: "dateTimePicker",
-                    timeType:"dateTime",
-                    queryType: "string",
-                    queryFormat: "yyyy-MM-dd HH:mm",
-                    queryFormat: "",
-                    queryRelation: "and",
-                    queryValue: "",
-                    queryComparison: "=",
-                    Code: "",
-                    TypeValue: "",
-                },
-                {
-                    queryfield: "EndTime",
-                    text: lanTool.lanContent("713_结束时间"),
-                    fieldControlType: "dateTimePicker",
-                    timeType:"dateTime",
-                    queryType: "string",
-                    queryFormat: "yyyy-MM-dd HH:mm",
-                    queryRelation: "and",
-                    queryValue: "",
-                    queryComparison: "=",
-                    Code: "",
-                    TypeValue: "",
-                },
+                // {
+                //     queryfield: "BeginTime",
+                //     text: lanTool.lanContent("712_开始时间"),
+                //     fieldControlType: "dateTimePicker",
+                //     timeType:"dateTime",
+                //     queryType: "string",
+                //     queryFormat: "yyyy-MM-dd HH:mm",
+                //     queryFormat: "",
+                //     queryRelation: "and",
+                //     queryValue: "",
+                //     queryComparison: "=",
+                //     Code: "",
+                //     TypeValue: "",
+                // },
+                // {
+                //     queryfield: "EndTime",
+                //     text: lanTool.lanContent("713_结束时间"),
+                //     fieldControlType: "dateTimePicker",
+                //     timeType:"dateTime",
+                //     queryType: "string",
+                //     queryFormat: "yyyy-MM-dd HH:mm",
+                //     queryRelation: "and",
+                //     queryValue: "",
+                //     queryComparison: "=",
+                //     Code: "",
+                //     TypeValue: "",
+                // },
                 {
                     queryfield: "MeetingType",
                     text: lanTool.lanContent("814_对内/对外"),
@@ -273,7 +273,7 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        console.log('beforeRouteEnter');
+        // console.log('beforeRouteEnter');
         if (from.name == "tripinfo" || from.name == "meetinginfo" || from.name == "searchmodule") {
             to.meta.isBack = true;
         } else {
@@ -289,7 +289,7 @@ export default {
     },
     created: function () {
         this.isFirstEnter = true;
-        console.log('created');
+        // console.log('created');
     },
     mounted: function () {
 
@@ -301,9 +301,16 @@ export default {
         _self.changePos();
         _self.groupToggle();
         _self.watchScroll();
-
-        _self.queryCondictionData = eventBus.queryCondictionData || [];
-        eventBus.queryCondictionData = null;
+        console.log(eventBus.queryCondictionData);
+        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
+            if(this.$route.meta.fromSave){
+                _self.queryCondictionData = [];
+            }else{
+                _self.queryCondictionData = eventBus.queryCondictionData;
+                eventBus.queryCondictionData = null;
+            }
+        }
+        //eventBus.queryCondictionData = null;
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;

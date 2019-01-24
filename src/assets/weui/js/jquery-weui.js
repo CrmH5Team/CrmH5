@@ -3505,7 +3505,7 @@ if (typeof define === 'function' && define.amd) {
   };
 
   var hide = function(callback) {
-    console.log("hide");
+    // console.log("hide");
     $(".weui-mask_transparent").remove();
     var done = false;
     var $el = $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
