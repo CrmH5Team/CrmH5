@@ -58,6 +58,7 @@ export default {
             title: lanTool.lanContent("791_联系人"),
 
             showPage: 0,
+            tempShowPage:0,
             noData: true, //没数据
             queryCondiction: [], //右侧checkbox条件
             queryCondictionData: [], //综合查询条件
@@ -491,11 +492,15 @@ export default {
                 fromType = "contacts";
                 container = $("#contactsList");
             }
+            console.log("num:"+num);
+            console.log("_self.tempShowPage:"+_self.tempShowPage);
+            
             //切换标签的时候清空模糊查询的数据
-            if (!tool.isNullOrEmptyObject(_self.queryCondictionData)) {
+            if (!tool.isNullOrEmptyObject(_self.queryCondictionData) && _self.tempShowPage !== num) {
                 console.log("_self.queryCondictionData:" + JSON.stringify(_self.queryCondictionData));
                 _self.queryCondictionData = [];
             }
+            _self.tempShowPage = num;
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
