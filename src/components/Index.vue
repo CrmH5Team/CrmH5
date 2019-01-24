@@ -67,152 +67,31 @@
       </div>
 
       <!-- 没有数据   -->
-      <nothing v-if="nothing" style="padding-top:1.5rem;"></nothing>
+      <nothing v-if="notData" style="padding-top:1.5rem;"></nothing>
       <!-- 列表 -->
-      <div v-if="!nothing" class="list-view">
+      <div v-if="!notData" class="list-view" id="indexMeetingList">
 
-        <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open" @click="groupToggle">
+        <div v-for="group in groupData" class="month-event list-group-div group-div" data-fromtype="meeting">
+            <div class="f14 date-div">
                 <span class="calcfont calc-richeng" ></span>
-                <span class="group-name" data-groupID="{GroupID}">2018-11-16 Thursday</span>
-                <span class="right">（3）</span>
+                <span class="group-name" :data-groupid="group.GroupID">{{group.GroupName}}</span>
+                <span class="right">（{{group.GroupRowCount}}）</span>
             </div>
             <div class="occupy-div"></div>
-            <div class="group-item-list meeting-list index-meeting-list">
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
+            <div v-if="group.items.length > 0" class="group-item-list meeting-list index-meeting-list">
+
+                <div v-for="item in group.items" class="data-events-item f12" :data-url="'/meetinginfo/'+ item.AutoID">
+                    <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
+                      <span class="time-text">{{item.BeginTime}}~{{item.EndTime}}</span>
                     </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    <div class="item-address">{{item.Realname}}</div>
+                    <div class="item-initiator">{{item.ContactsID}}{{item.Title}}</div>
                 </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
+
             </div>
         </div>
-
-        <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open" @click="groupToggle">
-                <span class="calcfont calc-richeng" ></span>
-                <span class="group-name" data-groupID="{GroupID}">2018-12-16 Thursday</span>
-                <span class="right">（3）</span>
-            </div>
-            <div class="occupy-div"></div>
-            <div class="group-item-list meeting-list index-meeting-list">
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="month-event list-group-div group-div">
-            <div class="f14 date-div open" @click="groupToggle">
-                <span class="calcfont calc-richeng" ></span>
-                <span class="group-name" data-groupID="{GroupID}">2019-01-16 Thursday</span>
-                <span class="right">（3）</span>
-            </div>
-            <div class="occupy-div"></div>
-            <div class="group-item-list meeting-list index-meeting-list">
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                      <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-            </div>
-        </div>
-
-
 
 
       </div>
@@ -277,10 +156,9 @@ export default {
   data() {
     return {
       title: "CRM",
-      nothing:false, //没有数据
+      notData:false, //没有数据
       showPanel: false,
-      selectView: "calendar",
-      dataFilter: ["my-calendar"]
+      groupData:[], //7天的数据
     };
   },
   created:function(){
@@ -290,7 +168,7 @@ export default {
     lanTool.updateLanVersion();
     eventBus.$on("showIndexRightPanelEvent", this.panelToggle);
     this.watchScroll();
-
+    this.groupToggle();
     //赋用户信息
     var curUser = tool.CurUser();
     if (tool.isNullOrEmptyObject(curUser)) {
@@ -476,27 +354,69 @@ export default {
       this.$router.push("/search");
     },
     //点击分组收起展开
-    groupToggle: function(e) {
-      var el = e.target;
-      var _curObj = $(el);
-      if (!_curObj.hasClass("date-div")) {
-        _curObj = _curObj.parent("div.date-div:first");
-        if (_curObj == undefined) {
-          return;
-        }
-      }
+    groupToggle: function() {
+        var _self = this;
+        $("#indexMeetingList").off("click", "div.date-div").on(
+          "click",
+          "div.date-div",
+          function (event) {
+            var target = $(event.target);
+            if (!target.hasClass('date-div')) {
+                target = target.closest('div.date-div');
+                if (target == undefined) {
+                    return;
+                }
+            }
 
-      if (_curObj.hasClass("open")) {
-        _curObj
-          .removeClass("open")
-          .siblings(".group-item-list")
-          .slideUp(400);
-      } else {
-        _curObj
-          .addClass("open")
-          .siblings(".group-item-list")
-          .slideDown(400);
-      }
+            var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+
+            if (tool.isNullOrEmptyObject(groupID)) {
+                return;
+            }
+
+            //若是展开
+            if (target.hasClass("open")) {
+                target
+                    .removeClass("open")
+                    .siblings(".group-item-list")
+                    .slideUp(500, function () {
+                        //清空items数据
+                        $.each(_self.groupData,function(index,item){
+                            if(item.GroupID == groupID){
+                                item.items = [];
+                                return ;
+                            }
+                        })
+                    });
+            }else {
+                //若是收起
+                _self.getInnerDataList(groupID,function(){
+                    _self.$nextTick(function(){
+                        target.addClass("open")
+                          .siblings(".group-item-list")
+                          .slideDown(500);
+
+                        $("div.data-events-item").off('click').on('click',
+                            function (event) {
+                                var target = $(event.target);
+                                if (!target.hasClass("data-events-item")) {
+                                    target = target.closest("div.data-events-item");
+                                    if (tool.isNullOrEmptyObject(target)) {
+                                        return;
+                                    }
+                                }
+                                var url = target.attr("data-url") || "";
+                                if (tool.isNullOrEmptyObject(url)) {
+                                    return;
+                                }
+                                _self.$router.push(url);
+                            }
+                        );
+                    })
+                });
+            }
+        })
+
     },
     //侧滑
     panelToggle: function() {
@@ -530,6 +450,7 @@ export default {
     },
     //获取最近几天的会议分组数据
     getRecentMeeting:function(){
+      var _self = this;
       //查询分组数据
       //请求地址
       var urlTemp = tool.AjaxBaseUrl();
@@ -544,41 +465,113 @@ export default {
         RecentDay:7
       };
       tool.showLoading();
-      
-		$.ajax({
-			async: true,
-			type: "post",
-			url: urlTemp,
-			data: jsonDatasTemp,
-			success: function (data) {
-        tool.hideLoading();
-        data = tool.jObject(data);
-        console.log(data);
-				if (data._ReturnStatus == false) {
-					tool.showText(tool.getMessage(data));
-					console.log(tool.getMessage(data));
-					return;
-				}
 
-				data = data._OnlyOneData.Rows || [];
-				//无数据
-				if (data.length <= 0) {
-					return;
-				}
+      $.ajax({
+        async: true,
+        type: "post",
+        url: urlTemp,
+        data: jsonDatasTemp,
+        success: function (data) {
+          tool.hideLoading();
+          data = tool.jObject(data);
+          console.log(data);
+          if (data._ReturnStatus == false) {
+            tool.showText(tool.getMessage(data));
+            console.log(tool.getMessage(data));
+            _self.notData = true;
+            return;
+          }
 
-			},
-			error: function (jqXHR, type, error) {
-				console.log(error);
-				tool.hideLoading();
-				return;
-			},
-			complete: function () {
-				//tool.hideLoading();
-				//隐藏虚拟键盘
-				document.activeElement.blur();
-			}
-		});
+          _self.groupData = data._OnlyOneData.Rows || [];
+          //无数据
+          if (_self.groupData.length <= 0) {
+            _self.notData = true;
+            return;
+          }
+          //添加属性
+          $.each(_self.groupData,function(index,item){
+              _self.$set(item,'items',[]);
+          })
+
+        },
+        error: function (jqXHR, type, error) {
+          console.log(error);
+          tool.hideLoading();
+          return;
+        },
+        complete: function () {
+          //tool.hideLoading();
+          //隐藏虚拟键盘
+          document.activeElement.blur();
+        }
+      });
+    },
+
+    getInnerDataList:function(groupID,myCallBack){
+      if(tool.isNullOrEmptyObject(groupID)){
+          return ;
+      }
+      var _self = this;
+      //查询分组数据
+      //请求地址
+      var urlTemp = tool.AjaxBaseUrl();
+      var controlName = tool.Api_MeetingHandle_GroupInnerData;
+      //传入参数
+      var jsonDatasTemp = {
+        CurrentLanguageVersion: lanTool.currentLanguageVersion,
+        UserName: tool.UserName(),
+        _ControlName: controlName,
+        GroupID: groupID,
+        _RegisterCode: tool.RegisterCode(),
+        QueryCondiction: [],
+        RecentDay:7
+      };
+      tool.showLoading();
+      $.ajax({
+        async: true,
+        type: "post",
+        url: urlTemp,
+        data: jsonDatasTemp,
+        success: function (data) {
+          data = tool.jObject(data);
+          console.log(data);
+          tool.hideLoading();
+          if (data._ReturnStatus == false) {
+            tool.showText(tool.getMessage(data));
+            console.log(tool.getMessage(data));
+            return;
+          }
+          data = data._OnlyOneData.Rows || [];
+          //无数据
+          if (data.length <= 0) {
+            return;
+          }
+
+          $.each(_self.groupData,function(index,item){
+              if(item.GroupID == groupID){
+                  item.items = data;
+              }
+          })
+
+          if (!tool.isNullOrEmptyObject(myCallBack)) {
+            myCallBack();
+          }
+          return;
+        },
+        error: function (jqXHR, type, error) {
+          console.log(error);
+          tool.hideLoading();
+          return;
+        },
+        complete: function () {
+          tool.hideLoading();
+          //隐藏虚拟键盘
+          document.activeElement.blur();
+        }
+      });
+
     }
+
   },
   beforeDestroy: function() {
     eventBus.$off("showIndexRightPanelEvent");
