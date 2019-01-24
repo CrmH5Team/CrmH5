@@ -161,7 +161,7 @@
                                 data-field="IsPublic"
                                 data-lanid="803_可访问"
                                 data-fieldcontroltype="picker"
-                                data-field-val
+                                data-fieldVal
                                 code="DropDowList_DtbAllTypes"
                                 TypeValue="Accessabletype"
                                 class="ListCellContentRightText"
@@ -171,29 +171,31 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="ListCell visible initiatorObj">
-                        <div class="ListCellLeftIcon">
-                            <span class="calcfont calc-fuzerenicon"></span>
+                    <!-- 负责人 -->
+                    <div class="initiatorObj">
+                        <div class="ListCell visible">
+                            <div class="ListCellLeftIcon">
+                                <span class="calcfont calc-fuzerenicon"></span>
+                            </div>
+                            <div class="ListCellContent">
+                                <div class="ListCellContentLeft leftContent">
+                                    <div class="ListCellContentLeftText lanText" data-lanid="825_负责人"></div>
+                                </div>
+                                <div class="ListCellContentRight rightContent">
+                                    <div class="ListCellContentRightText" data-field="Initiator" data-fieldcontroltype="groupSelectList" data-lanid="825_负责人" data-fieldval="" data-selecttype="checkbox" code="DropDowList_PopedomTeamVsUser" typevalue="" data-fromType="6"></div>
+                                </div>
+                                <div class="ListCellRightIcon">
+                                    <span class="calcfont calc-you"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="825_负责人"></div>
+                        <div class="ListCell tip ">
+                            <div class="tipBox">
+                                <p class="f14">
+                                    <span>*</span>
+                                    <span class="lanText" data-lanid="850_请注意，当选择私有的时，只有负责人及其上司可以访问并分享。"></span>
+                                </p>
                             </div>
-                            <div class="ListCellContentRight rightContent">
-                                <div class="ListCellContentRightText" data-field="Initiator" data-fieldcontroltype="groupSelectList" data-lanid="825_负责人" data-fieldval="" data-selecttype="checkbox" code="DropDowList_PopedomTeamVsUser" typevalue="" data-fromType="6"></div>
-                            </div>
-                            <div class="ListCellRightIcon">
-                                <span class="calcfont calc-you"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ListCell tip initiatorObj">
-                        <div class="tipBox">
-                            <p class="f14">
-                                <span>*</span>
-                                <span class="lanText" data-lanid="850_请注意，当选择私有的时，只有负责人及其上司可以访问并分享。"></span>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -325,6 +327,7 @@ export default {
 
         var _isBack = _self.$route.meta.isBack;
 
+
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
             //清空页面数据
@@ -336,6 +339,7 @@ export default {
                         $(cur).height('25');
                         tool.autoTextarea(cur);
                     });
+
                     //控制data-field="Initiator"显示和隐藏
                     $("[data-field='IsPublic']").off('change').on('change', function () {
                         var curObj = $(this);
@@ -343,14 +347,24 @@ export default {
                             return;
                         }
 
-                        var fieldval = curObj.attr("data-fieldval");
+                        var fieldval = curObj.attr("data-fieldval"); //alert(fieldval);
                         if (fieldval == "23") {
                             $(".initiatorObj").hide();
                         } else {
                             $(".initiatorObj").show();
                         }
                     });
-                    //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
+
+                    // 如是新增状态 默认给data-field="Initiator"赋予23(公开)
+                    if(_self.isAddNew){
+                        var publicObj = tool.GetPublicObj();
+                        if(!tool.isNullOrEmptyObject(publicObj)){
+                            $("[data-field='IsPublic']")
+                                .val(publicObj.text||"")
+                                .attr("data-fieldVal",publicObj.id)
+                                .trigger("change");
+                        }
+                    }
 
                     //给公司字段赋初始值
                     if (!tool.isNullOrEmptyObject(_self.companyID) && !tool.isNullOrEmptyObject(_self.companyName)) {
@@ -515,5 +529,8 @@ export default {
 
 .tipBox p span {
     color: red;
+}
+.initiatorObj{
+  display:none;
 }
 </style>
