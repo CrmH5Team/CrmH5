@@ -245,7 +245,7 @@ export default {
 
         lanTool.updateLanVersion();
         // var _self = this;
-
+        e.Stopv
         if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
             if(this.$route.meta.fromSave){
                 _self.queryCondictionData = [];
@@ -254,6 +254,8 @@ export default {
                 eventBus.queryCondictionData = null;
             }
         }
+        //  _self.queryCondictionData = eventBus.queryCondictionData;
+        // eventBus.queryCondictionData = null;
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
