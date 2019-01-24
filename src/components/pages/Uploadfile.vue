@@ -13,7 +13,7 @@
         <div class="ListCell">
             <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
             <div class="ListCellContent">
-                <div class="ListCellContentLeft leftContent">
+                <div class="ListCellContentLeft leftContent" @click="goFileInfo">
                     <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName1.png</div>
                 </div>
                 <div class="ListCellContentRight rightContent">
@@ -25,7 +25,7 @@
         <div class="ListCell">
             <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
             <div class="ListCellContent">
-                <div class="ListCellContentLeft leftContent">
+                <div class="ListCellContentLeft leftContent" @click="goFileInfo">
                     <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName2.png</div>
                 </div>
                 <div class="ListCellContentRight rightContent">
@@ -106,6 +106,31 @@ export default {
         //         $(e.target).next('.downlistbox').show(10);
         //     }
         // }
+        //点击去文件详情页
+        goFileInfo:function(data){
+            data = {
+                attachmentname:"12110320_微信图片_2018082314101328.png",
+                attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
+                attachmentsid:3577,
+                createdtime:"2018-12-12 11:03:22",
+                creator:"it mobileclient",
+                filedownloadcount:0,
+                filelocationtype:"E",
+                filename:"12110320_微信图片_2018082314101328.png",
+                filesize:107653,
+                filestatus:1,
+                filetype:"",
+                fileversion:"",
+                folderid:1,
+                foldername:"Default",
+                modifiedtime:"2018-12-12 11:03:22",
+                note_no:"DOC50",
+                notecontent:"",
+                notesid:3635,
+                title:"这是测试",
+            }
+            this.$router.push({path:'/previewfile', query: data})
+        },
     },
     deactivated: function () {
 

@@ -6,7 +6,7 @@
           <h1 class="mui-title">{{data.filename}}</h1>
 
           <a class="calcfont calc-guanyu right" @click="showDrawer"></a>
-          <a v-if="showDownload" class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a>
+          <!-- <a v-if="showDownload" class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a> -->
     </header>
 
     <div class="file_box">
@@ -24,38 +24,38 @@
                     <div class="drawer-content" slot="drawer">
                                 <!-- 侧滑出来的内容 -->
                                 <aside id="aside">
-                                    <div class="aside_title lanText" data-lanid= '291_信息'></div>
+                                    <div class="aside_title " data-lanid= '291_信息'>信息</div>
                                     <ul class="FileAttrlist">
                                         <li>
-                                            <label class="lanText" data-lanid= '292_文件名'></label>
+                                            <label class="lanText" data-lanid= '174_文件名称'></label>
                                             <p data-field="fileName">{{data.filename}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '282_标题'></label>
+                                            <label class="" data-lanid= '282_标题'>标题</label>
                                             <p data-field="title">{{data.title}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '33_负责人'></label>
+                                            <label class="lanText" data-lanid= '825_负责人'></label>
                                             <p data-field="creator">{{data.creator}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '283_文件夹'></label>
+                                            <label class="" data-lanid= '283_文件夹'>文件夹</label>
                                             <p data-field="foldername">{{data.foldername}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '44_描述'></label>
+                                            <label class="" data-lanid= '44_描述'>描述</label>
                                             <p  data-field="notecontent" style="height:0.78rem;">{{data.notecontent}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '34_创建时间'></label>
+                                            <label class="lanText" data-lanid= '24_创建时间'></label>
                                             <p data-field="createdtime">{{data.createdtime}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '35_修改时间'></label>
+                                            <label class="lanText" data-lanid= '801_更新时间'></label>
                                             <p data-field="modifiedtime">{{data.modifiedtime}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '294_文件大小'></label>
+                                            <label class="lanText" data-lanid= '178_文件大小'></label>
                                             <p data-field="filesize">{{(data.filesize/1024/1024).toFixed(2)}}M</p>
                                         </li>
 
@@ -101,11 +101,12 @@ export default {
     created:function(){
         var self = this;
         self.data = self.$route.query;
-        console.log(self.data);
+        // console.log(self.data);
     },
     mounted:function(){
 
         lanTool.updateLanVersion();
+
         var $this = this;
 
         $this.photo = $.photoBrowser({
@@ -395,8 +396,52 @@ header a {
     user-select: text;
 }
 
-
 .drawer-content{height:100%;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
+
+
+/*侧滑出来内容style*/
+.FileAttrlist {
+	line-height: 1;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.FileAttrlist li {
+	position: relative;
+	padding: 10px 0;
+}
+.FileAttrlist li:after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 1px;
+	content: '';
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+}
+
+.FileAttrlist label {
+	display: block;
+	color: #595959;
+	list-style: none;
+	font-size: 0.24rem;
+	margin-bottom: 10px;
+}
+
+.FileAttrlist p {
+	min-height: 0.26rem;
+	margin-bottom: 0;
+	color: #333;
+	list-style: none;
+	font-size: 0.26rem;
+}
+
+
+
+
 </style>
 
 <style>
@@ -405,7 +450,6 @@ header a {
 text-align: center;opacity: 0.6;}
 .canvas-btn{color:333;padding:5px;background:rgba(0,0,0,0.1);border-radius:2px;}
 .pre-btn{margin-right:20px;}
-
 
 </style>
 
