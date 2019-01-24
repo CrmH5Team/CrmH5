@@ -318,12 +318,13 @@ export default {
         var _isBack = _self.$route.meta.isBack;
 
         if (_fromSave || !_isBack || _self.isFirstEnter) {
-
+            _self.isFirstEnter = false;
             _self.searchData = _self.meetingSearch;
 
             $("#meetingPanel").trigger("click");
 
         } else {
+            _self.isFirstEnter = false;
             //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
             if (fromSearchBtn) {
                 _self.RefreshCurPageGroupData();
@@ -332,7 +333,7 @@ export default {
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
+
 
         eventBus.$on('updataListEvent', function () {
             _self.RefreshCurPageGroupData();

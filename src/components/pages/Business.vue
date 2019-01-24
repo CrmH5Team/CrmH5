@@ -315,10 +315,18 @@ export default {
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter ){
+            _self.isFirstEnter = false;
             _self.searchData = _self.dealPipelineSearch;
-            $("#dealPipelineSwitchPage").trigger("click");
+
+            if(_self.showPage == 0){
+                $("#dealPipelineSwitchPage").trigger("click");
+            }else{
+                $("#opportunitiesSwitchPage").trigger("click");
+            }
+
 
         }else{
+           _self.isFirstEnter = false;
           //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
               if(fromSearchBtn){
                   _self.RefreshCurPageGroupData();
@@ -327,7 +335,7 @@ export default {
 
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
-        _self.isFirstEnter = false;
+
 
     },
     methods:{
@@ -576,7 +584,7 @@ export default {
                 }
             }
             var urlTemp = target.attr('data-url')||'';
-            if(tool.isNullOrEmptyObject(urlTemp)){ 
+            if(tool.isNullOrEmptyObject(urlTemp)){
                 return;
             }
             var parameter = {
