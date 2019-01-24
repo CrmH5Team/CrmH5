@@ -206,8 +206,6 @@ export default {
         this.isFirstEnter = true;
     },
     mounted: function () {
-        var _self = this;
-
     },
     activated: function () {
         //从列表获取详情名
