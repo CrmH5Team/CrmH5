@@ -7,8 +7,8 @@
     </header>
 
     <div class="nav sticky">
-      <div id="navUser" @click="switchPage(0,$event)" class="f16 nav-item active-item">User</div>
-      <div id="navGroup" @click="switchPage(1,$event)" class="f16 nav-item">Group</div>
+      <div id="navUser" @click="switchPage(0,$event)" class="f16 nav-item active-item lanText" data-lanid="631_用户"></div>
+      <div id="navGroup" @click="switchPage(1,$event)" class="f16 nav-item lanText" data-lanid="632_用户组"></div>
       <div class="nav-border"></div>
     </div>
     <div class="selectList-scroll">

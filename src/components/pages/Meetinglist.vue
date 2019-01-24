@@ -56,6 +56,9 @@ export default {
             title:'Meeting List',
         }
     },
+    mounted:function(){
+       lanTool.updateLanVersion();
+    },
     methods:{
         //点击去详情页
         goInfoPage:function(id){

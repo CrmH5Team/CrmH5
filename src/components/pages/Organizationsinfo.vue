@@ -215,7 +215,8 @@ export default {
 
     },
     activated: function () {
-
+        //从列表获取详情名
+       this.ptitle = this.$route.query.infoName || lanTool.lanContent("792_添加公司");
         var _self = this;
 
         this.onlyView = Boolean(this.$route.query.onlyView) || false;

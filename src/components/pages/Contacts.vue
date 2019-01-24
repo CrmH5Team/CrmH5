@@ -66,7 +66,7 @@ export default {
             //侧滑数据模型
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
-                groupName:'dataFilter',
+                groupName: 'dataFilter',
                 type: "radio",
                 default: "allData",
                 items: [{
@@ -181,7 +181,7 @@ export default {
                 },
                 {
                     queryfield: "Initiator",
-                    text:lanTool.lanContent("825_负责人"),
+                    text: lanTool.lanContent("825_负责人"),
                     fieldControlType: "groupSelectList",
                     queryType: "string",
                     queryFormat: "",
@@ -192,11 +192,11 @@ export default {
                     TypeValue: "",
                     selectType: "checkbox",
                     datalanid: "825_负责人",
-                    fromType:"6"
+                    fromType: "6"
                 },
                 {
                     queryfield: "CompanyID",
-                    text:lanTool.lanContent('726_公司名称'),
+                    text: lanTool.lanContent('726_公司名称'),
                     fieldControlType: "selectList",
                     queryType: "string",
                     queryFormat: "",
@@ -224,8 +224,8 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'index'){
+    beforeRouteLeave: function (to, from, next) {
+        if (to.name == 'index') {
             this.$destroy();
         }
         next();
@@ -433,8 +433,25 @@ export default {
                                     if (tool.isNullOrEmptyObject(url)) {
                                         return;
                                     }
+                                    //点击列表是获取到属性名传给详情
+                                    var infoName = null;
+                                    //判断是Organizations列表还是contacts列表
+                                    if ($(this).hasClass("contacts-item-block")) {
+                                        console.log("contacts");
+                                        infoName = $(this).find(".item-first-div").text() ||"";
+                                        console.log("contactsinfoName:" + infoName);
+                                    } else {
+                                        console.log("Organizations");
+                                        infoName = $(this).find("span.left-text").text() ||"";
+                                        console.log("OrganizationsinfoName:" + infoName);
+                                    }
 
-                                    _self.$router.push(url);
+                                    _self.$router.push({
+                                        path: url,
+                                        query: {
+                                            infoName: infoName
+                                        }
+                                    });
                                 }
                             );
                         });
