@@ -277,8 +277,8 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'contacts'){
+    beforeRouteLeave: function (to, from, next) {
+        if (to.name == 'contacts') {
             this.$destroy();
         }
         next();
@@ -331,7 +331,11 @@ export default {
             tool.ClearControlData(function () {
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
-
+                    //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
+                    $("textarea").each(function (index, cur) {
+                        $(cur).height('25');
+                        tool.autoTextarea(cur);
+                    });
                     //控制data-field="Initiator"显示和隐藏
                     $("[data-field='IsPublic']").off('change').on('change', function () {
                         var curObj = $(this);
