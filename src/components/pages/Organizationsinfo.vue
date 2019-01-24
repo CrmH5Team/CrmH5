@@ -203,6 +203,12 @@ export default {
         }
         next();
     },
+    beforeRouteLeave:function(to, from, next){
+        if(to.name == 'contacts'){
+            this.$destroy();
+        }
+        next();
+    },
     created: function () {
         this.isFirstEnter = true;
     },
@@ -500,9 +506,9 @@ export default {
             setTimeout(function () {
                 $("#delete").off("click").on("click", function () {
                     tool.DeleteData(fromType, id, _self, function () {});
-                });  
+                });
             }, 0);
-            
+
         },
 
 

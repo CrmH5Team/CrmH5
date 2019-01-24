@@ -54,6 +54,12 @@ export default {
             // }
             next();
       },
+      beforeRouteLeave:function(to, from, next){
+          if(to.name == 'contacts'){
+              this.$destroy();
+          }
+          next();
+      },
       mounted:function(){
           lanTool.updateLanVersion();
           document.activeElement.blur();
