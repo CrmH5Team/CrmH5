@@ -242,11 +242,8 @@
 import Infoheader from "../common/Infoheader";
 import InfoRightPanel from "../common/InfoRightPanel";
 import Infofooter from "../common/infoFooter";
-import Mixins from "../../mixins";
-import eventBus from "../common/Event";
 
 export default {
-    // mixins: [Mixins.PAGE_INFO],
     components: {
         Infoheader,
         Infofooter,
@@ -280,6 +277,12 @@ export default {
         }
         next();
     },
+    beforeRouteLeave:function(to, from, next){
+        if(to.name == 'contacts'){
+            this.$destroy();
+        }
+        next();
+    },
     created: function () {
         this.isFirstEnter = true;
     },
@@ -297,10 +300,6 @@ export default {
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
-
-        //Boolean()
-        // console.log("onlyView:"+_self.$route.query.onlyView);
-        // console.log("type:"+typeof(_self.$route.query.onlyView));
 
         _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
         _self.companyID = _self.$route.query.companyID || '';
@@ -328,12 +327,11 @@ export default {
 
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
-            // _self.isFirstEnter = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
-                    console.log("hiddenisor");
+
                     //控制data-field="Initiator"显示和隐藏
                     $("[data-field='IsPublic']").off('change').on('change', function () {
                         var curObj = $(this);
@@ -359,25 +357,17 @@ export default {
                         obj.attr('data-fieldval', _self.companyID);
                         obj.text(_self.companyName);
                     }
-                    //渲染textarea 新增详情不能进入渲染数据的方法，在这里刷一下高度自适应
-                    $("textarea").each(function (index, cur) {
-                        // console.log("change textarea");
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function () {
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
-                            // console.log("change textarea");
                             $(cur).height('25');
                             tool.autoTextarea(cur);
                         });
 
                         //场景：当在selectList页面按刷新按钮再回到详情页
-                        // console.log(eventBus.selectListData);
                         if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                             return;
                         }
@@ -397,7 +387,7 @@ export default {
                 });
             });
         } else {
-            // _self.isFirstEnter = false;
+
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
