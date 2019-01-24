@@ -4693,6 +4693,10 @@ Device/OS Detection
 
     var container = $("<div class='weui-picker-container "+ (className || "") + "'></div>").appendTo(document.body);
     container.show();
+    container.on('touchstart',function(e){
+        e.stopPropagation();
+        e.preventDefault();
+    });
 
     container.addClass("weui-picker-container-visible");
 
