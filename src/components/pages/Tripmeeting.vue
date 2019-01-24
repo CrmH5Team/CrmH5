@@ -299,7 +299,6 @@ export default {
         var _self = this;
         _self.changePos();
         _self.groupToggle();
-        _self.goInfoPage();
         _self.watchScroll();
 
         _self.queryCondictionData = eventBus.queryCondictionData || [];
@@ -383,21 +382,6 @@ export default {
                 })
             }, 100)
         },
-        //点击去详情页
-        goInfoPage: function (id) {
-            var _self = this;
-            $("#meetingList,#tripList").on("click", "div.data-events-item", function (event) {
-                var target = $(event.target);
-                if (!target.hasClass('data-events-item')) {
-                    target = target.closest('div.data-events-item');
-                    if (target == undefined) {
-                        return;
-                    }
-                }
-                var url = target.attr('data-url') || '';
-                _self.$router.push(url);
-            })
-        },
 
         //列表展开收起
         groupToggle: function () {
@@ -442,15 +426,12 @@ export default {
                             .siblings(".group-item-list")
                             .slideDown(500);
 
-                        $("div.item-block").off('click').on('click',
+                        $("div.data-events-item").off('click').on('click',
                             function (event) {
                                 var target = $(event.target);
-                                // console.log(target);
-                                if (target.hasClass("item-stars-icon")) {
-                                    return;
-                                }
-                                if (!target.hasClass("group-item")) {
-                                    target = target.closest("div.group-item");
+
+                                if (!target.hasClass("data-events-item")) {
+                                    target = target.closest("div.data-events-item");
                                     if (tool.isNullOrEmptyObject(target)) {
                                         return;
                                     }
@@ -466,12 +447,6 @@ export default {
                         );
                     });
                 }
-
-                // if (target.hasClass('open')) {
-                //     target.removeClass('open').siblings('.group-item-list').slideUp(500);
-                // } else {
-                //     target.addClass('open').siblings('.group-item-list').slideDown(500);
-                // }
             })
         },
 
@@ -497,14 +472,11 @@ export default {
                 fromType = 'trip';
                 container = $('#tripList');
             }
-            // console.log(container);
 
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
             tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
 
-              console.log(111111111);
-              // console.log(containerObj);
               if (tool.isNullOrEmptyObject(containerObj)) {
                 _self.noData = true;
                 return;
