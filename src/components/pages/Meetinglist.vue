@@ -4,7 +4,7 @@
 
       <div class="page-content">
           <div class="tips f12">
-              <div class="lanText" data-lanid="895_请点击以下列表，并上传对应的会议记录。">请点击以下列表，并上传对应的会议记录。</div>
+              <div class="lanText" data-lanid="895_请点击以下列表，并上传对应的会议记录。"></div>
           </div>
 
           <div class="group-item-list meeting-list">
@@ -85,7 +85,7 @@ export default {
 }
 .page-content{padding-top: 0.88rem;}
 
-.tips{margin: 5px 0;background: #f2f2f2;height: 26px;line-height: 26px;box-sizing: border-box;padding-left: 10px;}
+.tips{margin: 5px 0;background: #f2f2f2;height: auto;line-height: 0.34rem;box-sizing: border-box;padding-left: 10px;}
 
 /*列表*/
 /* .data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
