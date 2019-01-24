@@ -53,7 +53,7 @@ export default {
     data() {
         return {
             languageData: {
-                'search': lanTool.lanContent('780_搜索'), 
+                'search': lanTool.lanContent('780_搜索'),
             },
             notData:false,
             //用户数据
@@ -67,24 +67,6 @@ export default {
                 //       {text:'Alan3',id:'Alan3'},
                 //   ]
                 // },
-                // {
-                //   id:'group2',
-                //   text:'group2',
-                //   nodes:[
-                //       {text:'Alan4',id:'Alan4'},
-                //       {text:'Alan5',id:'Alan5'},
-                //       {text:'Alan6',id:'Alan6'},
-                //   ]
-                // },
-                // {
-                //   id:'group3',
-                //   text:'group3',
-                //   nodes:[
-                //       {text:'Alan7',id:'Alan7'},
-                //       {text:'Alan8',id:'Alan8'},
-                //       {text:'Alan9',id:'Alan9'},
-                //   ]
-                // }
             ],
             userCheckedValue:[],
             field:"",//来源字段名
@@ -102,7 +84,7 @@ export default {
         userCheckedValue:function(newValue){
             // console.log(newValue);
             var _self = this;
-            if(tool.isNullOrEmptyObject(newValue)){ 
+            if(tool.isNullOrEmptyObject(newValue)){
                 //newValue
                 $("span.memCount").text("(0)");
                 return;
@@ -154,7 +136,7 @@ export default {
 
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.CommonDataServiceHandle_Query;
-            
+
             // console.log(_self.fromType);
             // console.log(_self.fromID);
 
@@ -235,21 +217,21 @@ export default {
             document.activeElement.blur();
             var el = e.target;
             var _curObj = $(el);
-            if(!_curObj.hasClass('date-div')){
 
-                if(_curObj.hasClass('open')){
-                    _curObj.siblings('.child-list').slideUp(500,function(){
-                        _curObj.removeClass('open')
-                    });
-                }else{
-                    _curObj.addClass('open').siblings('.child-list').slideDown(500);
+            if (!_curObj.hasClass('item-div')) {
+                _curObj = _curObj.parents("div.item-div:first");
+                if (tool.isNullOrEmptyObject(_curObj)) {
+                    return;
                 }
-                // return;
-                // _curObj = _curObj.parent('div.date-div:first');
-                // if(_curObj == undefined){
-                //     return;
-                // }
             }
+            if(_curObj.hasClass('open')){
+                _curObj.siblings('.child-list').slideUp(500,function(){
+                    _curObj.removeClass('open')
+                });
+            }else{
+                _curObj.addClass('open').siblings('.child-list').slideDown(500);
+            }
+
         },
         clickSearch: function (e) {
             $(e.target).closest('.search').addClass('search-active');
@@ -272,7 +254,7 @@ export default {
             for(var i = 0; i < valArr.length;i++){
                 var idTemp = valArr[i];
                 var textTemp = $.trim($("input[value='"+ idTemp +"']:first").siblings("span:first").text()) || "";
-                
+
                 //若已经加过
                 if($.inArray(idTemp,idArr)>=0){
                     continue;
@@ -289,7 +271,7 @@ export default {
                 id : idArr.join(","),
                 text : textArr.join(",")
             };
-            
+
             //console.log(returnObj);
             eventBus.$emit('updataSelectList', returnObj);
             _self.$router.back(-1);
