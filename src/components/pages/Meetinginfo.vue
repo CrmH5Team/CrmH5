@@ -146,6 +146,8 @@ export default {
     },
     mounted: function () {},
     activated: function () {
+        //从列表获取详情名
+        this.ptitle = this.$route.query.infoName || lanTool.lanContent("914_添加会议");
         //每次进入详情滚动条滚动到顶部
         $(window).scrollTop(0);
         var _self = this;

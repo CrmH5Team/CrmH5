@@ -75,7 +75,7 @@ export default {
     },
     data() {
         return {
-            title: 'Poweruser',
+            title: lanTool.lanContent('957_有权限的用户'),
             noUserData:false, //没数据
             noGroupData:false, //没数据
             FromType: "", //来源类型

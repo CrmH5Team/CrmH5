@@ -442,7 +442,7 @@ export default {
                                         console.log("contactsinfoName:" + infoName);
                                     } else {
                                         console.log("Organizations");
-                                        infoName = $(this).find("span.left-text").text() ||"";
+                                        infoName = $(this).find("span.left-text:first").text() ||"";
                                         console.log("OrganizationsinfoName:" + infoName);
                                     }
 

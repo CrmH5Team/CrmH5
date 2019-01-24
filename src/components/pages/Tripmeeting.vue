@@ -67,7 +67,6 @@ export default {
             title: lanTool.lanContent('781_出差&会议'),
             noData: true, //没数据
 
-
             showPage: 0, //list视图控制显示meeting(0)或者trip(1)
             viewType: 'calendarView', //展示视图类型  calendarView, listView
             isFirstEnter: false, //是否首次进入
@@ -77,7 +76,7 @@ export default {
             //侧滑数据模型
             rigthPanelData: [{
                     groupText: lanTool.lanContent('867_视图'),
-                    groupName:'view',
+                    groupName: 'view',
                     type: 'radio',
                     default: 'calendarView',
                     items: [{
@@ -92,11 +91,10 @@ export default {
                 },
                 {
                     groupText: lanTool.lanContent('856_数据筛选'),
-                    groupName:'dataFilter',
+                    groupName: 'dataFilter',
                     type: 'radio',
                     default: 'allData',
-                    items: [
-                        {
+                    items: [{
                             text: lanTool.lanContent("795_全部"),
                             queryfield: "allData",
                             queryType: "string",
@@ -281,8 +279,8 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'index'){
+    beforeRouteLeave: function (to, from, next) {
+        if (to.name == 'index') {
             this.$destroy();
         }
         next();
@@ -302,10 +300,10 @@ export default {
         _self.groupToggle();
         _self.watchScroll();
         console.log(eventBus.queryCondictionData);
-        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
-            if(this.$route.meta.fromSave){
+        if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
+            if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
-            }else{
+            } else {
                 _self.queryCondictionData = eventBus.queryCondictionData;
                 eventBus.queryCondictionData = null;
             }
@@ -325,7 +323,7 @@ export default {
 
             $("#meetingPanel").trigger("click");
 
-        }else{
+        } else {
             //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
             if (fromSearchBtn) {
                 _self.RefreshCurPageGroupData();
@@ -339,12 +337,12 @@ export default {
         eventBus.$on('updataListEvent', function () {
             _self.RefreshCurPageGroupData();
         })
-         eventBus.$on('changeViewEvent', function (data) {
-             _self.viewType = data;
+        eventBus.$on('changeViewEvent', function (data) {
+            _self.viewType = data;
         })
 
     },
-    deactivated:function(){
+    deactivated: function () {
         eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
     },
@@ -395,67 +393,82 @@ export default {
         groupToggle: function () {
             var _self = this;
             $("#meetingList,#tripList").off("click", "div.date-div").on(
-              "click",
-              "div.date-div",
-              function (event) {
-                var target = $(event.target);
-                if (!target.hasClass('date-div')) {
-                    target = target.closest('div.date-div');
-                    if (target == undefined) {
+                "click",
+                "div.date-div",
+                function (event) {
+                    var target = $(event.target);
+                    if (!target.hasClass('date-div')) {
+                        target = target.closest('div.date-div');
+                        if (target == undefined) {
+                            return;
+                        }
+                    }
+                    var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                    var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+
+                    if (tool.isNullOrEmptyObject(groupID)) {
                         return;
                     }
-                }
-                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
-                var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
 
-                if (tool.isNullOrEmptyObject(groupID)) {
-                    return;
-                }
-
-                //若是展开
-                if (target.hasClass("open")) {
-                    target
-                        .removeClass("open")
-                        .siblings(".group-item-list")
-                        .slideUp(500, function () {
-                            var parentContainerObj = target.parents("div.group-div:first");
-                            if (tool.isNullOrEmptyObject(parentContainerObj)) {
-                                return;
-                            }
-                            //清空容器内容
-                            parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
-                        });
-                }else {
-                    //若是收起
-                    var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-                    tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
-                        containerObj
-                            .addClass("open")
+                    //若是展开
+                    if (target.hasClass("open")) {
+                        target
+                            .removeClass("open")
                             .siblings(".group-item-list")
-                            .slideDown(500);
-
-                        $("div.data-events-item").off('click').on('click',
-                            function (event) {
-                                var target = $(event.target);
-
-                                if (!target.hasClass("data-events-item")) {
-                                    target = target.closest("div.data-events-item");
-                                    if (tool.isNullOrEmptyObject(target)) {
-                                        return;
-                                    }
-                                }
-
-                                var url = target.attr("data-url") || "";
-                                if (tool.isNullOrEmptyObject(url)) {
+                            .slideUp(500, function () {
+                                var parentContainerObj = target.parents("div.group-div:first");
+                                if (tool.isNullOrEmptyObject(parentContainerObj)) {
                                     return;
                                 }
+                                //清空容器内容
+                                parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+                            });
+                    } else {
+                        //若是收起
+                        var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+                        tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
+                            containerObj
+                                .addClass("open")
+                                .siblings(".group-item-list")
+                                .slideDown(500);
 
-                                _self.$router.push(url);
-                            }
-                        );
-                    });
-                }
-            })
+                            $("div.data-events-item").off('click').on('click',
+                                function (event) {
+                                    var target = $(event.target);
+
+                                    if (!target.hasClass("data-events-item")) {
+                                        target = target.closest("div.data-events-item");
+                                        if (tool.isNullOrEmptyObject(target)) {
+                                            return;
+                                        }
+                                    }
+
+                                    var url = target.attr("data-url") || "";
+                                    if (tool.isNullOrEmptyObject(url)) {
+                                        return;
+                                    }
+
+                                    //点击列表是获取到属性名传给详情
+                                    var infoName = null;
+                                    //判断是meeting列表还是trip列表
+                                    // if ($(this).hasClass("contacts-item-block")) {
+                                    //     infoName = $(this).find(".item-first-div").text() || "";
+                                    //     console.log("contactsinfoName:" + infoName);
+                                    // } else {
+                                    infoName = $(this).find(".item-title:first").text() || "";
+                                    console.log("meetinginfoName:" + infoName);
+                                    // }
+                                    _self.$router.push({
+                                        path: url,
+                                        query: {
+                                            infoName: infoName
+                                        }
+                                    });
+                                }
+                            );
+                        });
+                    }
+                })
         },
 
         //切换页面
@@ -482,18 +495,18 @@ export default {
             }
 
             //渲染数据
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-            tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
 
-              if (tool.isNullOrEmptyObject(containerObj)) {
-                _self.noData = true;
-                return;
-              }
-              if (!containerObj.html()) {
-                _self.noData = true;
-              } else {
-                _self.noData = false;
-              }
+                if (tool.isNullOrEmptyObject(containerObj)) {
+                    _self.noData = true;
+                    return;
+                }
+                if (!containerObj.html()) {
+                    _self.noData = true;
+                } else {
+                    _self.noData = false;
+                }
             });
 
         },
