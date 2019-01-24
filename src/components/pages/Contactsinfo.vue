@@ -199,7 +199,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="showMoreList HideWhenNew">
+                <div v-show="!isAddNew" class="showMoreList">
                     <div class="organizationMessage">
                         <div class="ListCell" @click="goToOrganizationsInfo">
                             <div class="ListCellLeftIcon">
@@ -215,25 +215,27 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="accessView initiatorObj">
-                        <div class="ListCell" @click.stop="goToShareList">
-                            <div class="ListCellLeftIcon">
-                                <span class="calcfont calc-yidu"></span>
+                <div class="accessView initiatorObj">
+                    <div class="ListCell" @click.stop="goToShareList">
+                        <div class="ListCellLeftIcon">
+                            <span class="calcfont calc-yidu"></span>
+                        </div>
+                        <div class="ListCellContent">
+                            <div class="ListCellContentLeft leftContent">
+                                <div class="ListCellContentLeftText lanText" data-lanid="852_查看有权限访问的同事"></div>
                             </div>
-                            <div class="ListCellContent">
-                                <div class="ListCellContentLeft leftContent">
-                                    <div class="ListCellContentLeftText lanText" data-lanid="852_查看有权限访问的同事"></div>
-                                </div>
-                                <div class="ListCellRightIcon">
-                                    <span class="calcfont calc-you"></span>
-                                </div>
+                            <div class="ListCellRightIcon">
+                                <span class="calcfont calc-you"></span>
                             </div>
                         </div>
                     </div>
-                    
-                    <Infofooter></Infofooter>
                 </div>
+                <Infofooter v-show="!isAddNew"></Infofooter>
+
+
+
             </div>
         </div>
         <InfoRightPanel :isShowClose="isShowClose" :isShowSend="isShowSendBtn" :rightPanelFromType="rightPanelFromType" :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
@@ -316,12 +318,10 @@ export default {
 
         //若是新增，则隐藏新增不需要显示的模块
         if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
-            $(".HideWhenNew").hide();
             _self.isAddNew = true;
             _self.operation = false;
 
         } else {
-            $(".HideWhenNew").show();
             _self.isAddNew = false;
             _self.operation = true;
         }
