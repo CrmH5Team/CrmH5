@@ -10,10 +10,11 @@
             </div>
         </div> -->
         <div right-content-block id="generalBlock">
-            <div class="right-content-header f16">Operation</div>
+            <div class="right-content-header f16 lanText" data-lanid="943_操作"></div>
             <div class="right-content-list f14">
-                <div id="rightPanelCloseThis" class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu"></span>Close This 关闭这个商业机会</div>
-                <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList" ><span class="mui-icon calcfont calc-icon-share"></span>Share with Colleagues</div>
+                <div id="rightPanelCloseThis" class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu lanText" data-lanid="944_关闭这个商业机会"></span></div>
+                <!-- <div id="rightPanelCloseThis" class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu lanText" data-lanid="945_关闭这个交易"></span></div> -->
+                <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList"><span class="mui-icon calcfont calc-icon-share lanText" data-lanid="946_分享给同事"></span></div>
                 <!-- <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div> -->
             </div>
         </div>
@@ -28,24 +29,23 @@ export default {
             showPanel: false,
             classificationValue: '', //右侧分类
             dataFilter: [],
-            rightPanelFromTypeNew:"",
-            rightPanelFromIDNew:""
+            rightPanelFromTypeNew: "",
+            rightPanelFromIDNew: ""
         }
     },
-    props: ['isShowSend', 'isShowClose','rightPanelFromType','rightPanelFromID'],
+    props: ['isShowSend', 'isShowClose', 'rightPanelFromType', 'rightPanelFromID'],
     watch: {
-        rightPanelFromType:function(newVal,oldVal){
+        rightPanelFromType: function (newVal, oldVal) {
             this.rightPanelFromTypeNew = newVal;
         },
-        rightPanelFromID:function(newVal,oldVal){
+        rightPanelFromID: function (newVal, oldVal) {
             this.rightPanelFromIDNew = newVal;
         }
     },
     created: function () {
 
     },
-    mounted: function () {
-    },
+    mounted: function () {},
     activated: function () {
         lanTool.updateLanVersion();
         eventBus.$on('gengduoEvent', this.panelToggle);
@@ -85,16 +85,16 @@ export default {
             }
         },
         //跳转到分享列表
-        showShareList:function(){
+        showShareList: function () {
             var _self = this;
             // console.log(this.rightPanelFromTypeNew);
             // console.log(this.rightPanelFromIDNew);
             var parameter = {
-                rightPanelFromType : this.rightPanelFromTypeNew,//来源类型
-                rightPanelFromID : this.rightPanelFromIDNew//来源ID
+                rightPanelFromType: this.rightPanelFromTypeNew, //来源类型
+                rightPanelFromID: this.rightPanelFromIDNew //来源ID
             };
             _self.panelToggle();
-            _self.$nextTick(function(){
+            _self.$nextTick(function () {
                 _self.$router.push({
                     path: '/sharelist',
                     query: parameter
@@ -102,7 +102,7 @@ export default {
             })
         }
     },
-    deactivated:function(){
+    deactivated: function () {
         eventBus.$off('gengduoEvent');
     }
 

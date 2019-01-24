@@ -1,14 +1,7 @@
 <template>
 <div>
 
-    <Infoheader
-        :isAddNew="isAddNew"
-        :onlyView="onlyView"
-        :operation="operation"
-
-        :title="ptitle"></Infoheader>
-
-
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -173,11 +166,11 @@
                                 TypeValue="Accessabletype"
                                 class="ListCellContentRightText"
                             ></div>
-                        <div class="ListCellRightIcon">
-                            <span class="calcfont calc-you"></span>
+                            <div class="ListCellRightIcon">
+                                <span class="calcfont calc-you"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                     <div class="ListCell visible initiatorObj">
                         <div class="ListCellLeftIcon">
@@ -292,6 +285,8 @@ export default {
     },
     mounted: function () {},
     activated: function () {
+        //从列表获取详情名
+        this.ptitle = this.$route.query.infoName || lanTool.lanContent("793_添加联系人");
         //每次进入详情滚动条滚动到顶部
         $(window).scrollTop(0);
         var _self = this;
@@ -426,13 +421,13 @@ export default {
         goToShareList: function () {
             var _self = this;
             var fromType = "6";
-            var fromID = _self.$route.params.id||"";
-            if(tool.isNullOrEmptyObject(fromID)){
+            var fromID = _self.$route.params.id || "";
+            if (tool.isNullOrEmptyObject(fromID)) {
                 return;
             }
             var parameter = {
                 fromType: fromType,
-                fromID:fromID
+                fromID: fromID
             };
             this.$router.push({
                 path: "/poweruser",
@@ -478,14 +473,12 @@ export default {
             }, 0);
         },
 
-
     }
 };
 </script>
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-
 
 .accessView,
 .organizationMessage {
@@ -529,5 +522,4 @@ export default {
 .tipBox p span {
     color: red;
 }
-
 </style>
