@@ -121,6 +121,7 @@ export default {
 
 }
 
+
 .right-content-list .calcfont {
     font-size: 0.28rem;
     color: #000000;
@@ -131,6 +132,7 @@ export default {
     text-overflow: ellipsis;
 
 }
+.right-content-list .calcfont::before{font-size: 0.36rem;}
 
 
 .right-content-list-cell {
