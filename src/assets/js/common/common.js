@@ -1659,8 +1659,8 @@
                                 <div class="item-div item-first-div blue-color">
                                 {TheName}
                                 </div>
-                                <div class="item-div padding-top-5">{Memo}</div>
-                                <div class="item-div blue-color padding-bottom-5">
+                                <div class="item-div ">{Memo}</div>
+                                <div class="item-div blue-color padding-bottom-3 padding-top-3">
                                   <span>{CurrentState}</span>
                                 </div>
                                 {MeetingInfo}
@@ -1863,19 +1863,19 @@
 			// 	{MeetingInfo}
 			// </div>
 			// </div>
-		
+
 		if(tool.isNullOrEmptyObject(data) || tool.isNullOrEmptyObject(tempStr)){
 			return tempStr;
 		}
 
 		var templateTemp = tool.OppMeetingInfoTemplate;
 		var isMeetingExist = data["IsMeetingExist"] || "false";
-		
+
 		if(isMeetingExist.toLowerCase()=="false"){
 			tempStr = tempStr.ReplaceAll("{MeetingInfo}","");
 			return tempStr;
 		}
-		
+
 		var meetingTitle = data["MeetingTitle"]||"";
 
 		var beginTime = data["BeginTime"]||"";

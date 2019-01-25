@@ -122,22 +122,22 @@ export default {
 }
 
 .right-content-list .calcfont {
-    color: #FF5A21;
-    padding-right: 0.1rem;
-    font-size: 0.32rem;
-}
-
-.right-content-list .calcfont {
+    font-size: 0.28rem;
     color: #000000;
     padding-right: 0.1rem;
-    font-size: 0.32rem;
+    display:block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
+
 
 .right-content-list-cell {
     position: relative;
     height: 0.8rem;
     line-height: 0.8rem;
-    padding: 0 0.3rem;
+    padding: 0 0.2rem;
 }
 
 .right-content-list-cell:after {
