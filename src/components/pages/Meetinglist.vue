@@ -8,35 +8,15 @@
           </div>
 
           <div class="group-item-list meeting-list">
-                <div class="data-events-item f12" @click="goInfoPage(1)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                        <span class="calcfont calc-gengxinshijian"></span>
-                        <span class="time-text">14:30-17:00</span>
-                        <!-- <span class="right">Cheryl Xiong</span> -->
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-                <div class="data-events-item f12" @click="goInfoPage(57)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
+
+                <div v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID)">
+                    <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
-                      <span class="time-text">14:30-17:00</span>
+                      <span class="time-text">{{item.BeginTime|MeetingTimeFormat}}~{{item.EndTime|MeetingTimeFormat}}</span>
                     </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
-                </div>
-
-                <div class="data-events-item f12" @click="goInfoPage(15)">
-                    <div class="item-title">Meeting with Eastern Airlines</div>
-                    <div class="item-time f12">
-                        <span class="calcfont calc-gengxinshijian"></span>
-                        <span class="time-text">14:30-17:00</span>
-                        <!-- <span class="right">Cheryl Xiong</span> -->
-                    </div>
-                    <div class="item-address">China Eastern Airlines</div>
-                    <div class="item-initiator">Niki (Fleet Planning Manager)</div>
+                    <div class="item-address">{{item.Realname}}</div>
+                    <div class="item-initiator">{{item.ContactsID|formatContactsID}}{{item.Title|formatTitle}}</div>
                 </div>
 
           </div>
@@ -54,6 +34,22 @@ export default {
     data(){
         return{
             title:'Meeting List',
+            listData:[],
+        }
+    },
+    created:function(){
+        for(var i=0; i<20; i++){
+            var o = {}
+            o.AutoID = i;
+            o.MeetingTitle = '测试1111111';
+            o.BeginTime = "2019-01-23T17:35:00";
+            o.EndTime = "2019-01-25T17:35:00";
+            o.Realname = "ceshi测试用";
+            o.Realname = "ceshi测试用";
+            o.ContactsID = "my yyyas";
+            o.Title = "dasd";
+
+            this.listData.push(o);
         }
     },
     mounted:function(){
@@ -64,11 +60,10 @@ export default {
         goInfoPage:function(id){
             var _self = this,
                 url = "";
-            if(id === undefined){
-              id = '';
+            if(tool.isNullOrEmptyObject(id)){
+              return ;
             }
-
-            url = '/meetingNoteinfo/{"AutoID":"'+ id +'"}';
+            url = '/meetingNoteinfo/'+ id;
             _self.$router.push(url);
         },
     }
