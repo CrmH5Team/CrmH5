@@ -1650,26 +1650,20 @@
 		};
 		queryCondiction.push(queryCondictionObj);
         outerTemplate = `<div class="occupy-div"></div>
-        <div class="group-item-list dealPipeline-list-list">
+        <div class="group-item-list dealPipeline-list">
         {InnerList}
         </div>`;
-        innerTemplate = `<div class=" group-item f14" data-url="/opportunitiesinfo/12">
-                            <div class="item-stars-icon calcfont calc-shoucang"></div>
+        innerTemplate = `<div class=" group-item f14" data-url="/opportunitiesinfo/{AutoID}">
+                            <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
                             <div class="item-block">
                                 <div class="item-div item-first-div blue-color">
-                                  A320-200 sales project2 for
+                                {TheName}
                                 </div>
-                                <div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+                                <div class="item-div padding-top-5">{Memo}</div>
                                 <div class="item-div blue-color padding-bottom-5">
-                                  <span>In Progress</span>
+                                  <span>{CurrentState}</span>
                                 </div>
-                                <div class="item-div">
-                                  <div class="item-new">new</div>
-                                  <span class="itme-div-span">First Proposal discussion</span>
-                                </div>
-                                <div class="item-div dete-div">
-                                  <span>01/Jan/2019</span>
-                                </div>
+                                {MeetingInfo}
                             </div>
                         </div>`;
 				break;
@@ -1691,7 +1685,7 @@
         {InnerList}
         </div>`;
         innerTemplate = `<div class="group-item f14" data-url="/opportunitiesinfo/12">
-                            <div class="item-stars-icon calcfont calc-shoucang"></div>
+                            <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
                             <div class="item-block">
                                 <div class="item-div item-first-div blue-color">A320-200 sales project2 for</div>
                                 <div class="item-div blue-color padding-bottom-5 padding-top-5">
@@ -1783,21 +1777,25 @@
 				for (var i = 0; i < data.length; i++) {
 					var tempStr = innerTemplate;
 					for (var key in data[i]) {
+
 						if(fromType == "meeting"){
 						var valTemp = tool.FormatMeetingFieldVal(key,data[i][key]);
 						tempStr = tempStr.ReplaceAll("{" + key + "}", (valTemp || ""));
-						}else{
-						tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
-						}
-						// console.log(key);
 
-						// console.log(tempStr);
+						}else{
+
+							tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+						}
+					}
+
+					//若是dealPipeline
+					if(fromType == "dealPipeline"){
+						tempStr = tool.FormatOppMeetingFieldValHtml(data[i],tempStr);
 					}
 
 					contentHtmlStr += tempStr;
 				}
 				outerTemplate = outerTemplate.replace("{InnerList}", contentHtmlStr);
-				//console.log(contentHtmlStr);
 
 				//追加数据
 				parentContainerObj.append(outerTemplate);
@@ -1842,6 +1840,55 @@
     return fieldVal;
   };
 
+
+  tool.OppMeetingInfoTemplate = `<div class="item-div">
+  <div class="item-new">NEW</div>
+  <span class="itme-div-span">{MeetingTitle}</span>
+</div>
+<div class="item-div dete-div">
+  <span>{BeginTime}</span>
+</div>`;
+  //获取销售机会会议记录字段值
+  tool.FormatOppMeetingFieldValHtml = function(data,tempStr){
+			// <div class=" group-item f14" data-url="/opportunitiesinfo/{AutoID}">
+			// <div class="item-stars-icon calcfont calc-shoucang"></div>
+			// <div class="item-block">
+			// 	<div class="item-div item-first-div blue-color">
+			// 	{TheName}
+			// 	</div>
+			// 	<div class="item-div padding-top-5">{Memo}</div>
+			// 	<div class="item-div blue-color padding-bottom-5">
+			// 		<span>{CurrentState}</span>
+			// 	</div>
+			// 	{MeetingInfo}
+			// </div>
+			// </div>
+		
+		if(tool.isNullOrEmptyObject(data) || tool.isNullOrEmptyObject(tempStr)){
+			return tempStr;
+		}
+
+		var templateTemp = tool.OppMeetingInfoTemplate;
+		var isMeetingExist = data["IsMeetingExist"] || "false";
+		
+		if(isMeetingExist.toLowerCase()=="false"){
+			tempStr = tempStr.ReplaceAll("{MeetingInfo}","");
+			return tempStr;
+		}
+		
+		var meetingTitle = data["MeetingTitle"]||"";
+
+		var beginTime = data["BeginTime"]||"";
+		var format = "d/MMM/yyyy HH:mm";
+		beginTime = beginTime.ReplaceAll("T", " ");
+		beginTime = tool.ChangeTimeFormat(beginTime, format);
+
+		templateTemp = templateTemp.ReplaceAll("{MeetingTitle}",meetingTitle);
+		templateTemp = templateTemp.ReplaceAll("{BeginTime}",beginTime);
+
+		tempStr = tempStr.ReplaceAll("{MeetingInfo}",templateTemp);
+		return tempStr;
+  };
 
 	/*
 	* 清空控件数据
@@ -2825,7 +2872,7 @@
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
-		} else if (fromType == "Opportunitiesinfo") {
+		} else if (fromType == "dealPipeline" || fromType == "opportunities") {
 			controlName = tool.Api_OpportunityHandle_UserFollow;
 		} else {
 			return;

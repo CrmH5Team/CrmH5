@@ -518,7 +518,7 @@ export default {
                                         return;
                                     }
                                     var parameter = {
-                                        showPage : _self.showPage,
+                                        showPage : _self.showPage
                                     };
                                         _self.$router.push({
                                             path:url,
@@ -588,8 +588,9 @@ export default {
             $("#dealpipelineList,#opportunitiesList").on("click",".item-stars-icon",function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                var _curObj = $(this);
 
+                var target = $(e.target);
+                var _curObj = $(this);
                 var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
                 var autoID = _curObj.attr("data-autoid") || "";
                 var actionType;
