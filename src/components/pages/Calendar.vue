@@ -79,7 +79,7 @@
                             <div class="item-div">上海 - 香港（HX235 4/Jan 09:10 - 4/Jan 11:55）</div>
                             <div class="item-div">31/Dec - 04/Jan 4晚 上海</div>
                         </div>
-                    
+
                     </div>
                     <nothing v-show="notTrip" style="padding-top:0.8rem;"></nothing>
 
@@ -109,7 +109,7 @@ export default {
             notTrip: false, //没数据
             notMeeting: false, //没数据
             calendarObjGlobal: null, //日历控件对象
-           
+
             meetingDatas: []
         }
     },
@@ -146,7 +146,7 @@ export default {
     mounted: function () {
         this.changePos();
     },
-    
+
     activated: function () {
         lanTool.updateLanVersion();
         var _self = this;
@@ -195,12 +195,6 @@ export default {
         // this.$route.meta.fromSave = false;
         this.isFirstEnter = false;
     },
-    deactivated: function () {
-        eventBus.$off('updataCalendarEvent');
-        eventBus.$off('RightPanelCalendarOnlyDataEvent');
-        eventBus.$off('RightPanelCalendarEvent');
-    },
-
     methods: {
         //点击去详情页
         goInfoPage: function (autoID, el) {
@@ -212,13 +206,11 @@ export default {
             var url = "/meetinginfo/" + autoID;
             //点击列表是获取到属性名传给详情
             var infoName = null;
-            if($(el.target).hasClass("data-events-item"))
-            {
-                infoName =$(el.target).find(".item-title").text();
+            if ($(el.target).hasClass("data-events-item")) {
+                infoName = $(el.target).find(".item-title").text();
+            } else {
+                infoName = $(el.target).parents(".data-events-item").children(".item-title").text() || "";
             }
-            else{
-               infoName =$(el.target).parents(".data-events-item").children(".item-title").text() || "";
-            }           
             _self.$router.push({
                 path: url,
                 query: {
@@ -500,8 +492,17 @@ export default {
             var _self = this;
             _self.queryCondiction = data;
         },
-    }
-
+    },
+        deactivated: function () {
+        eventBus.$off('updataCalendarEvent');
+        eventBus.$off('RightPanelCalendarOnlyDataEvent');
+        eventBus.$off('RightPanelCalendarEvent');
+    },
+    beforeDestroy: function () {
+        eventBus.$off('updataCalendarEvent');
+        eventBus.$off('RightPanelCalendarOnlyDataEvent');
+        eventBus.$off('RightPanelCalendarEvent');
+    },
 }
 </script>
 
@@ -696,7 +697,8 @@ i.icon.icon-prev {
     border-radius: 50%;
     left: 47%;
 }
+
 .picker-calendar-day-selected.calendar-event span:after {
-	background: #fff;
+    background: #fff;
 }
 </style>

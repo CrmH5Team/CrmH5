@@ -104,8 +104,10 @@ export default {
     },
     deactivated: function () {
         eventBus.$off('gengduoEvent');
+    },
+    beforeDestroy: function () {
+        eventBus.$off('gengduoEvent');
     }
-
 }
 </script>
 
@@ -121,19 +123,20 @@ export default {
 
 }
 
-
 .right-content-list .calcfont {
     font-size: 0.28rem;
     color: #000000;
     padding-right: 0.1rem;
-    display:block;
+    display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
 }
-.right-content-list .calcfont::before{font-size: 0.36rem;}
 
+.right-content-list .calcfont::before {
+    font-size: 0.36rem;
+}
 
 .right-content-list-cell {
     position: relative;
