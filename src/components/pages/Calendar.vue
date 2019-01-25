@@ -14,7 +14,7 @@
             <!-- tab切换 -->
             <div class="calendar-nav">
                 <div @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="818_会议"></div>
-                <div class="nav-item f16 lanText" data-lanid="819_出差"></div>
+                <div style="color:#ccc;" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                 <div class="calendar-nav-border"></div>
             </div>
 
@@ -22,7 +22,6 @@
                 <div v-show="showPage==0" class="pageList">
                     <!-- 增加meeting按钮 -->
                     <div class="add-btn-div">
-                        <!-- <div class="add-div" @click="goInfoPage($event)" data-autoID="-1"> -->
                         <div class="add-div" @click.stop="goInfoPage(-1,$event)">
                             <span class="calcfont calc-add"></span>
                             <span class="add-text lanText" data-lanid="886_新增会议"></span>
@@ -31,7 +30,6 @@
                     <!-- meeting list -->
                     <div v-show="!notMeeting" id="calendarMeetingList" class="list meeting-list">
                         <div v-for="meetingData in meetingDatas" :key="meetingData.AutoID" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
-                            <!-- <div v-for="meetingData in meetingDatas" class="data-events-item f12" :data-autoID="meetingData.AutoID"> -->
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
@@ -81,31 +79,7 @@
                             <div class="item-div">上海 - 香港（HX235 4/Jan 09:10 - 4/Jan 11:55）</div>
                             <div class="item-div">31/Dec - 04/Jan 4晚 上海</div>
                         </div>
-                        <div class="data-events-item f12" @click="goInfoPage(50)">
-                            <div class="item-title">
-                                <span>1115-1116东航会议出差上海</span>
-                                <span class="right">审批已通过</span>
-                            </div>
-                            <div class="item-time f12">
-                                <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
-                            </div>
-                            <div class="item-div">香港 - 上海（MU726 31/Dec 07:40 - 31/Dec 09:30）</div>
-                            <div class="item-div">上海 - 香港（HX235 4/Jan 09:10 - 4/Jan 11:55）</div>
-                            <div class="item-div">31/Dec - 04/Jan 4晚 上海</div>
-                        </div>
-                        <div class="data-events-item f12" @click="goInfoPage(8)">
-                            <div class="item-title">
-                                <span>1115-1116东航会议出差上海</span>
-                                <span class="right">审批已通过</span>
-                            </div>
-                            <div class="item-time f12">
-                                <span class="time-text trip-time-text">15/Nov - 16/Nov</span>
-                            </div>
-                            <div class="item-div">香港 - 上海（MU726 31/Dec 07:40 - 31/Dec 09:30）</div>
-                            <div class="item-div">上海 - 香港（HX235 4/Jan 09:10 - 4/Jan 11:55）</div>
-                            <div class="item-div">31/Dec - 04/Jan 4晚 上海</div>
-                        </div>
-
+                    
                     </div>
                     <nothing v-show="notTrip" style="padding-top:0.8rem;"></nothing>
 
@@ -119,7 +93,6 @@
 
 <script>
 import Nothing from "../common/Nothing"
-import eventBus from '../common/Event';
 export default {
     components: {
         'nothing': Nothing
@@ -136,16 +109,7 @@ export default {
             notTrip: false, //没数据
             notMeeting: false, //没数据
             calendarObjGlobal: null, //日历控件对象
-            //    meetingInnerTemplate : `<div class="data-events-item f12" data-url="/organizationsinfo/{AutoID}">
-            //                             <div class="item-title">{MeetingTitle}</div>
-            //                             <div class="item-time f12">
-            //                                 <span class="calcfont calc-gengxinshijian"></span>
-            //                                 <span class="time-text">{BeginTime}-{EndTime}</span>
-            //                                 <span class="right">{Realname}</span>
-            //                             </div>
-            //                             <div class="item-address">{CompanyID}</div>
-            //                             <div class="item-initiator">{ContactsID} ({Title})</div>
-            //             </div>`,
+           
             meetingDatas: []
         }
     },
@@ -182,13 +146,7 @@ export default {
     mounted: function () {
         this.changePos();
     },
-    // beforeRouteEnter:function(to, from, next){
-    //     //if(from.name == 'calendarlistinfo' || from.name == 'calendarlist'){
-    //     if(from.name == 'calendarlistinfo'){
-    //         to.meta.isBack = true;
-    //     }
-    //     next();
-    // },
+    
     activated: function () {
         lanTool.updateLanVersion();
         var _self = this;
@@ -246,7 +204,6 @@ export default {
     methods: {
         //点击去详情页
         goInfoPage: function (autoID, el) {
-            console.log("goInfoPage");
             var _self = this;
             var targetObj = $(el.target);
             if (tool.isNullOrEmptyObject(targetObj) || tool.isNullOrEmptyObject(autoID)) {
@@ -272,7 +229,6 @@ export default {
 
         //tab切换页面
         switchPage: function (num, e) {
-            console.log("switchPage");
             var _self = this;
             var el = e.target;
             if (num === undefined) return;

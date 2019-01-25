@@ -11,7 +11,7 @@
         <div v-show="viewType=='listView'" class="list-view">
             <div class="nav sticky">
                 <div id="meetingPanel" @click="switchPage(0,$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
-                <div class="nav-item f16 lanText" data-lanid="819_出差"></div>
+                <div style="color:#ccc;" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                 <div class="nav-border"></div>
             </div>
 
