@@ -25,7 +25,7 @@
                         <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="OpportunityBusinessTypes" class="ListCellContentRightText"/>
+                        <input type="text" data-field="BusinessTypes" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="OpportunityBusinessTypes" class="ListCellContentRightText"/>
                     </div>
                     <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                 </div>

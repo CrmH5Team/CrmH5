@@ -394,6 +394,7 @@ export default {
                     }
                     var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
                     var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+                    console.log(fromType);
                     // console.log(fromType);
                     // console.log(groupID);
 

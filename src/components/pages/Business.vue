@@ -16,7 +16,7 @@
                     </div>
               </div>
               <!-- 列表 -->
-              <div v-show="!noData" id="dealpipelineList"></div>
+              <div v-show="!noData" id="dealpipelineList" data-fromtype="dealPipeline"></div>
               <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
         <div v-show="showPage == 1" class="pageList">
@@ -27,7 +27,7 @@
                     </div>
               </div>
               <!-- 列表 -->
-              <div v-show="!noData" id="opportunitiesList"></div>
+              <div v-show="!noData" id="opportunitiesList" data-fromtype="opportunities"></div>
               <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
     </div>
@@ -384,78 +384,153 @@ export default {
         },
         //列表展开收起
         groupToggle:function(){
-            $("#dealpipelineList,#opportunitiesList").on(
-              "click",
-              "div.date-div",
-              function(event){
-                var target = $(event.target);
-                if(!target.hasClass('date-div')){
-                    target = target.closest('div.date-div');
-                    if(target == undefined){
+            // $("#dealpipelineList,#opportunitiesList").on(
+            //   "click",
+            //   "div.date-div",
+            //   function(event){
+            //     var target = $(event.target);
+            //     if(!target.hasClass('date-div')){
+            //         target = target.closest('div.date-div');
+            //         if(target == undefined){
+            //             return;
+            //         }
+            //     }
+            //     var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+            //     var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+
+            //     if (tool.isNullOrEmptyObject(groupID)) {
+            //       return;
+            //     }
+
+            //     //若是展开
+            //     if (target.hasClass("open")) {
+            //         target
+            //         .removeClass("open")
+            //         .siblings(".group-item-list")
+            //         .slideUp(500,function(){
+            //             var parentContainerObj = target.parents("div.group-div:first");
+            //             if (tool.isNullOrEmptyObject(parentContainerObj)) {
+            //               return;
+            //             }
+            //             //清空容器内容
+            //             parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+            //         });
+            //     }else {
+            //       //若是收起
+            //       var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
+            //       tool.InitiateInnerDataList(fromType, groupID, target, allQueryData,function(containerObj) {
+            //             containerObj
+            //             .addClass("open")
+            //             .siblings(".group-item-list")
+            //             .slideDown(500);
+
+            //             //点击去详情页
+            //             $("div.item-block").on('click',
+            //               function(event) {
+            //                 var target = $(event.target);
+            //                 if(target.hasClass("item-stars-icon")){
+            //                   return;
+            //                 }
+            //                 if (!target.hasClass("group-item")) {
+            //                   target = target.closest("div.group-item");
+            //                   if (tool.isNullOrEmptyObject(target)) {
+            //                     return;
+            //                   }
+            //                 }
+            //                 // _self.showPage
+
+            //                 var url = target.attr("data-url") || "";
+            //                 if(tool.isNullOrEmptyObject(url)){
+            //                   return;
+            //                 }
+            //                 var parameter = {
+            //                     showPage : _self.showPage,
+            //                 };
+            //                 _self.$router.push({
+            //                     path:url,
+            //                     query: parameter
+            //                 });
+            //               }
+            //             );
+            //       });
+            //     }
+            // })
+
+
+             var _self = this;
+            $("#dealpipelineList,#opportunitiesList").off("click", "div.date-div").on(
+                "click",
+                "div.date-div",
+                function (event) {
+                    var target = $(event.target);
+
+                    if (!target.hasClass('date-div')) {
+                        target = target.parents("div.date-div:first");
+                        if (tool.isNullOrEmptyObject(target)) {
+                            return;
+                        }
+                    }
+                    var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                    var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+                    console.log(fromType);
+                    if (tool.isNullOrEmptyObject(groupID)) {
                         return;
                     }
-                }
-                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
-                var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
 
-                if (tool.isNullOrEmptyObject(groupID)) {
-                  return;
-                }
-
-                //若是展开
-                if (target.hasClass("open")) {
-                    target
-                    .removeClass("open")
-                    .siblings(".group-item-list")
-                    .slideUp(500,function(){
-                        var parentContainerObj = target.parents("div.group-div:first");
-                        if (tool.isNullOrEmptyObject(parentContainerObj)) {
-                          return;
-                        }
-                        //清空容器内容
-                        parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
-                    });
-                }else {
-                  //若是收起
-                  var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-                  tool.InitiateInnerDataList(fromType, groupID, target, allQueryData,function(containerObj) {
-                        containerObj
-                        .addClass("open")
-                        .siblings(".group-item-list")
-                        .slideDown(500);
-
-                        //点击去详情页
-                        $("div.item-block").on('click',
-                          function(event) {
-                            var target = $(event.target);
-                            if(target.hasClass("item-stars-icon")){
-                              return;
-                            }
-                            if (!target.hasClass("group-item")) {
-                              target = target.closest("div.group-item");
-                              if (tool.isNullOrEmptyObject(target)) {
-                                return;
-                              }
-                            }
-                            // _self.showPage
-
-                            var url = target.attr("data-url") || "";
-                            if(tool.isNullOrEmptyObject(url)){
-                              return;
-                            }
-                            var parameter = {
-                                showPage : _self.showPage,
-                            };
-                            _self.$router.push({
-                                path:url,
-                                query: parameter
+                    //若是展开
+                    if (target.hasClass("open")) {
+                        target
+                            .removeClass("open")
+                            .siblings(".group-item-list")
+                            .slideUp(500, function () {
+                                var parentContainerObj = target.parents("div.group-div:first");
+                                if (tool.isNullOrEmptyObject(parentContainerObj)) {
+                                    return;
+                                }
+                                //清空容器内容
+                                parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
                             });
-                          }
-                        );
-                  });
-                }
+                    } else {
+                        //若是收起
+                        var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+                        tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
+                                containerObj
+                                .addClass("open")
+                                .siblings(".group-item-list")
+                                .slideDown(500);
 
-            })
+                                //点击去详情页
+                                $("div.item-block").off('click').on('click',function(event) {
+                                    var target = $(event.target);
+                                    if(target.hasClass("item-stars-icon")){
+                                        return;
+                                    }
+                                    if (!target.hasClass("group-item")) {
+                                        target = target.closest("div.group-item");
+                                        if (tool.isNullOrEmptyObject(target)) {
+                                        return;
+                                        }
+                                    }
+                                    // _self.showPage
+
+                                    var url = target.attr("data-url") || "";
+                                    if(tool.isNullOrEmptyObject(url)){
+                                        return;
+                                    }
+                                    var parameter = {
+                                        showPage : _self.showPage,
+                                    };
+                                        _self.$router.push({
+                                            path:url,
+                                            query: parameter
+                                        });
+                                    }
+                                );
+                        });
+                    }
+                }
+            );
+
         },
         //切换页面
         switchPage:function(num, e){
@@ -496,7 +571,6 @@ export default {
               }
             });
         },
-
         //table底部横条过渡效果
         changePos:function() {
             this.$nextTick(function(){
@@ -507,7 +581,6 @@ export default {
                 });
             })
         },
-
         //点击关注/取消关注
         followToggle:function(){
             var _self = this;
@@ -541,7 +614,6 @@ export default {
                 });
             })
         },
-
         //刷新当前激活的page的分组数据
         RefreshCurPageGroupData : function(){
           var _self = this;

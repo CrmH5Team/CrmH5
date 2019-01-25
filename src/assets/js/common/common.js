@@ -1457,13 +1457,31 @@
 				break;
 			case "dealPipeline":
 				template = tool.dealPipelineGroupTemplate;
-				//controlName = tool.Api_DealpipelineHandle_Group;
-				controlName = "";
+				controlName = tool.Api_OpportunityHandle_Group;
+				var queryCondictionObj =
+				{
+					Field:"BusinessTypes",
+					Type:"string",
+					Format:"",
+					Relation:"and",
+					Value:"29",
+					Comparison:"="
+				};
+				queryCondiction.push(queryCondictionObj);
 				break;
 			case "opportunities":
 				template = tool.opportunitiesGroupTemplate;
-				//controlName = tool.Api_OpportunitiesHandle_Group;
-				controlName = "";
+				controlName = tool.Api_OpportunityHandle_Group;
+				var queryCondictionObj =
+				{
+					Field:"BusinessTypes",
+					Type:"string",
+					Format:"",
+					Relation:"and",
+					Value:"30",
+					Comparison:"="
+				};
+				queryCondiction.push(queryCondictionObj);
 				break;
 			case "organizations":
 				template = tool.organizationsGroupTemplate;
@@ -1598,7 +1616,7 @@
                             <div class="item-initiator">{ContactsID}{Title}</div>
                         </div>`;
 				break;
-			case "trip":
+		case "trip":
 		// controlName = tool.Api_TripHandle_GroupInnerData;
 		controlName = "";
         outerTemplate = `<div class="occupy-div"></div>
@@ -1618,9 +1636,19 @@
                             <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
                         </div>`;
 				break;
-			case "dealPipeline":
+		case "dealPipeline":
 		// controlName = tool.Api_DealpipelineHandle_GroupInnerData;
-		controlName = "";
+		controlName = tool.Api_OpportunityHandle_GroupInnerData;
+		var queryCondictionObj =
+		{
+			Field:"BusinessTypes",
+			Type:"string",
+			Format:"",
+			Relation:"and",
+			Value:"29",
+			Comparison:"="
+		};
+		queryCondiction.push(queryCondictionObj);
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list dealPipeline-list-list">
         {InnerList}
@@ -1645,9 +1673,19 @@
                             </div>
                         </div>`;
 				break;
-			case "opportunities":
+		case "opportunities":
 		// controlName = tool.Api_OpportunitiesHandle_GroupInnerData;
-		controlName = "";
+		controlName = Api_OpportunityHandle_GroupInnerData;
+		var queryCondictionObj =
+		{
+			Field:"BusinessTypes",
+			Type:"string",
+			Format:"",
+			Relation:"and",
+			Value:"30",
+			Comparison:"="
+		};
+		queryCondiction.push(queryCondictionObj);
         outerTemplate = `<div class="occupy-div"></div>
         <div class="group-item-list opportunities-list" >
         {InnerList}
@@ -1663,30 +1701,30 @@
                             </div>
                         </div>`;
 				break;
-			case "organizations":
-				controlName = tool.Api_OrganizationsHandle_GroupInnerData;
-				outerTemplate = `<div class="occupy-div"></div>
-				<div class="group-item-list organizations-list">
-				{InnerList}
-				</div>`;
-				innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
-                          <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
-                          <div class="item-block f14">
-                            <div class="item-div item-first-div">
-                              <span class="left-text">{ShortName}</span>
-                              <span class="right-text right">{ICAOCode}</span>
-                            </div>
-                            <div class="item-div">
-                              <span class="left-text">{BusinessType}</span>
-                              <span class="right-text right">{AccountManager}</span>
-                            </div>
-                            <div class="item-div">
-                              <span class="left-text">{CountryName}</span>
-                              <span class="right-text right">{CityName}</span>
-                            </div>
-                          </div>
-                        </div>`;
-				break;
+		case "organizations":
+			controlName = tool.Api_OrganizationsHandle_GroupInnerData;
+			outerTemplate = `<div class="occupy-div"></div>
+			<div class="group-item-list organizations-list">
+			{InnerList}
+			</div>`;
+			innerTemplate = `<div class="group-item" data-url="/organizationsinfo/{AutoID}">
+						<div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
+						<div class="item-block f14">
+						<div class="item-div item-first-div">
+							<span class="left-text">{ShortName}</span>
+							<span class="right-text right">{ICAOCode}</span>
+						</div>
+						<div class="item-div">
+							<span class="left-text">{BusinessType}</span>
+							<span class="right-text right">{AccountManager}</span>
+						</div>
+						<div class="item-div">
+							<span class="left-text">{CountryName}</span>
+							<span class="right-text right">{CityName}</span>
+						</div>
+						</div>
+					</div>`;
+			break;
       case "contacts":
         controlName = tool.Api_ContactsHandle_GroupInnerData;
 		outerTemplate = `<div class="occupy-div"></div>
@@ -1705,7 +1743,7 @@
                                 <div class="item-div">{BusinessType},{DepartmentName}</div>
                             </div>
                         </div>`;
-				break;
+			break;
 		}
 
 		//请求地址
@@ -1745,12 +1783,12 @@
 				for (var i = 0; i < data.length; i++) {
 					var tempStr = innerTemplate;
 					for (var key in data[i]) {
-            if(fromType == "meeting"){
-              var valTemp = tool.FormatMeetingFieldVal(key,data[i][key]);
-              tempStr = tempStr.ReplaceAll("{" + key + "}", (valTemp || ""));
-            }else{
-              tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
-            }
+						if(fromType == "meeting"){
+						var valTemp = tool.FormatMeetingFieldVal(key,data[i][key]);
+						tempStr = tempStr.ReplaceAll("{" + key + "}", (valTemp || ""));
+						}else{
+						tempStr = tempStr.ReplaceAll("{" + key + "}", (data[i][key] || ""));
+						}
 						// console.log(key);
 
 						// console.log(tempStr);
