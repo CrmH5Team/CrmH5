@@ -696,4 +696,7 @@ i.icon.icon-prev {
     border-radius: 50%;
     left: 47%;
 }
+.picker-calendar-day-selected.calendar-event span:after {
+	background: #fff;
+}
 </style>
