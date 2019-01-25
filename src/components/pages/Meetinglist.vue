@@ -80,8 +80,9 @@ export default {
 }
 .page-content{padding-top: 0.88rem;}
 
-.tips{margin: 5px 0;background: #f2f2f2;height: auto;line-height: 0.34rem;box-sizing: border-box;padding-left: 10px;}
-
+.tips{margin: 5px 0;height: auto;
+box-sizing: border-box;padding:0 10px;}
+.tips div{background: #f2f2f2;border-radius: 3px;line-height:1.3;padding:3px;}
 /*列表*/
 /* .data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
 .item-title{font-weight: 600;color:#333;}
