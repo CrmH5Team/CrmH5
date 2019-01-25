@@ -28,13 +28,11 @@ export default {
       isFirstEnter: false, //是否首次进入
       title: lanTool.lanContent('780_搜索'),
       searchData: [],
-      dataFilter: [],
-      // Clear: "",
-      // OK: ""
+      // dataFilter: [],
+      queryCondictionData:[]
     };
   },
   created() {
-    // console.log("created");
     this.isFirstEnter = true;
   },
   mounted: function() {},
@@ -54,14 +52,23 @@ export default {
 
     setTimeout(function() {
 
-      // _self.Clear = lanTool.lanContent("627_清空");
-      // _self.OK = lanTool.lanContent("545_确定");
       var paramStr = _self.$route.params.paramStr;
       var paramObj = tool.jObject(paramStr);
       // console.log(paramObj);
       if (!tool.isNullOrEmptyObject(paramObj)) {
         _self.searchData = paramObj.dataModule;
-        //_self.dataFilter = paramObj.dataFilter;
+        _self.queryCondictionData = paramObj.queryCondictionData;
+        console.log(_self.queryCondictionData);
+        console.log(_self.searchData);
+
+        //给数据模型赋初始值
+        if(!tool.isNullOrEmptyObject(_self.queryCondictionData)){
+
+            $.each(_self.queryCondictionData,function(index,Condiction){
+                // console.log(Condiction);
+            })
+        }
+        // console.log(_self.searchData);
       }
 
       var _isBack = _self.$route.meta.isBack;
@@ -71,13 +78,14 @@ export default {
 
       //若为true,则需要刷新
       if (!_isBack || _self.isFirstEnter) {
-        //控件渲染
+        _self.isFirstEnter = false;
+
         _self.$nextTick(function() {
           //清空页面数据
           tool.ClearControlData(function() {
             //渲染控件
             tool.InitiateInfoPageControl(_self,"-1",function() {
-              _self.isFirstEnter = false;
+
               if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
               }

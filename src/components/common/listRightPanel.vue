@@ -153,11 +153,12 @@ export default {
         //点击侧滑中的search
         goSearchPage:function(){
             var _self = this;
-            var dataFilter = [];
-                dataFilter.push(_self.dataFilter);
+            // var dataFilter = [];
+            //     dataFilter.push(_self.dataFilter);
             var parameter = {
-                'dataFilter':dataFilter,
-                'dataModule':_self.searchData
+                // 'dataFilter':dataFilter,
+                'dataModule':_self.searchData,
+                'queryCondictionData':_self.$parent.queryCondictionData
             };
             _self.panelToggle();
             _self.$nextTick(function(){
