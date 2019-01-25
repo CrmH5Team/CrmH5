@@ -2322,7 +2322,7 @@
 		} else if (fromType == "MeetingNoteinfo") {
 			controlName = "";
 		} else if (fromType == "Opportunitiesinfo") {
-			controlName = "";
+			controlName = tool.Api_OpportunityHandle_QuerySingle;
 		} else {
 			return;
 		}

@@ -369,6 +369,10 @@ export default {
         //是否是从上传文档后返回
         var _fromSave = _self.$route.meta.fromSave;
 
+        console.log("_isBack:"+_isBack);
+        console.log("_fromSave:"+_fromSave);
+        console.log("isFirstEnter:"+_self.isFirstEnter);
+
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
 
@@ -524,7 +528,7 @@ export default {
         followToggle: function (e) {
             var _self = this;
             var autoID = _self.$route.params.id;
-            var fromType = "Opportunitiesinfo";
+            var fromType = "dealPipeline";//或者opportunities都可以，同一张表
             var actionType;
             if ($(".guanZhu").hasClass("calc-shoucang")) {
                //取消关注
