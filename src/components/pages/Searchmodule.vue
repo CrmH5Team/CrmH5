@@ -58,17 +58,6 @@ export default {
       if (!tool.isNullOrEmptyObject(paramObj)) {
         _self.searchData = paramObj.dataModule;
         _self.queryCondictionData = paramObj.queryCondictionData;
-        console.log(_self.queryCondictionData);
-        console.log(_self.searchData);
-
-        //给数据模型赋初始值
-        if(!tool.isNullOrEmptyObject(_self.queryCondictionData)){
-
-            $.each(_self.queryCondictionData,function(index,Condiction){
-                // console.log(Condiction);
-            })
-        }
-        // console.log(_self.searchData);
       }
 
       var _isBack = _self.$route.meta.isBack;
@@ -86,27 +75,27 @@ export default {
             //渲染控件
             tool.InitiateInfoPageControl(_self,"-1",function() {
 
-              if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
-                return;
-              }
+                //根据回传调整给控件填值
+                _self.fillValue();
 
-              //更新selectlist控件的结果
-              var curObj = $(
-                "[data-field='" + eventBus.selectListData.field + "']"
-              );
-              //   console.log(eventBus.selectListData);
-              //   console.log(curObj);
+                if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
+                  return;
+                }
+                //更新selectlist控件的结果
+                var curObj = $(
+                  "[data-field='" + eventBus.selectListData.field + "']"
+                );
+                if (tool.isNullOrEmptyObject(curObj)) {
+                  return;
+                }
+                curObj.attr("data-fieldval", eventBus.selectListData.value.id);
+                curObj.text(eventBus.selectListData.value.text);
+                //清空全局变量
+                eventBus.selectListData = null;
 
-              if (tool.isNullOrEmptyObject(curObj)) {
-                return;
-              }
-              curObj.attr("data-fieldval", eventBus.selectListData.value.id);
-              curObj.text(eventBus.selectListData.value.text);
-
-              //清空全局变量
-              eventBus.selectListData = null;
             });
           });
+
         });
       } else {
         _self.isFirstEnter = false;
@@ -166,6 +155,195 @@ export default {
       back:function(){
           this.$router.back(-1);
       },
+
+      //给控件赋初始值
+      fillValue:function(myCallBack){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(_self.queryCondictionData)){
+              return true;
+            }
+            var data = {};
+            $.each(_self.queryCondictionData,function(index,item){
+                console.log(item);
+                data[item.Field] = item.Value ||'';
+                if(item.DisplayValue){
+                    data[item.Field+'_Name'] = item.DisplayValue||'';
+                }
+
+            })
+
+            //控件赋值操作
+            //1>picker
+            $("[data-fieldControlType='picker']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+              var fieldDisplay = data[dataField + "_Name"] || "";
+
+              _curObj.val(fieldDisplay);
+              _curObj.attr("data-fieldVal", fieldVal);
+              _curObj.trigger('change');
+            });
+            //2>selectList
+            $("[data-fieldControlType='selectList']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+              var fieldDisplay = data[dataField + "_Name"] || "";
+
+              _curObj.text(fieldDisplay);
+              _curObj.attr("data-fieldVal", fieldVal);
+            });
+            //3>groupSelectList
+            $("[data-fieldControlType='groupSelectList']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+              var fieldDisplay = data[dataField + "_Name"] || "";
+
+              _curObj.text(fieldDisplay);
+              _curObj.attr("data-fieldVal", fieldVal);
+            });
+            //4>linkSelectList
+            $("[data-fieldControlType='linkSelectList']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+              var fieldDisplay = data[dataField + "_Name"] || "";
+
+              _curObj.text(fieldDisplay);
+              _curObj.attr("data-fieldVal", fieldVal);
+            });
+            //5>textareaInput
+            $("[data-fieldControlType='textareaInput']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+              var fieldVal = data[dataField] || "";
+              _curObj.val(fieldVal);
+            });
+            //6>divText
+            $("[data-fieldControlType='divText']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+
+              //数据格式化
+              var formatType = _curObj.attr("data-formatType") || "";
+              var format = _curObj.attr("data-format") || "";
+              // console.log("formatType");
+              if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+                //时间格式化
+                if(formatType.toLowerCase() == "datetime" || formatType.toLowerCase() == "date"){
+                  fieldVal = fieldVal.ReplaceAll("T"," ");
+                  fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+                }else{
+                  //数字格式化
+                }
+              }
+
+              _curObj.text(fieldVal);
+            });
+            //7>icon
+            $("[data-fieldControlType='icon']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+              //icon对象
+              var dataValObj = _curObj.attr("data-fieldVal") || "{}";
+              dataValObj = tool.jObject(dataValObj);
+
+              //获取应该显示的icon
+              var fieldVal = data[dataField] || "";
+              fieldVal = fieldVal.toLowerCase();
+              var iconClass = dataValObj[fieldVal] || "";
+              if (tool.isNullOrEmptyObject(iconClass)) {
+                return true;
+              }
+
+              //移除其他class
+              for (var key in dataValObj) {
+                if (key == fieldVal) {
+                  continue;
+                }
+
+                var classNameTemp = dataValObj[key] || "";
+                _curObj.removeClass(classNameTemp);
+              }
+              //添加class
+              _curObj.addClass(iconClass);
+
+            });
+            //8>dateTimePicker
+            $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+              var _curObj = $(this);
+              if (tool.isNullOrEmptyObject(_curObj)) {
+                return true;
+              }
+              var dataField = _curObj.attr("data-field") || "";
+              if (tool.isNullOrEmptyObject(dataField)) {
+                return true;
+              }
+
+              var fieldVal = data[dataField] || "";
+              var format = _curObj.attr("data-format") || "";
+              if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+                fieldVal = fieldVal.ReplaceAll("T"," ");
+                fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+              }
+
+              _curObj.val(fieldVal);
+            });
+
+            if (!tool.isNullOrEmptyObject(myCallBack)) {
+              myCallBack();
+            }
+      }
   }
 };
 </script>
