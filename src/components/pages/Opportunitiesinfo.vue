@@ -421,7 +421,6 @@ export default {
                         }
                     }
 
-
                     //控制data-field="MatterOther"显示和隐藏
                     $("[data-field='Matter']").off('change input').on('change input', function () {
                         var curObj = $(this);
@@ -437,6 +436,14 @@ export default {
                         }
                     });
 
+                    //控制BusinessTypes字段不可修改
+                    _self.controlBusinessTypes();
+                    //控制TheName字段 在 Deal Pipeline 下不可修改
+                    if(_self.showPage == 0){
+                        $("[data-field='TheName']").addClass('disable');
+                    }
+
+
                     //渲染数据
                     tool.IniInfoData(fromType, _self.id, function(data){
 
@@ -444,13 +451,8 @@ export default {
                         //Status_Closed = "39";
                         // console.log(data);
 
-                        //控制BusinessTypes字段不可修改
-                        $('[data-field="BusinessTypes"]').addClass('disable');
+                        // _self.controlField();
 
-                        //如果是Deal Pipeline模块 TheName 字段不可修改
-                        if(_self.showPage == 0){
-                            $('[data-field="TheName"]').addClass('disable');
-                        }
 
                         if(data["CurrentState"] == "39"){
                             //显示提示
@@ -488,6 +490,8 @@ export default {
 
                         //清空全局变量
                         eventBus.selectListData = null;
+
+
                     });
                 })
             })
@@ -747,7 +751,59 @@ export default {
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
             }, 0);
+        },
+
+        //控制 BusinessTypes 、 TheName  字段
+        controlField:function(){
+            var _self = this;
+            //控制BusinessTypes字段不可修改
+            $('[data-field="BusinessTypes"]').addClass('disable');
+
+            //如果是Deal Pipeline模块 TheName 字段不可修改
+            if(_self.showPage == 0){
+                $('[data-field="TheName"]').addClass('disable');
+            }
+        },
+        getDealObj : function(){
+          var textTemp =  lanTool.lanContent("939_交易");
+          var idTemp = 29;
+          var obj = {
+            id : idTemp,
+            text : textTemp
+          };
+
+          return obj;
+        },
+        getOpportunityObj : function(){
+          var textTemp =  lanTool.lanContent("940_机会");
+          var idTemp = 30;
+          var obj = {
+            id : idTemp,
+            text : textTemp
+          };
+          return obj;
+        },
+        //control BusinessTypes field
+        controlBusinessTypes:function(){
+            var _self = this;
+            if (_self.isAddNew) {
+                var businessSectorObj = {};
+                if(_self.showPage == 0){
+                    businessSectorObj = _self.getDealObj();
+                }else{
+                    businessSectorObj = _self.getOpportunityObj();
+                }
+                if (!tool.isNullOrEmptyObject(businessSectorObj)) {
+                    $("[data-field='BusinessTypes']")
+                        .val(businessSectorObj.text || "")
+                        .attr("data-fieldVal", businessSectorObj.id)
+                        .addClass('disable');
+                }
+            }else{
+                $("[data-field='BusinessTypes']").addClass('disable');
+            }
         }
+
     }
 }
 </script>
