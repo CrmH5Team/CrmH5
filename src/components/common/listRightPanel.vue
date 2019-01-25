@@ -72,14 +72,13 @@ export default {
     watch:{
         //视图切换使用
         viewValue:function(newVule){
+            eventBus.$emit('changeViewEvent',newVule);
             if(newVule == 'calendarView'){
                 eventBus.$emit('updataCalendarEvent');
             }else{
+                console.log("listlsit");
                 eventBus.$emit('updataListEvent');
             }
-
-            eventBus.$emit('changeViewEvent',newVule);
-
         },
         //数据过滤
         dataFilter:function(newVule){
@@ -220,10 +219,12 @@ export default {
         }
     },
     deactivated:function(){
+        // console.log("deactivatedShowRight");
         eventBus.$off('showRightPanelEvent');
     },
     beforeDestroy:function(){
-
+        // console.log("beforeDestroyShowRight");
+        eventBus.$off('showRightPanelEvent');
     }
 
 }

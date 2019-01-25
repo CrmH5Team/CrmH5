@@ -334,18 +334,14 @@ export default {
         _self.$route.meta.fromSave = false;
         _self.$route.meta.isBack = false;
 
-
         eventBus.$on('updataListEvent', function () {
+            // console.log("updataListEvent");
             _self.RefreshCurPageGroupData();
         })
         eventBus.$on('changeViewEvent', function (data) {
+            // console.log("changeViewEvent");
             _self.viewType = data;
         })
-
-    },
-    deactivated: function () {
-        eventBus.$off('updataListEvent');
-        eventBus.$off('changeViewEvent');
     },
     methods: {
         //监听滚动固定
@@ -567,7 +563,17 @@ export default {
             });
         }
     },
+    deactivated: function () {
+        console.log("deactivated");
+        eventBus.$off('updataListEvent');
+        eventBus.$off('changeViewEvent');
+    },
+      beforeDestroy:function(){
+            console.log("beforeDestroy");
+        eventBus.$off('updataListEvent');
+        eventBus.$off('changeViewEvent');
 
+        }
 }
 </script>
 
