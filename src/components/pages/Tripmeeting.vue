@@ -564,12 +564,12 @@ export default {
         }
     },
     deactivated: function () {
-        console.log("deactivated");
+        // console.log("deactivated");
         eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
     },
       beforeDestroy:function(){
-            console.log("beforeDestroy");
+        // console.log("beforeDestroy");
         eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
 
