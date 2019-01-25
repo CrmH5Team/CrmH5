@@ -168,7 +168,7 @@
                             <div class="headerDivContent">
                                 <div class="content">MSN 05789 机身检查会议2</div>
                             </div>
-                            <div class="headerDivRightBtn" >                                                            
+                            <div class="headerDivRightBtn" >
                                 <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/9">
                                 </div>
                             </div>
@@ -323,8 +323,8 @@ export default {
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
         if (
-                from.name == 'selectlist' || from.name == 'groupselectlist' || 
-                from.name == 'meetingNoteinfo' || from.name == 'poweruser' || 
+                from.name == 'selectlist' || from.name == 'groupselectlist' ||
+                from.name == 'meetingNoteinfo' || from.name == 'poweruser' ||
                 from.name == 'sharelist'
             ) {
             to.meta.isBack = true;
@@ -376,9 +376,9 @@ export default {
         //是否是从上传文档后返回
         var _fromSave = _self.$route.meta.fromSave;
 
-        console.log("_isBack:"+_isBack);
-        console.log("_fromSave:"+_fromSave);
-        console.log("isFirstEnter:"+_self.isFirstEnter);
+        // console.log("_isBack:"+_isBack);
+        // console.log("_fromSave:"+_fromSave);
+        // console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
@@ -439,10 +439,19 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, _self.id, function(data){
-                        
+
                         //Status_InProgress = "38";
                         //Status_Closed = "39";
                         // console.log(data);
+
+                        //控制BusinessTypes字段不可修改
+                        $('[data-field="BusinessTypes"]').addClass('disable');
+
+                        //如果是Deal Pipeline模块 TheName 字段不可修改
+                        if(_self.showPage == 0){
+                            $('[data-field="TheName"]').addClass('disable');
+                        }
+
                         if(data["CurrentState"] == "39"){
                             //显示提示
                             _self.showTips = true;
@@ -456,29 +465,29 @@ export default {
                             _self.onlyMore = false;
                             _self.onlyView = false;
                         }
-                        
 
-                          //渲染textarea
-                          $("textarea").each(function (index, cur) {
-                              $(cur).height('25');
-                              tool.autoTextarea(cur);
-                          });
 
-                          //场景：当在selectList页面按刷新按钮再回到详情页
-                          if(tool.isNullOrEmptyObject(eventBus.selectListData)){
-                                return;
-                          }
+                        //渲染textarea
+                        $("textarea").each(function (index, cur) {
+                            $(cur).height('25');
+                            tool.autoTextarea(cur);
+                        });
 
-                          //更新selectlist控件的结果
-                          var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
-                          if(tool.isNullOrEmptyObject(curObj)){
+                        //场景：当在selectList页面按刷新按钮再回到详情页
+                        if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                               return;
-                          }
-                          curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-                          curObj.text(eventBus.selectListData.value.text);
+                        }
 
-                          //清空全局变量
-                          eventBus.selectListData = null;
+                        //更新selectlist控件的结果
+                        var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+                        if(tool.isNullOrEmptyObject(curObj)){
+                            return;
+                        }
+                        curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+                        curObj.text(eventBus.selectListData.value.text);
+
+                        //清空全局变量
+                        eventBus.selectListData = null;
                     });
                 })
             })
@@ -592,7 +601,7 @@ export default {
                 $('#rightPanelCloseThis').off("click").on('click',function(){
                     tool.showConfirm(lanTool.lanContent("963_您确定要关闭它吗？"),function(){
                     tool.showLoading();
-                        
+
                         $.ajax({
                         async: true,
                         type: "post",
@@ -623,8 +632,8 @@ export default {
                         //调子组件 收起侧滑方法
                         console.log(_self.$refs);
                         _self.$refs.rightPanel.panelToggle();
-                        
-                        
+
+
                         //清空页面数据
                         tool.ClearControlData(function(){
                             //渲染控件
@@ -680,7 +689,7 @@ export default {
 
                                 //渲染数据
                                 tool.IniInfoData(fromType, id, function(data){
-                                    
+
                                     //Status_InProgress = "38";
                                     //Status_Closed = "39";
                                     // console.log(data);
@@ -697,7 +706,7 @@ export default {
                                         _self.onlyMore = false;
                                         _self.onlyView = false;
                                     }
-                                    
+
 
                                     //渲染textarea
                                     $("textarea").each(function (index, cur) {
