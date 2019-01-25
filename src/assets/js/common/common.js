@@ -2897,7 +2897,8 @@
 				Format:_curObj.attr("data-queryformat") || "",
 				Relation:_curObj.attr("data-queryrelation") || "",
 				Value:value,
-				Comparison:_curObj.attr("data-querycomparison") || "",
+        Comparison:_curObj.attr("data-querycomparison") || "",
+        DisplayValue:_curObj.val()||""
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
@@ -2918,7 +2919,8 @@
 				Format:_curObj.attr("data-queryformat") || "",
 				Relation:_curObj.attr("data-queryrelation") || "",
 				Value:value,
-				Comparison:_curObj.attr("data-querycomparison") || "",
+        Comparison:_curObj.attr("data-querycomparison") || "",
+        DisplayValue:_curObj.text()||""
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
@@ -2939,7 +2941,8 @@
 				Format:_curObj.attr("data-queryformat") || "",
 				Relation:_curObj.attr("data-queryrelation") || "",
 				Value:value,
-				Comparison:_curObj.attr("data-querycomparison") || "",
+        Comparison:_curObj.attr("data-querycomparison") || "",
+        DisplayValue:_curObj.text()||""
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
@@ -2960,7 +2963,8 @@
 				Format:_curObj.attr("data-queryformat") || "",
 				Relation:_curObj.attr("data-queryrelation") || "",
 				Value:value,
-				Comparison:_curObj.attr("data-querycomparison") || "",
+        Comparison:_curObj.attr("data-querycomparison") || "",
+        DisplayValue:_curObj.text()||""
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
@@ -3002,7 +3006,8 @@
 				Format:_curObj.attr("data-queryformat") || "",
 				Relation:_curObj.attr("data-queryrelation") || "",
 				Value:value,
-				Comparison:_curObj.attr("data-querycomparison") || "",
+        Comparison:_curObj.attr("data-querycomparison") || "",
+        DisplayValue:_curObj.val()||""
 			};
 			queryCondiction.push(queryCondictionObj);
 		});
