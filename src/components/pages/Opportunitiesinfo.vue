@@ -149,7 +149,7 @@
             </div>
 
             <!-- 会议记录 -->
-            <div v-show="!isAddNew">
+            <!-- <div v-show="!isAddNew">
 
                 <div class="meetingRecord">
                     <div class="headerBlock">
@@ -168,7 +168,7 @@
                             <div class="headerDivContent">
                                 <div class="content">MSN 05789 机身检查会议2</div>
                             </div>
-                            <div class="headerDivRightBtn" >                                                            <!--数据渲染要修改id-->
+                            <div class="headerDivRightBtn" >                                                            
                                 <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/9">
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- 负责人 -->
             <div class="shareBlock">
@@ -322,7 +322,11 @@ export default {
 
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == 'groupselectlist' || from.name == 'meetingNoteinfo' || from.name == 'poweruser') {
+        if (
+                from.name == 'selectlist' || from.name == 'groupselectlist' || 
+                from.name == 'meetingNoteinfo' || from.name == 'poweruser' || 
+                from.name == 'sharelist'
+            ) {
             to.meta.isBack = true;
         }
         next();
@@ -355,6 +359,9 @@ export default {
         _self.showPage = _self.$route.query.showPage || '';
         // console.log(_self.showPage);
         var fromType = "Opportunitiesinfo";
+
+        _self.rightPanelFromType = "9";
+        _self.rightPanelFromID = _self.$route.params.id || "";
 
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
@@ -431,7 +438,25 @@ export default {
                     });
 
                     //渲染数据
-                    tool.IniInfoData(fromType, _self.id, function(){
+                    tool.IniInfoData(fromType, _self.id, function(data){
+                        
+                        //Status_InProgress = "38";
+                        //Status_Closed = "39";
+                        // console.log(data);
+                        if(data["CurrentState"] == "39"){
+                            //显示提示
+                            _self.showTips = true;
+                            //头部按钮
+                            _self.onlyMore = true;
+                            _self.onlyView = true;
+                        }else{
+                            //显示提示
+                            _self.showTips = false;
+                            //头部按钮
+                            _self.onlyMore = false;
+                            _self.onlyView = false;
+                        }
+                        
 
                           //渲染textarea
                           $("textarea").each(function (index, cur) {
@@ -550,17 +575,158 @@ export default {
         //右侧点击关闭这个
         rightPanelCloseThis:function(){
             var _self = this;
-            $('#rightPanelCloseThis').off("click").on('click',function(){
-                tool.showConfirm('确定关闭吗？',function(){
-                    //调子组件 收起侧滑方法
-                    _self.$refs.rightPanel.panelToggle();
-                    //显示提示
-                    _self.showTips = true;
-                    //头部按钮
-                    _self.onlyMore = true;
-                    _self.onlyView = true;
-                })
-            })
+            var id = _self.$route.params.id;
+            var fromType = "Opportunitiesinfo";
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_OpportunityHandle_Close;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: id
+            };
+
+            setTimeout(function () {
+                $('#rightPanelCloseThis').off("click").on('click',function(){
+                    tool.showConfirm(lanTool.lanContent("963_您确定要关闭它吗？"),function(){
+                    tool.showLoading();
+                        
+                        $.ajax({
+                        async: true,
+                        type: "post",
+                        url: urlTemp,
+                        data: jsonDatasTemp,
+                        success: function (data) {
+                            tool.hideLoading();
+                            data = tool.jObject(data);
+                            // console.log(data);
+                            if (data._ReturnStatus == false) {
+                                tool.showText(tool.getMessage(data));
+                                console.log(tool.getMessage(data));
+                                return true;
+                            }
+                        },
+                        error: function (jqXHR, type, error) {
+                            console.log(error);
+                            tool.hideLoading();
+                            return true;
+                        },
+                        complete: function () {
+                            //tool.hideLoading();
+                            //隐藏虚拟键盘
+                            document.activeElement.blur();
+                        }
+                        });
+
+                        //调子组件 收起侧滑方法
+                        console.log(_self.$refs);
+                        _self.$refs.rightPanel.panelToggle();
+                        
+                        
+                        //清空页面数据
+                        tool.ClearControlData(function(){
+                            //渲染控件
+                            tool.InitiateInfoPageControl(_self, id, function(){
+
+                                //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
+                                $("textarea").each(function (index, cur) {
+                                    $(cur).height('25');
+                                    tool.autoTextarea(cur);
+                                });
+
+                                //控制data-field="Initiator"显示和隐藏
+                                $("[data-field='IsPublic']").off('change input').on('change input', function () {
+                                    var curObj = $(this);
+                                    if (tool.isNullOrEmptyObject(curObj)) {
+                                        return;
+                                    }
+
+                                    var fieldval = curObj.attr("data-fieldval");
+                                    if (fieldval == "23") {
+                                        $(".initiatorObj").hide();
+                                    } else {
+                                        $(".initiatorObj").show();
+                                    }
+                                });
+                                //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
+                                // 如是新增状态 默认给data-field="Initiator"赋予23(公开)
+                                if (_self.isAddNew) {
+                                    var publicObj = tool.GetPublicObj();
+                                    if (!tool.isNullOrEmptyObject(publicObj)) {
+                                        $("[data-field='IsPublic']")
+                                            .val(publicObj.text || "")
+                                            .attr("data-fieldVal", publicObj.id)
+                                            .trigger("change");
+                                    }
+                                }
+
+
+                                //控制data-field="MatterOther"显示和隐藏
+                                $("[data-field='Matter']").off('change input').on('change input', function () {
+                                    var curObj = $(this);
+                                    if (tool.isNullOrEmptyObject(curObj)) {
+                                        return;
+                                    }
+                                    var fieldval = curObj.attr("data-fieldval");
+                                    if (fieldval == "36") {
+                                        $(".MatterOtherObj").show();
+                                    } else {
+                                        $(".MatterOtherObj").hide();
+                                        $(".MatterOtherObj textarea").val("");//清空文本数据
+                                    }
+                                });
+
+                                //渲染数据
+                                tool.IniInfoData(fromType, id, function(data){
+                                    
+                                    //Status_InProgress = "38";
+                                    //Status_Closed = "39";
+                                    // console.log(data);
+                                    if(data["CurrentState"] == "39"){
+                                        //显示提示
+                                        _self.showTips = true;
+                                        //头部按钮
+                                        _self.onlyMore = true;
+                                        _self.onlyView = true;
+                                    }else{
+                                        //显示提示
+                                        _self.showTips = false;
+                                        //头部按钮
+                                        _self.onlyMore = false;
+                                        _self.onlyView = false;
+                                    }
+                                    
+
+                                    //渲染textarea
+                                    $("textarea").each(function (index, cur) {
+                                        $(cur).height('25');
+                                        tool.autoTextarea(cur);
+                                    });
+
+                                    //场景：当在selectList页面按刷新按钮再回到详情页
+                                    if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+                                            return;
+                                    }
+
+                                    //更新selectlist控件的结果
+                                    var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
+                                    if(tool.isNullOrEmptyObject(curObj)){
+                                        return;
+                                    }
+                                    curObj.attr("data-fieldval",eventBus.selectListData.value.id);
+                                    curObj.text(eventBus.selectListData.value.text);
+
+                                    //清空全局变量
+                                    eventBus.selectListData = null;
+                                });
+                            })
+                        });
+
+                    });
+                });
+            },0);
         },
         deleteData: function (e) {
             var _self = this;

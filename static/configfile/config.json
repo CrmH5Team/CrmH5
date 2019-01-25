@@ -30,6 +30,7 @@
 	"Api_OpportunityHandle_SaveOrUpdate":"Api_OpportunityHandle_SaveOrUpdate",
 	"Api_OpportunityHandle_UserFollow":"Api_OpportunityHandle_UserFollow",
 	"Api_OpportunityHandle_Delete":"Api_OpportunityHandle_Delete",
+	"Api_OpportunityHandle_Close":"Api_OpportunityHandle_Close",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

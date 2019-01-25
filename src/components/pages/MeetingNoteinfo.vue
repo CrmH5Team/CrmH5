@@ -128,21 +128,6 @@
 
             <Uploadfile></Uploadfile>
 
-            <!-- <div class="busOpportunities">
-                <div class="ListCell" @click="goinDealOrOpportunity">
-                    <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
-                    <div class="ListCellContent">
-                        <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="896_查看关联的交易/商业机会"></div>
-                        </div>
-                        <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText"></div>
-                        </div>
-                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                    </div>
-                </div>
-            </div> -->
-
             <Infofooter v-show="!isAddNew"> </Infofooter>
         </div>
     </div>
@@ -193,16 +178,6 @@ export default {
         console.log('created');
     },
     mounted: function () {
-        // this.$nextTick(function () {
-        //     //将textarea设置为高度自适应
-        //     $("textarea").each(function (index, cur) {
-        //         tool.autoTextarea(cur);
-        //     });
-        // })
-        // eventBus.$on('delete', function (data) {
-        //     console.log(data);
-        // });
-
     },
     activated:function(){
         lanTool.updateLanVersion();
@@ -294,19 +269,15 @@ export default {
 
 <style scoped>
 @import "../../assets/css/pages/calendarinfo.css";
-
 .busOpportunities {
     margin: 10px 0;
 }
-
 .busOpportunities .ListCellContentLeftText {
     font-weight: 700;
 }
-
 .busOpportunities .leftContent {
     width: calc(80% - 0.32rem) !important;
 }
-
 .busOpportunities .rightContent {
     width: 20% !important;
 }

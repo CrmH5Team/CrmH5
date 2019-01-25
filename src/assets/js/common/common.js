@@ -335,6 +335,10 @@
 	 * 销售机删除接口
 	 */
 	tool.Api_OpportunityHandle_Delete = "Api_OpportunityHandle_Delete";
+	/*
+	 * 关闭销售机会接口
+	 */
+	tool.Api_OpportunityHandle_Close = "Api_OpportunityHandle_Close";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -2522,7 +2526,7 @@
 					_curObj.val(fieldVal);
 				});
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
-					myCallBack();
+					myCallBack(data);
 				}
 			},
 			error: function (jqXHR, type, error) {
@@ -2787,7 +2791,8 @@
 		tool.showConfirm(
 			lanTool.lanContent("593_您确定要删除数据吗？"),
 			function() {
-
+				tool.showLoading();
+				
 				$.ajax({
 					async: true,
 					type: "post",
