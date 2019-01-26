@@ -1873,7 +1873,7 @@
   <div class="item-new">NEW</div>
   <span class="itme-div-span">{MeetingTitle}</span>
 </div>
-<div class="item-div dete-div">
+<div class="item-div dete-div padding-top-3">
   <span>{BeginTime}</span>
 </div>`;
   //获取销售机会会议记录字段值
