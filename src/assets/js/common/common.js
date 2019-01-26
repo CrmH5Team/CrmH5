@@ -1362,12 +1362,12 @@
 	//   </div>
   // `;
   tool.opportunitiesGroupTemplate =
-		`<div class="list-group-div group-div">
-	  <div class="date-div" >
-		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
-	  </div>
-	</div>
-	`;
+  `<div class="list-group-div group-div">
+  <div class="date-div" >
+	<span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
+  </div>
+</div>
+`;
 	// tool.organizationsTemplate =
 	// `<div class="list-group-div group-div">
 	//   <div class="date-div" >
@@ -1673,7 +1673,7 @@
 				break;
 		case "opportunities":
 		// controlName = tool.Api_OpportunitiesHandle_GroupInnerData;
-		controlName = Api_OpportunityHandle_GroupInnerData;
+		controlName = tool.Api_OpportunityHandle_GroupInnerData;
 		var queryCondictionObj =
 		{
 			Field:"BusinessTypes",
@@ -1685,17 +1685,20 @@
 		};
 		queryCondiction.push(queryCondictionObj);
         outerTemplate = `<div class="occupy-div"></div>
-        <div class="group-item-list opportunities-list" >
+        <div class="group-item-list dealPipeline-list">
         {InnerList}
         </div>`;
-        innerTemplate = `<div class="group-item f14" data-url="/opportunitiesinfo/12">
+        innerTemplate = `<div class=" group-item f14" data-url="/opportunitiesinfo/{AutoID}">
                             <div class="item-stars-icon calcfont {IsFollow}" data-autoid={AutoID}></div>
                             <div class="item-block">
-                                <div class="item-div item-first-div blue-color">A320-200 sales project2 for</div>
-                                <div class="item-div blue-color padding-bottom-5 padding-top-5">
-                                  <span>In Progress</span>
+                                <div class="item-div item-first-div blue-color">
+                                {TheName}
                                 </div>
-                                <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
+                                <div class="item-div ">{Memo}</div>
+                                <div class="item-div blue-color padding-bottom-3 padding-top-3">
+                                  <span>{CurrentState}</span>
+                                </div>
+                                {MeetingInfo}
                             </div>
                         </div>`;
 				break;
@@ -1793,7 +1796,7 @@
 					}
 
 					//若是dealPipeline
-					if(fromType == "dealPipeline"){
+					if(fromType == "dealPipeline" || fromType == "opportunities"){
 						tempStr = tool.FormatOppMeetingFieldValHtml(data[i],tempStr);
 					}
 
