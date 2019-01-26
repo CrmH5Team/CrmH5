@@ -305,6 +305,11 @@ export default {
         document.activeElement.blur();
 
         _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        if(_self.onlyView){
+            $('.scroll-div').addClass('disable');
+        }else{
+            $('.scroll-div').removeClass('disable');
+        }
         _self.companyID = _self.$route.query.companyID || '';
         _self.companyName = _self.$route.query.companyName || '';
 

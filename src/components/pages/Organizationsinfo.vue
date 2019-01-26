@@ -215,7 +215,12 @@ export default {
         this.ptitle = this.$route.query.infoName || lanTool.lanContent("792_添加公司");
         var _self = this;
 
-        this.onlyView = Boolean(this.$route.query.onlyView) || false;
+        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        if(_self.onlyView){
+            $('.scroll-div').addClass('disable');
+        }else{
+            $('.scroll-div').removeClass('disable');
+        }
 
         //监听保存
         _self.savePageData();
@@ -241,8 +246,8 @@ export default {
         var _isBack = _self.$route.meta.isBack;
 
 
-        console.log("_isBack:"+_isBack);
-        console.log("_self.isFirstEnter:"+_self.isFirstEnter);
+        // console.log("_isBack:"+_isBack);
+        // console.log("_self.isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
