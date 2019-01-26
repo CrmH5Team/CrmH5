@@ -24,7 +24,12 @@
         </div>
     </div>
 
-    <input ref="fileChoose" v-on:change="inputFiles" class="fileInput" type="file" name="img" id="selectFile" />
+    <form id="uploadForm" style="display:none;">
+        <input ref="fileChoose" v-on:change="inputFiles" class="fileInput" type="file" name="img" id="selectFile" />
+        <!-- <input id="uploadFile" name="uploadFile" type="file" accept="*/*" />
+        <input id="uploadFileSub" type="button" /> -->
+    </form>
+    
 
 </div>
 </template>
@@ -33,54 +38,54 @@
 export default {
     data() {
         return {
-            fileListData:[
-                  {
-                      attachmentname:"12110320_微信图片_2018082314101328.png",
-                      attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
-                      attachmentsid:3577,
-                      createdtime:"16/Nov 15:00",
-                      creator:"it mobileclient",
-                      filedownloadcount:0,
-                      filelocationtype:"E",
-                      filename:"12110320_微信图片_2018082314101328.png",
-                      filesize:107653,
-                      filestatus:1,
-                      filetype:"",
-                      fileversion:"",
-                      folderid:1,
-                      foldername:"Default",
-                      modifiedtime:"16/Nov 15:00",
-                      note_no:"DOC50",
-                      notecontent:"",
-                      notesid:3635,
-                      title:"这是测试",
-                  },
-                  {
-                      attachmentname:"12110320_微信图片_2018082314101328.png",
-                      attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
-                      attachmentsid:3578,
-                      createdtime:"16/Nov 15:00",
-                      creator:"it mobileclient",
-                      filedownloadcount:0,
-                      filelocationtype:"E",
-                      filename:"12110320_微信图片_2018082314101328.png",
-                      filesize:107653,
-                      filestatus:1,
-                      filetype:"",
-                      fileversion:"",
-                      folderid:1,
-                      foldername:"Default",
-                      modifiedtime:"16/Nov 15:00",
-                      note_no:"DOC50",
-                      notecontent:"",
-                      notesid:3635,
-                      title:"这是测试",
-                  },
-            ]
+            // fileListData:[
+            //     //   {
+            //     //       attachmentname:"12110320_微信图片_2018082314101328.png",
+            //     //       attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
+            //     //       attachmentsid:3577,
+            //     //       createdtime:"16/Nov 15:00",
+            //     //       creator:"it mobileclient",
+            //     //       filedownloadcount:0,
+            //     //       filelocationtype:"E",
+            //     //       filename:"12110320_微信图片_2018082314101328.png",
+            //     //       filesize:107653,
+            //     //       filestatus:1,
+            //     //       filetype:"",
+            //     //       fileversion:"",
+            //     //       folderid:1,
+            //     //       foldername:"Default",
+            //     //       modifiedtime:"16/Nov 15:00",
+            //     //       note_no:"DOC50",
+            //     //       notecontent:"",
+            //     //       notesid:3635,
+            //     //       title:"这是测试",
+            //     //   },
+            //     //   {
+            //     //       attachmentname:"12110320_微信图片_2018082314101328.png",
+            //     //       attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
+            //     //       attachmentsid:3578,
+            //     //       createdtime:"16/Nov 15:00",
+            //     //       creator:"it mobileclient",
+            //     //       filedownloadcount:0,
+            //     //       filelocationtype:"E",
+            //     //       filename:"12110320_微信图片_2018082314101328.png",
+            //     //       filesize:107653,
+            //     //       filestatus:1,
+            //     //       filetype:"",
+            //     //       fileversion:"",
+            //     //       folderid:1,
+            //     //       foldername:"Default",
+            //     //       modifiedtime:"16/Nov 15:00",
+            //     //       note_no:"DOC50",
+            //     //       notecontent:"",
+            //     //       notesid:3635,
+            //     //       title:"这是测试",
+            //     //   },
+            // ]
 
         }
     },
-    props: ['data', 'id'],
+    props: ['fileListData', 'fromID','fromType'],
     mounted: function () {
         lanTool.updateLanVersion();
     },
@@ -93,27 +98,19 @@ export default {
             var file = _self.$refs.fileChoose.files[0] || [];
             if (file.length == 0){
                 return;
-            } 
+            }
+            
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
+
+                console.log(e.target);
                 
-                // _self.$router.push({
-                //     name: "uploadinput",
-                //     params: {
-                //         file: e.target.result,
-                //         fileName: file.name,
-                //         fileSize: file.size,
-                //         id: _self.id,
-                //         fromType:"40"//FromType_MeetingNote
-                //     }
-                // });
                 var parameter = {
                     file: e.target.result,
                     fileName: file.name,
-                    fileSize: file.size,
-                    id: _self.id,
-                    fromType:"40"//FromType_MeetingNote
+                    fromID: _self.fromID,
+                    fromType: _self.fromType
                 };
                 _self.$router.push({
                     path: '/uploadinput',
@@ -121,8 +118,7 @@ export default {
                 });
 
                 tool.hideLoading();
-                //$('#selectFile').val('').trigger("change");
-                $('#selectFile').val('');
+                $('#selectFile').val('').trigger("change");
             };
         },
 

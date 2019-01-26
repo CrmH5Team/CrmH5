@@ -101,7 +101,7 @@
 
             </div>
 
-            <Uploadfile v-show="!isAddNew"></Uploadfile>
+            <Uploadfile v-show="!isAddNew" :fileListData=fileListData :fromID=fromIDNew :fromType=fromTypeNew></Uploadfile>
 
             <Infofooter v-show="!isAddNew"> </Infofooter>
         </div>
@@ -130,6 +130,9 @@ export default {
             isFirstEnter:false,//是否首次进入
             oppID:"",//销售机会ID
             scheduleID:"",//会议ID
+            fileListData : [],//文件列表
+            fromIDNew:"",//当前记录ID
+            fromTypeNew : ""//来源类型
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -161,6 +164,8 @@ export default {
         var fromType = "MeetingNoteinfo";
         this.oppID = this.$route.query.OppID;
         this.scheduleID = this.$route.query.ScheduleID;
+        this.fromIDNew = _self.$route.params.id;
+        this.fromTypeNew = "40";
 
         //监听保存
         _self.savePageData();

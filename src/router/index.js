@@ -139,7 +139,7 @@ const router =  new Router({
       }
     },
     //上传文件
-    { path:'/uploadinput',name:'uploadinput',component:Uploadinput
+    { path:'/Uploadinput',name:'uploadinput',component:Uploadinput
       // ,
       // meta: {
       //   keepAlive: true,
@@ -147,6 +147,7 @@ const router =  new Router({
       //   listName:"meetingNoteinfo"
       // }
     },
+    
     //文档查看
     { path:'/previewfile',name:'previewfile',component:Previewfile},
     { path:'/linkedpage',name:'linkedpage',component:Linkedpage },

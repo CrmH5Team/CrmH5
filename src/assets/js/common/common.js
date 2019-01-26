@@ -353,6 +353,14 @@
 	 */
 	tool.Api_MeetingNoticeHandle_Delete = "Api_MeetingNoticeHandle_Delete";
 
+	/*
+	 * 上传文档
+	 */
+	tool.Api_DocumentsHandle_UploadDocuments2DMS = "Api_DocumentsHandle_UploadDocuments2DMS";
+	/*
+	 * 查询文档
+	 */
+	tool.Api_DocumentsHandle_Query = "Api_DocumentsHandle_Query";
 
 
 	/*
