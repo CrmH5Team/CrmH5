@@ -140,7 +140,7 @@ const router =  new Router({
     },
     //上传文件
     { path:'/uploadinput',name:'uploadinput',component:Uploadinput
-      //,
+      // ,
       // meta: {
       //   keepAlive: true,
       //   isBack:false,
