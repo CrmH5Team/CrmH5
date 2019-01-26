@@ -14,7 +14,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="818_会议"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="ScheduleID" data-fieldControlType="selectList" data-lanid="818_会议" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
+                            <div type="text" data-field="ScheduleID" data-fieldControlType="selectList" data-lanid="818_会议" data-fieldVal="" Code="DropDowList_Meeting" Filter="" data-selectType="radio" class="ListCellContentRightText" />
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -127,7 +127,9 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation:false,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
-            isFirstEnter:false//是否首次进入
+            isFirstEnter:false,//是否首次进入
+            oppID:"",//销售机会ID
+            scheduleID:"",//会议ID
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -144,7 +146,7 @@ export default {
     //     next();
     // },
     created: function () {
-        // console.log('created');
+        console.log('noteinfo created');
         this.isFirstEnter = true;
     },
     mounted: function () {
@@ -155,6 +157,8 @@ export default {
         var _self = this;
         var id = _self.$route.params.id;
         var fromType = "MeetingNoteinfo";
+        this.oppID = this.$route.query.OppID;
+        this.scheduleID = this.$route.query.ScheduleID;
 
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
@@ -164,9 +168,17 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
+        //是否是从上传文档后返回
+        var _fromSave = _self.$route.meta.fromSave;
+
+        console.log("_isBack:"+_isBack);
+        console.log("isFirstEnter:"+_self.isFirstEnter);
+
         //若为true,则需要刷新
-        if(!_isBack || _self.isFirstEnter){
+        if(_fromSave || !_isBack || _self.isFirstEnter){
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
@@ -181,6 +193,11 @@ export default {
                     //控制控件逻辑
                     _self.controlBusinessTypes();
 
+                    //处理OppID
+                    _self.handleOppID(_self.oppID,true);
+                    //处理ScheduleID
+                    _self.handleScheduleID(_self.scheduleID,true);
+
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
 
@@ -189,13 +206,14 @@ export default {
                                 return;
                           }
 
-                          //更新selectlist控件的结果
-                          var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
-                          if(tool.isNullOrEmptyObject(curObj)){
-                              return;
-                          }
-                          curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-                          curObj.text(eventBus.selectListData.value.text);
+                            //更新selectlist控件的结果
+                            var filedName = eventBus.selectListData.field;
+                            var idTemp = eventBus.selectListData.value.id||"";
+                            if(filedName=="ScheduleID"){
+                                _self.handleScheduleID(idTemp,false);
+                            }else{
+                                _self.handleOppID(idTemp,false);
+                            }
 
                           //清空全局变量
                           eventBus.selectListData = null;
@@ -208,17 +226,21 @@ export default {
 
         }else{
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
+
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
             }
+            
             //更新selectlist控件的结果
-            var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
-            if(tool.isNullOrEmptyObject(curObj)){
-                return;
+            var filedName = eventBus.selectListData.field;
+            var idTemp = eventBus.selectListData.value.id||"";
+            if(filedName=="ScheduleID"){
+                _self.handleScheduleID(idTemp,false);
+            }else{
+                _self.handleOppID(idTemp,false);
             }
-            curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-            curObj.text(eventBus.selectListData.value.text);
-
             //清空全局变量
             eventBus.selectListData = null;
         }
@@ -228,20 +250,181 @@ export default {
         savePageData:function(e){
             var _self = this;
             var id = _self.$route.params.id;
-            var fromType = "Opportunitiesinfo";
-            $("#save").off().on("click",function(){
-                tool.SaveOrUpdateData(fromType, id,_self, function(){
-                });
-            });
+            var fromType = "MeetingNoteinfo";
+            setTimeout(function () {
+                $("#save").off().on("click",function(){
+                    tool.SaveOrUpdateData(fromType, id,_self, function(){
+                    });
+                });    
+            },0);
         },
         //控制控件逻辑
         controlBusinessTypes:function(){
             var _self = this;
              $("[data-field='BeginTime'],[data-field='EndTime'],[data-field='MeetingType'],[data-field='CompanyID'],[data-field='ContactsID'],#CompanyIDClickObj")
             .addClass('disable');
+        },
+        //处理OppID存在的逻辑
+        handleOppID:function(oppID,isLock){
+            isLock = (isLock == undefined || isLock == null) ? false : isLock;
+            var _self = this;
+            console.log(oppID);
+            if(tool.isNullOrEmptyObject(oppID)){
+                return;
+            }
+            var autoID = oppID;
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_OpportunityHandle_QuerySingle;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: autoID
+            };
+		    tool.showLoading();
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    tool.hideLoading();
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                    }
+
+                    data = data._OnlyOneData || [];
+                    console.log(data);
+
+                    //1>锁定销售机会设置为不可操作
+                    if(isLock){
+                        $("#OppIDObj,[data-field='OppID']").removeClass('disable').addClass('disable');
+                    }else{
+                        $("#OppIDObj,[data-field='OppID']").removeClass('disable');
+                    }
+                    
+                    //2>销售机会赋值
+                    $("[data-field='OppID']").text(data["TheName"]||"").attr("data-fieldval",data["AutoID"]||"");
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    tool.hideLoading();
+                    return true;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
+        },
+        //处理handleScheduleID存在的逻辑
+        handleScheduleID:function(scheduleID,isLock){
+            isLock = (isLock == undefined || isLock == null) ? false : isLock;
+            var _self = this;
+            console.log(scheduleID);
+            if(tool.isNullOrEmptyObject(scheduleID)){
+                return;
+            }
+            var autoID = scheduleID;
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MeetingHandle_QuerySingle;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: autoID
+            };
+		    tool.showLoading();
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    tool.hideLoading();
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                    }
+
+                    data = data._OnlyOneData || [];
+                    console.log(data);
+
+                    //1>会议记录字段赋值
+                    //1-1>ScheduleID
+                    var _curObj = $("[data-field='ScheduleID']");
+                    if(isLock){
+                        _curObj.removeClass('disable').addClass('disable');
+                    }else{
+                        _curObj.removeClass('disable');
+                    }
+                    
+                    _curObj.text(data["MeetingTitle"]||"").attr("data-fieldval",data["AutoID"]||"");
+                    //1-2>MeetingTitle
+                    _curObj = $("[data-field='MeetingTitle']");
+                    _curObj.val(data["MeetingTitle"]||"");
+                    //1-3>BeginTime
+                    _curObj = $("[data-field='BeginTime']");
+                    var fieldVal = data["BeginTime"] || "";
+					var format = _curObj.attr("data-format") || "";
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+						fieldVal = fieldVal.ReplaceAll("T"," ");
+						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+                    }
+                    _curObj.val(fieldVal);
+                    //1-4>EndTime
+                    _curObj = $("[data-field='EndTime']");
+                    fieldVal = data["EndTime"] || "";
+					format = _curObj.attr("data-format") || "";
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+						fieldVal = fieldVal.ReplaceAll("T"," ");
+						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+                    }
+                    _curObj.val(fieldVal);
+                    //1-5>EndTime
+                    _curObj = $("[data-field='EndTime']");
+                    fieldVal = data["EndTime"] || "";
+					format = _curObj.attr("data-format") || "";
+					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+						fieldVal = fieldVal.ReplaceAll("T"," ");
+						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+                    }
+                    _curObj.val(fieldVal);
+                    //1-6>MeetingType
+                    _curObj = $("[data-field='MeetingType']");
+                    _curObj.val(data["MeetingType_Name"]||"").attr("data-fieldval",data["MeetingType"]||"");
+                    //1-7>CompanyID
+                    _curObj = $("[data-field='CompanyID']");
+                    _curObj.text(data["CompanyID_Name"]||"").attr("data-fieldval",data["CompanyID"]||"");
+                    //1-8>ContactsID_Name
+                    _curObj = $("[data-field='ContactsID']");
+                    _curObj.text(data["ContactsID_Name"]||"").attr("data-fieldval",data["ContactsID"]||"");
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    tool.hideLoading();
+                    return true;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
         }
     }
-
 }
 </script>
 

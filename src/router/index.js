@@ -97,21 +97,17 @@ const router =  new Router({
         listName:"tripmeeting"
       }
     },
+
+
+
+
+
       //添加住宿/机票
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
      //添加会议
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
-
-    //上传文件
-    { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-      }
-    },
     //文档查看
     { path:'/previewfile',name:'previewfile',component:Previewfile},
-
     //添加出差报销单
     { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
 
@@ -142,6 +138,14 @@ const router =  new Router({
         isBack:false,
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
         listName:"opportunitiesinfo"
+      }
+    },
+    //上传文件
+    { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
+      meta: {
+        keepAlive: true,
+        isBack:false,
+        listName:"meetingNoteinfo"
       }
     },
     { path:'/linkedpage',name:'linkedpage',component:Linkedpage },

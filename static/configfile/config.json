@@ -31,6 +31,9 @@
 	"Api_OpportunityHandle_UserFollow":"Api_OpportunityHandle_UserFollow",
 	"Api_OpportunityHandle_Delete":"Api_OpportunityHandle_Delete",
 	"Api_OpportunityHandle_Close":"Api_OpportunityHandle_Close",
+	"Api_MeetingNoticeHandle_QuerySingle":"Api_MeetingNoticeHandle_QuerySingle",
+	"Api_MeetingNoticeHandle_SaveOrUpdate":"Api_MeetingNoticeHandle_SaveOrUpdate",
+	"Api_MeetingNoticeHandle_Delete":"Api_MeetingNoticeHandle_Delete",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

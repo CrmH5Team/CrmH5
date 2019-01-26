@@ -341,6 +341,21 @@
 	tool.Api_OpportunityHandle_Close = "Api_OpportunityHandle_Close";
 
 	/*
+	 * 查询会议记录明细
+	 */
+	tool.Api_MeetingNoticeHandle_QuerySingle = "Api_MeetingNoticeHandle_QuerySingle";
+	/*
+	 * 保存会议记录
+	 */
+	tool.Api_MeetingNoticeHandle_SaveOrUpdate = "Api_MeetingNoticeHandle_SaveOrUpdate";
+	/*
+	 * 删除会议记录
+	 */
+	tool.Api_MeetingNoticeHandle_Delete = "Api_MeetingNoticeHandle_Delete";
+
+
+
+	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
 	tool.config_currentLanguageVersion = "currentLanguageVersion";
@@ -2333,7 +2348,7 @@
 		} else if (fromType == "Tripinfo") {
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {
-			controlName = "";
+			controlName = tool.Api_MeetingNoticeHandle_QuerySingle;
 		} else if (fromType == "Opportunitiesinfo") {
 			controlName = tool.Api_OpportunityHandle_QuerySingle;
 		} else {
@@ -2577,7 +2592,7 @@
 		} else if (fromType == "Tripinfo") {
 			controlName = "";
 		} else if (fromType == "MeetingNoteinfo") {
-			controlName = "";
+			controlName = tool.Api_MeetingNoticeHandle_SaveOrUpdate;
 		} else if (fromType == "Opportunitiesinfo") {
 			controlName = tool.Api_OpportunityHandle_SaveOrUpdate;
 		} else {

@@ -375,7 +375,7 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
-        //是否是从上传文档后返回
+        //是否是从会议记录保存后返回
         var _fromSave = _self.$route.meta.fromSave;
 
         // console.log("_isBack:"+_isBack);
@@ -528,7 +528,7 @@ export default {
     methods: {
         //查看有权限访问的同事跳转事件
         goToShareList: function() {
-          var _self = this;
+            var _self = this;
             var fromType = "9";
             var fromID = _self.$route.params.id || "";
             if (tool.isNullOrEmptyObject(fromID)) {
@@ -546,23 +546,34 @@ export default {
         //查看/添加会议记录
         goRecord: function (e) {
             var _self = this;
-            var tager = $(e.target);
-            var url = tager.attr('data-url') || '';
-            if(tool.isNullOrEmptyObject(url)){
+            var target = $(e.target);
+            var url = target.attr("data-url");
+            var oppID = _self.$route.params.id;
+            if(tool.isNullOrEmptyObject(oppID)){
                 return;
             }
+            oppID = Number(oppID)<=0?"":oppID;
+            var scheduleID = "";
+            var parameter = {
+                OppID:oppID,
+                ScheduleID:scheduleID
+            };
+            
             _self.$router.push({
                 path: url,
-            })
+                query: parameter
+            });
         },
         //保存
         savePageData:function(e){
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Opportunitiesinfo";
-            $("#save").off("click").on("click", function () {
-                tool.SaveOrUpdateData(fromType, id, _self, function () {});
-            });
+            setTimeout(function () {
+                $("#save").off("click").on("click", function () {
+                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                });
+            },0);
         },
         //关注
         followToggle: function (e) {
