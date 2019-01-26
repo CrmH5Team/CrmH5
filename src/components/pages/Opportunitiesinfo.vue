@@ -166,7 +166,7 @@
 
                     <div v-for="item in MeetingNotice" :key="item.AutoID" class="meetingRecordListCell">
                         <div class="headerDiv">
-                            <div class="headerDivLeftIcon"><span @click="deleteRecord(item.AutoID,$event)" class="calcfont calc-xinxi1"></span></div>
+                            <div class="headerDivLeftIcon"><span class="calcfont calc-xinxi1"></span></div>
                             <div class="headerDivContent">
                                 <div class="content">{{item.MeetingTitle}}</div>
                             </div>
@@ -175,7 +175,7 @@
                                 {{seeMore}}
                                 </div>
                             </div>
-                            <div class="headerDivRightDelete">
+                            <div class="headerDivRightDelete"  @click="deleteMeetingNote(item.AutoID,$event)" >
                                 <span class="calcfont calc-delete"></span>
                             </div>
                         </div>
@@ -658,6 +658,9 @@ export default {
                                 console.log(tool.getMessage(data));
                                 return true;
                             }
+
+                            //返回到上一页
+						    _self.$router.back(-1);
                         },
                         error: function (jqXHR, type, error) {
                             console.log(error);
@@ -673,107 +676,6 @@ export default {
 
                         //调子组件 收起侧滑方法
                         _self.$refs.rightPanel.panelToggle();
-
-
-                        //清空页面数据
-                        tool.ClearControlData(function(){
-                            //渲染控件
-                            tool.InitiateInfoPageControl(_self, id, function(){
-
-                                //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
-                                $("textarea").each(function (index, cur) {
-                                    $(cur).height('25');
-                                    tool.autoTextarea(cur);
-                                });
-
-                                //控制data-field="Initiator"显示和隐藏
-                                $("[data-field='IsPublic']").off('change input').on('change input', function () {
-                                    var curObj = $(this);
-                                    if (tool.isNullOrEmptyObject(curObj)) {
-                                        return;
-                                    }
-
-                                    var fieldval = curObj.attr("data-fieldval");
-                                    if (fieldval == "23") {
-                                        $(".initiatorObj").hide();
-                                    } else {
-                                        $(".initiatorObj").show();
-                                    }
-                                });
-                                //默认给data-field="Initiator"赋予23(公开) todo 这里要想个方法来赋值
-                                // 如是新增状态 默认给data-field="Initiator"赋予23(公开)
-                                if (_self.isAddNew) {
-                                    var publicObj = tool.GetPublicObj();
-                                    if (!tool.isNullOrEmptyObject(publicObj)) {
-                                        $("[data-field='IsPublic']")
-                                            .val(publicObj.text || "")
-                                            .attr("data-fieldVal", publicObj.id)
-                                            .trigger("change");
-                                    }
-                                }
-
-
-                                //控制data-field="MatterOther"显示和隐藏
-                                $("[data-field='Matter']").off('change input').on('change input', function () {
-                                    var curObj = $(this);
-                                    if (tool.isNullOrEmptyObject(curObj)) {
-                                        return;
-                                    }
-                                    var fieldval = curObj.attr("data-fieldval");
-                                    if (fieldval == "36") {
-                                        $(".MatterOtherObj").show();
-                                    } else {
-                                        $(".MatterOtherObj").hide();
-                                        $(".MatterOtherObj textarea").val("");//清空文本数据
-                                    }
-                                });
-
-                                //渲染数据
-                                tool.IniInfoData(fromType, id, function(data){
-
-                                    //Status_InProgress = "38";
-                                    //Status_Closed = "39";
-                                    // console.log(data);
-                                    if(data["CurrentState"] == "39"){
-                                        //显示提示
-                                        _self.showTips = true;
-                                        //头部按钮
-                                        _self.onlyView = true;
-                                        $('.scroll-div').addClass('disable');
-                                    }else{
-                                        //显示提示
-                                        _self.showTips = false;
-                                        //头部按钮
-                                        _self.onlyView = false;
-                                        $('.scroll-div').removeClass('disable');
-                                    }
-
-
-                                    //渲染textarea
-                                    $("textarea").each(function (index, cur) {
-                                        $(cur).height('25');
-                                        tool.autoTextarea(cur);
-                                    });
-
-                                    //场景：当在selectList页面按刷新按钮再回到详情页
-                                    if(tool.isNullOrEmptyObject(eventBus.selectListData)){
-                                            return;
-                                    }
-
-                                    //更新selectlist控件的结果
-                                    var curObj = $("[data-field='"+  eventBus.selectListData.field +"']");
-                                    if(tool.isNullOrEmptyObject(curObj)){
-                                        return;
-                                    }
-                                    curObj.attr("data-fieldval",eventBus.selectListData.value.id);
-                                    curObj.text(eventBus.selectListData.value.text);
-
-                                    //清空全局变量
-                                    eventBus.selectListData = null;
-                                });
-                            })
-                        });
-
                     });
                 });
             },0);
@@ -847,7 +749,69 @@ export default {
 
             console.log(data);
             _self.MeetingNotice = data["MeetingNotice"]||[];
-        }
+        },
+        deleteMeetingNote:function(autoID,e){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(autoID)){
+                return;
+            }
+            
+            var idArr = [];
+            idArr.push(autoID);
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MeetingNoticeHandle_Delete;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: JSON.stringify(idArr)
+            };
+
+            tool.showConfirm(
+                lanTool.lanContent("593_您确定要删除数据吗？"),
+                function() {
+                    tool.showLoading();
+
+                    $.ajax({
+                        async: true,
+                        type: "post",
+                        url: urlTemp,
+                        data: jsonDatasTemp,
+                        success: function (data) {
+                            tool.hideLoading();
+                            data = tool.jObject(data);
+                            // console.log(data);
+                            if (data._ReturnStatus == false) {
+                                tool.showText(tool.getMessage(data));
+                                console.log(tool.getMessage(data));
+                                return true;
+                            }
+
+                            //刷新会议列表
+                            var fromType = "Opportunitiesinfo";
+                            tool.IniInfoData(fromType, _self.id, function(data){
+                                //渲染会议记录列表
+                                _self.iniMeetingNoteList(data);
+                            });
+                        },
+                        error: function (jqXHR, type, error) {
+                            console.log(error);
+                            tool.hideLoading();
+                            return true;
+                        },
+                        complete: function () {
+                            //tool.hideLoading();
+                            //隐藏虚拟键盘
+                            document.activeElement.blur();
+                        }
+                    });
+
+			},
+			function() {}
+		  );
+        },
     }
 }
 </script>

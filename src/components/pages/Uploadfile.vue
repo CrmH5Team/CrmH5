@@ -88,31 +88,40 @@ export default {
 
         //选择文件后触发 一次选择一张图片
         inputFiles: function () {
-
+            var _self = this;
             tool.showLoading();
-
-            var $this = this;
-
-            var file = $this.$refs.fileChoose.files[0] || [];
-
-            if (file.length == 0) return;
-
+            var file = _self.$refs.fileChoose.files[0] || [];
+            if (file.length == 0){
+                return;
+            } 
             var reader = new FileReader();
-            // alert(JSON.stringify(reader));
             reader.readAsDataURL(file);
             reader.onload = function (e) {
-
-                $this.$router.push({
-                    name: "uploadinput",
-                    params: {
-                        file: e.target.result,
-                        fileName: file.name,
-                        fileSize: file.size,
-                        id: $this.id
-                    }
+                
+                // _self.$router.push({
+                //     name: "uploadinput",
+                //     params: {
+                //         file: e.target.result,
+                //         fileName: file.name,
+                //         fileSize: file.size,
+                //         id: _self.id,
+                //         fromType:"40"//FromType_MeetingNote
+                //     }
+                // });
+                var parameter = {
+                    file: e.target.result,
+                    fileName: file.name,
+                    fileSize: file.size,
+                    id: _self.id,
+                    fromType:"40"//FromType_MeetingNote
+                };
+                _self.$router.push({
+                    path: '/uploadinput',
+                    query: parameter
                 });
 
                 tool.hideLoading();
+                //$('#selectFile').val('').trigger("change");
                 $('#selectFile').val('');
             };
         },

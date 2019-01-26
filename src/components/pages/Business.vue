@@ -51,7 +51,7 @@ export default {
     },
     data() {
         return {
-            title: 'Business',
+            title: lanTool.lanContent('783_商业'),
             showPage: 0,
             noData: true, //没数据
             queryCondiction: [], //右侧checkbox条件
