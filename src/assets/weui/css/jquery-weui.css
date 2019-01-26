@@ -710,7 +710,7 @@ body {
 }
 .weui-toast--text .weui-toast_content{
   /* margin: 10px 15px; */
-  line-height: 17px;
+  line-height: 22px;
 }
 .weui-mask {
   opacity: 0;

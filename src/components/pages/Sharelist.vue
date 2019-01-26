@@ -22,8 +22,8 @@
               id="userInput"
               key="userInput"
               class="search-input lanInputPlaceHolder"
-              data-lanid="208_搜索"
-            >
+              data-lanid="780_搜索" 
+            />
           </div>
         </div>
         <!-- 列表 -->
@@ -67,10 +67,10 @@
               type="search"
               id="groupInput"
               key="groupInput"
-              class="search-input"
-              data-lanid="208_搜索"
-              placeholder="search"
-            >
+              class="search-input lanInputPlaceHolder"
+              data-lanid="780_搜索"
+              placeholder=""
+           />
           </div>
         </div>
         <!-- 列表 -->
@@ -111,7 +111,7 @@ export default {
   data() {
     return {
       languageData: {
-        search: lanTool.lanContent("208_搜索")
+        search: lanTool.lanContent("780_搜索")
       },
       noUserData: true, //没数据
       noGroupData: true, //没数据
@@ -175,7 +175,7 @@ export default {
         //   ]
         // }
       ],
-      title: "Share with",
+      title: lanTool.lanContent("946_分享给同事"),
       userCheckedValue: [],
       groupCheckedValue: [],
       showPage: 0,
