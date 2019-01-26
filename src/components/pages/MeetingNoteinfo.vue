@@ -96,7 +96,7 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="Linkedpage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="OppID"></div>
+                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="OppID"></div>
                 </div>
 
             </div>
@@ -159,6 +159,9 @@ export default {
         var fromType = "MeetingNoteinfo";
         this.oppID = this.$route.query.OppID;
         this.scheduleID = this.$route.query.ScheduleID;
+
+        //监听保存
+        _self.savePageData();
 
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(id) || Number(id) <= 0){
@@ -248,11 +251,13 @@ export default {
     methods: {
         //保存
         savePageData:function(e){
+            //console.log("save");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
+                
             setTimeout(function () {
-                $("#save").off().on("click",function(){
+                $("#save").off("click").on("click",function(){
                     tool.SaveOrUpdateData(fromType, id,_self, function(){
                     });
                 });    

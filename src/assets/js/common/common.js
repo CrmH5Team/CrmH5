@@ -1928,6 +1928,7 @@
 		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='groupSelectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='linkSelectList']").text("").attr("data-fieldVal", "");
+		$("[data-fieldControlType='linkedPage']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='divText']").text("");
 		$("[data-fieldControlType='icon']").each(function(index,curObj){
 			var _curObj = $(this);
@@ -2166,6 +2167,9 @@
 		//4-1>同一行的groupSelectList
 		$("[data-fieldControlType='groupSelectList']").attr("readonly","readonly").off().on('click',function(){
 			var _curObj = $(this);
+			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
+				return;
+			}
 			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
@@ -2230,7 +2234,71 @@
 			});
 		});
 
-		//5>渲染dateTimePicker
+		//5>渲染linkedPage
+		//5-1>同一行的linkedPage
+		$("[data-fieldControlType='linkedPage']").attr("readonly","readonly").off().on('click',function(){
+			var _curObj = $(this);
+			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
+				return;
+			}
+			// console.log(_curObj);
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType,
+				"filter":filter
+			};
+			self.$router.push({
+				path: '/linkedpage',
+				query: parameter
+			});
+		});
+		//5-2>不同一行的linkedPage
+		//console.log($("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).length);
+		$("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+			//查找子类
+			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
+			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
+			if(tool.isNullOrEmptyObject(_curObj)){
+				return;
+			}
+			// console.log(_curObj);
+
+			var dataField = _curObj.attr("data-field") ||"";
+			var code = _curObj.attr("Code") ||"";
+			var filter = _curObj.attr("Filter") ||"";
+			var typeValue = _curObj.attr("TypeValue") ||"";
+			var value = _curObj.attr("data-fieldVal") ||"";
+			var selectType = _curObj.attr("data-selectType") ||"";
+			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+
+			var parameter = {
+				'field':dataField,
+				'code':code,
+				"typeValue":typeValue,
+				'title':title,
+				'value':value,//已经选择的值
+				'selectType':selectType,
+				"filter":filter
+			};
+			self.$router.push({
+				path: '/linkedpage',
+				query: parameter
+			});
+		});
+
+		//6>渲染dateTimePicker
 		$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
 			var _curObj = $(this);
 			// console.log(_curObj);
@@ -2310,7 +2378,7 @@
 
 		});
 
-		//6>渲染hideDivText
+		//7>渲染hideDivText
 		$("[data-fieldControlType='hideDivText']").each(function (index, obj) {
 			var _curObj = $(this);
 			_curObj.hide();
@@ -2452,7 +2520,24 @@
 					_curObj.text(fieldDisplay);
 					_curObj.attr("data-fieldVal", fieldVal);
 				});
-				//5>textareaInput
+				//5>linkedPage
+				$("[data-fieldControlType='linkedPage']").each(function (index, obj) {
+					var _curObj = $(this);
+					if (tool.isNullOrEmptyObject(_curObj)) {
+						return true;
+					}
+					var dataField = _curObj.attr("data-field") || "";
+					if (tool.isNullOrEmptyObject(dataField)) {
+						return true;
+					}
+
+					var fieldVal = data[dataField] || "";
+					var fieldDisplay = data[dataField + "_Name"] || "";
+
+					_curObj.text(fieldDisplay);
+					_curObj.attr("data-fieldVal", fieldVal);
+				});
+				//6>textareaInput
 				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2465,7 +2550,7 @@
 					var fieldVal = data[dataField] || "";
 					_curObj.val(fieldVal);
 				});
-				//6>divText
+				//7>divText
 				$("[data-fieldControlType='divText']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2494,7 +2579,7 @@
 
 					_curObj.text(fieldVal);
 				});
-				//7>icon
+				//8>icon
 				$("[data-fieldControlType='icon']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2529,7 +2614,7 @@
 					_curObj.addClass(iconClass);
 
 				});
-				//8>dateTimePicker
+				//9>dateTimePicker
 				$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
 					var _curObj = $(this);
 					if (tool.isNullOrEmptyObject(_curObj)) {
@@ -2646,6 +2731,20 @@
 		});
 		//4>linkSelectList
 		$("[data-fieldControlType='linkSelectList']").each(function (index, obj){
+			var _curObj = $(this);
+			if (tool.isNullOrEmptyObject(_curObj)) {
+				return true;
+			}
+			var dataField = _curObj.attr("data-field") || "";
+			if (tool.isNullOrEmptyObject(dataField)) {
+				return true;
+			}
+
+			var fieldVal = _curObj.attr("data-fieldVal") || "";
+			jObject[dataField] = fieldVal;
+		});
+		//5>linkedPage
+		$("[data-fieldControlType='linkedPage']").each(function (index, obj){
 			var _curObj = $(this);
 			if (tool.isNullOrEmptyObject(_curObj)) {
 				return true;

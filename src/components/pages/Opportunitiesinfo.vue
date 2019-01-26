@@ -161,8 +161,10 @@
                 </div>
 
                 <!-- 会议记录列表 -->
-                <!-- <div class="meetingRecordList">
-                    <div class="meetingRecordListCell">
+                <div class="meetingRecordList">
+
+                    <!-- <div class="meetingRecordListCell">
+
                         <div class="headerDiv">
                             <div class="headerDivLeftIcon"><span @click="deleteRecord(9,$event)" class="calcfont calc-xinxi1"></span></div>
                             <div class="headerDivContent">
@@ -176,12 +178,15 @@
                                 <span class="calcfont calc-delete"></span>
                             </div>
                         </div>
+
                         <div class="airlinesName">
                             <div class="airlinesNameContent f14">China Eastern Airlines</div>
                         </div>
+
                         <div class="meetingRemark">
                             <p f14>会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容。</p>
                         </div>
+
                         <div class="meetingDocList">
                             <div class="docListCell">
                                 <div class="docListCellLeft">
@@ -200,8 +205,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> -->
+
+                    </div> -->
+
+                </div>
 
             </div>
 
@@ -317,6 +324,47 @@ export default {
 
             id:'', //dealPipeline id
             showTips:false,
+
+            meetingNoteTemplate : `<div class="meetingRecordListCell">
+
+		<div class="headerDiv">
+			<div class="headerDivLeftIcon"><span @click="deleteRecord({AutoID},$event)" class="calcfont calc-xinxi1"></span></div>
+			<div class="headerDivContent">
+				<div class="content">{MeetingTitle}</div>
+			</div>
+			<div class="headerDivRightBtn" >
+				<div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/{AutoID}">
+				</div>
+			</div>
+			<div class="headerDivRightDelete">
+				<span class="calcfont calc-delete"></span>
+			</div>
+		</div>
+
+		<div class="airlinesName">
+			<div class="airlinesNameContent f14">{CompanyID_Name}</div>
+		</div>
+
+		<div class="meetingRemark">
+			<p f14>{Remark}</p>
+		</div>
+		
+		{DocList}
+		
+</div>`,//会议记录模板
+
+        docListOuterTemplate : `<div class="meetingDocList">
+        {InnerList}
+        </div>`,//文档列表外围模板
+
+        docListInnerTemplate : `<div class="docListCell">
+				<div class="docListCellLeft">
+					<div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName1.pdf</div>
+				</div>
+				<div class="docListCellRight">
+					<div class="docListCellRightContent">16/Nov 15:00</div>
+				</div>
+			</div>`//文档列表内部模板
         }
     },
 
@@ -324,7 +372,8 @@ export default {
         //如果是从以下路由回来的就不用刷新页面
         if (
                 from.name == 'selectlist' || from.name == 'groupselectlist' ||
-                from.name == 'meetingNoteinfo' || from.name == 'poweruser' ||
+                // from.name == 'meetingNoteinfo' || 
+                from.name == 'poweruser' ||
                 from.name == 'sharelist'
             ) {
             to.meta.isBack = true;
@@ -469,6 +518,8 @@ export default {
                             $('.scroll-div').removeClass('disable');
                         }
 
+                        //渲染会议记录列表
+                        _self.iniMeetingNoteList(data);
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
@@ -763,7 +814,6 @@ export default {
                 });
             }, 0);
         },
-
         //控制 BusinessTypes 、 TheName  字段
         controlField:function(){
             var _self = this;
@@ -813,8 +863,38 @@ export default {
             }else{
                 $("[data-field='BusinessTypes']").addClass('disable');
             }
-        }
+        },
+        //渲染会议记录列表
+        iniMeetingNoteList:function(data){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(data)){
+                return;
+            }
 
+            var _containerObj = $(".meetingRecordList");
+            if(tool.isNullOrEmptyObject(_containerObj)){
+                return;
+            }
+            _containerObj.html('');
+            
+            console.log(data);
+
+            var meetingNoticeList = data["MeetingNotice"]||[];
+            var meetingNoteListStr = "";
+            for(var i = 0;i<meetingNoticeList.length;i++){
+                var meetingNoteTemplateTemp = _self.meetingNoteTemplate;
+                for(var key in meetingNoticeList[i]){
+                    meetingNoteTemplateTemp = meetingNoteTemplateTemp.ReplaceAll("{"+ key +"}", meetingNoticeList[i][key] ||"");
+                }
+
+                //todo 组装文档列表
+                meetingNoteTemplateTemp = meetingNoteTemplateTemp.ReplaceAll("{DocList}", "");
+
+                meetingNoteListStr += meetingNoteTemplateTemp;
+            }
+
+            _containerObj.append(meetingNoteListStr);
+        }
     }
 }
 </script>
