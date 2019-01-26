@@ -6,7 +6,7 @@
 .tipContent {
     height: auto;
     line-height:1.3;
-    padding-left:10px;
+    padding:5px 5px 5px 10px;
     background-color: rgb(242, 242, 242);
     border: solid 1px rgb(242, 242, 242);
     border-radius: 5px;
@@ -16,7 +16,7 @@
 .tipContent span{
     color: red;
     position:absolute;
-    top:0;left:0
+    top:5px;left:2px;
 }
 span.red{
     color: red;
