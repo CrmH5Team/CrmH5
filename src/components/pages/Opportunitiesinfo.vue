@@ -288,7 +288,8 @@
     </div>
     <InfoRightPanel
       ref="rightPanel"
-      :isShowClose="isShowClose"
+      :isShowCloseOpp="isShowCloseOpp"
+      :isShowCloseDeal="isShowCloseDeal"
       :isShowSend="isShowSendBtn"
       :rightPanelFromType="rightPanelFromType"
       :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
@@ -320,7 +321,8 @@ export default {
             rightPanelFromType:"",//传给右侧菜单用的参数
             rightPanelFromID:"",//传给右侧菜单用的参数
             isShowSendBtn: true,  //侧滑是否显示分享给同事选项
-            isShowClose:true, //侧滑是否显示关闭这个商业机会选项
+            isShowCloseOpp:true, //侧滑是否显示关闭这个商业机会选项
+            isShowCloseDeal:true,//侧滑是否显示关闭这个交易选项
 
             id:'', //dealPipeline id
             showTips:false,
@@ -665,7 +667,7 @@ export default {
             };
 
             setTimeout(function () {
-                $('#rightPanelCloseThis').off("click").on('click',function(){
+                $('#rightPanelCloseThisOpp').off("click").on('click',function(){
                     tool.showConfirm(lanTool.lanContent("963_您确定要关闭它吗？"),function(){
                     tool.showLoading();
 
