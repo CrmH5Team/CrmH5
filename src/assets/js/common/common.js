@@ -1274,6 +1274,7 @@
       <div class="date-div" >
         <span class="calcfont calc-rili1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
       </div>
+      <div class="occupy-div"></div>
     </div>
   `;
 	// tool.tripTemplate =
@@ -1301,6 +1302,7 @@
         <div class="date-div" >
           <span class="calcfont calc-rili1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
         </div>
+        <div class="occupy-div"></div>
       </div>
   `;
 	// tool.dealPipelineTemplate =
@@ -1337,6 +1339,7 @@
         <div class="date-div" >
           <span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
         </div>
+        <div class="occupy-div"></div>
       </div>
   `;
 	// tool.opportunitiesTemplate =
@@ -1366,6 +1369,7 @@
   <div class="date-div" >
 	<span class="calcfont calc-lianxiren1" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
   </div>
+  <div class="occupy-div"></div>
 </div>
 `;
 	// tool.organizationsTemplate =
@@ -1396,7 +1400,8 @@
 		`<div class="list-group-div group-div">
 	  <div class="date-div" >
 		  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
-	  </div>
+    </div>
+    <div class="occupy-div"></div>
 	</div>
 	`;
 	// tool.contactsTemplate =
@@ -1426,6 +1431,7 @@
       <div class="date-div" >
     	  <span class="calcfont calc-gongsixinxi" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">（{GroupRowCount}）</span>
       </div>
+      <div class="occupy-div"></div>
     </div>
 	`;
 
@@ -1595,7 +1601,7 @@
 			return;
 		}
 		//清空容器内容
-		parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+		parentContainerObj.find("div.group-item-list").remove();
 
 		var outerTemplate = "";
 		var innerTemplate = "";
@@ -1605,7 +1611,7 @@
       case "meeting":
 		//controlName = tool.Api_MeetingHandle_GroupInnerData;
 		controlName = tool.Api_MeetingHandle_GroupInnerData;
-        outerTemplate = `<div class="occupy-div"></div>
+        outerTemplate = `
         <div class="group-item-list meeting-list">
         {InnerList}
         </div>`;
@@ -1623,7 +1629,7 @@
 		case "trip":
 		// controlName = tool.Api_TripHandle_GroupInnerData;
 		controlName = "";
-        outerTemplate = `<div class="occupy-div"></div>
+        outerTemplate = `
         <div class="group-item-list trip-list">
         {InnerList}
         </div>`;
@@ -1653,7 +1659,7 @@
 			Comparison:"="
 		};
 		queryCondiction.push(queryCondictionObj);
-        outerTemplate = `<div class="occupy-div"></div>
+        outerTemplate = `
         <div class="group-item-list dealPipeline-list">
         {InnerList}
         </div>`;
@@ -1684,7 +1690,7 @@
 			Comparison:"="
 		};
 		queryCondiction.push(queryCondictionObj);
-        outerTemplate = `<div class="occupy-div"></div>
+        outerTemplate = `
         <div class="group-item-list dealPipeline-list">
         {InnerList}
         </div>`;
@@ -1704,7 +1710,7 @@
 				break;
 		case "organizations":
 			controlName = tool.Api_OrganizationsHandle_GroupInnerData;
-			outerTemplate = `<div class="occupy-div"></div>
+			outerTemplate = `
 			<div class="group-item-list organizations-list">
 			{InnerList}
 			</div>`;
@@ -1728,7 +1734,7 @@
 			break;
       case "contacts":
         controlName = tool.Api_ContactsHandle_GroupInnerData;
-		outerTemplate = `<div class="occupy-div"></div>
+		outerTemplate = `
         <div class="group-item-list contacts-list" >
         {InnerList}
         </div>`;
@@ -2795,7 +2801,7 @@
 			lanTool.lanContent("593_您确定要删除数据吗？"),
 			function() {
 				tool.showLoading();
-				
+
 				$.ajax({
 					async: true,
 					type: "post",

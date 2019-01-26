@@ -356,11 +356,17 @@ export default {
             setTimeout(function(){
                 var headerH = parseFloat($('header').innerHeight());
                 var navH = parseFloat($('.nav').innerHeight());
-                $(window).scroll(function(){
+
+                // $(this).offset().top 元素到document顶部的距离
+                // $(document).scrollTop() || $(window).scrollTop(); 滚动条滚动的距离
+
+                $(window).unbind('scroll').bind('scroll',function(){
 
                     if($('.group-div').length <= 0) return ;
+                    var scrollTop = $(document).scrollTop() || $(window).scrollTop();
+
                     $('.group-div').each(function(){
-                        if($(this).offset().top - $(window).scrollTop() <= (headerH + navH) ){
+                        if($(this).offset().top - scrollTop <= (headerH + navH) ){
 
                             if(tool.getSystem() === 'ios'){
                                 $(this).find('.date-div').addClass('sticky').css({"top": headerH + navH + 'px'});
@@ -488,7 +494,7 @@ export default {
                                     return;
                                 }
                                 //清空容器内容
-                                parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+                                parentContainerObj.find("div.group-item-list").remove();
                             });
                     } else {
                         //若是收起

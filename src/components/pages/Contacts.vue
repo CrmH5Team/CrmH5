@@ -310,6 +310,7 @@ export default {
         _self.$route.meta.isBack = false;
 
     },
+
     methods: {
 
         setQuerycondition: function (data) {
@@ -329,13 +330,19 @@ export default {
             setTimeout(function () {
                 var headerH = parseFloat($("header").innerHeight());
                 var navH = parseFloat($(".nav").innerHeight());
-                $(window).scroll(function () {
+
+                // $(this).offset().top 元素到document顶部的距离
+                // $(document).scrollTop() || $(window).scrollTop(); 滚动条滚动的距离
+
+                $(window).unbind('scroll').bind('scroll',function(){
+
                     if ($(".group-div").length <= 0) return;
+                    var scrollTop = $(document).scrollTop() || $(window).scrollTop();
+
                     $(".group-div").each(function () {
                         if (
-                            $(this).offset().top - $(window).scrollTop() <=
-                            headerH + navH
-                        ) {
+                            ($(this).offset().top - scrollTop) <= (headerH + navH)
+                        ){
                             if (tool.getSystem() === "ios") {
                                 $(this)
                                     .find(".date-div")
@@ -343,6 +350,7 @@ export default {
                                     .css({
                                         top: headerH + navH + "px"
                                     });
+                                return true;
                             } else {
                                 $(this)
                                     .find(".date-div")
@@ -353,6 +361,7 @@ export default {
                                 $(this)
                                     .find(".occupy-div")
                                     .show();
+                                return true;
                             }
                         } else {
                             if (tool.getSystem() === "ios") {
@@ -362,6 +371,7 @@ export default {
                                     .css({
                                         top: "0px"
                                     });
+                                return true;
                             } else {
                                 $(this)
                                     .find(".date-div")
@@ -371,11 +381,12 @@ export default {
                                 $(this)
                                     .find(".occupy-div")
                                     .hide();
+                                return true;
                             }
                         }
                     });
                 });
-            }, 100);
+            }, 0);
         },
         //列表展开/收起
         groupToggle: function () {
@@ -413,7 +424,7 @@ export default {
                                     return;
                                 }
                                 //清空容器内容
-                                parentContainerObj.find("div.occupy-div,div.group-item-list").remove();
+                                parentContainerObj.find("div.group-item-list").remove();
                             });
                     } else {
                         //若是收起
@@ -495,7 +506,7 @@ export default {
             }
             console.log("num:"+num);
             console.log("_self.tempShowPage:"+_self.tempShowPage);
-            
+
             //切换标签的时候清空模糊查询的数据
             if (!tool.isNullOrEmptyObject(_self.queryCondictionData) && _self.tempShowPage !== num) {
                 console.log("_self.queryCondictionData:" + JSON.stringify(_self.queryCondictionData));
@@ -591,6 +602,7 @@ export default {
             });
         }
     },
+
     beforeDestroy: function () {
         // eventBus.$off('listRightChangeEvent');
     }
