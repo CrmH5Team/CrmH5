@@ -93,21 +93,12 @@ export default {
         var $this = this;
         $this.isFirstEnter = true;
 
-        //如果是刷新就返回上一页(用params传值刷新数据会丢失)
-        if(tool.isNullOrEmptyObject(this.$route.params)){
-            $this.$router.back(-1);
-        }
+        // //如果是刷新就返回上一页(用params传值刷新数据会丢失)
+        // if(tool.isNullOrEmptyObject(this.$route.params)){
+        //     $this.$router.back(-1);
+        // }
     },
     mounted:function(){
-        // this.$nextTick(function () {
-        //     //将textarea设置为高度自适应
-        //     $("textarea").each(function (index, cur) {
-        //         tool.autoTextarea(cur);
-        //     });
-        //     //用common中的方法初始化
-        //     initial.initPicker();
-        // });
-
         _self.file = _self.$route.params.file;
         _self.fileName = _self.$route.params.fileName;
         _self.fileSize = _self.$route.params.fileSize;
@@ -118,15 +109,14 @@ export default {
         tool.ClearControlData(function(){
             //渲染控件
             tool.InitiateInfoPageControl(_self, -1, function(){ 
-                    //渲染textarea
-                    $("textarea").each(function (index, cur) {
-                        $(cur).height('25');
-                        tool.autoTextarea(cur);
-                    });
+                //渲染textarea
+                $("textarea").each(function (index, cur) {
+                    $(cur).height('25');
+                    tool.autoTextarea(cur);
+                });
             })
         });
     },
-
     methods:{
         backHandler: function () {
             this.$router.back(-1);
