@@ -53,7 +53,7 @@
       <div class="tips">
         <div class="tips-box f14">
           <span class="calcfont calc-tishi1"></span>
-          <div class="tips-text">你有<span>3</span>场会议需要上传会议记录。</div>
+          <div class="tips-text"><span class="lanText" data-lanid="988_你有"></span><span>3</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span></div>
           <router-link to="/meetinglist" class="right upload-now a lanText" data-lanid="870_立刻去上传"></router-link>
         </div>
       </div>
