@@ -12,7 +12,7 @@
                 </div>
           </div>
 
-          <div id="contactsList" class="group-item-list contacts-list">
+          <div v-show="!noData" id="contactsList" class="group-item-list contacts-list">
               <!-- <div class="group-item" data-url="/contactsinfo/9">
                     <div class="item-user-icon calcfont calc-fuzeren1"></div>
                     <div class="item-block contacts-item-block">
@@ -26,6 +26,7 @@
                     </div>
                 </div> -->
           </div>
+          <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
 
       </div>
 
@@ -33,7 +34,11 @@
 </template>
 
 <script>
+import Nothing from "../common/Nothing";
 export default {
+      components: {
+          nothing: Nothing
+      },
       data (){
         return {
             title:'Contacts',
