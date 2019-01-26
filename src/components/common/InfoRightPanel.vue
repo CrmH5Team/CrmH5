@@ -12,8 +12,9 @@
         <div right-content-block id="generalBlock">
             <div class="right-content-header f16 lanText" data-lanid="943_操作"></div>
             <div class="right-content-list f14">
-                <div id="rightPanelCloseThisOpp" class="right-content-list-cell" v-show="isShowCloseOpp"><span class="mui-icon calcfont calc-jieshu lanText" data-lanid="944_关闭这个商业机会"></span></div>
-                <div id="rightPanelCloseThisDeal" class="right-content-list-cell" v-show="isShowCloseDeal"><span class="mui-icon calcfont calc-jiaoyi lanText" data-lanid="945_关闭这个交易"></span></div>
+                <div id="rightPanelCloseThis" class="right-content-list-cell" v-show="isShowClose"><span class="mui-icon calcfont calc-jieshu" :v-bind="closeThisContent">{{closeThisContent}}</span></div>
+                <!-- <div id="rightPanelCloseThisOpp" class="right-content-list-cell" v-show="isShowCloseOpp"><span class="mui-icon calcfont calc-jieshu lanText" data-lanid="944_关闭这个商业机会"></span></div> -->
+                <!-- <div id="rightPanelCloseThisDeal" class="right-content-list-cell" v-show="isShowCloseDeal"><span class="mui-icon calcfont calc-jiaoyi lanText" data-lanid="945_关闭这个交易"></span></div> -->
                 <div class="right-content-list-cell" v-show="isShowSend" @click="showShareList"><span class="mui-icon calcfont calc-icon-share lanText" data-lanid="946_分享给同事"></span></div>
                 <!-- <div class="right-content-list-cell"><span class="mui-icon calcfont calc-fenxiang1"></span>Send to Chat</div> -->
             </div>
@@ -33,7 +34,7 @@ export default {
             rightPanelFromIDNew: ""
         }
     },
-    props: ['isShowSend', 'isShowCloseOpp','isShowCloseDeal', 'rightPanelFromType', 'rightPanelFromID'],
+    props: ['isShowSend', 'isShowClose','closeThisContent', 'rightPanelFromType', 'rightPanelFromID'],
     watch: {
         rightPanelFromType: function (newVal, oldVal) {
             this.rightPanelFromTypeNew = newVal;

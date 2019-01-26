@@ -278,8 +278,8 @@
     </div>
     <InfoRightPanel
       ref="rightPanel"
-      :isShowCloseOpp="isShowCloseOpp"
-      :isShowCloseDeal="isShowCloseDeal"
+      :isShowClose="isShowClose"
+      :closeThisContent="closeThisContent"
       :isShowSend="isShowSendBtn"
       :rightPanelFromType="rightPanelFromType"
       :rightPanelFromID="rightPanelFromID"></InfoRightPanel>
@@ -311,8 +311,8 @@ export default {
             rightPanelFromType:"",//传给右侧菜单用的参数
             rightPanelFromID:"",//传给右侧菜单用的参数
             isShowSendBtn: true,  //侧滑是否显示分享给同事选项
-            isShowCloseOpp:true, //侧滑是否显示关闭这个商业机会选项
-            isShowCloseDeal:true,//侧滑是否显示关闭这个交易选项
+            isShowClose:true, //侧滑是否显示关闭这个商业机会选项
+            closeThisContent:"",
 
             id:'', //dealPipeline id
             showTips:false,
@@ -375,6 +375,12 @@ export default {
         _self.id = _self.$route.params.id;
         _self.showPage = _self.$route.query.showPage || '';
         // console.log(_self.showPage);
+        if (_self.showPage === 1) 
+        {
+            _self.closeThisContent = lanTool.lanContent('944_关闭这个商业机会');
+        } else {
+            _self.closeThisContent = lanTool.lanContent('945_关闭这个交易');
+        }
         var fromType = "Opportunitiesinfo";
 
         _self.rightPanelFromType = "9";
@@ -633,7 +639,7 @@ export default {
             };
 
             setTimeout(function () {
-                $('#rightPanelCloseThisOpp').off("click").on('click',function(){
+                $('#rightPanelCloseThis').off("click").on('click',function(){
                     tool.showConfirm(lanTool.lanContent("963_您确定要关闭它吗？"),function(){
                     tool.showLoading();
 
