@@ -3,9 +3,7 @@
 
     <header class="header sticky">
         <a @click="backHandler" class="header-calcfont calcfont calc-fanhui left" id="back"></a>
-
         <h1 class="mui-title">{{pageTitle||''}}</h1>
-
         <a @click="saveHandler" class="calc-gou header-calcfont calcfont right" id="save"></a>
     </header>
 
@@ -44,7 +42,6 @@
               </div>
           </div>
 
-
           <div class="ListCell">
                 <div class="ListCellLeftIcon textLeftIcon"><span class=" calcfont calc-bianji1"></span></div>
                 <div class="ListCellLeftText">
@@ -56,10 +53,7 @@
                     </p>
                 </div>
             </div>
-
     </div>
-
-
 </div>
 
 </template>
@@ -94,16 +88,7 @@ export default {
         }
     },
     beforeRouteEnter:function(to, from, next){
-        //如果是从以下路由回来的就不用刷新页面
-        // if(from.name == 'selectlist'){
-        //     to.meta.isBack = true;
-        // }
-        next(vm=>{
-            // console.log(vm);
-            // vm.fromPage = from.name;
-        });
     },
-
     created:function(){
         var $this = this;
         $this.isFirstEnter = true;
@@ -112,59 +97,40 @@ export default {
         if(tool.isNullOrEmptyObject(this.$route.params)){
             $this.$router.back(-1);
         }
-
     },
-
     mounted:function(){
+        // this.$nextTick(function () {
+        //     //将textarea设置为高度自适应
+        //     $("textarea").each(function (index, cur) {
+        //         tool.autoTextarea(cur);
+        //     });
+        //     //用common中的方法初始化
+        //     initial.initPicker();
+        // });
 
-        this.$nextTick(function () {
-            //将textarea设置为高度自适应
-            $("textarea").each(function (index, cur) {
-                tool.autoTextarea(cur);
-            });
+        _self.file = _self.$route.params.file;
+        _self.fileName = _self.$route.params.fileName;
+        _self.fileSize = _self.$route.params.fileSize;
+        _self.id = _self.$route.params.id;
+        _self.notes_title = '';
 
-            //用common中的方法初始化
-            initial.initPicker();
-        })
-    },
-
-    activated:function(){
-        lanTool.updateLanVersion();
-        var _self = this;
-
-
-        if(!_self.$route.meta.isBack || _self.isFirstEnter){
-
-            _self.file = _self.$route.params.file;
-            _self.fileName = _self.$route.params.fileName;
-            _self.fileSize = _self.$route.params.fileSize;
-            _self.id = _self.$route.params.id;
-
-            _self.notes_title = '';
-
-            //清空页面数据
-            tool.ClearControlData(function(){
-                //渲染控件
-                tool.InitiateInfoPageControl(_self, -1, function(){ 
-                      //渲染textarea
-                      $("textarea").each(function (index, cur) {
-                          $(cur).height('25');
-                          tool.autoTextarea(cur);
-                      });
-                })
+        //清空页面数据
+        tool.ClearControlData(function(){
+            //渲染控件
+            tool.InitiateInfoPageControl(_self, -1, function(){ 
+                    //渲染textarea
+                    $("textarea").each(function (index, cur) {
+                        $(cur).height('25');
+                        tool.autoTextarea(cur);
+                    });
             })
-        }
-
-        this.$route.meta.isBack = false;
-        this.isFirstEnter = false;
+        });
     },
-
 
     methods:{
         backHandler: function () {
             this.$router.back(-1);
         },
-
         saveHandler:function(){
             var _self = this;
 
@@ -229,18 +195,9 @@ export default {
                     }
                 })   
         },
-
     },
-    beforeDestroy:function(){
-
-    }
-
-
 }
 </script>
-
-
-
 
 
 <style scoped>

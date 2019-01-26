@@ -106,8 +106,6 @@ const router =  new Router({
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
      //添加会议
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
-    //文档查看
-    { path:'/previewfile',name:'previewfile',component:Previewfile},
     //添加出差报销单
     { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
 
@@ -141,17 +139,19 @@ const router =  new Router({
       }
     },
     //上传文件
-    { path:'/uploadinput',name:'uploadinput',component:Uploadinput,
-      meta: {
-        keepAlive: true,
-        isBack:false,
-        listName:"meetingNoteinfo"
-      }
+    { path:'/uploadinput',name:'uploadinput',component:Uploadinput
+      //,
+      // meta: {
+      //   keepAlive: true,
+      //   isBack:false,
+      //   listName:"meetingNoteinfo"
+      // }
     },
+    //文档查看
+    { path:'/previewfile',name:'previewfile',component:Previewfile},
     { path:'/linkedpage',name:'linkedpage',component:Linkedpage },
 
-
-
+    
     //联系人
     { path:'/contacts',name:'contacts',component:Contacts,
       meta: {

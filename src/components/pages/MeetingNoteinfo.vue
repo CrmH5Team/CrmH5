@@ -134,7 +134,9 @@ export default {
     },
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == 'uploadinput' || from.name == 'linkedpage') {
+        if (from.name == 'selectlist' || 
+        //from.name == 'uploadinput' || 
+        from.name == 'linkedpage') {
             to.meta.isBack = true;
         }
         next();
@@ -171,14 +173,16 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
-        //是否是从上传文档后返回
-        var _fromSave = _self.$route.meta.fromSave;
+        // //是否是从上传文档后返回
+        // var _fromSave = _self.$route.meta.fromSave;
 
         console.log("_isBack:"+_isBack);
         console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
-        if(_fromSave || !_isBack || _self.isFirstEnter){
+        if(
+            //_fromSave || 
+        !_isBack || _self.isFirstEnter){
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
