@@ -413,6 +413,10 @@ export default {
 
             //清空页面数据
             tool.ClearControlData(function(){
+
+                //隐藏order 字段
+                $(".MatterOtherObj").hide();
+
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, _self.id, function(){
 
@@ -755,7 +759,7 @@ export default {
             if(tool.isNullOrEmptyObject(autoID)){
                 return;
             }
-            
+
             var idArr = [];
             idArr.push(autoID);
             var urlTemp = tool.AjaxBaseUrl();
