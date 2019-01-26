@@ -473,7 +473,7 @@ export default {
             var fromType = "Contactsinfo";
             setTimeout(function () {
                 $("#save").off().on("click", function () {
-                    // console.log("save");
+
                     tool.SaveOrUpdateData(fromType, id, _self, function () {});
                 });
             }, 0);
