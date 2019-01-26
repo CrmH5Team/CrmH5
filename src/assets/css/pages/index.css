@@ -81,7 +81,7 @@
 
 /*提示*/
 .tips{border-top:10px solid #f2f2f2;border-bottom:10px solid #f2f2f2;}
-.tips-box{height:40px;padding:0 10px;display: flex;align-items :center;position: relative;}
+.tips-box{min-height: 40px;height:auto;padding:0 10px;display: flex;align-items :center;position: relative;}
 .tips-box .calc-tishi1{color:#ff5a21;margin-right: 5px;}
 .tips-box .tips-text{display: inline; width: 65%}
 .tips-box .tips-text span{color:#ff5a21;padding:0 3px;}

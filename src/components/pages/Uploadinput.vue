@@ -14,10 +14,10 @@
               </div>
               <div class="ListCellContent ">
                   <div class="ListCellContentLeft leftContent">
-                    <div class="ListCellContentLeftText">已选择Selected</div>
+                    <div class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                    <div class="ListCellContentRightText right-break-word">{{fileName}}</div>
+                    <div id="curFileName" class="ListCellContentRightText right-break-word">{{fileName}}</div>
                   </div>
               </div>
           </div>
@@ -26,16 +26,16 @@
               <div class="ListCellLeftIcon"><span class=" calcfont calc-17"></span></div>
               <div class="ListCellContent">
                   <div class="ListCellContentLeft leftContent">
-                      <div class="ListCellContentLeftText">CRM Document Type</div>
+                      <div class="ListCellContentLeftText lanText" data-lanid="738_CRM文档类型"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
                       <input type="text" 
-                          data-field="BusinessType" 
-                          data-lanid="文档类型" 
+                          data-field="100205" 
+                          data-lanid="738_CRM文档类型" 
                           data-fieldControlType="picker" 
                           data-fieldVal="" 
-                          Code="DropDowList_ViewBaseAllTypes" 
-                          TypeValue="Companybusinesstype" 
+                          Code="DropDowList_DtbAllTypes" 
+                          TypeValue="CRMDocumentType" 
                           class="ListCellContentRightText"/>
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
@@ -46,13 +46,13 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class=" calcfont calc-bianji1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea data-field="" 
+                        <textarea data-field="description" 
                             data-fieldControlType="textareaInput" 
                             class="lanInputPlaceHolder" 
-                            data-lanid="710_标题"></textarea>
+                            data-lanid="985_描述"></textarea>
                     </p>
                 </div>
-            </div>
+        </div>
     </div>
 </div>
 
@@ -68,42 +68,31 @@ export default {
     data(){
         return {
             pageTitle:'文件上传',
-            // fromPage:null,  //保存上一页来源
-
             file:null,
-            fileName:'',
-            fileSize:null,
-            id:'',
-
-            isFirstEnter:false,
-
-            notes_title:'',
-            notecontent:'',
-            folderid:'',
-
-            assigned_user_id:{
-                text:tool.getSessionStorageItem(tool.cache_UserRealName) || "",
-                value:tool.getSessionStorageItem(tool.cache_UserId) || ""
-            },
+            fileName:"",
+            fromID:"",
+            fromType:"",
         }
     },
     beforeRouteEnter:function(to, from, next){
+        next();
     },
     created:function(){
-        var $this = this;
-        $this.isFirstEnter = true;
-
-        // //如果是刷新就返回上一页(用params传值刷新数据会丢失)
-        // if(tool.isNullOrEmptyObject(this.$route.params)){
-        //     $this.$router.back(-1);
-        // }
+        var _self = this;
+        //如果是刷新就返回上一页(用params传值刷新数据会丢失)
+        if(tool.isNullOrEmptyObject(_self.$route.query)){
+            _self.$router.back(-1);
+        }
     },
     mounted:function(){
-        _self.file = _self.$route.params.file;
-        _self.fileName = _self.$route.params.fileName;
-        _self.fileSize = _self.$route.params.fileSize;
-        _self.id = _self.$route.params.id;
-        _self.notes_title = '';
+        lanTool.updateLanVersion();
+        document.activeElement.blur();
+
+        var _self = this;
+        _self.file = _self.$route.query.file;
+        _self.fileName = _self.$route.query.fileName;
+        _self.fromID = _self.$route.query.fromID;
+        _self.fromType = _self.$route.query.fromType;
 
         //清空页面数据
         tool.ClearControlData(function(){
@@ -123,67 +112,65 @@ export default {
         },
         saveHandler:function(){
             var _self = this;
-
-            var jobject = {};
-            jObject['fileName'] = _self.fileName;
-            jObject['fileName'] = $('[data-field=""]').attr('data-fieldval') || '';
-            jObject['fileName'] = $('[data-field=""]').val() || '';           
-
-            var urlTemp = tool.AjaxBaseUrl();
+            
             //传入参数
+            var urlTemp = tool.AjaxBaseUrl();
+		    var controlName = tool.Api_DocumentsHandle_UploadDocuments2DMS;
             var jsonDatasTemp = {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
                 UserName: tool.UserName(),
                 _ControlName: controlName,
-                _RegisterCode: tool.RegisterCode(),
-                AutoID: autoID
+                _RegisterCode: tool.RegisterCode()
             };
+            jsonDatasTemp["FromTypeID"] = _self.fromType;
+            jsonDatasTemp["FromID"] = _self.fromID;
+            jsonDatasTemp["FileName"] = $("#curFileName").text()||"";
+            jsonDatasTemp["description"] = $("[data-field='description']").val()||"";
+            jsonDatasTemp["100205"] = $("[data-field='100205']").val()||"";
+            jsonDatasTemp["fileBase64Str"] = _self.file;
 
-            //合并数据
-		        jsonDatasTemp = tool.combineJObject(jsonDatasTemp,jobject);
+            //构造表单数据
+            // var formData = new FormData();
+            // formData.append('file', $this.file);
+            // formData.append("jsonDatas",JSON.stringify(jsonDatas));
 
-            var formData = new FormData();
-                formData.append('file', $this.file);
-                formData.append("jsonDatas",JSON.stringify(jsonDatas));
+            // var formData = new FormData();
+            // formData.append('file', _self.file);
+            // for (var key in jsonDatasTemp) {
+            //     formData.append(key, jsonDatasTemp[key]);
+            // }
 
-                tool.showLoading();
-                $.ajax({
-                    async: true,
-                    type: "post",
-                    url: urlTemp,
-                    data: jsonDatasTemp,
-                    success: function (data) {
-                      data = tool.jObject(data);
-                      // console.log(data);
-                      if (data._ReturnStatus == false) {
+            tool.showLoading();
+            $.ajax({
+                url: urlTemp,
+                type: "post",
+                async: true,
+                cache: false,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    tool.hideLoading();
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
                         console.log(tool.getMessage(data));
                         return true;
-                      }
-                      //把列表页路由参数isBack改为fase（使上一页刷新）,并返回上一页
-                      // var routeName = _self.$route.name;
-                      var routers = $this.$router.options.routes;
-
-                      $.each(routers,function(index,item){
-                          if(item.name === 'meetingNoteinfo'){
-                              item.meta.fromSave = true;
-                              $this.$router.back(-1);
-                              return ;
-                          }
-                      })
-                      
-                    },
-                    error: function (jqXHR, type, error) {
-                      console.log(error);
-                      tool.hideLoading();
-                      return true;
-                    },
-                    complete: function () {
-                      tool.hideLoading();
-                      //隐藏虚拟键盘
-                      document.activeElement.blur();
                     }
-                })   
+
+                    //返回到上一页
+                    _self.$router.back(-1);
+                },
+                error: function (jqXHR, type, error) {
+                    tool.hideLoading();
+                    console.log(error);
+                    return true;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
         },
     },
 }
