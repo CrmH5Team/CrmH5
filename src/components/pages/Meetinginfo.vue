@@ -26,6 +26,7 @@
                             </div>
                         </div>
                     </div> -->
+
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-shijian"></span></div>
                     <div class="ListCellContent">
@@ -36,76 +37,85 @@
                             <input id="startdate" type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                        </div>
                     </div>
-                    <div class="ListCell visible">
-                        <div class="ListCellLeftIcon"><span class="calcfont calc-time"></span></div>
-                        <div class="ListCellContent">
-                            <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
-                            </div>
-                            <div class="ListCellContentRight rightContent">
-                                <input id="enddate" type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
+                </div>
+
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-time"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
                         </div>
-                                <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                            </div>
+                        <div class="ListCellContentRight rightContent">
+                            <input id="enddate" type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCell visible">
-                            <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
-                            <div class="ListCellContent">
-                                <div class="ListCellContentLeft leftContent">
-                                    <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
-                                </div>
-                                <div class="ListCellContentRight rightContent">
-                                    <input type="text" data-field="MeetingType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InternalExternaltype" class="ListCellContentRightText"/>
-                            </div>
-                                    <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                                </div>
-                            </div>
-                            <div class="ListSpecialCell visible" id="CompanyIDClickObj">
-                                <div class="ListSpecialCellField">
-                                    <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
-                                    <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
-                                    <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
-                                </div>
-                                <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj"></div>
-                            </div>
-                            <div class="ListCell visible">
-                                <div class="ListCellLeftIcon"><span class="calcfont calc-kehulianxiren"></span></div>
-                                <div class="ListCellContent">
-                                    <div class="ListCellContentLeft leftContent">
-                                        <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
-                                    </div>
-                                    <div class="ListCellContentRight rightContent">
-                                        <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
-                                    </div>
-                                    <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                                </div>
-                            </div>
-                            <div class="ListCell">
-                                <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
-                                <div class="ListCellLeftText">
-                                    <p class="textareaP">
-                                        <textarea data-field="Remark" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
-                                    </p>
-                                </div>
-                            </div>
+                            <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                </div>
+
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-shuxing"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
                         </div>
-                        <Infofooter class="HideWhenNew"> </Infofooter>
-                        <div class="meetingRecord HideWhenNew">
-                            <div class="ListCell" @click.stop="viewMeetingNote">
-                                <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
-                                <div class="ListCellContent">
-                                    <div class="ListCellContentLeft leftContent">
-                                        <div class="ListCellContentLeftText lanText" data-lanid="849_查看会议记录"></div>
-                                    </div>
-                                    <div class="ListCellContentRight rightContent">
-                                        <div class="ListCellContentRightText"></div>
-                                    </div>
-                                    <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
-                                </div>
-                            </div>
+                        <div class="ListCellContentRight rightContent">
+                            <input type="text" data-field="MeetingType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InternalExternaltype" class="ListCellContentRightText"/>
                         </div>
+                            <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                </div>
+                
+                <div class="ListSpecialCell visible" id="CompanyIDClickObj">
+                    <div class="ListSpecialCellField">
+                        <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
+                        <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj"></div>
+                </div>
+                
+                <div class="ListCell visible">
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-kehulianxiren"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
+                        </div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                </div>
+
+                <div class="ListCell">
+                    <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
+                    <div class="ListCellLeftText">
+                        <p class="textareaP">
+                            <textarea data-field="Remark" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+                        
+            <Infofooter class="HideWhenNew"> </Infofooter>
+            
+            <div class="meetingRecord HideWhenNew">
+                <div class="ListCell" @click.stop="viewMeetingNote">
+                    <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
+                    <div class="ListCellContent">
+                        <div class="ListCellContentLeft leftContent">
+                            <div class="ListCellContentLeftText lanText" data-lanid="849_查看会议记录"></div>
+                        </div>
+                        <div class="ListCellContentRight rightContent">
+                            <div class="ListCellContentRightText"></div>
+                        </div>
+                        <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                </div>
+            </div>
+
                     </div>
                 </div>
             </div>

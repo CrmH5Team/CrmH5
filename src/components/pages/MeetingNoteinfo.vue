@@ -6,127 +6,102 @@
     <div class="scroll-div">
         <div class="box">
             <div class="meetingNoteList">
+
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="714_会议性质"></div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="818_会议"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text"
-                              data-field="BusinessType"
-                              data-lanid="714_会议性质"
-                              data-fieldControlType="picker"
-                              data-fieldVal=""
-                              Code="DropDowList_ViewBaseAllTypes"
-                              TypeValue="Companybusinesstype"
-                              class="ListCellContentRightText"/>
+                            <div type="text" data-field="ScheduleID" data-fieldControlType="selectList" data-lanid="818_会议" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
+
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
                             <div class="ListCellContentLeftText lanText" data-lanid="712_开始时间"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">01/Jan</div>
+                            <input id="startdate" type="text" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
+                            <div class="ListCellRightIcon"><span class="calcfont"></span></div>
                     </div>
                 </div>
+
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间">End</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="713_结束时间"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div class="ListCellContentRightText">16/Nov 16:00</div>
+                            <input id="enddate" type="text" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
+                            <div class="ListCellRightIcon"><span class="calcfont"></span></div>
                     </div>
                 </div>
+
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="821_对内/对外">对内/对外</div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="814_对内/对外"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text"
-                              data-field="BusinessType"
-                              data-lanid="821_对内/对外"
-                              data-fieldControlType="picker"
-                              data-fieldVal=""
-                              Code="DropDowList_ViewBaseAllTypes"
-                              TypeValue="Companybusinesstype"
-                              class="ListCellContentRightText"/>
+                            <input type="text" data-field="MeetingType" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="InternalExternaltype" class="ListCellContentRightText"/>
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
+                            <div class="ListCellRightIcon"><span class="calcfont"></span></div>
                     </div>
                 </div>
-                <div class="ListSpecialCell specialCell" id="CompanyIDClickObj">
+
+                 <div class="ListSpecialCell" id="CompanyIDClickObj">
                     <div class="ListSpecialCellField">
-                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellLeftIcon"><span class="calcfont"></span></div>
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
-                        <div class="ListSpecialCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
+                        <div class="ListSpecialCellRightIcon"><span class="calcfont"></span></div>
                     </div>
-                    <div
-                        class="ListSpecialCellContent"
-                        data-field="CompanyID"
-                        data-fieldcontroltype="selectList"
-                        data-lanid="790_公司"
-                        data-fieldval=""
-                        data-selecttype="radio"
-                        code="DropDowList_ViewBaseCompanyBaseInf"
-                        typevalue = ""
-                        data-clickObj="CompanyIDClickObj"
-                      ></div>
+                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj"></div>
                 </div>
+                
                 <div class="ListCell">
-                    <div class="ListCellLeftIcon leftIconHidden"><span class="calcfont calc-shijian"></span></div>
+                    <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div
-                              class="ListCellContentRightText"
-                              data-field=""
-                              data-fieldcontroltype="selectList"
-                              data-lanid="791_联系人"
-                              data-fieldval=""
-                              data-selecttype="radio"
-                              code=""
-                              typevalue = ""
-                            ></div>
+                            <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
                         </div>
-                        <div class="ListCellRightIcon rightIconHidden"><span class="calcfont calc-you"></span></div>
+                        <div class="ListCellRightIcon"><span class="calcfont"></span></div>
                     </div>
                 </div>
+
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
                         <p class="textareaP">
-                            <textarea data-field="" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
+                            <textarea data-field="Remark" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="719_备忘"></textarea>
                         </p>
                     </div>
                 </div>
-                <div class="ListSpecialCell specialCell visible">
+
+                <div class="ListSpecialCell visible" id="OppIDObj">
                     <div class="ListSpecialCellField">
-                        <div class="ListSpecialCellLeftIcon leftIconHidden"><span class="calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent rightIconHidden">MSN06893 Delivery with Air China</div>
-
+                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="Linkedpage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="OppID"></div>
                 </div>
+
             </div>
 
-            <Uploadfile></Uploadfile>
+            <Uploadfile v-show="!isAddNew"></Uploadfile>
 
             <Infofooter v-show="!isAddNew"> </Infofooter>
         </div>
@@ -157,7 +132,7 @@ export default {
     },
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == 'uploadinput') {
+        if (from.name == 'selectlist' || from.name == 'uploadinput' || from.name == 'linkedpage') {
             to.meta.isBack = true;
         }
         next();
@@ -169,8 +144,8 @@ export default {
     //     next();
     // },
     created: function () {
+        // console.log('created');
         this.isFirstEnter = true;
-        console.log('created');
     },
     mounted: function () {
     },
@@ -179,7 +154,6 @@ export default {
         document.activeElement.blur();
         var _self = this;
         var id = _self.$route.params.id;
-
         var fromType = "MeetingNoteinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
@@ -203,6 +177,9 @@ export default {
                         $(cur).height('25');
                         tool.autoTextarea(cur);
                     });
+
+                    //控制控件逻辑
+                    _self.controlBusinessTypes();
 
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
@@ -257,6 +234,12 @@ export default {
                 });
             });
         },
+        //控制控件逻辑
+        controlBusinessTypes:function(){
+            var _self = this;
+             $("[data-field='BeginTime'],[data-field='EndTime'],[data-field='MeetingType'],[data-field='CompanyID'],[data-field='ContactsID'],#CompanyIDClickObj")
+            .addClass('disable');
+        }
     }
 
 }
