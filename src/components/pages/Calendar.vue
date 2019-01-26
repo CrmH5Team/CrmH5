@@ -581,7 +581,7 @@ export default {
 .add-btn-div {
     text-align: center;
     position: relative;
-    border-bottom: 1px solid beige;
+    /* border-bottom: 1px solid beige; */
 }
 
 .add-div {
