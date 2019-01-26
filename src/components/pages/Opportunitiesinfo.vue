@@ -149,7 +149,7 @@
             </div>
 
             <!-- 会议记录 -->
-            <!-- <div v-show="!isAddNew">
+            <div v-show="!isAddNew">
 
                 <div class="meetingRecord">
                     <div class="headerBlock">
@@ -161,7 +161,8 @@
                     </div>
                 </div>
 
-                <div class="meetingRecordList">
+                <!-- 会议记录列表 -->
+                <!-- <div class="meetingRecordList">
                     <div class="meetingRecordListCell">
                         <div class="headerDiv">
                             <div class="headerDivLeftIcon"><span @click="deleteRecord(9,$event)" class="calcfont calc-xinxi1"></span></div>
@@ -201,8 +202,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> -->
+                </div> -->
+
+            </div>
 
             <!-- 负责人 -->
             <div class="shareBlock">

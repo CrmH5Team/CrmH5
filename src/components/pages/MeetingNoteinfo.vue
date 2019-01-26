@@ -148,17 +148,13 @@ export default {
     },
     data() {
         return {
-
             ptitle: 'MeetingNote detail',
-
             isAddNew: false, //是否添加新纪录
             operation:false,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
-
-            isFirstEnter:false,//是否首次进入
+            isFirstEnter:false//是否首次进入
         }
     },
-
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
         if (from.name == 'selectlist' || from.name == 'uploadinput') {
@@ -166,13 +162,12 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'meetinginfo'){
-            this.$destroy();
-        }
-        next();
-    },
-
+    // beforeRouteLeave:function(to, from, next){
+    //     if(to.name == 'meetinginfo'){
+    //         this.$destroy();
+    //     }
+    //     next();
+    // },
     created: function () {
         this.isFirstEnter = true;
         console.log('created');
