@@ -163,50 +163,39 @@
                 <!-- 会议记录列表 -->
                 <div class="meetingRecordList">
 
-                    <!-- <div class="meetingRecordListCell">
-
+                    <div v-for="item in MeetingNotice" :key="item.AutoID" class="meetingRecordListCell">
                         <div class="headerDiv">
-                            <div class="headerDivLeftIcon"><span @click="deleteRecord(9,$event)" class="calcfont calc-xinxi1"></span></div>
+                            <div class="headerDivLeftIcon"><span @click="deleteRecord(item.AutoID,$event)" class="calcfont calc-xinxi1"></span></div>
                             <div class="headerDivContent">
-                                <div class="content">MSN 05789 机身检查会议2</div>
+                                <div class="content">{{item.MeetingTitle}}</div>
                             </div>
                             <div class="headerDivRightBtn" >
-                                <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/9">
+                                <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" :data-url="'/MeetingNoteinfo/' + item.AutoID">
                                 </div>
                             </div>
                             <div class="headerDivRightDelete">
                                 <span class="calcfont calc-delete"></span>
                             </div>
                         </div>
-
                         <div class="airlinesName">
-                            <div class="airlinesNameContent f14">China Eastern Airlines</div>
+                            <div class="airlinesNameContent f14">{{item.CompanyID_Name}}</div>
                         </div>
-
                         <div class="meetingRemark">
-                            <p f14>会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容，会议记录内容。</p>
+                            <p class="f14">{{item.Remark}}</p>
                         </div>
-
+                         <!-- 会议记录文档列表  -->
                         <div class="meetingDocList">
-                            <div class="docListCell">
+                            <div v-for="fileItem in item.DocList" :key="fileItem.fileId" class="docListCell">
                                 <div class="docListCellLeft">
-                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName1.pdf</div>
+                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian">{{fileItem.fileName}}</span></div>
                                 </div>
                                 <div class="docListCellRight">
-                                    <div class="docListCellRightContent">16/Nov 15:00</div>
-                                </div>
-                            </div>
-                            <div class="docListCell">
-                                <div class="docListCellLeft">
-                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName2.pdf</div>
-                                </div>
-                                <div class="docListCellRight">
-                                    <div class="docListCellRightContent">16/Nov 15:00</div>
+                                    <div class="docListCellRightContent">{{fileItem.fileTiem}}</div>
                                 </div>
                             </div>
                         </div>
 
-                    </div> -->
+                    </div>
 
                 </div>
 
@@ -324,47 +313,22 @@ export default {
 
             id:'', //dealPipeline id
             showTips:false,
+            //会议记录数据
+            MeetingNotice:[
+                // {
+                //   AutoID:2,
+                //   CompanyID_Name:"15中飞租MTN001",
+                //   DocList:[{
+                //       fileId:1,
+                //       fileName:'TestFileName1.pdf',
+                //       fileTiem:'16/Nov 15:00'
+                //   }],
+                //   MeetingTitle:"qqqq",
+                //   Remark:"tsadtastd a↵1231↵312312321"
+                // }
+            ],
 
-            meetingNoteTemplate : `<div class="meetingRecordListCell">
 
-		<div class="headerDiv">
-			<div class="headerDivLeftIcon"><span @click="deleteRecord({AutoID},$event)" class="calcfont calc-xinxi1"></span></div>
-			<div class="headerDivContent">
-				<div class="content">{MeetingTitle}</div>
-			</div>
-			<div class="headerDivRightBtn" >
-				<div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" data-url="/MeetingNoteinfo/{AutoID}">
-				</div>
-			</div>
-			<div class="headerDivRightDelete">
-				<span class="calcfont calc-delete"></span>
-			</div>
-		</div>
-
-		<div class="airlinesName">
-			<div class="airlinesNameContent f14">{CompanyID_Name}</div>
-		</div>
-
-		<div class="meetingRemark">
-			<p f14>{Remark}</p>
-		</div>
-		
-		{DocList}
-		
-</div>`,//会议记录模板
-
-        docListOuterTemplate : `<div class="meetingDocList">
-        {InnerList}
-        </div>`,//文档列表外围模板
-
-        docListInnerTemplate : `<div class="docListCell">
-				<div class="docListCellLeft">
-					<div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>TestFileName1.pdf</div>
-				</div>
-				<div class="docListCellRight">
-					<div class="docListCellRightContent">16/Nov 15:00</div>
-				</div>
-			</div>`//文档列表内部模板
         }
     },
 
@@ -372,7 +336,7 @@ export default {
         //如果是从以下路由回来的就不用刷新页面
         if (
                 from.name == 'selectlist' || from.name == 'groupselectlist' ||
-                // from.name == 'meetingNoteinfo' || 
+                // from.name == 'meetingNoteinfo' ||
                 from.name == 'poweruser' ||
                 from.name == 'sharelist'
             ) {
@@ -388,6 +352,7 @@ export default {
     // },
     created: function () {
         this.isFirstEnter = true;
+        console.log(this.MeetingNotice);
     },
     mounted: function () {
 
@@ -875,10 +840,11 @@ export default {
                 return;
             }
             _containerObj.html('');
-            
+
             console.log(data);
 
-            var meetingNoticeList = data["MeetingNotice"]||[];
+            _self.MeetingNotice = data["MeetingNotice"]||[];
+            /*
             var meetingNoteListStr = "";
             for(var i = 0;i<meetingNoticeList.length;i++){
                 var meetingNoteTemplateTemp = _self.meetingNoteTemplate;
@@ -892,7 +858,8 @@ export default {
                 meetingNoteListStr += meetingNoteTemplateTemp;
             }
 
-            _containerObj.append(meetingNoteListStr);
+            // _containerObj.append(meetingNoteListStr);
+            */
         }
     }
 }
