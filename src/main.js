@@ -68,7 +68,16 @@ Vue.filter('MeetingTimeFormat',function(val){
 
     return val;
 });
+//FileSizeFormat
+Vue.filter('FileSizeFormat',function(val){
+  if (tool.isNullOrEmptyObject(val)) {
+    return "0KB";
+  }
 
+  val = tool.fileSizeFormat(val);
+  
+  return val;
+});
 
 /* eslint-disable no-new */
 new Vue({

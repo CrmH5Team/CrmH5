@@ -211,8 +211,10 @@ export default {
                     _self.handleScheduleID(_self.scheduleID,true);
 
                     //渲染数据
-                    tool.IniInfoData(fromType,id,function(){
+                    tool.IniInfoData(fromType,id,function(data){
 
+                        //渲染文件列表
+                        _self.iniDocList(data);
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
@@ -444,6 +446,15 @@ export default {
                     document.activeElement.blur();
                 }
             });
+        },
+        //渲染文件列表
+        iniDocList:function(data){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(data)){
+                return;
+            }
+
+            _self.fileListData = data["DocList"]||[];
         }
     }
 }

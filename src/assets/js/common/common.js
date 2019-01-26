@@ -361,7 +361,10 @@
 	 * 查询文档
 	 */
 	tool.Api_DocumentsHandle_Query = "Api_DocumentsHandle_Query";
-
+	/*
+	 * 文档下载
+	 */
+	tool.Api_DocumentsHandle_DownloadFileFromDMS = "Api_DocumentsHandle_DownloadFileFromDMS";
 
 	/*
 	 * currentLanguageVersion:当前语言版本
@@ -986,6 +989,87 @@
 		fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
 		return fileExtension;
 	};
+
+	//拼接文件Base64字符串
+	tool.combineBase64StrWithFileType = function(base64Str,fileName){
+		if(tool.isNullOrEmptyObject(fileName)){
+			return base64Str;
+		}
+
+		var base64Pre = "data:{BigType}/{FileTypeNew};base64,{base64Str}";
+
+		var fileType = tool.getFileExtension(fileName);
+		if(tool.isNullOrEmptyObject(fileType)){
+			return base64Str;
+		}
+		fileType = fileType.toLowerCase();
+
+		var bigType = "";
+		var fileTypeNew = "";
+		switch(fileType){
+			case "mov":
+			bigType = "video";
+			fileTypeNew = "quicktime";
+			break;
+
+			case "movie":
+			bigType = "video";
+			fileTypeNew = "x-sgi-movie";
+			break;
+
+			case "mp3":
+			bigType = "audio";
+			fileTypeNew = "x-mpeg";
+			break;
+			
+			case "mp4":
+			bigType = "video";
+			fileTypeNew = "mp4";
+			break;
+			
+			case "mpeg":
+			case "mpg":
+			bigType = "video";
+			fileTypeNew = "mpeg";
+			break;
+			case "mpg4":
+			bigType = "video";
+			fileTypeNew = "mp4";
+			break;
+
+			case "3gp":
+			bigType = "video";
+			fileTypeNew = "3gpp";
+			break;
+
+			case "gif":
+			bigType = "image";
+			fileTypeNew = "gif";
+			break;
+
+			case "jpe":
+			case "jpeg":
+			case "jpg":
+			case "jpz":
+			bigType = "image";
+			fileTypeNew = "jpeg";
+			break;
+
+			case "png":
+			bigType = "image";
+			fileTypeNew = "png";
+			break;
+
+			default:
+			return base64Str;
+		}
+		"data:{BigType}/{FileTypeNew};base64,{base64Str}";
+		base64Pre = base64Pre.ReplaceAll("{BigType}",bigType);
+		base64Pre = base64Pre.ReplaceAll("{FileTypeNew}",fileTypeNew);
+		base64Pre = base64Pre.ReplaceAll("{base64Str}",base64Str);
+
+		return base64Pre;
+	}
 
 	//判断当前文件是否支持在线查看
 	tool.canPreviewOnline = function (fileName) {

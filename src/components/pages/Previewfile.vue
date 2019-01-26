@@ -3,7 +3,7 @@
     <header class="mui-bar mui-bar-nav">
           <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
-          <h1 class="mui-title">{{data.filename}}</h1>
+          <h1 class="mui-title">{{data.ObjectName}}</h1>
 
           <a class="calcfont calc-guanyu right" @click="showDrawer"></a>
           <!-- <a v-if="showDownload" class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a> -->
@@ -24,39 +24,27 @@
                     <div class="drawer-content" slot="drawer">
                                 <!-- 侧滑出来的内容 -->
                                 <aside id="aside">
-                                    <div class="aside_title " data-lanid= '291_信息'>信息</div>
+                                    <div class="aside_title lanText" data-lanid='989_信息'></div>
                                     <ul class="FileAttrlist">
                                         <li>
                                             <label class="lanText" data-lanid= '174_文件名称'></label>
-                                            <p data-field="fileName">{{data.filename}}</p>
+                                            <p data-field="fileName">{{data.ObjectName}}</p>
                                         </li>
                                         <li>
-                                            <label class="" data-lanid= '282_标题'>标题</label>
-                                            <p data-field="title">{{data.title}}</p>
+                                            <label class="lanText" data-lanid= '837_上传者'></label>
+                                            <p data-field="creator">{{data.AddUserName}}</p>
                                         </li>
                                         <li>
-                                            <label class="lanText" data-lanid= '825_负责人'></label>
-                                            <p data-field="creator">{{data.creator}}</p>
+                                            <label class="lanText" data-lanid= '985_描述'></label>
+                                            <p  data-field="notecontent" style="height:0.78rem;">{{data.ObjectRemark}}</p>
                                         </li>
                                         <li>
-                                            <label class="" data-lanid= '283_文件夹'>文件夹</label>
-                                            <p data-field="foldername">{{data.foldername}}</p>
-                                        </li>
-                                        <li>
-                                            <label class="" data-lanid= '44_描述'>描述</label>
-                                            <p  data-field="notecontent" style="height:0.78rem;">{{data.notecontent}}</p>
-                                        </li>
-                                        <li>
-                                            <label class="lanText" data-lanid= '24_创建时间'></label>
-                                            <p data-field="createdtime">{{data.createdtime}}</p>
-                                        </li>
-                                        <li>
-                                            <label class="lanText" data-lanid= '801_更新时间'></label>
-                                            <p data-field="modifiedtime">{{data.modifiedtime}}</p>
+                                            <label class="lanText" data-lanid= '838_上传时间'></label>
+                                            <p data-field="createdtime">{{data.AddTime}}</p>
                                         </li>
                                         <li>
                                             <label class="lanText" data-lanid= '178_文件大小'></label>
-                                            <p data-field="filesize">{{(data.filesize/1024/1024).toFixed(2)}}M</p>
+                                            <p data-field="filesize">{{data.FileLength|FileSizeFormat}}</p>
                                         </li>
 
 
@@ -91,23 +79,18 @@ export default {
             thePDF:null,//当前pdf对象
             numPages:0, //总页数
             currPage:1,  //当前页数
-
             photo:null, //
             isOpen:false, //photoBrowser是否打开
             showDownload:false, //显示下载按钮（只有文件类型是图片或视频才显示）
         }
     },
     created:function(){
-        var self = this;
-        self.data = self.$route.query;
-        // console.log(self.data);
+        var _self = this;
+        _self.data = _self.$route.query;
     },
     mounted:function(){
-
         lanTool.updateLanVersion();
-
         var $this = this;
-
         $this.photo = $.photoBrowser({
             items: [
                 {
@@ -123,76 +106,67 @@ export default {
             onClose:function(){
                 $this.isOpen = false;
             }
-        })
+        });
 
-
-        tool.showLoading();
-        //图片
-        if(tool.isFileImage($this.data.filename)) {
-            $this.showDownload = true;
-            $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + $this.data.attachmentpath + '" data-preview-src="" data-preview-group="1">');
-            $('.image').off().on('click',function(){
-                $this.photo.open();
-            });
-            tool.hideLoading();
-            return ;
-
-        }else if(tool.isFileVideo($this.data.filename)){
-            $this.showDownload = true;
-            if(tool.getSystem() === 'android') {
-                //console.log("安卓播放");
-                $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:auto" src="' + $this.data.attachmentpath + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
-
-            } else if(tool.getSystem() === 'ios') {
-                $(".drawerFile_content").html('<video name="media" style="width:100%; height:auto" src="' + $this.data.attachmentpath + '" controls></video>');
-            }
-
-            tool.hideLoading();
-            return;
-        }
-
-        //其他文件
-        //请求地址
-        var urlTemp =
-            tool.combineRequestUrl(
-                tool.getConfigValue(tool.config_ajaxUrl),
-                tool.getConfigValue(tool.ajaxUrl_FileOperation_ChangeFile2PDF)
-            );
-        //请求的传入参数
+        //传入参数
+        var urlTemp = tool.AjaxBaseUrl();
+        var controlName = tool.Api_DocumentsHandle_DownloadFileFromDMS;
         var jsonDatasTemp = {
-            "CurrentLanguageVersion": lanTool.currentLanguageVersion,
-            "SessionName": tool.getSessionStorageItem(tool.cache_SessionName) || "",
-            "id": $this.data.notesid, //文件id
-            "FilePath": $this.data.attachmentpath
+            CurrentLanguageVersion: lanTool.currentLanguageVersion,
+            UserName: tool.UserName(),
+            _ControlName: controlName,
+            _RegisterCode: tool.RegisterCode(),
+            AutoID:$this.data.AutoID
         };
+        tool.showLoading();
         $.ajax({
-            async: true,
+           url: urlTemp,
             type: "post",
-            url: urlTemp,
-            data: {
-                jsonDatas: JSON.stringify(jsonDatasTemp)
-            },
-            dataType: 'json',
-            beforeSend: function(data) {},
+            async: true,
+            cache: false,
+            data: jsonDatasTemp,
             success: function(data) {
-
+                tool.hideLoading();
                 data = tool.jObject(data);
-                if(data.Result != 1) {
-                    tool.hideLoading();
-                    toast.show(data.Msg);
-                    return false;
-                }
-                data = data.Data;
                 // console.log(data);
-                //不解成utf8字节数组(这种方式也正确)
-                if(tool.isNullOrEmptyObject(data)) {
-                    toast.show(lanTool.lanContent("2_操作失败！"));
-                    return false;
+                if (data._ReturnStatus == false) {
+                    tool.showText(tool.getMessage(data));
+                    console.log(tool.getMessage(data));
+                    return true;
                 }
-                var fileData123 = window.atob(data.FileData);
+
+                data = data._OnlyOneData || "";
+                data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
+                
+                //图片
+                if(tool.isFileImage($this.data.ObjectName)) {
+                    $this.showDownload = true;
+                    $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
+                    $('.image').off().on('click',function(){
+                        $this.photo.open();
+                    });
+                    tool.hideLoading();
+                    return ;
+
+                }else if(tool.isFileVideo($this.data.ObjectName)){
+                    $this.showDownload = true;
+                    if(tool.getSystem() === 'android') {
+                        $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:auto" src="' + data + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
+
+                    } else if(tool.getSystem() === 'ios') {
+                        $(".drawerFile_content").html('<video name="media" style="width:100%; height:auto" src="' + data + '" controls></video>');
+                    }
+
+                    tool.hideLoading();
+                    return;
+                }
+
+                //其他文件
+                //不解成utf8字节数组(这种方式也正确)
+                var fileDataTemp = window.atob(data);
                 // PDFJS.workerSrc = '../../assets/pdfjs/build/pdf.worker.js';
                 var loadingTask = PDFJS.getDocument({
-                    data: fileData123
+                    data: fileDataTemp
                 });
 
                 loadingTask.promise.then(function(pdf) {
@@ -231,15 +205,20 @@ export default {
                 })
             },
             error: function(jqXHR, type, error) {
-                tool.hideLoading();
-                console.error('error');
+               tool.hideLoading();
+                console.log(error);
+                return true;
+            },
+            complete: function () {
+                //tool.hideLoading();
+                //隐藏虚拟键盘
+                document.activeElement.blur();
             }
         });
 
 
     },
     methods:{
-
         back:function(){
             this.$router.back(-1);
         },
@@ -250,15 +229,12 @@ export default {
         handleMaskClick:function(){
              this.$refs.drawerFile.toggle();
         },
-
-
         //加载指定页数的文件内容
         LoadFile:function(numPage) {
             var self = this;
             if(self.thePDF == null) {
                 return false;
             }
-
             self.thePDF.getPage(numPage).then(function getData(page) {
                 var scale = 1;
                 var viewport = page.getViewport(scale);
@@ -288,10 +264,8 @@ export default {
                 page.render(renderContext);
             });
         },
-
         //下载
         download:function(){
-
             if(tool.isFileImage(this.data.filename)) {
                 toast.show('长按保存图片');
                 return false;
@@ -308,19 +282,14 @@ export default {
 
                 //    var a = document.createElement('a');
                 //        a.href = this.data.attachmentpath;
-
             }
-
         },
-
     },
     beforeDestroy:function(){
-
         if(this.isOpen){
             this.photo.close();
         }
     }
-
 }
 
 
