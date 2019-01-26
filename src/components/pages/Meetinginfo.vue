@@ -101,8 +101,8 @@
 
             <Infofooter class="HideWhenNew"> </Infofooter>
 
-            <div class="meetingRecord HideWhenNew">
-                <div class="ListCell" @click.stop="viewMeetingNote">
+            <div v-show="accessMeetingNote" class="meetingRecord HideWhenNew">
+                <div class="ListCell" @click.stop="viewMeetingNote($event)">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
@@ -138,7 +138,9 @@ export default {
             isShowMenuList: false,
             isAddNew: false, //是否添加新纪录
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
-            isFirstEnter: false //是否首次进入
+            isFirstEnter: false, //是否首次进入
+            accessMeetingNote:false,//是否可以查看会议模块
+            meetingNoticeID : ""//会议记录id
         }
     },
 
@@ -202,7 +204,9 @@ export default {
                         tool.autoTextarea(cur);
                     });
                     //渲染数据
-                    tool.IniInfoData(fromType, id, function () {
+                    tool.IniInfoData(fromType, id, function (data) {
+                        //渲染会议记录模块
+                        _self.initMeetingNote(data);
 
                         //添加ContactsID的事件
                         var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
@@ -427,10 +431,39 @@ export default {
                 });
             }, 0);
         },
-        viewMeetingNote: function () {
-            this.$router.push({
-                path: '/MeetingNoteinfo/-1',
-            })
+        //渲染查看会议记录模块
+        initMeetingNote:function(data){
+            var _self = this;
+             _self.meetingNoticeID = data["MeetingNoticeID"] || "";
+            if(tool.isNullOrEmptyObject(_self.meetingNoticeID)){
+                _self.accessMeetingNote = false;
+            }else{
+                _self.accessMeetingNote = true;
+            }
+        },
+        viewMeetingNote: function (e) {
+            var _self = this;
+            var target = $(e.target);
+            var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
+            var oppID = "";
+            var scheduleID = _self.$route.params.id||"";
+            if(tool.isNullOrEmptyObject(scheduleID)){
+                return;
+            }
+            scheduleID = Number(scheduleID)<=0?"":scheduleID;
+            var parameter = {
+                OppID:oppID,
+                ScheduleID:scheduleID
+            };
+
+            _self.$router.push({
+                path: url,
+                query: parameter
+            });
+
+            // this.$router.push({
+            //     path: '/MeetingNoteinfo/-1',
+            // });
         },
     }
 
