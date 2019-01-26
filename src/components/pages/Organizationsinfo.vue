@@ -231,7 +231,7 @@ export default {
         document.activeElement.blur();
 
         var id = _self.$route.params.id;
-        // console.log("_self.$route.params.id:" + id);
+
         var fromType = "Organizationsinfo";
 
         //若是新增，则隐藏新增不需要显示的模块
@@ -244,14 +244,11 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
-
-
-        // console.log("_isBack:"+_isBack);
-        // console.log("_self.isFirstEnter:"+_self.isFirstEnter);
-
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
+
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
             //清空页面数据
             tool.ClearControlData(function () {
                 //则联动清空城市
@@ -359,6 +356,7 @@ export default {
 
         } else {
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
 
             var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
             if (!tool.isNullOrEmptyObject(filterTemp)) {
@@ -438,7 +436,7 @@ export default {
             eventBus.selectListData = null;
         }
 
-        _self.$route.meta.isBack = false;
+
 
 
     },

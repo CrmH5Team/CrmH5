@@ -384,6 +384,9 @@ export default {
         if(_fromSave || !_isBack || _self.isFirstEnter){
 
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
+
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
@@ -498,8 +501,9 @@ export default {
             $(window).scrollTop(0);
 
         }else{
-
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
 
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
@@ -518,8 +522,7 @@ export default {
             eventBus.selectListData = null;
         }
 
-        _self.$route.meta.fromSave = false;
-        _self.$route.meta.isBack = false;
+
     },
     methods: {
         //查看有权限访问的同事跳转事件
@@ -632,7 +635,6 @@ export default {
                         });
 
                         //调子组件 收起侧滑方法
-                        console.log(_self.$refs);
                         _self.$refs.rightPanel.panelToggle();
 
 

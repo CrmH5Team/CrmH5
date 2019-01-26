@@ -299,7 +299,7 @@ export default {
         _self.changePos();
         _self.groupToggle();
         _self.watchScroll();
-        console.log(eventBus.queryCondictionData);
+        // console.log(eventBus.queryCondictionData);
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
@@ -319,27 +319,29 @@ export default {
 
         if (_fromSave || !_isBack || _self.isFirstEnter) {
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
+
             _self.searchData = _self.meetingSearch;
 
             $("#meetingPanel").trigger("click");
 
         } else {
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
             //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
             if (fromSearchBtn) {
                 _self.RefreshCurPageGroupData();
             }
         }
 
-        _self.$route.meta.fromSave = false;
-        _self.$route.meta.isBack = false;
+
 
         eventBus.$on('updataListEvent', function () {
-            // console.log("updataListEvent");
             _self.RefreshCurPageGroupData();
         })
         eventBus.$on('changeViewEvent', function (data) {
-            // console.log("changeViewEvent");
             _self.viewType = data;
         })
     },
