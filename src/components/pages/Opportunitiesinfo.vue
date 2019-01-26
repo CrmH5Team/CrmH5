@@ -170,7 +170,8 @@
                                 <div class="content">{{item.MeetingTitle}}</div>
                             </div>
                             <div class="headerDivRightBtn" >
-                                <div class="rightBtn lanText" data-lanid="900_查看完整" @click="goRecord($event)" :data-url="'/MeetingNoteinfo/' + item.AutoID">
+                                <div class="rightBtn" data-lanid="" @click="goRecord($event)" :data-url="'/MeetingNoteinfo/' + item.AutoID">
+                                {{seeMore}}
                                 </div>
                             </div>
                             <div class="headerDivRightDelete">
@@ -329,8 +330,7 @@ export default {
                 //   Remark:"tsadtastd a↵1231↵312312321"
                 // }
             ],
-
-
+            seeMore:""
         }
     },
 
@@ -362,8 +362,9 @@ export default {
     activated:function(){
         lanTool.updateLanVersion();
         document.activeElement.blur();
-
+        
         var _self = this;
+        _self.seeMore =lanTool.lanContent("900_查看完整");
 
         this.onlyView = Boolean(this.$route.query.onlyView) || false;
         //监听保存
@@ -843,31 +844,8 @@ export default {
                 return;
             }
 
-            var _containerObj = $(".meetingRecordList");
-            if(tool.isNullOrEmptyObject(_containerObj)){
-                return;
-            }
-            _containerObj.html('');
-
             console.log(data);
-
             _self.MeetingNotice = data["MeetingNotice"]||[];
-            /*
-            var meetingNoteListStr = "";
-            for(var i = 0;i<meetingNoticeList.length;i++){
-                var meetingNoteTemplateTemp = _self.meetingNoteTemplate;
-                for(var key in meetingNoticeList[i]){
-                    meetingNoteTemplateTemp = meetingNoteTemplateTemp.ReplaceAll("{"+ key +"}", meetingNoticeList[i][key] ||"");
-                }
-
-                //todo 组装文档列表
-                meetingNoteTemplateTemp = meetingNoteTemplateTemp.ReplaceAll("{DocList}", "");
-
-                meetingNoteListStr += meetingNoteTemplateTemp;
-            }
-
-            // _containerObj.append(meetingNoteListStr);
-            */
         }
     }
 }

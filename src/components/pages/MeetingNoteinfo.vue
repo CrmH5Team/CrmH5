@@ -208,6 +208,13 @@ export default {
                     //渲染数据
                     tool.IniInfoData(fromType,id,function(){
 
+
+                        //渲染textarea
+                        $("textarea").each(function (index, cur) {
+                            $(cur).height('25');
+                            tool.autoTextarea(cur);
+                        });
+
                           //场景：当在selectList页面按刷新按钮再回到详情页
                           if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                                 return;
