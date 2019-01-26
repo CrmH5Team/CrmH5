@@ -21,7 +21,7 @@
                                   type="search"
                                   id="userInput"
                                   key="userInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"/>
+                                  class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""/>
                       </div>
                   </div>
                   <!-- 列表 -->
@@ -44,7 +44,7 @@
                                   type="search"
                                   id="groupInput"
                                   key="groupInput"
-                                  class="search-input" data-lanid="208_搜索" placeholder="search"  />
+                                  class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""/>
                       </div>
                   </div>
                   <!-- 列表 -->
