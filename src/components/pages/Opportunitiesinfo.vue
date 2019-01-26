@@ -11,8 +11,9 @@
             <!-- <div data-field="BusinessTypes" data-fieldControlType="hideDivText">{{showPage}}</div> -->
 
             <div v-show="showTips" class="tipBox">
-                <div class="tipContent">
-                    <p class="f12"><span class="red">*</span> <span class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></span></p>
+                <div class="tipContent f12">
+                    <span class="red">*</span>
+                    <p class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></p>
                 </div>
             </div>
 
@@ -362,7 +363,7 @@ export default {
     activated:function(){
         lanTool.updateLanVersion();
         document.activeElement.blur();
-        
+
         var _self = this;
         _self.seeMore =lanTool.lanContent("900_查看完整");
 
@@ -375,7 +376,7 @@ export default {
         _self.id = _self.$route.params.id;
         _self.showPage = _self.$route.query.showPage || '';
         // console.log(_self.showPage);
-        if (_self.showPage === 1) 
+        if (_self.showPage === 1)
         {
             _self.closeThisContent = lanTool.lanContent('944_关闭这个商业机会');
         } else {
