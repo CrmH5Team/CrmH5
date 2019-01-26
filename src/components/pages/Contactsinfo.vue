@@ -305,6 +305,11 @@ export default {
         document.activeElement.blur();
 
         _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        if(_self.onlyView){
+            $('.scroll-div').addClass('disable');
+        }else{
+            $('.scroll-div').removeClass('disable');
+        }
         _self.companyID = _self.$route.query.companyID || '';
         _self.companyName = _self.$route.query.companyName || '';
 
@@ -325,10 +330,12 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
-
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
+
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
+
             //清空页面数据
             tool.ClearControlData(function () {
                 //渲染控件
@@ -405,6 +412,8 @@ export default {
             });
         } else {
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
+
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
@@ -419,7 +428,6 @@ export default {
             //清空全局变量
             eventBus.selectListData = null;
         }
-        _self.$route.meta.isBack = false;
 
     },
     methods: {

@@ -4,7 +4,6 @@
         :isAddNew="isAddNew"
         :onlyView="onlyView"
         :operation="operation"
-        :onlyMore="onlyMore"
         :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
@@ -309,7 +308,6 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation:true,//控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView:false,//控制页面头部icon,true:不显示头部icon,false:显示
-            onlyMore:false,//控制页面头部icon，控制只显示更多操作按钮
 
             isFirstEnter:false,//是否首次进入
             rightPanelFromType:"",//传给右侧菜单用的参数
@@ -386,6 +384,9 @@ export default {
         if(_fromSave || !_isBack || _self.isFirstEnter){
 
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
+
             //清空页面数据
             tool.ClearControlData(function(){
                 //渲染控件
@@ -443,6 +444,8 @@ export default {
                     //控制TheName字段 在 Deal Pipeline 下不可修改
                     if(_self.showPage == 0){
                         $("[data-field='TheName']").addClass('disable');
+                    }else{
+                        $("[data-field='TheName']").removeClass('disable');
                     }
 
 
@@ -452,22 +455,18 @@ export default {
                         //Status_InProgress = "38";
                         //Status_Closed = "39";
                         // console.log(data);
-
-                        // _self.controlField();
-
-
                         if(data["CurrentState"] == "39"){
                             //显示提示
                             _self.showTips = true;
                             //头部按钮
-                            _self.onlyMore = true;
                             _self.onlyView = true;
+                            $('.scroll-div').addClass('disable');
                         }else{
                             //显示提示
                             _self.showTips = false;
                             //头部按钮
-                            _self.onlyMore = false;
                             _self.onlyView = false;
+                            $('.scroll-div').removeClass('disable');
                         }
 
 
@@ -502,8 +501,9 @@ export default {
             $(window).scrollTop(0);
 
         }else{
-
             _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
 
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
@@ -522,8 +522,7 @@ export default {
             eventBus.selectListData = null;
         }
 
-        _self.$route.meta.fromSave = false;
-        _self.$route.meta.isBack = false;
+
     },
     methods: {
         //查看有权限访问的同事跳转事件
@@ -647,7 +646,6 @@ export default {
                         });
 
                         //调子组件 收起侧滑方法
-                        console.log(_self.$refs);
                         _self.$refs.rightPanel.panelToggle();
 
 
@@ -714,14 +712,14 @@ export default {
                                         //显示提示
                                         _self.showTips = true;
                                         //头部按钮
-                                        _self.onlyMore = true;
                                         _self.onlyView = true;
+                                        $('.scroll-div').addClass('disable');
                                     }else{
                                         //显示提示
                                         _self.showTips = false;
                                         //头部按钮
-                                        _self.onlyMore = false;
                                         _self.onlyView = false;
+                                        $('.scroll-div').removeClass('disable');
                                     }
 
 

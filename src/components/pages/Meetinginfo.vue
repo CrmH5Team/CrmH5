@@ -65,7 +65,7 @@
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
                 </div>
-                
+
                 <div class="ListSpecialCell visible" id="CompanyIDClickObj">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-gongsixinxi"></span></div>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj"></div>
                 </div>
-                
+
                 <div class="ListCell visible">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-kehulianxiren"></span></div>
                     <div class="ListCellContent">
@@ -98,9 +98,9 @@
                 </div>
 
             </div>
-                        
+
             <Infofooter class="HideWhenNew"> </Infofooter>
-            
+
             <div class="meetingRecord HideWhenNew">
                 <div class="ListCell" @click.stop="viewMeetingNote">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
@@ -187,6 +187,8 @@ export default {
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
+
             //清空页面数据
             tool.ClearControlData(function () {
                 //则联动清空联系人
@@ -296,6 +298,7 @@ export default {
 
         } else {
             _self.isFirstEnter = false;
+            _self.$route.meta.isBack = false;
 
             //添加ContactsID的事件
             var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
@@ -375,7 +378,7 @@ export default {
             eventBus.selectListData = null;
         }
 
-        _self.$route.meta.isBack = false;
+
     },
     methods: {
         deleteData: function (e) {
@@ -384,7 +387,6 @@ export default {
             var fromType = "Meetinginfo";
             setTimeout(function () {
                 $("#delete").off("click").on("click", function () {
-                    // console.log("delete");
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
             }, 0);
@@ -393,7 +395,7 @@ export default {
             var _self = this;
             $("#save").off("click").on("click", function () {
                 //判断元素是否存在
-                console.log("startdate.length:" + $("#startdate").length);
+                // console.log("startdate.length:" + $("#startdate").length);
                 if ($("#startdate").length > 0) {
                     //开始日期和结束日期进行对比
                     var startdate = $("#startdate").val();
@@ -407,8 +409,8 @@ export default {
 
                     var d1 = new Date(startdate.replace(/\-/g, "\/"));
                     var d2 = new Date(enddate.replace(/\-/g, "\/"));
-                    console.log(startdate);
-                    console.log(enddate);
+                    // console.log(startdate);
+                    // console.log(enddate);
                     //开始日期或者结束日期其中一个为空，一个不为空
                     if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
                         $.alert(dateEmptyAlert, tips,"", sure);

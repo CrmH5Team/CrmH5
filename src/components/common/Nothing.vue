@@ -7,7 +7,12 @@
 
 <script>
 export default {
-
+    mounted:function(){
+      lanTool.updateLanVersion();
+    },
+    activated:function(){
+        lanTool.updateLanVersion();
+    },
 }
 </script>
 
