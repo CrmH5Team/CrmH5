@@ -4,31 +4,31 @@
 
     <div id="page-content" class="page-content">
         <div class="nav sticky">
-            <div id="dealPipelineSwitchPage" @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="820_交易" ></div>
+            <div id="dealPipelineSwitchPage" @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="820_交易"></div>
             <div id="opportunitiesSwitchPage" @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="649_商业机会"></div>
             <div class="nav-border"></div>
         </div>
         <div v-show="showPage == 0" class="pageList">
-              <div class="add-btn-div">
-                    <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div" >
-                        <span class="calcfont calc-add"></span>
-                        <span class="add-text lanText" data-lanid="884_增加交易"></span>
-                    </div>
-              </div>
-              <!-- 列表 -->
-              <div v-show="!noData" id="dealpipelineList" data-fromtype="dealPipeline"></div>
-              <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
+            <div class="add-btn-div">
+                <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div">
+                    <span class="calcfont calc-add"></span>
+                    <span class="add-text lanText" data-lanid="884_增加交易"></span>
+                </div>
+            </div>
+            <!-- 列表 -->
+            <div v-show="!noData" id="dealpipelineList" data-fromtype="dealPipeline"></div>
+            <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
         <div v-show="showPage == 1" class="pageList">
-              <div class="add-btn-div">
-                    <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div" >
-                        <span class="calcfont calc-add"></span>
-                        <span class="add-text lanText" data-lanid="885_增加机会"></span>
-                    </div>
-              </div>
-              <!-- 列表 -->
-              <div v-show="!noData" id="opportunitiesList" data-fromtype="opportunities"></div>
-              <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
+            <div class="add-btn-div">
+                <div @click="addBtn" data-url="/opportunitiesinfo/-1" class="add-div">
+                    <span class="calcfont calc-add"></span>
+                    <span class="add-text lanText" data-lanid="885_增加机会"></span>
+                </div>
+            </div>
+            <!-- 列表 -->
+            <div v-show="!noData" id="opportunitiesList" data-fromtype="opportunities"></div>
+            <nothing v-show="noData" style="padding-top:0.8rem;"></nothing>
         </div>
     </div>
     <!--  右侧侧滑 -->
@@ -44,29 +44,27 @@ import Nothing from "../common/Nothing"
 
 var count = 0;
 export default {
-    components:{
-        'Header':Header,
-        'list-right-panel':Listrightpanel,
-        'nothing':Nothing
+    components: {
+        'Header': Header,
+        'list-right-panel': Listrightpanel,
+        'nothing': Nothing
     },
-    data(){
+    data() {
         return {
-            title:'Business',
+            title: 'Business',
             showPage: 0,
             noData: true, //没数据
-            queryCondiction:[],//右侧checkbox条件
-            queryCondictionData:[],//综合查询条件
-            isFirstEnter:false,//是否首次进入
+            queryCondiction: [], //右侧checkbox条件
+            queryCondictionData: [], //综合查询条件
+            isFirstEnter: false, //是否首次进入
 
             //侧滑数据模型
-            rigthPanelData:[
-                {
-                  groupText: lanTool.lanContent("794_数据筛选"),
-                  groupName:'dataFilter',
-                  type: "radio",
-                  default: "allData",
-                  items:[
-                      {
+            rigthPanelData: [{
+                groupText: lanTool.lanContent("794_数据筛选"),
+                groupName: 'dataFilter',
+                type: "radio",
+                default: "allData",
+                items: [{
                         text: lanTool.lanContent("795_全部"),
                         queryfield: "allData",
                         queryType: "string",
@@ -74,197 +72,120 @@ export default {
                         queryRelation: "and",
                         queryValue: "",
                         queryComparison: "="
-                      },
-                      {
-                        text: '我关注的数据',
+                    },
+                    {
+                        text: lanTool.lanContent("981_我关注的数据"),
                         queryfield: "MyFollowData",
                         queryType: "string",
                         queryFormat: "",
                         queryRelation: "and",
                         queryValue: "",
                         queryComparison: "="
-                      },
-                      {
-                        text: '进行中的',
+                    },
+                    {
+                        text: lanTool.lanContent("954_进行中"),
                         queryfield: "InProcess",
                         queryType: "string",
                         queryFormat: "",
                         queryRelation: "and",
                         queryValue: "",
                         queryComparison: "="
-                      }
-                  ]
-                },
-            ],
+                    },
+                    {
+                        text: lanTool.lanContent("955_已关闭"),
+                        queryfield: "Closed",
+                        queryType: "string",
+                        queryFormat: "",
+                        queryRelation: "and",
+                        queryValue: "",
+                        queryComparison: "="
+                    }
+                ]
+            }, ],
             //侧滑搜索页面数据模型
-            searchData:{},
-            dealPipelineSearch:[
-                  {
-                      queryfield: "name",
-                      text: '名称',
-                      fieldControlType: "textareaInput",
-                      queryType: "string",
-                      queryFormat: "",
-                      queryRelation: "and",
-                      queryValue: "",
-                      queryComparison: "like"
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:lanTool.lanContent("860_状态"),
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                      queryfield: "related_to",
-                      text:lanTool.lanContent('711_发起人'),
-                      fieldControlType: "selectList",
-                      queryType: "string",
-                      queryFormat: "",
-                      queryRelation: "and",
-                      queryValue: "",
-                      queryComparison: "=",
-                      Code: "DropDowList_ViewBaseCompanyBaseInf",
-                      TypeValue: "",
-                      selectType: "radio",
-                      resulteRow: true,
-                      clickObj: "CompanyIDClickObj",
-                      datalanid: "711_发起人"
-                  },
-                  {
-                      queryfield: "CompanyID",
-                      text:lanTool.lanContent('726_公司名称'),
-                      fieldControlType: "selectList",
-                      queryType: "string",
-                      queryFormat: "",
-                      queryRelation: "and",
-                      queryValue: "",
-                      queryComparison: "=",
-                      Code: "DropDowList_ViewBaseCompanyBaseInf",
-                      TypeValue: "",
-                      selectType: "radio",
-                      resulteRow: true,
-                      clickObj: "CompanyIDClickObj",
-                      datalanid: "726_公司名称"
-                  },
-                  {
-                      queryfield: "BusinessType",
-                      text: lanTool.lanContent("695_业务分类"),
-                      fieldControlType: "picker",
-                      queryType: "string",
-                      queryFormat: "",
-                      queryRelation: "and",
-                      queryValue: "",
-                      queryComparison: "=",
-                      Code: "DropDowList_ViewBaseAllTypes",
-                      TypeValue: "Companybusinesstype",
-                      datalanid: "695_业务分类"
-                  },
-                  {
-                      queryfield: "CityID",
-                      text: lanTool.lanContent("702_城市"),
-                      fieldControlType: "selectList",
-                      queryType: "string",
-                      queryFormat: "",
-                      queryRelation: "and",
-                      queryValue: "",
-                      queryComparison: "=",
-                      Code: "DropDowList_ViewBaseCountryCity",
-                      TypeValue: "",
-                      selectType: "radio",
-                      resulteRow: true,
-                      clickObj: "CountryIDClickObj",
-                      datalanid: "702_城市"
+            searchData: {},
+            dealPipelineSearch: [{
+                    queryfield: "TheName",
+                    text: lanTool.lanContent("710_标题"),
+                    fieldControlType: "textareaInput",
+                    queryType: "string",
+                    queryFormat: "",
+                    queryRelation: "and",
+                    queryValue: "",
+                    queryComparison: "like"
                 },
                 {
-                    queryfield: "CountryID",
-                    text: lanTool.lanContent("701_国家"),
+                    queryfield: "Initiator",
+                    text: lanTool.lanContent("825_负责人"),
+                    fieldControlType: "groupSelectList",
+                    queryType: "string",
+                    queryFormat: "",
+                    queryRelation: "and",
+                    queryValue: "",
+                    queryComparison: "=",
+                    Code: "DropDowList_PopedomTeamVsUser",
+                    TypeValue: "",
+                    selectType: "checkbox",
+                    datalanid: "825_负责人",
+                    fromType: "6"
+                },
+
+            ],
+            opportunitiesSearch: [{
+                    queryfield: "TheName",
+                    text: lanTool.lanContent("710_标题"),
+                    fieldControlType: "textareaInput",
+                    queryType: "string",
+                    queryFormat: "",
+                    queryRelation: "and",
+                    queryValue: "",
+                    queryComparison: "like"
+                },
+                {
+                    queryfield: "CompanyID",
+                    text: lanTool.lanContent('726_公司名称'),
                     fieldControlType: "selectList",
                     queryType: "string",
                     queryFormat: "",
                     queryRelation: "and",
                     queryValue: "",
                     queryComparison: "=",
-                    Code: "DropDowList_ViewBaseCountryInf",
+                    Code: "DropDowList_ViewBaseCompanyBaseInf",
                     TypeValue: "",
                     selectType: "radio",
                     resulteRow: true,
-                    clickObj: "CountryIDClickObj",
-                    datalanid: "701_国家"
+                    clickObj: "CompanyIDClickObj",
+                    datalanid: "726_公司名称"
                 },
                 {
-                    type:'selectlist',
-                    field:'related_to',
-                    queryType:'string',
-                    queryUrl:"Accounts/Query",
-                    text:'Created by 创建者',
-                    selectType:'radio',
-                    value:{
-                        text:'',
-                        value:''
-                    }
-                }
-            ],
-            opportunitiesSearch:[
-                  {
-                      type:'input',
-                      field:'name',
-                      queryType:'string',
-                      text:'Name',
-                      value:'',
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:lanTool.lanContent("860_状态"),
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:lanTool.lanContent('711_发起人'),
-                      selectType:'checkbox',
-                      resulteRow:false, //第二行显示结果
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  },
-                  {
-                      type:'selectlist',
-                      field:'related_to',
-                      queryType:'string',
-                      queryUrl:"Accounts/Query",
-                      text:lanTool.lanContent('726_公司名称'),
-                      selectType:'checkbox',
-                      resulteRow:true, //第二行显示结果
-                      value:{
-                          text:'',
-                          value:''
-                      }
-                  },
-                  {
-                      type:'picker',
-                      field:'cf_765',
-                      queryType:'string',
-                      text:lanTool.lanContent("695_业务分类"),
-                      value:'',
-                      id:Number((new Date()).valueOf()) + count++
-                  },
-                  {
-                    type:'picker',
-                    field:'cf_771',
-                    queryType:'string',
-                    text:lanTool.lanContent('869_区域'),
-                    value:'',
-                    id:Number((new Date()).valueOf()) + count++
-                  }
+                    queryfield: "ContactsID",
+                    text: lanTool.lanContent("630_联系人"),
+                    fieldControlType: "selectList",
+                    queryType: "string",
+                    queryFormat: "",
+                    queryRelation: "and",
+                    queryValue: "",
+                    queryComparison: "=",
+                    Code: "DropDowList_ViewBaseCompanyContactsByCompany",
+                    TypeValue: "",
+                    selectType: "radio",
+                    datalanid: "630_联系人"
+                },
+                {
+                    queryfield: "Initiator",
+                    text: lanTool.lanContent("825_负责人"),
+                    fieldControlType: "groupSelectList",
+                    queryType: "string",
+                    queryFormat: "",
+                    queryRelation: "and",
+                    queryValue: "",
+                    queryComparison: "=",
+                    Code: "DropDowList_PopedomTeamVsUser",
+                    TypeValue: "",
+                    selectType: "checkbox",
+                    datalanid: "825_负责人",
+                    fromType: "6"
+                },
             ]
         }
     },
@@ -276,18 +197,17 @@ export default {
         }
         next();
     },
-    beforeRouteLeave:function(to, from, next){
-        if(to.name == 'index'){
+    beforeRouteLeave: function (to, from, next) {
+        if (to.name == 'index') {
             this.$destroy();
         }
         next();
     },
-    created:function(){
-      this.isFirstEnter = true;
+    created: function () {
+        this.isFirstEnter = true;
     },
-    mounted:function(){
-    },
-    activated:function(){
+    mounted: function () {},
+    activated: function () {
         var _self = this;
         lanTool.updateLanVersion();
         _self.changePos();
@@ -297,10 +217,10 @@ export default {
 
         // _self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null;
-        if(eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined){
-            if(this.$route.meta.fromSave){
+        if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
+            if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
-            }else{
+            } else {
                 _self.queryCondictionData = eventBus.queryCondictionData;
                 eventBus.queryCondictionData = null;
             }
@@ -314,83 +234,91 @@ export default {
         var _isBack = _self.$route.meta.isBack;
 
         //若为true,则需要刷新
-        if(_fromSave || !_isBack || _self.isFirstEnter ){
+        if (_fromSave || !_isBack || _self.isFirstEnter) {
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
 
             _self.searchData = _self.dealPipelineSearch;
 
-            if(_self.showPage == 0){
+            if (_self.showPage == 0) {
                 $("#dealPipelineSwitchPage").trigger("click");
-            }else{
+            } else {
                 $("#opportunitiesSwitchPage").trigger("click");
             }
 
-
-        }else{
-           _self.isFirstEnter = false;
-           _self.$route.meta.fromSave = false;
-           _self.$route.meta.isBack = false;
-          //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
-              if(fromSearchBtn){
-                  _self.RefreshCurPageGroupData();
-              }
+        } else {
+            _self.isFirstEnter = false;
+            _self.$route.meta.fromSave = false;
+            _self.$route.meta.isBack = false;
+            //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
+            if (fromSearchBtn) {
+                _self.RefreshCurPageGroupData();
+            }
         }
 
     },
-    methods:{
-        setQuerycondition:function(data){
-          var _self = this;
-          _self.queryCondiction = data;
-          // console.log(_self.queryCondiction);
-          //执行监听的这个动作
-          _self.RefreshCurPageGroupData();
+    methods: {
+        setQuerycondition: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
+            // console.log(_self.queryCondiction);
+            //执行监听的这个动作
+            _self.RefreshCurPageGroupData();
         },
-        setQueryconditionOnlyData:function(data){
-          var _self = this;
-          _self.queryCondiction = data;
+        setQueryconditionOnlyData: function (data) {
+            var _self = this;
+            _self.queryCondiction = data;
         },
         //监听滚动固定
-        watchScroll:function(){
+        watchScroll: function () {
             var _self = this;
-            setTimeout(function(){
+            setTimeout(function () {
                 var headerH = parseFloat($('header').innerHeight());
                 var navH = parseFloat($('.nav').innerHeight());
 
                 // $(this).offset().top 元素到document顶部的距离
                 // $(document).scrollTop() || $(window).scrollTop(); 滚动条滚动的距离
 
-                $(window).unbind('scroll').bind('scroll',function(){
+                $(window).unbind('scroll').bind('scroll', function () {
 
-                    if($('.group-div').length <= 0) return ;
+                    if ($('.group-div').length <= 0) return;
                     var scrollTop = $(document).scrollTop() || $(window).scrollTop();
 
-                    $('.group-div').each(function(){
-                        if($(this).offset().top - scrollTop <= (headerH + navH) ){
+                    $('.group-div').each(function () {
+                        if ($(this).offset().top - scrollTop <= (headerH + navH)) {
 
-                            if(tool.getSystem() === 'ios'){
-                                $(this).find('.date-div').addClass('sticky').css({"top": headerH + navH + 'px'});
-                            }else{
-                                $(this).find('.date-div').css({"position":"fixed","top": headerH + navH + 'px'});
+                            if (tool.getSystem() === 'ios') {
+                                $(this).find('.date-div').addClass('sticky').css({
+                                    "top": headerH + navH + 'px'
+                                });
+                            } else {
+                                $(this).find('.date-div').css({
+                                    "position": "fixed",
+                                    "top": headerH + navH + 'px'
+                                });
                                 $(this).find('.occupy-div').show();
                             }
 
-                        }else{
-                            if(tool.getSystem() === 'ios'){
-                                $(this).find('.date-div').removeClass('sticky').css({"top":'0px'});
-                            }else{
-                                $(this).find('.date-div').css({"position":"static"});
+                        } else {
+                            if (tool.getSystem() === 'ios') {
+                                $(this).find('.date-div').removeClass('sticky').css({
+                                    "top": '0px'
+                                });
+                            } else {
+                                $(this).find('.date-div').css({
+                                    "position": "static"
+                                });
                                 $(this).find('.occupy-div').hide();
                             }
                         }
 
                     })
                 })
-            },100)
+            }, 100)
         },
         //列表展开收起
-        groupToggle:function(){
+        groupToggle: function () {
             // $("#dealpipelineList,#opportunitiesList").on(
             //   "click",
             //   "div.date-div",
@@ -463,8 +391,7 @@ export default {
             //     }
             // })
 
-
-             var _self = this;
+            var _self = this;
             $("#dealpipelineList,#opportunitiesList").off("click", "div.date-div").on(
                 "click",
                 "div.date-div",
@@ -501,38 +428,37 @@ export default {
                         //若是收起
                         var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
                         tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
-                                containerObj
+                            containerObj
                                 .addClass("open")
                                 .siblings(".group-item-list")
                                 .slideDown(500);
 
-                                //点击去详情页
-                                $("div.item-block").off('click').on('click',function(event) {
-                                    var target = $(event.target);
-                                    if(target.hasClass("item-stars-icon")){
+                            //点击去详情页
+                            $("div.item-block").off('click').on('click', function (event) {
+                                var target = $(event.target);
+                                if (target.hasClass("item-stars-icon")) {
+                                    return;
+                                }
+                                if (!target.hasClass("group-item")) {
+                                    target = target.closest("div.group-item");
+                                    if (tool.isNullOrEmptyObject(target)) {
                                         return;
                                     }
-                                    if (!target.hasClass("group-item")) {
-                                        target = target.closest("div.group-item");
-                                        if (tool.isNullOrEmptyObject(target)) {
-                                        return;
-                                        }
-                                    }
-                                    // _self.showPage
+                                }
+                                // _self.showPage
 
-                                    var url = target.attr("data-url") || "";
-                                    if(tool.isNullOrEmptyObject(url)){
-                                        return;
-                                    }
-                                    var parameter = {
-                                        showPage : _self.showPage
-                                    };
-                                        _self.$router.push({
-                                            path:url,
-                                            query: parameter
-                                        });
-                                    }
-                                );
+                                var url = target.attr("data-url") || "";
+                                if (tool.isNullOrEmptyObject(url)) {
+                                    return;
+                                }
+                                var parameter = {
+                                    showPage: _self.showPage
+                                };
+                                _self.$router.push({
+                                    path: url,
+                                    query: parameter
+                                });
+                            });
                         });
                     }
                 }
@@ -540,47 +466,47 @@ export default {
 
         },
         //切换页面
-        switchPage:function(num, e){
+        switchPage: function (num, e) {
             var _self = this;
             var el = e.target;
-            if(num === undefined) return;
+            if (num === undefined) return;
             $(el)
-              .addClass("active-item")
-              .siblings()
-              .removeClass("active-item");
+                .addClass("active-item")
+                .siblings()
+                .removeClass("active-item");
             _self.changePos();
             _self.showPage = num;
 
             var container = null;
             var fromType = "";
-            if(num == 0){
+            if (num == 0) {
                 _self.searchData = _self.dealPipelineSearch;
 
                 fromType = 'dealPipeline';
                 container = $('#dealpipelineList');
-            }else{
+            } else {
                 _self.searchData = _self.opportunitiesSearch;
 
                 fromType = 'opportunities';
                 container = $('#opportunitiesList');
             }
             //渲染数据
-            var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-            tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
-              if (tool.isNullOrEmptyObject(containerObj)) {
-                _self.noData = true;
-                return;
-              }
-              if (!containerObj.html()) {
-                _self.noData = true;
-              } else {
-                _self.noData = false;
-              }
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
+                if (tool.isNullOrEmptyObject(containerObj)) {
+                    _self.noData = true;
+                    return;
+                }
+                if (!containerObj.html()) {
+                    _self.noData = true;
+                } else {
+                    _self.noData = false;
+                }
             });
         },
         //table底部横条过渡效果
-        changePos:function() {
-            this.$nextTick(function(){
+        changePos: function () {
+            this.$nextTick(function () {
                 var activePos = $('.nav .active-item').position();
                 $('.nav-border').stop().css({
                     left: activePos.left,
@@ -589,10 +515,10 @@ export default {
             })
         },
         //点击关注/取消关注
-        followToggle:function(){
+        followToggle: function () {
             var _self = this;
 
-            $("#dealpipelineList,#opportunitiesList").on("click",".item-stars-icon",function(e){
+            $("#dealpipelineList,#opportunitiesList").on("click", ".item-stars-icon", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 
@@ -601,77 +527,75 @@ export default {
                 var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
                 var autoID = _curObj.attr("data-autoid") || "";
                 var actionType;
-                if(_curObj.hasClass("calc-shoucang"))
-                {
-                  //取消关注
-                  actionType = 0;
-                }else{
-                  //添加关注
-                  actionType = 1;
+                if (_curObj.hasClass("calc-shoucang")) {
+                    //取消关注
+                    actionType = 0;
+                } else {
+                    //添加关注
+                    actionType = 1;
                 }
 
-                tool.UserFollow(fromType,autoID,actionType,function(){
-                    if(_curObj.hasClass("calc-shoucang"))
-                    {
-                      //取消关注
-                      _curObj.removeClass("calc-shoucang").addClass("calc-noshoucang");
-                    }else{
-                      //添加关注
-                      _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
+                tool.UserFollow(fromType, autoID, actionType, function () {
+                    if (_curObj.hasClass("calc-shoucang")) {
+                        //取消关注
+                        _curObj.removeClass("calc-shoucang").addClass("calc-noshoucang");
+                    } else {
+                        //添加关注
+                        _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
                     }
                 });
             })
         },
         //刷新当前激活的page的分组数据
-        RefreshCurPageGroupData : function(){
-          var _self = this;
-          var num = _self.showPage;
-          var container = null;
-          var fromType = "";
-          if (num == 0) {
-            _self.searchData = _self.dealPipelineSearch;
+        RefreshCurPageGroupData: function () {
+            var _self = this;
+            var num = _self.showPage;
+            var container = null;
+            var fromType = "";
+            if (num == 0) {
+                _self.searchData = _self.dealPipelineSearch;
 
-            fromType = "dealPipeline";
-            container = $("#dealpipelineList");
-          } else {
-            _self.searchData = _self.opportunitiesSearch;
-            fromType = "opportunities";
-            container = $("#opportunitiesList");
-          }
-
-          //渲染数据
-          var allQueryData = tool.combineArray(_self.queryCondictionData,_self.queryCondiction,"Field");
-          tool.InitiateGroupList(fromType, container,allQueryData, function(containerObj) {
-            if (tool.isNullOrEmptyObject(containerObj)) {
-              _self.noData = true;
-              return;
-            }
-            if (!containerObj.html()) {
-              _self.noData = true;
+                fromType = "dealPipeline";
+                container = $("#dealpipelineList");
             } else {
-              _self.noData = false;
+                _self.searchData = _self.opportunitiesSearch;
+                fromType = "opportunities";
+                container = $("#opportunitiesList");
             }
-          });
+
+            //渲染数据
+            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
+                if (tool.isNullOrEmptyObject(containerObj)) {
+                    _self.noData = true;
+                    return;
+                }
+                if (!containerObj.html()) {
+                    _self.noData = true;
+                } else {
+                    _self.noData = false;
+                }
+            });
         },
         //点击添加按钮跳转
-        addBtn:function(e){
+        addBtn: function (e) {
             var _self = this;
-            var target =  $(e.target);
+            var target = $(e.target);
             if (!target.hasClass('add-div')) {
                 target = target.parents("div.add-div:first");
                 if (tool.isNullOrEmptyObject(target)) {
                     return;
                 }
             }
-            var urlTemp = target.attr('data-url')||'';
-            if(tool.isNullOrEmptyObject(urlTemp)){
+            var urlTemp = target.attr('data-url') || '';
+            if (tool.isNullOrEmptyObject(urlTemp)) {
                 return;
             }
             var parameter = {
-                showPage : _self.showPage
+                showPage: _self.showPage
             };
             _self.$router.push({
-                path:urlTemp,
+                path: urlTemp,
                 query: parameter
             });
         }
@@ -682,5 +606,3 @@ export default {
 <style scoped>
 @import "../../assets/css/common/commonlist.css";
 </style>
-
-
