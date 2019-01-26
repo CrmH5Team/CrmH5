@@ -277,39 +277,15 @@ export default {
                 .css({ height: navH + "px" })
                 .show();
 
-        $(window).scroll(function() {
-          var scrollTop = $(this).scrollTop();
-          // if (scrollTop >= searchH) {
-          //   if (tool.getSystem() === "ios") {
-          //     $("#nav")
-          //       .addClass("sticky")
-          //       .css({ top: headerH + "px" });
-          //   } else {
-          //     $("#nav").css({
-          //       position: "fixed",
-          //       top: headerH + "px"
-          //     });
-          //     $(".occupy-position")
-          //       .css({ height: navH + "px" })
-          //       .show();
-          //   }
-          // } else {
-          //   if (tool.getSystem() === "ios") {
-          //     $("#nav")
-          //       .removeClass("sticky")
-          //       .css({ top: "0px" });
-          //   } else {
-          //     $(".occupy-position")
-          //       .css({ height: "0px" })
-          //       .hide();
-          //     $("#nav").css({ position: "static" });
-          //   }
-          // }
+        $(window).unbind('scroll').bind('scroll',function(){
 
           if ($(".month-event").length <= 0) return;
+          // var scrollTop = $(this).scrollTop();
+          var scrollTop = $(document).scrollTop() || $(window).scrollTop();
+
           $(".month-event").each(function() {
             if (
-              $(this).offset().top - $(window).scrollTop() <=
+              $(this).offset().top - scrollTop <=
               navH + headerH
             ) {
               if (tool.getSystem() === "ios") {
