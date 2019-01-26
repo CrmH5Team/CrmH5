@@ -373,9 +373,9 @@ export default {
         //监听删除
         _self.deleteData();
         _self.rightPanelCloseThis();
+
         _self.id = _self.$route.params.id;
         _self.showPage = _self.$route.query.showPage || '';
-        // console.log(_self.showPage);
         if (_self.showPage === 1)
         {
             _self.closeThisContent = lanTool.lanContent('944_关闭这个商业机会');
@@ -471,9 +471,9 @@ export default {
                     _self.controlBusinessTypes();
                     //控制TheName字段 在 Deal Pipeline 下不可修改
                     if(_self.showPage == 0){
-                        $("[data-field='TheName']").addClass('disable');
+                        $("[data-field='TheName']").addClass('disable color6');
                     }else{
-                        $("[data-field='TheName']").removeClass('disable');
+                        $("[data-field='TheName']").removeClass('disable color6');
                     }
 
 
@@ -694,17 +694,7 @@ export default {
                 });
             }, 0);
         },
-        //控制 BusinessTypes 、 TheName  字段
-        controlField:function(){
-            var _self = this;
-            //控制BusinessTypes字段不可修改
-            $('[data-field="BusinessTypes"]').addClass('disable');
 
-            //如果是Deal Pipeline模块 TheName 字段不可修改
-            if(_self.showPage == 0){
-                $('[data-field="TheName"]').addClass('disable');
-            }
-        },
         getDealObj : function(){
           var textTemp =  lanTool.lanContent("939_交易");
           var idTemp = 29;
@@ -738,10 +728,15 @@ export default {
                     $("[data-field='BusinessTypes']")
                         .val(businessSectorObj.text || "")
                         .attr("data-fieldVal", businessSectorObj.id)
-                        .addClass('disable');
+                        .addClass('disable')
+                        .closest('.ListCellContent')
+                        .addClass('color6');
                 }
             }else{
-                $("[data-field='BusinessTypes']").addClass('disable');
+                $("[data-field='BusinessTypes']")
+                  .addClass('disable')
+                  .closest('.ListCellContent')
+                  .addClass('color6');
             }
         },
         //渲染会议记录列表
@@ -751,7 +746,7 @@ export default {
                 return;
             }
 
-            console.log(data);
+            // console.log(data);
             _self.MeetingNotice = data["MeetingNotice"]||[];
         },
         deleteMeetingNote:function(autoID,e){
