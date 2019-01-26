@@ -196,12 +196,15 @@ export default {
         }
         next();
     },
-    beforeRouteLeave: function (to, from, next) {
-        if (to.name == 'contacts') {
-            this.$destroy();
-        }
-        next();
-    },
+    // beforeRouteLeave: function (to, from, next) {
+    //     console.log("to:"+ to.name);
+    //     console.log("from:"+from.name);
+    //     if (to.name == 'contacts') {
+    //         console.log("destroy");
+    //         this.$destroy();
+    //     }
+    //     next();
+    // },
     created: function () {
         this.isFirstEnter = true;
     },
@@ -236,6 +239,10 @@ export default {
         }
 
         var _isBack = _self.$route.meta.isBack;
+
+
+        console.log("_isBack:"+_isBack);
+        console.log("_self.isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if (!_isBack || _self.isFirstEnter) {

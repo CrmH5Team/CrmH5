@@ -280,12 +280,12 @@ export default {
         }
         next();
     },
-    beforeRouteLeave: function (to, from, next) {
-        if (to.name == 'contacts') {
-            this.$destroy();
-        }
-        next();
-    },
+    // beforeRouteLeave: function (to, from, next) {
+    //     if (to.name == 'contacts') {
+    //         this.$destroy();
+    //     }
+    //     next();
+    // },
     created: function () {
         this.isFirstEnter = true;
     },
