@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="ListCell visible" v-show="showPage==0">
-                        <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont"></span></div>
+                        <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-feiji2"></span></div>
                         <div class="ListCellLeftText">
                             <p class="textareaP">
                                 <textarea data-field="MSN" data-fieldControlType="textareaInput" class="lanInputPlaceHolder" data-lanid="956_MSN"></textarea>
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="ListCell visible" v-show="showPage==0">
-                        <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
+                        <div class="ListCellLeftIcon"><span class="calcfont calc-shixiang"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
                                 <div class="ListCellContentLeftText lanText" data-lanid="947_事项"></div>
