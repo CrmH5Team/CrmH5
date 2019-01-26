@@ -10,26 +10,14 @@
         </div>
     </div>
     <div class="wendangList">
-        <div class="ListCell">
+        <div v-for="fileItem in fileListData" :key="fileItem.attachmentsid" class="ListCell">
             <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
             <div class="ListCellContent">
-                <div class="ListCellContentLeft leftContent" @click="goFileInfo">
-                    <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName1.png</div>
+                <div class="ListCellContentLeft leftContent" @click="goFileInfo(fileItem)">
+                    <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>{{fileItem.filename}}</div>
                 </div>
                 <div class="ListCellContentRight rightContent">
-                    <div class="ListCellContentRightText">16/Nov 15:00</div>
-                </div>
-                <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div>
-            </div>
-        </div>
-        <div class="ListCell">
-            <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
-            <div class="ListCellContent">
-                <div class="ListCellContentLeft leftContent" @click="goFileInfo">
-                    <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>TestFileName2.png</div>
-                </div>
-                <div class="ListCellContentRight rightContent">
-                    <div class="ListCellContentRightText">16/Nov 15:00</div>
+                    <div class="ListCellContentRightText">{{fileItem.modifiedtime}}</div>
                 </div>
                 <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div>
             </div>
@@ -45,6 +33,50 @@
 export default {
     data() {
         return {
+            fileListData:[
+                  {
+                      attachmentname:"12110320_微信图片_2018082314101328.png",
+                      attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
+                      attachmentsid:3577,
+                      createdtime:"16/Nov 15:00",
+                      creator:"it mobileclient",
+                      filedownloadcount:0,
+                      filelocationtype:"E",
+                      filename:"12110320_微信图片_2018082314101328.png",
+                      filesize:107653,
+                      filestatus:1,
+                      filetype:"",
+                      fileversion:"",
+                      folderid:1,
+                      foldername:"Default",
+                      modifiedtime:"16/Nov 15:00",
+                      note_no:"DOC50",
+                      notecontent:"",
+                      notesid:3635,
+                      title:"这是测试",
+                  },
+                  {
+                      attachmentname:"12110320_微信图片_2018082314101328.png",
+                      attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
+                      attachmentsid:3578,
+                      createdtime:"16/Nov 15:00",
+                      creator:"it mobileclient",
+                      filedownloadcount:0,
+                      filelocationtype:"E",
+                      filename:"12110320_微信图片_2018082314101328.png",
+                      filesize:107653,
+                      filestatus:1,
+                      filetype:"",
+                      fileversion:"",
+                      folderid:1,
+                      foldername:"Default",
+                      modifiedtime:"16/Nov 15:00",
+                      note_no:"DOC50",
+                      notecontent:"",
+                      notesid:3635,
+                      title:"这是测试",
+                  },
+            ]
 
         }
     },
@@ -108,26 +140,8 @@ export default {
         // }
         //点击去文件详情页
         goFileInfo:function(data){
-            data = {
-                attachmentname:"12110320_微信图片_2018082314101328.png",
-                attachmentpath:"http://197.7.50.186:9988/FileUpload/Potentials/201812/12110320_微信图片_2018082314101328.png",
-                attachmentsid:3577,
-                createdtime:"2018-12-12 11:03:22",
-                creator:"it mobileclient",
-                filedownloadcount:0,
-                filelocationtype:"E",
-                filename:"12110320_微信图片_2018082314101328.png",
-                filesize:107653,
-                filestatus:1,
-                filetype:"",
-                fileversion:"",
-                folderid:1,
-                foldername:"Default",
-                modifiedtime:"2018-12-12 11:03:22",
-                note_no:"DOC50",
-                notecontent:"",
-                notesid:3635,
-                title:"这是测试",
+            if(tool.isNullOrEmptyObject(data)){
+                return ;
             }
             this.$router.push({path:'/previewfile', query: data})
         },
