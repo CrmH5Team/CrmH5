@@ -187,12 +187,12 @@
                         </div>
                          <!-- 会议记录文档列表  -->
                         <div class="meetingDocList">
-                            <div v-for="fileItem in item.DocList" :key="fileItem.fileId" class="docListCell">
-                                <div class="docListCellLeft">
-                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian">{{fileItem.fileName}}</span></div>
+                            <div v-for="fileItem in item.DocList" :key="fileItem.ObjectName" class="docListCell">
+                                <div class="docListCellLeft" @click="goFileInfo(fileItem)">
+                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian">{{fileItem.ObjectName}}</span></div>
                                 </div>
                                 <div class="docListCellRight">
-                                    <div class="docListCellRightContent">{{fileItem.fileTiem}}</div>
+                                    <div class="docListCellRightContent">{{fileItem.AddTime|MeetingTimeFormat}}</div>
                                 </div>
                             </div>
                         </div>
@@ -811,6 +811,14 @@ export default {
 			function() {}
 		  );
         },
+        //点击去文件详情页
+        goFileInfo:function(data){
+            if(tool.isNullOrEmptyObject(data)){
+                return ;
+            }
+            console.log(data);
+            this.$router.push({path:'/previewfile', query: data});
+        }
     }
 }
 </script>
