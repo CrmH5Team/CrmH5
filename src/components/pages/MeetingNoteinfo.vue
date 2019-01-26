@@ -67,7 +67,7 @@
                     </div>
                     <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj"></div>
                 </div>
-                
+
                 <div class="ListCell">
                     <div class="ListCellLeftIcon"><span class="calcfont"></span></div>
                     <div class="ListCellContent">
@@ -137,8 +137,8 @@ export default {
     },
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || 
-        //from.name == 'uploadinput' || 
+        if (from.name == 'selectlist' ||
+        //from.name == 'uploadinput' ||
         from.name == 'linkedpage') {
             to.meta.isBack = true;
         }
@@ -186,7 +186,7 @@ export default {
 
         //若为true,则需要刷新
         if(
-            //_fromSave || 
+            //_fromSave ||
         !_isBack || _self.isFirstEnter){
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
@@ -253,7 +253,7 @@ export default {
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
             }
-            
+
             //更新selectlist控件的结果
             var filedName = eventBus.selectListData.field;
             var idTemp = eventBus.selectListData.value.id||"";
@@ -273,12 +273,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
-                
+
             setTimeout(function () {
                 $("#save").off("click").on("click",function(){
                     tool.SaveOrUpdateData(fromType, id,_self, function(){
                     });
-                });    
+                });
             },0);
         },
         //控制控件逻辑
@@ -327,11 +327,11 @@ export default {
 
                     //1>锁定销售机会设置为不可操作
                     if(isLock){
-                        $("#OppIDObj,[data-field='OppID']").removeClass('disable').addClass('disable');
+                        $("#OppIDObj,[data-field='OppID']").removeClass('disable color6').addClass('disable color6');
                     }else{
-                        $("#OppIDObj,[data-field='OppID']").removeClass('disable');
+                        $("#OppIDObj,[data-field='OppID']").removeClass('disable color6');
                     }
-                    
+
                     //2>销售机会赋值
                     $("[data-field='OppID']").text(data["TheName"]||"").attr("data-fieldval",data["AutoID"]||"");
                 },
@@ -389,11 +389,11 @@ export default {
                     //1-1>ScheduleID
                     var _curObj = $("[data-field='ScheduleID']");
                     if(isLock){
-                        _curObj.removeClass('disable').addClass('disable');
+                        _curObj.removeClass('disable').addClass('disable').closest('.ListCellContent').addClass('color6');
                     }else{
-                        _curObj.removeClass('disable');
+                        _curObj.removeClass('disable').closest('.ListCellContent').removeClass('color6');
                     }
-                    
+
                     _curObj.text(data["MeetingTitle"]||"").attr("data-fieldval",data["AutoID"]||"");
                     //1-2>MeetingTitle
                     _curObj = $("[data-field='MeetingTitle']");
