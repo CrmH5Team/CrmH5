@@ -159,9 +159,6 @@ import InfoRightPanel from '../common/InfoRightPanel'
 import Infofooter from '../common/infoFooter'
 import Uploadfile from './Uploadfile'
 
-//import Mixins from '../../mixins'
-// import eventBus from '../common/Event';
-
 export default {
     // mixins: [Mixins.PAGE_INFO],
     components: {
@@ -488,10 +485,11 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            $("#save").off().on("click", function () {
-                //console.log("save");
-                tool.SaveOrUpdateData(fromType, id, _self, function () {});
-            });
+            setTimeout(function () {
+                $("#save").off().on("click", function () {
+                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                });
+            }, 0);
         },
         deleteData: function (e) {
             var _self = this;

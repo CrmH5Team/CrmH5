@@ -608,7 +608,7 @@ export default {
                 OppID:oppID,
                 ScheduleID:scheduleID
             };
-            
+
             _self.$router.push({
                 path: url,
                 query: parameter
@@ -809,7 +809,6 @@ export default {
             var fromType = "Opportunitiesinfo";
             setTimeout(function () {
                 $("#delete").off().on("click", function () {
-                    // console.log("delete");
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
             }, 0);

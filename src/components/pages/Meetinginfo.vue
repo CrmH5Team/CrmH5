@@ -377,8 +377,6 @@ export default {
             //清空全局变量
             eventBus.selectListData = null;
         }
-
-
     },
     methods: {
         deleteData: function (e) {
@@ -393,40 +391,41 @@ export default {
         },
         savePageData: function (e) {
             var _self = this;
-            $("#save").off("click").on("click", function () {
-                //判断元素是否存在
-                // console.log("startdate.length:" + $("#startdate").length);
-                if ($("#startdate").length > 0) {
-                    //开始日期和结束日期进行对比
-                    var startdate = $("#startdate").val();
-                    var enddate = $("#enddate").val();
+            setTimeout(function () {
+                $("#save").off("click").on("click", function () {
+                    //判断元素是否存在
+                    // console.log("startdate.length:" + $("#startdate").length);
+                    if ($("#startdate").length > 0) {
+                        //开始日期和结束日期进行对比
+                        var startdate = $("#startdate").val();
+                        var enddate = $("#enddate").val();
 
-                    var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
-                    var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
+                        var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
+                        var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
 
-                    var tips = lanTool.lanContent('933_温馨提示');
-                    var sure = lanTool.lanContent("545_确定");
+                        var tips = lanTool.lanContent('933_温馨提示');
+                        var sure = lanTool.lanContent("545_确定");
 
-                    var d1 = new Date(startdate.replace(/\-/g, "\/"));
-                    var d2 = new Date(enddate.replace(/\-/g, "\/"));
-                    // console.log(startdate);
-                    // console.log(enddate);
-                    //开始日期或者结束日期其中一个为空，一个不为空
-                    if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
-                        $.alert(dateEmptyAlert, tips,"", sure);
-                        return;
+                        var d1 = new Date(startdate.replace(/\-/g, "\/"));
+                        var d2 = new Date(enddate.replace(/\-/g, "\/"));
+
+                        //开始日期或者结束日期其中一个为空，一个不为空
+                        if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
+                            $.alert(dateEmptyAlert, tips,"", sure);
+                            return;
+                        }
+                      else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
+                            $.alert(compareAlert, tips,"", sure);
+                            return;
+                        } else {
+                            var id = _self.$route.params.id;
+                            var fromType = "Meetinginfo";
+                            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                        }
                     }
-                   else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
-                        $.alert(compareAlert, tips,"", sure);
-                        return;
-                    } else {
-                        var id = _self.$route.params.id;
-                        var fromType = "Meetinginfo";
-                        tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                    }
-                }
 
-            });
+                });
+            }, 0);
         },
         viewMeetingNote: function () {
             this.$router.push({
