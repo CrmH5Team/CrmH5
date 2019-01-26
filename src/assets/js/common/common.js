@@ -2333,7 +2333,7 @@
 			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
 				return;
 			}
-			// console.log(_curObj);
+			console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var filter = _curObj.attr("Filter") ||"";
@@ -2359,6 +2359,7 @@
 		//5-2>不同一行的linkedPage
 		//console.log($("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).length);
 		$("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+			console.log(this);
 			//查找子类
 			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
 			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");

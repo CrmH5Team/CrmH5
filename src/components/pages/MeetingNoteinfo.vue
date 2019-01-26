@@ -96,7 +96,7 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="OppID"></div>
+                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="OppIDObj"></div>
                 </div>
 
             </div>
@@ -313,6 +313,7 @@ export default {
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
+                    console.log("handleOppID");
                     tool.hideLoading();
                     data = tool.jObject(data);
                     // console.log(data);
@@ -323,6 +324,7 @@ export default {
                     }
 
                     data = data._OnlyOneData || [];
+                    
                     console.log(data);
 
                     //1>锁定销售机会设置为不可操作
@@ -383,6 +385,7 @@ export default {
                     }
 
                     data = data._OnlyOneData || [];
+                    console.log("handleScheduleID");
                     console.log(data);
 
                     //1>会议记录字段赋值
