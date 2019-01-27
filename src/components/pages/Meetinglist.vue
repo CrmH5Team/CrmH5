@@ -18,6 +18,7 @@
                     <div class="item-address">{{item.Realname}}</div>
                     <div class="item-initiator">{{item.ContactsID|formatContactsID}}{{item.Title|formatTitle}}</div>
                 </div>
+
           </div>
           <nothing v-show="notData" style="padding-top:0.8rem;"></nothing>
       </div>
@@ -78,7 +79,11 @@ export default {
                     }
 
                     _self.listData = data._OnlyOneData.Rows || [];
-                    _self.notData = false;
+                    if(tool.isNullOrEmptyObject(_self.listData) || _self.listData.length<=0){
+                        _self.notData = true;
+                    }else{
+                        _self.notData = false;
+                    }
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);

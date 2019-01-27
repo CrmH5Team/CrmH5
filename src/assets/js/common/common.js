@@ -375,6 +375,24 @@
 	tool.Api_DocumentsHandle_DownloadFileFromDMS = "Api_DocumentsHandle_DownloadFileFromDMS";
 
 	/*
+	 * 消息数量接口
+	 */
+	tool.Api_MessagesToUserHandle_QueryCount = "Api_MessagesToUserHandle_QueryCount";
+	/*
+	 * 消息列表接口
+	 */
+	tool.Api_MessagesToUserHandle_Query = "Api_MessagesToUserHandle_Query";
+	/*
+	 * 设置已读(支持批量操作)接口
+	 */
+	tool.Api_MessagesToUserHandle_SetRead = "Api_MessagesToUserHandle_SetRead";
+	/*
+	 * 清除消息(支持批量操作)接口
+	 */
+	tool.Api_MessagesToUserHandle_SetDisabled = "Api_MessagesToUserHandle_SetDisabled";
+
+	
+	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
 	tool.config_currentLanguageVersion = "currentLanguageVersion";

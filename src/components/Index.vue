@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header class="header" :title="title"></Header>
+    <Header class="header" :title="title" :messageCount="messageCount"></Header>
 
     <div id="page-content" class="page-content">
       <!-- 搜索 -->
@@ -161,6 +161,7 @@ export default {
       showPanel: false,
       groupData:[], //7天的数据
       meetingCount:0,//未上传会议记录的会议数量
+      messageCount:0,//消息数量
     };
   },
   created:function(){
@@ -186,6 +187,9 @@ export default {
 
     //获取未上传会议记录的会议数量
     this.getNoUploadRecordCount();
+
+    //获取消息数量
+    this.getMessageCount();
   },
   methods: {
     //初始化用户信息
@@ -599,6 +603,47 @@ export default {
             document.activeElement.blur();
           }
         });
+    },
+    getMessageCount:function(){
+      var _self = this;
+      //请求地址
+      var urlTemp = tool.AjaxBaseUrl();
+      var controlName = tool.Api_MessagesToUserHandle_QueryCount;
+      //传入参数
+      var jsonDatasTemp = {
+        CurrentLanguageVersion: lanTool.currentLanguageVersion,
+        UserName: tool.UserName(),
+        _ControlName: controlName,
+        _RegisterCode: tool.RegisterCode()
+      };
+
+      $.ajax({
+        async: true,
+        type: "post",
+        url: urlTemp,
+        data: jsonDatasTemp,
+        success: function (data) {
+          data = tool.jObject(data);
+          // console.log(data);
+          if (data._ReturnStatus == false) {
+            tool.showText(tool.getMessage(data));
+            console.log(tool.getMessage(data));
+            _self.notData = true;
+            return;
+          }
+
+          _self.messageCount = data._OnlyOneData || 0;
+        },
+        error: function (jqXHR, type, error) {
+          console.log(error);
+          return;
+        },
+        complete: function () {
+          //tool.hideLoading();
+          //隐藏虚拟键盘
+          document.activeElement.blur();
+        }
+      });
     },
   },
   beforeDestroy: function() {

@@ -1,18 +1,16 @@
 <template>
 <div>
     <header class="mui-bar mui-bar-nav">
-            <a @click="setAlready" class="calcfont calc-yidu right"></a>
-            <a @click="clearAll" class="calcfont calc-qingkong right"></a>
+            <a @click="setAllRead()" class="calcfont calc-yidu right"></a>
+            <a @click="clearAll()" class="calcfont calc-qingkong right"></a>
 
-            <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
+            <a @click="back()" class="calcfont calc-fanhui left" id="back"></a>
             <h1 class="mui-title f18">{{title}}</h1>
     </header>
 
     <div class="page-content">
 
-
-
-        <div id="list" class="notification-list">
+        <!-- <div id="list" class="notification-list">
               <div class="item f14 ">
                   <div class="alreadyRead">
                       <div class="item-title">title</div>
@@ -30,8 +28,59 @@
                       </div>
                     </div>
               </div>
+        </div> -->
 
+        <div v-show="!notData" id="list" class="notification-list">
+
+              <div v-for="item in listData" :key="item.AutoID" class="item f14">
+
+                    <div v-if="!item.IsOpen">
+                        <div class="item-title">{{item.Theme}}</div>
+                        <div v-if="item.FromType!='6'" class="item-div">
+                            <span>{{titleLV}}</span><div class="item-div-text">{{item.Title}}</div>
+                        </div>
+                        <div v-else-if="item.FromType=='6'" class="item-div">
+                            <span>{{companyLV}}</span><div class="item-div-text">{{item.Title}}</div>
+                        </div>
+                        <div v-if="item.FromType=='8'" class="item-div">
+                            <span>{{timeLV}}</span><div class="item-div-text">{{item.BeginTime}}</div>
+                        </div>
+                        <div v-if="item.FromType!='6'" class="item-div">
+                            <span>{{remarkLV}}</span><span>{{item.Remark}}</span>
+                        </div>
+                        <div v-if="item.FromType=='6'" class="item-div">
+                            <span>{{contactLV}}</span><span>{{item.Remark}}</span>
+                        </div>
+                        <div>
+                            <div @click="goInfoPage(item)" class="a">{{viewLV}}</div>
+                        </div>
+                    </div>
+
+                    <div v-else-if="item.IsOpen" class="alreadyRead">
+                        <div class="item-title">{{item.Theme}}</div>
+                        <div v-if="item.FromType!='6'" class="item-div">
+                            <span>{{titleLV}}</span><div class="item-div-text">{{item.Title}}</div>
+                        </div>
+                        <div v-else-if="item.FromType=='6'" class="item-div">
+                            <span>{{companyLV}}</span><div class="item-div-text">{{item.Title}}</div>
+                        </div>
+                        <div v-if="item.FromType=='8'" class="item-div">
+                            <span>{{timeLV}}</span><div class="item-div-text">{{item.BeginTime}}</div>
+                        </div>
+                        <div v-if="item.FromType!='6'" class="item-div">
+                            <span>{{remarkLV}}</span><span>{{item.Remark}}</span>
+                        </div>
+                        <div v-if="item.FromType=='6'" class="item-div">
+                            <span>{{contactLV}}</span><span>{{item.Remark}}</span>
+                        </div>
+                        <div>
+                            <div @click="goInfoPage(item)" class="a">{{viewLV}}</div>
+                        </div>
+                    </div>
+
+              </div>
         </div>
+        <nothing v-show="notData" style="padding-top:0.8rem;"></nothing>
 
     </div>
 
@@ -41,113 +90,274 @@
 </template>
 
 <script>
+import Nothing from "../common/Nothing"
 export default {
+    components:{
+        'nothing': Nothing
+    },
     data(){
         return {
             title:lanTool.lanContent('866_通知'),
-            dataArray:[],
+            listData:[],
+            notData: true, //没数据
+
+            titleLV:lanTool.lanContent("862_标题"),
+            companyLV:lanTool.lanContent("995_公司"),
+            timeLV:lanTool.lanContent("863_时间"),
+            remarkLV:lanTool.lanContent("864_备忘"),
+            contactLV:lanTool.lanContent("996_联系人"),
+            viewLV:lanTool.lanContent("865_查看"),
         }
     },
     created:function(){
-        var _self = this;
-        for(var i=0;i<=10;i++){
-            var item = {};
-            item.already = false;
-            if(i<2){
-                item.already = true;
-            }
-            item.title = 'Joe kwon 给你分享了 一个商业机会';
-            item.mallTitle = '东航MSN1256检查会议';
-            item.time = '8/Nov/2018  14:00 - 8/Nov/2018 16:00';
-            item.remarks = '测试数据 测试数据 测试数据 测试数据 测试数据 测试数据 测试数据 测试数据 测试数据 ...';
-            _self.dataArray.push(item);
-        }
-
-        _self.createList();
     },
     mounted:function(){
         lanTool.updateLanVersion();
+        //查询消息列表
+        this.getMessageList();
     },
     methods:{
         back:function(){
             this.$router.back(-1);
         },
-
-        //渲染列表
-        createList:function(){
+        //查询消息列表
+        getMessageList:function(){
             var _self = this;
-            if(tool.isNullOrEmptyObject(_self.dataArray)){
-              return ;
-            }
+            //请求地址
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MessagesToUserHandle_Query;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode()
+            };
 
-            var listDom = '';
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        _self.notData = true;
+                        return;
+                    }
 
-            for(var i=0; i< _self.dataArray.length; i++){
-
-                  listDom += `<div class="item f14 ">
-                                <div class="alreadyRead">
-                                    <div class="item-title">title</div>
-                                    <div class="item-div">
-                                        <span class="lanText" data-lanid="862_标题：">标题：</span><div class="item-div-text">mallTitle</div>
-                                    </div>
-                                    <div class="item-div">
-                                        <span class="lanText" data-lanid="863_时间：">时间：</span><div class="item-div-text">time</div>
-                                    </div>
-                                    <div class="item-div">
-                                        <span class="lanText" data-lanid="864_备忘：">备忘：</span><span>remarks</span>
-                                    </div>
-                                    <div>
-                                        <a class="a lanText" data-lanid="865_查看" to="" >查看</a>
-                                    </div>
-                                  </div>
-                            </div>`;
-
-
-            }
-            _self.$nextTick(function(){
-                  console.log($('#list'));
-                  $('#list').append(listDom);
-            })
-
-
-
-        },
-
-
-        //标志已读
-        setAlready:function(){
-            var _self = this;
-            if(_self.dataArray.length < 1) return;
-            $.confirm({
-              title: lanTool.lanContent("586_提示"),
-              text:  lanTool.lanContent("853_是否全部标记为已读？"),
-              onOK: function () {
-                  $.each(_self.dataArray,function(index,item){
-                      item.already = true;
-                  })
-              },
-              onCancel: function () {
-              }
+                    _self.listData = data._OnlyOneData.Rows || [];
+                    if(tool.isNullOrEmptyObject(_self.listData) || _self.listData.length<=0){
+                        _self.notData = true;
+                    }else{
+                        _self.notData = false;
+                    }
+                    
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    return;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
             });
-
         },
         //清空所有
         clearAll:function(){
             var _self = this;
-            if(_self.dataArray.length < 1) return;
+            var allDataArr = _self.listData||[];
+            if(tool.isNullOrEmptyObject(allDataArr) || allDataArr.length<=0){
+                return;
+            }
+            var autoIDArr = [];
+            for(var i =0;i<allDataArr.length;i++){
+                autoIDArr.push(allDataArr[i]["AutoID"]||"");
+            }
 
-            $.confirm({
-              title: lanTool.lanContent("586_提示"),
-              text: lanTool.lanContent("861_确实要清除所有数据吗？"),
-              onOK: function () {
-                  _self.dataArray = [];
-              },
-              onCancel: function () {
-              }
+            tool.showConfirm(
+                lanTool.lanContent("998_您确定要清除全部消息吗？"),
+                function() {
+                    //请求地址
+                    var urlTemp = tool.AjaxBaseUrl();
+                    var controlName = tool.Api_MessagesToUserHandle_SetDisabled;
+                    //传入参数
+                    var jsonDatasTemp = {
+                        CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                        UserName: tool.UserName(),
+                        _ControlName: controlName,
+                        _RegisterCode: tool.RegisterCode(),
+                        AutoID: JSON.stringify(autoIDArr)
+                    };
+
+                    $.ajax({
+                        async: true,
+                        type: "post",
+                        url: urlTemp,
+                        data: jsonDatasTemp,
+                        success: function (data) {
+                            data = tool.jObject(data);
+                            // console.log(data);
+                            if (data._ReturnStatus == false) {
+                                tool.showText(tool.getMessage(data));
+                                console.log(tool.getMessage(data));
+                                // _self.notData = true;
+                                // return;
+                            }
+
+                            //刷新列表
+                            _self.getMessageList();
+                        },
+                        error: function (jqXHR, type, error) {
+                            console.log(error);
+                            return;
+                        },
+                        complete: function () {
+                            //tool.hideLoading();
+                            //隐藏虚拟键盘
+                            document.activeElement.blur();
+                        }
+                    });
+                },
+                function() {}
+            );  
+        },
+        //跳转到详情
+        goInfoPage:function(data){
+            var _self = this;
+            var fromID = data["FromID"]||"";
+            if(tool.isNullOrEmptyObject(fromID)){
+                return;
+            }
+            var infoName = "";
+            var url = "";
+            var fromType = data["FromType"]||"";
+            if(tool.isNullOrEmptyObject(fromID)){
+                return;
+            }
+            var parameter = {
+            };
+            //FromType_ViewBaseCompanyContacts=>6
+            //FromType_ViewBaseCompanyBaseInf=>7
+            //FromType_DtbBusinessSchedule=>8
+            //FromType_DtbBusinessOpportunityInf=>9
+            //FromType_Document=>18
+            //FromType_MeetingNote=>40
+            if(fromType == "6"){
+                infoName = data["Remark"] || "";
+                url = "/contactsinfo/" + fromID;
+            }else if(fromType == "7"){
+
+            }else if(fromType == "8"){
+
+            }else if(fromType == "9"){
+                infoName = data["Title"] || "";
+                url = "/opportunitiesinfo/" + fromID;
+                var businessTypes = data["BusinessTypes"] || "";
+                var showPage = 0;
+                //OpportunityBusinessTypes_Deal=>29
+                //OpportunityBusinessTypes_Opportunity=>30
+                if(businessTypes == 29){
+                    showPage = 0;
+                }else{
+                    showPage = 1;
+                }
+                parameter["showPage"] = showPage;
+            }
+
+            //设置记录为已读
+            _self.setCurRead(data);
+
+            parameter["infoName"] = infoName;
+            //页面跳转
+            _self.$router.push({
+                path: url,
+                query: parameter
+            });
+        },
+        //标志已读
+        setAllRead:function(){
+            var _self = this;
+            var allDataArr = _self.listData||[];
+            if(tool.isNullOrEmptyObject(allDataArr) || allDataArr.length<=0){
+                return;
+            }
+            var autoIDArr = [];
+            for(var i =0;i<allDataArr.length;i++){
+                autoIDArr.push(allDataArr[i]["AutoID"] || "");
+            }
+
+            tool.showConfirm(
+                lanTool.lanContent("997_您确定要将全部消息设置为已读吗？"),
+                function() {
+                    _self.setReadExe(autoIDArr,true);
+                },
+                function() {}
+            );
+        },
+        //设置指定的记录为已读
+        setCurRead:function(data){
+            var _self = this;
+            var autoIDArray = [];
+            autoIDArray.push(data["AutoID"]||"");
+            _self.setReadExe(autoIDArray,true);
+        },
+        //执行记录设置为已读
+        setReadExe:function(autoIDArray,isRefresh){
+            if(tool.isNullOrEmptyObject(autoIDArray)){
+                return;
+            }
+
+            var _self = this;
+            //请求地址
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MessagesToUserHandle_SetRead;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: JSON.stringify(autoIDArray)
+            };
+
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        //_self.notData = true;
+                        //return;
+                    }
+
+                    //若需要刷新列表
+                    if(isRefresh){
+                        _self.getMessageList();
+                    }
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    return;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
             });
         }
     }
-
 }
 </script>
 

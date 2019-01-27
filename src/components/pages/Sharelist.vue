@@ -185,7 +185,6 @@ export default {
   },
   watch: {
     userCheckedValue: function(newValue, oldValue) {
-      return;
       console.log(newValue);
       var _self = this;
       if (tool.isNullOrEmptyObject(newValue)) {
@@ -212,7 +211,6 @@ export default {
       });
     },
     groupCheckedValue: function(newValue, oldValue) {
-      return;
       console.log(newValue);
       var _self = this;
       if (tool.isNullOrEmptyObject(newValue)) {
@@ -383,7 +381,6 @@ export default {
     },
     //初始化数据
     getData: function(curPageNum, mycallback) {
-    console.log("getData");
       var _self = this;
       //清空另一组数据
       //user
@@ -475,10 +472,10 @@ export default {
     },
     //数据赋值
     iniVal:function(){
-        console.log("iniVal");
+      //console.log("iniVal");
       var _self = this;
       var curPageNum = _self.showPage;
-    //   console.log("curPageNum:"+curPageNum);
+      //console.log("curPageNum:"+curPageNum);
       var fromType = _self.FromType || "";
       var fromID = _self.FromID || "";
       var isGroup = false;

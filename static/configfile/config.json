@@ -39,6 +39,10 @@
 	"Api_DocumentsHandle_UploadDocuments2DMS":"Api_DocumentsHandle_UploadDocuments2DMS",
 	"Api_DocumentsHandle_Query":"Api_DocumentsHandle_Query",
 	"Api_DocumentsHandle_DownloadFileFromDMS":"Api_DocumentsHandle_DownloadFileFromDMS",
+	"Api_MessagesToUserHandle_QueryCount":"Api_MessagesToUserHandle_QueryCount",
+	"Api_MessagesToUserHandle_Query":"Api_MessagesToUserHandle_Query",
+	"Api_MessagesToUserHandle_SetRead":"Api_MessagesToUserHandle_SetRead",
+	"Api_MessagesToUserHandle_SetDisabled":"Api_MessagesToUserHandle_SetDisabled",
 	"currentLanguageVersion":"",
 	"refreshSessionTime":1200000
 }

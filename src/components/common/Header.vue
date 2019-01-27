@@ -5,7 +5,7 @@
 
           <a v-if="isMain" @click="showRightPanel" class="calcfont calc-yonghu1 right"></a>
           <a v-if="isMain" @click="goNotification" class="calcfont calc-mailbox right">
-              <span class="count">2</span>
+              <span v-show="Number(messageCount)>=1" class="count">{{messageCount}}</span>
           </a>
           <a v-else @click="back" class="calcfont calc-fanhui left" id="back"></a>
 
@@ -21,10 +21,10 @@
 export default {
     data(){
         return {
-            isMain:false, //是否是首页
+            isMain:false, //是否首页
         }
     },
-    props:['title'],
+    props:['title',"messageCount"],
     created:function(){
         var url = this.$route.path;
         if(url == '/Index'|| url == '/index'){
@@ -38,22 +38,17 @@ export default {
         lanTool.updateLanVersion();
     },
     methods:{
-
         back:function(){
             this.$router.back(-1);
         },
-
         //首页就显示侧滑
         showRightPanel:function(){
             eventBus.$emit('showIndexRightPanelEvent');
         },
-
         goNotification:function(){
             this.$router.push('/notification');
         }
-
     }
-
 }
 </script>
 
