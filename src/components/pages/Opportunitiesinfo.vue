@@ -189,7 +189,7 @@
                         <div class="meetingDocList">
                             <div v-for="fileItem in item.DocList" :key="fileItem.ObjectName" class="docListCell">
                                 <div class="docListCellLeft" @click="goFileInfo(fileItem)">
-                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian">{{fileItem.ObjectName}}</span></div>
+                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
                                 </div>
                                 <div class="docListCellRight">
                                     <div class="docListCellRightContent">{{fileItem.AddTime|MeetingTimeFormat}}</div>
