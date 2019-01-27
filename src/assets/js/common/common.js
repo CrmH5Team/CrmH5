@@ -391,7 +391,7 @@
 	 */
 	tool.Api_MessagesToUserHandle_SetDisabled = "Api_MessagesToUserHandle_SetDisabled";
 
-	
+
 	/*
 	 * currentLanguageVersion:当前语言版本
 	 */
@@ -437,6 +437,10 @@
 	 * PageSize:每页记录数
 	 */
 	tool.PageSize = 20;
+	/*
+	 * PageSize:每页记录数
+	 */
+	tool.FileMaxSiz = 20971520;
 
 	/*请求的公共入口地址*/
 	tool.AjaxBaseUrl = function () {

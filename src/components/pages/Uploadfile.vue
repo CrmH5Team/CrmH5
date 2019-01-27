@@ -54,12 +54,23 @@ export default {
             if (file.length == 0){
                 return;
             }
+
+            //判断文件不能超过限定的大小
+            if(file.size>tool.FileMaxSiz){
+                tool.hideLoading();
+                var sizeStr = tool.fileSizeFormat(tool.FileMaxSiz);
+                var msg = lanTool.lanContent("999_文件大小不能超过！");
+                msg = msg.replace("{0}",sizeStr);
+                console.log(msg);
+                tool.showText(msg);
+                return;
+            }
             
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
 
-                // console.log(e.target);
+                //console.log(e.target);
                 
                 var parameter = {
                     file: e.target.result,
@@ -103,7 +114,7 @@ export default {
             if(tool.isNullOrEmptyObject(data)){
                 return ;
             }
-            console.log(data);
+            // console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
     },
