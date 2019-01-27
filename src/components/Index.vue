@@ -51,15 +51,15 @@
 
       <!-- 提示 -->
       <div class="tips">
-        <div class="tips-box f14">
+        <div class="tips-box">
           <span class="calcfont calc-tishi1"></span>
-          <div class="tips-text"><span class="lanText" data-lanid="988_你有"></span><span>3</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span></div>
-          <router-link to="/meetinglist" class="right upload-now a lanText" data-lanid="870_立刻去上传"></router-link>
+          <div class="tips-text f12"><span class="lanText" data-lanid="988_你有"></span><span>3</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span></div>
+          <router-link to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></router-link>
         </div>
       </div>
 
       <div class="group-title">
-        <div class="title-text f14 lanText" data-lanid="872_最近7天要参加的会议"></div>
+        <div class="title-text f12 lanText" data-lanid="872_最近7天要参加的会议"></div>
         <router-link to="/tripmeeting"
           class="check-all right f14 a">
               <span class="lanText" data-lanid="936_更多"></span>&gt;&gt;
@@ -122,14 +122,14 @@
             <div class="switch-text">中文繁体</div>
             <div class="right calcfont calc-gou1 language-icon"></div>
           </div>
-          <div class="block-item item-border-top">
+          <!-- <div class="block-item item-border-top">
             <div class="switch-text lanText" data-lanid="775_分享后发送邮件"></div>
             <div class="switch right">
               <div class="weui-cell__ft">
                 <input @click="sendEmailSwitch" class="weui-switch" type="checkbox">
               </div>
             </div>
-          </div>
+          </div> -->
           <div @click="ClearCache" class="block-item item-border-top lanText" data-lanid="776_清除缓存"></div>
         </div>
       </div>
