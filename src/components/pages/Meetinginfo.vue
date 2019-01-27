@@ -434,9 +434,12 @@ export default {
         //渲染查看会议记录模块
         initMeetingNote:function(data){
             var _self = this;
-             _self.meetingNoticeID = data["MeetingNoticeID"] || "";
+             _self.meetingNoticeID = data["MeetingNoticeID"] || "-1";
             if(tool.isNullOrEmptyObject(_self.meetingNoticeID)){
-                _self.accessMeetingNote = false;
+                //modify by Dylan 之前是没有绑定不能看，现在改成没有绑定也可以看
+                //_self.accessMeetingNote = false;
+                _self.accessMeetingNote = true;
+                //end modify
             }else{
                 _self.accessMeetingNote = true;
             }
