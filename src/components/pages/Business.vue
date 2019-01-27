@@ -128,8 +128,7 @@ export default {
                     selectType: "checkbox",
                     datalanid: "825_负责人",
                     fromType: "6"
-                },
-
+                }
             ],
             opportunitiesSearch: [{
                     queryfield: "TheName",
@@ -142,7 +141,7 @@ export default {
                     queryComparison: "like"
                 },
                 {
-                    queryfield: "CompanyID",
+                    queryfield: "TargetCompanyID",
                     text: lanTool.lanContent('726_公司名称'),
                     fieldControlType: "selectList",
                     queryType: "string",
@@ -154,11 +153,11 @@ export default {
                     TypeValue: "",
                     selectType: "radio",
                     resulteRow: true,
-                    clickObj: "CompanyIDClickObj",
+                    clickObj: "TargetCompanyIDClickObj",
                     datalanid: "726_公司名称"
                 },
                 {
-                    queryfield: "ContactsID",
+                    queryfield: "ContactID",
                     text: lanTool.lanContent("630_联系人"),
                     fieldControlType: "selectList",
                     queryType: "string",
@@ -185,7 +184,7 @@ export default {
                     selectType: "checkbox",
                     datalanid: "825_负责人",
                     fromType: "6"
-                },
+                }
             ]
         }
     },
