@@ -513,7 +513,7 @@ export default {
         followToggle: function () {
             var _self = this;
 
-            $("#dealpipelineList,#opportunitiesList").on("click", ".item-stars-icon", function (e) {
+            $("#dealpipelineList,#opportunitiesList").off("click", ".item-stars-icon").on("click", ".item-stars-icon", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 

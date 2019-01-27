@@ -188,7 +188,7 @@ export default {
     }
 
     //切换语言
-    $(".language-type").on("click", function(event) {
+    $(".language-type").off('click').on("click", function(event) {
       var target = $(event.target);
       if (!target.hasClass("language-type")) {
         target = target.closest("div.language-type");
@@ -402,7 +402,7 @@ export default {
             "-webkit-transition": "left 0.1s ease-out",
             "-o-transition": "left 0.1s ease-out"
           });
-          $("#mask,#right-content").on("touchmove", function(e) {
+          $("#mask,#right-content").off("touchmove").on("touchmove", function(e) {
             e.stopPropagation();
             e.preventDefault();
           });

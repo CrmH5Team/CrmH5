@@ -2188,7 +2188,7 @@
 
 		//2>渲染selectList
 		//2-1>同一行的selectList
-		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off().on('click',function(){
+		$("[data-fieldControlType='selectList']").attr("readonly","readonly").off('click').on('click',function(){
 			var _curObj = $(this);
 			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
 				return;
@@ -2218,7 +2218,7 @@
 		});
 		//2-2>不同一行的selectList
 		//console.log($("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).length);
-		$("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+		$("#"+$("[data-fieldControlType='selectList'][data-clickObj]").attr("data-clickObj")).off('click').on('click',function(){
 			//查找子类
 			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
 			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
@@ -2257,7 +2257,7 @@
 
 		//4>渲染groupSelectList
 		//4-1>同一行的groupSelectList
-		$("[data-fieldControlType='groupSelectList']").attr("readonly","readonly").off().on('click',function(){
+		$("[data-fieldControlType='groupSelectList']").attr("readonly","readonly").off('click').on('click',function(){
 			var _curObj = $(this);
 			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
 				return;
@@ -2291,7 +2291,7 @@
 			});
 		});
 		//4-2>不同一行的groupSelectList
-		$("#"+$("[data-fieldControlType='groupSelectList'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+		$("#"+$("[data-fieldControlType='groupSelectList'][data-clickObj]").attr("data-clickObj")).off('click').on('click',function(){
 			//查找子类
 			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
 			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
@@ -2328,7 +2328,7 @@
 
 		//5>渲染linkedPage
 		//5-1>同一行的linkedPage
-		$("[data-fieldControlType='linkedPage']").attr("readonly","readonly").off().on('click',function(){
+		$("[data-fieldControlType='linkedPage']").attr("readonly","readonly").off('click').on('click',function(){
 			var _curObj = $(this);
 			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
 				return;
@@ -2358,7 +2358,7 @@
 		});
 		//5-2>不同一行的linkedPage
 		//console.log($("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).length);
-		$("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).off().on('click',function(){
+		$("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).off('click').on('click',function(){
 			console.log(this);
 			//查找子类
 			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");

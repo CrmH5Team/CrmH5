@@ -689,7 +689,7 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "Opportunitiesinfo";
             setTimeout(function () {
-                $("#delete").off().on("click", function () {
+                $("#delete").off("click").on("click", function () {
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
             }, 0);

@@ -472,7 +472,7 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
             setTimeout(function () {
-                $("#save").off().on("click", function () {
+                $("#save").off("click").on("click", function () {
 
                     tool.SaveOrUpdateData(fromType, id, _self, function () {});
                 });
@@ -483,7 +483,7 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
             setTimeout(function () {
-                $("#delete").off().on("click", function () {
+                $("#delete").off("click").on("click", function () {
                     // console.log("delete");
                     tool.DeleteData(fromType, id, _self, function () {});
                 });

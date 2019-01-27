@@ -142,7 +142,7 @@ export default {
                 if(tool.isFileImage($this.data.ObjectName)) {
                     $this.showDownload = true;
                     $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
-                    $('.image').off().on('click',function(){
+                    $('.image').off("click").on('click',function(){
                         $this.photo.open();
                     });
                     tool.hideLoading();
@@ -181,7 +181,7 @@ export default {
                 });
 
 
-                $(".drawerFile_content").on("click",".pre-btn",function(event){
+                $(".drawerFile_content").off("click",".pre-btn").on("click",".pre-btn",function(event){
                     $this.currPage--;
                     if($this.currPage == 0) {
                         $this.currPage = 1;
@@ -193,7 +193,7 @@ export default {
 
                 })
 
-                $(".drawerFile_content").on("click",".next-btn",function(event){
+                $(".drawerFile_content").off("click",".next-btn").on("click",".next-btn",function(event){
                     $this.currPage++;
                     if($this.numPages < $this.currPage) {
                         $this.currPage = $this.numPages;
