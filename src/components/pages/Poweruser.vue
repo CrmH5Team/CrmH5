@@ -219,9 +219,11 @@ export default {
                     // console.log(data);
                     if (data._ReturnStatus == false) {
                         if (curPageNum == 0) {
-                        _self.noUserData = true;
+                            _self.userData = [];
+                            _self.noUserData = true;
                         } else {
-                        _self.noGroupData = true;
+                            _self.groupData = [];
+                            _self.noGroupData = true;
                         }
                         tool.showText(tool.getMessage(data));
                         console.log(tool.getMessage(data));
@@ -232,10 +234,10 @@ export default {
 
                     if (data.length <= 0) {
                         if (curPageNum == 0) {
-                            _self.userData = null;
+                            _self.userData = [];
                             _self.noUserData = true;
                         } else {
-                            _self.groupData = null;
+                            _self.groupData = [];
                             _self.noGroupData = true;
                         }
                     } else {

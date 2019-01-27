@@ -185,6 +185,7 @@ export default {
   },
   watch: {
     userCheckedValue: function(newValue, oldValue) {
+      return;
       console.log(newValue);
       var _self = this;
       if (tool.isNullOrEmptyObject(newValue)) {
@@ -211,6 +212,7 @@ export default {
       });
     },
     groupCheckedValue: function(newValue, oldValue) {
+      return;
       console.log(newValue);
       var _self = this;
       if (tool.isNullOrEmptyObject(newValue)) {

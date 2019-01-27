@@ -1357,25 +1357,6 @@
 	}
 
 	//模板
-	// tool.meetingTemplate =
-	// 	`<div class="list-group-div group-div">
-	// 	<div class="date-div">
-	// 		<span class="calcfont calc-rili1" ></span><span class="group-name">meetinggroup1</span><span class="right">(1)</span>
-	// 		  </div>
-	// 	<div class="occupy-div"></div>
-	// 	<div class="group-item-list meeting-list">
-	// 		<div class="data-events-item f12" data-url="/meetinginfo/12" >
-	// 			<div class="item-title">Meeting with Eastern Airlines</div>
-	// 			<div class="item-time f12">
-	// 			  <span class="calcfont calc-gengxinshijian"></span>
-	// 			  <span class="time-text">14:30-17:00</span>
-	// 			</div>
-	// 			<div class="item-address">China Eastern Airlines</div>
-	// 			<div class="item-initiator">Niki (Fleet Planning Manager)</div>
-	// 		</div>
-	// 	</div>
-	// </div>
-	// `;
   tool.meetingGroupTemplate =
   `<div class="list-group-div group-div">
       <div class="date-div" >
@@ -1384,26 +1365,6 @@
       <div class="occupy-div"></div>
     </div>
   `;
-	// tool.tripTemplate =
-	// 	`<div class="list-group-div group-div">
-	// 	  <div class="date-div" ><span class="calcfont calc-rili1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span></div>
-	// 	  <div class="occupy-div"></div>
-	// 	  <div class="group-item-list trip-list" >
-	// 		  <div class=" data-events-item f12" data-url="/tripinfo/12">
-	// 			  <div class="item-title">
-	// 				<span>1115-1116东航会议出差上海</span>
-	// 				<span class="right">审批已通过</span>
-	// 			  </div>
-	// 			  <div class="item-time f12">
-	// 				<span class="time-text trip-time-text">15/Nov - 16/Nov</span>
-	// 			  </div>
-	// 			  <div class="item-div">香港 - 上海（MU726   31/Dec 07:40 - 31/Dec 09:30）</div>
-	// 			  <div class="item-div">上海 - 香港（HX235   4/Jan 09:10 - 4/Jan 11:55）</div>
-	// 			  <div class="item-div">31/Dec - 04/Jan  4晚  上海</div>
-	// 		  </div>
-	// 	  </div>
-	//   </div>
-  // `;
   tool.tripGroupTemplate =
     `<div class="list-group-div group-div">
         <div class="date-div" >
@@ -1412,35 +1373,6 @@
         <div class="occupy-div"></div>
       </div>
   `;
-	// tool.dealPipelineTemplate =
-	// 	`<div class="list-group-div group-div">
-	// 	  <div class="date-div" >
-	// 		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-	// 	  </div>
-	// 	  <div class="occupy-div"></div>
-	// 	  <div class="group-item-list dealPipeline-list" >
-	// 		  <div class=" group-item f14" data-url="/opportunitiesinfo/12">
-	// 			  <div class="item-stars-icon calcfont calc-shoucang"></div>
-	// 			  <div class="item-block">
-	// 				<div class="item-div item-first-div blue-color">
-	// 					A320-200 sales project2 for
-	// 				</div>
-	// 				<div class="item-div padding-top-5">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-	// 				<div class="item-div blue-color padding-bottom-5">
-	// 					<span>In Progress</span>
-	// 				</div>
-	// 				<div class="item-div">
-	// 					<div class="item-new">new</div>
-	// 					<span class="itme-div-span">First Proposal discussion</span>
-	// 				</div>
-	// 				<div class="item-div dete-div">
-	// 				  <span>01/Jan/2019</span>
-	// 				</div>
-	// 			  </div>
-	// 		  </div>
-	// 	  </div>
-	// </div>
-  // `;
   tool.dealPipelineGroupTemplate =
     `<div class="list-group-div group-div">
         <div class="date-div" >
@@ -1449,28 +1381,6 @@
         <div class="occupy-div"></div>
       </div>
   `;
-	// tool.opportunitiesTemplate =
-	// 	`<div class="list-group-div group-div">
-	// 	  <div class="date-div" >
-	// 		  <span class="calcfont calc-lianxiren1" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-	// 	  </div>
-	// 	  <div class="occupy-div"></div>
-	// 	  <div class="group-item-list opportunities-list" >
-	// 		  <div class="group-item f14" data-url="/opportunitiesinfo/12">
-	// 			  <div class="item-stars-icon calcfont calc-shoucang"></div>
-	// 			  <div class="item-block">
-	// 				  <div class="item-div item-first-div blue-color">
-	// 					  A320-200 sales project2 for
-	// 				  </div>
-	// 				  <div class="item-div blue-color padding-bottom-5 padding-top-5">
-	// 					  <span>In Progress</span>
-	// 				  </div>
-	// 				  <div class="item-div">测试交易，注意事项，跟进交易，其他备忘信息，其他备忘信息，其他备忘信息。</div>
-	// 			  </div>
-	// 		  </div>
-	// 	  </div>
-	//   </div>
-  // `;
   tool.opportunitiesGroupTemplate =
   `<div class="list-group-div group-div">
   <div class="date-div" >
@@ -1479,30 +1389,6 @@
   <div class="occupy-div"></div>
 </div>
 `;
-	// tool.organizationsTemplate =
-	// `<div class="list-group-div group-div">
-	//   <div class="date-div" >
-	// 	  <span class="calcfont calc-business" ></span><span class="group-name" data-groupID="{GroupID}">{GroupName}</span><span class="right">{GroupRowCount}</span>
-	//   </div>
-	//   <div class="occupy-div"></div>
-	//   <div class="group-item-list organizations-list">
-	// 	  <div class=" group-item" data-url="/organizationsinfo/12">
-	// 		  <div class="item-stars-icon calcfont calc-shoucang"></div>
-	// 		  <div class="item-block">
-	// 			<div class="item-div item-first-div">
-	// 				<span>Todd Scott</span><span class="right">UEA</span>
-	// 			</div>
-	// 			<div class="item-div">
-	// 				<span>Alirlines</span><span class="right">Jessie Zhao</span>
-	// 			</div>
-	// 			<div class="item-div">
-	// 			  <span>China</span><span class="right">Asia Pacific</span>
-	// 			</div>
-	// 		  </div>
-	// 	  </div>
-	//   </div>
-	// </div>
-	// `;
 	tool.organizationsGroupTemplate =
 		`<div class="list-group-div group-div">
 	  <div class="date-div" >
@@ -1511,28 +1397,6 @@
     <div class="occupy-div"></div>
 	</div>
 	`;
-	// tool.contactsTemplate =
-	// 	`<div class="list-group-div group-div">
-	//   <div class="date-div" >
-	// 	  <span class="calcfont calc-business" ></span><span class="group-name">Alirline1</span><span class="right">(1)</span>
-	//   </div>
-	//   <div class="occupy-div"></div>
-	//   <div class="group-item-list contacts-list" >
-	// 	  <div class="  group-item" data-url="/contactsinfo/12">
-	// 		  <div class="item-user-icon calcfont calc-fuzeren1"></div>
-	// 		  <div class="item-block contacts-item-block">
-	// 			<div class="item-div item-first-div">Todd Scott</div>
-	// 			<div class="item-div">Fleet Planning Manager</div>
-	// 			<div class="item-div"><span>Air China</span><span class="right">China</span></div>
-	// 			<div class="item-div">
-	// 			  <span>tsott@up12359s.com</span><span class="right">502-29-3118</span>
-	// 			</div>
-	// 			<div class="item-div">Airlines, Computer info Services</div>
-	// 		  </div>
-	// 	  </div>
-	//   </div>
-	// </div>
-  // `;
   tool.contactsGroupTemplate =
 		`<div class="list-group-div group-div">
       <div class="date-div" >
@@ -1960,7 +1824,6 @@
     return fieldVal;
   };
 
-
   tool.OppMeetingInfoTemplate = `<div class="item-div">
   <div class="item-new">NEW</div>
   <span class="itme-div-span">{MeetingTitle}</span>
@@ -2359,15 +2222,15 @@
 		//5-2>不同一行的linkedPage
 		//console.log($("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).length);
 		$("#"+$("[data-fieldControlType='linkedPage'][data-clickObj]").attr("data-clickObj")).off('click').on('click',function(){
-			console.log(this);
 			//查找子类
 			var _curObjTextdataFieldName = ($(this).attr('id') || "").ReplaceAll("ClickObj","");
+			// console.log(_curObjTextdataFieldName);
 			var _curObj = $("[data-field='"+ _curObjTextdataFieldName +"']:first");
 			if(tool.isNullOrEmptyObject(_curObj)){
 				return;
 			}
 			// console.log(_curObj);
-
+			
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var filter = _curObj.attr("Filter") ||"";
@@ -2385,6 +2248,7 @@
 				'selectType':selectType,
 				"filter":filter
 			};
+			console.log(parameter);
 			self.$router.push({
 				path: '/linkedpage',
 				query: parameter
@@ -2532,10 +2396,10 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
-				tool.hideLoading();
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
+					tool.hideLoading();
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
 					return true;
@@ -2543,192 +2407,198 @@
 
 				data = data._OnlyOneData || [];
 
-				//控件赋值操作
-				//1>picker
-				$("[data-fieldControlType='picker']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+				try {
+					//控件赋值操作
+					//1>picker
+					$("[data-fieldControlType='picker']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField + "_Name"] || "";
+						var fieldVal = data[dataField] || "";
+						var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.val(fieldDisplay);
-					_curObj.attr("data-fieldVal", fieldVal);
-					_curObj.trigger('change');
-				});
-				//2>selectList
-				$("[data-fieldControlType='selectList']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+						_curObj.val(fieldDisplay);
+						_curObj.attr("data-fieldVal", fieldVal);
+						_curObj.trigger('change');
+					});
+					//2>selectList
+					$("[data-fieldControlType='selectList']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField + "_Name"] || "";
+						var fieldVal = data[dataField] || "";
+						var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.text(fieldDisplay);
-					_curObj.attr("data-fieldVal", fieldVal);
-				});
-				//3>groupSelectList
-				$("[data-fieldControlType='groupSelectList']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+						_curObj.text(fieldDisplay);
+						_curObj.attr("data-fieldVal", fieldVal);
+					});
+					//3>groupSelectList
+					$("[data-fieldControlType='groupSelectList']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField + "_Name"] || "";
+						var fieldVal = data[dataField] || "";
+						var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.text(fieldDisplay);
-					_curObj.attr("data-fieldVal", fieldVal);
-				});
-				//4>linkSelectList
-				$("[data-fieldControlType='linkSelectList']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+						_curObj.text(fieldDisplay);
+						_curObj.attr("data-fieldVal", fieldVal);
+					});
+					//4>linkSelectList
+					$("[data-fieldControlType='linkSelectList']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField + "_Name"] || "";
+						var fieldVal = data[dataField] || "";
+						var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.text(fieldDisplay);
-					_curObj.attr("data-fieldVal", fieldVal);
-				});
-				//5>linkedPage
-				$("[data-fieldControlType='linkedPage']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+						_curObj.text(fieldDisplay);
+						_curObj.attr("data-fieldVal", fieldVal);
+					});
+					//5>linkedPage
+					$("[data-fieldControlType='linkedPage']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
-					var fieldDisplay = data[dataField + "_Name"] || "";
+						var fieldVal = data[dataField] || "";
+						var fieldDisplay = data[dataField + "_Name"] || "";
 
-					_curObj.text(fieldDisplay);
-					_curObj.attr("data-fieldVal", fieldVal);
-				});
-				//6>textareaInput
-				$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
-					var fieldVal = data[dataField] || "";
-					_curObj.val(fieldVal);
-				});
-				//7>divText
-				$("[data-fieldControlType='divText']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
+						_curObj.text(fieldDisplay);
+						_curObj.attr("data-fieldVal", fieldVal);
+					});
+					//6>textareaInput
+					$("[data-fieldControlType='textareaInput']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
+						var fieldVal = data[dataField] || "";
+						_curObj.val(fieldVal);
+					});
+					//7>divText
+					$("[data-fieldControlType='divText']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
 
-					var fieldVal = data[dataField] || "";
+						var fieldVal = data[dataField] || "";
 
-					//数据格式化
-					var formatType = _curObj.attr("data-formatType") || "";
-					var format = _curObj.attr("data-format") || "";
-					// console.log("formatType");
-					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
-						//时间格式化
-						if(formatType.toLowerCase() == "datetime" || formatType.toLowerCase() == "date"){
+						//数据格式化
+						var formatType = _curObj.attr("data-formatType") || "";
+						var format = _curObj.attr("data-format") || "";
+						// console.log("formatType");
+						if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
+							//时间格式化
+							if(formatType.toLowerCase() == "datetime" || formatType.toLowerCase() == "date"){
+								fieldVal = fieldVal.ReplaceAll("T"," ");
+								fieldVal = tool.ChangeTimeFormat(fieldVal,format);
+							}else{
+								//数字格式化
+							}
+						}
+
+						_curObj.text(fieldVal);
+					});
+					//8>icon
+					$("[data-fieldControlType='icon']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
+						//icon对象
+						var dataValObj = _curObj.attr("data-fieldVal") || "{}";
+						dataValObj = tool.jObject(dataValObj);
+
+						//获取应该显示的icon
+						var fieldVal = data[dataField] || "";
+						fieldVal = fieldVal.toLowerCase();
+						var iconClass = dataValObj[fieldVal] || "";
+						if (tool.isNullOrEmptyObject(iconClass)) {
+							return true;
+						}
+
+						//移除其他class
+						for (var key in dataValObj) {
+							if (key == fieldVal) {
+								continue;
+							}
+
+							var classNameTemp = dataValObj[key] || "";
+							_curObj.removeClass(classNameTemp);
+						}
+						//添加class
+						_curObj.addClass(iconClass);
+
+					});
+					//9>dateTimePicker
+					$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+						var _curObj = $(this);
+						if (tool.isNullOrEmptyObject(_curObj)) {
+							return true;
+						}
+						var dataField = _curObj.attr("data-field") || "";
+						if (tool.isNullOrEmptyObject(dataField)) {
+							return true;
+						}
+
+						var fieldVal = data[dataField] || "";
+						var format = _curObj.attr("data-format") || "";
+						if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
 							fieldVal = fieldVal.ReplaceAll("T"," ");
 							fieldVal = tool.ChangeTimeFormat(fieldVal,format);
-						}else{
-							//数字格式化
-						}
-					}
-
-					_curObj.text(fieldVal);
-				});
-				//8>icon
-				$("[data-fieldControlType='icon']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
-					//icon对象
-					var dataValObj = _curObj.attr("data-fieldVal") || "{}";
-					dataValObj = tool.jObject(dataValObj);
-
-					//获取应该显示的icon
-					var fieldVal = data[dataField] || "";
-					fieldVal = fieldVal.toLowerCase();
-					var iconClass = dataValObj[fieldVal] || "";
-					if (tool.isNullOrEmptyObject(iconClass)) {
-						return true;
-					}
-
-					//移除其他class
-					for (var key in dataValObj) {
-						if (key == fieldVal) {
-							continue;
 						}
 
-						var classNameTemp = dataValObj[key] || "";
-						_curObj.removeClass(classNameTemp);
+						_curObj.val(fieldVal);
+					});
+					if (!tool.isNullOrEmptyObject(myCallBack)) {
+						myCallBack(data);
 					}
-					//添加class
-					_curObj.addClass(iconClass);
-
-				});
-				//9>dateTimePicker
-				$("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
-					var _curObj = $(this);
-					if (tool.isNullOrEmptyObject(_curObj)) {
-						return true;
-					}
-					var dataField = _curObj.attr("data-field") || "";
-					if (tool.isNullOrEmptyObject(dataField)) {
-						return true;
-					}
-
-					var fieldVal = data[dataField] || "";
-					var format = _curObj.attr("data-format") || "";
-					if(!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)){
-						fieldVal = fieldVal.ReplaceAll("T"," ");
-						fieldVal = tool.ChangeTimeFormat(fieldVal,format);
-					}
-
-					_curObj.val(fieldVal);
-				});
-				if (!tool.isNullOrEmptyObject(myCallBack)) {
-					myCallBack(data);
+				} catch (err) {
+					console.log(err);
+				} finally {
+					tool.hideLoading();	
 				}
 			},
 			error: function (jqXHR, type, error) {

@@ -79,8 +79,7 @@ export default {
     mounted: function () {
         lanTool.updateLanVersion();
         //清空输入框
-        $("#searchInput").val("");
-
+        $("#searchInput").val("").trigger("change");
         //根据是否多选来设置列表滚动的区域高度
         if (this.selectType === 'checkbox') {
             $(".selectList-scroll").css("padding-bottom", "50px");
@@ -95,6 +94,7 @@ export default {
         _self.search();
     },
     methods: {
+        //选择全部
         selectAll: function (e) {
             var self = this;
                 var el = e.target,
@@ -107,6 +107,7 @@ export default {
                     self.checkboxValue = [];
                 }
         },
+        //返回
         backHandler: function () {
             this.$router.back(-1);
         },
@@ -128,6 +129,9 @@ export default {
 
                         //radio 滚动条定位
                         var curObj = $("input[value='"+ valArrTemp[i] +"']").closest('.item-div');
+                        if(tool.isNullOrEmptyObject(curObj) || curObj.length <= 0){
+                            return;
+                        }
                         var scrollTo = curObj.offset().top;
                         toTopH.push(scrollTo);
                     }else{
@@ -135,6 +139,9 @@ export default {
                         self.checkboxValue.push(valArrTemp[i]);
 
                         var curObj = $("input[value='"+ valArrTemp[i] +"']").closest('.item-div');
+                        if(tool.isNullOrEmptyObject(curObj) || curObj.length <= 0){
+                            return;
+                        }
                         var scrollTo = curObj.offset().top;
                         toTopH.push(scrollTo);
                     }
@@ -163,7 +170,7 @@ export default {
                 $(window).scrollTop(scrollToH - headerH);
             })
         },
-
+        //保存
         saveHandler: function () {
             var $this = this;
             var returnObj = {
@@ -205,6 +212,7 @@ export default {
             eventBus.$emit('updataSelectList', returnObj);
             $this.$router.back(-1);
         },
+        //获取数据
         getData: function (mycallback) {
             var $this = this;
             if (tool.isNullOrEmptyObject($this.code)) {
@@ -266,7 +274,6 @@ export default {
               }
             });
         },
-
         //筛选
         search: function () {
             this.$nextTick(function () {
@@ -280,8 +287,7 @@ export default {
                     }
                 })
             });
-        },
-
+        }
     },
 }
 </script>
