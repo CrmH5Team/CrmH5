@@ -53,8 +53,9 @@
       <div class="tips">
         <div class="tips-box">
           <span class="calcfont calc-tishi1"></span>
-          <div class="tips-text f12"><span class="lanText" data-lanid="988_你有"></span><span>3</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span></div>
-          <router-link to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></router-link>
+          <div class="tips-text f12"><span class="lanText" data-lanid="988_你有"></span><span>{{meetingCount}}</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span></div>
+          <router-link v-show="Number(meetingCount)>=1" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></router-link>
+          <!-- <div @click="" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></div> -->
         </div>
       </div>
 
@@ -159,6 +160,7 @@ export default {
       notData:false, //没有数据
       showPanel: false,
       groupData:[], //7天的数据
+      meetingCount:0,//未上传会议记录的会议数量
     };
   },
   created:function(){
@@ -166,64 +168,78 @@ export default {
   },
   mounted: function() {
     lanTool.updateLanVersion();
+    //侧滑
     eventBus.$on("showIndexRightPanelEvent", this.panelToggle);
+    //滚动
     this.watchScroll();
+    //分组展开/收起
     this.groupToggle();
-    //赋用户信息
-    var curUser = tool.CurUser();
-    if (tool.isNullOrEmptyObject(curUser)) {
-      return;
-    }
-    $(".userName").text(curUser.Realname || "");
-    var curLV = lanTool.currentLanguageVersion;
-    if (curLV == "1") {
-      $(".userTitle").text(curUser.PositionNameEN || "");
-      $(".userDepartment").text(curUser.DepartmentNameEN || "");
-    } else if (curLV == "2") {
-      $(".userTitle").text(curUser.PositionNameCN || "");
-      $(".userDepartment").text(curUser.DepartmentNameCN || "");
-    } else if (curLV == "3") {
-      $(".userTitle").text(curUser.PositionNameTD || "");
-      $(".userDepartment").text(curUser.DepartmentNameTD || "");
-    }
-
-    //切换语言
-    $(".language-type").off('click').on("click", function(event) {
-      var target = $(event.target);
-      if (!target.hasClass("language-type")) {
-        target = target.closest("div.language-type");
-        if (target == undefined) {
-          return;
-        }
-      }
-
-      if (!target.hasClass("language-show")) {
-        target
-          .addClass("language-show")
-          .siblings(".language-type")
-          .removeClass("language-show");
-      }
-
-      var curLV = target.attr("data-lantype");
-      lanTool.setLan(curLV, function() {
-        lanTool.updateLanVersion();
-      });
-    });
-
-    //写入当前多语言值
-    $(
-      "div.language-type[data-lantype='" +
-        lanTool.currentLanguageVersion +
-        "']:first"
-    ).trigger("click");
-
+    //初始化用户信息
+    this.initUserInfo();
+    //初始化多语言
+    this.initLV();
 
     //获取最近7天的会议分组数据
     this.$nextTick(function(){
       this.getRecentMeeting();
-    })
+    });
+
+    //获取未上传会议记录的会议数量
+    this.getNoUploadRecordCount();
   },
   methods: {
+    //初始化用户信息
+    initUserInfo:function(){
+      //赋用户信息
+      var curUser = tool.CurUser();
+      if (tool.isNullOrEmptyObject(curUser)) {
+        return;
+      }
+      $(".userName").text(curUser.Realname || "");
+      var curLV = lanTool.currentLanguageVersion;
+      if (curLV == "1") {
+        $(".userTitle").text(curUser.PositionNameEN || "");
+        $(".userDepartment").text(curUser.DepartmentNameEN || "");
+      } else if (curLV == "2") {
+        $(".userTitle").text(curUser.PositionNameCN || "");
+        $(".userDepartment").text(curUser.DepartmentNameCN || "");
+      } else if (curLV == "3") {
+        $(".userTitle").text(curUser.PositionNameTD || "");
+        $(".userDepartment").text(curUser.DepartmentNameTD || "");
+      }
+    },
+    //初始化多语言
+    initLV:function(){
+      //切换语言
+      $(".language-type").off('click').on("click", function(event) {
+        var target = $(event.target);
+        if (!target.hasClass("language-type")) {
+          target = target.closest("div.language-type");
+          if (target == undefined) {
+            return;
+          }
+        }
+
+        if (!target.hasClass("language-show")) {
+          target
+            .addClass("language-show")
+            .siblings(".language-type")
+            .removeClass("language-show");
+        }
+
+        var curLV = target.attr("data-lantype");
+        lanTool.setLan(curLV, function() {
+          lanTool.updateLanVersion();
+        });
+      });
+
+      //写入当前多语言值
+      $(
+        "div.language-type[data-lantype='" +
+          lanTool.currentLanguageVersion +
+          "']:first"
+      ).trigger("click");
+    },
     // 发送邮件开关
     sendEmailSwitch: function (e) {
         if ($(e.target).is(":checked") == true) {
@@ -320,7 +336,7 @@ export default {
         });
       }, 100);
     },
-
+    //搜索
     goSearch: function() {
       this.$router.push("/search");
     },
@@ -445,7 +461,7 @@ export default {
         success: function (data) {
           tool.hideLoading();
           data = tool.jObject(data);
-          console.log(data);
+          // console.log(data);
           if (data._ReturnStatus == false) {
             tool.showText(tool.getMessage(data));
             console.log(tool.getMessage(data));
@@ -477,7 +493,7 @@ export default {
         }
       });
     },
-
+    //获取内部列表
     getInnerDataList:function(groupID,myCallBack){
       if(tool.isNullOrEmptyObject(groupID)){
           return ;
@@ -541,8 +557,49 @@ export default {
         }
       });
 
-    }
+    },
+    //获取未上传会议记录的会议数量
+    getNoUploadRecordCount:function(){
+        var _self = this;
+        //请求地址
+        var urlTemp = tool.AjaxBaseUrl();
+        var controlName = tool.Api_MeetingHandle_QueryNoUploadRecordCount;
+        //传入参数
+        var jsonDatasTemp = {
+          CurrentLanguageVersion: lanTool.currentLanguageVersion,
+          UserName: tool.UserName(),
+          _ControlName: controlName,
+          _RegisterCode: tool.RegisterCode()
+        };
 
+        $.ajax({
+          async: true,
+          type: "post",
+          url: urlTemp,
+          data: jsonDatasTemp,
+          success: function (data) {
+            data = tool.jObject(data);
+            // console.log(data);
+            if (data._ReturnStatus == false) {
+              tool.showText(tool.getMessage(data));
+              console.log(tool.getMessage(data));
+              _self.notData = true;
+              return;
+            }
+
+            _self.meetingCount = data._OnlyOneData || 0;
+          },
+          error: function (jqXHR, type, error) {
+            console.log(error);
+            return;
+          },
+          complete: function () {
+            //tool.hideLoading();
+            //隐藏虚拟键盘
+            document.activeElement.blur();
+          }
+        });
+    },
   },
   beforeDestroy: function() {
     eventBus.$off("showIndexRightPanelEvent");

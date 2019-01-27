@@ -9,7 +9,7 @@
 
           <div class="group-item-list meeting-list">
 
-                <div v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID)">
+                <div v-show="!notData" v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID)">
                     <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
@@ -18,8 +18,8 @@
                     <div class="item-address">{{item.Realname}}</div>
                     <div class="item-initiator">{{item.ContactsID|formatContactsID}}{{item.Title|formatTitle}}</div>
                 </div>
-
           </div>
+          <nothing v-show="notData" style="padding-top:0.8rem;"></nothing>
       </div>
 
 </div>
@@ -27,45 +27,92 @@
 
 <script>
 import Header from '../common/Header'
+import Nothing from "../common/Nothing"
 export default {
     components:{
-        'Header':Header
+        'Header':Header,
+        'nothing': Nothing
     },
     data(){
         return{
             title:'Meeting List',
             listData:[],
+            notData: true, //没数据
         }
     },
     created:function(){
-        for(var i=0; i<20; i++){
-            var o = {}
-            o.AutoID = i;
-            o.MeetingTitle = '测试1111111';
-            o.BeginTime = "2019-01-23T17:35:00";
-            o.EndTime = "2019-01-25T17:35:00";
-            o.Realname = "ceshi测试用";
-            o.Realname = "ceshi测试用";
-            o.ContactsID = "my yyyas";
-            o.Title = "dasd";
-
-            this.listData.push(o);
-        }
     },
     mounted:function(){
        lanTool.updateLanVersion();
+       //查询未上传会议记录的会议列表
+       this.getNoUploadRecord();
     },
     methods:{
-        //点击去详情页
-        goInfoPage:function(id){
-            var _self = this,
-                url = "";
-            if(tool.isNullOrEmptyObject(id)){
-              return ;
-            }
-            url = '/meetingNoteinfo/'+ id;
-            _self.$router.push(url);
+        //查询未上传会议记录的会议列表
+        getNoUploadRecord:function(){
+            var _self = this;
+            //请求地址
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_MeetingHandle_QueryNoUploadRecord;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode()
+            };
+
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        _self.notData = true;
+                        return;
+                    }
+
+                    _self.listData = data._OnlyOneData.Rows || [];
+                    _self.notData = false;
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    return;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
         },
+        //点击跳转到会议记录页
+        goInfoPage:function(scheduleID){
+            if(tool.isNullOrEmptyObject(scheduleID)){
+                return;
+            }
+
+            var _self = this;
+            var meetingNoticeID = "-1";
+            var url = "/MeetingNoteinfo/" + meetingNoticeID;
+            var oppID = "";
+            
+            scheduleID = Number(scheduleID)<=0?"":scheduleID;
+            var parameter = {
+                OppID:oppID,
+                ScheduleID:scheduleID
+            };
+
+            _self.$router.push({
+                path: url,
+                query: parameter
+            });
+        }
     }
 }
 </script>
@@ -83,12 +130,4 @@ export default {
 .tips{margin: 5px 0;height: auto;
 box-sizing: border-box;padding:0 10px;}
 .tips div{background: #f2f2f2;border-radius: 3px;line-height:1.3;padding:3px;}
-/*列表*/
-/* .data-events-item{border-bottom: 1px solid beige;line-height:20px;background: #fff;padding: 5px 10px;}
-.item-title{font-weight: 600;color:#333;}
-.item-time{color:#333;}
-.item-time .calc-gengxinshijian{color:#ff5a21;}
-.time-text{vertical-align: middle;}
-.item-address{font-weight: 600;}
-.data-events p{height: 50px;line-height: 50px;} */
 </style>

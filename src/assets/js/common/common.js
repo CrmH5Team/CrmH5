@@ -310,6 +310,14 @@
 	 * 查询会议展开列表接口
 	 */
 	tool.Api_MeetingHandle_GroupInnerData = "Api_MeetingHandle_GroupInnerData";
+	/*
+	 * 查询未上传会议记录的会议数量
+	 */
+	tool.Api_MeetingHandle_QueryNoUploadRecordCount = "Api_MeetingHandle_QueryNoUploadRecordCount";
+	/*
+	 * 查询未上传会议记录的会议列表
+	 */
+	tool.Api_MeetingHandle_QueryNoUploadRecord = "Api_MeetingHandle_QueryNoUploadRecord";
 
 	/*
 	 * 销售机会分组接口
