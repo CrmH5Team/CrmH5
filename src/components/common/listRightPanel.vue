@@ -130,7 +130,7 @@ export default {
                         '-webkit-transition':'left 0.2s ease-out',
                         '-o-transition': 'left 0.2s ease-out'
                     })
-                    $('#mask,#right-content').on("touchmove", function(e) {
+                    $('#mask,#right-content').off('touchmove').on("touchmove", function(e) {
                       e.stopPropagation();
                       e.preventDefault();
                     });
