@@ -3200,6 +3200,53 @@
 
 		return obj;
 	};
+
+	/*
+	* 是否指定记录的负责人
+	*/
+	tool.IsHasInitiator = function(fromType,fromID,myCallBack){
+		if(tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(fromID) ){
+			return;
+		}
+
+		//传入参数
+		var jsonDatasTemp = {
+			CurrentLanguageVersion: lanTool.currentLanguageVersion,
+			UserName: tool.UserName(),
+			_ControlName: controlName,
+			_RegisterCode: tool.RegisterCode(),
+			FromType: fromType,
+			FromID: fromID
+		};
+		
+		$.ajax({
+			async: true,
+			type: "post",
+			url: urlTemp,
+			data: jsonDatasTemp,
+			success: function (data) {
+				data = tool.jObject(data);
+				if (data._ReturnStatus == false) {
+					tool.showText(tool.getMessage(data));
+					console.log(tool.getMessage(data));
+					return true;
+				}
+
+				data = data._OnlyOneData || false;
+				if (!tool.isNullOrEmptyObject(myCallBack)) {
+					myCallBack(data);
+				}
+			},
+			error: function (jqXHR, type, error) {
+				console.log(error);
+				return true;
+			},
+			complete: function () {
+				//隐藏虚拟键盘
+				document.activeElement.blur();
+			}
+		});
+	}
 }(top.window.tool = {}, jQuery));
 
 

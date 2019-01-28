@@ -382,7 +382,9 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function () {
-
+                        //判断当前用户是否可以操作当前单据
+                        _self.initUserAccess();
+                        
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
                             $(cur).height('25');
@@ -500,8 +502,18 @@ export default {
                     $('.ContactList,.accessList').removeClass('disable');
                 })
             }
-        }
+        },
+        //判断当前用户是否可以操作当前单据
+        initUserAccess:function(){
+            var _self = this;
+            var fromType = "6";
+            var fromID = _self.$route.params.id;
 
+            //是否指定记录的负责人
+            tool.IsHasInitiator(fromType,fromID,function(data){
+                _self.onlyView = data;
+            });
+        }
     }
 };
 </script>
