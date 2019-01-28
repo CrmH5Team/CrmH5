@@ -25,11 +25,12 @@
     </div>
 
     <form id="uploadForm" style="display:none;">
+      <!-- multiple="multiple"属性控制多选，默认为单选 -->
         <input ref="fileChoose" v-on:change="inputFiles" class="fileInput" type="file" name="img" id="selectFile" />
         <!-- <input id="uploadFile" name="uploadFile" type="file" accept="*/*" />
         <input id="uploadFileSub" type="button" /> -->
     </form>
-    
+
 
 </div>
 </template>
@@ -65,13 +66,13 @@ export default {
                 tool.showText(msg);
                 return;
             }
-            
+
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
 
                 //console.log(e.target);
-                
+
                 var parameter = {
                     file: e.target.result,
                     fileName: file.name,
