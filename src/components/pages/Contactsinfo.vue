@@ -382,7 +382,9 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function () {
-
+                        //判断当前用户是否可以操作当前单据
+                        _self.initUserAccess();
+                        
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
                             $(cur).height('25');
