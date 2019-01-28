@@ -329,9 +329,9 @@ export default {
 
                     //1>锁定销售机会设置为不可操作
                     if(isLock){
-                        $("#OppIDObj,[data-field='OppID']").removeClass('disable color6').addClass('disable color6');
+                        $("#OppIDClickObj,[data-field='OppID']").removeClass('disable color6').addClass('disable color6');
                     }else{
-                        $("#OppIDObj,[data-field='OppID']").removeClass('disable color6');
+                        $("#OppIDClickObj,[data-field='OppID']").removeClass('disable color6');
                     }
 
                     //2>销售机会赋值
