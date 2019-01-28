@@ -1051,12 +1051,12 @@
 			bigType = "audio";
 			fileTypeNew = "x-mpeg";
 			break;
-			
+
 			case "mp4":
 			bigType = "video";
 			fileTypeNew = "mp4";
 			break;
-			
+
 			case "mpeg":
 			case "mpg":
 			bigType = "video";
@@ -1616,7 +1616,7 @@
         <div class="group-item-list meeting-list">
         {InnerList}
         </div>`;
-        innerTemplate = `<div class="data-events-item f12" data-url="/meetinginfo/{AutoID}" >
+        innerTemplate = `<div class="data-events-item f14" data-url="/meetinginfo/{AutoID}" >
                             <div class="item-title">{MeetingTitle}</div>
                             <div class="item-time f12">
                               <span class="calcfont calc-gengxinshijian"></span>
@@ -1671,7 +1671,7 @@
                                 {TheName}
                                 </div>
                                 <div class="item-div ">{Memo}</div>
-                                <div class="item-div blue-color padding-bottom-3 padding-top-3">
+                                <div class="item-div f12 blue-color padding-bottom-3 padding-top-3">
                                   <span>{CurrentState}</span>
                                 </div>
                                 {MeetingInfo}
@@ -1692,7 +1692,7 @@
 		};
 		queryCondiction.push(queryCondictionObj);
         outerTemplate = `
-        <div class="group-item-list dealPipeline-list">
+        <div class="group-item-list opportunities-list">
         {InnerList}
         </div>`;
         innerTemplate = `<div class=" group-item f14" data-url="/opportunitiesinfo/{AutoID}">
@@ -1701,10 +1701,10 @@
                                 <div class="item-div item-first-div blue-color">
                                 {TheName}
                                 </div>
-                                <div class="item-div ">{Memo}</div>
-                                <div class="item-div blue-color padding-bottom-3 padding-top-3">
+                                <div class="item-div f12 blue-color padding-bottom-3 padding-top-3">
                                   <span>{CurrentState}</span>
                                 </div>
+                                <div class="item-div ">{Memo}</div>
                                 {MeetingInfo}
                             </div>
                         </div>`;
@@ -1739,7 +1739,7 @@
         <div class="group-item-list contacts-list" >
         {InnerList}
         </div>`;
-        innerTemplate = `<div class="group-item" data-url="/contactsinfo/{AutoID}">
+        innerTemplate = `<div class="group-item f14" data-url="/contactsinfo/{AutoID}">
                             <div class="item-user-icon calcfont calc-fuzeren1" data-autoid={AutoID}></div>
                             <div class="item-block contacts-item-block">
                                 <div class="item-div item-first-div">{EnglishName}</div>
@@ -2260,7 +2260,7 @@
 				return;
 			}
 			// console.log(_curObj);
-			
+
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var filter = _curObj.attr("Filter") ||"";
@@ -2628,7 +2628,7 @@
 				} catch (err) {
 					console.log(err);
 				} finally {
-					tool.hideLoading();	
+					tool.hideLoading();
 				}
 			},
 			error: function (jqXHR, type, error) {

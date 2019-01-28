@@ -80,7 +80,7 @@
                 <div class="occupy-div"></div>
                 <div v-if="group.items.length > 0" class="group-item-list meeting-list index-meeting-list">
 
-                    <div v-for="item in group.items" :key="item.AutoID" class="data-events-item f12" :data-url="'/meetinginfo/'+ item.AutoID">
+                    <div v-for="item in group.items" :key="item.AutoID" class="data-events-item f14" :data-url="'/meetinginfo/'+ item.AutoID">
                         <div class="item-title">{{item.MeetingTitle}}</div>
                         <div class="item-time f12">
                             <span class="calcfont calc-gengxinshijian"></span>
