@@ -137,7 +137,7 @@ export default {
 
                 data = data._OnlyOneData || "";
                 data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
-                
+
                 //图片
                 if(tool.isFileImage($this.data.ObjectName)) {
                     $this.showDownload = true;
@@ -241,7 +241,7 @@ export default {
 
                 // Prepare canvas using PDF page dimensions
                 $(".drawerFile_content").html(
-                    '<canvas id="the-canvas' + self.currPage + '" content="wuser-scalable=yes,width==device-width,minimum-scale=1.0"></canvas><div class="btn-div"><span class="canvas-btn pre-btn">上一页</span><span class="canvas-btn next-btn">下一页</span></div>'
+                    '<canvas id="the-canvas' + self.currPage + '" content="wuser-scalable=yes,width==device-width,minimum-scale=1.0"></canvas><div class="btn-div"><span class="canvas-btn pre-btn calcfont calc-shangyiye"></span><span class="canvas-btn next-btn calcfont calc-xiayiye"></span></div>'
                 );
                 var canvas = document.getElementById('the-canvas' + self.currPage + '');
                 var winRatio = ($(window).width() / viewport.width);
@@ -414,10 +414,16 @@ header a {
 
 <style>
 .weui-photo-browser-modal{z-index:9!important;}
-.btn-div{position: absolute;font-size:0.3rem;left:0;right:0;bottom:0.4rem;z-index:3;line-height:0.4rem;
-text-align: center;opacity: 0.6;}
-.canvas-btn{color:333;padding:5px;background:rgba(0,0,0,0.1);border-radius:2px;}
-.pre-btn{margin-right:20px;}
+.btn-div{
+  position: absolute;left:0;right:0;
+  bottom:0.4rem;z-index:3;
+  display:flex;justify-content:center;
+  line-height:0.4rem;
+  text-align: center;opacity: 0.5;
+
+}
+.canvas-btn{color:333;padding:0.2rem;border-radius:2px;margin:0 0.2rem;font-size:0.6rem;}
+/* .pre-btn{margin-right:20px;} */
 
 </style>
 
