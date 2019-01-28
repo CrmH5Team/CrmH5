@@ -6,7 +6,7 @@
             <div class="ListCellContentLeft documentHeader">
                 <div class="ListCellContentLeftText documentHeaderContent  lanText" data-lanid="750_文档"></div>
             </div>
-            <div class="ListCellRightIcon documentAddIcon"><span @click="actionSheet" class="mui-icon calcfont calc-jia"></span></div>
+            <div class="ListCellRightIcon documentAddIcon controlEdit"><span @click="actionSheet" class="mui-icon calcfont calc-jia"></span></div>
         </div>
     </div>
     <div class="wendangList">

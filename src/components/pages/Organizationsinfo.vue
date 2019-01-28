@@ -213,11 +213,10 @@ export default {
         var _self = this;
 
         _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
-        if(_self.onlyView){
-            $('.scroll-div').addClass('disable');
-        }else{
-            $('.scroll-div').removeClass('disable');
-        }
+
+        //如果是只查看，控制元素不可以更改
+        _self.controlEdit();
+
 
         //监听保存
         _self.savePageData();
@@ -502,6 +501,20 @@ export default {
             }, 0);
 
         },
+        //只查看的情况 控制元素是否可修改
+        controlEdit:function(){
+            var _self = this;
+            //t为 ture 时为需要控制
+            if(_self.onlyView){
+                _self.$nextTick(function(){
+                    $('.OrganizationsList,.MoreList').addClass('disable');
+                })
+            }else{
+                _self.$nextTick(function(){
+                    $('.OrganizationsList,.MoreList').removeClass('disable');
+                })
+            }
+        }
 
     }
 

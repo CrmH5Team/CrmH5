@@ -162,10 +162,13 @@ export default {
         var _self = this;
         var id = _self.$route.params.id;
         var fromType = "MeetingNoteinfo";
-        this.oppID = this.$route.query.OppID;
-        this.scheduleID = this.$route.query.ScheduleID;
-        this.fromIDNew = _self.$route.params.id;
-        this.fromTypeNew = "40";
+        _self.oppID = _self.$route.query.OppID;
+        _self.scheduleID = _self.$route.query.ScheduleID;
+        _self.fromIDNew = _self.$route.params.id;
+        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        _self.controlEdit();
+
+        _self.fromTypeNew = "40";
 
         //监听保存
         _self.savePageData();
@@ -181,8 +184,8 @@ export default {
         // //是否是从上传文档后返回
         // var _fromSave = _self.$route.meta.fromSave;
 
-        console.log("_isBack:"+_isBack);
-        console.log("isFirstEnter:"+_self.isFirstEnter);
+        // console.log("_isBack:"+_isBack);
+        // console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if(
@@ -313,7 +316,7 @@ export default {
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
-                    console.log("handleOppID");
+                    // console.log("handleOppID");
                     tool.hideLoading();
                     data = tool.jObject(data);
                     // console.log(data);
@@ -324,8 +327,8 @@ export default {
                     }
 
                     data = data._OnlyOneData || [];
-                    
-                    console.log(data);
+
+                    // console.log(data);
 
                     //1>锁定销售机会设置为不可操作
                     if(isLock){
@@ -458,6 +461,21 @@ export default {
             }
 
             _self.fileListData = data["DocList"]||[];
+        },
+        //只查看的情况 控制元素是否可修改
+        controlEdit:function(){
+            var _self = this;
+
+            if(_self.onlyView){
+                _self.$nextTick(function(){
+                    $('.meetingNoteList,.controlEdit').addClass('disable');
+                })
+            }else{
+                _self.$nextTick(function(){
+                    $('.meetingNoteList,.controlEdit').removeClass('disable');
+
+                })
+            }
         }
     }
 }

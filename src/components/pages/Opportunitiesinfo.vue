@@ -18,7 +18,7 @@
             </div>
 
             <!-- 业务类型 -->
-            <div class="ListCell visible">
+            <div class="ListCell visible controlEdit">
                 <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
@@ -32,7 +32,7 @@
             </div>
 
             <!-- 名称 -->
-            <div class="ListCell visible">
+            <div class="ListCell visible controlEdit">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-yewujihui"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -42,7 +42,7 @@
             </div>
 
             <!-- opportunities 模块才有的属性 -->
-            <div class="OpportunitiesList">
+            <div class="OpportunitiesList controlEdit">
 
                   <!-- 公司 -->
                   <div class="ListSpecialCell visible" id="TargetCompanyIDClickObj">
@@ -119,7 +119,7 @@
             </div>
 
             <!-- 备忘 -->
-            <div class="ListCell visible">
+            <div class="ListCell visible controlEdit">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -129,7 +129,7 @@
             </div>
 
             <!-- 风险提示 -->
-            <div class="ListCell">
+            <div class="ListCell controlEdit">
                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-fengxianyujing"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
@@ -139,7 +139,7 @@
             </div>
 
             <!-- 关注 -->
-            <div class="ListCell HideWhenNew">
+            <div v-show="!isAddNew" class="ListCell controlEdit">
                 <div class="ListCellLeftIcon textLeftIcon" @click="followToggle">
                   <span data-field="IsFollow" data-fieldControlType="icon" data-fieldVal="{'true':'calc-shoucang','false':'calc-noshoucang'}" data-defaultVal="false" class="mui-icon calcfont guanZhu"></span>
                 </div>
@@ -155,7 +155,7 @@
                     <div class="headerBlock">
                         <div class="headerBlockLeftIcon"><span class="calcfont calc-huiyi"></span></div>
                         <div class="headerBlockContent f16 lanText" data-lanid="901_会议记录"></div>
-                        <div class="headerBlockRightIcon">
+                        <div class="headerBlockRightIcon controlEdit">
                           <span class="calcfont calc-jia" @click="goRecord($event)" data-url="/MeetingNoteinfo/-1"></span>
                         </div>
                     </div>
@@ -171,11 +171,11 @@
                                 <div class="content">{{item.MeetingTitle}}</div>
                             </div>
                             <div class="headerDivRightBtn" >
-                                <div class="rightBtn" data-lanid="" @click="goRecord($event)" :data-url="'/MeetingNoteinfo/' + item.AutoID">
+                                <div class="rightBtn" data-lanid="" @click="goRecord($event, item.AutoID)" :data-url="'/MeetingNoteinfo/' + item.AutoID">
                                 {{seeMore}}
                                 </div>
                             </div>
-                            <div class="headerDivRightDelete"  @click="deleteMeetingNote(item.AutoID,$event)" >
+                            <div class="headerDivRightDelete controlEdit"  @click="deleteMeetingNote(item.AutoID,$event)" >
                                 <span class="calcfont calc-delete"></span>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
             </div>
 
             <!-- 负责人 -->
-            <div class="shareBlock">
+            <div class="shareBlock controlEdit">
                 <!-- <div class="shareTip">
                     <p><span>* </span><span class="zhuyi lanText"
                     data-lanid="899_请注意，负责人及其所有上司可以编辑数据并分享。分享此商业机会后，对应的联系人也将分享给对方。"></span></p>
@@ -319,17 +319,7 @@ export default {
             showTips:false,
             //会议记录数据
             MeetingNotice:[
-                // {
-                //   AutoID:2,
-                //   CompanyID_Name:"15中飞租MTN001",
-                //   DocList:[{
-                //       fileId:1,
-                //       fileName:'TestFileName1.pdf',
-                //       fileTiem:'16/Nov 15:00'
-                //   }],
-                //   MeetingTitle:"qqqq",
-                //   Remark:"tsadtastd a↵1231↵312312321"
-                // }
+
             ],
             seeMore:""
         }
@@ -355,7 +345,7 @@ export default {
     // },
     created: function () {
         this.isFirstEnter = true;
-        console.log(this.MeetingNotice);
+        // console.log(this.MeetingNotice);
     },
     mounted: function () {
 
@@ -367,7 +357,8 @@ export default {
         var _self = this;
         _self.seeMore =lanTool.lanContent("900_查看完整");
 
-        this.onlyView = Boolean(this.$route.query.onlyView) || false;
+        // this.onlyView = Boolean(this.$route.query.onlyView) || false;
+
         //监听保存
         _self.savePageData();
         //监听删除
@@ -389,10 +380,13 @@ export default {
 
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
-            $(".HideWhenNew").hide();
+            // $(".HideWhenNew").hide();
             _self.isAddNew = true;
+            _self.showTips = false; //隐藏提示
+            $('.scroll-div').removeClass('disable');
+
         }else{
-            $(".HideWhenNew").show();
+            // $(".HideWhenNew").show();
             _self.isAddNew = false;
         }
 
@@ -483,18 +477,19 @@ export default {
                         //Status_InProgress = "38";
                         //Status_Closed = "39";
                         // console.log(data);
+                        // console.log('CurrentState:'+ data["CurrentState"]);
                         if(data["CurrentState"] == "39"){
                             //显示提示
                             _self.showTips = true;
                             //头部按钮
                             _self.onlyView = true;
-                            $('.scroll-div').addClass('disable');
+                            _self.controlEdit();
                         }else{
                             //显示提示
                             _self.showTips = false;
                             //头部按钮
                             _self.onlyView = false;
-                            $('.scroll-div').removeClass('disable');
+                            _self.controlEdit();
                         }
 
                         //渲染会议记录列表
@@ -573,7 +568,7 @@ export default {
             });
         },
         //查看/添加会议记录
-        goRecord: function (e) {
+        goRecord: function (e,AutoID) {
             var _self = this;
             var target = $(e.target);
             var url = target.attr("data-url");
@@ -583,9 +578,16 @@ export default {
             }
             oppID = Number(oppID)<=0?"":oppID;
             var scheduleID = "";
+
+            var onlyView = '';
+            //点击查看全部，把onlyView设置为true(其他情况不能设为false要设为空,不然下一个页面会Boolean()会转为true)
+            if(!tool.isNullOrEmptyObject(AutoID)){
+                onlyView = true;
+            }
             var parameter = {
                 OppID:oppID,
-                ScheduleID:scheduleID
+                ScheduleID:scheduleID,
+                onlyView:onlyView
             };
 
             _self.$router.push({
@@ -807,9 +809,9 @@ export default {
                         }
                     });
 
-			},
-			function() {}
-		  );
+			          },
+                function() {}
+            );
         },
         //点击去文件详情页
         goFileInfo:function(data){
@@ -818,7 +820,22 @@ export default {
             }
             console.log(data);
             this.$router.push({path:'/previewfile', query: data});
+        },
+
+        //只查看的情况 控制元素是否可修改
+        controlEdit:function(){
+            var _self = this;
+            if(_self.onlyView){
+                _self.$nextTick(function(){
+                    $('.controlEdit').addClass('disable');
+                })
+            }else{
+                _self.$nextTick(function(){
+                    $('.controlEdit').removeClass('disable');
+                })
+            }
         }
+
     }
 }
 </script>
