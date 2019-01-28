@@ -476,17 +476,16 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, _self.id, function(data){
-                        //查询判断当前用户是否有操作单据的权限
-                        _self.initUserAccess(data);
-                        
-                        //渲染会议记录列表
-                        _self.iniMeetingNoteList(data);
-
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
                             $(cur).height('25');
                             tool.autoTextarea(cur);
                         });
+                        //查询判断当前用户是否有操作单据的权限
+                        _self.initUserAccess(data);
+                        
+                        //渲染会议记录列表
+                        _self.iniMeetingNoteList(data);
 
                         //场景：当在selectList页面按刷新按钮再回到详情页
                         if(tool.isNullOrEmptyObject(eventBus.selectListData)){
