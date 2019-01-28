@@ -11,7 +11,7 @@
     </div>
     <div class="wendangList">
         <div v-for="fileItem in fileListData" :key="fileItem.attachmentsid" class="ListCell">
-            <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
+            <!-- <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div> -->
             <div class="ListCellContent">
                 <div class="ListCellContentLeft leftContent" @click="goFileInfo(fileItem)">
                     <div class="ListCellContentLeftText f12"><span class="mui-icon calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
@@ -19,6 +19,7 @@
                 <div class="ListCellContentRight rightContent">
                     <div class="ListCellContentRightText">{{fileItem.AddTime|MeetingTimeFormat}}</div>
                 </div>
+                <span @click="deleteDoc(fileItem)" class="delete-icon calcfont calc-delete"></span>
                 <!-- <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div> -->
             </div>
         </div>
@@ -70,9 +71,6 @@ export default {
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (e) {
-
-                //console.log(e.target);
-
                 var parameter = {
                     file: e.target.result,
                     fileName: file.name,
@@ -89,27 +87,12 @@ export default {
             };
         },
 
-        // goInfo: function (data) {
-        //     this.$router.push({
-        //         path: '/previewfile',
-        //         query: data
-        //     })
-        // },
 
         //弹出文件上传
         actionSheet: function () {
             $("#selectFile").trigger('click');
         },
 
-        // toggle: function (e) {
-        //     if ($(e.target).hasClass('calc-xia')) {
-        //         $(e.target).removeClass('calc-xia').addClass('calc-shang');
-        //         $(e.target).next('.downlistbox').hide(10);
-        //     } else {
-        //         $(e.target).removeClass('calc-shang').addClass('calc-xia');
-        //         $(e.target).next('.downlistbox').show(10);
-        //     }
-        // }
         //点击去文件详情页
         goFileInfo:function(data){
             if(tool.isNullOrEmptyObject(data)){
@@ -118,6 +101,11 @@ export default {
             // console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
+
+        //删除单个文件
+        deleteDoc:function(id){
+            alert('delete');
+        }
     },
     deactivated: function () {
 
