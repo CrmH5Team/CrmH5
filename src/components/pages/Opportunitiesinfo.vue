@@ -180,7 +180,7 @@
                             </div>
                         </div>
                         <div class="airlinesName">
-                            <div class="airlinesNameContent f14">{{item.CompanyID_Name}}</div>
+                            <div class="airlinesNameContent f12">{{item.CompanyID_Name}}</div>
                         </div>
                         <div class="meetingRemark">
                             <p class="f14">{{item.Remark}}</p>
@@ -189,7 +189,7 @@
                         <div class="meetingDocList">
                             <div v-for="fileItem in item.DocList" :key="fileItem.ObjectName" class="docListCell">
                                 <div class="docListCellLeft" @click="goFileInfo(fileItem)">
-                                    <div class="docListCellLeftContent"><span class="calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
+                                    <div class="docListCellLeftContent f12"><span class="calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
                                 </div>
                                 <div class="docListCellRight">
                                     <div class="docListCellRightContent">{{fileItem.AddTime|MeetingTimeFormat}}</div>

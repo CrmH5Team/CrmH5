@@ -116,6 +116,12 @@ span.zhuyi{
     margin: auto 0;
     font-size: 0.28rem;
 }
+.headerDiv .headerDivContent .content{
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .headerDiv .headerDivRightBtn {
     width: calc(30%);
@@ -222,7 +228,7 @@ span.zhuyi{
 }
 
 .docListCell .docListCellLeft {
-    width: calc(50% - .16rem)!important;
+    width: 60%!important;
     font-size: 0.28rem;
     color: #2A79C8;
 }
@@ -234,7 +240,7 @@ span.zhuyi{
 }
 
 .docListCell .docListCellRight {
-    width: calc(50% - .6rem)!important;
+    width: 40%!important;
     font-size: 0.28rem;
 }
 
