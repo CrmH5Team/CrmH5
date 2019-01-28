@@ -4,7 +4,7 @@
         <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-wendang2"></span></div>
         <div class="ListCellContent">
             <div class="ListCellContentLeft documentHeader">
-                <div class="ListCellContentLeftText documentHeaderContent">Documents</div>
+                <div class="ListCellContentLeftText documentHeaderContent  lanText" data-lanid="750_文档"></div>
             </div>
             <div class="ListCellRightIcon documentAddIcon"><span @click="actionSheet" class="mui-icon calcfont calc-jia"></span></div>
         </div>

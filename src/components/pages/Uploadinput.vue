@@ -67,7 +67,7 @@
 export default {
     data(){
         return {
-            pageTitle:'文件上传',
+            pageTitle:lanTool.lanContent('1002_文件上传'),
             file:null,
             fileName:"",
             fromID:"",
