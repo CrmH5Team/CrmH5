@@ -456,7 +456,8 @@ export default {
             scheduleID = Number(scheduleID)<=0?"":scheduleID;
             var parameter = {
                 OppID:oppID,
-                ScheduleID:scheduleID
+                ScheduleID:scheduleID,
+                onlyView:true
             };
 
             _self.$router.push({
