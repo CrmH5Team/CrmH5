@@ -87,7 +87,13 @@
     display: flex;
     font-size: 0.28rem;
     align-items:center;
+    position: relative;
 }
+.ListCell .ListCellContent .delete-icon{
+  font-size: .4rem;
+  color: #aaa;
+}
+
 .ListCell .ListCellContentField,.ListCell .ListCellContentData{
   width: calc(100% - 1.3rem);
 }
@@ -170,7 +176,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    text-align: right;
+    /* text-align: right; */
     min-height: 0.4rem;
     line-height: 0.4rem;
     overflow: hidden;
@@ -328,13 +334,15 @@ textarea::placeholder
 .wendangList .calc-fujian{
     color: #FF5A21;
     font-size: 0.32rem;
+    display:inline-block;
+    width: 0.6rem;
 }
 .wendangList .ListCellContentLeftText
 {
     color: #2A79C8;
 }
 .wendangList .ListCellContentLeft{
-  width: 60%!important;
+  width: 55%!important;
 }
 .wendangList .rightContent
 {

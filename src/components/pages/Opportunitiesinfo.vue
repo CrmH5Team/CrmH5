@@ -368,11 +368,13 @@ export default {
 
         _self.id = _self.$route.params.id;
         _self.showPage = _self.$route.query.showPage || '';
-        if (_self.showPage === 1)
+       if (_self.showPage === 1)
         {
             _self.closeThisContent = lanTool.lanContent('944_关闭这个商业机会');
+            _self.ptitle = this.$route.query.infoName || lanTool.lanContent('885_增加机会');
         } else {
             _self.closeThisContent = lanTool.lanContent('945_关闭这个交易');
+            _self.ptitle =this.$route.query.infoName || lanTool.lanContent('884_增加交易');
         }
         var fromType = "Opportunitiesinfo";
 

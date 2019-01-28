@@ -197,8 +197,8 @@ export default {
         next();
     },
 
-    created:function(){
-      this.isFirstEnter = true;
+    created: function () {
+        this.isFirstEnter = true;
     },
     mounted: function () {},
     activated: function () {
@@ -373,9 +373,15 @@ export default {
                                 if (tool.isNullOrEmptyObject(url)) {
                                     return;
                                 }
+
+                                //点击列表是获取到属性名传给详情
+                                var infoName = null;
+                                    infoName = $(this).find(".item-first-div").text() || "";
                                 var parameter = {
-                                    showPage: _self.showPage
+                                    showPage: _self.showPage,
+                                    infoName:infoName
                                 };
+                                console.log("parameter:"+JSON.stringify(parameter));
                                 _self.$router.push({
                                     path: url,
                                     query: parameter

@@ -208,7 +208,7 @@ span.zhuyi{
 }
 
 .meetingDocList {
-    padding-left: 0.6rem;
+    /* padding-left: 0.6rem; */
 }
 
 .meetingDocList .docListCell {
@@ -229,7 +229,7 @@ span.zhuyi{
 }
 
 .docListCell .docListCellLeft {
-    width: 60%!important;
+    width: 55%!important;
     font-size: 0.28rem;
     color: #2A79C8;
 }
@@ -247,6 +247,8 @@ span.zhuyi{
 
 .docListCellLeftContent span {
     color: #FF5A21;
+    display: inline-block;
+    width: 0.6rem;
 }
 
 /* 分享模块 */
