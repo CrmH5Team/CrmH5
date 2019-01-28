@@ -182,7 +182,7 @@
                         <div class="airlinesName">
                             <div class="airlinesNameContent f12">{{item.CompanyID_Name}}</div>
                         </div>
-                        <div class="meetingRemark">
+                        <div v-show="item.Remark" class="meetingRemark">
                             <p class="f14">{{item.Remark}}</p>
                         </div>
                          <!-- 会议记录文档列表  -->
@@ -582,7 +582,7 @@ export default {
             var onlyView = '';
             //点击查看全部，把onlyView设置为true(其他情况不能设为false要设为空,不然下一个页面会Boolean()会转为true)
             if(!tool.isNullOrEmptyObject(AutoID)){
-                onlyView = true;
+                onlyView = _self.onlyView;
             }
             var parameter = {
                 OppID:oppID,

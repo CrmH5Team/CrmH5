@@ -353,7 +353,11 @@ margin-right: 5px;}
 box-sizing: border-box;line-height:14px;width:30px;font-size:10px!important;vertical-align:middle;text-align: center;
 margin-right: 5px;}
 .dealPipeline-list .itme-div-span{vertical-align: middle;}
-.dealPipeline-list .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;}
+.dealPipeline-list .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .dealPipeline-list .dete-div{padding-left:40px;color:#666666;}
 .dealPipeline-list .blue-color{color:#3cadf9;}
 .dealPipeline-list .padding-bottom-3{padding-bottom: 3px;}
