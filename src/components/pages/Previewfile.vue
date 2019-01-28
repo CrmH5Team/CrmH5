@@ -267,7 +267,7 @@ export default {
         //下载
         download:function(){
             if(tool.isFileImage(this.data.filename)) {
-                toast.show('长按保存图片');
+                toast.show(lanTool.lanContent('1003_长按保存图片'));
                 return false;
             }else{
                 /*
