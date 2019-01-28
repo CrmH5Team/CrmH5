@@ -324,6 +324,7 @@ textarea::placeholder
     padding: 0.2rem;
     color: #FF5A21 !important;
 }
+.wendangList .ListCell{padding-right:.3rem;}
 .wendangList .calc-fujian{
     color: #FF5A21;
     font-size: 0.32rem;
@@ -332,9 +333,12 @@ textarea::placeholder
 {
     color: #2A79C8;
 }
+.wendangList .ListCellContentLeft{
+  width: 60%!important;
+}
 .wendangList .rightContent
 {
-    width: calc(50% - 0.6rem) !important;
+    width: 40%!important;
     /* padding-right: 20px; */
 }
 .wendangList .deleteDoc{

@@ -14,12 +14,12 @@
             <div class="ListCellLeftIcon leftIconHidden"><span class="mui-icon calcfont calc-shijian"></span></div>
             <div class="ListCellContent">
                 <div class="ListCellContentLeft leftContent" @click="goFileInfo(fileItem)">
-                    <div class="ListCellContentLeftText"><span class="mui-icon calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
+                    <div class="ListCellContentLeftText f12"><span class="mui-icon calcfont calc-fujian"></span>{{fileItem.ObjectName}}</div>
                 </div>
                 <div class="ListCellContentRight rightContent">
                     <div class="ListCellContentRightText">{{fileItem.AddTime|MeetingTimeFormat}}</div>
                 </div>
-                <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div>
+                <!-- <div class="ListCellRightIcon deleteDoc iconHidden"><span class="mui-icon calcfont calc-delete"></span></div> -->
             </div>
         </div>
     </div>
