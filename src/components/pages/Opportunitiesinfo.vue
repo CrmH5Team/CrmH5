@@ -321,7 +321,8 @@ export default {
             MeetingNotice:[
 
             ],
-            seeMore:""
+            seeMore:"",
+            isInitiator:false,//是否当前记录的负责人（PS：只有负责人才可以操作单据）
         }
     },
 
@@ -408,12 +409,12 @@ export default {
             //清空页面数据
             tool.ClearControlData(function(){
 
-                //隐藏order 字段
+                //隐藏order字段
                 $(".MatterOtherObj").hide();
 
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, _self.id, function(){
-
+                    
                     //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
                     $("textarea").each(function (index, cur) {
                         $(cur).height('25');
@@ -473,25 +474,9 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, _self.id, function(data){
-
-                        //Status_InProgress = "38";
-                        //Status_Closed = "39";
-                        // console.log(data);
-                        // console.log('CurrentState:'+ data["CurrentState"]);
-                        if(data["CurrentState"] == "39"){
-                            //显示提示
-                            _self.showTips = true;
-                            //头部按钮
-                            _self.onlyView = true;
-                            _self.controlEdit();
-                        }else{
-                            //显示提示
-                            _self.showTips = false;
-                            //头部按钮
-                            _self.onlyView = false;
-                            _self.controlEdit();
-                        }
-
+                        //查询判断当前用户是否有操作单据的权限
+                        _self.initUserAccess(data);
+                        
                         //渲染会议记录列表
                         _self.iniMeetingNoteList(data);
 
@@ -696,7 +681,6 @@ export default {
                 });
             }, 0);
         },
-
         getDealObj : function(){
           var textTemp =  lanTool.lanContent("939_交易");
           var idTemp = 29;
@@ -821,7 +805,6 @@ export default {
             console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
-
         //只查看的情况 控制元素是否可修改
         controlEdit:function(){
             var _self = this;
@@ -834,8 +817,42 @@ export default {
                     $('.controlEdit').removeClass('disable');
                 })
             }
-        }
+        },
+        //判断当前用户是否可以操作当前单据
+        initUserAccess:function(oldData,myCallBack){
+            var _self = this;
+            var fromType = "9";
+            var fromID = _self.$route.params.id;
+            var currentState = data["CurrentState"];
 
+            //是否指定记录的负责人
+            tool.IsHasInitiator(fromType,fromID,function(data){
+                _self.isInitiator = data;
+
+                if(currentState == "39"){
+                    //显示提示
+                    _self.showTips = true;
+                    //头部按钮
+                    _self.onlyView = true;
+                    _self.controlEdit();
+                }else{
+                    //必须是当前单据的负责人才可以操作单据
+                    if(_self.isInitiator){
+                        //显示提示
+                        _self.showTips = false;
+                        //头部按钮
+                        _self.onlyView = false;
+                        _self.controlEdit();
+                    }else{
+                        //显示提示
+                        _self.showTips = false;
+                        //头部按钮
+                        _self.onlyView = true;
+                        _self.controlEdit();
+                    }
+                }
+            });
+        }
     }
 }
 </script>
