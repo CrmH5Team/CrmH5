@@ -29,7 +29,7 @@
                     </div>
                     <!-- meeting list -->
                     <div v-show="!notMeeting" id="calendarMeetingList" class="list meeting-list">
-                        <div v-for="meetingData in meetingDatas" :key="meetingData.AutoID" class="data-events-item f12" @click.stop="goInfoPage(meetingData.AutoID,$event)">
+                        <div v-for="meetingData in meetingDatas" :key="meetingData.AutoID" class="data-events-item f14" @click.stop="goInfoPage(meetingData.AutoID,$event)">
                             <div class="item-title">{{meetingData.MeetingTitle}}</div>
                             <div class="item-time f12">
                                 <span class="calcfont calc-gengxinshijian"></span>
