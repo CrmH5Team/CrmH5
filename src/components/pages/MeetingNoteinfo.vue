@@ -162,7 +162,7 @@ export default {
         lanTool.updateLanVersion();
         document.activeElement.blur();
         var _self = this;
-        _self.ptitle = this.$route.query.infoName || lanTool.lanContent('1001_会议记录详情');
+        _self.ptitle = this.$route.query.infoName || "lanTool.lanContent('1001_会议记录详情')";
         var id = _self.$route.params.id;
         var fromType = "MeetingNoteinfo";
         _self.oppID = _self.$route.query.OppID;

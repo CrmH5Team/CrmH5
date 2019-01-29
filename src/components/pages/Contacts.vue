@@ -454,13 +454,9 @@ export default {
                                     var infoName = null;
                                     //判断是Organizations列表还是contacts列表
                                     if ($(this).hasClass("contacts-item-block")) {
-                                        console.log("contacts");
                                         infoName = $(this).find(".item-first-div").text() || "";
-                                        console.log("contactsinfoName:" + infoName);
                                     } else {
-                                        console.log("Organizations");
                                         infoName = $(this).find("span.left-text:first").text() || "";
-                                        console.log("OrganizationsinfoName:" + infoName);
                                     }
 
                                     _self.$router.push({
