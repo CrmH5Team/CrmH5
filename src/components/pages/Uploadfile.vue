@@ -46,6 +46,9 @@ export default {
     mounted: function () {
         lanTool.updateLanVersion();
     },
+    activated:function(){
+    },
+
     methods: {
 
         //选择文件后触发 一次选择一张图片
@@ -142,7 +145,7 @@ export default {
                                 console.log(tool.getMessage(data));
                                 return true;
                             }
-                            
+
                             //刷新文档列表
                            _self.initDocList();
                         },
@@ -206,6 +209,19 @@ export default {
                         document.activeElement.blur();
                     }
                 });
+        },
+
+        //给删除按钮添加disable类名来控制是否可删除操作
+        controlDelete:function(onlyViewTemp){
+            var _self = this;
+             setTimeout(function(){
+                if(onlyViewTemp){
+                    $('.delete-icon').addClass('disable');
+                }else{
+                    $('.delete-icon').removeClass('disable');
+                }
+            }
+            ,0);
         }
     },
     deactivated: function () {

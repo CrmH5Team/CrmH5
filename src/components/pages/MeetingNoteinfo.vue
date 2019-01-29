@@ -101,7 +101,7 @@
 
                         </div>
 
-                        <Uploadfile v-show="!isAddNew" :fileListData=fileListData :fromID=fromIDNew :fromType=fromTypeNew></Uploadfile>
+                        <Uploadfile ref="uploadfile" v-show="!isAddNew" :fileListData="fileListData" :fromID="fromIDNew" :fromType="fromTypeNew" ></Uploadfile>
 
                         <Infofooter v-show="!isAddNew"> </Infofooter>
                     </div>
@@ -158,6 +158,7 @@ export default {
     },
     mounted: function () {},
     activated: function () {
+
         lanTool.updateLanVersion();
         document.activeElement.blur();
         var _self = this;
@@ -299,7 +300,7 @@ export default {
         handleOppID: function (oppID, isLock) {
             isLock = (isLock == undefined || isLock == null) ? false : isLock;
             var _self = this;
-            console.log(oppID);
+            // console.log(oppID);
             if (tool.isNullOrEmptyObject(oppID)) {
                 return;
             }
@@ -466,21 +467,18 @@ export default {
             }
 
             _self.fileListData = data["DocList"] || [];
+            _self.controlEdit();
         },
         //只查看的情况 控制元素是否可修改
         controlEdit: function () {
             var _self = this;
-
             if (_self.onlyView) {
-                _self.$nextTick(function () {
-                    $('.meetingNoteList,.controlEdit').addClass('disable');
-                })
-            } else {
-                _self.$nextTick(function () {
-                    $('.meetingNoteList,.controlEdit').removeClass('disable');
-
-                })
-            }
+                  $('.meetingNoteList').addClass('disable');
+                  _self.$refs.uploadfile.controlDelete(_self.onlyView);
+              } else {
+                  $('.meetingNoteList').removeClass('disable');
+                  _self.$refs.uploadfile.controlDelete(_self.onlyView);
+              }
         }
     }
 }
