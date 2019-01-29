@@ -167,7 +167,11 @@ export default {
         _self.oppID = _self.$route.query.OppID;
         _self.scheduleID = _self.$route.query.ScheduleID;
         _self.fromIDNew = _self.$route.params.id;
-        _self.onlyView = _self.$route.query.onlyView == "true" ? true : false;
+        _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
+
+        // console.log(typeof(_self.$route.query.onlyView));
+        // console.log(_self.onlyView);
+
         _self.controlEdit();
 
         _self.fromTypeNew = "40";
