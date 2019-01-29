@@ -377,6 +377,10 @@
 	 * 文档下载
 	 */
 	tool.Api_DocumentsHandle_DownloadFileFromDMS = "Api_DocumentsHandle_DownloadFileFromDMS";
+	/*
+	 * 文档删除
+	 */
+	tool.Api_DocumentsHandle_Delete = "Api_DocumentsHandle_Delete";
 
 	/*
 	 * 消息数量接口
