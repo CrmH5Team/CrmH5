@@ -280,7 +280,7 @@
 	 * 是否当前记录的负责人
 	 */
 	tool.Api_DataShareInfHandle_HasInitiator = "Api_DataShareInfHandle_HasInitiator";
-	
+
 	/*
 	 * 下拉数据接口
 	 */
@@ -1680,7 +1680,7 @@
                                 </div>
                                 <div class="item-div ">{Memo}</div>
                                 <div class="item-div f12 blue-color padding-bottom-3 padding-top-3">
-                                  <span>{CurrentState}</span>
+                                  <span class="{className}">{CurrentState}</span>
                                 </div>
                                 {MeetingInfo}
                             </div>
@@ -1710,7 +1710,7 @@
                                 {TheName}
                                 </div>
                                 <div class="item-div f12 blue-color padding-bottom-3 padding-top-3">
-                                  <span>{CurrentState}</span>
+                                  <span class="{className}">{CurrentState}</span>
                                 </div>
                                 <div class="item-div ">{Memo}</div>
                                 {MeetingInfo}
@@ -1812,7 +1812,12 @@
 
 					//若是dealPipeline
 					if(fromType == "dealPipeline" || fromType == "opportunities"){
-						tempStr = tool.FormatOppMeetingFieldValHtml(data[i],tempStr);
+              var className = '';
+              if(data[i].CurrentState == '已关闭'){
+                  className = 'closed'
+              }
+              tempStr = tempStr.ReplaceAll("{className}",className);
+						  tempStr = tool.FormatOppMeetingFieldValHtml(data[i],tempStr);
 					}
 
 					contentHtmlStr += tempStr;
@@ -1897,7 +1902,7 @@
 			return tempStr;
 		}
 
-		var meetingTitle = data["MeetingTitle"]||"";
+    var meetingTitle = data["MeetingTitle"]||"";
 
 		var beginTime = data["BeginTime"]||"";
 		var format = "d/MMM/yyyy HH:mm";
@@ -3219,7 +3224,7 @@
 
 		var urlTemp = tool.AjaxBaseUrl();
 		var controlName = tool.Api_DataShareInfHandle_HasInitiator;
-		
+
 		//传入参数
 		var jsonDatasTemp = {
 			CurrentLanguageVersion: lanTool.currentLanguageVersion,
