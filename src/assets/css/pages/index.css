@@ -89,11 +89,11 @@
   color: #000000;
   padding: 0;
 }
-.tips-box .upload-now{/*position: absolute;right:10px;*/}
+.tips-box .upload-now{flex:1;text-align: right;}
 
 .group-title{height: 40px;padding: 0 10px; display: flex;align-items :center;position: relative;}
 .title-text{font-weight: 600;display: inline-block;width: 85%;}
-.check-all{display: inline-block;/*position: absolute;right:10px;*/}
+.check-all{display: inline-block;flex:1;text-align: right;}
 
 
 /*列表视图*/
@@ -120,13 +120,13 @@
     /* display: none; */
     background-color: #FFFFFF;
 }
-.user-info{text-align: center;line-height:16px;padding:10px;}
+.user-info{text-align: center;line-height:1.3;padding:10px;}
 .user-img{
   display:inline-block;margin: 0.2rem auto 8px;
   width: 1.5rem;height: 1.5rem;
 }
-.user-name{font-weight: 600;padding-bottom: 5px;}
-.user-position{padding-bottom: 5px;}
+.userName{font-weight: 600;padding-bottom:5px;}
+/* .user-position{padding-bottom: 5px;} */
 
 .right-block-title{height:0.7rem;line-height:0.7rem;background:#e9cfae;padding-left:10px;font-weight: 600;}
 .right-block-items .block-item{line-height:0.7rem;box-sizing: border-box;padding:0 20px 0 10px;}

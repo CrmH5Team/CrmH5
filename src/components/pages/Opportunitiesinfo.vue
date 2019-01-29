@@ -416,7 +416,7 @@ export default {
 
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, _self.id, function(){
-                    
+
                     //渲染textarea 从新增事件进到详情是不会进入渲染数据的方法，这里得多加个textarea高度自适应
                     $("textarea").each(function (index, cur) {
                         $(cur).height('25');
@@ -483,7 +483,7 @@ export default {
                         });
                         //查询判断当前用户是否有操作单据的权限
                         _self.initUserAccess(data);
-                        
+
                         //渲染会议记录列表
                         _self.iniMeetingNoteList(data);
 
@@ -565,8 +565,8 @@ export default {
             oppID = Number(oppID)<=0?"":oppID;
             var scheduleID = "";
 
-            var onlyView = '';
-            //点击查看全部，把onlyView设置为true(其他情况不能设为false要设为空,不然下一个页面会Boolean()会转为true)
+            var onlyView = false;
+            //点击查看全部，把onlyView设置为true
             if(!tool.isNullOrEmptyObject(AutoID)){
                 onlyView = _self.onlyView;
             }
