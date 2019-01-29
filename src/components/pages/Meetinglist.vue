@@ -38,7 +38,7 @@ export default {
         return{
             title:lanTool.lanContent('1000_会议列表'),
             listData:[],
-            notData: false, //没数据
+            notData: true, //没数据
         }
     },
     created:function(){
