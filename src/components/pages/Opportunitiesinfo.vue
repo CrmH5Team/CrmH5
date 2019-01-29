@@ -13,7 +13,7 @@
             <div v-show="showTips" class="tipBox">
                 <div class="tipContent f12">
                     <span class="red">*</span>
-                    <p class="zhuyi lanText" data-lanid="897_请注意，该商业机会已关闭，仅允许被查看。"></p>
+                    <p class="zhuyi lanText" data-lanid="897_请注意，该记录已关闭，仅允许被查看。"></p>
                 </div>
             </div>
 
