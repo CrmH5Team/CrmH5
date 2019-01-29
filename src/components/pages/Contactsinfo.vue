@@ -304,7 +304,8 @@ export default {
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
+
         //如果是只查看，控制元素不可以更改
         _self.controlEdit();
 
@@ -384,7 +385,7 @@ export default {
                     tool.IniInfoData(fromType, id, function () {
                         //判断当前用户是否可以操作当前单据
                         _self.initUserAccess();
-                        
+
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
                             $(cur).height('25');
