@@ -209,6 +209,7 @@ export default {
         _self.groupToggle();
         _self.followToggle();
 
+        _self.title = lanTool.lanContent('783_商业');
         // _self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null;
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
