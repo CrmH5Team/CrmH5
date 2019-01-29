@@ -185,7 +185,7 @@ export default {
             isShowClose: false, //侧滑是否显示关闭这个商业机会选项
         }
     },
-    beforeRouteEnter: function (to, from, next) {        
+    beforeRouteEnter: function (to, from, next) {
         if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'contactsof') {
             to.meta.isBack = true;
         } else {
@@ -212,7 +212,7 @@ export default {
         this.ptitle = this.$route.query.infoName || lanTool.lanContent("792_添加公司");
         var _self = this;
 
-        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
 
         //如果是只查看，控制元素不可以更改
         _self.controlEdit();

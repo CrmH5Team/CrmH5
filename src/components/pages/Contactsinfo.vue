@@ -304,7 +304,8 @@ export default {
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-        _self.onlyView = Boolean(_self.$route.query.onlyView) || false;
+        _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
+
         //如果是只查看，控制元素不可以更改
         _self.controlEdit();
 
@@ -384,7 +385,7 @@ export default {
                     tool.IniInfoData(fromType, id, function () {
                         //判断当前用户是否可以操作当前单据
                         _self.initUserAccess();
-                        
+
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
                             $(cur).height('25');
@@ -495,14 +496,14 @@ export default {
         controlEdit:function(){
             var _self = this;
             //t为 ture 时为需要控制
+
             if(_self.onlyView){
-                _self.$nextTick(function(){
-                    $('.ContactList,.accessList').addClass('disable');
-                })
+
+                $('.ContactList,.accessList').addClass('disable');
+
             }else{
-                _self.$nextTick(function(){
-                    $('.ContactList,.accessList').removeClass('disable');
-                })
+                $('.ContactList,.accessList').removeClass('disable');
+
             }
         },
         //判断当前用户是否可以操作当前单据
@@ -513,7 +514,7 @@ export default {
 
             //是否指定记录的负责人
             tool.IsHasInitiator(fromType,fromID,function(data){
-                _self.onlyView = data;
+                _self.onlyView = !data;
             });
         }
     }

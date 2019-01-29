@@ -99,12 +99,12 @@ export default {
     };
   },
   watch: {
-    dealPipelineValue: function(newValue, oldValue) {
-      console.log(newValue);
-    },
-    opportunitiesValue: function(newValue, oldValue) {
-      console.log(newValue);
-    }
+    // dealPipelineValue: function(newValue, oldValue) {
+    //   console.log(newValue);
+    // },
+    // opportunitiesValue: function(newValue, oldValue) {
+    //   console.log(newValue);
+    // }
   },
   created: function() {
       this.field = this.$route.query.field;
@@ -182,7 +182,7 @@ export default {
           }else{
             selectedVal = _self.opportunitiesValue;
           }
-          
+
           if(tool.isNullOrEmptyObject(selectedVal)){
               return;
           }
@@ -193,7 +193,7 @@ export default {
               id : id,
               text : text
           };
-          
+
       }else{
           // //checkbox
           // var valArr = _self.checkboxValue || [];
@@ -285,7 +285,7 @@ export default {
             if (curPageNum == 0) {
               _self.dealPipelineData = data;
               _self.noDealData = false;
-              
+
             } else {
               _self.opportunitiesData = data;
               _self.noOppData = false;
