@@ -483,5 +483,9 @@ export default {
 
 .meetingRecord .ListCellContentLeftText {
     font-weight: 700;
+
+}
+.ListCellContentRightText{
+    text-align: right;
 }
 </style>
