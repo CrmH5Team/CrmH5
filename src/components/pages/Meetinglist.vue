@@ -9,7 +9,7 @@
 
           <div class="group-item-list meeting-list">
 
-                <div v-show="!notData" v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID,$event)">
+                <div v-show="!notData" v-for="item in listData" :key="item.AutoID" class="data-events-item f14" @click="goInfoPage(item.AutoID,$event)">
                     <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
