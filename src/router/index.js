@@ -187,15 +187,15 @@ const router =  new Router({
 
 //路由拦截
 router.beforeEach(function(to, from, next){
-    var registerCode = tool.RegisterCode();
-    if(!tool.isNullOrEmptyObject(registerCode)){
+    var registerCodeTemp = tool.RegisterCode();
+    if(!tool.isNullOrEmptyObject(registerCodeTemp)){
         next();
     }else{
-      // if(to.path == '/login'){
+      if(to.path == '/login'){
           next();
-      // }else{
-      //     next({path: '/login'});
-      // }
+      }else{
+          next({path: '/login'});
+      }
     }
 })
 
