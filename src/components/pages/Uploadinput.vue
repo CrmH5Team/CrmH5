@@ -18,8 +18,9 @@
                     <div id="tempFilechoose" class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                    <div id="curFileName" class="ListCellContentRightText right-break-word">{{fileName}}</div>
+                    <div id="curFileName" @click="triggerFileChoose" class="ListCellContentRightText right-break-word">{{fileName}}</div>
                   </div>
+                  <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
               </div>
           </div>
 
@@ -30,13 +31,13 @@
                       <div class="ListCellContentLeftText lanText" data-lanid="738_CRM文档类型"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
-                      <input type="text" 
-                          data-field="100205" 
-                          data-lanid="738_CRM文档类型" 
-                          data-fieldControlType="picker" 
-                          data-fieldVal="" 
-                          Code="DropDowList_DtbAllTypes" 
-                          TypeValue="CRMDocumentType" 
+                      <input type="text"
+                          data-field="100205"
+                          data-lanid="738_CRM文档类型"
+                          data-fieldControlType="picker"
+                          data-fieldVal=""
+                          Code="DropDowList_DtbAllTypes"
+                          TypeValue="CRMDocumentType"
                           class="ListCellContentRightText"/>
                   </div>
                   <div class="ListCellRightIcon"><span class=" calcfont calc-you"></span></div>
@@ -47,9 +48,9 @@
                 <div class="ListCellLeftIcon textLeftIcon"><span class=" calcfont calc-bianji1"></span></div>
                 <div class="ListCellLeftText">
                     <p class="textareaP">
-                        <textarea data-field="description" 
-                            data-fieldControlType="textareaInput" 
-                            class="lanInputPlaceHolder" 
+                        <textarea data-field="description"
+                            data-fieldControlType="textareaInput"
+                            class="lanInputPlaceHolder"
                             data-lanid="985_描述"></textarea>
                     </p>
                 </div>
@@ -98,7 +99,7 @@ export default {
         //清空页面数据
         tool.ClearControlData(function(){
             //渲染控件
-            tool.InitiateInfoPageControl(_self, -1, function(){ 
+            tool.InitiateInfoPageControl(_self, -1, function(){
                 //渲染textarea
                 $("textarea").each(function (index, cur) {
                     $(cur).height('25');
@@ -146,7 +147,7 @@ export default {
         },
         saveHandler:function(){
             var _self = this;
-            
+
             //modify by Dylan 构造form表单数据
             //传入参数
             var urlTemp = tool.AjaxBaseUrl();

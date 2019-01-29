@@ -36,7 +36,7 @@
                                         </li>
                                         <li>
                                             <label class="lanText" data-lanid= '985_描述'></label>
-                                            <p  data-field="notecontent" style="height:0.78rem;">{{data.ObjectRemark}}</p>
+                                            <p  data-field="notecontent">{{data.ObjectRemark}}</p>
                                         </li>
                                         <li>
                                             <label class="lanText" data-lanid= '838_上传时间'></label>
@@ -175,6 +175,7 @@ export default {
                     $this.numPages = pdf.numPages;
                     $this.thePDF = pdf;
                     $this.LoadFile($this.currPage);
+
                 }, function(reason) {
                     tool.hideLoading();
                     console.error(reason);
@@ -186,9 +187,11 @@ export default {
                     if($this.currPage == 0) {
                         $this.currPage = 1;
 
-                        toast.show(lanTool.lanContent("288_已经是第一页！"));
+                        // tool.showText(lanTool.lanContent("288_已经是第一页！"));
+                        // $('.pre-btn').hide();
                     } else {
                         $this.LoadFile($this.currPage);
+                        // $('.pre-btn').show();
                     }
 
                 })
@@ -197,9 +200,11 @@ export default {
                     $this.currPage++;
                     if($this.numPages < $this.currPage) {
                         $this.currPage = $this.numPages;
-                        toast.show(lanTool.lanContent("287_已经是最后一页！"));
+                        // tool.showText(lanTool.lanContent("287_已经是最后一页！"));
+                        // $('.next-btn').hide();
                     } else {
                         $this.LoadFile($this.currPage);
+                        // $('.next-btn').show();
                     }
 
                 })
@@ -235,13 +240,14 @@ export default {
             if(self.thePDF == null) {
                 return false;
             }
+
             self.thePDF.getPage(numPage).then(function getData(page) {
                 var scale = 1;
                 var viewport = page.getViewport(scale);
 
                 // Prepare canvas using PDF page dimensions
                 $(".drawerFile_content").html(
-                    '<canvas id="the-canvas' + self.currPage + '" content="wuser-scalable=yes,width==device-width,minimum-scale=1.0"></canvas><div class="btn-div"><span class="canvas-btn pre-btn calcfont calc-shangyiye"></span><span class="canvas-btn next-btn calcfont calc-xiayiye"></span></div>'
+                    '<canvas id="the-canvas' + self.currPage + '" content="wuser-scalable=yes,width==device-width,minimum-scale=1.0"></canvas><div class="btn-div"><div class="btn-div-div"><span class="canvas-btn pre-btn calcfont calc-shangyiye"></span></div><div class="btn-div-div"><span class="canvas-btn next-btn calcfont calc-xiayiye"></span></div></div>'
                 );
                 var canvas = document.getElementById('the-canvas' + self.currPage + '');
                 var winRatio = ($(window).width() / viewport.width);
@@ -256,6 +262,18 @@ export default {
                     "margin-top": ($(window).height() - canvas.height * winRatio) / 4 + "px"
                 });
 
+                if(numPage == 1){
+                  $('.pre-btn').addClass('opacity');
+                }else{
+                  $('.pre-btn').removeClass('opacity');
+                }
+
+                if(numPage == self.numPages){
+                  $('.next-btn').addClass('opacity');
+                }else{
+                  $('.next-btn').removeClass('opacity');
+                }
+
                 //Render PDF page into canvas context
                 var renderContext = {
                     canvasContext: context,
@@ -267,7 +285,7 @@ export default {
         //下载
         download:function(){
             if(tool.isFileImage(this.data.filename)) {
-                toast.show(lanTool.lanContent('1003_长按保存图片'));
+                tool.showText(lanTool.lanContent('1003_长按保存图片'));
                 return false;
             }else{
                 /*
@@ -299,7 +317,6 @@ export default {
 
 <style scoped>
 .FileAttrlist{height: 100%;}
-.FileAttrlist p{word-wrap:break-word ;}
 
 header{position: fixed;width: 100%;left: 0;top: 0;z-index:1;}
 header.mui-bar {
@@ -400,7 +417,8 @@ header a {
 }
 
 .FileAttrlist p {
-	min-height: 0.26rem;
+  line-height:1.3;
+  word-wrap:break-word ;
 	margin-bottom: 0;
 	color: #333;
 	list-style: none;
@@ -410,20 +428,32 @@ header a {
 
 
 
+
 </style>
 
 <style>
 .weui-photo-browser-modal{z-index:9!important;}
+
+/* .pre-btn{margin-right:20px;} */
+
 .btn-div{
   position: absolute;left:0;right:0;
   bottom:0.4rem;z-index:3;
   display:flex;justify-content:center;
   line-height:0.4rem;
-  text-align: center;opacity: 0.5;
-
+  text-align: center;
 }
-.canvas-btn{color:333;padding:0.2rem;border-radius:2px;margin:0 0.2rem;font-size:0.6rem;}
-/* .pre-btn{margin-right:20px;} */
+.btn-div .btn-div-div{flex:1;}
+.btn-div .canvas-btn{
+  color:333;
+  padding:0.2rem;
+  opacity: 0.5;
+/* border-radius:2px; */
+  margin:0 0.2rem;font-size:0.6rem;}
+
+.btn-div .pre-btn{margin-left:60%;}
+.btn-div .next-btn{margin-right:60%;}
+.btn-div .opacity{opacity: 0.2;}
 
 </style>
 
