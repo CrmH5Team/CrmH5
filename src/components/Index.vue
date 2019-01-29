@@ -544,7 +544,7 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    console.log(data);
+                    // console.log(data);
                     tool.hideLoading();
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));

@@ -803,7 +803,7 @@ export default {
             if(tool.isNullOrEmptyObject(data)){
                 return ;
             }
-            console.log(data);
+            // console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
         //只查看的情况 控制元素是否可修改

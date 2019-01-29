@@ -381,7 +381,7 @@ export default {
                                     showPage: _self.showPage,
                                     infoName:infoName
                                 };
-                                console.log("parameter:"+JSON.stringify(parameter));
+                                // console.log("parameter:"+JSON.stringify(parameter));
                                 _self.$router.push({
                                     path: url,
                                     query: parameter
