@@ -195,6 +195,7 @@ export default {
         initUserInfo: function () {
             //赋用户信息
             var curUser = tool.CurUser();
+            // console.log("curUser:"+JSON.stringify(curUser));
             if (tool.isNullOrEmptyObject(curUser)) {
                 return;
             }
@@ -213,6 +214,7 @@ export default {
         },
         //初始化多语言
         initLV: function () {
+            var _self=this;
             //切换语言
             $(".language-type").off('click').on("click", function (event) {
                 var target = $(event.target);
@@ -234,6 +236,7 @@ export default {
                 lanTool.setLan(curLV, function () {
                     lanTool.updateLanVersion();
                 });
+                _self.initUserInfo();
             });
 
             //写入当前多语言值
