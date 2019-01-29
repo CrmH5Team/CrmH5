@@ -238,8 +238,8 @@ export default {
         _self.changePos();
         _self.followToggle();
         _self.watchScroll();
-
         lanTool.updateLanVersion();
+        _self.title = lanTool.lanContent("791_联系人");
 
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
