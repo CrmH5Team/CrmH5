@@ -276,7 +276,11 @@
 	 * 数据分享接口
 	 */
 	tool.Api_DataShareInfHandle_SaveOrUpdate = "Api_DataShareInfHandle_SaveOrUpdate";
-
+	/*
+	 * 是否当前记录的负责人
+	 */
+	tool.Api_DataShareInfHandle_HasInitiator = "Api_DataShareInfHandle_HasInitiator";
+	
 	/*
 	 * 下拉数据接口
 	 */
@@ -3209,6 +3213,9 @@
 			return;
 		}
 
+		var urlTemp = tool.AjaxBaseUrl();
+		var controlName = tool.Api_DataShareInfHandle_HasInitiator;
+		
 		//传入参数
 		var jsonDatasTemp = {
 			CurrentLanguageVersion: lanTool.currentLanguageVersion,

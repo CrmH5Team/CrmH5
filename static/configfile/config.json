@@ -17,6 +17,7 @@
 	"Api_ContactsHandle_Delete":"Api_ContactsHandle_Delete",
 	"Api_DataShareInfHandle_Query":"Api_DataShareInfHandle_Query",
 	"Api_DataShareInfHandle_SaveOrUpdate":"Api_DataShareInfHandle_SaveOrUpdate",
+	"Api_DataShareInfHandle_HasInitiator":"Api_DataShareInfHandle_HasInitiator",
 	"Api_MeetingHandle_QueryCalendarMonthEventNode":"Api_MeetingHandle_QueryCalendarMonthEventNode",
 	"Api_MeetingHandle_QueryCalendarGetMeetingByDate":"Api_MeetingHandle_QueryCalendarGetMeetingByDate",
 	"Api_MeetingHandle_SaveOrUpdate":"Api_MeetingHandle_SaveOrUpdate",
