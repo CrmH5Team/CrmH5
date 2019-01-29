@@ -99,7 +99,7 @@ export default {
         return {
             title:lanTool.lanContent('866_通知'),
             listData:[],
-            notData: true, //没数据
+            notData: false, //没数据
 
             titleLV:lanTool.lanContent("862_标题"),
             companyLV:lanTool.lanContent("995_公司"),

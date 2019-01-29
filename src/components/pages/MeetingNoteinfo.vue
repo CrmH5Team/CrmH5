@@ -81,7 +81,7 @@
                                 </div>
                             </div>
 
-                            <div class="ListCell visible">
+                            <div class="ListCell">
                                 <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                                 <div class="ListCellLeftText">
                                     <p class="textareaP">
