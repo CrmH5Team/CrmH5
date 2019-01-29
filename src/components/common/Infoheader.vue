@@ -16,7 +16,8 @@
             <!-- <a v-if="operation && !onlyView" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
             <a v-if="!onlyView && operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
-            <a v-if="!onlyView" @click="delClick" class="calcfont calc-shanchu right" id="delete"></a>
+            <a v-if="!onlyView && !notDelete" @click="delClick" class="calcfont calc-shanchu right" id="delete"></a>
+
 
             <!-- onlyMore只有Opportunitiesinfo文件用到 不传默认为fase  -->
             <!-- <a v-if="onlyMore" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
@@ -42,6 +43,7 @@ export default {
         isAddNew:Boolean, //是否是新增状态, 父组件不传默认为false
         operation:Boolean, //侧滑是否可操作, 父组件不传默认为false
         onlyView:Boolean, //标志页面只能查看,父组件不传默认为false
+        notDelete:Boolean, //控制删除按钮是否显示,父组件不传默认为false（显示）
         // onlyMore:Boolean,   //只有Opportunitiesinfo文件用到 不传默认为fase
 
         rightPanelFromType:String,

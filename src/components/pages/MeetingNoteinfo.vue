@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
+    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :notDelete="notDelete" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -127,6 +127,8 @@ export default {
             isAddNew: false, //是否添加新纪录
             operation: false, //控制详情页header按钮，ture:显示可操作，false:隐藏
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
+            notDelete:true, //控制头部删除按钮 true:不显示
+
             isFirstEnter: false, //是否首次进入
             oppID: "", //销售机会ID
             scheduleID: "", //会议ID
@@ -151,7 +153,7 @@ export default {
     //     next();
     // },
     created: function () {
-        console.log('noteinfo created');
+        // console.log('noteinfo created');
         this.isFirstEnter = true;
     },
     mounted: function () {},
