@@ -1813,7 +1813,7 @@
 					//若是dealPipeline
 					if(fromType == "dealPipeline" || fromType == "opportunities"){
               var className = '';
-              if(data[i].CurrentState == '已关闭'){
+              if(data[i].CurrentState == lanTool.lanContent("955_已关闭")){
                   className = 'closed'
               }
               tempStr = tempStr.ReplaceAll("{className}",className);
