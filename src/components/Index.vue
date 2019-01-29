@@ -236,15 +236,39 @@ export default {
                 lanTool.setLan(curLV, function () {
                     lanTool.updateLanVersion();
                 });
-                _self.initUserInfo();
+
+                _self.$router.go(0); //todo 以后增加刷新机制以后增加刷新机制
             });
 
             //写入当前多语言值
-            $(
+            // $(
+            //     "div.language-type[data-lantype='" +
+            //     lanTool.currentLanguageVersion +
+            //     "']:first"
+            // ).trigger("click");
+            var target =
+             $(
                 "div.language-type[data-lantype='" +
                 lanTool.currentLanguageVersion +
                 "']:first"
-            ).trigger("click");
+            );
+            if (!target.hasClass("language-type")) {
+                    target = target.closest("div.language-type");
+                    if (target == undefined) {
+                        return;
+                    }
+            }
+            if (!target.hasClass("language-show")) {
+                target
+                    .addClass("language-show")
+                    .siblings(".language-type")
+                    .removeClass("language-show");
+            }
+
+            var curLV = target.attr("data-lantype");
+            lanTool.setLan(curLV, function () {
+                lanTool.updateLanVersion();
+            });
         },
         // 发送邮件开关
         sendEmailSwitch: function (e) {

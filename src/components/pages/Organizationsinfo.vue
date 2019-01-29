@@ -185,7 +185,7 @@ export default {
             isShowClose: false, //侧滑是否显示关闭这个商业机会选项
         }
     },
-    beforeRouteEnter: function (to, from, next) {
+    beforeRouteEnter: function (to, from, next) {        
         if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'contactsof') {
             to.meta.isBack = true;
         } else {
@@ -196,10 +196,10 @@ export default {
     // beforeRouteLeave: function (to, from, next) {
     //     console.log("to:"+ to.name);
     //     console.log("from:"+from.name);
-    //     if (to.name == 'contacts') {
-    //         console.log("destroy");
-    //         this.$destroy();
-    //     }
+    //     // if (to.name == 'contacts') {
+    //     //     console.log("destroy");
+    //     //     this.$destroy();
+    //     // }
     //     next();
     // },
     created: function () {
@@ -431,10 +431,6 @@ export default {
             //清空全局变量
             eventBus.selectListData = null;
         }
-
-
-
-
     },
     methods: {
         //跳转到联系人界面事件
@@ -499,7 +495,6 @@ export default {
                     tool.DeleteData(fromType, id, _self, function () {});
                 });
             }, 0);
-
         },
         //只查看的情况 控制元素是否可修改
         controlEdit:function(){
@@ -515,9 +510,7 @@ export default {
                 })
             }
         }
-
     }
-
 }
 </script>
 
