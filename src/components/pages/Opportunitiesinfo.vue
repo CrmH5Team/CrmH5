@@ -824,7 +824,7 @@ export default {
             var _self = this;
             var fromType = "9";
             var fromID = _self.$route.params.id;
-            var currentState = data["CurrentState"];
+            var currentState = oldData["CurrentState"];
 
             //是否指定记录的负责人
             tool.IsHasInitiator(fromType,fromID,function(data){

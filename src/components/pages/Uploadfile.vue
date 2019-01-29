@@ -87,7 +87,6 @@ export default {
             };
         },
 
-
         //弹出文件上传
         actionSheet: function () {
             $("#selectFile").trigger('click');
@@ -103,12 +102,113 @@ export default {
         },
 
         //删除单个文件
-        deleteDoc:function(id){
-            alert('delete');
+        deleteDoc:function(data){
+            // console.log(data);
+            var _self = this;
+            var autoID = data["AutoID"] || "";
+            if(tool.isNullOrEmptyObject(autoID)){
+                return;
+            }
+
+            var idArr = [];
+            idArr.push(autoID);
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_DocumentsHandle_Delete;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: JSON.stringify(idArr)
+            };
+
+            tool.showConfirm(
+                lanTool.lanContent("593_您确定要删除数据吗？"),
+                function() {
+                    tool.showLoading();
+
+                    $.ajax({
+                        async: true,
+                        type: "post",
+                        url: urlTemp,
+                        data: jsonDatasTemp,
+                        success: function (data) {
+                            tool.hideLoading();
+                            data = tool.jObject(data);
+                            // console.log(data);
+                            if (data._ReturnStatus == false) {
+                                tool.showText(tool.getMessage(data));
+                                console.log(tool.getMessage(data));
+                                return true;
+                            }
+                            
+                            //刷新文档列表
+                           _self.initDocList();
+                        },
+                        error: function (jqXHR, type, error) {
+                            console.log(error);
+                            tool.hideLoading();
+                            return true;
+                        },
+                        complete: function () {
+                            //tool.hideLoading();
+                            //隐藏虚拟键盘
+                            document.activeElement.blur();
+                        }
+                    });
+                },
+                function() {}
+            );
+        },
+        initDocList:function(){
+            var _self = this;
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_DocumentsHandle_Query;
+
+            // console.log("FromTypeID:"+_self.fromType);
+            // console.log("FromID:"+_self.fromID);
+
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                FromTypeID:_self.fromType,
+                FromID:_self.fromID
+            };
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                        data = tool.jObject(data);
+                        // console.log(data);
+                        if (data._ReturnStatus == false) {
+                            tool.hideLoading();
+                            tool.showText(tool.getMessage(data));
+                            console.log(tool.getMessage(data));
+                            return true;
+                        }
+
+                        data = data._OnlyOneData.Rows || [];
+                        _self.$parent.fileListData = data;
+                    },
+                    error: function (jqXHR, type, error) {
+                        console.log(error);
+                        return true;
+                    },
+                    complete: function () {
+                        //tool.hideLoading();
+                        //隐藏虚拟键盘
+                        document.activeElement.blur();
+                    }
+                });
         }
     },
     deactivated: function () {
-
         tool.hideLoading();
     }
 
