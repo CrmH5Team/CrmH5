@@ -169,6 +169,7 @@
 }
 .ListCellContentRight{
     width: 1.2rem;
+    text-align: right;
 }
 .ListCellContentRightText{
     position: absolute;

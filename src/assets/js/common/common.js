@@ -1744,9 +1744,9 @@
                             <div class="item-block contacts-item-block">
                                 <div class="item-div item-first-div">{EnglishName}</div>
                                 <div class="item-div">{Title}</div>
-                                <div class="item-div"><span>{CompanyID}</span><span class="right">{CountryName}</span></div>
+                                <div class="item-div"><span class="left-text max60">{CompanyID}</span><span class="right-text max35">{CountryName}</span></div>
                                 <div class="item-div">
-                                  <span>{Email}</span><span class="right">{TelPhone}</span>
+                                  <span class="left-text">{Email}</span><span class="right-text">{TelPhone}</span>
                                 </div>
                                 <div class="item-div">{BusinessType},{DepartmentName}</div>
                             </div>
@@ -1858,7 +1858,7 @@
   <div class="item-new">NEW</div>
   <span class="itme-div-span">{MeetingTitle}</span>
 </div>
-<div class="item-div dete-div padding-top-3">
+<div class="item-div dete-div padding-top-3 f12">
   <span>{BeginTime}</span>
 </div>`;
   //获取销售机会会议记录字段值
@@ -3218,7 +3218,7 @@
 			FromType: fromType,
 			FromID: fromID
 		};
-		
+
 		$.ajax({
 			async: true,
 			type: "post",
