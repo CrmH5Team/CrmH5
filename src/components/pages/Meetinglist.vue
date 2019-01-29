@@ -9,7 +9,7 @@
 
           <div class="group-item-list meeting-list">
 
-                <div v-show="!notData" v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID)">
+                <div v-show="!notData" v-for="item in listData" :key="item.AutoID" class="data-events-item f12" @click="goInfoPage(item.AutoID,$event)">
                     <div class="item-title">{{item.MeetingTitle}}</div>
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
@@ -97,7 +97,7 @@ export default {
             });
         },
         //点击跳转到会议记录页
-        goInfoPage:function(scheduleID){
+        goInfoPage:function(scheduleID,el){
             if(tool.isNullOrEmptyObject(scheduleID)){
                 return;
             }
@@ -106,13 +106,19 @@ export default {
             var meetingNoticeID = "-1";
             var url = "/MeetingNoteinfo/" + meetingNoticeID;
             var oppID = "";
-            
+             //获取会议记录详情的标题
+            var infoName = null;
+            if ($(el.target).hasClass("data-events-item")) {
+                infoName = $(el.target).find(".item-title").text();
+            } else {
+                infoName = $(el.target).parents(".data-events-item").children(".item-title").text() || "";
+            }
             scheduleID = Number(scheduleID)<=0?"":scheduleID;
             var parameter = {
                 OppID:oppID,
-                ScheduleID:scheduleID
+                ScheduleID:scheduleID,
+                infoName:infoName
             };
-
             _self.$router.push({
                 path: url,
                 query: parameter
