@@ -15,7 +15,7 @@
               </div>
               <div class="ListCellContent ">
                   <div class="ListCellContentLeft leftContent">
-                    <div id="tempFilechoose" @click="triggerFileChoose()" class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
+                    <div id="tempFilechoose" class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
                     <div id="curFileName" class="ListCellContentRightText right-break-word">{{fileName}}</div>
