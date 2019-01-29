@@ -291,7 +291,7 @@ label.radios-label input:disabled:checked + .radios:after {
 
 /*列表页面 meeting 模块下 item style */
 .meeting-list{}
-.meeting-list .data-events-item{ line-height:20px;background: #fff;padding: 5px 10px; position: relative;}
+.meeting-list .data-events-item{ line-height:1.3;background: #fff;padding: 5px 10px; position: relative;}
 .meeting-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
   left: 0; top: 0; position: absolute;
 }
@@ -299,12 +299,12 @@ label.radios-label input:disabled:checked + .radios:after {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;}
-.meeting-list .item-time{color:#333;}
+.meeting-list .item-time{color:#333;padding-top:5px;}
 .meeting-list .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
 
 .meeting-list .trip-time-text{font-size:11px;color:#666666;}
-.meeting-list .item-address{font-weight: 600;}
-.meeting-list .item-initiator{line-height: 1.3;}
+.meeting-list .item-address{font-weight: 600;padding-top:5px;}
+.meeting-list .item-initiator{line-height: 1.3;padding-top:5px;}
 /* .meeting-list .data-events p{height: 50px;line-height: 50px;} */
 
 

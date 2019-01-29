@@ -1,36 +1,38 @@
 <template>
   <div id="Body">
-    <div id="UserName" class="UserInfo">
-      <i class="calcfont calc-User"></i>
-      <input
-        id="UserNameVal"
-        class="UserInfoVal lanInputPlaceHolder"
-        data-lanid="771_请输入用户名"
-        type="text"
-        placeholder
-        v-model="userName"
-      >
+    <div class="box">
+        <div id="UserName" class="UserInfo">
+          <i class="calcfont calc-User"></i>
+          <input
+            id="UserNameVal"
+            class="UserInfoVal lanInputPlaceHolder"
+            data-lanid="771_请输入用户名"
+            type="text"
+            placeholder
+            v-model="userName"
+          >
+        </div>
+        <div id="Pwd" class="UserInfo">
+          <i class="calcfont calc-Pwd"></i>
+          <input
+            ref="pwd"
+            id="PwdVal"
+            class="UserInfoVal lanInputPlaceHolder"
+            data-lanid="772_请输入密码"
+            type="password"
+            placeholder
+            v-model="userPwd"
+          >
+          <i @click="showPwd" class="calcfont calc-display eyes" :class="{'active-eyes':activeEyes}"></i>
+        </div>
+        <div
+          @click="login"
+          id="LoginBtn"
+          class="LoginBtn lanText"
+          data-lanid="773_登录"
+          :class="{disable:isDisable}"
+        ></div>
     </div>
-    <div id="Pwd" class="UserInfo">
-      <i class="calcfont calc-Pwd"></i>
-      <input
-        ref="pwd"
-        id="PwdVal"
-        class="UserInfoVal lanInputPlaceHolder"
-        data-lanid="772_请输入密码"
-        type="password"
-        placeholder
-        v-model="userPwd"
-      >
-      <i @click="showPwd" class="calcfont calc-display eyes" :class="{'active-eyes':activeEyes}"></i>
-    </div>
-    <div
-      @click="login"
-      id="LoginBtn"
-      class="LoginBtn lanText"
-      data-lanid="773_登录"
-      :class="{disable:isDisable}"
-    ></div>
   </div>
 </template>
 
@@ -97,11 +99,11 @@ export default {
           }
 
           data = data._OnlyOneData || {};
-          
+
           //注册码
           var _registerCode = data[tool.cache_RegisterCode] || "";
           tool.setSessionStorageItem(tool.cache_RegisterCode, _registerCode);
-          
+
           //用户名
           var _userName = data["UserName"] || "";
           tool.setSessionStorageItem(tool.cache_UserName, _userName);
@@ -113,7 +115,7 @@ export default {
           tool.setSessionStorageItem(tool.cache_loginUserName, self.userName || "");
           tool.setSessionStorageItem(tool.cache_loginPwd, self.userPwd || "");
 
-          self.$router.push("/index");          
+          self.$router.push("/index");
 
           //隐藏虚拟键盘
           document.activeElement.blur();
@@ -148,6 +150,7 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
 }
+.box{padding-top:70%;}
 .eyes {
   position: absolute;
   right: 0rem;
@@ -174,10 +177,12 @@ export default {
   padding-right: 0.48rem;
   padding-top: 0.4rem;
   position: relative;
+  display:flex;
+  align-items: center;
 }
 .UserInfo > .calcfont {
   font-size: 0.48rem;
-  height: 0.48rem;
+  /* height: 0.48rem; */
   width: 0.48rem;
   display: block;
   float: left;
@@ -185,8 +190,8 @@ export default {
   margin-left: -0.48rem;
 }
 .UserInfoVal {
-  height: 0.8rem !important;
-  line-height: 0.4rem;
+  /* height: 0.8rem !important; */
+  line-height:1.3;
   width: 100%;
   box-sizing: border-box !important;
   border: none !important;
@@ -208,7 +213,7 @@ export default {
   margin-top: -0.24rem !important;
 }
 #UserName {
-  padding-top: 70%;
+  /* padding-top: 70%; */
 }
 #UserName > .mui-icon.mui-icon-clear {
   color: #c6d1e5 !important;
