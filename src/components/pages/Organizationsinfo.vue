@@ -443,10 +443,11 @@ export default {
                 return;
             }
             var urlTemp = "/contactsof";
-
+           var infoName =this.$route.query.infoName ||"";
             var parameter = {
                 companyID: companyID,
-                companyName: companyName
+                companyName: companyName,
+                infoName:infoName
             };
             _self.$router.push({
                 path: urlTemp,

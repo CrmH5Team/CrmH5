@@ -458,8 +458,10 @@ export default {
 
             //设置公司信息页面只读
             var urlTemp = "/organizationsinfo/" + companyID;
+            var infoName =this.$route.query.infoName ||"";
             var parameter = {
-                onlyView: true
+                onlyView: true,
+                infoName:infoName
             };
             _self.$router.push({
                 path: urlTemp,

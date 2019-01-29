@@ -450,6 +450,7 @@ export default {
             var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
             var oppID = "";
             var scheduleID = _self.$route.params.id||"";
+            var infoName = _self.$route.query.infoName ||"";
             if(tool.isNullOrEmptyObject(scheduleID)){
                 return;
             }
@@ -457,7 +458,8 @@ export default {
             var parameter = {
                 OppID:oppID,
                 ScheduleID:scheduleID,
-                onlyView:true
+                onlyView:true,
+                infoName:infoName
             };
 
             _self.$router.push({
