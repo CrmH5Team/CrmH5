@@ -8,13 +8,14 @@
     </header>
 
     <div class="page-content">
+
           <div class="ListCell file-name-row">
               <div class="ListCellLeftIcon">
                   <span class=" calcfont calc-wenjian"></span>
               </div>
               <div class="ListCellContent ">
                   <div class="ListCellContentLeft leftContent">
-                    <div class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
+                    <div id="tempFilechoose" @click="triggerFileChoose()" class="ListCellContentLeftText lanText" data-lanid="986_已选文件"></div>
                   </div>
                   <div class="ListCellContentRight rightContent">
                     <div id="curFileName" class="ListCellContentRightText right-break-word">{{fileName}}</div>
@@ -53,12 +54,13 @@
                     </p>
                 </div>
         </div>
+         <form id="uploadForm" style="display:none;">
+            <input ref="fileChoose" v-on:change="inputFiles()" class="fileInput" type="file" name="img" id="selectFile" />
+        </form>
     </div>
 </div>
 
 </template>
-
-
 
 
 
@@ -72,6 +74,7 @@ export default {
             fileName:"",
             fromID:"",
             fromType:"",
+            formTemp:null,
         }
     },
     beforeRouteEnter:function(to, from, next){
@@ -89,8 +92,6 @@ export default {
         document.activeElement.blur();
 
         var _self = this;
-        _self.file = _self.$route.query.file;
-        _self.fileName = _self.$route.query.fileName;
         _self.fromID = _self.$route.query.fromID;
         _self.fromType = _self.$route.query.fromType;
 
@@ -107,12 +108,46 @@ export default {
         });
     },
     methods:{
+        triggerFileChoose:function() {
+            var _self = this;
+            _self.$refs.fileChoose.click();
+        },
+        //选择文件后触发
+        inputFiles: function () {
+            var _self = this;
+            tool.showLoading();
+            var file = _self.$refs.fileChoose.files[0] || [];
+            if (file.length == 0){
+                return;
+            }
+
+            //判断文件不能超过限定的大小
+            if(file.size>tool.FileMaxSiz){
+                tool.hideLoading();
+                var sizeStr = tool.fileSizeFormat(tool.FileMaxSiz);
+                var msg = lanTool.lanContent("999_文件大小不能超过！");
+                msg = msg.replace("{0}",sizeStr);
+                console.log(msg);
+                tool.showText(msg);
+                return;
+            }
+
+            tool.hideLoading();
+            //写入文件名
+            _self.fileName = file.name;
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e){
+                _self.file =  e.target.result;
+            };
+        },
         backHandler: function () {
             this.$router.back(-1);
         },
         saveHandler:function(){
             var _self = this;
             
+            //modify by Dylan 构造form表单数据
             //传入参数
             var urlTemp = tool.AjaxBaseUrl();
 		    var controlName = tool.Api_DocumentsHandle_UploadDocuments2DMS;
@@ -128,17 +163,7 @@ export default {
             jsonDatasTemp["description"] = $("[data-field='description']").val()||"";
             jsonDatasTemp["100205"] = $("[data-field='100205']").val()||"";
             jsonDatasTemp["fileBase64Str"] = _self.file;
-
-            //构造表单数据
-            // var formData = new FormData();
-            // formData.append('file', $this.file);
-            // formData.append("jsonDatas",JSON.stringify(jsonDatas));
-
-            // var formData = new FormData();
-            // formData.append('file', _self.file);
-            // for (var key in jsonDatasTemp) {
-            //     formData.append(key, jsonDatasTemp[key]);
-            // }
+            //end modify
 
             tool.showLoading();
             $.ajax({
@@ -147,6 +172,7 @@ export default {
                 async: true,
                 cache: false,
                 data: jsonDatasTemp,
+
                 success: function (data) {
                     tool.hideLoading();
                     data = tool.jObject(data);

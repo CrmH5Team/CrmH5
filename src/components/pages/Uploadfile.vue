@@ -25,14 +25,6 @@
         </div>
     </div>
 
-    <form id="uploadForm" style="display:none;">
-      <!-- multiple="multiple"属性控制多选，默认为单选 -->
-        <input ref="fileChoose" v-on:change="inputFiles" class="fileInput" type="file" name="img" id="selectFile" />
-        <!-- <input id="uploadFile" name="uploadFile" type="file" accept="*/*" />
-        <input id="uploadFileSub" type="button" /> -->
-    </form>
-
-
 </div>
 </template>
 
@@ -50,51 +42,18 @@ export default {
     },
 
     methods: {
-
-        //选择文件后触发 一次选择一张图片
-        inputFiles: function () {
-            var _self = this;
-            tool.showLoading();
-            var file = _self.$refs.fileChoose.files[0] || [];
-            if (file.length == 0){
-                return;
-            }
-
-            //判断文件不能超过限定的大小
-            if(file.size>tool.FileMaxSiz){
-                tool.hideLoading();
-                var sizeStr = tool.fileSizeFormat(tool.FileMaxSiz);
-                var msg = lanTool.lanContent("999_文件大小不能超过！");
-                msg = msg.replace("{0}",sizeStr);
-                console.log(msg);
-                tool.showText(msg);
-                return;
-            }
-
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function (e) {
-                var parameter = {
-                    file: e.target.result,
-                    fileName: file.name,
-                    fromID: _self.fromID,
-                    fromType: _self.fromType
-                };
-                _self.$router.push({
-                    path: '/uploadinput',
-                    query: parameter
-                });
-
-                tool.hideLoading();
-                $('#selectFile').val('').trigger("change");
-            };
-        },
-
-        //弹出文件上传
+        //跳转到上传页面
         actionSheet: function () {
-            $("#selectFile").trigger('click');
+            var _self = this;
+            var parameter = {
+                fromID: _self.fromID,
+                fromType: _self.fromType
+            };
+            _self.$router.push({
+                path: '/uploadinput',
+                query: parameter
+            });
         },
-
         //点击去文件详情页
         goFileInfo:function(data){
             if(tool.isNullOrEmptyObject(data)){
@@ -103,7 +62,6 @@ export default {
             // console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
-
         //删除单个文件
         deleteDoc:function(data){
             // console.log(data);
@@ -164,6 +122,7 @@ export default {
                 function() {}
             );
         },
+        //渲染文件列表
         initDocList:function(){
             var _self = this;
             var urlTemp = tool.AjaxBaseUrl();
@@ -210,7 +169,6 @@ export default {
                     }
                 });
         },
-
         //给删除按钮添加disable类名来控制是否可删除操作
         controlDelete:function(onlyViewTemp){
             var _self = this;
