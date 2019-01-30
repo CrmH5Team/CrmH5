@@ -469,9 +469,9 @@ export default {
                     _self.controlBusinessTypes();
                     //控制TheName字段 在 Deal Pipeline 下不可修改
                     if(_self.showPage == 0){
-                        $("[data-field='TheName']").addClass('disable color6');
+                        $("[data-field='TheName']").addClass('disable color6').closest('.ListCell').removeClass('visible');
                     }else{
-                        $("[data-field='TheName']").removeClass('disable color6');
+                        $("[data-field='TheName']").removeClass('disable color6').closest('.ListCell').addClass('visible');
                     }
 
 
