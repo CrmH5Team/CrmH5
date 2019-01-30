@@ -178,7 +178,7 @@ export default {
         _self.fromTypeNew = "40";
 
         //监听保存
-        _self.savePageData();
+        // _self.savePageData();
 
         //若是新增，则隐藏新增不需要显示的模块
         if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
@@ -283,12 +283,12 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
-
-            setTimeout(function () {
-                $("#save").off("click").on("click", function () {
-                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#save").off("click").on("click", function () {
+            //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         //控制控件逻辑
         controlBusinessTypes: function () {

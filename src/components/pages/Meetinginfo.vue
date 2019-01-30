@@ -164,9 +164,10 @@ export default {
         $(window).scrollTop(0);
         var _self = this;
         //监听保存
-        _self.savePageData();
-        //监听删除
-        _self.deleteData();
+        // _self.savePageData();
+        // //监听删除
+        // _self.deleteData();
+
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
@@ -387,16 +388,17 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Meetinginfo";
-            setTimeout(function () {
-                $("#delete").off("click").on("click", function () {
-                    tool.DeleteData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.DeleteData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#delete").off("click").on("click", function () {
+            //         tool.DeleteData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         savePageData: function (e) {
             var _self = this;
-            setTimeout(function () {
-                $("#save").off("click").on("click", function () {
+            // setTimeout(function () {
+            //     $("#save").off("click").on("click", function () {
                     //判断元素是否存在
                     // console.log("startdate.length:" + $("#startdate").length);
                     if ($("#startdate").length > 0) {
@@ -428,8 +430,8 @@ export default {
                         }
                     }
 
-                });
-            }, 0);
+            //     });
+            // }, 0);
         },
         //渲染查看会议记录模块
         initMeetingNote:function(data){
