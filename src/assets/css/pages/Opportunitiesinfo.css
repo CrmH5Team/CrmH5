@@ -229,7 +229,7 @@ span.zhuyi{
 }
 
 .docListCell .docListCellLeft {
-    width: 55%!important;
+    width: 60%!important;
     font-size: 0.28rem;
     color: #2A79C8;
 }
@@ -243,6 +243,7 @@ span.zhuyi{
 .docListCell .docListCellRight {
     width: 40%!important;
     font-size: 0.28rem;
+    text-align: right;
 }
 
 .docListCellLeftContent span {
