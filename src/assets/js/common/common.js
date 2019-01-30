@@ -1150,7 +1150,7 @@
 		}
 		var imgArr = ["Ogg", "MPEG4", "WebM", "mp4", "MOV", "AVI", "WMV", "3GP", "MKV", "FLV", "RMVB"];
 
-		return $.inArray(fileExtension, imgArr) > -1;
+		return $.inArray(fileExtension.toLowerCase(), imgArr) > -1;
 	};
 
 	//获取用户系统是 android 还是 ios
