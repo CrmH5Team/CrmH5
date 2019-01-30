@@ -92,11 +92,11 @@ header {
 header.mui-bar {
     line-height: 0.2rem;
     background: #f8f2dc;
-    position: fixed;
-    top: 0;
+    /* position: fixed; */
+    /* top: 0;
     left: 0;
-    right: 0;
-    z-index: 99;
+    right: 0; */
+    /* z-index: 99; */
 }
 
 .leftView {

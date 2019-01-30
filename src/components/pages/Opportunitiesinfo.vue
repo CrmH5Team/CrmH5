@@ -1,6 +1,7 @@
 <template>
 <div>
     <Infoheader
+        class="sticky infoheader"
         :isAddNew="isAddNew"
         :onlyView="onlyView"
         :operation="operation"

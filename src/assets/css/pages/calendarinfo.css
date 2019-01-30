@@ -1,3 +1,5 @@
+/* 处理头部固定 */
+.infoheader{position:fixed;top:0;left:0;width:100%;z-index: 99;}
 
 .scroll-div {
     /* position: fixed; */
@@ -11,6 +13,7 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch; */
     padding-top: 0.88rem;
+
     background-color: #fff;
     line-height: 0.21rem;
     /* background-color: #FFFFFF */

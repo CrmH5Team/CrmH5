@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :notDelete="notDelete" :operation="operation" :title="ptitle"></Infoheader>
+    <Infoheader class="sticky infoheader" :isAddNew="isAddNew" :onlyView="onlyView" :notDelete="notDelete" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">

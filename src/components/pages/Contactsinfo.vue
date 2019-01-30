@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
+    <Infoheader class="sticky infoheader" :isAddNew="isAddNew" :onlyView="onlyView" :operation="operation" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
@@ -458,7 +458,7 @@ export default {
 
             //设置公司信息页面只读
             var urlTemp = "/organizationsinfo/" + companyID;
-            
+
             //获取公司名字
             var obj = $('[data-field="CompanyID"]');
             if (tool.isNullOrEmptyObject(obj)) {

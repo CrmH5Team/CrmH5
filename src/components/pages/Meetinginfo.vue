@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Infoheader :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
+    <Infoheader class="sticky infoheader" :isAddNew="isAddNew" :onlyView="onlyView" :title="ptitle"></Infoheader>
 
     <div class="scroll-div">
         <div class="box">
