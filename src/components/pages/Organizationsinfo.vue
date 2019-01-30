@@ -262,7 +262,7 @@ export default {
                         var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
                         if (!tool.isNullOrEmptyObject(filterTemp)) {
                             //添加CityID的事件
-                            $("[data-field='CountryID']").attr("Filter", filterTemp);
+                            $("[data-field='CityID']").attr("Filter", filterTemp);
                             $("[data-field='CityID']").off('click').on('click', function () {
                                 var _curObj = $(this);
                                 // console.log(_curObj);
@@ -357,7 +357,7 @@ export default {
             var filterTemp = $("[data-field='CountryID']").attr("data-fieldVal", );
             if (!tool.isNullOrEmptyObject(filterTemp)) {
                 //添加CityID的事件
-                $("[data-field='CountryID']").attr("Filter", filterTemp);
+                $("[data-field='CityID']").attr("Filter", filterTemp);
                 $("[data-field='CityID']").off('click').on('click', function () {
                     var _curObj = $(this);
                     // console.log(_curObj);
