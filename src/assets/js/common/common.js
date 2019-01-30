@@ -290,7 +290,7 @@
 	 * 查询日历事件节点接口
 	 */
 	tool.Api_MeetingHandle_QueryCalendarMonthEventNode = "Api_MeetingHandle_QueryCalendarMonthEventNode";
-	/*
+	/* 
 	 * 根据传入的时间获取当天的会议记录接口
 	 */
 	tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate = "Api_MeetingHandle_QueryCalendarGetMeetingByDate";
@@ -2661,7 +2661,7 @@
 	/*
 	* 保存/修改详情页数据
 	*/
-	tool.SaveOrUpdateData = function (fromType, autoID, _self,myCallBack) {
+	tool.SaveOrUpdateData = function (fromType, autoID, _self,myCallBack,isGoBack) {
 		// console.log("fromType:" + fromType);
 		// console.log("autoID:" + autoID);
 
@@ -2854,11 +2854,16 @@
 					}
 				}
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
-					myCallBack();
+					myCallBack(data);
 				}
 
-				//返回到上一页
-				_self.$router.back(-1);
+				isGoBack = (isGoBack == undefined || isGoBack == null) ? true : isGoBack;
+
+				//需要返回
+				if(isGoBack){
+					//返回到上一页
+					_self.$router.back(-1);
+				}
 			},
 			error: function (jqXHR, type, error) {
 				tool.hideLoading();

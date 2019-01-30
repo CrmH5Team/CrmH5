@@ -283,7 +283,39 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
-            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            tool.SaveOrUpdateData(fromType, id, _self, function (dataTemp) {
+                console.log(dataTemp);
+                var autoIDTemp = dataTemp._OnlyOneData || "";
+                if(tool.isNullOrEmptyObject(autoIDTemp)){
+                    _self.$router.back(-1);
+                    return;
+                }
+                var path = "/MeetingNoteinfo/" + autoIDTemp;
+                console.log(path);
+                var query = _self.$route.query;
+                
+                _self.$router.replace({
+                    path: path,
+                    query: query
+                });
+                
+                setTimeout(function(){
+                    window.location.reload();
+                },80);
+                
+                // var urlParam = "";
+                // for(var key in query){
+                //     urlParam += key + "=" + (query[key] || "") + "&";
+                // }
+                // console.log(urlParam);
+                // if(!tool.isNullOrEmptyObject(urlParam)){
+                //     urlParam = urlParam.substring(0,urlParam.length-1);
+                // }
+                // path = path + "?" + urlParam;
+                // console.log(path);
+
+                //_self.$router.replace(path);
+            },false);
             // setTimeout(function () {
             //     $("#save").off("click").on("click", function () {
             //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
