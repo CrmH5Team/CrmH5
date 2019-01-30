@@ -1065,43 +1065,43 @@
 			fileTypeNew = "mp4";
 			break;
 
-			case "mpeg":
-			case "mpg":
-			bigType = "video";
-			fileTypeNew = "mpeg";
-			break;
-			case "mpg4":
-			bigType = "video";
-			fileTypeNew = "mp4";
-			break;
+			// case "mpeg":
+			// case "mpg":
+			// bigType = "video";
+			// fileTypeNew = "mpeg";
+			// break;
+			// case "mpg4":
+			// bigType = "video";
+			// fileTypeNew = "mp4";
+			// break;
 
-			case "3gp":
-			bigType = "video";
-			fileTypeNew = "3gpp";
-			break;
+			// case "3gp":
+			// bigType = "video";
+			// fileTypeNew = "3gpp";
+			// break;
 
-			case "gif":
-			bigType = "image";
-			fileTypeNew = "gif";
-			break;
+			// case "gif":
+			// bigType = "image";
+			// fileTypeNew = "gif";
+			// break;
 
-			case "jpe":
-			case "jpeg":
-			case "jpg":
-			case "jpz":
-			bigType = "image";
-			fileTypeNew = "jpeg";
-			break;
+			// case "jpe":
+			// case "jpeg":
+			// case "jpg":
+			// case "jpz":
+			// bigType = "image";
+			// fileTypeNew = "jpeg";
+			// break;
 
-			case "png":
-			bigType = "image";
-			fileTypeNew = "png";
-			break;
+			// case "png":
+			// bigType = "image";
+			// fileTypeNew = "png";
+			// break;
 
 			default:
 			return base64Str;
 		}
-		"data:{BigType}/{FileTypeNew};base64,{base64Str}";
+		//"data:{BigType}/{FileTypeNew};base64,{base64Str}";
 		base64Pre = base64Pre.ReplaceAll("{BigType}",bigType);
 		base64Pre = base64Pre.ReplaceAll("{FileTypeNew}",fileTypeNew);
 		base64Pre = base64Pre.ReplaceAll("{base64Str}",base64Str);
@@ -1145,12 +1145,13 @@
 			return false;
 		}
 		var fileExtension = tool.getFileExtension(fileName);
+		fileExtension = fileExtension.toLowerCase();
 		if (tool.isNullOrEmptyObject(fileExtension)) {
 			return false;
 		}
-		var imgArr = ["Ogg", "MPEG4", "WebM", "mp4", "MOV", "AVI", "WMV", "3GP", "MKV", "FLV", "RMVB"];
+		var imgArr = ["ogg", "mpeg4", "webm", "mp4", "mov", "avi", "wmv", "3gp", "mkv", "flv", "rmvb"];
 
-		return $.inArray(fileExtension.toLowerCase(), imgArr) > -1;
+		return $.inArray(fileExtension, imgArr) > -1;
 	};
 
 	//获取用户系统是 android 还是 ios

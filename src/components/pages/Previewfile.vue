@@ -135,6 +135,8 @@ export default {
                     return true;
                 }
 
+                console.log($this.data.ObjectName);
+
                 data = data._OnlyOneData || "";
                 data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
 
