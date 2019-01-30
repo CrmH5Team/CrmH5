@@ -361,9 +361,10 @@ export default {
         // this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
         //监听保存
-        _self.savePageData();
-        //监听删除
-        _self.deleteData();
+        // _self.savePageData();
+        // //监听删除
+        // _self.deleteData();
+
         _self.rightPanelCloseThis();
 
         _self.id = _self.$route.params.id;
@@ -586,11 +587,23 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Opportunitiesinfo";
-            setTimeout(function () {
-                $("#save").off("click").on("click", function () {
-                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                });
-            },0);
+            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#save").off("click").on("click", function () {
+            //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            //     });
+            // },0);
+        },
+        deleteData: function (e) {
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Opportunitiesinfo";
+            tool.DeleteData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#delete").off("click").on("click", function () {
+            //         tool.DeleteData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         //关注
         followToggle: function (e) {
@@ -672,16 +685,7 @@ export default {
                 });
             },0);
         },
-        deleteData: function (e) {
-            var _self = this;
-            var id = _self.$route.params.id;
-            var fromType = "Opportunitiesinfo";
-            setTimeout(function () {
-                $("#delete").off("click").on("click", function () {
-                    tool.DeleteData(fromType, id, _self, function () {});
-                });
-            }, 0);
-        },
+
         getDealObj : function(){
           var textTemp =  lanTool.lanContent("939_交易");
           var idTemp = 29;

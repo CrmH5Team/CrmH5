@@ -219,9 +219,9 @@ export default {
 
 
         //监听保存
-        _self.savePageData();
-        //监听删除
-        _self.deleteData();
+        // _self.savePageData();
+        // //监听删除
+        // _self.deleteData();
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
@@ -481,26 +481,27 @@ export default {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            setTimeout(function () {
-                $("#save").off().on("click", function () {
-                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#save").off().on("click", function () {
+            //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         deleteData: function (e) {
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Organizationsinfo";
-            setTimeout(function () {
-                $("#delete").off("click").on("click", function () {
-                    tool.DeleteData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.DeleteData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#delete").off("click").on("click", function () {
+            //         tool.DeleteData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         //只查看的情况 控制元素是否可修改
         controlEdit:function(){
             var _self = this;
-            //t为 ture 时为需要控制
             if(_self.onlyView){
                 _self.$nextTick(function(){
                     $('.OrganizationsList,.MoreList').addClass('disable');
