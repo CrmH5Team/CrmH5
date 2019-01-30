@@ -179,7 +179,7 @@
                                 <span class="calcfont calc-delete"></span>
                             </div>
                         </div>
-                        <div class="airlinesName">
+                        <div v-show="item.CompanyID_Name" class="airlinesName">
                             <div class="airlinesNameContent f12">{{item.CompanyID_Name}}</div>
                         </div>
                         <div v-show="item.Remark" class="meetingRemark">
