@@ -332,7 +332,7 @@ label.radios-label input:disabled:checked + .radios:after {
 .opportunities-list .item-block{padding:5px 10px 5px 0.8rem;}
 .opportunities-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;top:0px;position:absolute;}
 .opportunities-list .item-div{line-height: 0.4rem;word-wrap : break-word ;display: flex;align-items: center;}
-.opportunities-list .item-div .closed{color:#9b9b9b;}
+.opportunities-list .item-div .closed{color:#ff5a21;}
 .opportunities-list .item-new{color:#ff5a21;border:1px solid #ff5a21;display: inline-block;border-radius:3px;
 box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
 margin-right: 5px;}
