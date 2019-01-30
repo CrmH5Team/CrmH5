@@ -284,21 +284,21 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
             tool.SaveOrUpdateData(fromType, id, _self, function (dataTemp) {
-                console.log(dataTemp);
+                // console.log(dataTemp);
                 var autoIDTemp = dataTemp._OnlyOneData || "";
                 if(tool.isNullOrEmptyObject(autoIDTemp)){
                     _self.$router.back(-1);
                     return;
                 }
                 var path = "/MeetingNoteinfo/" + autoIDTemp;
-                console.log(path);
+                // console.log(path);
                 var query = _self.$route.query;
                 
                 _self.$router.replace({
                     path: path,
                     query: query
                 });
-                
+                //保证地址替换后再刷新
                 setTimeout(function(){
                     window.location.reload();
                 },80);
