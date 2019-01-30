@@ -461,7 +461,8 @@ export default {
                 OppID:oppID,
                 ScheduleID:scheduleID,
                 onlyView:true,
-                infoName:infoName
+                infoName:infoName,
+                onlyView:_self.onlyView
             };
 
             _self.$router.push({
