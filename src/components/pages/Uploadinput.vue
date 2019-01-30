@@ -122,6 +122,14 @@ export default {
                 return;
             }
 
+            //文件大小不能<=0
+            if(file.size <=0){
+                tool.hideLoading();
+                var msg = lanTool.lanContent("1005_文件大小不应小于等于0KB！");
+                tool.showText(msg);
+                return;
+            }
+
             //判断文件不能超过限定的大小
             if(file.size>tool.FileMaxSiz){
                 tool.hideLoading();
