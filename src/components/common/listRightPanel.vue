@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div @click="okBtn" class="right-btn-div f16 lanText" data-lanid="569_确认"></div>
+        <!-- <div @click="okBtn" class="right-btn-div f16 lanText" data-lanid="569_确认"></div> -->
     </div>
 
 

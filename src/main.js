@@ -54,7 +54,7 @@ Vue.filter('formatTitle',function(val){
       return "";
     }
 
-    return val + " ";
+    return "("+val+")";
 });
 //MeetingTimeFormat
 Vue.filter('MeetingTimeFormat',function(val){
