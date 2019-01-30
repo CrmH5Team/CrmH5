@@ -304,8 +304,6 @@ export default {
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-
-
         _self.companyID = _self.$route.query.companyID || '';
         _self.companyName = _self.$route.query.companyName || '';
 
@@ -460,10 +458,16 @@ export default {
 
             //设置公司信息页面只读
             var urlTemp = "/organizationsinfo/" + companyID;
-            var infoName =this.$route.query.infoName ||"";
+            
+            //获取公司名字
+            var obj = $('[data-field="CompanyID"]');
+            if (tool.isNullOrEmptyObject(obj)) {
+                return;
+            }
+            var infoName = obj.text() || "";
             var parameter = {
                 onlyView: true,
-                infoName:infoName
+                infoName: infoName
             };
             _self.$router.push({
                 path: urlTemp,
@@ -486,7 +490,7 @@ export default {
             // }, 0);
         },
         deleteData: function (e) {
-          console.log("deleteData");
+            console.log("deleteData");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
@@ -498,27 +502,27 @@ export default {
             // }, 0);
         },
         //只查看的情况 控制元素是否可修改
-        controlEdit:function(){
+        controlEdit: function () {
             var _self = this;
             //t为 ture 时为需要控制
 
-            if(_self.onlyView){
+            if (_self.onlyView) {
 
                 $('.ContactList,.accessList').addClass('disable');
 
-            }else{
+            } else {
                 $('.ContactList,.accessList').removeClass('disable');
 
             }
         },
         //判断当前用户是否可以操作当前单据
-        initUserAccess:function(){
+        initUserAccess: function () {
             var _self = this;
             var fromType = "6";
             var fromID = _self.$route.params.id;
 
             //是否指定记录的负责人
-            tool.IsHasInitiator(fromType,fromID,function(data){
+            tool.IsHasInitiator(fromType, fromID, function (data) {
                 _self.onlyView = !data;
                 _self.controlEdit();
             });

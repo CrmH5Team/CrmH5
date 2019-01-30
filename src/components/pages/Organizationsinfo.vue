@@ -443,7 +443,7 @@ export default {
                 return;
             }
             var urlTemp = "/contactsof";
-           var infoName =this.$route.query.infoName ||"";
+           var infoName =lanTool.lanContent("791_联系人") ||"";
             var parameter = {
                 companyID: companyID,
                 companyName: companyName,
