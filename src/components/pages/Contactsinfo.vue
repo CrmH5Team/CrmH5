@@ -297,17 +297,14 @@ export default {
         $(window).scrollTop(0);
         var _self = this;
         //监听保存
-        _self.savePageData();
+        // _self.savePageData();
         //监听删除
-        _self.deleteData();
+        // _self.deleteData();
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-        _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
 
-        //如果是只查看，控制元素不可以更改
-        _self.controlEdit();
 
         _self.companyID = _self.$route.query.companyID || '';
         _self.companyName = _self.$route.query.companyName || '';
@@ -334,6 +331,10 @@ export default {
 
             _self.isFirstEnter = false;
             _self.$route.meta.isBack = false;
+
+            _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
+            //如果是只查看，控制元素不可以更改
+            _self.controlEdit();
 
             //清空页面数据
             tool.ClearControlData(function () {
@@ -470,27 +471,31 @@ export default {
             });
         },
         savePageData: function (e) {
-            // console.log("savePageData");
+            console.log("savePageData");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
-            setTimeout(function () {
-                $("#save").off("click").on("click", function () {
 
-                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.SaveOrUpdateData(fromType, id, _self, function () {});
+
+            // setTimeout(function () {
+            //     $("#save").off("click").on("click", function () {
+
+            //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         deleteData: function (e) {
+          console.log("deleteData");
             var _self = this;
             var id = _self.$route.params.id;
             var fromType = "Contactsinfo";
-            setTimeout(function () {
-                $("#delete").off("click").on("click", function () {
-                    // console.log("delete");
-                    tool.DeleteData(fromType, id, _self, function () {});
-                });
-            }, 0);
+            tool.DeleteData(fromType, id, _self, function () {});
+            // setTimeout(function () {
+            //     $("#delete").off("click").on("click", function () {
+            //         tool.DeleteData(fromType, id, _self, function () {});
+            //     });
+            // }, 0);
         },
         //只查看的情况 控制元素是否可修改
         controlEdit:function(){
@@ -515,6 +520,7 @@ export default {
             //是否指定记录的负责人
             tool.IsHasInitiator(fromType,fromID,function(data){
                 _self.onlyView = !data;
+                _self.controlEdit();
             });
         }
     }

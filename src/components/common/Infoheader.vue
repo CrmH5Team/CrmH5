@@ -66,10 +66,12 @@ export default {
 
         //保存动作
         save: function () {
-            //eventBus.$emit('save', 'saveData');
+            var _self = this;
+            _self.$parent.savePageData();
         },
         delClick: function () {
-            //eventBus.$emit('delete');
+            var _self = this;
+            _self.$parent.deleteData();
         },
         moreClick: function () {
             //触发gengduo事件
