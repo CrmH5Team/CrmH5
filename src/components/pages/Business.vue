@@ -189,6 +189,11 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
+
+        if(from.name == "index"){
+          to.meta.fromName = 'index'
+        }
+
         if (from.name == "opportunitiesinfo" || from.name == "searchmodule") {
             to.meta.isBack = true;
         } else {
@@ -235,6 +240,11 @@ export default {
             _self.$route.meta.isBack = false;
 
             _self.searchData = _self.dealPipelineSearch;
+
+            if(!tool.isNullOrEmptyObject(_self.$route.meta.fromName) && _self.$route.meta.fromName == "index"){
+                _self.showPage = 0;
+                _self.$route.meta.fromName = '';
+            }
 
             if (_self.showPage == 0) {
                 $("#dealPipelineSwitchPage").trigger("click");

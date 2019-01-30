@@ -215,9 +215,13 @@ export default {
         };
     },
     beforeRouteEnter: function (to, from, next) {
-        console.log(from);
+        // console.log(from);
         // console.log(to);
-        //
+
+        if(from.name == "index"){
+          to.meta.fromName = 'index'
+        }
+
         if (from.name == "organizationsinfo" || from.name == "contactsinfo" || from.name == "searchmodule") {
             to.meta.isBack = true;
         } else {
@@ -287,6 +291,12 @@ export default {
             //     _self.noData = false;
             //   }
             // });
+
+            if(!tool.isNullOrEmptyObject(_self.$route.meta.fromName) && _self.$route.meta.fromName == "index"){
+                _self.showPage = 0;
+                _self.$route.meta.fromName = '';
+            }
+
             if(_self.showPage == 0){
                 $("#companySwitchPage").trigger("click");
             }else{
@@ -497,12 +507,12 @@ export default {
                 fromType = "contacts";
                 container = $("#contactsList");
             }
-            console.log("num:"+num);
-            console.log("_self.tempShowPage:"+_self.tempShowPage);
+            // console.log("num:"+num);
+            // console.log("_self.tempShowPage:"+_self.tempShowPage);
 
             //切换标签的时候清空模糊查询的数据
             if (!tool.isNullOrEmptyObject(_self.queryCondictionData) && _self.tempShowPage !== num) {
-                console.log("_self.queryCondictionData:" + JSON.stringify(_self.queryCondictionData));
+                // console.log("_self.queryCondictionData:" + JSON.stringify(_self.queryCondictionData));
                 _self.queryCondictionData = [];
             }
             _self.tempShowPage = num;

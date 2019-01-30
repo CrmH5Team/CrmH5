@@ -118,7 +118,8 @@ const router =  new Router({
       meta: {
         keepAlive: true,
         isBack:false,
-        fromSave:false  //当在详情页面保存后回到列表页面刷新
+        fromSave:false,  //当在详情页面保存后回到列表页面刷新
+        fromName:''
       }
     },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
@@ -147,18 +148,20 @@ const router =  new Router({
       //   listName:"meetingNoteinfo"
       // }
     },
-    
+
     //文档查看
     { path:'/previewfile',name:'previewfile',component:Previewfile},
     { path:'/linkedpage',name:'linkedpage',component:Linkedpage },
 
-    
+
     //联系人
     { path:'/contacts',name:'contacts',component:Contacts,
       meta: {
         keepAlive: true,
         isBack:false,
-        fromSave:false  //当在详情页面保存后回到列表页面刷新
+        fromSave:false,  //当在详情页面保存后回到列表页面刷新
+        fromName:''
+
       }
     },
     { path:'/organizationsinfo/:id',name:'organizationsinfo',component:Organizationsinfo,
