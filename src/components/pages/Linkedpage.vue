@@ -184,6 +184,7 @@ export default {
           }
 
           if(tool.isNullOrEmptyObject(selectedVal)){
+              tool.showText(lanTool.lanContent('592_请选择数据！'));
               return;
           }
 
