@@ -279,12 +279,12 @@ export default {
         }
         next();
     },
-    beforeRouteLeave: function (to, from, next) {
-        if (to.name == 'index') {
-            this.$destroy();
-        }
-        next();
-    },
+    // beforeRouteLeave: function (to, from, next) {
+    //     if (to.name == 'index') {
+    //         this.$destroy();
+    //     }
+    //     next();
+    // },
     created: function () {
         this.isFirstEnter = true;
         // console.log('created');
