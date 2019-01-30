@@ -1630,7 +1630,7 @@
                             <div class="item-time f12">
                               <span class="calcfont calc-gengxinshijian"></span>
                               <span class="time-text">{BeginTime}~{EndTime}</span>
-                              <span class="right">{Realname}</span>
+                              <span class="right-text">{Realname}</span>
                             </div>
                             <div class="item-address">{CompanyID}</div>
                             <div class="item-initiator">{ContactsID}{Title}</div>
