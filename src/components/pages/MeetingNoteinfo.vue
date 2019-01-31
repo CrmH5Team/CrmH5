@@ -345,6 +345,10 @@ export default {
                 //2>清空销售机会
                 $("[data-field='OppID']").text("").attr("data-fieldval", "");
                 return;
+            }else{
+                if(tool.isNullOrEmptyObject(oppID)){
+                    return;
+                }
             }
             var autoID = oppID;
             var urlTemp = tool.AjaxBaseUrl();
