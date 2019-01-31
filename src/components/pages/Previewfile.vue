@@ -91,22 +91,6 @@ export default {
     mounted:function(){
         lanTool.updateLanVersion();
         var $this = this;
-        $this.photo = $.photoBrowser({
-            items: [
-                {
-                    image: $this.data.attachmentpath,
-                }
-            ],
-            onOpen:function(){
-                if(this.config.items.length < 2){
-                    $('.swiper-pagination').hide();
-                    $this.isOpen = true;
-                }
-            },
-            onClose:function(){
-                $this.isOpen = false;
-            }
-        });
 
         //传入参数
         var urlTemp = tool.AjaxBaseUrl();
@@ -139,17 +123,20 @@ export default {
 
                 data = data._OnlyOneData || "";
                 data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
+
                 // console.log(data);
                 //图片
                 if(tool.isFileImage($this.data.ObjectName)) {
                     $this.showDownload = true;
                     $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
+                    $this.clickToShow(data);
                     $('.image').off("click").on('click',function(){
                         $this.photo.open();
                     });
+
                     tool.hideLoading();
                     return ;
-                }else 
+                }else
                 if(tool.isFileVideo($this.data.ObjectName)){
                     $this.showDownload = true;
                     if(tool.getSystem() === 'android') {
@@ -226,6 +213,29 @@ export default {
 
     },
     methods:{
+        clickToShow:function(data){
+          if(tool.isNullOrEmptyObject(data)){
+            return;
+          }
+          var _self = this;
+            _self.photo = $.photoBrowser({
+              items: [
+                  {
+                      image: data
+                  }
+              ],
+              onOpen:function(){
+                  _self.isOpen = true;
+
+                  // if(this.config.items.length < 2){
+                  //     $('.swiper-pagination').hide();
+                  // }
+              },
+              onClose:function(){
+                  _self.isOpen = false;
+              }
+          });
+        },
         back:function(){
             this.$router.back(-1);
         },
