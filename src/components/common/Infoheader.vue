@@ -107,7 +107,7 @@ header.mui-bar {
     display: inline-block;
     overflow: hidden;
     width: auto;
-    max-width:70%;
+    max-width:65%;
     font-size: .34rem;
     margin: 0 0 0 -10px;
     text-overflow: ellipsis;
@@ -127,7 +127,6 @@ header.mui-bar {
     text-decoration: none;
     line-height: 1;
     margin-left:-10px;
-
 }
 
 .calc-fanhui {
