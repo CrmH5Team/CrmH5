@@ -216,7 +216,7 @@ export default {
                     _self.controlBusinessTypes();
 
                     //处理OppID
-                    _self.handleOppID(_self.oppID, true);
+                    _self.handleOppID(_self.oppID, true,false);
                     //处理ScheduleID
                     _self.handleScheduleID(_self.scheduleID, true);
 
@@ -243,7 +243,7 @@ export default {
                         if (filedName == "ScheduleID") {
                             _self.handleScheduleID(idTemp, false);
                         } else {
-                            _self.handleOppID(idTemp, false);
+                            _self.handleOppID(idTemp, false,true);
                         }
 
                         //清空全局变量
@@ -270,7 +270,7 @@ export default {
             if (filedName == "ScheduleID") {
                 _self.handleScheduleID(idTemp, false);
             } else {
-                _self.handleOppID(idTemp, false);
+                _self.handleOppID(idTemp, false,true);
             }
             //清空全局变量
             eventBus.selectListData = null;
@@ -329,11 +329,21 @@ export default {
                 .addClass('disable');
         },
         //处理OppID存在的逻辑
-        handleOppID: function (oppID, isLock) {
+        handleOppID: function (oppID, isLock,fromSelectList) {
             isLock = (isLock == undefined || isLock == null) ? false : isLock;
             var _self = this;
             // console.log(oppID);
-            if (tool.isNullOrEmptyObject(oppID)) {
+            //清空选项
+            if (tool.isNullOrEmptyObject(oppID) && fromSelectList != undefined && fromSelectList != null && fromSelectList == true) {
+                
+                if (isLock) {
+                    $("#OppIDClickObj,[data-field='OppID']").removeClass('disable color6').addClass('disable color6');
+                } else {
+                    $("#OppIDClickObj,[data-field='OppID']").removeClass('disable color6');
+                }
+
+                //2>清空销售机会
+                $("[data-field='OppID']").text("").attr("data-fieldval", "");
                 return;
             }
             var autoID = oppID;
