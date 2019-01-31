@@ -56,7 +56,7 @@
                 <div class="tips-text">
                   <span class="lanText" data-lanid="988_你有"></span><span>{{meetingCount}}</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span>
                 </div>
-                <router-link v-show="Number(meetingCount)>=1" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></router-link>
+                <router-link v-show="Number(meetingCount)>=1" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_转到"></router-link><span class="rightArrow">&gt;&gt;</span>
                 <!-- <div @click="" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></div> -->
             </div>
         </div>

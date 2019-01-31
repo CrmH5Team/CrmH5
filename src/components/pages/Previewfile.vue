@@ -141,15 +141,15 @@ export default {
                 data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
 
                 //图片
-                if(tool.isFileImage($this.data.ObjectName)) {
-                    $this.showDownload = true;
-                    $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
-                    $('.image').off("click").on('click',function(){
-                        $this.photo.open();
-                    });
-                    tool.hideLoading();
-                    return ;
-                }else 
+                // if(tool.isFileImage($this.data.ObjectName)) {
+                //     $this.showDownload = true;
+                //     $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
+                //     $('.image').off("click").on('click',function(){
+                //         $this.photo.open();
+                //     });
+                //     tool.hideLoading();
+                //     return ;
+                // }else 
                 if(tool.isFileVideo($this.data.ObjectName)){
                     $this.showDownload = true;
                     if(tool.getSystem() === 'android') {

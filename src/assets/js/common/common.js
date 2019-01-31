@@ -1080,23 +1080,23 @@
 			// fileTypeNew = "3gpp";
 			// break;
 
-			case "gif":
-				bigType = "image";
-				fileTypeNew = "gif";
-			break;
+			// case "gif":
+			// 	bigType = "image";
+			// 	fileTypeNew = "gif";
+			// break;
 
-			case "jpe":
-			case "jpeg":
-			case "jpg":
-			case "jpz":
-				bigType = "image";
-				fileTypeNew = "jpeg";
-			break;
+			// case "jpe":
+			// case "jpeg":
+			// case "jpg":
+			// case "jpz":
+			// 	bigType = "image";
+			// 	fileTypeNew = "jpeg";
+			// break;
 
-			case "png":
-				bigType = "image";
-				fileTypeNew = "png";
-			break;
+			// case "png":
+			// 	bigType = "image";
+			// 	fileTypeNew = "png";
+			// break;
 
 			default:
 			return base64Str;
