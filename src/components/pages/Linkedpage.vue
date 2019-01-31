@@ -4,6 +4,7 @@
       <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
       <h1 class="header-title f18">{{title||''}}</h1>
       <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+      <a @click="clearHandler" class="calc-shanchu  calcfont right" id="clear"></a>
     </header>
 
     <div class="nav sticky">
@@ -183,10 +184,10 @@ export default {
             selectedVal = _self.opportunitiesValue;
           }
 
-          if(tool.isNullOrEmptyObject(selectedVal)){
-              tool.showText(lanTool.lanContent('592_请选择数据！'));
-              return;
-          }
+          // if(tool.isNullOrEmptyObject(selectedVal)){
+          //     tool.showText(lanTool.lanContent('592_请选择数据！'));
+          //     return;
+          // }
 
           var id = selectedVal;
           var text = $.trim($("input[value='"+ id +"']:first").siblings("span:first").text()) || "";
@@ -216,6 +217,16 @@ export default {
       //console.log(returnObj);
       eventBus.$emit('updataSelectList', returnObj);
       _self.$router.back(-1);
+    },
+    //清楚
+    clearHandler:function(){
+        var _self = this;
+        if(_self.showPage == 0){
+            _self.dealPipelineValue = '';
+        }else{
+            _self.opportunitiesValue = '';
+        }
+
     },
     //初始化数据
     getData: function(curPageNum, mycallback) {

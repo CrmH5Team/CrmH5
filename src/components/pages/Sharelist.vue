@@ -4,6 +4,7 @@
       <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
       <h1 class="header-title f18">{{title||''}}</h1>
       <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+      <a @click="clearHandler" class="calc-shanchu  calcfont right" id="clear"></a>
     </header>
 
     <div class="nav sticky">
@@ -22,7 +23,7 @@
               id="userInput"
               key="userInput"
               class="search-input lanInputPlaceHolder"
-              data-lanid="780_搜索" 
+              data-lanid="780_搜索"
             />
           </div>
         </div>
@@ -117,63 +118,11 @@ export default {
       noGroupData: true, //没数据
       //用户数据
       userData: [
-        // {
-        //   id:'group1',
-        //   text:'group1',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group1"},
-        //       {id:'Alan2',text:'Alan2',pid:"group1"},
-        //       {id:'Alan3',text:'Alan3',pid:"group1"},
-        //   ]
-        // },
-        // {
-        //   id:'group2',
-        //   text:'group2',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group2"},
-        //       {id:'Alan2',text:'Alan2',pid:"group2"},
-        //       {id:'Alan3',text:'Alan3',pid:"group2"},
-        //   ]
-        // },
-        // {
-        //   id:'group3',
-        //   text:'group3',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group3"},
-        //       {id:'Alan2',text:'Alan2',pid:"group3"},
-        //       {id:'Alan3',text:'Alan3',pid:"group3"},
-        //   ]
-        // }
+
       ],
       //组数据
       groupData: [
-        // {
-        //   id:'group1',
-        //   text:'group1',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group1"},
-        //       {id:'Alan2',text:'Alan2',pid:"group1"},
-        //       {id:'Alan3',text:'Alan3',pid:"group1"},
-        //   ]
-        // },
-        // {
-        //   id:'group2',
-        //   text:'group2',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group2"},
-        //       {id:'Alan2',text:'Alan2',pid:"group2"},
-        //       {id:'Alan3',text:'Alan3',pid:"group2"},
-        //   ]
-        // },
-        // {
-        //   id:'group3',
-        //   text:'group3',
-        //   nodes:[
-        //       {id:'Alan1',text:'Alan1',pid:"group3"},
-        //       {id:'Alan2',text:'Alan2',pid:"group3"},
-        //       {id:'Alan3',text:'Alan3',pid:"group3"},
-        //   ]
-        // }
+
       ],
       title: lanTool.lanContent("946_分享给同事"),
       userCheckedValue: [],
@@ -314,8 +263,8 @@ export default {
       var isGroup = false;
       var valArr = [];
 
-        console.log(_self.userCheckedValue);
-        console.log(_self.groupCheckedValue);
+        // console.log(_self.userCheckedValue);
+        // console.log(_self.groupCheckedValue);
 
       //user
       if(curPageNum == 0){
@@ -378,6 +327,16 @@ export default {
           document.activeElement.blur();
         }
       });
+    },
+    //清楚
+    clearHandler:function(){
+        var _self = this;
+        if(_self.showPage == 0){
+            _self.userCheckedValue = [];
+        }else{
+            _self.groupCheckedValue = [];
+        }
+
     },
     //初始化数据
     getData: function(curPageNum, mycallback) {

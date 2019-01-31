@@ -4,6 +4,7 @@
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
         <h1 class="header-title f18">{{title||''}}</h1>
         <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
+        <a @click="clearHandler" class="calc-shanchu  calcfont right" id="clear"></a>
     </header>
 
     <div class="selectList-scroll">
@@ -58,15 +59,7 @@ export default {
             notData:false,
             //用户数据
             userData: [
-                // {
-                //   id:'group1',
-                //   text:'group1',
-                //   nodes:[
-                //       {text:'Alan1',id:'Alan1'},
-                //       {text:'Alan2',id:'Alan2'},
-                //       {text:'Alan3',id:'Alan3'},
-                //   ]
-                // },
+
             ],
             userCheckedValue:[],
             field:"",//来源字段名
@@ -264,8 +257,8 @@ export default {
                 textArr.push(textTemp);
             }
 
-            console.log(idArr);
-            console.log(textArr);
+            // console.log(idArr);
+            // console.log(textArr);
 
             returnObj["value"] = {
                 id : idArr.join(","),
@@ -275,6 +268,11 @@ export default {
             //console.log(returnObj);
             eventBus.$emit('updataSelectList', returnObj);
             _self.$router.back(-1);
+        },
+        //清楚
+        clearHandler:function(){
+            var _self = this;
+            _self.userCheckedValue = [];
         },
         //筛选
         search: function () {
