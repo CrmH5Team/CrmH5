@@ -91,7 +91,7 @@
 }
 .tips-box .upload-now{flex:1;text-align: right;}
 
-.group-title{height: 40px;padding: 0 10px; display: flex;align-items :center;position: relative;}
+.group-title{height: 40px;padding: 0 5px 0 10px; display: flex;align-items :center;position: relative;}
 .title-text{font-weight: 600;display: inline-block;width: 85%;}
 .check-all{display: inline-block;flex:1;text-align: right;}
 

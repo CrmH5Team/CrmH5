@@ -4,6 +4,7 @@
         <a @click="backHandler" class="calcfont calc-fanhui left" id="back"></a>
         <h1 class="mui-title">{{title||''}}</h1>
         <a @click="saveHandler" class="calc-gou  calcfont right" id="save"></a>
+        <a @click="clearHandler" class="calc-shanchu  calcfont right" id="clear"></a>
     </header>
 
     <div class="selectList-scroll">
@@ -180,10 +181,10 @@ export default {
 
             //radio
             if($this.selectType === 'radio'){
-                if(tool.isNullOrEmptyObject($this.radioValue)){
-                    tool.showText(lanTool.lanContent('592_请选择数据！'));
-                    return;
-                }
+                // if(tool.isNullOrEmptyObject($this.radioValue)){
+                //     tool.showText(lanTool.lanContent('592_请选择数据！'));
+                //     return;
+                // }
 
                 var id = $this.radioValue;
                 var text = $.trim($("input[value='"+ id +"']:first").siblings("span:first").text()) || "";
@@ -212,6 +213,15 @@ export default {
             //console.log(returnObj);
             eventBus.$emit('updataSelectList', returnObj);
             $this.$router.back(-1);
+        },
+        //清楚
+        clearHandler:function(){
+            var _self = this;
+            if(_self.selectType === 'radio'){
+                _self.radioValue = '';
+            }else{
+                _self.checkboxValue = [];
+            }
         },
         //获取数据
         getData: function (mycallback) {
