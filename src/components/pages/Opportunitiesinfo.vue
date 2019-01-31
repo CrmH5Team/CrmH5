@@ -23,10 +23,10 @@
                 <div class="ListCellLeftIcon"><span class="calcfont calc-shangye"></span></div>
                 <div class="ListCellContent">
                     <div class="ListCellContentLeft leftContent">
-                        <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
+                        <div class="ListCellContentLeftText lanText" data-lanid="695_业务"></div>
                     </div>
                     <div class="ListCellContentRight rightContent">
-                        <input type="text" data-field="BusinessTypes" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="OpportunityBusinessTypes" class="ListCellContentRightText"/>
+                        <input type="text" data-field="BusinessTypes" data-lanid="695_业务" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="OpportunityBusinessTypes" class="ListCellContentRightText"/>
                     </div>
                     <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                 </div>
@@ -100,10 +100,10 @@
                         <div class="ListCellLeftIcon"><span class="calcfont calc-shixiang"></span></div>
                         <div class="ListCellContent">
                             <div class="ListCellContentLeft leftContent">
-                                <div class="ListCellContentLeftText lanText" data-lanid="947_事项"></div>
+                                <div class="ListCellContentLeftText lanText" data-lanid="947_商业事项"></div>
                             </div>
                             <div class="ListCellContentRight rightContent">
-                                <input type="text" data-field="Matter" data-lanid="947_事项" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="Matter" class="ListCellContentRightText"/>
+                                <input type="text" data-field="Matter" data-lanid="947_商业事项" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_DtbAllTypes" TypeValue="Matter" class="ListCellContentRightText"/>
                             </div>
                             <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                         </div>
@@ -357,7 +357,7 @@ export default {
         document.activeElement.blur();
 
         var _self = this;
-        _self.seeMore =lanTool.lanContent("900_查看完整");
+        _self.seeMore =lanTool.lanContent("900_查看详细");
 
         // this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
@@ -462,7 +462,7 @@ export default {
                             $(".MatterOtherObj").show();
                         } else {
                             $(".MatterOtherObj").hide();
-                            $(".MatterOtherObj textarea").val("");//清空文本数据
+                            //$(".MatterOtherObj textarea").val("");//清空文本数据=>不清空
                         }
                     });
 

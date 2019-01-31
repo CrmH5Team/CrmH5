@@ -34,10 +34,10 @@
                     <div class="ListCellLeftIcon"><span class="mui-icon calcfont calc-yewu"></span></div>
                     <div class="ListCellContent">
                         <div class="ListCellContentLeft leftContent">
-                            <div class="ListCellContentLeftText lanText" data-lanid="695_业务分类"></div>
+                            <div class="ListCellContentLeftText lanText" data-lanid="1007_业务分类"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <input type="text" data-field="BusinessType" data-lanid="695_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
+                            <input type="text" data-field="BusinessType" data-lanid="1007_业务分类" data-fieldControlType="picker" data-fieldVal="" Code="DropDowList_ViewBaseAllTypes" TypeValue="Companybusinesstype" class="ListCellContentRightText"/>
                         </div>
                             <div class="ListCellRightIcon"><span class="mui-icon calcfont calc-you"></span></div>
                         </div>

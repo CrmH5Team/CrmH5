@@ -114,7 +114,7 @@ export default {
                 },
                 {
                     queryfield: "BusinessType",
-                    text: lanTool.lanContent("695_业务分类"),
+                    text: lanTool.lanContent("1007_业务分类"),
                     fieldControlType: "picker",
                     queryType: "string",
                     queryFormat: "",
@@ -123,7 +123,7 @@ export default {
                     queryComparison: "=",
                     Code: "DropDowList_ViewBaseAllTypes",
                     TypeValue: "Companybusinesstype",
-                    datalanid: "695_业务分类"
+                    datalanid: "1007_业务分类"
                 },
                 {
                     queryfield: "CountryID",
