@@ -6,12 +6,12 @@
         <h1 class="mui-title f18">{{title}}</h1>
 
         <!-- 新增状态头部icon显示   -->
-        <div v-if="isAddNew" class="leftView">
+        <div v-if="isAddNew" class="leftView right">
             <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
             <a v-if="!onlyView" @click="save" class="calcfont calc-gou right" id="save"></a>
         </div>
         <!-- 编辑状态头部icon显示   -->
-        <div v-else class="leftView">
+        <div v-else class="leftView right">
             <!-- <a class="calcfont calc-tijiao right" id="tijiao"></a> -->
             <!-- <a v-if="operation && !onlyView" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a> -->
             <a v-if="!onlyView && operation" @click="moreClick" class="calcfont calc-gengduo right" id="gengduo"></a>
@@ -92,65 +92,48 @@ header {
 header.mui-bar {
     line-height: 0.2rem;
     background: #f8f2dc;
-    /* position: fixed; */
-    /* top: 0;
-    left: 0;
-    right: 0; */
-    /* z-index: 99; */
 }
 
 .leftView {
     position: absolute;
     height: 0.88rem;
-    width: 2.1rem;
+    /* width: 2.1rem; */
     right: 0;
-    padding-right: 0.1rem
+    top:0;
 }
 
 .mui-title {
-    right: 2.3rem;
-    left: 0.8rem;
+
     display: inline-block;
     overflow: hidden;
     width: auto;
-    font-size: 0.36rem;
-    font-weight: 400;
-    margin: 0;
+    max-width:70%;
+    font-size: .34rem;
+    margin: 0 0 0 -10px;
     text-overflow: ellipsis;
-    position: absolute;
     padding: 0;
-    text-align: left;
+    text-align:left;
     white-space: nowrap;
-    line-height: 0.88rem;
-    margin-left: -0.2rem;
+    line-height: .88rem;
 }
 
 .calcfont {
     font-size: 0.48rem;
-    width: 0.88rem;
     text-align: center;
-    padding: 0.2rem 0;
-    padding-right: 0.1rem;
+    padding: .2rem 10px;
     position: relative;
     z-index: 20;
     display: inline-block;
     text-decoration: none;
     line-height: 1;
-    color: #333333;
+    margin-left:-10px;
+
 }
 
 .calc-fanhui {
-    margin-right: -0.2rem;
-    margin-left: -0.2rem;
-    padding-right: 0.2rem;
-    padding-left: 0.2rem;
-
+    margin-left:0;
 }
 
-.right {
-    float: right;
-    width: 0.6rem;
-}
 
 #delete:after {
     clear: both;
@@ -160,5 +143,6 @@ header.mui-bar {
 header .mui-title,
 header a {
     color: #333333;
+    font-weight: 400;
 }
 </style>

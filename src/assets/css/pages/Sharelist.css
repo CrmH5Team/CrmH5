@@ -13,7 +13,7 @@ header {
   display: inline-block;
   overflow: hidden;
   width: auto;
-  max-width: 75%;
+  max-width: 70%;
   font-size: 0.34rem;
   margin: 0 0 0 -10px;
   text-overflow: ellipsis;
@@ -33,6 +33,11 @@ header {
   text-decoration: none;
   line-height: 1;
 }
+.header .calcfont{margin-left:-10px;}
+.header .calc-fanhui {
+  margin-left:0;
+}
+
 .header-title,header a { color: #333;}
 
 
