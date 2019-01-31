@@ -165,19 +165,19 @@ export default {
                 //     Code: "",
                 //     TypeValue: "",
                 // },
-                {
-                    queryfield: "MeetingType",
-                    text: lanTool.lanContent("814_对内/对外"),
-                    fieldControlType: "picker",
-                    queryType: "string",
-                    queryFormat: "",
-                    queryRelation: "and",
-                    queryValue: "",
-                    queryComparison: "=",
-                    Code: "DropDowList_DtbAllTypes",
-                    TypeValue: "InternalExternaltype",
-                    datalanid: "814_对内/对外"
-                },
+                // {
+                //     queryfield: "MeetingType",
+                //     text: lanTool.lanContent("814_对内/对外"),
+                //     fieldControlType: "picker",
+                //     queryType: "string",
+                //     queryFormat: "",
+                //     queryRelation: "and",
+                //     queryValue: "",
+                //     queryComparison: "=",
+                //     Code: "DropDowList_DtbAllTypes",
+                //     TypeValue: "InternalExternaltype",
+                //     datalanid: "814_对内/对外"
+                // },
                 {
                     queryfield: "CompanyID",
                     text: lanTool.lanContent('726_公司名称'),
