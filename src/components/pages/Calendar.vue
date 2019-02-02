@@ -211,10 +211,46 @@ export default {
             } else {
                 infoName = $(el.target).parents(".data-events-item").children(".item-title").text() || "";
             }
+            
+            var defaultDateTime = "";
+            //新增
+            if(tool.isNullOrEmptyObject(autoID) ||autoID<=-1){
+                var selectedDayObj = $("div.picker-calendar-day-selected:first");
+                if (!selectedDayObj) {
+                    return;
+                }
+                var year = selectedDayObj.attr("data-year") || "";
+                var month = selectedDayObj.attr("data-month") || "";
+                var day = selectedDayObj.attr("data-day") || "";
+                if (tool.isNullOrEmptyObject(year) || tool.isNullOrEmptyObject(month) || tool.isNullOrEmptyObject(day)) {
+                    return;
+                }
+                month = parseInt(month) + 1;
+                defaultDateTime = year + "-" + month + "-" + day;
+
+                var curDateTime = new Date();
+                var hour = curDateTime.getHours();
+                var minutes = curDateTime.getMinutes();
+                var seconds = curDateTime.getSeconds();
+
+                defaultDateTime+= " " + hour +":" +minutes + ":" + seconds;
+            }else{
+                defaultDateTime = "";
+            }
+            
+            if(!tool.isNullOrEmptyObject(defaultDateTime)){
+                var newformat = "yyyy-MM-dd HH:mm";
+                var oldFormat = "yyyy-MM-dd HH:mm:ss";
+                defaultDateTime = defaultDateTime.ReplaceAll("T", " ");
+                defaultDateTime = tool.ChangeTimeFormat(defaultDateTime, newformat,oldFormat);
+            }
+
+            //console.log(defaultDateTime);
             _self.$router.push({
                 path: url,
                 query: {
-                    infoName: infoName
+                    infoName: infoName,
+                    defaultDateTime:defaultDateTime
                 }
             });
         },

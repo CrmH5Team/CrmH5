@@ -12,6 +12,7 @@ const eventBus = new Vue({
     created:function(){
         // 绑定监听SelectList组件
         this.$on('updataSelectList', (val)=>{
+            // console.log(val);
             this.selectListData = val;
         });
         //queryCondiction

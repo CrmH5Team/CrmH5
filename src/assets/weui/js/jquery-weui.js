@@ -4735,6 +4735,7 @@ Device/OS Detection
   };
 
   $.fn.picker = function(params) {
+    // console.log(params);
     var args = arguments;
     return this.each(function() {
       if(!this) return;
@@ -5966,6 +5967,7 @@ Device/OS Detection
     this.initYears = params.years
 
     var p = $.extend({}, params, this.getConfig());
+    // console.log("aaa");
     $(this.input).picker(p);
   }
 

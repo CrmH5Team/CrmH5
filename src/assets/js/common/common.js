@@ -1922,8 +1922,8 @@
 	*/
 	tool.ClearControlData = function (myCallBack) {
 		$("[data-fieldControlType='textareaInput']").val("");
-		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "");
-		$("[data-fieldControlType='dateTimePicker']").val("");
+		$("[data-fieldControlType='picker']").val("").attr("data-fieldVal", "").trigger('change');
+		$("[data-fieldControlType='dateTimePicker']").val("").trigger('change');
 		$("[data-fieldControlType='selectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='groupSelectList']").text("").attr("data-fieldVal", "");
 		$("[data-fieldControlType='linkSelectList']").text("").attr("data-fieldVal", "");
@@ -2292,7 +2292,7 @@
 				'selectType':selectType,
 				"filter":filter
 			};
-			console.log(parameter);
+			// console.log(parameter);
 			self.$router.push({
 				path: '/linkedpage',
 				query: parameter
@@ -2635,6 +2635,7 @@
 						}
 
 						_curObj.val(fieldVal);
+						_curObj.trigger('change');
 					});
 					if (!tool.isNullOrEmptyObject(myCallBack)) {
 						myCallBack(data);

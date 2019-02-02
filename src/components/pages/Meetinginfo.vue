@@ -88,6 +88,15 @@
                     </div>
                 </div>
 
+                <div class="ListSpecialCell visible" id="OppIDClickObj">
+                    <div class="ListSpecialCellField">
+                        <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-yewujihui"></span></div>
+                        <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
+                        <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
+                    </div>
+                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_Opportunity" typevalue="" data-clickObj="OppIDClickObj"></div>
+                </div>
+
                 <div class="ListCell">
                     <div class="ListCellLeftIcon textLeftIcon"><span class="calcfont calc-beiwanglu"></span></div>
                     <div class="ListCellLeftText">
@@ -140,13 +149,15 @@ export default {
             onlyView: false, //控制页面头部icon,true:不显示头部icon,false:显示
             isFirstEnter: false, //是否首次进入
             accessMeetingNote:false,//是否可以查看会议模块
-            meetingNoticeID : ""//会议记录id
+            meetingNoticeID : "",//会议记录id
+            oppID : "",//deal pipeline/opportunity ID
+            defaultDateTime:"",//新建单据时候的初始时间
         }
     },
 
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == "groupselectlist") {
+        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'linkedpage') {
             to.meta.isBack = true;
         } else {
             to.meta.isBack = false;
@@ -163,6 +174,7 @@ export default {
         //每次进入详情滚动条滚动到顶部
         $(window).scrollTop(0);
         var _self = this;
+        _self.defaultDateTime = _self.$route.query.defaultDateTime||"";
         //监听保存
         // _self.savePageData();
         // //监听删除
@@ -198,6 +210,7 @@ export default {
                 $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, id, function () {
+                    _self.initDefaultDateTime();
                     //渲染textarea
                     $("textarea").each(function (index, cur) {
                         // console.log("change textarea");
@@ -246,7 +259,7 @@ export default {
                         });
 
                         //场景：当在selectList页面按刷新按钮再回到详情页
-                        // console.log(eventBus.selectListData);
+                        //  console.log(eventBus.selectListData);
                         if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                             return;
                         }
@@ -335,9 +348,12 @@ export default {
                 });
             }
 
+
+            //console.log(eventBus.selectListData);
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
+            
             //更新selectlist控件的结果
             // console.log(eventBus.selectListData.field);
             var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
@@ -436,7 +452,8 @@ export default {
         //渲染查看会议记录模块
         initMeetingNote:function(data){
             var _self = this;
-             _self.meetingNoticeID = data["MeetingNoticeID"] || "-1";
+            _self.meetingNoticeID = data["MeetingNoticeID"] || "-1";
+            _self.oppID = data["OppID"] || "";
             if(tool.isNullOrEmptyObject(_self.meetingNoticeID)){
                 //modify by Dylan 之前是没有绑定不能看，现在改成没有绑定也可以看
                 //_self.accessMeetingNote = false;
@@ -450,7 +467,6 @@ export default {
             var _self = this;
             var target = $(e.target);
             var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
-            var oppID = "";
             var scheduleID = _self.$route.params.id||"";
             var infoName = _self.$route.query.infoName ||"";
             if(tool.isNullOrEmptyObject(scheduleID)){
@@ -458,7 +474,7 @@ export default {
             }
             scheduleID = Number(scheduleID)<=0?"":scheduleID;
             var parameter = {
-                OppID:oppID,
+                OppID:_self.oppID,
                 ScheduleID:scheduleID,
                 onlyView:true,
                 infoName:infoName,
@@ -474,6 +490,13 @@ export default {
             //     path: '/MeetingNoteinfo/-1',
             // });
         },
+        //新建时初始化时间
+        initDefaultDateTime:function(){
+            var _self = this;
+            if(!tool.isNullOrEmptyObject(_self.defaultDateTime)){
+                $("#startdate,#enddate").val(_self.defaultDateTime);
+            }
+        }
     }
 
 }
