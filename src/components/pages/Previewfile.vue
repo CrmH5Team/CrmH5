@@ -124,7 +124,7 @@ export default {
                 data = data._OnlyOneData || "";
                 data = tool.combineBase64StrWithFileType(data,$this.data.ObjectName);
 
-                console.log(data);
+                // console.log(data);
                 //图片
                 if(tool.isFileImage($this.data.ObjectName)) {
                     $this.showDownload = true;
