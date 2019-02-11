@@ -23,7 +23,7 @@
             placeholder
             v-model="userPwd"
           >
-          <i @click="showPwd" class="calcfont calc-display eyes" :class="{'active-eyes':activeEyes}"></i>
+          <i @click="showPwd" class="calcfont calc-display calc-mimayincang" :class="{'active-eyes':activeEyes}"></i>
         </div>
         <div
           @click="login"
@@ -55,14 +55,21 @@ export default {
   },
 
   methods: {
-    showPwd: function() {
+   showPwd: function(event) {
       let state = this.$refs.pwd.type;
+       var target = $(event.target);
       if (state === "password") {
         this.$refs.pwd.type = "text";
+       target.removeClass("calc-mimayincang");
+       target.addClass("calc-mimazhanxian");
       } else {
         this.$refs.pwd.type = "password";
+        target.removeClass("calc-mimazhanxian");
+        target.addClass("calc-mimayincang");
       }
-      this.activeEyes = !this.activeEyes;
+      //   target.removeClass("calc-mimayincang");
+      //  target.addClass("calc-mimazhanxian");
+      // this.activeEyes = !this.activeEyes;
     },
 
     //登陆操作
@@ -196,7 +203,7 @@ export default {
   background-repeat: no-repeat;
 }
 .box{padding-top:70%;}
-.eyes {
+.calc-mimayincang,.calc-mimazhanxian {
   position: absolute;
   right: 0rem;
   top: 0.45rem;
