@@ -38,7 +38,6 @@ import Uploadinput from '@/components/pages/Uploadinput'
 
 // import Report from '@/components/pages/Report'
 
-
 import PrCalendarinfo from '@/components/pages/PrCalendarinfo'
 
 import Selectlist from '@/components/common/Selectlist'
@@ -100,18 +99,12 @@ const router =  new Router({
 
 
 
-
-
       //添加住宿/机票
     { path: '/addRouteOrRoom',name:'addRouteOrRoom', component:AddRouteOrRoom },
      //添加会议
     { path: '/addmeeting',name:'addmeeting', component:Addmeeting },
     //添加出差报销单
     { path: '/addTripExpense/:id',name:'addTripExpense', component:AddTripExpense },
-
-
-
-
 
 
     { path: '/business',name:'business', component:Business,
@@ -186,20 +179,21 @@ const router =  new Router({
     { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
     { path:'/poweruser',name:'poweruser',component:Poweruser}
   ]
-})
+});
 
 //路由拦截
 router.beforeEach(function(to, from, next){
     var registerCodeTemp = tool.RegisterCode();
     if(!tool.isNullOrEmptyObject(registerCodeTemp)){
         next();
-    }else{
-      if(to.path == '/login'){
-          next();
-      }else{
-          next({path: '/login'});
-      }
+        return;
     }
-})
+
+    if(to.path == '/login'){
+        next();
+    }else{
+        next({path: '/login'});
+    }
+});
 
 export default router
