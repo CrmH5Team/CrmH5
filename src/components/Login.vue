@@ -115,6 +115,10 @@ export default {
           tool.setSessionStorageItem(tool.cache_loginUserName, self.userName || "");
           tool.setSessionStorageItem(tool.cache_loginPwd, self.userPwd || "");
 
+          //刷新注册码
+          self.refreshRegisterCode();
+
+          //跳转到首页
           self.$router.push("/index");
 
           //隐藏虚拟键盘
@@ -128,6 +132,47 @@ export default {
           document.activeElement.blur();
         }
       });
+    },
+    //刷新注册码
+    refreshRegisterCode(){
+
+      var _self = this;
+      //请求地址
+      var urlTemp = tool.AjaxBaseUrl();
+      var controlName = tool.Api_RefreshRegisterCode;
+      var jsonDatasTemp = {
+          CurrentLanguageVersion: lanTool.currentLanguageVersion,
+          UserName: tool.UserName(),
+          _ControlName: controlName,
+          _RegisterCode: tool.RegisterCode()        
+      };
+
+      setTimeout(function(){
+
+        $.ajax({
+          async: true,
+          type: "post",
+          url: urlTemp,
+          data: jsonDatasTemp,
+          success: function(data) {
+            console.log(data);
+
+            data = tool.jObject(data);
+            if (data._ReturnStatus == false) {
+              //tool.showText(tool.getMessage(data));
+              console.log(tool.getMessage(data));
+              //return;
+            }
+
+            //重复执行
+            _self.refreshRegisterCode();
+          },
+          error: function(jqXHR, type, error) {
+            //隐藏虚拟键盘
+            document.activeElement.blur();
+          }
+        });
+      },tool.RefreshRegisterCodeInternal)
     }
   }
 };

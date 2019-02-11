@@ -221,7 +221,10 @@
 	 * 用户登陆接口
 	 */
   	tool.Api_UserLogin = "Api_UserLogin";
-
+	/*
+	 * 刷新用户注册码
+	 */
+	tool.Api_RefreshRegisterCode = "Api_RefreshRegisterCode";
 	/*
 	 * 公司分组接口
 	 */
@@ -446,9 +449,13 @@
 	 */
 	tool.PageSize = 20;
 	/*
-	 * PageSize:每页记录数
+	 * FileMaxSiz:最大可上传的文件大小(20M)
 	 */
 	tool.FileMaxSiz = 20971520;
+	/*
+	 * RefreshRegisterCodeInternal:刷新注册码的间隔时长(3600000毫秒)
+	 */
+	tool.RefreshRegisterCodeInternal = 3600000;
 
 	/*请求的公共入口地址*/
 	tool.AjaxBaseUrl = function () {

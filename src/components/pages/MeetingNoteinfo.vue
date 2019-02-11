@@ -302,25 +302,8 @@ export default {
                 setTimeout(function(){
                     window.location.reload();
                 },80);
-                
-                // var urlParam = "";
-                // for(var key in query){
-                //     urlParam += key + "=" + (query[key] || "") + "&";
-                // }
-                // console.log(urlParam);
-                // if(!tool.isNullOrEmptyObject(urlParam)){
-                //     urlParam = urlParam.substring(0,urlParam.length-1);
-                // }
-                // path = path + "?" + urlParam;
-                // console.log(path);
-
-                //_self.$router.replace(path);
             },false);
-            // setTimeout(function () {
-            //     $("#save").off("click").on("click", function () {
-            //         tool.SaveOrUpdateData(fromType, id, _self, function () {});
-            //     });
-            // }, 0);
+            
         },
         //控制控件逻辑
         controlBusinessTypes: function () {
