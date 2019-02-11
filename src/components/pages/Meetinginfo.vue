@@ -88,13 +88,13 @@
                     </div>
                 </div>
 
-                <div class="ListSpecialCell visible" id="OppIDClickObj">
+                <div class="ListSpecialCell visible" id="OppIDTempClickObj">
                     <div class="ListSpecialCellField">
                         <div class="ListSpecialCellLeftIcon"><span class="calcfont calc-yewujihui"></span></div>
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="OppID" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_Opportunity" typevalue="" data-clickObj="OppIDClickObj"></div>
+                    <div class="ListSpecialCellContent" data-field="OppIDTemp" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_Opportunity" typevalue="" data-clickObj="OppIDTempClickObj"></div>
                 </div>
 
                 <div class="ListCell">
@@ -453,7 +453,7 @@ export default {
         initMeetingNote:function(data){
             var _self = this;
             _self.meetingNoticeID = data["MeetingNoticeID"] || "-1";
-            _self.oppID = data["OppID"] || "";
+            _self.oppID = data["OppIDTemp"] || "";//为了防止下一个页面的回调函数执行顺序问题，因此将OppID改成OppIDTemp
             if(tool.isNullOrEmptyObject(_self.meetingNoticeID)){
                 //modify by Dylan 之前是没有绑定不能看，现在改成没有绑定也可以看
                 //_self.accessMeetingNote = false;
