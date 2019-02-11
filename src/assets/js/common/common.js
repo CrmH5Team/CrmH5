@@ -1598,7 +1598,7 @@
 		// console.log(fromType);
 		// console.log(groupID);
 		// console.log(containerObj);
-		console.log("common_InitiateInnerDataList");
+		// console.log("common_InitiateInnerDataList");
 		console.log(queryCondiction);
 
 		if (tool.isNullOrEmptyObject(fromType) || tool.isNullOrEmptyObject(groupID) || tool.isNullOrEmptyObject(containerObj)) {
