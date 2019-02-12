@@ -3493,34 +3493,74 @@ if (typeof define === 'function' && define.amd) {
 
   var defaults;
 
-  var show = function(html, className) {
+  var show = function(html, className,loadingIndexClassName) {
     className = className || "";
     var mask = $("<div class='weui-mask_transparent'></div>").appendTo(document.body);
 
-    var tpl = '<div class="weui-toast ' + className + '">' + html + '</div>';
+    var tpl = '<div class="weui-toast ' + className + ' ' + loadingIndexClassName +'">' + html + '</div>';
     var dialog = $(tpl).appendTo(document.body);
 
     dialog.addClass("weui-toast--visible");
     dialog.show();
+
+    return loadingIndexClassName;
   };
 
-  var hide = function(callback) {
-    // console.log("hide");
+  var hide = function(callback,loadingIndexClassName) {
+    //console.log("hide");
     $(".weui-mask_transparent").remove();
-    var done = false;
-    var $el = $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
-      var $this = $(this);
-      $this.remove();
-      callback && callback();
-      done = true
-    });
 
-    setTimeout(function () {
-      if (!done) {
-        $el.remove()
-        callback && callback();
+    if(!tool.isNullOrEmptyObject(loadingIndexClassName)){
+      var done = false;
+      // $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
+      //   var curObj = $("."+loadingIndexClassName);
+      //   console.log(curObj.length);
+      //   if(curObj.length >= 1){
+      //     curObj.remove();
+      //     callback && callback();
+      //     done = true;
+      //   }
+      // });
+      $(".weui-toast--visible").removeClass("weui-toast--visible");
+      //var curObj = $("."+loadingIndexClassName);
+        console.log($("."+loadingIndexClassName).length);
+        console.log(loadingIndexClassName);
+        if($("."+loadingIndexClassName).length >= 1){
+          $("."+loadingIndexClassName).remove();
+          callback && callback();
+          done = true;
       }
-    }, 1000)
+
+      // setTimeout(function () {
+      //   if (!done) {
+      //     var curObj = $("."+loadingIndexClassName);
+      //     console.log(curObj.length);
+      //     if(curObj.length >= 1){
+      //       curObj.remove();
+      //       callback && callback();
+      //       done = true;
+      //     }
+      //   }
+      // }, 1000);
+
+    }else{
+
+      var done = false;
+      var $el = $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
+        var $this = $(this);
+        $this.remove();
+        callback && callback();
+        done = true;
+      });
+
+      setTimeout(function () {
+        if (!done) {
+          $el.remove()
+          callback && callback();
+        }
+      }, 1000);
+
+    }
   }
 
   $.toast = function(text, style, callback) {
@@ -3540,13 +3580,18 @@ if (typeof define === 'function' && define.amd) {
     } else if(typeof style === typeof 1) {
       duration = style
     }
-    // show('<i class="' + iconClassName + ' weui-icon_toast"></i><p class="weui-toast_content">' + (text || "已经完成") + '</p>', className);
-    show('<i class="' + iconClassName + ' weui-icon_toast"></i><div class="weui-toast_content">' + (text || "已经完成") + '</div>', className);
+    
+    var loadIndex = $(".weui-toast").length || 0;
+    loadIndex = loadIndex + 1;
+    var loadingIndexClassName = tool.loadingIndexClassName;
+    loadingIndexClassName = loadingIndexClassName + loadIndex;
 
-    console.log("duration:"+duration);
+    show('<i class="' + iconClassName + ' weui-icon_toast"></i><div class="weui-toast_content">' + (text || "已经完成") + '</div>', className,loadingIndexClassName);
+
+    //console.log("duration:"+duration);
 
     setTimeout(function() {
-      hide(callback);
+      hide(callback,loadingIndexClassName);
     }, duration);
   }
 
@@ -3555,11 +3600,19 @@ if (typeof define === 'function' && define.amd) {
     html += '<i class="weui-loading weui-icon_toast"></i>';
     html += '</div>';
     html += '<p class="weui-toast_content">' + (text || "数据加载中") + '</p>';
-    show(html, 'weui_loading_toast');
+    
+    var loadIndex = $(".weui-toast").length || 0;
+    loadIndex = loadIndex + 1;
+    var loadingIndexClassName = tool.loadingIndexClassName;
+    loadingIndexClassName = loadingIndexClassName + loadIndex;
+
+    show(html, 'weui_loading_toast',loadingIndexClassName);
+
+    return loadingIndexClassName;
   }
 
-  $.hideLoading = function() {
-    hide();
+  $.hideLoading = function(myCallBack,loadingIndexClassName) {
+    hide(myCallBack,loadingIndexClassName);
   }
 
   var toastDefaults = $.toast.prototype.defaults = {
@@ -6348,7 +6401,7 @@ Device/OS Detection
 
   var timeout;
 
-  $.toptip = function(text, duration, type) {
+  $.toptip = function(text, duration, type,myCallBack) {
     if(!text) return;
     if(typeof duration === typeof "a") {
       type = duration;
@@ -6372,6 +6425,11 @@ Device/OS Detection
       $t.removeClass('weui-toptips_visible').transitionEnd(function() {
         $t.remove();
       });
+
+      if(!tool.isNullOrEmptyObject(myCallBack)){
+        myCallBack();
+      }
+
     }, duration);
   }
 }($);

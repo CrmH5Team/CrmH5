@@ -457,6 +457,9 @@
 	 */
 	tool.RefreshRegisterCodeInternal = 3600000;
 
+	//loadingIndexClassName
+	tool.loadingIndexClassName = "loadingIndex_";
+
 	/*请求的公共入口地址*/
 	tool.AjaxBaseUrl = function () {
 		return tool.getConfigValue(tool.config_ajaxUrl) || "";
@@ -1378,11 +1381,26 @@
 	//显示等待
 	tool.showLoading = function (msg) {
 		msg = msg || lanTool.lanContent("770_加载中...");
-		$.showLoading(msg);
+		var loadingIndexClassName = $.showLoading(msg);
+		return loadingIndexClassName;
 	};
 	//隐藏等待
-	tool.hideLoading = function () {
-		$.hideLoading();
+	tool.hideLoading = function (loadingIndexClassName,myCallBack) {
+		$.hideLoading(myCallBack,loadingIndexClassName);
+	};
+	//顶部成功提示
+	tool.topTipSuccess = function(msg,myCallBack){
+		if (tool.isNullOrEmptyObject(msg)) {
+			return;
+		}
+		$.toptip(msg, 1000, 'success',myCallBack);
+	};
+	//顶部失败提示
+	tool.topTipError = function(msg,myCallBack){
+		if (tool.isNullOrEmptyObject(msg)) {
+			return;
+		}
+		$.toptip(msg, 1000, 'error',myCallBack);
 	};
 
 	//当前登陆对象
@@ -1462,7 +1480,7 @@
 		//清空容器内容
 		containerObj.html('');
 
-		console.log("common_InitiateGroupList");
+		// console.log("common_InitiateGroupList");
 		console.log(queryCondiction);
 
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
@@ -1531,7 +1549,7 @@
 			_RegisterCode: tool.RegisterCode(),
 			QueryCondiction: JSON.stringify(queryCondiction)
 		};
-		tool.showLoading();
+		var loadingIndexClassName = tool.showLoading();
 
 		$.ajax({
 			async: true,
@@ -1539,7 +1557,7 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				data = tool.jObject(data);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
@@ -1583,7 +1601,7 @@
 			},
 			error: function (jqXHR, type, error) {
 				console.log(error);
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				return;
 			},
 			complete: function () {
@@ -1781,7 +1799,7 @@
 			_RegisterCode: tool.RegisterCode(),
 			QueryCondiction: JSON.stringify(queryCondiction)
 		};
-		tool.showLoading();
+		var loadingIndexClassName = tool.showLoading();
 		$.ajax({
 			async: true,
 			type: "post",
@@ -1790,7 +1808,7 @@
 			success: function (data) {
 				data = tool.jObject(data);
 				// console.log(data);
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				if (data._ReturnStatus == false) {
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
@@ -1842,7 +1860,7 @@
 			},
 			error: function (jqXHR, type, error) {
 				console.log(error);
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				return;
 			},
 			complete: function () {
@@ -2003,14 +2021,15 @@
 				Code: code,
 				TypeValue: typeValue
 			};
-			tool.showLoading();
+			var loadingIndexClassName = tool.showLoading();
+			// console.log(loadingIndexClassName);
 			$.ajax({
 				async: true,
 				type: "post",
 				url: urlTemp,
 				data: jsonDatasTemp,
 				success: function (data) {
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 					//console.log(JSON.stringify(data));
 					data = tool.jObject(data);
 					//console.log(data);
@@ -2088,7 +2107,7 @@
 				},
 				error: function (jqXHR, type, error) {
 					console.log(error);
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 					return true;
 				},
 				complete: function () {
@@ -2440,7 +2459,8 @@
 			_RegisterCode: tool.RegisterCode(),
 			AutoID: autoID
 		};
-		tool.showLoading();
+		var loadingIndexClassName = tool.showLoading();
+		// console.log(loadingIndexClassName);
 		$.ajax({
 			async: true,
 			type: "post",
@@ -2450,7 +2470,7 @@
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 					tool.showText(tool.getMessage(data));
 					console.log(tool.getMessage(data));
 					return true;
@@ -2650,12 +2670,12 @@
 				} catch (err) {
 					console.log(err);
 				} finally {
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 				}
 			},
 			error: function (jqXHR, type, error) {
 				console.log(error);
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				return true;
 			},
 			complete: function () {
@@ -2824,14 +2844,14 @@
 		jsonDatasTemp = tool.combineJObject(jsonDatasTemp,jObject);
 		//console.log(jsonDatasTemp);
 		//return;
-		tool.showLoading();
+		var loadingIndexClassName = tool.showLoading();
 		$.ajax({
 			async: true,
 			type: "post",
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
@@ -2874,7 +2894,7 @@
 				}
 			},
 			error: function (jqXHR, type, error) {
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				console.log(error);
 				return true;
 			},
@@ -2934,7 +2954,7 @@
 		tool.showConfirm(
 			lanTool.lanContent("593_您确定要删除数据吗？"),
 			function() {
-				tool.showLoading();
+				var loadingIndexClassName = tool.showLoading();
 
 				$.ajax({
 					async: true,
@@ -2942,7 +2962,7 @@
 					url: urlTemp,
 					data: jsonDatasTemp,
 					success: function (data) {
-						tool.hideLoading();
+						tool.hideLoading(loadingIndexClassName);
 						data = tool.jObject(data);
 						// console.log(data);
 						if (data._ReturnStatus == false) {
@@ -2981,7 +3001,7 @@
 					},
 					error: function (jqXHR, type, error) {
 						console.log(error);
-						tool.hideLoading();
+						tool.hideLoading(loadingIndexClassName);
 						return true;
 					},
 					complete: function () {
@@ -3035,7 +3055,7 @@
 			AutoID: autoID,
 			ActionType:actionType
 		};
-		tool.showLoading();
+		var loadingIndexClassName = tool.showLoading();
 
 		$.ajax({
 			async: true,
@@ -3043,7 +3063,7 @@
 			url: urlTemp,
 			data: jsonDatasTemp,
 			success: function (data) {
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				data = tool.jObject(data);
 				// console.log(data);
 				if (data._ReturnStatus == false) {
@@ -3057,7 +3077,7 @@
 				}
 			},
 			error: function (jqXHR, type, error) {
-				tool.hideLoading();
+				tool.hideLoading(loadingIndexClassName);
 				console.log(error);
 				return true;
 			},
@@ -3314,7 +3334,7 @@
 		var urlTemp = tool.AjaxBaseUrl();
 
 		if (lan.Data == undefined || lan.Data == null || lan.Data.length <= 0 || !isFromCache || isRefreshCache) {
-			tool.showLoading();
+			var loadingIndexClassName = tool.showLoading();
 
 			$.ajax({
 				url: urlTemp,
@@ -3323,7 +3343,7 @@
 				cache: false,
 				data: jsonTemp,
 				success: function (data) {
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 
 					data = tool.jObject(data);
 					if (data._ReturnStatus == false) {
@@ -3347,7 +3367,7 @@
 					def.resolve();
 				},
 				error: function (jqXHR, type, error) {
-					tool.hideLoading();
+					tool.hideLoading(loadingIndexClassName);
 					console.log(jqXHR.responseText);
 					console.log(jqXHR.status);
 					console.log(jqXHR.readyState);

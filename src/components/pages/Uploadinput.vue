@@ -116,7 +116,7 @@ export default {
         //选择文件后触发
         inputFiles: function () {
             var _self = this;
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             var file = _self.$refs.fileChoose.files[0] || [];
             if (file.length == 0){
                 return;
@@ -124,7 +124,7 @@ export default {
 
             //文件大小不能<=0
             if(file.size <=0){
-                tool.hideLoading();
+                tool.hideLoading(loadingIndexClassName);
                 var msg = lanTool.lanContent("1005_文件大小不应小于等于0KB！");
                 tool.showText(msg);
                 return;
@@ -132,7 +132,7 @@ export default {
 
             //判断文件不能超过限定的大小
             if(file.size>tool.FileMaxSiz){
-                tool.hideLoading();
+                tool.hideLoading(loadingIndexClassName);
                 var sizeStr = tool.fileSizeFormat(tool.FileMaxSiz);
                 var msg = lanTool.lanContent("999_文件大小不能超过！");
                 msg = msg.replace("{0}",sizeStr);
@@ -141,7 +141,7 @@ export default {
                 return;
             }
 
-            tool.hideLoading();
+            tool.hideLoading(loadingIndexClassName);
             //写入文件名
             _self.fileName = file.name;
             var fileReader = new FileReader();
@@ -174,7 +174,7 @@ export default {
             jsonDatasTemp["fileBase64Str"] = _self.file;
             //end modify
 
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 url: urlTemp,
                 type: "post",
@@ -183,7 +183,7 @@ export default {
                 data: jsonDatasTemp,
 
                 success: function (data) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -196,7 +196,7 @@ export default {
                     _self.$router.back(-1);
                 },
                 error: function (jqXHR, type, error) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     console.log(error);
                     return true;
                 },

@@ -243,14 +243,14 @@ export default {
                     TypeValue: $this.typeValue,
                     Filter:$this.filter
                 };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
               async: true,
               type: "post",
               url: urlTemp,
               data: jsonDatasTemp,
               success: function (data) {
-                  tool.hideLoading();
+                  tool.hideLoading(loadingIndexClassName);
                   data = tool.jObject(data);
                   // console.log(data);
                   if (data._ReturnStatus == false) {
@@ -275,7 +275,7 @@ export default {
               error: function (jqXHR, type, error) {
                   $this.notData = true;
                   console.log(error);
-                  tool.hideLoading();
+                  tool.hideLoading(loadingIndexClassName);
                   return true;
               },
               complete: function () {

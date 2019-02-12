@@ -508,7 +508,7 @@ export default {
                 QueryCondiction: JSON.stringify([]),
                 RecentDay: 7
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
 
             $.ajax({
                 async: true,
@@ -516,7 +516,7 @@ export default {
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -540,7 +540,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return;
                 },
                 complete: function () {
@@ -570,7 +570,7 @@ export default {
                 QueryCondiction: JSON.stringify([]),
                 RecentDay: 7
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
@@ -579,7 +579,7 @@ export default {
                 success: function (data) {
                     data = tool.jObject(data);
                     // console.log(data);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
                         console.log(tool.getMessage(data));
@@ -604,11 +604,11 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return;
                 },
                 complete: function () {
-                    tool.hideLoading();
+                    // tool.hideLoading();
                     //隐藏虚拟键盘
                     document.activeElement.blur();
                 }

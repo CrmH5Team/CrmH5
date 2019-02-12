@@ -86,7 +86,7 @@ export default {
       };
 
       self.isDisable = true;
-      tool.showLoading();
+      var loadingIndexClassName = tool.showLoading();
       // var params = new URLSearchParams();
       // params.append("jsonDatas", jsonDatasTemp);
 
@@ -97,7 +97,7 @@ export default {
         data: jsonDatasTemp,
         success: function(data) {
           self.isDisable = false;
-          tool.hideLoading();
+          tool.hideLoading(loadingIndexClassName);
 
           data = tool.jObject(data);
           if (data._ReturnStatus == false) {
@@ -133,7 +133,7 @@ export default {
         },
         error: function(jqXHR, type, error) {
           self.isDisable = false;
-          tool.hideLoading();
+          tool.hideLoading(loadingIndexClassName);
 
           //隐藏虚拟键盘
           document.activeElement.blur();

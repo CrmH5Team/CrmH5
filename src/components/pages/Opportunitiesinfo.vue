@@ -648,7 +648,7 @@ export default {
             setTimeout(function () {
                 $('#rightPanelCloseThis').off("click").on('click',function(){
                     tool.showConfirm(lanTool.lanContent("963_您确定要关闭它吗？"),function(){
-                    tool.showLoading();
+                    var loadingIndexClassName = tool.showLoading();
 
                         $.ajax({
                         async: true,
@@ -656,7 +656,7 @@ export default {
                         url: urlTemp,
                         data: jsonDatasTemp,
                         success: function (data) {
-                            tool.hideLoading();
+                            tool.hideLoading(loadingIndexClassName);
                             data = tool.jObject(data);
                             // console.log(data);
                             if (data._ReturnStatus == false) {
@@ -670,7 +670,7 @@ export default {
                         },
                         error: function (jqXHR, type, error) {
                             console.log(error);
-                            tool.hideLoading();
+                            tool.hideLoading(loadingIndexClassName);
                             return true;
                         },
                         complete: function () {
@@ -763,7 +763,7 @@ export default {
             tool.showConfirm(
                 lanTool.lanContent("593_您确定要删除数据吗？"),
                 function() {
-                    tool.showLoading();
+                    var loadingIndexClassName = tool.showLoading();
 
                     $.ajax({
                         async: true,
@@ -771,7 +771,7 @@ export default {
                         url: urlTemp,
                         data: jsonDatasTemp,
                         success: function (data) {
-                            tool.hideLoading();
+                            tool.hideLoading(loadingIndexClassName);
                             data = tool.jObject(data);
                             // console.log(data);
                             if (data._ReturnStatus == false) {
@@ -789,7 +789,7 @@ export default {
                         },
                         error: function (jqXHR, type, error) {
                             console.log(error);
-                            tool.hideLoading();
+                            tool.hideLoading(loadingIndexClassName);
                             return true;
                         },
                         complete: function () {

@@ -102,7 +102,7 @@ export default {
             _RegisterCode: tool.RegisterCode(),
             AutoID:$this.data.AutoID
         };
-        tool.showLoading();
+        var loadingIndexClassName = tool.showLoading();
         $.ajax({
            url: urlTemp,
             type: "post",
@@ -110,7 +110,7 @@ export default {
             cache: false,
             data: jsonDatasTemp,
             success: function(data) {
-                tool.hideLoading();
+                tool.hideLoading(loadingIndexClassName);
                 data = tool.jObject(data);
                 // console.log(data);
                 if (data._ReturnStatus == false) {
@@ -134,7 +134,7 @@ export default {
                         $this.photo.open();
                     });
 
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return ;
                 }else
                 if(tool.isFileVideo($this.data.ObjectName)){
@@ -146,7 +146,7 @@ export default {
                         $(".drawerFile_content").html('<video name="media" style="width:100%; height:auto" src="' + data + '" controls></video>');
                     }
 
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return;
                 }
 
@@ -159,14 +159,14 @@ export default {
                 });
 
                 loadingTask.promise.then(function(pdf) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     //加载第一页第一页数据
                     $this.numPages = pdf.numPages;
                     $this.thePDF = pdf;
                     $this.LoadFile($this.currPage);
 
                 }, function(reason) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     console.error(reason);
                 });
 
@@ -199,7 +199,7 @@ export default {
                 })
             },
             error: function(jqXHR, type, error) {
-               tool.hideLoading();
+               tool.hideLoading(loadingIndexClassName);
                 console.log(error);
                 return true;
             },

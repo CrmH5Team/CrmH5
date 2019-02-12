@@ -358,14 +358,14 @@ export default {
                 Month: calendarObj.currentMonth + 1, //因为日历的月份是从0开始，因此此处+1
                 QueryCondiction: JSON.stringify(allQueryData)
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -416,7 +416,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     _self.notMeeting = true;
                     return true;
                 },
@@ -457,14 +457,14 @@ export default {
                 Date: currentDate,
                 QueryCondiction: JSON.stringify(allQueryData)
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log("data:"+data);
                     if (data._ReturnStatus == false) {
@@ -506,7 +506,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     _self.notMeeting = true;
                     return true;
                 },

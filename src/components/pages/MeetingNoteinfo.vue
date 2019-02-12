@@ -284,24 +284,27 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
             tool.SaveOrUpdateData(fromType, id, _self, function (dataTemp) {
-                // console.log(dataTemp);
-                var autoIDTemp = dataTemp._OnlyOneData || "";
-                if(tool.isNullOrEmptyObject(autoIDTemp)){
-                    _self.$router.back(-1);
-                    return;
-                }
-                var path = "/MeetingNoteinfo/" + autoIDTemp;
-                // console.log(path);
-                var query = _self.$route.query;
-                
-                _self.$router.replace({
-                    path: path,
-                    query: query
+                //console.log(dataTemp);
+                tool.topTipSuccess(tool.getMessage(dataTemp),function(){
+                    var autoIDTemp = dataTemp._OnlyOneData || "";
+                    if(tool.isNullOrEmptyObject(autoIDTemp)){
+                        _self.$router.back(-1);
+                        return;
+                    }
+                    var path = "/MeetingNoteinfo/" + autoIDTemp;
+                    // console.log(path);
+                    var query = _self.$route.query;
+                    
+                    _self.$router.replace({
+                        path: path,
+                        query: query
+                    });
+                    //保证地址替换后再刷新
+                    setTimeout(function(){
+                        window.location.reload();
+                    },80);
                 });
-                //保证地址替换后再刷新
-                setTimeout(function(){
-                    window.location.reload();
-                },80);
+
             },false);
             
         },
@@ -344,7 +347,7 @@ export default {
                 _RegisterCode: tool.RegisterCode(),
                 AutoID: autoID
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
@@ -352,7 +355,7 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     // console.log("handleOppID");
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -377,7 +380,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return true;
                 },
                 complete: function () {
@@ -406,14 +409,14 @@ export default {
                 _RegisterCode: tool.RegisterCode(),
                 AutoID: autoID
             };
-            tool.showLoading();
+            var loadingIndexClassName = tool.showLoading();
             $.ajax({
                 async: true,
                 type: "post",
                 url: urlTemp,
                 data: jsonDatasTemp,
                 success: function (data) {
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
                     // console.log(data);
                     if (data._ReturnStatus == false) {
@@ -478,7 +481,7 @@ export default {
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
-                    tool.hideLoading();
+                    tool.hideLoading(loadingIndexClassName);
                     return true;
                 },
                 complete: function () {
