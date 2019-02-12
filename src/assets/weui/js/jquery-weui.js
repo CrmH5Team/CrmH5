@@ -3523,25 +3523,13 @@ if (typeof define === 'function' && define.amd) {
       // });
       $(".weui-toast--visible").removeClass("weui-toast--visible");
       //var curObj = $("."+loadingIndexClassName);
-        console.log($("."+loadingIndexClassName).length);
-        console.log(loadingIndexClassName);
+        // console.log($("."+loadingIndexClassName).length);
+        // console.log(loadingIndexClassName);
         if($("."+loadingIndexClassName).length >= 1){
           $("."+loadingIndexClassName).remove();
           callback && callback();
           done = true;
       }
-
-      // setTimeout(function () {
-      //   if (!done) {
-      //     var curObj = $("."+loadingIndexClassName);
-      //     console.log(curObj.length);
-      //     if(curObj.length >= 1){
-      //       curObj.remove();
-      //       callback && callback();
-      //       done = true;
-      //     }
-      //   }
-      // }, 1000);
 
     }else{
 
