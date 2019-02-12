@@ -3508,28 +3508,19 @@ if (typeof define === 'function' && define.amd) {
 
   var hide = function(callback,loadingIndexClassName) {
     //console.log("hide");
+    //移除遮罩层
     $(".weui-mask_transparent").remove();
 
     if(!tool.isNullOrEmptyObject(loadingIndexClassName)){
-      var done = false;
-      // $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
-      //   var curObj = $("."+loadingIndexClassName);
-      //   console.log(curObj.length);
-      //   if(curObj.length >= 1){
-      //     curObj.remove();
-      //     callback && callback();
-      //     done = true;
-      //   }
-      // });
-      $(".weui-toast--visible").removeClass("weui-toast--visible");
-      //var curObj = $("."+loadingIndexClassName);
-        // console.log($("."+loadingIndexClassName).length);
-        // console.log(loadingIndexClassName);
+
         if($("."+loadingIndexClassName).length >= 1){
-          $("."+loadingIndexClassName).remove();
+
+          //取消显示
+          $("."+loadingIndexClassName).removeClass("weui-toast--visible").remove();
+
+          //执行回调函数
           callback && callback();
-          done = true;
-      }
+        }
 
     }else{
 
