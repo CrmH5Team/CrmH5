@@ -3565,7 +3565,7 @@
 	//执行查询动作
 	allTypeList.Query(false, true);
 
-	//根据父级的TypeValue查询子项的数据(父级的TypeValue一般就是字段名)
+	//根据父级的TypeValue查询子项的数据(父级的TypeValue一般就是字段名_test)
 	allTypeList.QueryChildItemsByPTypeValue = function (typeValue) {
 		return [];
 
