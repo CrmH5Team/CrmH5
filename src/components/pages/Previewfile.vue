@@ -53,8 +53,11 @@
                     </div>
                     <div class="drawerFile_content" slot="content">
                                 <!-- 页面的主体内容 -->
+                            <img v-show="isImg" width="100%" v-gallery :src="imgSrc">
                     </div>
             </vue-drawer-layout>
+
+
 
     </div>
 
@@ -82,6 +85,9 @@ export default {
             photo:null, //
             isOpen:false, //photoBrowser是否打开
             showDownload:false, //显示下载按钮（只有文件类型是图片或视频才显示）
+
+            isImg:false,
+            imgSrc:'',
         }
     },
     created:function(){
@@ -127,12 +133,16 @@ export default {
                 // console.log(data);
                 //图片
                 if(tool.isFileImage($this.data.ObjectName)) {
+
                     $this.showDownload = true;
-                    $(".drawerFile_content").html('<img class="image" style="max-width:100%" src="' + data + '" data-preview-src="" data-preview-group="1">');
-                    $this.clickToShow(data);
-                    $('.image').off("click").on('click',function(){
-                        $this.photo.open();
-                    });
+                    $this.isImg = true;
+                    $this.imgSrc = data;
+
+                    // $(".drawerFile_content").html('<img v-gallery:groupName class="image thumbnail" style="max-width:100%" src="' + data + '" >');
+                    // $this.clickToShow(data);
+                    // $('.image').off("click").on('click',function(){
+                    //     $this.photo.open();
+                    // });
 
                     tool.hideLoading(loadingIndexClassName);
                     return ;
@@ -213,29 +223,31 @@ export default {
 
     },
     methods:{
-        clickToShow:function(data){
-          if(tool.isNullOrEmptyObject(data)){
-            return;
-          }
-          var _self = this;
-            _self.photo = $.photoBrowser({
-              items: [
-                  {
-                      image: data
-                  }
-              ],
-              onOpen:function(){
-                  _self.isOpen = true;
+        // clickToShow:function(data){
+        //   if(tool.isNullOrEmptyObject(data)){
+        //     return;
+        //   }
+        //   var _self = this;
 
-                  // if(this.config.items.length < 2){
-                  //     $('.swiper-pagination').hide();
-                  // }
-              },
-              onClose:function(){
-                  _self.isOpen = false;
-              }
-          });
-        },
+        //     _self.photo = $.photoBrowser({
+        //       items: [
+        //           {
+        //               image: data
+        //           }
+        //       ],
+        //       onOpen:function(){
+        //           _self.isOpen = true;
+
+        //           // if(this.config.items.length < 2){
+        //           //     $('.swiper-pagination').hide();
+        //           // }
+        //       },
+        //       onClose:function(){
+        //           _self.isOpen = false;
+        //       }
+        //   });
+
+        // },
         back:function(){
             this.$router.back(-1);
         },
@@ -316,9 +328,9 @@ export default {
         },
     },
     beforeDestroy:function(){
-        if(this.isOpen){
-            this.photo.close();
-        }
+        // if(this.isOpen){
+        //     this.photo.close();
+        // }
     }
 }
 

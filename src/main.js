@@ -31,8 +31,14 @@ import './assets/js/common/CommonFront.js'
 import eventBus from './components/common/Event.js'
 
 
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-Vue.use(VueAwesomeSwiper)
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// Vue.use(VueAwesomeSwiper)
+
+//图片预览组件
+import gallery from 'img-vuer'
+Vue.use(gallery, {
+  swipeThreshold: 150  // default 100 ,new in 0.12.0
+})
 
 window.eventBus = eventBus;
 
@@ -75,7 +81,7 @@ Vue.filter('FileSizeFormat',function(val){
   }
 
   val = tool.fileSizeFormat(val);
-  
+
   return val;
 });
 

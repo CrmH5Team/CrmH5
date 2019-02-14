@@ -12,6 +12,7 @@
   "dependencies": {
     "better-scroll": "^1.13.2",
     "clipboard": "^2.0.4",
+    "img-vuer": "^0.15.5",
     "jquery": "^3.3.1",
     "pdfjs-dist": "^2.0.943",
     "vue": "^2.5.2",
