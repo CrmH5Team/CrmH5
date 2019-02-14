@@ -164,6 +164,7 @@ border-bottom: 1px solid beige;}
   box-sizing: border-box;color:rgb(102, 102, 102);
   text-align: right;
   padding:10px 10px 0 0;
+  min-height: 30px;
 }
 .item-row-flex .dateTimePicker.row-cell-ft{
    background: none;
