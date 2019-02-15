@@ -13,7 +13,7 @@
             <vue-drawer-layout
                 ref="drawerFile"
                 :drawer-width="260"
-                :enable=true
+                :enable=false
                 :animatable=true
                 :z-index="0"
                 :drawable-distance="Math.floor(260)"
@@ -22,7 +22,6 @@
                 :backdrop-opacity-range="[0,0.4]"
                 @mask-click="handleMaskClick">
                     <div class="drawer-content" slot="drawer">
-                                <!-- 侧滑出来的内容 -->
                                 <aside id="aside">
                                     <div class="aside_title lanText" data-lanid='989_信息'></div>
                                     <ul class="FileAttrlist">
@@ -51,13 +50,22 @@
                                     </ul>
                                 </aside>
                     </div>
-                    <div class="drawerFile_content" slot="content">
-                                <!-- 页面的主体内容 -->
+                    <div class="drawerFile_content" slot="content" >
                             <img v-show="isImg" width="100%" v-gallery :src="imgSrc">
+
+                            <!-- 展示pdf才显示 -->
+                            <div class="canvasBox" v-show="isPdf">
+                                <canvas class="canvas" :id="'the-canvas' + currPage "></canvas>
+                            </div>
+                            <div class="btn-div" v-show="isPdf">
+                                  <span class="canvas-btn pre-btn calcfont calc-shangyiye"></span>
+                                  <span class="canvas-btn next-btn calcfont calc-xiayiye"></span>
+                                  <span class="canvas-btn calc-zoom_out calcfont calc-zoom_out__eas"></span>
+                                  <span class="canvas-btn calc-zoom_in calcfont calc-zoom_in__easy"></span>
+                            </div>
                     </div>
+
             </vue-drawer-layout>
-
-
 
     </div>
 
@@ -82,12 +90,16 @@ export default {
             thePDF:null,//当前pdf对象
             numPages:0, //总页数
             currPage:1,  //当前页数
-            photo:null, //
-            isOpen:false, //photoBrowser是否打开
+            // photo:null, //
+            // isOpen:false, //photoBrowser是否打开
             showDownload:false, //显示下载按钮（只有文件类型是图片或视频才显示）
-
             isImg:false,
             imgSrc:'',
+
+            scale:0.6, //pdf放大倍数
+            maxScale:1.2,
+            minScale:0.6,
+            isPdf:false,
         }
     },
     created:function(){
@@ -163,14 +175,14 @@ export default {
                 //其他文件
                 //不解成utf8字节数组(这种方式也正确)
                 var fileDataTemp = window.atob(data);
-                // PDFJS.workerSrc = '../../assets/pdfjs/build/pdf.worker.js';
+                $this.isPdf = true;
                 var loadingTask = PDFJS.getDocument({
                     data: fileDataTemp
                 });
 
                 loadingTask.promise.then(function(pdf) {
                     tool.hideLoading(loadingIndexClassName);
-                    //加载第一页第一页数据
+                    //加载第一页数据
                     $this.numPages = pdf.numPages;
                     $this.thePDF = pdf;
                     $this.LoadFile($this.currPage);
@@ -185,12 +197,8 @@ export default {
                     $this.currPage--;
                     if($this.currPage == 0) {
                         $this.currPage = 1;
-
-                        // tool.showText(lanTool.lanContent("288_已经是第一页！"));
-                        // $('.pre-btn').hide();
                     } else {
                         $this.LoadFile($this.currPage);
-                        // $('.pre-btn').show();
                     }
 
                 })
@@ -199,14 +207,33 @@ export default {
                     $this.currPage++;
                     if($this.numPages < $this.currPage) {
                         $this.currPage = $this.numPages;
-                        // tool.showText(lanTool.lanContent("287_已经是最后一页！"));
-                        // $('.next-btn').hide();
+
                     } else {
                         $this.LoadFile($this.currPage);
-                        // $('.next-btn').show();
+                    }
+                })
+
+                //放大
+                $(".drawerFile_content").off("click",".calc-zoom_in").on("click",".calc-zoom_in",function(event){
+                    $this.scale = ($this.scale *10 + 1)/10;
+                    if($this.scale > $this.maxScale){
+                         $this.scale = $this.maxScale;
+                    }else{
+                        $this.LoadFile($this.currPage);
                     }
 
                 })
+                //缩小
+                $(".drawerFile_content").off("click",".calc-zoom_out").on("click",".calc-zoom_out",function(event){
+                    $this.scale = ($this.scale *10 - 1)/10;
+                    if($this.scale < $this.minScale){
+                        $this.scale = $this.minScale;
+                    }else{
+                        $this.LoadFile($this.currPage);
+                    }
+
+                })
+
             },
             error: function(jqXHR, type, error) {
                tool.hideLoading(loadingIndexClassName);
@@ -266,25 +293,41 @@ export default {
             }
 
             self.thePDF.getPage(numPage).then(function getData(page) {
-                var scale = 1;
-                var viewport = page.getViewport(scale);
 
                 // Prepare canvas using PDF page dimensions
-                $(".drawerFile_content").html(
-                    '<canvas id="the-canvas' + self.currPage + '" content="wuser-scalable=yes,width==device-width,minimum-scale=1.0"></canvas><div class="btn-div"><div class="btn-div-div"><span class="canvas-btn pre-btn calcfont calc-shangyiye"></span></div><div class="btn-div-div"><span class="canvas-btn next-btn calcfont calc-xiayiye"></span></div></div>'
-                );
+                // $(".drawerFile_content").html(
+                //     `<canvas class="canvas" id="the-canvas` + self.currPage + `" ></canvas>
+                //     `
+                // );
+                var scale = self.scale;
+                var viewport = page.getViewport(scale);
                 var canvas = document.getElementById('the-canvas' + self.currPage + '');
-                var winRatio = ($(window).width() / viewport.width);
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                canvas.style.width = viewport.width + 'px';
+                canvas.style.height = viewport.height + 'px';
 
                 var context = canvas.getContext('2d');
 
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                $(canvas).css({
-                    "transform": "scale(" + winRatio + ")",
-                    "transform-origin": "0 0 0",
-                    "margin-top": ($(window).height() - canvas.height * winRatio) / 4 + "px"
-                });
+                // let dpr = window.devicePixelRatio || 1;
+                // let bsr =
+                //     context.webkitBackingStorePixelRatio ||
+                //     context.mozBackingStorePixelRatio ||
+                //     context.msBackingStorePixelRatio ||
+                //     context.oBackingStorePixelRatio ||
+                //     context.backingStorePixelRatio ||
+                //     1;
+                // let ratio = dpr / bsr;
+                // context.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+                context.fillStyle = "#fff";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+
+                // $(canvas).css({
+                    // "transform": "scale(" + self.winRatio + ")",
+                    // "transform-origin": "0 0 0",
+                    // "margin-top": ($(window).height() - canvas.height * winRatio) / 4 + "px"
+                // });
 
                 if(numPage == 1){
                   $('.pre-btn').addClass('opacity');
@@ -296,6 +339,18 @@ export default {
                   $('.next-btn').addClass('opacity');
                 }else{
                   $('.next-btn').removeClass('opacity');
+                }
+
+                if(self.scale <= self.minScale){
+                      $('.calc-zoom_out').addClass('opacity');
+                }else{
+                      $('.calc-zoom_out').removeClass('opacity');
+                }
+
+                if(self.scale >= self.maxScale){
+                      $('.calc-zoom_in').addClass('opacity');
+                }else{
+                      $('.calc-zoom_in').removeClass('opacity');
                 }
 
                 //Render PDF page into canvas context
@@ -328,9 +383,7 @@ export default {
         },
     },
     beforeDestroy:function(){
-        // if(this.isOpen){
-        //     this.photo.close();
-        // }
+
     }
 }
 
@@ -394,7 +447,25 @@ header a {
 #aside{padding:10px 15px;}
 .aside_title{padding: 12px 0;}
 
-/* .drawerFile_content{position:relative;height:100%;} */
+.drawerFile_content{
+  /* display: flex; */
+  /* justify-content:center; */
+  /* align-items: center; */
+  /* justify-content:space-around; */
+  /* position:relative; */
+  width: 100%;
+  height: 100%;
+
+}
+
+.canvasBox{
+  width:100%;height: 100%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+}
+.canvas{margin:0 auto;}
+
 .drawerFile_content .img{
     width: 100%;max-height: 100%;
     -webkit-touch-callout: text;
@@ -456,6 +527,7 @@ header a {
 </style>
 
 <style>
+
 .weui-photo-browser-modal{z-index:9!important;}
 
 /* .pre-btn{margin-right:20px;} */
@@ -466,17 +538,19 @@ header a {
   display:flex;justify-content:center;
   line-height:0.4rem;
   text-align: center;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 .btn-div .btn-div-div{flex:1;}
 .btn-div .canvas-btn{
-  color:333;
-  padding:0.2rem;
+  color:#333;
+  /* padding:0.2rem; */
   opacity: 0.5;
-/* border-radius:2px; */
-  margin:0 0.2rem;font-size:0.6rem;}
+  margin:0 0.2rem;
+  font-size:0.6rem;}
 
-.btn-div .pre-btn{margin-left:60%;}
-.btn-div .next-btn{margin-right:60%;}
+/* .btn-div .pre-btn{margin-left:60%;}
+.btn-div .next-btn{margin-right:60%;} */
 .btn-div .opacity{opacity: 0.2;}
 
 </style>
