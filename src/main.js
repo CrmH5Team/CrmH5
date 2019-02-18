@@ -18,7 +18,7 @@ import $ from 'jquery'
 
 import './assets/weui/js/jquery-weui.js'
 
-import '@/assets/weui/js/swiper.js'
+// import '@/assets/weui/js/swiper.js'
 
 import './assets/js/common/RootFontSize.js'
 
@@ -99,6 +99,9 @@ document.addEventListener('gesturestart', function (event) {
     event.preventDefault();
 });
 
+
+
+/*
 //禁止iOS 10+ safari浏览器页面双击放大
 var lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
@@ -112,3 +115,4 @@ document.addEventListener('touchend', function (event) {
 document.addEventListener('touchmove', function (event) {
   if (event.scale !== 1) { event.preventDefault(); }
 }, false);
+*/
