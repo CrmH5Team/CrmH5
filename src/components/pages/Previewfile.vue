@@ -147,8 +147,48 @@ export default {
                 if(tool.isFileImage($this.data.ObjectName)) {
 
                     $this.showDownload = true;
+
+                    var img = new Image();
+                    // 缩放图片需要的canvas
+                    var canvas = document.createElement('canvas');
+                    var context = canvas.getContext('2d');
+                    // base64地址图片加载完毕后
+                    img.onload = function () {
+                        // 图片原始尺寸
+                        var originWidth = this.width;
+                        var originHeight = this.height;
+                        // 最大尺寸限制
+                        var maxWidth = 600, maxHeight = 600;
+                        // 目标尺寸
+                        var targetWidth = originWidth, targetHeight = originHeight;
+                        // 图片尺寸超过600x600的限制
+                        if (originWidth > maxWidth || originHeight > maxHeight) {
+                            if (originWidth / originHeight > maxWidth / maxHeight) {
+                                // 更宽，按照宽度限定尺寸
+                                targetWidth = maxWidth;
+                                targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+                            } else {
+                                targetHeight = maxHeight;
+                                targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+                            }
+                        }
+
+                        // canvas对图片进行缩放
+                        canvas.width = targetWidth;
+                        canvas.height = targetHeight;
+                        // 清除画布
+                        context.clearRect(0, 0, targetWidth, targetHeight);
+                        // 图片压缩
+                        context.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+
+                        //显示图片
+                        var url = canvas.toDataURL();
+                        $this.imgSrc = url;
+                    };
+                    img.src = data;
+
                     $this.isImg = true;
-                    $this.imgSrc = data;
 
                     // $(".drawerFile_content").html('<img v-gallery:groupName class="image thumbnail" style="max-width:100%" src="' + data + '" >');
                     // $this.clickToShow(data);
