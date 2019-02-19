@@ -141,6 +141,7 @@ export default {
         //如果是从以下路由回来的就不用刷新页面
         if (from.name == 'selectlist' ||
             //from.name == 'uploadinput' ||
+            from.name == 'previewfile' ||
             from.name == 'linkedpage') {
             to.meta.isBack = true;
         }
@@ -294,7 +295,7 @@ export default {
                     var path = "/MeetingNoteinfo/" + autoIDTemp;
                     // console.log(path);
                     var query = _self.$route.query;
-                    
+
                     _self.$router.replace({
                         path: path,
                         query: query
@@ -306,7 +307,7 @@ export default {
                 });
 
             },false);
-            
+
         },
         //控制控件逻辑
         controlBusinessTypes: function () {
@@ -321,7 +322,7 @@ export default {
             // console.log(oppID);
             //清空选项
             if (tool.isNullOrEmptyObject(oppID) && fromSelectList != undefined && fromSelectList != null && fromSelectList == true) {
-                
+
                 if (isLock) {
                     $("#OppIDClickObj,[data-field='OppID']").removeClass('disable color6').addClass('disable color6');
                 } else {

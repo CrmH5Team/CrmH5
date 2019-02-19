@@ -400,9 +400,9 @@ export default {
         //是否是从会议记录保存后返回
         var _fromSave = _self.$route.meta.fromSave;
 
-        console.log("_isBack:"+_isBack);
-        console.log("_fromSave:"+_fromSave);
-        console.log("isFirstEnter:"+_self.isFirstEnter);
+        // console.log("_isBack:"+_isBack);
+        // console.log("_fromSave:"+_fromSave);
+        // console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
