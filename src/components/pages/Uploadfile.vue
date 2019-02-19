@@ -183,7 +183,7 @@ export default {
         }
     },
     deactivated: function () {
-        tool.hideLoading();
+        // tool.hideLoading();
     }
 
 }
