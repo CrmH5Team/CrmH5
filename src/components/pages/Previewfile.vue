@@ -112,13 +112,17 @@ export default {
 
         //传入参数
         var urlTemp = tool.AjaxBaseUrl();
+        
+        console.log($this.data);
+
         var controlName = tool.Api_DocumentsHandle_DownloadFileFromDMS;
         var jsonDatasTemp = {
             CurrentLanguageVersion: lanTool.currentLanguageVersion,
             UserName: tool.UserName(),
             _ControlName: controlName,
             _RegisterCode: tool.RegisterCode(),
-            AutoID:$this.data.AutoID
+            AutoID:$this.data.AutoID,
+            FileName:$this.data.ObjectName || ""
         };
         var loadingIndexClassName = tool.showLoading();
         $.ajax({
@@ -187,7 +191,6 @@ export default {
                         $this.imgSrc = url;
                     };
                     img.src = data;
-
                     $this.isImg = true;
 
                     // $(".drawerFile_content").html('<img v-gallery:groupName class="image thumbnail" style="max-width:100%" src="' + data + '" >');
