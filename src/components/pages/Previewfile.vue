@@ -204,7 +204,7 @@ export default {
                 }else
                 if(tool.isFileVideo($this.data.ObjectName)){
                     //data = decodeURIComponent(data);
-                    console.log(data);
+                    //console.log(data);
                     $this.showDownload = true;
                     if(tool.getSystem() === 'android') {
                         $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:100%" src="' + data + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
