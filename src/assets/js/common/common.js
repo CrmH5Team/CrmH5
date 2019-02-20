@@ -1055,25 +1055,25 @@
 		var bigType = "";
 		var fileTypeNew = "";
 		switch(fileType){
-			case "mov":
-			bigType = "video";
-			fileTypeNew = "quicktime";
-			break;
+			// case "mov":
+			// bigType = "video";
+			// fileTypeNew = "quicktime";
+			// break;
 
-			case "movie":
-			bigType = "video";
-			fileTypeNew = "x-sgi-movie";
-			break;
+			// case "movie":
+			// bigType = "video";
+			// fileTypeNew = "x-sgi-movie";
+			// break;
 
-			case "mp3":
-			bigType = "audio";
-			fileTypeNew = "x-mpeg";
-			break;
+			// case "mp3":
+			// bigType = "audio";
+			// fileTypeNew = "x-mpeg";
+			// break;
 
-			case "mp4":
-			bigType = "video";
-			fileTypeNew = "mp4";
-			break;
+			// case "mp4":
+			// bigType = "video";
+			// fileTypeNew = "mp4";
+			// break;
 
 			// case "mpeg":
 			// case "mpg":

@@ -203,13 +203,14 @@ export default {
                     return ;
                 }else
                 if(tool.isFileVideo($this.data.ObjectName)){
-                    //data = 'http://vjs.zencdn.net/v/oceans.mp4';
+                    //data = decodeURIComponent(data);
+                    console.log(data);
                     $this.showDownload = true;
                     if(tool.getSystem() === 'android') {
-                        $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:auto" src="' + data + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
+                        $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:100%" src="' + data + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
 
                     } else if(tool.getSystem() === 'ios') {
-                        $(".drawerFile_content").html('<video name="media" style="width:100%; height:auto" src="' + data + '" controls></video>');
+                        $(".drawerFile_content").html('<video name="media" style="width:100%; height:100%" src="' + data + '" controls></video>');
                     }
 
                     tool.hideLoading(loadingIndexClassName);
