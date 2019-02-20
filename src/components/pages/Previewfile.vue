@@ -6,7 +6,7 @@
           <h1 class="mui-title">{{data.ObjectName}}</h1>
 
           <a class="calcfont calc-guanyu right" @click="showDrawer"></a>
-          <!-- <a v-if="showDownload" class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a> -->
+          <a class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a>
     </header>
 
     <div class="file_box">
@@ -92,7 +92,7 @@ export default {
             currPage:1,  //当前页数
             // photo:null, //
             // isOpen:false, //photoBrowser是否打开
-            showDownload:false, //显示下载按钮（只有文件类型是图片或视频才显示）
+            // showDownload:false, //显示下载按钮（只有文件类型是图片或视频才显示）
             isImg:false,
             imgSrc:'',
 
@@ -112,7 +112,7 @@ export default {
 
         //传入参数
         var urlTemp = tool.AjaxBaseUrl();
-        
+
         console.log($this.data);
 
         var controlName = tool.Api_DocumentsHandle_DownloadFileFromDMS;
@@ -150,7 +150,7 @@ export default {
                 //图片
                 if(tool.isFileImage($this.data.ObjectName)) {
 
-                    $this.showDownload = true;
+                    // $this.showDownload = true;
 
                     var img = new Image();
                     // 缩放图片需要的canvas
@@ -205,7 +205,7 @@ export default {
                 if(tool.isFileVideo($this.data.ObjectName)){
                     //data = decodeURIComponent(data);
                     //console.log(data);
-                    $this.showDownload = true;
+                    // $this.showDownload = true;
                     if(tool.getSystem() === 'android') {
                         $(".drawerFile_content").html('<video id="video1" name="media" style="width:100%; height:100%" src="' + data + '" controls preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"></video>');
 
