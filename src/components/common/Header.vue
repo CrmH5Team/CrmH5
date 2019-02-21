@@ -92,7 +92,7 @@ header.mui-bar {
     padding-left: 10px; */
 }
 .calc-mailbox{margin-right:-10px;z-index: 10;}
-.calc-mailbox::before{vertical-align:middle;}
+/* .calc-mailbox::before{vertical-align:middle;} */
 .calc-liebiao{
   font-size: 0.6rem;
   padding: 0.15rem 10px;
