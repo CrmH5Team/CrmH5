@@ -6,7 +6,7 @@
           <h1 class="mui-title">{{data.ObjectName}}</h1>
 
           <a class="calcfont calc-guanyu right" @click="showDrawer"></a>
-          <a class="calcfont calc-xiazai right" @click="downloadFile" id="downloadBtn"></a>
+          <a v-show="isShowDownloadBtn==true" class="calcfont calc-xiazai right" @click="downloadFile" id="downloadBtn"></a>
     </header>
 
     <div class="file_box">
@@ -100,6 +100,7 @@ export default {
             maxScale:1.2,
             minScale:0.6,
             isPdf:false,
+            isShowDownloadBtn:true
         }
     },
     created:function(){
@@ -109,6 +110,15 @@ export default {
     mounted:function(){
         lanTool.updateLanVersion();
         var $this = this;
+
+        //若是安卓系统，则显示下载按钮，否则不显示
+        // console.log(tool.getSystem());
+        if(tool.getSystem() == 'ios') {
+            $this.isShowDownloadBtn = false;
+        }else{
+            $this.isShowDownloadBtn = true;
+        }
+        
 
         //传入参数
         var urlTemp = tool.AjaxBaseUrl();
@@ -426,9 +436,14 @@ export default {
             var urlParam = tool.getUrlParam(jsonDatasTemp);
             urlTemp = urlTemp + urlParam;
             //console.log(urlTemp);
-            window.open(urlTemp, "_self");
+            //window.open(urlTemp, "_self");
             //window.open(urlTemp, "blank");
             //window.location.href = urlTemp;
+
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = "javascript: '<script>window.location.href=\"" + urlTemp + "\"<\/script>'";
+            document.getElementsByTagName('body')[0].appendChild(iframe);
         },
     },
     beforeDestroy:function(){
@@ -442,6 +457,7 @@ export default {
 
 
 <style scoped>
+
 .FileAttrlist{height: 100%;}
 
 header{position: fixed;width: 100%;left: 0;top: 0;z-index:1;}
@@ -527,7 +543,6 @@ header a {
 
 .drawer-content{height:100%;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
 
-
 /*侧滑出来内容style*/
 .FileAttrlist {
 	line-height: 1;
@@ -569,10 +584,6 @@ header a {
 	font-size: 0.26rem;
 }
 
-
-
-
-
 </style>
 
 <style>
@@ -603,8 +614,3 @@ header a {
 .btn-div .opacity{opacity: 0.2;}
 
 </style>
-
-
-
-
-
