@@ -14,7 +14,7 @@
                     <div class="item-time f12">
                       <span class="calcfont calc-gengxinshijian"></span>
                       <span class="time-text">{{item.BeginTime|MeetingTimeFormat}}~{{item.EndTime|MeetingTimeFormat}}</span>
-                      <div class="item-address">{{item.Realname}}</div>
+                      <div class="right-text">{{item.Realname}}</div>
                     </div>
                     <div class="item-address">{{item.CompanyID}}</div>
                     <div class="item-initiator">{{item.ContactsID|formatContactsID}}{{item.Title|formatTitle}}</div>
