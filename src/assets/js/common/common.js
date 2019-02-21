@@ -741,6 +741,20 @@
 		return baseUrl + '/' + remainUrl;
 	};
 
+	//拼装url参数
+	tool.getUrlParam = function(paramJObject){
+			var urlParam = "";
+			if(tool.isNullOrEmptyObject(paramJObject)){
+				return urlParam;
+			}
+			urlParam = "?";
+			for(var key in paramJObject){
+				urlParam = urlParam + key + "=" + (paramJObject[key] || "") + "&";
+			}
+			urlParam = urlParam.substring(0,urlParam.length - 1);
+			return urlParam;
+		};
+
 	/*
 	 * 获取当前时间
 	 * isFormat:是否需要格式化。False:返回Date类型的值；True：返回格式化后的字符串。
@@ -1150,6 +1164,7 @@
 		return $.inArray(fileExtension.toLowerCase(), imgArr) > -1;
 	};
 
+	//当前文件是否视频
 	tool.isFileVideo = function (fileName) {
 		if (tool.isNullOrEmptyObject(fileName)) {
 			return false;

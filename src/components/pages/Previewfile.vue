@@ -6,7 +6,7 @@
           <h1 class="mui-title">{{data.ObjectName}}</h1>
 
           <a class="calcfont calc-guanyu right" @click="showDrawer"></a>
-          <a class="calcfont calc-shangchuan right" @click="download" id="downloadBtn"></a>
+          <a class="calcfont calc-xiazai right" @click="downloadFile" id="downloadBtn"></a>
     </header>
 
     <div class="file_box">
@@ -113,7 +113,7 @@ export default {
         //传入参数
         var urlTemp = tool.AjaxBaseUrl();
 
-        console.log($this.data);
+        //console.log($this.data);
 
         var controlName = tool.Api_DocumentsHandle_DownloadFileFromDMS;
         var jsonDatasTemp = {
@@ -122,11 +122,12 @@ export default {
             _ControlName: controlName,
             _RegisterCode: tool.RegisterCode(),
             AutoID:$this.data.AutoID,
-            FileName:$this.data.ObjectName || ""
+            FileName:$this.data.ObjectName || "",
+            ActionType:0 //0:预览;1:下载
         };
         var loadingIndexClassName = tool.showLoading();
         $.ajax({
-           url: urlTemp,
+            url: urlTemp,
             type: "post",
             async: true,
             cache: false,
@@ -406,25 +407,28 @@ export default {
                 page.render(renderContext);
             });
         },
-        //下载
-        download:function(){
-            if(tool.isFileImage(this.data.filename)) {
-                tool.showText(lanTool.lanContent('1003_长按保存图片'));
-                return false;
-            }else{
-                /*
-                var myFrame= document.createElement("iframe");
-                    myFrame.src = this.data.attachmentpath;
-                    myFrame.style.display = "none";
-                    document.body.appendChild(myFrame);
-                */
-
-                //    $('body').append('<a style="position:absolute;width:100%;display:block;height:50px;z-index:9;top:0;left:0;background:#ccc;" id="download" href="'+ this.data.attachmentpath +'" download="'+ this.data.attachmentname +'"></a>');
-                //    $('#download').trigger('click');
-
-                //    var a = document.createElement('a');
-                //        a.href = this.data.attachmentpath;
-            }
+        //文件下载
+        downloadFile:function(){
+            var _self = this;
+            //传入参数
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_DocumentsHandle_DownloadFileFromDMS;
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID:_self.data.AutoID,
+                FileName:_self.data.ObjectName || "",
+                ActionType:1 //0:预览;1:下载
+            };
+            //拼装url参数
+            var urlParam = tool.getUrlParam(jsonDatasTemp);
+            urlTemp = urlTemp + urlParam;
+            //console.log(urlTemp);
+            window.open(urlTemp, "_self");
+            //window.open(urlTemp, "blank");
+            //window.location.href = urlTemp;
         },
     },
     beforeDestroy:function(){
