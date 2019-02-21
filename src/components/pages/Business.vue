@@ -213,6 +213,7 @@ export default {
         _self.watchScroll();
         _self.groupToggle();
         _self.followToggle();
+        _self.goInfo();
 
         _self.title = lanTool.lanContent('783_商业');
         // _self.queryCondictionData = eventBus.queryCondictionData || [];
@@ -267,7 +268,6 @@ export default {
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
-            // console.log(_self.queryCondiction);
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
@@ -339,7 +339,7 @@ export default {
                     }
                     var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
                     var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
-                    console.log(fromType);
+
                     if (tool.isNullOrEmptyObject(groupID)) {
                         return;
                     }
@@ -365,39 +365,6 @@ export default {
                                 .addClass("open")
                                 .siblings(".group-item-list")
                                 .slideDown(500);
-
-                            //点击去详情页
-                            $("div.item-block").off('click').on('click', function (event) {
-                                var target = $(event.target);
-                                if (target.hasClass("item-stars-icon")) {
-                                    return;
-                                }
-                                if (!target.hasClass("group-item")) {
-                                    target = target.closest("div.group-item");
-                                    if (tool.isNullOrEmptyObject(target)) {
-                                        return;
-                                    }
-                                }
-                                // _self.showPage
-
-                                var url = target.attr("data-url") || "";
-                                if (tool.isNullOrEmptyObject(url)) {
-                                    return;
-                                }
-
-                                //点击列表是获取到属性名传给详情
-                                var infoName = null;
-                                    infoName = $(this).find(".item-first-div").text() || "";
-                                var parameter = {
-                                    showPage: _self.showPage,
-                                    infoName:infoName
-                                };
-                                // console.log("parameter:"+JSON.stringify(parameter));
-                                _self.$router.push({
-                                    path: url,
-                                    query: parameter
-                                });
-                            });
                         });
                     }
                 }
@@ -536,6 +503,45 @@ export default {
             _self.$router.push({
                 path: urlTemp,
                 query: parameter
+            });
+        },
+
+        //点击跳转到详情页
+        goInfo:function(){
+            var _self = this;
+            $("#dealpipelineList,#opportunitiesList").off('click','div.group-item').on(
+              'click',
+              'div.group-item',
+              function(event){
+
+                var target = $(event.target);
+                if (target.hasClass("item-stars-icon")) {
+                    return;
+                }
+                if (!target.hasClass("group-item")) {
+                    target = target.closest("div.group-item");
+                    if (tool.isNullOrEmptyObject(target)) {
+                        return;
+                    }
+                }
+
+                var url = target.attr("data-url") || "";
+                if (tool.isNullOrEmptyObject(url)) {
+                    return;
+                }
+
+                //点击列表是获取到属性名传给详情
+                var infoName = null;
+                    infoName = $(this).find(".item-first-div").text() || "";
+                var parameter = {
+                    showPage: _self.showPage,
+                    infoName:infoName
+                };
+                _self.$router.push({
+                    path: url,
+                    query: parameter
+                });
+
             });
         }
     }

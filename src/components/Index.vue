@@ -194,13 +194,14 @@ export default {
 
         //获取消息数量
         this.getMessageCount();
+
+        this.goInfo();
     },
     methods: {
         //初始化用户信息
         initUserInfo: function () {
             //赋用户信息
             var curUser = tool.CurUser();
-            // console.log("curUser:"+JSON.stringify(curUser));
             if (tool.isNullOrEmptyObject(curUser)) {
                 return;
             }
@@ -430,32 +431,6 @@ export default {
                                 target.addClass("open")
                                     .siblings(".group-item-list")
                                     .slideDown(500);
-
-                                $("div.data-events-item").off('click').on('click',
-                                    function (event) {
-                                        var target = $(event.target);
-                                        if (!target.hasClass("data-events-item")) {
-                                            target = target.closest("div.data-events-item");
-                                            if (tool.isNullOrEmptyObject(target)) {
-                                                return;
-                                            }
-                                        }
-                                        var url = target.attr("data-url") || "";
-                                        if (tool.isNullOrEmptyObject(url)) {
-                                            return;
-                                        }
-                                        //点击列表是获取到属性名传给详情
-                                        var infoName = null;
-                                        infoName = $(this).find(".item-title:first").text() || "";
-                                        // console.log("meetinginfoName:" + infoName);
-                                        _self.$router.push({
-                                            path: url,
-                                            query: {
-                                                infoName: infoName
-                                            }
-                                        });
-                                    }
-                                );
                             })
                         });
                     }
@@ -518,10 +493,8 @@ export default {
                 success: function (data) {
                     tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
-                    // console.log(data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         _self.notData = true;
                         return;
                     }
@@ -578,11 +551,9 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    // console.log(data);
                     tool.hideLoading(loadingIndexClassName);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         return;
                     }
                     data = data._OnlyOneData.Rows || [];
@@ -636,10 +607,8 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    // console.log(data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         _self.notData = true;
                         return;
                     }
@@ -677,10 +646,8 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    // console.log(data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         _self.notData = true;
                         return;
                     }
@@ -698,6 +665,37 @@ export default {
                 }
             });
         },
+        //点击跳转到详情页
+        goInfo:function(){
+            var _self = this;
+            $("#indexMeetingList").off('click','div.data-events-item').on(
+              'click',
+              'div.data-events-item',
+                function (event) {
+                    var target = $(event.target);
+                    if (!target.hasClass("data-events-item")) {
+                        target = target.closest("div.data-events-item");
+                        if (tool.isNullOrEmptyObject(target)) {
+                            return;
+                        }
+                    }
+                    var url = target.attr("data-url") || "";
+                    if (tool.isNullOrEmptyObject(url)) {
+                        return;
+                    }
+                    //点击列表是获取到属性名传给详情
+                    var infoName = null;
+                    infoName = $(this).find(".item-title:first").text() || "";
+                    _self.$router.push({
+                        path: url,
+                        query: {
+                            infoName: infoName
+                        }
+                    });
+                }
+            );
+
+        }
     },
     beforeDestroy: function () {
         eventBus.$off("showIndexRightPanelEvent");

@@ -299,6 +299,8 @@ export default {
         _self.changePos();
         _self.groupToggle();
         _self.watchScroll();
+        _self.goInfo();
+
         // console.log(eventBus.queryCondictionData);
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
@@ -437,40 +439,6 @@ export default {
                                 .siblings(".group-item-list")
                                 .slideDown(500);
 
-                            $("div.data-events-item").off('click').on('click',
-                                function (event) {
-                                    var target = $(event.target);
-
-                                    if (!target.hasClass("data-events-item")) {
-                                        target = target.closest("div.data-events-item");
-                                        if (tool.isNullOrEmptyObject(target)) {
-                                            return;
-                                        }
-                                    }
-
-                                    var url = target.attr("data-url") || "";
-                                    if (tool.isNullOrEmptyObject(url)) {
-                                        return;
-                                    }
-
-                                    //点击列表是获取到属性名传给详情
-                                    var infoName = null;
-                                    //判断是meeting列表还是trip列表
-                                    // if ($(this).hasClass("contacts-item-block")) {
-                                    //     infoName = $(this).find(".item-first-div").text() || "";
-                                    //     console.log("contactsinfoName:" + infoName);
-                                    // } else {
-                                    infoName = $(this).find(".item-title:first").text() || "";
-                                    console.log("meetinginfoName:" + infoName);
-                                    // }
-                                    _self.$router.push({
-                                        path: url,
-                                        query: {
-                                            infoName: infoName
-                                        }
-                                    });
-                                }
-                            );
                         });
                     }
                 })
@@ -568,6 +536,44 @@ export default {
                 } else {
                     _self.noData = false;
                 }
+            });
+        },
+
+        //点击跳转到详情页
+        goInfo:function(){
+            var _self = this;
+            $("#meetingList,#tripList").off('click','div.data-events-item').on('click','div.data-events-item',function(event){
+
+                var target = $(event.target);
+
+                if (!target.hasClass("data-events-item")) {
+                    target = target.closest("div.data-events-item");
+                    if (tool.isNullOrEmptyObject(target)) {
+                        return;
+                    }
+                }
+
+                var url = target.attr("data-url") || "";
+                if (tool.isNullOrEmptyObject(url)) {
+                    return;
+                }
+
+                //点击列表是获取到属性名传给详情
+                var infoName = null;
+                //判断是meeting列表还是trip列表
+                // if ($(this).hasClass("contacts-item-block")) {
+                //     infoName = $(this).find(".item-first-div").text() || "";
+                //     console.log("contactsinfoName:" + infoName);
+                // } else {
+                infoName = $(this).find(".item-title:first").text() || "";
+                // }
+                _self.$router.push({
+                    path: url,
+                    query: {
+                        infoName: infoName
+                    }
+                });
+
             });
         }
     },

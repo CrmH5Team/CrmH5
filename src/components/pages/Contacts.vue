@@ -215,8 +215,6 @@ export default {
         };
     },
     beforeRouteEnter: function (to, from, next) {
-        // console.log(from);
-        // console.log(to);
 
         if(from.name == "index"){
           to.meta.fromName = 'index'
@@ -242,6 +240,7 @@ export default {
         _self.changePos();
         _self.followToggle();
         _self.watchScroll();
+        _self.goInfo();
         lanTool.updateLanVersion();
         _self.title = lanTool.lanContent("791_联系人");
 
@@ -262,9 +261,6 @@ export default {
 
         var _fromSave = _self.$route.meta.fromSave;
         var _isBack = _self.$route.meta.isBack;
-        // console.log("_fromSave:"+_fromSave);
-        // console.log("_isBack:"+_isBack);
-        // console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if (_fromSave || !_isBack || _self.isFirstEnter) {
@@ -323,7 +319,6 @@ export default {
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
-            // console.log(_self.queryCondiction);
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
@@ -402,8 +397,8 @@ export default {
                 "click",
                 "div.date-div",
                 function (event) {
+                    event.preventDefault();
                     var target = $(event.target);
-                    // console.log(target);
                     if (!target.hasClass('date-div')) {
                         target = target.parents("div.date-div:first");
                         if (tool.isNullOrEmptyObject(target)) {
@@ -412,9 +407,6 @@ export default {
                     }
                     var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
                     var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
-                    console.log(fromType);
-                    // console.log(fromType);
-                    // console.log(groupID);
 
                     if (tool.isNullOrEmptyObject(groupID)) {
                         return;
@@ -441,42 +433,6 @@ export default {
                                 .addClass("open")
                                 .siblings(".group-item-list")
                                 .slideDown(500);
-
-                            $("div.item-block").off('click').on('click',
-                                function (event) {
-                                    var target = $(event.target);
-                                    // console.log(target);
-                                    if (target.hasClass("item-stars-icon")) {
-                                        return;
-                                    }
-                                    if (!target.hasClass("group-item")) {
-                                        target = target.closest("div.group-item");
-                                        if (tool.isNullOrEmptyObject(target)) {
-                                            return;
-                                        }
-                                    }
-
-                                    var url = target.attr("data-url") || "";
-                                    if (tool.isNullOrEmptyObject(url)) {
-                                        return;
-                                    }
-                                    //点击列表是获取到属性名传给详情
-                                    var infoName = null;
-                                    //判断是Organizations列表还是contacts列表
-                                    if ($(this).hasClass("contacts-item-block")) {
-                                        infoName = $(this).find(".item-first-div").text() || "";
-                                    } else {
-                                        infoName = $(this).find("span.left-text:first").text() || "";
-                                    }
-
-                                    _self.$router.push({
-                                        path: url,
-                                        query: {
-                                            infoName: infoName
-                                        }
-                                    });
-                                }
-                            );
                         });
                     }
                 }
@@ -507,8 +463,6 @@ export default {
                 fromType = "contacts";
                 container = $("#contactsList");
             }
-            // console.log("num:"+num);
-            // console.log("_self.tempShowPage:"+_self.tempShowPage);
 
             //切换标签的时候清空模糊查询的数据
             if (!tool.isNullOrEmptyObject(_self.queryCondictionData) && _self.tempShowPage !== num) {
@@ -519,7 +473,7 @@ export default {
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
-                // console.log(containerObj.html());
+
                 if (tool.isNullOrEmptyObject(containerObj)) {
                     _self.noData = true;
                     return;
@@ -575,7 +529,6 @@ export default {
         //刷新当前激活的page的分组数据
         RefreshCurPageGroupData: function () {
             var _self = this;
-            //console.log(_self.showPage);
             var num = _self.showPage;
             var container = null;
             var fromType = "";
@@ -603,7 +556,45 @@ export default {
                     _self.noData = false;
                 }
             });
+        },
+
+        //点击跳转到详情页
+        goInfo:function(){
+            var _self = this;
+            $("#organizationsList,#contactsList").off('click','div.group-item').on('click','div.group-item',function(event){
+
+                var target = $(event.target);
+                if (target.hasClass("item-stars-icon")) {
+                    return;
+                }
+                if (!target.hasClass("group-item")) {
+                    target = target.closest("div.group-item");
+                    if (tool.isNullOrEmptyObject(target)) {
+                        return;
+                    }
+                }
+
+                var url = target.attr("data-url") || "";
+                if (tool.isNullOrEmptyObject(url)) {
+                    return;
+                }
+
+                //点击列表是获取到属性名传给详情
+                var infoName = null;
+                    infoName = $(this).find(".item-first-div").text() || "";
+                var parameter = {
+                    showPage: _self.showPage,
+                    infoName:infoName
+                };
+                _self.$router.push({
+                    path: url,
+                    query: parameter
+                });
+
+            });
         }
+
+
     },
 
     beforeDestroy: function () {
