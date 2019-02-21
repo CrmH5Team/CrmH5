@@ -291,11 +291,11 @@ label.radios-label input:disabled:checked + .radios:after {
 
 /*列表页面 meeting 模块下 item style */
 .meeting-list{}
-.meeting-list .data-events-item{ line-height:1.3;background: #fff;padding: 5px 10px; position: relative;}
+.meeting-list .data-events-item{ line-height:1.3;background: #fff;padding: 8px 10px; position: relative;}
 .meeting-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
   left: 0; top: 0; position: absolute;
 }
-.meeting-list .item-title{font-weight: 600;color:#333;width: 100%;
+.meeting-list .item-title{font-weight:bold;color:#333;width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;}
@@ -303,7 +303,7 @@ label.radios-label input:disabled:checked + .radios:after {
 .meeting-list .item-time .calc-gengxinshijian{color:#ff5a21;/*vertical-align: bottom;*/margin-right: 3px;}
 .meeting-list .item-time .right-text{flex:1;text-align: right;}
 .meeting-list .trip-time-text{font-size:11px;color:#666666;}
-.meeting-list .item-address{font-weight: 600;padding-top:5px;}
+.meeting-list .item-address{font-weight:bold;padding-top:5px;}
 .meeting-list .item-initiator{line-height: 1.3;padding-top:5px;}
 /* .meeting-list .data-events p{height: 50px;line-height: 50px;} */
 
@@ -316,11 +316,11 @@ label.radios-label input:disabled:checked + .radios:after {
 .trip-list .data-events-item::after{  content: ""; display: block; height: 1px; background: beige; width: 100%;
   left: 0; top: 0; position: absolute;
 }
-.trip-list .item-title{font-weight: 600;color:#333;}
+.trip-list .item-title{font-weight:bold;color:#333;}
 .trip-list .item-time{color:#333;}
 .trip-list .item-time .calc-gengxinshijian{color:#ff5a21;vertical-align: bottom;}
 .trip-list .trip-time-text{font-size:11px;color:#666666;}
-.trip-list .item-address{font-weight: 600;}
+.trip-list .item-address{font-weight:bold;}
 .trip-list .data-events p{height: 50px;line-height: 50px;}
 
 
@@ -337,7 +337,7 @@ label.radios-label input:disabled:checked + .radios:after {
 box-sizing: border-box;line-height:14px;width:30px;font-size:12px;vertical-align:middle;text-align: center;
 margin-right: 5px;}
 .opportunities-list .itme-div-span{vertical-align: middle;}
-.opportunities-list .item-first-div{font-weight: 600;width: 100%;padding:5px 0 3px;line-height:1.3;
+.opportunities-list .item-first-div{font-weight:bold;width: 100%;padding:5px 0 3px;line-height:1.3;
   overflow: hidden;display:block;
   white-space: nowrap;
   text-overflow: ellipsis;}
@@ -361,7 +361,7 @@ box-sizing: border-box;/*line-height:14px;*/width:30px;font-size:10px!important;
 margin-right: 5px;}
 .dealPipeline-list .itme-div-span{vertical-align: middle;}
 .dealPipeline-list .item-first-div{
-  font-weight: 600;width: 100%;
+  font-weight:bold;width: 100%;
   padding:5px 0 3px;display:block;
   overflow: hidden;
   white-space: nowrap;
@@ -382,7 +382,7 @@ margin-right: 5px;}
 .organizations-list .group-item::after{content:'';display:block;height: 1px;background:beige;width:100%;left:0;
 top:0px;position:absolute;}
 .organizations-list .item-div{line-height:1.2;padding:5px 0;display: flex;align-items: center;}
-.organizations-list .item-first-div{font-weight: 600;color:#ff5a21;}
+.organizations-list .item-first-div{font-weight:bold;color:#ff5a21;}
 .organizations-list .item-first-div .right{font-weight: 100;}
 .organizations-list .item-div .left-text{display:inline-block;max-width:70%;
   overflow: hidden;
@@ -425,7 +425,7 @@ top:0px;position:absolute;}
 .contacts-list .item-div .max35{max-width: 35%;}
 
 
-.contacts-list .item-first-div{font-weight: 600;color:#ff5a21;padding-top:5px;}
+.contacts-list .item-first-div{font-weight:bold;color:#ff5a21;padding-top:5px;}
 
 .contacts-list .item-user-icon{display: inline-block;width: 0.8rem;height:0.8rem;line-height:0.8rem;
   text-align:center;border: 1px solid #3cadf9;position: absolute;top:10px;left:0.25rem;
