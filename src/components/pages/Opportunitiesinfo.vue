@@ -387,9 +387,12 @@ export default {
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
             // $(".HideWhenNew").hide();
+            // console.log("新增");
             _self.isAddNew = true;
             _self.showTips = false; //隐藏提示
+             _self.onlyView = false;//保存按钮展示
             $('.scroll-div').removeClass('disable');
+            $('.controlEdit').removeClass('disable');
 
         }else{
             // $(".HideWhenNew").show();
