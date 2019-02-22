@@ -287,7 +287,6 @@ export default {
     // },
     created: function () {
         this.isFirstEnter = true;
-        // console.log('created');
     },
     mounted: function () {
 
@@ -302,6 +301,7 @@ export default {
         _self.goInfo();
 
         // console.log(eventBus.queryCondictionData);
+        // console.log(_self.queryCondictionData);
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
@@ -310,7 +310,6 @@ export default {
                 eventBus.queryCondictionData = null;
             }
         }
-        //eventBus.queryCondictionData = null;
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
@@ -324,11 +323,13 @@ export default {
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
 
-            _self.searchData = _self.meetingSearch;
+            //综合查询条件置空
+            _self.queryCondictionData = [];
 
+            _self.searchData = _self.meetingSearch;
             $("#meetingPanel").trigger("click");
 
-        } else {
+        }else{
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
@@ -337,8 +338,6 @@ export default {
                 _self.RefreshCurPageGroupData();
             }
         }
-
-
 
         eventBus.$on('updataListEvent', function () {
             _self.RefreshCurPageGroupData();

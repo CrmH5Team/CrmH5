@@ -252,8 +252,6 @@ export default {
                 eventBus.queryCondictionData = null;
             }
         }
-        //  _self.queryCondictionData = eventBus.queryCondictionData;
-        // eventBus.queryCondictionData = null;
 
         //获取是否是从搜索页面点击确定按钮返回来的标志
         var fromSearchBtn = eventBus.fromSearchBtn || false;
@@ -268,34 +266,18 @@ export default {
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
 
-            _self.searchData = _self.OrganizationsSearch;
-
-            //modify by Dylan 默认刷新的时候选择第一个标签页
-            // //渲染数据
-            // var fromType = "organizations";
-            // var containerObj = $("#organizationsList");
-
-            // var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction,"Field");
-            // tool.InitiateGroupList(fromType, containerObj, allQueryData, function(containerObj) {
-            //   if (tool.isNullOrEmptyObject(containerObj)) {
-            //     _self.noData = true;
-            //     return;
-            //   }
-            //   if (!containerObj.html()) {
-            //     _self.noData = true;
-            //   } else {
-            //     _self.noData = false;
-            //   }
-            // });
-
             if(!tool.isNullOrEmptyObject(_self.$route.meta.fromName) && _self.$route.meta.fromName == "index"){
                 _self.showPage = 0;
                 _self.$route.meta.fromName = '';
             }
 
+            _self.queryCondictionData = [];
+
             if(_self.showPage == 0){
+                _self.searchData = _self.OrganizationsSearch;
                 $("#companySwitchPage").trigger("click");
             }else{
+                _self.searchData = _self.ContactsSearch;
                 $("#contactSwitchPage").trigger("click");
             }
 
@@ -309,9 +291,6 @@ export default {
                 _self.RefreshCurPageGroupData();
             }
         }
-
-
-
     },
 
     methods: {

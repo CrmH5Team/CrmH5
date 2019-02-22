@@ -240,16 +240,19 @@ export default {
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
 
-            _self.searchData = _self.dealPipelineSearch;
-
             if(!tool.isNullOrEmptyObject(_self.$route.meta.fromName) && _self.$route.meta.fromName == "index"){
                 _self.showPage = 0;
                 _self.$route.meta.fromName = '';
             }
 
+            //综合查询条件置空
+            _self.queryCondictionData = [];
+
             if (_self.showPage == 0) {
+                _self.searchData = _self.dealPipelineSearch;
                 $("#dealPipelineSwitchPage").trigger("click");
             } else {
+                _self.searchData = _self.opportunitiesSearch;
                 $("#opportunitiesSwitchPage").trigger("click");
             }
 
