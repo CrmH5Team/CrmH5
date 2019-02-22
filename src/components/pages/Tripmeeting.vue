@@ -17,10 +17,10 @@
 
             <div class="pageList" v-show="showPage == 0">
                 <div class="add-btn-div">
-                    <router-link to="/meetinginfo/-1" class="add-div">
+                    <div @click="addData" class="add-div">
                         <span class="calcfont calc-add"></span>
                         <span class="add-text lanText" data-lanid="886_新增会议"></span>
-                    </router-link>
+                    </div>
                 </div>
                 <!-- 列表 -->
                 <div v-show="!noData" id="meetingList" data-fromtype="meeting"></div>
@@ -574,6 +574,35 @@ export default {
                 });
 
             });
+        },
+
+        //新增
+        addData:function(){
+            var _self = this;
+            var curDateTime = new Date();
+            var year = curDateTime.getFullYear();
+            var month = curDateTime.getMonth() + 1;
+            var day = curDateTime.getDate();
+            var hour = curDateTime.getHours();
+            var minutes = curDateTime.getMinutes();
+            var seconds = curDateTime.getSeconds();
+
+            var defaultDateTime = year + "-" + month + "-" + day+" "+ hour +":" +minutes + ":" + seconds;
+            if(!tool.isNullOrEmptyObject(defaultDateTime)){
+                var newformat = "yyyy-MM-dd HH:mm";
+                var oldFormat = "yyyy-MM-dd HH:mm:ss";
+                defaultDateTime = defaultDateTime.ReplaceAll("T", " ");
+                defaultDateTime = tool.ChangeTimeFormat(defaultDateTime, newformat,oldFormat);
+            }
+
+            var url = "/meetinginfo/-1";
+            _self.$router.push({
+                    path: url,
+                    query: {
+                        defaultDateTime: defaultDateTime
+                    }
+            });
+
         }
     },
     deactivated: function () {
