@@ -351,7 +351,6 @@ export default {
         // console.log(this.MeetingNotice);
     },
     mounted: function () {
-
     },
     activated:function(){
         lanTool.updateLanVersion();
@@ -380,7 +379,6 @@ export default {
             _self.ptitle =this.$route.query.infoName || lanTool.lanContent('884_增加交易');
         }
         var fromType = "Opportunitiesinfo";
-
         _self.rightPanelFromType = "9";
         _self.rightPanelFromID = _self.$route.params.id || "";
 
@@ -393,7 +391,6 @@ export default {
              _self.onlyView = false;//保存按钮展示
             $('.scroll-div').removeClass('disable');
             $('.controlEdit').removeClass('disable');
-
         }else{
             // $(".HideWhenNew").show();
             _self.isAddNew = false;
@@ -491,7 +488,8 @@ export default {
                         _self.initUserAccess(data);
 
                         //渲染会议记录列表
-                        _self.iniMeetingNoteList(data);
+                        //_self.iniMeetingNoteList(data);
+                        _self.iniMeetingNoteList();
 
                         //场景：当在selectList页面按刷新按钮再回到详情页
                         if(tool.isNullOrEmptyObject(eventBus.selectListData)){
@@ -539,10 +537,9 @@ export default {
             eventBus.selectListData = null;
         }
 
-
     },
     methods: {
-        //查看有权限访问的同事跳转事件
+        //查看有权限访问的同事
         goToShareList: function() {
             var _self = this;
             var fromType = "9";
@@ -599,6 +596,7 @@ export default {
             //     });
             // },0);
         },
+        //删除
         deleteData: function (e) {
             var _self = this;
             var id = _self.$route.params.id;
@@ -655,33 +653,33 @@ export default {
                     var loadingIndexClassName = tool.showLoading();
 
                         $.ajax({
-                        async: true,
-                        type: "post",
-                        url: urlTemp,
-                        data: jsonDatasTemp,
-                        success: function (data) {
-                            tool.hideLoading(loadingIndexClassName);
-                            data = tool.jObject(data);
-                            // console.log(data);
-                            if (data._ReturnStatus == false) {
-                                tool.showText(tool.getMessage(data));
-                                console.log(tool.getMessage(data));
-                                return true;
-                            }
-
-                            //返回到上一页
-						    _self.$router.back(-1);
-                        },
-                        error: function (jqXHR, type, error) {
-                            console.log(error);
-                            tool.hideLoading(loadingIndexClassName);
-                            return true;
-                        },
-                        complete: function () {
-                            //tool.hideLoading();
-                            //隐藏虚拟键盘
-                            document.activeElement.blur();
-                        }
+                          async: true,
+                          type: "post",
+                          url: urlTemp,
+                          data: jsonDatasTemp,
+                          success: function (data) {
+                              tool.hideLoading(loadingIndexClassName);
+                              data = tool.jObject(data);
+                              // console.log(data);
+                              if (data._ReturnStatus == false) {
+                                  tool.showText(tool.getMessage(data));
+                                  console.log(tool.getMessage(data));
+                                  return true;
+                              }
+  
+                              //返回到上一页
+						      _self.$router.back(-1);
+                          },
+                          error: function (jqXHR, type, error) {
+                              console.log(error);
+                              tool.hideLoading(loadingIndexClassName);
+                              return true;
+                          },
+                          complete: function () {
+                              //tool.hideLoading();
+                              //隐藏虚拟键盘
+                              document.activeElement.blur();
+                          }
                         });
 
                         //调子组件 收起侧滑方法
@@ -690,7 +688,7 @@ export default {
                 });
             },0);
         },
-
+        //获取成交对象
         getDealObj : function(){
           var textTemp =  lanTool.lanContent("939_交易");
           var idTemp = 29;
@@ -701,6 +699,7 @@ export default {
 
           return obj;
         },
+        //获取销售机会对象
         getOpportunityObj : function(){
           var textTemp =  lanTool.lanContent("940_机会");
           var idTemp = 30;
@@ -736,15 +735,55 @@ export default {
             }
         },
         //渲染会议记录列表
-        iniMeetingNoteList:function(data){
+        //iniMeetingNoteList:function(data){
+        iniMeetingNoteList:function(){
             var _self = this;
-            if(tool.isNullOrEmptyObject(data)){
-                return;
-            }
+            // if(tool.isNullOrEmptyObject(data)){
+            //     return;
+            // }
 
-            // console.log(data);
-            _self.MeetingNotice = data["MeetingNotice"]||[];
+            var autoID = _self.id;
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = tool.Api_OpportunityHandle_QueryMeetingNoteListByOppID;
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: autoID
+            };
+            
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    data = tool.jObject(data);
+                    // console.log(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                    }
+
+                    //写入会议记录
+                    //_self.MeetingNotice = data["MeetingNotice"]||[];
+                    _self.MeetingNotice = data._OnlyOneData || [];
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    return true;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
+                }
+            });
         },
+        //删除会议记录
         deleteMeetingNote:function(autoID,e){
             var _self = this;
             if(tool.isNullOrEmptyObject(autoID)){
@@ -786,10 +825,12 @@ export default {
 
                             //刷新会议列表
                             var fromType = "Opportunitiesinfo";
-                            tool.IniInfoData(fromType, _self.id, function(data){
+                            // tool.IniInfoData(fromType, _self.id, function(data){
                                 //渲染会议记录列表
-                                _self.iniMeetingNoteList(data);
-                            });
+                                //_self.iniMeetingNoteList(data);
+                            // });
+                            //渲染会议记录列表
+                            _self.iniMeetingNoteList();
                         },
                         error: function (jqXHR, type, error) {
                             console.log(error);

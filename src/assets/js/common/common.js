@@ -339,6 +339,10 @@
 	 */
 	tool.Api_OpportunityHandle_QuerySingle = "Api_OpportunityHandle_QuerySingle";
 	/*
+	 * 根据Opp的ID查询会议记录列表
+	 */
+	tool.Api_OpportunityHandle_QueryMeetingNoteListByOppID = "Api_OpportunityHandle_QueryMeetingNoteListByOppID";
+	/*
 	 * 销售机会保存接口
 	 */
 	tool.Api_OpportunityHandle_SaveOrUpdate = "Api_OpportunityHandle_SaveOrUpdate";
