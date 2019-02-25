@@ -35,7 +35,7 @@
     </div>
 
     <!--  右侧侧滑 -->
-    <list-right-panel :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
+    <list-right-panel ref="rightPanel" :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
 </div>
 </template>
 
@@ -271,7 +271,7 @@ export default {
                 _self.$route.meta.fromName = '';
             }
 
-            _self.queryCondictionData = [];
+            // _self.queryCondictionData = [];
 
             if(_self.showPage == 0){
                 _self.searchData = _self.OrganizationsSearch;
@@ -429,6 +429,22 @@ export default {
             _self.changePos();
             _self.showPage = num;
 
+            //综合查询条件置空
+            _self.queryCondictionData = [];
+            _self.queryCondiction = [];
+
+            //右侧radio重置为默认值
+            var returnObj = _self.$refs.rightPanel.reductionDataFilter();
+            if (tool.isNullOrEmptyObject(returnObj)) {
+                return ;
+            }
+            if(returnObj.returnValue){
+                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                _self.RefreshCurPageGroupData();
+            }
+
+
+            /*
             var container = null;
             var fromType = "";
             if (num == 0) {
@@ -463,6 +479,7 @@ export default {
                     _self.noData = false;
                 }
             });
+            */
         },
         //table底部横条过渡效果
         changePos: function () {
