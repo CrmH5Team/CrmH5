@@ -101,7 +101,7 @@
 
                         </div>
 
-                        <Uploadfile ref="uploadfile" v-show="!isAddNew" :fileListData="fileListData" :fromID="fromIDNew" :fromType="fromTypeNew" ></Uploadfile>
+                        <Uploadfile ref="uploadfile" v-show="!isAddNew" :fileListData="fileListData" :fromID="fromIDNew" :fromType="fromTypeNew" :companyID="companyID" ></Uploadfile>
 
                         <Infofooter v-show="!isAddNew"> </Infofooter>
                     </div>
@@ -134,7 +134,8 @@ export default {
             scheduleID: "", //会议ID
             fileListData: [], //文件列表
             fromIDNew: "", //当前记录ID
-            fromTypeNew: "" //来源类型
+            fromTypeNew: "", //来源类型
+            companyID:"",//公司ID
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -223,6 +224,9 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function (data) {
+                        // console.log(data);
+                        _self.companyID = data["CompanyID"]||"";
+                        // console.log(_self.companyID);
 
                         //渲染文件列表
                         _self.iniDocList(data);

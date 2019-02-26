@@ -34,20 +34,20 @@ export default {
         return {
         }
     },
-    props: ['fileListData', 'fromID','fromType'],
+    props: ['fileListData', 'fromID','fromType',"companyID"],
     mounted: function () {
         lanTool.updateLanVersion();
     },
     activated:function(){
     },
-
     methods: {
         //跳转到上传页面
         actionSheet: function () {
             var _self = this;
             var parameter = {
                 fromID: _self.fromID,
-                fromType: _self.fromType
+                fromType: _self.fromType,
+                companyID:_self.companyID
             };
             _self.$router.push({
                 path: '/uploadinput',

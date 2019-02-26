@@ -76,6 +76,7 @@ export default {
             fromID:"",
             fromType:"",
             formTemp:null,
+            companyID:"",
         }
     },
     beforeRouteEnter:function(to, from, next){
@@ -95,6 +96,7 @@ export default {
         var _self = this;
         _self.fromID = _self.$route.query.fromID;
         _self.fromType = _self.$route.query.fromType;
+        _self.companyID = _self.$route.query.companyID||"";
 
         //清空页面数据
         tool.ClearControlData(function(){
@@ -164,7 +166,8 @@ export default {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
                 UserName: tool.UserName(),
                 _ControlName: controlName,
-                _RegisterCode: tool.RegisterCode()
+                _RegisterCode: tool.RegisterCode(),
+                CompanyID:_self.companyID
             };
             jsonDatasTemp["FromTypeID"] = _self.fromType;
             jsonDatasTemp["FromID"] = _self.fromID;
