@@ -43,7 +43,7 @@
     </div>
 
     <!--  右侧侧滑 -->
-    <list-right-panel ref="listRightPanel" :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
+    <list-right-panel ref="rightPanel" :panelData="rigthPanelData" :searchData="searchData"></list-right-panel>
 
 </div>
 </template>
@@ -324,7 +324,7 @@ export default {
             _self.$route.meta.isBack = false;
 
             //综合查询条件置空
-            _self.queryCondictionData = [];
+            // _self.queryCondictionData = [];
 
             _self.searchData = _self.meetingSearch;
             $("#meetingPanel").trigger("click");
@@ -451,9 +451,23 @@ export default {
             if (num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
-
             _self.showPage = num;
 
+            //综合查询条件置空
+            _self.queryCondictionData = [];
+            _self.queryCondiction = [];
+
+            //右侧radio重置为默认值
+            var returnObj = _self.$refs.rightPanel.reductionDataFilter();
+            if (tool.isNullOrEmptyObject(returnObj)) {
+                return ;
+            }
+            if(returnObj.returnValue){
+                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                _self.RefreshCurPageGroupData();
+            }
+
+            /*
             var container = null;
             var fromType = '';
             if (_self.showPage == 0) {
@@ -480,7 +494,7 @@ export default {
                     _self.noData = false;
                 }
             });
-
+            */
         },
 
         //table底部横条过渡效果
