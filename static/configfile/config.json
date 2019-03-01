@@ -3,6 +3,7 @@
 	"AppID":114,
 	"LanguageVersionsHandle_Query":"LanguageVersionsHandle_Query",
 	"Api_UserLogin":"Api_UserLogin",
+	"Api_SingleSignOn":"Api_SingleSignOn",
 	"Api_RefreshRegisterCode":"Api_RefreshRegisterCode",
 	"Api_OrganizationsHandle_Group":"Api_OrganizationsHandle_Group",
 	"Api_OrganizationsHandle_GroupInnerData":"Api_OrganizationsHandle_GroupInnerData",

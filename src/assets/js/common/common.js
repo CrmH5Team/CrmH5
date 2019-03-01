@@ -220,7 +220,12 @@
 	/*
 	 * 用户登陆接口
 	 */
-  	tool.Api_UserLogin = "Api_UserLogin";
+	tool.Api_UserLogin = "Api_UserLogin";
+		/*
+	 * 单点登陆接口
+	 */
+	tool.Api_SingleSignOn = "Api_SingleSignOn";
+		
 	/*
 	 * 刷新用户注册码
 	 */
@@ -708,7 +713,7 @@
 
 		//写入缓存
 		tool.setSessionStorageItem(tool.cache_Config, JSON.stringify(configJSON));
-	}
+	};
 
 	/*
 	 * 设置配置缓存
@@ -717,7 +722,7 @@
 		cfgJSON = tool.jObject(cfgJSON);
 		//写入缓存
 		tool.setSessionStorageItem(tool.cache_Config, JSON.stringify(cfgJSON));
-	}
+	};
 
 	/*
 	 * 路径合并
@@ -767,7 +772,7 @@
 	tool.GetCurrentDate = function (isFormat, dateTimeFormatStr) {
 		var currentDate = new Date();
 		return FormateDate(currentDate, isFormat, dateTimeFormatStr);
-	}
+	};
 
 	/*
 	 * 时间格式化
@@ -784,7 +789,7 @@
 		}
 
 		return dateTime.FormatNew(dateTimeFormatStr);
-	}
+	};
 
 	/*
 	 * 设置时间
@@ -813,7 +818,7 @@
 		}
 
 		return FormateDate(handleDate, isFormat, dateTimeFormatStr);
-	}
+	};
 
 	/*
 	 * 计算时间差值。
@@ -1001,7 +1006,7 @@
 			}
 		}
 		return false;
-	}
+	};
 
 	//若对象为null则返回空字符串
 	tool.objToString = function (obj) {

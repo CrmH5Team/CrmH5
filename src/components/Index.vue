@@ -166,12 +166,20 @@ export default {
             groupData: [], //7天的数据
             meetingCount: 0, //未上传会议记录的会议数量
             messageCount: 0, //消息数量
+            isFromSingleSignOn:false//是否来源于单点登陆
         };
     },
     created: function () {
 
     },
     mounted: function () {
+        var _self = this;
+        _self.isFromSingleSignOn = 
+        (_self.$route.query.IsFromSingleSignOn == null || _self.$route.query.IsFromSingleSignOn == undefined)
+        ?false
+        :_self.$route.query.IsFromSingleSignOn;
+        
+
         lanTool.updateLanVersion();
         //侧滑
         eventBus.$on("showIndexRightPanelEvent", this.panelToggle);
@@ -196,6 +204,9 @@ export default {
         this.getMessageCount();
 
         this.goInfo();
+
+        //处理单点登陆
+        this.handleLogOut();
     },
     methods: {
         //初始化用户信息
@@ -695,6 +706,15 @@ export default {
                 }
             );
 
+        },
+        //处理退出登陆按钮
+        handleLogOut:function(){
+            var _self = this;
+            if(_self.isFromSingleSignOn){
+                $(".logout-btn").hide();
+            }else{
+                $(".logout-btn").show();
+            }
         }
     },
     beforeDestroy: function () {

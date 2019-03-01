@@ -46,6 +46,9 @@ import Groupselectlist from '@/components/common/Groupselectlist'
 import Poweruser from '@/components/pages/Poweruser'
 import Linkedpage from '@/components/pages/Linkedpage'
 
+//单点登陆
+import SingleSignOn from '@/components/SingleSignOn'
+
 Vue.use(Router)
 
 const router =  new Router({
@@ -177,16 +180,28 @@ const router =  new Router({
     { path:'/selectlist',name:'selectlist',component:Selectlist},
     { path:'/sharelist',name:'sharelist',component:Sharelist},
     { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
-    { path:'/poweruser',name:'poweruser',component:Poweruser}
+    { path:'/poweruser',name:'poweruser',component:Poweruser},
+    { path:'/singleSignOn',name:'singleSignOn',component:SingleSignOn},
   ]
 });
 
 //路由拦截
 router.beforeEach(function(to, from, next){
-    var registerCodeTemp = tool.RegisterCode();
-    if(!tool.isNullOrEmptyObject(registerCodeTemp)){
-        next();
-        return;
+
+    var toName = to.name || "";
+    toName = $.trim(toName).toLowerCase();
+    //console.log(toName);
+    //特殊处理单点登陆页面
+    //若不是单点登陆页面，则需要验证RegisterCode
+    if(toName == "singlesignon"){
+      next();
+      return;
+    }else{
+      var registerCodeTemp = tool.RegisterCode();
+      if(!tool.isNullOrEmptyObject(registerCodeTemp)){
+          next();
+          return;
+      }
     }
 
     if(to.path == '/login'){
@@ -194,6 +209,7 @@ router.beforeEach(function(to, from, next){
     }else{
         next({path: '/login'});
     }
+
 });
 
 export default router
