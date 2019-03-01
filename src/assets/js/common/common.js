@@ -3358,7 +3358,7 @@
 		var urlTemp = tool.AjaxBaseUrl();
 
 		if (lan.Data == undefined || lan.Data == null || lan.Data.length <= 0 || !isFromCache || isRefreshCache) {
-			var loadingIndexClassName = tool.showLoading();
+			//var loadingIndexClassName = tool.showLoading();
 
 			$.ajax({
 				url: urlTemp,
@@ -3367,7 +3367,7 @@
 				cache: false,
 				data: jsonTemp,
 				success: function (data) {
-					tool.hideLoading(loadingIndexClassName);
+					//tool.hideLoading(loadingIndexClassName);
 
 					data = tool.jObject(data);
 					if (data._ReturnStatus == false) {
@@ -3391,7 +3391,7 @@
 					def.resolve();
 				},
 				error: function (jqXHR, type, error) {
-					tool.hideLoading(loadingIndexClassName);
+					//tool.hideLoading(loadingIndexClassName);
 					console.log(jqXHR.responseText);
 					console.log(jqXHR.status);
 					console.log(jqXHR.readyState);
