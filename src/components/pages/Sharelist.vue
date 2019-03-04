@@ -18,8 +18,7 @@
           <div class="search-box">
             <span class="calcfont calc-sousuo input-search-icon"></span>
             <input
-              @blur="blurHandler"
-              type="search"
+              type="text"
               id="userInput"
               key="userInput"
               class="search-input lanInputPlaceHolder"
@@ -28,7 +27,7 @@
           </div>
         </div>
         <!-- 列表 -->
-        <div v-if="!noUserData" class="dataList select-user-list">
+        <div id="user-dataList" v-if="!noUserData" class="dataList select-user-list">
           <!-- <div class="dataList select-user-list"> -->
           <div v-for="item in userData" class="group-div">
             <div :data-id="item.id" class="userItemDiv item-div f14" @click="groupToggle">
@@ -64,8 +63,7 @@
           <div class="search-box">
             <span class="calcfont calc-sousuo input-search-icon"></span>
             <input
-              @blur="blurHandler"
-              type="search"
+              type="text"
               id="groupInput"
               key="groupInput"
               class="search-input lanInputPlaceHolder"
@@ -75,7 +73,7 @@
           </div>
         </div>
         <!-- 列表 -->
-        <div v-if="!noGroupData" class="dataList select-group-list">
+        <div id="group-dataList" v-if="!noGroupData" class="dataList select-group-list">
           <!-- <div class="dataList select-group-list"> -->
           <div v-for="item in groupData" class="group-div">
             <div class="groupItemDiv item-div" @click="groupToggle">
@@ -251,7 +249,7 @@ export default {
     //   }
     },
     //失去焦点
-    blurHandler: function(e) {},
+    // blurHandler: function(e) {},
     backHandler: function() {
       this.$router.back(-1);
     },
@@ -506,10 +504,11 @@ export default {
     //筛选
     search: function() {
       this.$nextTick(function() {
-        var listDom = $(".dataList");
+
         $("#userInput")
           .unbind()
           .bind("input", function() {
+            var listDom = $("#user-dataList");
             var queryStr = $.trim($(this).val());
             if (queryStr === "") {
               listDom
@@ -533,6 +532,7 @@ export default {
         $("#groupInput")
           .unbind()
           .bind("input", function() {
+            var listDom = $("#group-dataList");
             var queryStr = $.trim($(this).val());
             if (queryStr === "") {
               listDom.find(".group-div").show();
@@ -540,7 +540,9 @@ export default {
               listDom
                 .find(".group-div")
                 .hide()
+                .find('.item-div')
                 .filter(":lowerCaseContains('" + queryStr + "')")
+                .closest('.group-div')
                 .show();
             }
           });
