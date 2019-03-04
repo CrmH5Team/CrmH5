@@ -1,4 +1,14 @@
 <template>
+<div class="conten">
+        <div id="img-div" class="img-div">
+            <div class="error-title">@ViewBag.Title</div>
+            <img src="../assets/images/error500.png" />
+        </div>
+          <div id="error-tips" class="error-tips">
+                @ViewBag.Msg
+          </div>
+</div>
+
 </template>
 <script>
 export default {
@@ -109,7 +119,7 @@ export default {
           CurrentLanguageVersion: lanTool.currentLanguageVersion,
           UserName: tool.UserName(),
           _ControlName: controlName,
-          _RegisterCode: tool.RegisterCode()        
+          _RegisterCode: tool.RegisterCode()
       };
 
       setTimeout(function(){
@@ -142,3 +152,32 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.conten{text-align: center;}
+ .img-div {
+    margin-top:25%;
+    position:relative;
+    display:inline-block;
+}
+.error-title {
+    color:#17aef0;
+    width:80%;
+    position:absolute;
+    top:38px;
+    font-weight:bold;
+    left:10%;
+    font-size:18px;
+}
+.img-div img {
+    max-width:80%;
+}
+.error-tips {
+    margin:35px auto 0;
+    width:40%;
+    font-size:16px;
+    color:#20b2f1;
+    line-height:1.3;
+}
+
+</style>
