@@ -1,11 +1,11 @@
 <template>
 <div class="conten">
-        <div id="img-div" class="img-div">
-            <div class="error-title">@ViewBag.Title</div>
+        <div v-show="!isSuccess" id="img-div" class="img-div">
+            <div class="error-title">{{title}}</div>
             <img src="../assets/images/error500.png" />
         </div>
           <div id="error-tips" class="error-tips">
-                @ViewBag.Msg
+                {{msg}}
           </div>
 </div>
 
@@ -17,10 +17,16 @@ export default {
        curLV: "1", //系统当前的语言版本
        fromUrl:"",//来源地址
        signature:"",//签名
+       title: "", //标题
+       msg:"",//错误提示
+       isSuccess:true //是否错误
     };
   },
   mounted: function() {
     var _self = this;
+    _self.title = lanTool.lanContent("1011_页面错误");
+    _self.msg = lanTool.lanContent("770_加载中...");
+
     //单点登陆
     _self.exeSingleSignOn();
   },
@@ -62,8 +68,10 @@ export default {
                 tool.hideLoading(loadingIndexClassName);
 
                 data = tool.jObject(data);
+                _self.isSuccess = data._ReturnStatus;
                 if (data._ReturnStatus == false) {
-                    tool.showText(tool.getMessage(data));
+                    //tool.showText(tool.getMessage(data));
+                    _self.msg = tool.getMessage(data);
                     return;
                 }
 
@@ -91,10 +99,10 @@ export default {
                 var parameter = {
                     IsFromSingleSignOn:true
                 };
-                _self.$router.push({
-                    path: "/index",
-                    query: parameter
-                });
+                // _self.$router.push({
+                //     path: "/index",
+                //     query: parameter
+                // });
 
                 //隐藏虚拟键盘
                 document.activeElement.blur();
