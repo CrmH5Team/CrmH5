@@ -3559,7 +3559,7 @@ if (typeof define === 'function' && define.amd) {
     } else if(typeof style === typeof 1) {
       duration = style
     }
-    
+
     var loadIndex = $(".weui-toast").length || 0;
     loadIndex = loadIndex + 1;
     var loadingIndexClassName = tool.loadingIndexClassName;
@@ -3579,7 +3579,7 @@ if (typeof define === 'function' && define.amd) {
     html += '<i class="weui-loading weui-icon_toast"></i>';
     html += '</div>';
     html += '<p class="weui-toast_content">' + (text || "数据加载中") + '</p>';
-    
+
     var loadIndex = $(".weui-toast").length || 0;
     loadIndex = loadIndex + 1;
     var loadingIndexClassName = tool.loadingIndexClassName;
@@ -4127,6 +4127,48 @@ Device/OS Detection
               }
           }
       };
+      //辅助方法（小于2位数前面补0，n位返回的长度）
+      p.prefixInteger = function(num, n){
+        n = (n==undefined) ? 2 : n;
+        return (Array(n).join(0) + num).slice(-n);
+      };
+      //重新读取控件的值
+      p.rewriteValue = function(){
+         var p_object = $(p.input[0]);
+             if(!p_object) return ;
+         var value = p_object.val()||"";
+             if(value=="" || value==undefined){
+                value = [];
+                //是否是datetimePicker
+                if(p.params.datetimePicker){
+                    var dateFormat = p_object.attr("data-TimeType") ||"date";
+                    var date = new Date();
+                    value.push(date.getFullYear().toString());
+                    value.push(p.prefixInteger(date.getMonth()+1).toString());
+                    value.push(p.prefixInteger(date.getDate()).toString());
+                    //判断时间格式
+                    if(dateFormat == "dateTime"){ 
+                      value.push(p.prefixInteger(date.getHours()).toString());
+                      value.push(p.prefixInteger(date.getMinutes()).toString());
+                      // value.push(p.prefixInteger(date.getSeconds()).toString());
+                    }
+                }else{
+                    value.push(p.params.sourceDataObj[0].text);
+                    p_object.val(p.params.sourceDataObj[0].text);
+                    p_object.attr('data-fieldval',p.params.sourceDataObj[0].id);
+                }
+                p.value = value;
+                p.displayValue = value;
+                p.params.value = value;
+
+             }else{
+                value = value.replace(/(-|:)/g,' ').split(' ');
+                p.value = value;
+                p.displayValue = value;
+                p.params.value = value;
+             }
+      };
+
       p.updateValue = function () {
           var newValue = [];
           var newDisplayValue = [];
@@ -4584,6 +4626,7 @@ Device/OS Detection
 
       p.opened = false;
       p.open = function () {
+          // console.log('p.initialized:'+p.initialized);
           var toPopover = isPopover();
 
           if (!p.opened) {
@@ -4623,6 +4666,7 @@ Device/OS Detection
                   p.initPickerCol(this, updateItems);
               });
 
+              p.rewriteValue();
               // Set value
               if (!p.initialized) {
                   if (p.params.value) {
@@ -6136,6 +6180,7 @@ Device/OS Detection
   };
 
   defaults = $.fn.datetimePicker.prototype.defaults = {
+    datetimePicker:true,
     input: undefined, // 默认值
     min: undefined, // YYYY-MM-DD 最大最小值只比较年月日，不比较时分秒
     max: undefined,  // YYYY-MM-DD
