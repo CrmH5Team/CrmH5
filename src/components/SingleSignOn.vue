@@ -99,10 +99,10 @@ export default {
                 var parameter = {
                     IsFromSingleSignOn:true
                 };
-                // _self.$router.push({
-                //     path: "/index",
-                //     query: parameter
-                // });
+                _self.$router.push({
+                    path: "/index",
+                    query: parameter
+                });
 
                 //隐藏虚拟键盘
                 document.activeElement.blur();
