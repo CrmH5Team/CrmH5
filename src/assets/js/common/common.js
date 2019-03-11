@@ -225,7 +225,7 @@
 	 * 单点登陆接口
 	 */
 	tool.Api_SingleSignOn = "Api_SingleSignOn";
-		
+
 	/*
 	 * 刷新用户注册码
 	 */
@@ -298,7 +298,7 @@
 	 * 查询日历事件节点接口
 	 */
 	tool.Api_MeetingHandle_QueryCalendarMonthEventNode = "Api_MeetingHandle_QueryCalendarMonthEventNode";
-	/* 
+	/*
 	 * 根据传入的时间获取当天的会议记录接口
 	 */
 	tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate = "Api_MeetingHandle_QueryCalendarGetMeetingByDate";
@@ -2393,8 +2393,9 @@
 						},
 						{
 							values: (function () {
-								var minutes = [];
-								for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
+								//var minutes = [];
+                //for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
+                var minutes = ['00','15','30','45'];
 								return minutes;
 							})()
 						}
@@ -3320,7 +3321,53 @@
 				document.activeElement.blur();
 			}
 		});
-	}
+  };
+
+  /*
+   * 辅助方法（给数字前面补0，n为返回的长度）
+   */
+  tool.PrefixInteger = function(num, n){
+    n = (n==undefined) ? 2 : n;
+    return (Array(n).join(0) + num).slice(-n);
+  };
+
+  /*
+  * 获取当前时间
+  * special特殊处理分钟，输出分钟值只有['00','15','30','45']
+  * 返回时间数组，如['年'，'月','日','时','分','秒']
+  */
+  tool.GetTimeArray = function(special){
+      var date = new Date();
+      var value = [];
+      value.push(date.getFullYear().toString());
+      value.push(tool.PrefixInteger(date.getMonth()+1).toString());
+      value.push(tool.PrefixInteger(date.getDate()).toString());
+      value.push(tool.PrefixInteger(date.getHours()).toString());
+      //特殊处理分钟的展示
+      if(!tool.isNullOrEmptyObject(special)){
+        var minutes = date.getMinutes();
+        if(minutes == 0 ){
+            minutes = '00';
+        }else if(minutes > 0 && minutes <= 15){
+            minutes = '15';
+        }else if(minutes >15 && minutes <= 30){
+            minutes = '30';
+        }else if(minutes >30 && minutes <= 45){
+            minutes = '45';
+        }else if(minutes >45 && minutes < 60){
+            minutes = '00';
+        }
+        value.push(minutes);
+      }else{
+        value.push(tool.PrefixInteger(date.getMinutes()).toString());
+      }
+      value.push(tool.PrefixInteger(date.getSeconds()).toString());
+
+      return value;
+  };
+
+
+
 }(top.window.tool = {}, jQuery));
 
 
@@ -3736,7 +3783,8 @@
 							{
 								values: (function () {
 									var minutes = [];
-									for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
+                  for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
+                  //var minutes = [0,15,30,45];
 									return minutes;
 								})()
 							}

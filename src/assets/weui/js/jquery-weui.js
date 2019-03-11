@@ -4133,26 +4133,31 @@ Device/OS Detection
          var p_object = $(p.input[0]);
              if(!p_object) return ;
          var value = p_object.val()||"";
-             if(value=="" || value==undefined){
+        //  console.log(p.params.sourceDataObj);
+        //  console.log(value);
+             if(value == "" || value == undefined){
                 value = [];
                 //是否是datetimePicker
-                if(p.params.datetimePicker){
+                if(p.params.datetimePicker != undefined && p.params.datetimePicker == true){
                     var dateFormat = p_object.attr("data-TimeType") ||"date";
-                    var date = new Date();
-                    value.push(date.getFullYear().toString());
-                    value.push(p.prefixInteger(date.getMonth()+1).toString());
-                    value.push(p.prefixInteger(date.getDate()).toString());
+                    var timeArray = tool.GetTimeArray('special');
+                    value.push(timeArray[0]);
+                    value.push(timeArray[1]);
+                    value.push(timeArray[2]);
                     //判断时间格式
                     if(dateFormat == "dateTime"){
-                      value.push(p.prefixInteger(date.getHours()).toString());
-                      value.push(p.prefixInteger(date.getMinutes()).toString());
-                      // value.push(p.prefixInteger(date.getSeconds()).toString());
+                      value.push(timeArray[3]);
+                      value.push(timeArray[4]);
+                      // value.push(timeArray[5]);
                     }
                 }else{
-                    value.push(p.params.sourceDataObj[0].text);
-                    p_object.val(p.params.sourceDataObj[0].text);
-                    p_object.attr('data-fieldval',p.params.sourceDataObj[0].id);
+                    if(!tool.isNullOrEmptyObject(p.params.sourceDataObj) && p.params.sourceDataObj.length>=1){
+                      value.push(p.params.sourceDataObj[0].text);
+                      p_object.val(p.params.sourceDataObj[0].text);
+                      p_object.attr('data-fieldval',p.params.sourceDataObj[0].id);
+                    }
                 }
+
                 p.value = value;
                 p.displayValue = value;
                 p.params.value = value;

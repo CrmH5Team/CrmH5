@@ -211,7 +211,7 @@ export default {
             } else {
                 infoName = $(el.target).parents(".data-events-item").children(".item-title").text() || "";
             }
-            
+
             var defaultDateTime = "";
             //新增
             if(tool.isNullOrEmptyObject(autoID) ||autoID<=-1){
@@ -221,31 +221,18 @@ export default {
                 }
                 var year = selectedDayObj.attr("data-year") || "";
                 var month = selectedDayObj.attr("data-month") || "";
-                var day = selectedDayObj.attr("data-day") || "";
+                var day = tool.PrefixInteger(selectedDayObj.attr("data-day")) || "";
                 if (tool.isNullOrEmptyObject(year) || tool.isNullOrEmptyObject(month) || tool.isNullOrEmptyObject(day)) {
                     return;
                 }
-                month = parseInt(month) + 1;
+                month = tool.PrefixInteger(parseInt(month) + 1);
                 defaultDateTime = year + "-" + month + "-" + day;
 
-                var curDateTime = new Date();
-                var hour = curDateTime.getHours();
-                var minutes = curDateTime.getMinutes();
-                var seconds = curDateTime.getSeconds();
-
-                defaultDateTime+= " " + hour +":" +minutes + ":" + seconds;
+                var timeArray = tool.GetTimeArray('special');
+                defaultDateTime+= " " + timeArray[3] +":" + timeArray[4];
             }else{
                 defaultDateTime = "";
             }
-            
-            if(!tool.isNullOrEmptyObject(defaultDateTime)){
-                var newformat = "yyyy-MM-dd HH:mm";
-                var oldFormat = "yyyy-MM-dd HH:mm:ss";
-                defaultDateTime = defaultDateTime.ReplaceAll("T", " ");
-                defaultDateTime = tool.ChangeTimeFormat(defaultDateTime, newformat,oldFormat);
-            }
-
-            //console.log(defaultDateTime);
             _self.$router.push({
                 path: url,
                 query: {

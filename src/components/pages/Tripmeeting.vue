@@ -593,22 +593,8 @@ export default {
         //新增
         addData:function(){
             var _self = this;
-            var curDateTime = new Date();
-            var year = curDateTime.getFullYear();
-            var month = curDateTime.getMonth() + 1;
-            var day = curDateTime.getDate();
-            var hour = curDateTime.getHours();
-            var minutes = curDateTime.getMinutes();
-            var seconds = curDateTime.getSeconds();
-
-            var defaultDateTime = year + "-" + month + "-" + day+" "+ hour +":" +minutes + ":" + seconds;
-            if(!tool.isNullOrEmptyObject(defaultDateTime)){
-                var newformat = "yyyy-MM-dd HH:mm";
-                var oldFormat = "yyyy-MM-dd HH:mm:ss";
-                defaultDateTime = defaultDateTime.ReplaceAll("T", " ");
-                defaultDateTime = tool.ChangeTimeFormat(defaultDateTime, newformat,oldFormat);
-            }
-
+            var timeArray = tool.GetTimeArray('special');
+            var defaultDateTime = timeArray[0] + "-" + timeArray[1] + "-" + timeArray[2]+" "+ timeArray[3] +":" + timeArray[4];
             var url = "/meetinginfo/-1";
             _self.$router.push({
                     path: url,
@@ -616,7 +602,6 @@ export default {
                         defaultDateTime: defaultDateTime
                     }
             });
-
         }
     },
     deactivated: function () {
