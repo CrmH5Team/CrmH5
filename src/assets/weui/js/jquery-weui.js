@@ -3507,7 +3507,7 @@ if (typeof define === 'function' && define.amd) {
   };
 
   var hide = function(callback,loadingIndexClassName) {
-    //console.log("hide");
+
     //移除遮罩层
     $(".weui-mask_transparent").remove();
 
@@ -3566,8 +3566,6 @@ if (typeof define === 'function' && define.amd) {
     loadingIndexClassName = loadingIndexClassName + loadIndex;
 
     show('<i class="' + iconClassName + ' weui-icon_toast"></i><div class="weui-toast_content">' + (text || "已经完成") + '</div>', className,loadingIndexClassName);
-
-    //console.log("duration:"+duration);
 
     setTimeout(function() {
       hide(callback,loadingIndexClassName);
@@ -3830,7 +3828,6 @@ if (typeof define === 'function' && define.amd) {
       scrollTop = container.scrollTop()
     }
     var offset = container.scrollHeight() - ($(window).height() + scrollTop)
-    // console.log(offset)
     return offset
   }
 
@@ -4085,7 +4082,6 @@ Device/OS Detection
           }
       }
       p.params = params;
-    //   console.log(p.params);
       p.cols = [];
       p.initialized = false;
 
@@ -4127,7 +4123,7 @@ Device/OS Detection
               }
           }
       };
-      //辅助方法（小于2位数前面补0，n位返回的长度）
+      //辅助方法（小于2位数前面补0，n为返回的长度）
       p.prefixInteger = function(num, n){
         n = (n==undefined) ? 2 : n;
         return (Array(n).join(0) + num).slice(-n);
@@ -4147,7 +4143,7 @@ Device/OS Detection
                     value.push(p.prefixInteger(date.getMonth()+1).toString());
                     value.push(p.prefixInteger(date.getDate()).toString());
                     //判断时间格式
-                    if(dateFormat == "dateTime"){ 
+                    if(dateFormat == "dateTime"){
                       value.push(p.prefixInteger(date.getHours()).toString());
                       value.push(p.prefixInteger(date.getMinutes()).toString());
                       // value.push(p.prefixInteger(date.getSeconds()).toString());
@@ -4626,7 +4622,6 @@ Device/OS Detection
 
       p.opened = false;
       p.open = function () {
-          // console.log('p.initialized:'+p.initialized);
           var toPopover = isPopover();
 
           if (!p.opened) {
@@ -4739,7 +4734,7 @@ Device/OS Detection
 
 
       _curObj = $("[data-field='"+ (_curObj.attr("data-fromid")||"") +"']:first");
-      console.log(_curObj);
+
       if(!_curObj){
         return;
       }
@@ -4811,7 +4806,6 @@ Device/OS Detection
   };
 
   $.fn.picker = function(params) {
-    // console.log(params);
     var args = arguments;
     return this.each(function() {
       if(!this) return;
@@ -6043,7 +6037,7 @@ Device/OS Detection
     this.initYears = params.years
 
     var p = $.extend({}, params, this.getConfig());
-    // console.log("aaa");
+
     $(this.input).picker(p);
   }
 
@@ -6135,8 +6129,6 @@ Device/OS Detection
 
         ]
       }
-
-    //   console.log(config.cols);
 
       if (params.dateSplit) {
         config.cols.push({
