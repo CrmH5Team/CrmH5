@@ -21,8 +21,9 @@
                   <!-- 列表 -->
                   <div v-if="!notData" class="dataList select-user-list">
                       <div v-for="item in userData" class="group-div">
-                          <div :data-id="item.id" class="item-div f14" @click="groupToggle">{{item.text}}
-                              <span class="f14 right memCount">(0)</span>
+                          <div :data-id="item.id" class="item-div f14" @click="groupToggle">
+                              <div class="title-div">{{item.text}}</div>
+                              <span class="f14 memCount">(0)</span>
                           </div>
                           <div class="child-list">
                               <div v-for="member in item.nodes" class="child-list-item f14">
