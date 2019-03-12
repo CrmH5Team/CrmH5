@@ -130,12 +130,17 @@ header {
 
 /*选择用户*/
 .select-user-list{background: #fff;}
-.select-user-list .item-div{background:#f8f2dc;position: relative;
+.select-user-list .item-div{
+    display: flex;
+    background:#f8f2dc;
+    position: relative;
     padding: 10px 36px;
     border-bottom: solid 1px beige;
     line-height: 20px;}
 .select-user-list .item-div::before{content: "";  display: block;  height: 1px;  background: #e9cfae;
     width: 100%;  left: 0;  top: 0;  position: absolute;}
+.select-user-list .title-div{flex: 1;}
+.select-user-list .userMemCount{padding-left:5px;}
 .select-user-list .open::after{content: "";  display: block;  height: 1px;  background: #e9cfae;
     width: 100%;  left: 0;  bottom: 0;  position: absolute;}
 .select-user-list .group-div .child-list{padding:0 36px; display:none;}

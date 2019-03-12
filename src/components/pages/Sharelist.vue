@@ -29,10 +29,11 @@
         <!-- 列表 -->
         <div id="user-dataList" v-if="!noUserData" class="dataList select-user-list">
           <!-- <div class="dataList select-user-list"> -->
+
           <div v-for="item in userData" class="group-div">
             <div :data-id="item.id" class="userItemDiv item-div f14" @click="groupToggle">
-              {{item.text}}
-              <span class="f14 right userMemCount">(0)</span>
+              <div class="title-div">{{item.text}}</div>
+              <span class="f14 userMemCount">(0)</span>
             </div>
             <div class="child-list">
               <div v-for="member in item.nodes" class="child-list-item f14">
@@ -158,7 +159,7 @@ export default {
       });
     },
     groupCheckedValue: function(newValue, oldValue) {
-      console.log(newValue);
+      // console.log(newValue);
       var _self = this;
       if (tool.isNullOrEmptyObject(newValue)) {
         //newValue
@@ -187,6 +188,12 @@ export default {
       document.activeElement.blur();
       var el = e.target;
       var _curObj = $(el);
+      if (!_curObj.hasClass('item-div')) {
+          _curObj = _curObj.parents("div.item-div:first");
+          if (tool.isNullOrEmptyObject(_curObj)) {
+              return;
+          }
+      }
       if (!_curObj.hasClass("date-div")) {
         if (_curObj.hasClass("open")) {
           _curObj.siblings(".child-list").slideUp(500, function() {
