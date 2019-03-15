@@ -112,7 +112,7 @@ export default {
 
             meetingDatas: [],
             clickDateStr:"",  //临时存储点击某天的日期
-
+            isCalOnOpenExe: false,//日历是否已打开
         }
     },
     created: function () {
@@ -121,7 +121,6 @@ export default {
     mounted: function () {
         this.changePos();
     },
-
     activated: function () {
         lanTool.updateLanVersion();
         var _self = this;
@@ -168,7 +167,7 @@ export default {
 
         // this.$route.meta.isBack = false;
         // this.$route.meta.fromSave = false;
-        this.isFirstEnter = false;
+        setTimeout(function(){this.isFirstEnter = false;},100);
     },
     methods: {
         //点击去详情页
@@ -309,10 +308,24 @@ export default {
                         _self.getEventsByDate(dateStr);
                     },
                     onOpen: function (p) {
+                        if(_self.isCalOnOpenExe == true){
+                            return;
+                        }
+                        //执行查询当前月数据
+                        setTimeout(function () {
+                            _self.calendarObjGlobal = p;
+                            _self.setCalendarEvent(p,function(){
+                              //$(".picker-calendar-day-today.picker-calendar-day-selected").trigger("click");
+                            });
+                            _self.isCalOnOpenExe = true;
+                        }, 0);
                     },
                     onMonthAdd: function (p, monthContainer) {
+                        if(_self.isCalOnOpenExe == false){
+                            return;
+                        }
+
                         setTimeout(function () {
-                            //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
                             _self.calendarObjGlobal = p;
                             _self.setCalendarEvent(p);
                         }, 0);
@@ -324,8 +337,10 @@ export default {
         setCalendarEvent: function (calendarObj, myCallBack) {
             //先清空样式
             $("div.calendar-event").removeClass("calendar-event");
-
             var _self = this;
+            //清空当天会议记录列表
+            _self.notMeeting = true;
+
             if (tool.isNullOrEmptyObject(calendarObj)) {
                 return;
             }
@@ -360,6 +375,7 @@ export default {
                     }
 
                     data = data._OnlyOneData.Rows || [];
+
                     if (data.length <= 0) {
                         _self.notMeeting = true;
                         return true;
@@ -383,7 +399,8 @@ export default {
 
                     _self.$nextTick(function () {
                         //判断当前的日历视图中是否有激活的天，若有，则执行getEventsByDate
-                        var selectedDayObj = $("div.picker-calendar-day-selected:first");
+                        var selectedDayObj = $("div.picker-calendar-month.picker-calendar-month-current div.picker-calendar-day-selected:first");
+                        console.log(selectedDayObj.length);
                         if (!selectedDayObj) {
                             return;
                         }
@@ -396,6 +413,7 @@ export default {
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
                         $(".date-text").text(dateStr + "  " + tool.getWeekDayStr(dateStr));
+
                         _self.getEventsByDate(dateStr);
                     });
                 },

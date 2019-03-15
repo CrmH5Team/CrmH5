@@ -5498,7 +5498,8 @@ Device/OS Detection
               p.currentMonth = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-month'), 10);
               p.currentYear = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-year'), 10);
           }
-          p.container.find('.current-month-value').text(p.params.monthNames[p.currentMonth]);
+
+          p.container.find('.current-month-value').text(p.params.monthNames[p.currentMonth]).attr("curMonthVal",p.currentMonth);
           p.container.find('.current-year-value').text(p.currentYear);
 
       };
