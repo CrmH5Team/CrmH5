@@ -110,35 +110,10 @@ export default {
             notMeeting: false, //没数据
             calendarObjGlobal: null, //日历控件对象
 
-            meetingDatas: []
+            meetingDatas: [],
+            clickDateStr:"",  //临时存储点击某天的日期
+
         }
-    },
-    filters: {
-        // formatContactsID: function (val) {
-        //     if (tool.isNullOrEmptyObject(val)) {
-        //         return "";
-        //     }
-
-        //     return val + " ";
-        // },
-        // formatTitle: function (val) {
-        //     if (tool.isNullOrEmptyObject(val)) {
-        //         return "";
-        //     }
-
-        //     return "(" + val + ")";
-        // },
-        // MeetingTimeFormat: function (val) {
-        //   if (tool.isNullOrEmptyObject(val)) {
-        //         return "";
-        //   }
-
-        //     var format = "d/MMM/yyyy HH:mm";
-        //     val = val.ReplaceAll("T", " ");
-        //     val = tool.ChangeTimeFormat(val, format);
-
-        //     return val;
-        // }
     },
     created: function () {
         this.isFirstEnter = true;
@@ -198,6 +173,7 @@ export default {
     methods: {
         //点击去详情页
         goInfoPage: function (autoID, el) {
+
             var _self = this;
             var targetObj = $(el.target);
             if (tool.isNullOrEmptyObject(targetObj) || tool.isNullOrEmptyObject(autoID)) {
@@ -214,22 +190,30 @@ export default {
 
             var defaultDateTime = "";
             //新增
-            if(tool.isNullOrEmptyObject(autoID) ||autoID<=-1){
-                var selectedDayObj = $("div.picker-calendar-day-selected:first");
-                if (!selectedDayObj) {
-                    return;
-                }
-                var year = selectedDayObj.attr("data-year") || "";
-                var month = selectedDayObj.attr("data-month") || "";
-                var day = tool.PrefixInteger(selectedDayObj.attr("data-day")) || "";
-                if (tool.isNullOrEmptyObject(year) || tool.isNullOrEmptyObject(month) || tool.isNullOrEmptyObject(day)) {
-                    return;
-                }
-                month = tool.PrefixInteger(parseInt(month) + 1);
-                defaultDateTime = year + "-" + month + "-" + day;
+            if(tool.isNullOrEmptyObject(autoID) ||autoID <= -1){
 
+                // var selectedDayObj = $("div.picker-calendar-day-selected:first");
+                // if (!selectedDayObj) {
+                //     return;
+                // }
+
+                // var year = selectedDayObj.attr("data-year") || "";
+                // var month = selectedDayObj.attr("data-month") || "";
+                // var day = tool.PrefixInteger(selectedDayObj.attr("data-day")) || "";
+                // // console.log('year:'+year);
+                // // console.log('month:'+month);
+                // // console.log('day:'+day);
+
+                // if (tool.isNullOrEmptyObject(year) || tool.isNullOrEmptyObject(month) || tool.isNullOrEmptyObject(day)) {
+                //     return;
+                // }
+
+                // month = tool.PrefixInteger(parseInt(month) + 1);
+                // defaultDateTime = year + "-" + month + "-" + day;
+
+                var defaultDateTime = _self.clickDateStr;
                 var timeArray = tool.GetTimeArray('special');
-                defaultDateTime+= " " + timeArray[3] +":" + timeArray[4];
+                defaultDateTime += " " + timeArray[3] +":" + timeArray[4];
             }else{
                 defaultDateTime = "";
             }
@@ -301,15 +285,31 @@ export default {
                     dateFormat: 'yyyy-mm-dd',
                     yearPicker: true,
                     value: [(new Date()).FormatNew('yyyy-MM-dd')], //默认选择的日期
-                    onChange: function (p, values, displayValues) {},
+                    onChange: function (p, values, displayValues) {
+
+                      var dateStrTemp = values[0] || "";
+                      if(tool.isNullOrEmptyObject(dateStrTemp)){
+                        var selectedDayObj = $("div.picker-calendar-day-selected:first");
+                        if (selectedDayObj) {
+                            var year = selectedDayObj.attr("data-year") || "";
+                            var month = selectedDayObj.attr("data-month") || "";
+                            var day = tool.PrefixInteger(selectedDayObj.attr("data-day")) || "";
+                            month = tool.PrefixInteger(parseInt(month) + 1);
+                            dateStrTemp = year + "-" + month + "-" + day;
+                        }
+                      }
+                      _self.clickDateStr = dateStrTemp;
+                    },
                     onDayClick: function (p, dayContainer, year, month, day) {
                         month = parseInt(month) + 1;
                         var dateStr = year + "-" + month + "-" + day;
+
                         //展示选中的日期和星期
                         $(".date-text").text(dateStr + "  " + tool.getWeekDayStr(dateStr));
                         _self.getEventsByDate(dateStr);
                     },
-                    onOpen: function (p) {},
+                    onOpen: function (p) {
+                    },
                     onMonthAdd: function (p, monthContainer) {
                         setTimeout(function () {
                             //console.log("onMonthAdd:"+p.currentYear+","+p.currentMonth);
@@ -332,7 +332,7 @@ export default {
             // _self.calendarObjGlobal = calendarObj;
 
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-            console.log("allQueryData：" + JSON.stringify(allQueryData));
+            //console.log("allQueryData：" + JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -354,10 +354,8 @@ export default {
                 success: function (data) {
                     tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
-                    // console.log(data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         return true;
                     }
 
@@ -432,7 +430,7 @@ export default {
             }
 
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-            console.log("allQueryData：" + JSON.stringify(allQueryData));
+            // console.log("allQueryData：" + JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarGetMeetingByDate;
             //传入参数
@@ -453,10 +451,8 @@ export default {
                 success: function (data) {
                     tool.hideLoading(loadingIndexClassName);
                     data = tool.jObject(data);
-                    // console.log("data:"+data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         _self.notMeeting = true;
                         return true;
                     }
