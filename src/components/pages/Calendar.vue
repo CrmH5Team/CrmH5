@@ -347,7 +347,7 @@ export default {
             // _self.calendarObjGlobal = calendarObj;
 
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-            //console.log("allQueryData：" + JSON.stringify(allQueryData));
+            // console.log("allQueryData：" + JSON.stringify(allQueryData));
             var urlTemp = tool.AjaxBaseUrl();
             var controlName = tool.Api_MeetingHandle_QueryCalendarMonthEventNode;
             //传入参数
@@ -378,7 +378,7 @@ export default {
 
                     if (data.length <= 0) {
                         _self.notMeeting = true;
-                        return true;
+                        // return true;
                     }
 
                     for (var i = 0; i < data.length; i++) {
