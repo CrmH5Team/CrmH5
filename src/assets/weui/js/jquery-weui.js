@@ -5685,9 +5685,13 @@ Device/OS Detection
               monthTranslate = -(prevTranslate + 1) * 100 * inverter;
               p.months.eq(0).transform('translate3d(' + (p.isH ? monthTranslate : 0) + '%, ' + (p.isH ? 0 : monthTranslate) + '%, 0)').addClass('picker-calendar-month-prev');
           }
-          if (p.params.onMonthAdd) {
-              p.params.onMonthAdd(p, dir === 'next' ? p.months.eq(p.months.length - 1)[0] : p.months.eq(0)[0]);
-          }
+          //del by Dylan 20190318
+          //因为setYearMonth后，一定会执行onMonthChangeEnd,而onMonthChangeEnd里一定会执行onMonthAdd
+          //所以，设置年的时候，不需要再执行一次onMonthChangeEnd
+          // if (p.params.onMonthAdd) {
+          //     p.params.onMonthAdd(p, dir === 'next' ? p.months.eq(p.months.length - 1)[0] : p.months.eq(0)[0]);
+          // }
+          //end del
           p.animating = true;
           p.onMonthChangeStart(dir);
           wrapperTranslate = (p.monthsTranslate * 100) * inverter;
