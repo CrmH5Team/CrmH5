@@ -400,7 +400,7 @@ export default {
                     _self.$nextTick(function () {
                         //判断当前的日历视图中是否有激活的天，若有，则执行getEventsByDate
                         var selectedDayObj = $("div.picker-calendar-month.picker-calendar-month-current div.picker-calendar-day-selected:first");
-                        console.log(selectedDayObj.length);
+                        // console.log(selectedDayObj.length);
                         if (!selectedDayObj) {
                             return;
                         }
