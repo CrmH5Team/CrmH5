@@ -324,6 +324,9 @@ export default {
             ],
             seeMore:"",
             isInitiator:false,//是否当前记录的负责人（PS：只有负责人才可以操作单据）
+
+            enableGoRecord:false  //控制会议记录是否可点击
+
         }
     },
 
@@ -348,7 +351,6 @@ export default {
     // },
     created: function () {
         this.isFirstEnter = true;
-        // console.log(this.MeetingNotice);
     },
     mounted: function () {
     },
@@ -358,6 +360,7 @@ export default {
 
         var _self = this;
         _self.seeMore =lanTool.lanContent("900_查看详细");
+        _self.enableGoRecord = false;
 
         // this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
@@ -385,7 +388,6 @@ export default {
         //若是新增，则隐藏新增不需要显示的模块
         if(tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0){
             // $(".HideWhenNew").hide();
-            // console.log("新增");
             _self.isAddNew = true;
             _self.showTips = false; //隐藏提示
              _self.onlyView = false;//保存按钮展示
@@ -399,10 +401,6 @@ export default {
         var _isBack = _self.$route.meta.isBack;
         //是否是从会议记录保存后返回
         var _fromSave = _self.$route.meta.fromSave;
-
-        // console.log("_isBack:"+_isBack);
-        // console.log("_fromSave:"+_fromSave);
-        // console.log("isFirstEnter:"+_self.isFirstEnter);
 
         //若为true,则需要刷新
         if(_fromSave || !_isBack || _self.isFirstEnter){
@@ -559,6 +557,9 @@ export default {
         //查看/添加会议记录
         goRecord: function (e,AutoID) {
             var _self = this;
+            if(_self.enableGoRecord == false){
+                return ;
+            }
             var target = $(e.target);
             var url = target.attr("data-url");
             var oppID = _self.$route.params.id;
@@ -660,13 +661,11 @@ export default {
                           success: function (data) {
                               tool.hideLoading(loadingIndexClassName);
                               data = tool.jObject(data);
-                              // console.log(data);
                               if (data._ReturnStatus == false) {
                                   tool.showText(tool.getMessage(data));
-                                  console.log(tool.getMessage(data));
                                   return true;
                               }
-  
+
                               //返回到上一页
 						      _self.$router.back(-1);
                           },
@@ -735,12 +734,8 @@ export default {
             }
         },
         //渲染会议记录列表
-        //iniMeetingNoteList:function(data){
         iniMeetingNoteList:function(){
             var _self = this;
-            // if(tool.isNullOrEmptyObject(data)){
-            //     return;
-            // }
 
             var autoID = _self.id;
             var urlTemp = tool.AjaxBaseUrl();
@@ -753,7 +748,7 @@ export default {
                 _RegisterCode: tool.RegisterCode(),
                 AutoID: autoID
             };
-            
+
             $.ajax({
                 async: true,
                 type: "post",
@@ -761,16 +756,14 @@ export default {
                 data: jsonDatasTemp,
                 success: function (data) {
                     data = tool.jObject(data);
-                    // console.log(data);
                     if (data._ReturnStatus == false) {
                         tool.showText(tool.getMessage(data));
-                        console.log(tool.getMessage(data));
                         return true;
                     }
-
                     //写入会议记录
                     //_self.MeetingNotice = data["MeetingNotice"]||[];
                     _self.MeetingNotice = data._OnlyOneData || [];
+                    _self.enableGoRecord = true;
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);
@@ -816,10 +809,8 @@ export default {
                         success: function (data) {
                             tool.hideLoading(loadingIndexClassName);
                             data = tool.jObject(data);
-                            // console.log(data);
                             if (data._ReturnStatus == false) {
                                 tool.showText(tool.getMessage(data));
-                                console.log(tool.getMessage(data));
                                 return true;
                             }
 
@@ -853,7 +844,6 @@ export default {
             if(tool.isNullOrEmptyObject(data)){
                 return ;
             }
-            // console.log(data);
             this.$router.push({path:'/previewfile', query: data});
         },
         //只查看的情况 控制元素是否可修改
