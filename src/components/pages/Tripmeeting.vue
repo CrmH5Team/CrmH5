@@ -10,7 +10,7 @@
         <!-- list 视图 -->
         <div v-show="viewType=='listView'" class="list-view">
             <div class="nav sticky">
-                <div id="meetingPanel" @click="switchPage(0,$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
+                <div id="meetingPanel" @click.stop="switchPage(0,$event)" class="nav-item f16 active-item  lanText" data-lanid="818_会议"></div>
                 <div style="color:#ccc;" class="nav-item f16 lanText" data-lanid="819_出差"></div>
                 <div class="nav-border"></div>
             </div>
@@ -271,7 +271,7 @@ export default {
         }
     },
     beforeRouteEnter: function (to, from, next) {
-        // console.log('beforeRouteEnter');
+
         if (from.name == "tripinfo" || from.name == "meetinginfo" || from.name == "searchmodule") {
             to.meta.isBack = true;
         } else {
@@ -300,8 +300,6 @@ export default {
         _self.watchScroll();
         _self.goInfo();
 
-        // console.log(eventBus.queryCondictionData);
-        // console.log(_self.queryCondictionData);
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
@@ -319,12 +317,20 @@ export default {
         var _isBack = _self.$route.meta.isBack;
 
         if (_fromSave || !_isBack || _self.isFirstEnter) {
+
+            //若是第一次进来或者刷新才重置右侧默认值
+            if(_self.isFirstEnter){
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter(true);
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                }
+            }
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
-
-            //综合查询条件置空
-            // _self.queryCondictionData = [];
 
             _self.searchData = _self.meetingSearch;
             $("#meetingPanel").trigger("click");
@@ -446,24 +452,35 @@ export default {
         //切换页面
         switchPage: function (num, e) {
             var _self = this;
-
             var el = e.target;
             if (num === undefined) return;
             $(el).addClass('active-item').siblings().removeClass('active-item');
             _self.changePos();
+
+            //获取来源页
+            var fromPage = tool.getSessionStorageItem("fromPage") || "";
+            //移除来源页
+            tool.removeSessionStoragItem("fromPage");
+
+             var isResetRightPanel = _self.showPage != num  || (!tool.isNullOrEmptyObject(fromPage) &&  fromPage.toLowerCase() == "index");
+            if(isResetRightPanel){
+                //综合查询条件置空
+                _self.queryCondictionData = [];
+                _self.queryCondiction = [];
+            }
             _self.showPage = num;
 
-            //综合查询条件置空
-            _self.queryCondictionData = [];
-            _self.queryCondiction = [];
-
-            //右侧radio重置为默认值
-            var returnObj = _self.$refs.rightPanel.reductionDataFilter();
-            if (tool.isNullOrEmptyObject(returnObj)) {
-                return ;
-            }
-            if(returnObj.returnValue){
-                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+            if(isResetRightPanel){
+                //右侧radio重置为默认值
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter();
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                    _self.RefreshCurPageGroupData();
+                }
+            }else{
                 _self.RefreshCurPageGroupData();
             }
 
@@ -522,7 +539,6 @@ export default {
         //刷新当前激活的page的分组数据
         RefreshCurPageGroupData: function () {
             var _self = this;
-            //console.log(_self.showPage);
             var num = _self.showPage;
             var container = null;
             var fromType = "";
@@ -605,16 +621,16 @@ export default {
         }
     },
     deactivated: function () {
-        // console.log("deactivated");
+
         eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
     },
-      beforeDestroy:function(){
-        // console.log("beforeDestroy");
-        eventBus.$off('updataListEvent');
-        eventBus.$off('changeViewEvent');
+    beforeDestroy:function(){
+      // console.log("beforeDestroy");
+      // eventBus.$off('updataListEvent');
+      // eventBus.$off('changeViewEvent');
 
-        }
+      }
 }
 </script>
 

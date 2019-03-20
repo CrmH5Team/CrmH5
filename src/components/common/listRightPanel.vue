@@ -72,6 +72,7 @@ export default {
     watch:{
         //视图切换使用
         viewValue:function(newVule){
+
             eventBus.$emit('changeViewEvent',newVule);
             if(newVule == 'calendarView'){
                 eventBus.$emit('updataCalendarEvent');
@@ -122,7 +123,10 @@ export default {
     methods: {
 
         //设置筛选条件为默认值
-        reductionDataFilter:function(){
+        reductionDataFilter:function(isResetRightPanel){
+
+            isResetRightPanel = (isResetRightPanel == undefined || isResetRightPanel == null) ? true : isResetRightPanel;
+
             var _self = this;
             var returnObj = {
                 returnValue:false,
@@ -131,32 +135,35 @@ export default {
             if(tool.isNullOrEmptyObject(_self.panelData)){
                 return ;
             }
-            $.each(_self.panelData,function(key,value){
 
-                if(value.type == 'radio' && value.default && value.groupName == 'view'){
-                    _self.viewValue = value.default;
+            if(isResetRightPanel){
+                $.each(_self.panelData,function(key,value){
 
-                }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
-                    /*
-                     * 当dataFilter变量的值等于默认值 || 是首次进入列表页面时，通过父组件刷新数据
-                     */
-                    if(_self.dataFilter == value.default || _self.isParentFirstEnter){
+                  if(value.type == 'radio' && value.default && value.groupName == 'view'){
+                      _self.viewValue = value.default;
 
-                        returnObj.returnValue = true;
-                        var defaultObj = $("[value='"+ $.trim(value.default) +"']");
-                        returnObj.defaultQueryCondition =
-                        {
-                            Field : defaultObj.attr("data-queryfield") || "",
-                            Type : defaultObj.attr("data-querytype") || "string",
-                            Format : defaultObj.attr("data-queryformat") || "",
-                            Relation : defaultObj.attr("data-queryrelation") || "and",
-                            Value : defaultObj.attr("value") || "",
-                            Comparison : defaultObj.attr("data-querycomparison") || "string",
-                        };
-                    }
-                    _self.dataFilter = value.default;
-                }
-            });
+                  }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
+                      /*
+                      * 当dataFilter变量的值等于默认值 || 是首次进入列表页面时，通过父组件刷新数据
+                      */
+                      if(_self.dataFilter == value.default || _self.isParentFirstEnter){
+
+                          returnObj.returnValue = true;
+                          var defaultObj = $("[value='"+ $.trim(value.default) +"']");
+                          returnObj.defaultQueryCondition =
+                          {
+                              Field : defaultObj.attr("data-queryfield") || "",
+                              Type : defaultObj.attr("data-querytype") || "string",
+                              Format : defaultObj.attr("data-queryformat") || "",
+                              Relation : defaultObj.attr("data-queryrelation") || "and",
+                              Value : defaultObj.attr("value") || "",
+                              Comparison : defaultObj.attr("data-querycomparison") || "string",
+                          };
+                      }
+                      _self.dataFilter = value.default;
+                  }
+              });
+            }
 
             return returnObj;
         },
@@ -228,7 +235,6 @@ export default {
         },
 
         conStructQueryCondition:function(arr){
-
             var self = this;
             arr = arr || [];
             var queryCondiction = [];

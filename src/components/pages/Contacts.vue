@@ -65,7 +65,6 @@ export default {
             isFirstEnter: false, //是否首次进入
             //isCreated: false, //是否第一次进入，默认false
             //侧滑数据模型
-            fromPage:"",//来源页
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
                 groupName: 'dataFilter',
@@ -244,9 +243,6 @@ export default {
         lanTool.updateLanVersion();
         _self.title = lanTool.lanContent("791_联系人");
 
-        //记录来源页
-        _self.fromPage = _self.$route.query.FromPage || "";
-
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
@@ -265,6 +261,18 @@ export default {
 
         //若为true,则需要刷新
         if (_fromSave || !_isBack || _self.isFirstEnter) {
+
+            //若是第一次进来或者刷新才重置右侧默认值
+            if(_self.isFirstEnter){
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter(true);
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                }
+            }
+
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
@@ -273,8 +281,6 @@ export default {
                 _self.showPage = 0;
                 _self.$route.meta.fromName = '';
             }
-
-            // _self.queryCondictionData = [];
 
             if(_self.showPage == 0){
                 _self.searchData = _self.OrganizationsSearch;
@@ -288,7 +294,6 @@ export default {
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
-
             //若为false,则不需要刷新,  若从搜索页面点击确定搜索按钮返回则从新请求列表数据
             if (fromSearchBtn) {
                 _self.RefreshCurPageGroupData();
@@ -430,25 +435,33 @@ export default {
                 .removeClass("active-item");
             _self.changePos();
 
-            console.log("showPage:"+_self.showPage);
-            console.log("num:"+num);
-            if(_self.showPage != num || (!tool.isNullOrEmptyObject(_self.fromPage) &&  _self.fromPage.toLowerCase() == "index")){
-                //综合查询条件置空   
+            //获取来源页
+            var fromPage = tool.getSessionStorageItem("fromPage") || "";
+            //移除来源页
+            tool.removeSessionStoragItem("fromPage");
+
+            var isResetRightPanel = _self.showPage != num  || (!tool.isNullOrEmptyObject(fromPage) &&  fromPage.toLowerCase() == "index");
+            if(isResetRightPanel){
+                //综合查询条件置空
                 _self.queryCondictionData = [];
+                _self.queryCondiction = [];
             }
-            _self.queryCondiction = [];
             _self.showPage = num;
 
-            //右侧radio重置为默认值
-            var returnObj = _self.$refs.rightPanel.reductionDataFilter();
-            if (tool.isNullOrEmptyObject(returnObj)) {
-                return ;
-            }
-            if(returnObj.returnValue){
-                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+            if(isResetRightPanel){
+
+                //右侧radio重置为默认值
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter(isResetRightPanel);
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                    _self.RefreshCurPageGroupData();
+                }
+            }else{
                 _self.RefreshCurPageGroupData();
             }
-
 
             /*
             var container = null;
@@ -547,6 +560,7 @@ export default {
             }
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
                 if (tool.isNullOrEmptyObject(containerObj)) {
                     _self.noData = true;
@@ -598,7 +612,7 @@ export default {
 
     },
     beforeDestroy: function () {
-        // eventBus.$off('listRightChangeEvent');
+
     }
 };
 </script>

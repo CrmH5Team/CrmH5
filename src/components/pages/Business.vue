@@ -57,7 +57,6 @@ export default {
             queryCondiction: [], //右侧checkbox条件
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
-            fromPage:"",//来源页
             //侧滑数据模型
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
@@ -217,9 +216,6 @@ export default {
 
         _self.title = lanTool.lanContent('783_商业');
 
-        //记录来源页
-        _self.fromPage = _self.$route.query.FromPage || "";
-
         // _self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null;
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
@@ -240,6 +236,17 @@ export default {
 
         //若为true,则需要刷新
         if (_fromSave || !_isBack || _self.isFirstEnter) {
+
+            //若是第一次进来或者刷新才重置右侧默认值
+            if(_self.isFirstEnter){
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter(true);
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                }
+            }
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
@@ -386,24 +393,35 @@ export default {
                 .siblings()
                 .removeClass("active-item");
             _self.changePos();
-            
-            console.log("showPage:"+_self.showPage);
-            console.log("num:"+num);
-            if(_self.showPage != num || (!tool.isNullOrEmptyObject(_self.fromPage) &&  _self.fromPage.toLowerCase() == "index")){
+
+            //获取来源页
+            var fromPage = tool.getSessionStorageItem("fromPage") || "";
+            //移除来源页
+            tool.removeSessionStoragItem("fromPage");
+
+            var isResetRightPanel = _self.showPage != num  || (!tool.isNullOrEmptyObject(fromPage) &&  fromPage.toLowerCase() == "index");
+            if(isResetRightPanel){
+                //综合查询条件置空
                 _self.queryCondictionData = [];
+                _self.queryCondiction = [];
             }
-            _self.queryCondiction = [];
             _self.showPage = num;
 
-            //右侧radio重置为默认值
-            var returnObj = _self.$refs.rightPanel.reductionDataFilter();
-            if (tool.isNullOrEmptyObject(returnObj)) {
-                return ;
-            }
-            if(returnObj.returnValue){
-                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+            if(isResetRightPanel){
+                //右侧radio重置为默认值
+                var returnObj = _self.$refs.rightPanel.reductionDataFilter();
+                if (tool.isNullOrEmptyObject(returnObj)) {
+                    return ;
+                }
+                if(returnObj.returnValue){
+                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                    _self.RefreshCurPageGroupData();
+                }
+            }else{
                 _self.RefreshCurPageGroupData();
             }
+
+
 
             /*
             var container = null;

@@ -14,28 +14,28 @@
         <div id="nav" class="sticky">
             <div class="weui-grids">
                 <div class="weui-grid">
-                    <router-link to="/tripmeeting?FromPage=index" class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/tripmeeting" class="js_grid">
                         <div class="weui-grid__icon trip-meeting-icon">
                             <span class="mui-icon calcfont calc-kehu"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="781_出差&会议"></p>
-                    </router-link>
+                    </div>
                 </div>
                 <div class="weui-grid">
-                    <router-link to="/contacts?FromPage=index" class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/contacts"  class="js_grid">
                         <div class="weui-grid__icon lianxiren1-icon">
                             <span class="mui-icon calcfont calc-kehulianxiren"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="782_联系人"></p>
-                    </router-link>
+                    </div>
                 </div>
                 <div class="weui-grid">
-                    <router-link to="/business?FromPage=index" class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/business" class="js_grid">
                         <div class="weui-grid__icon jihui-icon">
                             <span class="calcfont calc-jihui"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="783_商业"></p>
-                    </router-link>
+                    </div>
                 </div>
                 <div class="weui-grid">
                     <router-link to class="js_grid">
@@ -174,11 +174,11 @@ export default {
     },
     mounted: function () {
         var _self = this;
-        _self.isFromSingleSignOn = 
+        _self.isFromSingleSignOn =
         (_self.$route.query.IsFromSingleSignOn == null || _self.$route.query.IsFromSingleSignOn == undefined)
         ?false
         :_self.$route.query.IsFromSingleSignOn;
-        
+
 
         lanTool.updateLanVersion();
         //侧滑
@@ -209,6 +209,22 @@ export default {
         this.handleLogOut();
     },
     methods: {
+        gotoUrl:function(e){
+          var target = $(e.target);
+          var url = target.attr("url") || "";
+          if(tool.isNullOrEmptyObject(url)){
+            target = target.parents("div[url]:first");
+            url = target.attr("url") || "";
+          }
+          if(tool.isNullOrEmptyObject(url)){
+            return;
+          }
+          tool.setSessionStorageItem("fromPage","index");
+          var _self = this;
+          _self.$router.push({
+              path: url
+          });
+        },
         //初始化用户信息
         initUserInfo: function () {
             //赋用户信息
