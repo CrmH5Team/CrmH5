@@ -65,6 +65,7 @@ export default {
             isFirstEnter: false, //是否首次进入
             //isCreated: false, //是否第一次进入，默认false
             //侧滑数据模型
+            fromPage:"",//来源页
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
                 groupName: 'dataFilter',
@@ -227,7 +228,6 @@ export default {
         }
         next();
     },
-
     created: function () {
         this.isFirstEnter = true;
     },
@@ -243,6 +243,9 @@ export default {
         _self.goInfo();
         lanTool.updateLanVersion();
         _self.title = lanTool.lanContent("791_联系人");
+
+        //记录来源页
+        _self.fromPage = _self.$route.query.FromPage || "";
 
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
@@ -294,7 +297,6 @@ export default {
     },
 
     methods: {
-
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
@@ -427,11 +429,15 @@ export default {
                 .siblings()
                 .removeClass("active-item");
             _self.changePos();
-            _self.showPage = num;
 
-            //综合查询条件置空
-            _self.queryCondictionData = [];
+            console.log("showPage:"+_self.showPage);
+            console.log("num:"+num);
+            if(_self.showPage != num || (!tool.isNullOrEmptyObject(_self.fromPage) &&  _self.fromPage.toLowerCase() == "index")){
+                //综合查询条件置空   
+                _self.queryCondictionData = [];
+            }
             _self.queryCondiction = [];
+            _self.showPage = num;
 
             //右侧radio重置为默认值
             var returnObj = _self.$refs.rightPanel.reductionDataFilter();
@@ -553,7 +559,6 @@ export default {
                 }
             });
         },
-
         //点击跳转到详情页
         goInfo:function(){
             var _self = this;
@@ -592,7 +597,6 @@ export default {
 
 
     },
-
     beforeDestroy: function () {
         // eventBus.$off('listRightChangeEvent');
     }
