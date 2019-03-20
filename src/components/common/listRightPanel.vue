@@ -115,8 +115,10 @@ export default {
     mounted:function(){
     },
     activated:function(){
+        var _self = this;
         lanTool.updateLanVersion();
-        eventBus.$on('showRightPanelEvent',this.panelToggle);
+        eventBus.$on('showRightPanelEvent',_self.panelToggle);
+        _self.panelToggle(false);
     },
     methods: {
 
@@ -161,9 +163,16 @@ export default {
         },
 
         //侧滑
-        panelToggle:function(){
+        //isClose值如果为false，表示刚进页面收起侧滑；
+        //如果没传isClose值showPanel就取反，表示正常的展开收起
+        panelToggle:function(isClose){
+
           var _self = this;
-            _self.showPanel = !_self.showPanel;
+            if(isClose == false){
+                _self.showPanel = isClose;
+            }else{
+                _self.showPanel = !_self.showPanel;
+            }
             if(_self.showPanel){
                 _self.$nextTick(function(){
                     $('#right-content').css({

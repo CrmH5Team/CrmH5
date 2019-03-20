@@ -50,13 +50,19 @@ export default {
     activated: function () {
         lanTool.updateLanVersion();
         eventBus.$on('gengduoEvent', this.panelToggle);
+        this.panelToggle(false);
     },
     methods: {
         //侧滑
-        panelToggle: function () {
-            console.log("Infocehua");
+        //isClose值如果为false，表示刚进页面收起侧滑；
+        //如果没传isClose值showPanel就取反，表示正常的展开收起
+        panelToggle: function (isClose) {
             var _self = this;
-            _self.showPanel = !_self.showPanel;
+            if(isClose == false){
+                _self.showPanel = isClose;
+            }else{
+                _self.showPanel = !_self.showPanel;
+            }
             if (_self.showPanel) {
 
                 _self.$nextTick(function () {
