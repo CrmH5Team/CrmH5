@@ -66,8 +66,7 @@ export default {
             showPanel:false,
             viewValue:'',  //右侧分类
             dataFilter:'',
-            isParentFirstEnter:false,  //存储赋组件是否是新创建
-
+            isParentFirstEnter:false  //存储赋组件是否是新创建
         }
     },
     watch:{

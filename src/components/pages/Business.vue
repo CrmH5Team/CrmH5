@@ -57,7 +57,7 @@ export default {
             queryCondiction: [], //右侧checkbox条件
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
-
+            fromPage:"",//来源页
             //侧滑数据模型
             rigthPanelData: [{
                 groupText: lanTool.lanContent("794_数据筛选"),
@@ -216,6 +216,10 @@ export default {
         _self.goInfo();
 
         _self.title = lanTool.lanContent('783_商业');
+
+        //记录来源页
+        _self.fromPage = _self.$route.query.FromPage || "";
+
         // _self.queryCondictionData = eventBus.queryCondictionData || [];
         // eventBus.queryCondictionData = null;
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
@@ -382,11 +386,15 @@ export default {
                 .siblings()
                 .removeClass("active-item");
             _self.changePos();
+            
+            console.log("showPage:"+_self.showPage);
+            console.log("num:"+num);
+            if(_self.showPage != num || (!tool.isNullOrEmptyObject(_self.fromPage) &&  _self.fromPage.toLowerCase() == "index")){
+                _self.queryCondictionData = [];
+            }
+            _self.queryCondiction = [];
             _self.showPage = num;
 
-            //综合查询条件置空
-            _self.queryCondictionData = [];
-            _self.queryCondiction = [];
             //右侧radio重置为默认值
             var returnObj = _self.$refs.rightPanel.reductionDataFilter();
             if (tool.isNullOrEmptyObject(returnObj)) {
