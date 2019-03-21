@@ -53,9 +53,11 @@ import Calendar from './Calendar'
 import Header from '../common/Listheader'
 import Listrightpanel from '../common/Listrightpanel'
 import Nothing from "../common/Nothing"
+import Mixins from '../../mixins/commonlist.js'
 
 var count = 0;
 export default {
+    mixins:[Mixins],
     components: {
         'Header': Header,
         'calendar': Calendar,
@@ -65,14 +67,14 @@ export default {
     data() {
         return {
             title: lanTool.lanContent('781_出差&会议'),
-            noData: true, //没数据
-
-            showPage: 0, //list视图控制显示meeting(0)或者trip(1)
             viewType: 'calendarView', //展示视图类型  calendarView, listView
+             /*
+            showPage: 0, //list视图控制显示meeting(0)或者trip(1)
+            noData: true, //没数据
             isFirstEnter: false, //是否首次进入
             queryCondiction: [], //右侧checkbox条件
             queryCondictionData: [], //综合查询条件
-
+            */
             //侧滑数据模型
             rigthPanelData: [{
                     groupText: lanTool.lanContent('867_视图'),
@@ -285,12 +287,12 @@ export default {
     //     }
     //     next();
     // },
-    created: function () {
-        this.isFirstEnter = true;
-    },
-    mounted: function () {
+    // created: function () {
+    //     this.isFirstEnter = true;
+    // },
+    // mounted: function () {
 
-    },
+    // },
     activated: function () {
 
         lanTool.updateLanVersion();
@@ -353,187 +355,54 @@ export default {
         })
     },
     methods: {
-        //监听滚动固定
-        watchScroll: function () {
-            var _self = this;
-            setTimeout(function () {
-                var headerH = parseFloat($('header').innerHeight());
-                var navH = parseFloat($('.nav').innerHeight());
-
-                // $(this).offset().top 元素到document顶部的距离
-                // $(document).scrollTop() || $(window).scrollTop(); 滚动条滚动的距离
-
-                $(window).unbind('scroll').bind('scroll',function(){
-
-                    if ($('.group-div').length <= 0) return;
-                    var scrollTop = $(document).scrollTop() || $(window).scrollTop();
-
-                    $('.group-div').each(function () {
-                        if ($(this).offset().top - scrollTop <= (headerH + navH)) {
-
-                            if (tool.getSystem() === 'ios') {
-                                $(this).find('.date-div').addClass('sticky').css({
-                                    "top": headerH + navH + 'px'
-                                });
-                            } else {
-                                $(this).find('.date-div').css({
-                                    "position": "fixed",
-                                    "top": headerH + navH + 'px'
-                                });
-                                $(this).find('.occupy-div').show();
-                            }
-
-                        } else {
-                            if (tool.getSystem() === 'ios') {
-                                $(this).find('.date-div').removeClass('sticky').css({
-                                    "top": '0px'
-                                });
-                            } else {
-                                $(this).find('.date-div').css({
-                                    "position": "static"
-                                });
-                                $(this).find('.occupy-div').hide();
-                            }
-                        }
-
-                    })
-                })
-            }, 100)
-        },
 
         //列表展开收起
         groupToggle: function () {
             var _self = this;
-            $("#meetingList,#tripList").off("click", "div.date-div").on(
-                "click",
-                "div.date-div",
-                function (event) {
-                    var target = $(event.target);
-                    if (!target.hasClass('date-div')) {
-                        target = target.closest('div.date-div');
-                        if (target == undefined) {
-                            return;
-                        }
-                    }
-                    var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
-                    var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
+            _self.groupToggleHandle('meetingList','tripList');
+            // $("#meetingList,#tripList").off("click", "div.date-div").on(
+            //     "click",
+            //     "div.date-div",
+            //     function (event) {
+            //         var target = $(event.target);
+            //         if (!target.hasClass('date-div')) {
+            //             target = target.closest('div.date-div');
+            //             if (target == undefined) {
+            //                 return;
+            //             }
+            //         }
+            //         var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+            //         var groupID = target.find("span[data-groupid]:first").attr("data-groupid") || "";
 
-                    if (tool.isNullOrEmptyObject(groupID)) {
-                        return;
-                    }
+            //         if (tool.isNullOrEmptyObject(groupID)) {
+            //             return;
+            //         }
 
-                    //若是展开
-                    if (target.hasClass("open")) {
-                        target
-                            .removeClass("open")
-                            .siblings(".group-item-list")
-                            .slideUp(500, function () {
-                                var parentContainerObj = target.parents("div.group-div:first");
-                                if (tool.isNullOrEmptyObject(parentContainerObj)) {
-                                    return;
-                                }
-                                //清空容器内容
-                                parentContainerObj.find("div.group-item-list").remove();
-                            });
-                    } else {
-                        //若是收起
-                        var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-                        tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
-                            containerObj
-                                .addClass("open")
-                                .siblings(".group-item-list")
-                                .slideDown(500);
+            //         //若是展开
+            //         if (target.hasClass("open")) {
+            //             target
+            //                 .removeClass("open")
+            //                 .siblings(".group-item-list")
+            //                 .slideUp(500, function () {
+            //                     var parentContainerObj = target.parents("div.group-div:first");
+            //                     if (tool.isNullOrEmptyObject(parentContainerObj)) {
+            //                         return;
+            //                     }
+            //                     //清空容器内容
+            //                     parentContainerObj.find("div.group-item-list").remove();
+            //                 });
+            //         } else {
+            //             //若是收起
+            //             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            //             tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
+            //                 containerObj
+            //                     .addClass("open")
+            //                     .siblings(".group-item-list")
+            //                     .slideDown(500);
 
-                        });
-                    }
-                })
-        },
-
-        //切换页面
-        switchPage: function (num, e) {
-            var _self = this;
-            var el = e.target;
-            if (num === undefined) return;
-            $(el).addClass('active-item').siblings().removeClass('active-item');
-            _self.changePos();
-
-            //获取来源页
-            var fromPage = tool.getSessionStorageItem("fromPage") || "";
-            //移除来源页
-            tool.removeSessionStoragItem("fromPage");
-
-             var isResetRightPanel = _self.showPage != num  || (!tool.isNullOrEmptyObject(fromPage) &&  fromPage.toLowerCase() == "index");
-            if(isResetRightPanel){
-                //综合查询条件置空
-                _self.queryCondictionData = [];
-                _self.queryCondiction = [];
-            }
-            _self.showPage = num;
-
-            if(isResetRightPanel){
-                //右侧radio重置为默认值
-                var returnObj = _self.$refs.rightPanel.reductionDataFilter();
-                if (tool.isNullOrEmptyObject(returnObj)) {
-                    return ;
-                }
-                if(returnObj.returnValue){
-                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                    _self.RefreshCurPageGroupData();
-                }
-            }else{
-                _self.RefreshCurPageGroupData();
-            }
-
-            /*
-            var container = null;
-            var fromType = '';
-            if (_self.showPage == 0) {
-                _self.searchData = _self.meetingSearch;
-                fromType = 'meeting';
-                container = $('#meetingList');
-            } else {
-                _self.searchData = _self.tripSearch;
-                fromType = 'trip';
-                container = $('#tripList');
-            }
-
-            //渲染数据
-            var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
-            tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
-
-                if (tool.isNullOrEmptyObject(containerObj)) {
-                    _self.noData = true;
-                    return;
-                }
-                if (!containerObj.html()) {
-                    _self.noData = true;
-                } else {
-                    _self.noData = false;
-                }
-            });
-            */
-        },
-
-        //table底部横条过渡效果
-        changePos: function () {
-            this.$nextTick(function () {
-                var activePos = $('.nav .active-item').position();
-                $('.nav-border').stop().css({
-                    left: activePos.left,
-                    // width: $('.nav .active-item').width()
-                });
-            })
-        },
-
-        setQuerycondition: function (data) {
-            var _self = this;
-            _self.queryCondiction = data;
-            //执行监听的这个动作
-            _self.RefreshCurPageGroupData();
-        },
-        setQueryconditionOnlyData: function (data) {
-            var _self = this;
-            _self.queryCondiction = data;
+            //             });
+            //         }
+            //     })
         },
 
         //刷新当前激活的page的分组数据
@@ -624,13 +493,7 @@ export default {
 
         eventBus.$off('updataListEvent');
         eventBus.$off('changeViewEvent');
-    },
-    beforeDestroy:function(){
-      // console.log("beforeDestroy");
-      // eventBus.$off('updataListEvent');
-      // eventBus.$off('changeViewEvent');
-
-      }
+    }
 }
 </script>
 
