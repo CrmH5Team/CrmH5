@@ -135,7 +135,7 @@ export default {
             fileListData: [], //文件列表
             fromIDNew: "", //当前记录ID
             fromTypeNew: "", //来源类型
-            companyID:"",//公司ID
+            companyID:""//公司ID
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -169,7 +169,8 @@ export default {
         var fromType = "MeetingNoteinfo";
         _self.oppID = _self.$route.query.OppID;
         _self.scheduleID = _self.$route.query.ScheduleID;
-        _self.fromIDNew = _self.$route.params.id;
+        //_self.fromIDNew = _self.$route.params.id;
+        _self.fromIDNew = _self.$route.query.OppID;
         _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
 
         // console.log(typeof(_self.$route.query.onlyView));
@@ -177,7 +178,7 @@ export default {
 
         _self.controlEdit();
 
-        _self.fromTypeNew = "40";
+        _self.fromTypeNew = "9";
 
         //监听保存
         // _self.savePageData();
