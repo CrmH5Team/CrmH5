@@ -1917,13 +1917,35 @@
     return fieldVal;
   };
 
-  tool.OppMeetingInfoTemplate = `<div class="item-div">
-  <div class="item-new f12">new</div>
-  <span class="itme-div-span">{MeetingTitle}</span>
-</div>
-<div class="item-div dete-div padding-top-3 f12">
-  <span>{BeginTime}</span>
-</div>`;
+  // tool.OppMeetingInfoTemplate =
+  // `<div class="item-div-box">
+  //   <div class="item-new f12">
+  //       <div class="item-new-text">new</div>
+  //   </div>
+  //   <div>
+  //     <div class="item-div">
+  //       <span class="itme-div-span">{MeetingTitle}</span>
+  //     </div>
+  //     <div class="item-div dete-div padding-top-3 f12">
+  //       <span>{BeginTime}</span>
+  //     </div>
+  //   </div>
+  // </div>`;
+
+  tool.OppMeetingInfoTemplate =
+  `<div class="item-div-box">
+    <div class="item-new f12">
+        <div class="item-new-text">{MeetingSysmbol}</div>
+    </div>
+    <div>
+      <div class="item-div">
+        <span class="itme-div-span">{MeetingTitle}</span>
+      </div>
+      <div class="item-div dete-div padding-top-3 f12">
+        <span>{BeginTime}</span>
+      </div>
+    </div>
+  </div>`;
   //获取销售机会会议记录字段值
   tool.FormatOppMeetingFieldValHtml = function(data,tempStr){
 			// <div class=" group-item f14" data-url="/opportunitiesinfo/{AutoID}">
@@ -1957,10 +1979,13 @@
 		var beginTime = data["BeginTime"]||"";
 		var format = "d/MMM/yyyy HH:mm";
 		beginTime = beginTime.ReplaceAll("T", " ");
-		beginTime = tool.ChangeTimeFormat(beginTime, format);
+    beginTime = tool.ChangeTimeFormat(beginTime, format);
+
+    var meetingSysmbol = lanTool.lanContent("1000001_最新的会议") || "new";
 
 		templateTemp = templateTemp.ReplaceAll("{MeetingTitle}",meetingTitle);
-		templateTemp = templateTemp.ReplaceAll("{BeginTime}",beginTime);
+    templateTemp = templateTemp.ReplaceAll("{BeginTime}",beginTime);
+    templateTemp = templateTemp.ReplaceAll("{MeetingSysmbol}",meetingSysmbol);
 
 		tempStr = tempStr.ReplaceAll("{MeetingInfo}",templateTemp);
 		return tempStr;
