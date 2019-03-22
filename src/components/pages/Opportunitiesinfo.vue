@@ -360,7 +360,6 @@ export default {
 
         var _self = this;
         _self.seeMore =lanTool.lanContent("900_查看详细");
-        _self.enableGoRecord = false;
 
         // this.onlyView = Boolean(this.$route.query.onlyView) || false;
 
