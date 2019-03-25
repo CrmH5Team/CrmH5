@@ -359,7 +359,8 @@ margin-right: 5px;} */
   overflow: hidden;display:block;
   white-space: nowrap;
   text-overflow: ellipsis;}
-/* .opportunities-list .dete-div{padding-left:40px;} */
+
+.opportunities-list .dete-div{color:#666666;}
 .opportunities-list .blue-color{color:#3cadf9;}
 .opportunities-list .green-color{color:#009979;}
 .opportunities-list .padding-bottom-5{padding-bottom: 5px;}
