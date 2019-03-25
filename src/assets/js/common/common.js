@@ -1728,7 +1728,7 @@
                                 <div class="item-div item-first-div blue-color">
                                 {TheName}
                                 </div>
-                                <div class="item-div ">{Memo}</div>
+                                <div class="item-div line-clamp2">{Memo}</div>
                                 <div class="item-div f12 green-color padding-bottom-3 padding-top-3">
                                   <span class="{className}">{CurrentState}</span>
                                 </div>
@@ -1762,7 +1762,7 @@
                                 <div class="item-div f12 green-color padding-bottom-3 padding-top-3">
                                   <span class="{className}">{CurrentState}</span>
                                 </div>
-                                <div class="item-div ">{Memo}</div>
+                                <div class="item-div line-clamp2">{Memo}</div>
                                 {MeetingInfo}
                             </div>
                         </div>`;
@@ -1934,14 +1934,13 @@
 
   tool.OppMeetingInfoTemplate =
   `<div class="item-div-box">
-    <div class="item-new f12">
         <div class="item-new-text">{MeetingSysmbol}</div>
-    </div>
-    <div>
+
+    <div class="new-right">
       <div class="item-div">
         <span class="itme-div-span">{MeetingTitle}</span>
       </div>
-      <div class="item-div dete-div padding-top-3 f12">
+      <div class="item-div dete-div f12">
         <span>{BeginTime}</span>
       </div>
     </div>
