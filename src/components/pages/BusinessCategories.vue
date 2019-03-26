@@ -91,7 +91,8 @@ export default {
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
             //侧滑数据模型
-            rigthPanelData: [{
+            rigthPanelData: [
+              {
                 groupText: lanTool.lanContent("794_数据筛选"),
                 groupName: 'dataFilter',
                 type: "radio",
@@ -133,58 +134,35 @@ export default {
                         queryComparison: "="
                     }
                 ]
-            },{
+              },{
                 groupText: 'Data model',
                 groupName: 'modelDataFilter',
                 type: "radio",
                 default: "areaSales",
-                items: [{
-                        text: "业务员区域",
-                        queryfield: "areaSales",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "行业",
-                        queryfield: "businessSector",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "客户",
-                        queryfield: "organizations",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "联系人",
-                        queryfield: "contacts",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "负责人",
-                        queryfield: "Initiator",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    }
+                items: [
+                  {
+                      id: "areaSales",
+                      text: "业务员区域"
+                  },
+                  {
+                      id: "businessSector",
+                      text: "行业"
+                  },
+                  {
+                      id: "organizations",
+                      text: "客户"
+                  },
+                  {
+                      id: "contacts",
+                      text: "联系人"
+                  },
+                  {
+                      id: "Initiator",
+                      text: "负责人"
+                  }
                 ]
-            } ],
+              }
+            ],
             searchData: {},
             dealPipelineSearch: [{
                     queryfield: "TheName",

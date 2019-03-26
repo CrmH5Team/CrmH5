@@ -29,12 +29,9 @@
                 </div>
             </div>
             <div v-if="item.type=='radio' && item.groupName =='modelDataFilter'" class="right-block-items">
-                <div v-for="radio in item.items" class="radios-div">
+                <div v-for="radio in item.items" :key="item.id" class="radios-div">
                           <label class="radios-label">
-                              <input type="radio" :name="item.groupName"
-                              :data-queryfield="radio.queryfield"  :data-queryType="radio.queryType"
-                              :data-queryFormat="radio.queryFormat"  :data-queryRelation="radio.queryRelation"
-                              :value="radio.queryfield" :data-queryComparison="radio.queryComparison" v-model="modelDataFilter"/>
+                              <input type="radio" :name="item.id" :value="radio.id" v-model="modelDataFilter"/>
                               <i class="radios"></i>
                               <span>{{radio.text}}</span>
                           </label>
@@ -103,33 +100,14 @@ export default {
         modelDataFilter:function(newValue,oldValue){
           var _self = this;
           var modelFilter = [];
-          modelFilter.push(newValue);   
-          _self.categoryStructQueryCondition(modelFilter);       
+          modelFilter.push(newValue);
+          _self.categoryStructQueryCondition(modelFilter);
         },
     },
     props:['panelData','searchData','showCategory'],
     created:function(){
         var _self = this;
         _self.isParentFirstEnter = _self.$parent.isFirstEnter;
-
-        /*
-        //赋初始值
-        if(tool.isNullOrEmptyObject(_self.panelData)){
-            return ;
-        }
-        $.each(_self.panelData,function(key,value){
-
-            if(value.type == 'radio' && value.default && value.groupName == 'view'){
-                _self.viewValue = value.default;
-                return true;
-
-            }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
-                _self.dataFilter = value.default;
-                return true;
-            }
-        });
-        */
-
     },
     mounted:function(){
     },
@@ -143,7 +121,7 @@ export default {
 
         //设置筛选条件为默认值
         reductionDataFilter:function(isResetRightPanel){
-            console.log("reductionDataFilter");
+
             isResetRightPanel = (isResetRightPanel == undefined || isResetRightPanel == null) ? true : isResetRightPanel;
 
             var _self = this;
@@ -180,6 +158,9 @@ export default {
                           };
                       }
                       _self.dataFilter = value.default;
+
+                  }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
+                      _self.modelDataFilter = value.default;
                   }
               });
             }
@@ -294,7 +275,7 @@ export default {
         //类别结构查询
         categoryStructQueryCondition:function(arr){
            console.log("arr:"+arr);
-           
+
         },
     },
     deactivated:function(){
