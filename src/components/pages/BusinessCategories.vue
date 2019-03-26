@@ -91,7 +91,8 @@ export default {
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
             //侧滑数据模型
-            rigthPanelData: [{
+            rigthPanelData: [
+              {
                 groupText: lanTool.lanContent("794_数据筛选"),
                 groupName: 'dataFilter',
                 type: "radio",
@@ -133,58 +134,35 @@ export default {
                         queryComparison: "="
                     }
                 ]
-            },{
+              },{
                 groupText: 'Data model',
                 groupName: 'modelDataFilter',
                 type: "radio",
                 default: "areaSales",
-                items: [{
-                        text: "业务员区域",
-                        queryfield: "areaSales",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "行业",
-                        queryfield: "businessSector",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "客户",
-                        queryfield: "organizations",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "联系人",
-                        queryfield: "contacts",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    },
-                    {
-                        text: "负责人",
-                        queryfield: "Initiator",
-                        queryType: "string",
-                        queryFormat: "",
-                        queryRelation: "and",
-                        queryValue: "",
-                        queryComparison: "="
-                    }
+                items: [
+                  {
+                      id: "areaSales",
+                      text: "业务员区域"
+                  },
+                  {
+                      id: "businessSector",
+                      text: "行业"
+                  },
+                  {
+                      id: "organizations",
+                      text: "客户"
+                  },
+                  {
+                      id: "contacts",
+                      text: "联系人"
+                  },
+                  {
+                      id: "Initiator",
+                      text: "负责人"
+                  }
                 ]
-            } ],
+              }
+            ],
             searchData: {},
             dealPipelineSearch: [{
                     queryfield: "TheName",
@@ -583,105 +561,8 @@ export default {
         //日期选择器控件初始化
         initDateTimePicker: function () {
             var _self = this;
-            //6>渲染dateTimePicker
-            $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
-                var _curObj = $(this);
-                // console.log(_curObj);
-                var fromId = _curObj.attr("data-field") || "";
-                if (tool.isNullOrEmptyObject(fromId)) {
-                    return true;
-                }
-                var titleVal = lanTool.lanContent(_curObj.attr("data-lanid") || "");
-                var timeType = _curObj.attr("data-TimeType") || "date";
+            tool.InitiateInfoPageControl(_self, "", function () {
 
-                //配置年数据
-                var yearConfigArr = [];
-                //默认前后50年可选
-                var unitYear = 50;
-                var currentYear = new Date().getFullYear();
-                var starIndex = currentYear - unitYear;
-                var endIndex = currentYear + unitYear;
-                for (var i = starIndex; i <= endIndex; i++) {
-                    yearConfigArr.push(i);
-                }
-
-                //若是时间类型，则需要配置时间
-                var timeConfigArr = function () {
-                    return [];
-                };
-                if (timeType == "dateTime") {
-                    timeConfigArr = function () {
-                        return [ // 自定义的时间
-                            {
-                                values: (function () {
-                                    var hours = [];
-                                    for (var i = 0; i < 24; i++) {
-                                        hours.push(initial.formatNumber(i));
-                                    }
-                                    return hours;
-                                })()
-                            },
-                            {
-                                divider: true, //分隔符
-                                content: ':'
-                            },
-                            {
-                                values: (function () {
-                                    //var minutes = [];
-                                    //for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
-                                    var minutes = ['00', '15', '30', '45'];
-                                    return minutes;
-                                })()
-                            }
-                        ];
-                    };
-                }
-                _self.$nextTick(function () {
-                    _curObj.datetimePicker({
-                        fromId: fromId,
-                        jqueryObj: _curObj,
-                        title: titleVal, //标题
-                        toolbarCloseText: lanTool.lanContent('569_确认'), //确认
-                        toolbarCancleText: lanTool.lanContent('570_取消'), //取消
-                        times: timeConfigArr, //HH:mm
-                        years: yearConfigArr, //年
-                        onOpen: function (pickerTemp, val1, val2) {
-                            //隐藏虚拟键盘
-                            document.activeElement.blur();
-                            if (tool.isNullOrEmptyObject(pickerTemp) || tool.isNullOrEmptyObject(pickerTemp.value) || pickerTemp.value.length <= 0) {
-                                return;
-                            }
-                            var valNew = "";
-                            if (pickerTemp.value.length == 5) {
-                                valNew = pickerTemp.value[0] + "-" + pickerTemp.value[1] + "-" + pickerTemp.value[2] + " " + pickerTemp.value[3] + ":" + pickerTemp.value[4];
-                            } else {
-                                valNew = pickerTemp.value[0] + "-" + pickerTemp.value[1] + "-" + pickerTemp.value[2];
-                            }
-                            _curObj.val(valNew);
-                        },
-                    });
-                });
-
-            });
-            $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
-                var _curObj = $(this);
-                if (tool.isNullOrEmptyObject(_curObj)) {
-                    return true;
-                }
-                var dataField = _curObj.attr("data-field") || "";
-                if (tool.isNullOrEmptyObject(dataField)) {
-                    return true;
-                }
-
-                // var fieldVal = data[dataField] || "";
-                // var format = _curObj.attr("data-format") || "";
-                // if (!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)) {
-                //     fieldVal = fieldVal.ReplaceAll("T", " ");
-                //     fieldVal = tool.ChangeTimeFormat(fieldVal, format);
-                // }
-
-                // _curObj.val(fieldVal);
-                // _curObj.trigger('change');
             });
         },
         sure: function () {
