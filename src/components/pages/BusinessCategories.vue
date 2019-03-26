@@ -15,11 +15,11 @@
         <div class="setTime">
             <div class="box">
                 <div class="inputRow">
-                    <input id="startdate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the start date" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm">
+                    <input id="startdate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the start date" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
                     <span class="calcfont calc-you"></span>
                 </div>
                 <div class="inputRow">
-                    <input id="enddate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the end date" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="dateTime" data-format="yyyy-MM-dd HH:mm">
+                    <input id="enddate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the end date" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
                     <span class="calcfont calc-you"></span></div>
             </div>
             <div class="sure" @click="sure">确定</div>
@@ -686,7 +686,38 @@ export default {
             });
         },
         sure: function () {
-            console.log("确定");
+            var _self = this;
+            //判断元素是否存在
+            // console.log("startdate.length:" + $("#startdate").length);
+            if ($("#startdate").length > 0) {
+                //开始日期和结束日期进行对比
+                var startdate = $("#startdate").val();
+                var enddate = $("#enddate").val();
+
+                var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
+                var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
+
+                var tips = lanTool.lanContent('933_温馨提示');
+                var sure = lanTool.lanContent("545_确定");
+
+                var d1 = new Date(startdate.replace(/\-/g, "\/"));
+                var d2 = new Date(enddate.replace(/\-/g, "\/"));
+
+                //开始日期或者结束日期其中一个为空，一个不为空
+                if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
+                    $.alert(dateEmptyAlert, tips, "", sure);
+                    return;
+                } else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
+                    $.alert(compareAlert, tips, "", sure);
+                    return;
+                } else {
+                    console.log("时间不冲突");
+                    
+                    // var id = _self.$route.params.id;
+                    // var fromType = "Meetinginfo";
+                    // tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                }
+            }
 
         },
         addBtn: function (e) {
