@@ -294,6 +294,7 @@ export default {
         _self.watchScroll();
         _self.groupToggle();
         _self.goInfo();
+        _self.initDateTimePicker();
 
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
@@ -582,6 +583,7 @@ export default {
             });
         },
         initDateTimePicker: function () {
+            var _self = this;
             //6>渲染dateTimePicker
             $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
                 var _curObj = $(this);
@@ -635,7 +637,7 @@ export default {
                         ];
                     };
                 }
-                self.$nextTick(function () {
+                _self.$nextTick(function () {
                     _curObj.datetimePicker({
                         fromId: fromId,
                         jqueryObj: _curObj,
@@ -661,6 +663,26 @@ export default {
                     });
                 });
 
+            });
+            $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
+                var _curObj = $(this);
+                if (tool.isNullOrEmptyObject(_curObj)) {
+                    return true;
+                }
+                var dataField = _curObj.attr("data-field") || "";
+                if (tool.isNullOrEmptyObject(dataField)) {
+                    return true;
+                }
+
+                // var fieldVal = data[dataField] || "";
+                // var format = _curObj.attr("data-format") || "";
+                // if (!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)) {
+                //     fieldVal = fieldVal.ReplaceAll("T", " ");
+                //     fieldVal = tool.ChangeTimeFormat(fieldVal, format);
+                // }
+
+                // _curObj.val(fieldVal);
+                // _curObj.trigger('change');
             });
         },
         sure: function () {
