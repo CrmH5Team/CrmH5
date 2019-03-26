@@ -609,33 +609,6 @@ export default {
                 var timeConfigArr = function () {
                     return [];
                 };
-                if (timeType == "dateTime") {
-                    timeConfigArr = function () {
-                        return [ // 自定义的时间
-                            {
-                                values: (function () {
-                                    var hours = [];
-                                    for (var i = 0; i < 24; i++) {
-                                        hours.push(initial.formatNumber(i));
-                                    }
-                                    return hours;
-                                })()
-                            },
-                            {
-                                divider: true, //分隔符
-                                content: ':'
-                            },
-                            {
-                                values: (function () {
-                                    //var minutes = [];
-                                    //for (var i = 0; i < 60; i++) minutes.push(initial.formatNumber(i));
-                                    var minutes = ['00', '15', '30', '45'];
-                                    return minutes;
-                                })()
-                            }
-                        ];
-                    };
-                }
                 _self.$nextTick(function () {
                     _curObj.datetimePicker({
                         fromId: fromId,
@@ -662,26 +635,6 @@ export default {
                     });
                 });
 
-            });
-            $("[data-fieldControlType='dateTimePicker']").each(function (index, obj) {
-                var _curObj = $(this);
-                if (tool.isNullOrEmptyObject(_curObj)) {
-                    return true;
-                }
-                var dataField = _curObj.attr("data-field") || "";
-                if (tool.isNullOrEmptyObject(dataField)) {
-                    return true;
-                }
-
-                // var fieldVal = data[dataField] || "";
-                // var format = _curObj.attr("data-format") || "";
-                // if (!tool.isNullOrEmptyObject(format) && !tool.isNullOrEmptyObject(fieldVal)) {
-                //     fieldVal = fieldVal.ReplaceAll("T", " ");
-                //     fieldVal = tool.ChangeTimeFormat(fieldVal, format);
-                // }
-
-                // _curObj.val(fieldVal);
-                // _curObj.trigger('change');
             });
         },
         sure: function () {
