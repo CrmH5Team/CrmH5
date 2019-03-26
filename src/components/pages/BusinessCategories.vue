@@ -710,7 +710,7 @@ export default {
                     $.alert(compareAlert, tips, "", sure);
                     return;
                 } else {
-                    console.log("时间不冲突");
+                    console.log("日期不冲突");
 
                     // var id = _self.$route.params.id;
                     // var fromType = "Meetinginfo";
@@ -719,18 +719,16 @@ export default {
             }
 
         },
-         //筛选
+         //搜索
         search: function () {
             this.$nextTick(function () {
-                 var listDom = $('.dataList');
+                 var listDom = $('.pageList');
                 $('#searchInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
-                    console.log("queryStr:"+queryStr);
-                    
                     if (queryStr === '') {
-                        listDom.find('div.item-div').show();
+                        listDom.find('div.date-div').show();
                     } else {
-                        listDom.find('div.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        listDom.find('div.date-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
                     }
                 })
             });
