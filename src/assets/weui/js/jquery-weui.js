@@ -5143,7 +5143,7 @@ Device/OS Detection
           }
       }
       p.params = params;
-      console.log(p.params);
+      // console.log(p.params);
       p.initialized = false;
       // Inline flag
       p.inline = p.params.container ? true : false;
@@ -5749,7 +5749,8 @@ Device/OS Detection
         if(tool.isNullOrEmptyObject(_curObj)) return;
         var selectYear = yearArray[0]; //默认选择的年份
         _curObj.picker({
-                title: "请选择年",
+                // title: "请选择年",
+                title: lanTool.lanContent("1000002_请选择年")||"",
                 cols: [
                   {
                     textAlign: 'center',
@@ -5781,7 +5782,8 @@ Device/OS Detection
           if(tool.isNullOrEmptyObject(_curObj)) return;
           var selectMonth = p.params.monthNames[0]; //默认选择的月份
           _curObj.picker({
-                title: "请选择月",
+                //title: "请选择月",
+                title:lanTool.lanContent("1000003_请选择月份")||"",
                 cols: [
                   {
                     textAlign: 'center',

@@ -383,7 +383,7 @@ export default {
                         // return true;
                     }
 
-                    console.log(data);
+                    // console.log(data);
 
                     for (var i = 0; i < data.length; i++) {
                         var dateTemp = new Date(data[i]);
