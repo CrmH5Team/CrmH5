@@ -5143,8 +5143,8 @@ Device/OS Detection
           }
       }
       p.params = params;
+      console.log(p.params);
       p.initialized = false;
-
       // Inline flag
       p.inline = p.params.container ? true : false;
 
@@ -5374,6 +5374,8 @@ Device/OS Detection
           p.container.find('.picker-calendar-next-month').on('click', p.nextMonth);
           p.container.find('.picker-calendar-prev-year').on('click', p.prevYear);
           p.container.find('.picker-calendar-next-year').on('click', p.nextYear);
+          // p.container.find('.current-year-value').on('click',p.inputYear);
+
           p.wrapper.on('click', handleDayClick);
           if (p.params.touchMove) {
               p.wrapper.on($.touchEvents.start, handleTouchStart);
@@ -5386,6 +5388,7 @@ Device/OS Detection
               p.container.find('.picker-calendar-next-month').off('click', p.nextMonth);
               p.container.find('.picker-calendar-prev-year').off('click', p.prevYear);
               p.container.find('.picker-calendar-next-year').off('click', p.nextYear);
+              // p.container.find('.current-year-value').off('click',p.inputYear);
               p.wrapper.off('click', handleDayClick);
               if (p.params.touchMove) {
                   p.wrapper.off($.touchEvents.start, handleTouchStart);
@@ -5394,6 +5397,8 @@ Device/OS Detection
               }
           };
 
+          p.initSelectYear();
+          p.initSelectMonth();
 
       };
       p.destroyCalendarEvents = function (colContainer) {
@@ -5406,6 +5411,7 @@ Device/OS Detection
           return new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
       };
       p.monthHTML = function (date, offset) {
+
           date = new Date(date);
           var year = date.getFullYear(),
               month = date.getMonth(),
@@ -5481,20 +5487,24 @@ Device/OS Detection
                   dayDate = new Date(dayDate);
                   var dayYear = dayDate.getFullYear();
                   var dayMonth = dayDate.getMonth();
+
                   rowHTML += '<div data-year="' + dayYear + '" data-month="' + dayMonth + '" data-day="' + dayNumber + '" class="picker-calendar-day' + (addClass) + '" data-date="' + (dayYear + '-' + dayMonth + '-' + dayNumber) + '"><span>'+dayNumber+'</span></div>';
               }
+
               monthHTML += '<div class="picker-calendar-row">' + rowHTML + '</div>';
           }
+
           monthHTML = '<div class="picker-calendar-month" data-year="' + year + '" data-month="' + month + '">' + monthHTML + '</div>';
+
           return monthHTML;
       };
       p.animating = false;
       p.updateCurrentMonthYear = function (dir) {
+
           if (typeof dir === 'undefined') {
               p.currentMonth = parseInt(p.months.eq(1).attr('data-month'), 10);
               p.currentYear = parseInt(p.months.eq(1).attr('data-year'), 10);
-          }
-          else {
+          }else {
               p.currentMonth = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-month'), 10);
               p.currentYear = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-year'), 10);
           }
@@ -5515,9 +5525,9 @@ Device/OS Detection
               p.params.onMonthYearChangeStart(p, p.currentYear, p.currentMonth);
           }
       };
-      p.onMonthChangeEnd = function (dir, rebuildBoth) {
+      p.onMonthChangeEnd = function (dir, rebuildBoth, rebuildCurrent) {
           p.animating = false;
-          var nextMonthHTML, prevMonthHTML, newMonthHTML;
+          var nextMonthHTML, prevMonthHTML, newMonthHTML, currentMonthHTML;
           p.wrapper.find('.picker-calendar-month:not(.picker-calendar-month-prev):not(.picker-calendar-month-current):not(.picker-calendar-month-next)').remove();
 
           if (typeof dir === 'undefined') {
@@ -5528,12 +5538,20 @@ Device/OS Detection
               newMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), dir);
           }
           else {
+              //重建当前月
+              if(rebuildCurrent){
+                  p.wrapper.find('.picker-calendar-month-current').remove();
+                  currentMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth));
+              }
               p.wrapper.find('.picker-calendar-month-next, .picker-calendar-month-prev').remove();
               prevMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), 'prev');
               nextMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), 'next');
           }
           if (dir === 'next' || rebuildBoth) {
               p.wrapper.append(newMonthHTML || nextMonthHTML);
+          }
+          if(rebuildCurrent){
+              p.wrapper.prepend(currentMonthHTML);
           }
           if (dir === 'prev' || rebuildBoth) {
               p.wrapper.prepend(newMonthHTML || prevMonthHTML);
@@ -5605,13 +5623,16 @@ Device/OS Detection
           var prevMonth = parseInt(p.months.eq(0).attr('data-month'), 10);
           var prevYear = parseInt(p.months.eq(0).attr('data-year'), 10);
           var prevDate = new Date(prevYear, prevMonth + 1, -1);
+
           var prevDateTime = prevDate.getTime();
           var transitionEndCallback = p.animating ? false : true;
           if (p.params.minDate) {
+
               if (prevDateTime < new Date(p.params.minDate).getTime()) {
                   return p.resetMonth();
               }
           }
+
           p.monthsTranslate ++;
           if (prevMonth === p.currentMonth) {
               var prevMonthTranslate = -(p.monthsTranslate) * 100 * inverter;
@@ -5710,6 +5731,100 @@ Device/OS Detection
       };
       p.prevYear = function () {
           p.setYearMonth(p.currentYear - 1);
+      };
+
+      //初始化选择年
+      p.initSelectYear = function(){
+        //构造可选年份数据
+        if(p.params.minDate == null || p.params.maxDate == null){
+            return ;
+        }
+        var minYear = parseInt(p.params.minDate.substring(0,4));
+        var maxYear = parseInt(p.params.maxDate.substring(0,4));
+        var yearArray = [];
+        for(var i = minYear; i <= maxYear; i++){
+            yearArray.push(i);
+        }
+        var _curObj = p.container.find('.current-year-value');
+        if(tool.isNullOrEmptyObject(_curObj)) return;
+        var selectYear = yearArray[0]; //默认选择的年份
+        _curObj.picker({
+                title: "请选择年",
+                cols: [
+                  {
+                    textAlign: 'center',
+                    values:yearArray
+                  }
+                ],
+                toolbarCloseText: lanTool.lanContent('569_确认'),//确认
+                toolbarCancleText: lanTool.lanContent('570_取消'),//取消
+                onOpen: function (data) {
+                  var defaultValue = _curObj.text() || '';
+                  _curObj.picker("setValue", [defaultValue]);
+                  selectYear = defaultValue;
+                  $('.close-picker').off('click').on("click",function() {
+                        if(tool.isNullOrEmptyObject(selectYear) || selectYear == defaultValue) return;
+                        p.setYearMonth(selectYear);
+                  })
+                },
+                onChange: function (data, valueTemp, displayTemp) {
+                    selectYear = valueTemp[0];
+                }
+
+          });
+      };
+
+      //初始化选择月
+      p.initSelectMonth = function(){
+
+          var _curObj = p.container.find('.current-month-value');
+          if(tool.isNullOrEmptyObject(_curObj)) return;
+          var selectMonth = p.params.monthNames[0]; //默认选择的月份
+          _curObj.picker({
+                title: "请选择月",
+                cols: [
+                  {
+                    textAlign: 'center',
+                    values:p.params.monthNames
+                  }
+                ],
+                toolbarCloseText: lanTool.lanContent('569_确认'),//确认
+                toolbarCancleText: lanTool.lanContent('570_取消'),//取消
+                onOpen: function (data) {
+                  var defaultValue = _curObj.text() || '';
+                  _curObj.picker("setValue", [defaultValue]);
+                  selectMonth = defaultValue;
+                  //获取当前显示的年，月
+                  var currentMonthObj = $('.picker-calendar-month-current');
+                  var currentYear = currentMonthObj.attr('data-year') || '';
+                  var currentMonth = currentMonthObj.attr('data-month') || '';
+                  $('.close-picker').off('click').on("click",function() {
+                        //月份下标
+                        var index = $.inArray( selectMonth, p.params.monthNames);
+                        if(index == currentMonth){
+                            return ;
+                        }else if(index < currentMonth){
+                            p.months.eq(0).attr('data-year',currentYear);
+
+                            p.months.eq(0).attr('data-month',index);
+                            p.months.eq(1).attr('data-month',index+1);
+                            p.onMonthChangeStart('prev');
+                            p.onMonthChangeEnd('prev', true, true);
+
+                        }else{
+                            p.months.eq(p.months.length - 1).attr('data-year',currentYear);
+
+                            p.months.eq(p.months.length - 2).attr('data-month',index-1);
+                            p.months.eq(p.months.length - 1).attr('data-month',index);
+                            p.onMonthChangeStart('next');
+                            p.onMonthChangeEnd('next', true, true);
+                        }
+                  })
+                },
+                onChange: function (data, valueTemp, displayTemp) {
+                    selectMonth = valueTemp[0];
+                }
+          });
       };
 
 

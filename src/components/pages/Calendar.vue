@@ -283,6 +283,8 @@ export default {
                     ],
                     dateFormat: 'yyyy-mm-dd',
                     yearPicker: true,
+                    minDate:'2000-01-01',
+                    maxDate:'2099-12-31',
                     value: [(new Date()).FormatNew('yyyy-MM-dd')], //默认选择的日期
                     onChange: function (p, values, displayValues) {
 
@@ -381,6 +383,8 @@ export default {
                         // return true;
                     }
 
+                    console.log(data);
+
                     for (var i = 0; i < data.length; i++) {
                         var dateTemp = new Date(data[i]);
                         if (!dateTemp) {
@@ -389,6 +393,10 @@ export default {
                         var yearTemp = dateTemp.getFullYear();
                         var monthTemp = dateTemp.getMonth();
                         var dayTemp = dateTemp.getDate();
+                        // console.log('yearTemp:'+yearTemp);
+                        // console.log('monthTemp:'+monthTemp);
+                        // console.log('dayTemp:'+dayTemp);
+
                         $('.picker-calendar-row div[data-year="' + yearTemp + '"][data-month="' + monthTemp + '"][data-day="' + dayTemp + '"]').addClass('calendar-event');
 
                     }
@@ -432,6 +440,9 @@ export default {
         },
         //根据指定的年月日，返回事件列表
         getEventsByDate: function (currentDate, myCallBack) {
+          // console.log('getEventsByDate:');
+          // console.log(currentDate);
+
             var _self = this;
             //var containerObj = $(".meeting-list");
             // var containerObj = $("#meetingList");
