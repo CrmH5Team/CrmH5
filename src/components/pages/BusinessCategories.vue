@@ -65,7 +65,7 @@
             </div>
         </div>
         <!--  右侧侧滑 -->
-        <list-right-panel ref="rightPanel" :panelData="rigthPanelData" :searchData="searchData" :showCategory="showCategory" :modelData='categoryData'></list-right-panel>
+        <list-right-panel ref="rightPanel" :panelData="rigthPanelData" :searchData="searchData" :showCategory="showCategory"></list-right-panel>
     </div>
 </template>
 
@@ -133,8 +133,7 @@ export default {
                         queryComparison: "="
                     }
                 ]
-            }, ],
-            categoryData: [{
+            },{
                 groupText: 'Data model',
                 groupName: 'modelDataFilter',
                 type: "radio",
@@ -185,8 +184,7 @@ export default {
                         queryComparison: "="
                     }
                 ]
-            }, ],
-            //侧滑搜索页面数据模型
+            } ],
             searchData: {},
             dealPipelineSearch: [{
                     queryfield: "TheName",
@@ -286,16 +284,19 @@ export default {
         next();
     },
     created: function () {
-
+        this.isFirstEnter = true;
     },
     mounted: function () {
+
+    },
+    activated: function () {
         var _self = this;
         _self.selectTime();
+        _self.search();
         _self.watchScroll();
         _self.groupToggle();
         _self.goInfo();
         _self.initDateTimePicker();
-
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
             if (this.$route.meta.fromSave) {
                 _self.queryCondictionData = [];
@@ -352,9 +353,6 @@ export default {
                 _self.RefreshCurPageGroupData();
             }
         }
-    },
-    activated: function () {
-
     },
     methods: {
         setQuerycondition: function (data) {
@@ -582,6 +580,7 @@ export default {
                 }
             });
         },
+        //日期选择器控件初始化
         initDateTimePicker: function () {
             var _self = this;
             //6>渲染dateTimePicker
@@ -712,13 +711,29 @@ export default {
                     return;
                 } else {
                     console.log("时间不冲突");
-                    
+
                     // var id = _self.$route.params.id;
                     // var fromType = "Meetinginfo";
                     // tool.SaveOrUpdateData(fromType, id, _self, function () {});
                 }
             }
 
+        },
+         //筛选
+        search: function () {
+            this.$nextTick(function () {
+                 var listDom = $('.dataList');
+                $('#searchInput').unbind().bind('input', function () {
+                    var queryStr = $.trim($(this).val());
+                    console.log("queryStr:"+queryStr);
+                    
+                    if (queryStr === '') {
+                        listDom.find('div.item-div').show();
+                    } else {
+                        listDom.find('div.item-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                    }
+                })
+            });
         },
         addBtn: function (e) {
             var _self = this;

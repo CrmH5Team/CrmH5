@@ -28,22 +28,6 @@
                           </label>
                 </div>
             </div>
-            <!-- <div v-if="item.type=='checkbox'" class="right-block-items">
-                <div v-for="checkbox in item.items" class="checkbox-div">
-                          <label class="checkbox-label">
-                              <input type="checkbox" :name="index"
-                              :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType"
-                              :data-queryFormat="checkbox.queryFormat"  :data-queryRelation="checkbox.queryRelation"
-                              :value="checkbox.queryfield" :data-queryComparison="checkbox.queryComparison" v-model="dataFilter"/>
-                              <i class="checkbox"></i>
-                              <span>{{checkbox.text}}</span>
-                          </label>
-                </div>
-            </div> -->
-        </div>
-        <!-- data model -->
-       <div v-show="showCategory" v-for="(item,index) in modelData" class="right-content-block">
-            <div class="right-block-title">{{item.groupText}}</div>
             <div v-if="item.type=='radio' && item.groupName =='modelDataFilter'" class="right-block-items">
                 <div v-for="radio in item.items" class="radios-div">
                           <label class="radios-label">
@@ -56,6 +40,18 @@
                           </label>
                 </div>
             </div>
+            <!-- <div v-if="item.type=='checkbox'" class="right-block-items">
+                <div v-for="checkbox in item.items" class="checkbox-div">
+                          <label class="checkbox-label">
+                              <input type="checkbox" :name="index"
+                              :data-queryfield="checkbox.queryfield"  :data-queryType="checkbox.queryType"
+                              :data-queryFormat="checkbox.queryFormat"  :data-queryRelation="checkbox.queryRelation"
+                              :value="checkbox.queryfield" :data-queryComparison="checkbox.queryComparison" v-model="dataFilter"/>
+                              <i class="checkbox"></i>
+                              <span>{{checkbox.text}}</span>
+                          </label>
+                </div>
+            </div> -->
         </div>
         <div class="right-content-block">
             <div class="right-block-title lanText" data-lanid="847_其他"></div>
@@ -102,9 +98,16 @@ export default {
              var filter = [];
                 filter.push(newVule);
                 _self.conStructQueryCondition(filter);
-        }
+        },
+        //businessCategories的model数据过滤
+        modelDataFilter:function(newValue,oldValue){
+          var _self = this;
+          var modelFilter = [];
+          modelFilter.push(newValue);   
+          _self.categoryStructQueryCondition(modelFilter);       
+        },
     },
-    props:['panelData','searchData','showCategory','modelData'],
+    props:['panelData','searchData','showCategory'],
     created:function(){
         var _self = this;
         _self.isParentFirstEnter = _self.$parent.isFirstEnter;
@@ -140,7 +143,7 @@ export default {
 
         //设置筛选条件为默认值
         reductionDataFilter:function(isResetRightPanel){
-
+            console.log("reductionDataFilter");
             isResetRightPanel = (isResetRightPanel == undefined || isResetRightPanel == null) ? true : isResetRightPanel;
 
             var _self = this;
@@ -287,7 +290,12 @@ export default {
             }
             self.isParentFirstEnter = false;
 
-        }
+        },
+        //类别结构查询
+        categoryStructQueryCondition:function(arr){
+           console.log("arr:"+arr);
+           
+        },
     },
     deactivated:function(){
         eventBus.$off('showRightPanelEvent');
