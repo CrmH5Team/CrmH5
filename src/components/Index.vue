@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="weui-grid">
-                    <div @click.stop="gotoUrl($event)" url="/contacts"  class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/contacts" class="js_grid">
                         <div class="weui-grid__icon lianxiren1-icon">
                             <span class="mui-icon calcfont calc-kehulianxiren"></span>
                         </div>
@@ -35,6 +35,14 @@
                             <span class="calcfont calc-jihui"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="783_商业"></p>
+                    </div>
+                </div>
+                <div class="weui-grid">
+                    <div @click.stop="gotoUrl($event)" url="/businessCategories" class="js_grid">
+                        <div class="weui-grid__icon leibie-icon">
+                            <span class="calcfont calc-leibie"></span>
+                        </div>
+                        <p class="f12 weui-grid__label">Categories</p>
                     </div>
                 </div>
                 <div class="weui-grid">
@@ -54,9 +62,9 @@
             <div class="tips-box f12">
                 <span class="calcfont calc-tishi1"></span>
                 <div class="tips-text">
-                  <span class="lanText" data-lanid="988_你有"></span><span>{{meetingCount}}</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span>
+                    <span class="lanText" data-lanid="988_你有"></span><span>{{meetingCount}}</span><span class="lanText" data-lanid="987_场会议需要上传会议记录。"></span>
                 </div>
-                <router-link v-show="Number(meetingCount)>=1" to="/meetinglist" class="right upload-now a f14" >
+                <router-link v-show="Number(meetingCount)>=1" to="/meetinglist" class="right upload-now a f14">
                     <span class="lanText" data-lanid="870_转到"></span>&gt;&gt;
                 </router-link>
                 <!-- <div @click="" to="/meetinglist" class="right upload-now a lanText f14" data-lanid="870_立刻去上传"></div> -->
@@ -166,7 +174,7 @@ export default {
             groupData: [], //7天的数据
             meetingCount: 0, //未上传会议记录的会议数量
             messageCount: 0, //消息数量
-            isFromSingleSignOn:false//是否来源于单点登陆
+            isFromSingleSignOn: false //是否来源于单点登陆
         };
     },
     created: function () {
@@ -175,10 +183,9 @@ export default {
     mounted: function () {
         var _self = this;
         _self.isFromSingleSignOn =
-        (_self.$route.query.IsFromSingleSignOn == null || _self.$route.query.IsFromSingleSignOn == undefined)
-        ?false
-        :_self.$route.query.IsFromSingleSignOn;
-
+            (_self.$route.query.IsFromSingleSignOn == null || _self.$route.query.IsFromSingleSignOn == undefined) ?
+            false :
+            _self.$route.query.IsFromSingleSignOn;
 
         lanTool.updateLanVersion();
         //侧滑
@@ -209,21 +216,21 @@ export default {
         this.handleLogOut();
     },
     methods: {
-        gotoUrl:function(e){
-          var target = $(e.target);
-          var url = target.attr("url") || "";
-          if(tool.isNullOrEmptyObject(url)){
-            target = target.parents("div[url]:first");
-            url = target.attr("url") || "";
-          }
-          if(tool.isNullOrEmptyObject(url)){
-            return;
-          }
-          tool.setSessionStorageItem("fromPage","index");
-          var _self = this;
-          _self.$router.push({
-              path: url
-          });
+        gotoUrl: function (e) {
+            var target = $(e.target);
+            var url = target.attr("url") || "";
+            if (tool.isNullOrEmptyObject(url)) {
+                target = target.parents("div[url]:first");
+                url = target.attr("url") || "";
+            }
+            if (tool.isNullOrEmptyObject(url)) {
+                return;
+            }
+            tool.setSessionStorageItem("fromPage", "index");
+            var _self = this;
+            _self.$router.push({
+                path: url
+            });
         },
         //初始化用户信息
         initUserInfo: function () {
@@ -247,7 +254,7 @@ export default {
         },
         //初始化多语言
         initLV: function () {
-            var _self=this;
+            var _self = this;
             //切换语言
             $(".language-type").off('click').on("click", function (event) {
                 var target = $(event.target);
@@ -271,7 +278,7 @@ export default {
                 });
 
                 //_self.$router.go(0); //todo 以后增加刷新机制以后增加刷新机制
-                window.location.reload();//todo 以后增加刷新机制以后增加刷新机制
+                window.location.reload(); //todo 以后增加刷新机制以后增加刷新机制
             });
 
             //写入当前多语言值
@@ -281,16 +288,16 @@ export default {
             //     "']:first"
             // ).trigger("click");
             var target =
-             $(
-                "div.language-type[data-lantype='" +
-                lanTool.currentLanguageVersion +
-                "']:first"
-            );
+                $(
+                    "div.language-type[data-lantype='" +
+                    lanTool.currentLanguageVersion +
+                    "']:first"
+                );
             if (!target.hasClass("language-type")) {
-                    target = target.closest("div.language-type");
-                    if (target == undefined) {
-                        return;
-                    }
+                target = target.closest("div.language-type");
+                if (target == undefined) {
+                    return;
+                }
             }
             if (!target.hasClass("language-show")) {
                 target
@@ -323,7 +330,7 @@ export default {
                     lanTool.waitExcute(false, true, function () {
                         //window.location.reload();
                         // _self.$router.go(0); //todo 以后增加刷新机制以后增加刷新机制
-                        window.location.reload();//todo 以后增加刷新机制以后增加刷新机制
+                        window.location.reload(); //todo 以后增加刷新机制以后增加刷新机制
                     });
                 },
                 function () {}
@@ -693,11 +700,11 @@ export default {
             });
         },
         //点击跳转到详情页
-        goInfo:function(){
+        goInfo: function () {
             var _self = this;
-            $("#indexMeetingList").off('click','div.data-events-item').on(
-              'click',
-              'div.data-events-item',
+            $("#indexMeetingList").off('click', 'div.data-events-item').on(
+                'click',
+                'div.data-events-item',
                 function (event) {
                     var target = $(event.target);
                     if (!target.hasClass("data-events-item")) {
@@ -724,11 +731,11 @@ export default {
 
         },
         //处理退出登陆按钮
-        handleLogOut:function(){
+        handleLogOut: function () {
             var _self = this;
-            if(_self.isFromSingleSignOn){
+            if (_self.isFromSingleSignOn) {
                 $(".logout-btn").hide();
-            }else{
+            } else {
                 $(".logout-btn").show();
             }
         }

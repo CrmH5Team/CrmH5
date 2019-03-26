@@ -1,0 +1,258 @@
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+.conditionset {
+    position: fixed;
+    width:100%;
+    top: 0.88rem;
+    height: auto;
+    z-index: 90;
+    background-color: white;
+}
+.timeselect {
+    margin: 0.2rem 0;
+    margin-top: 0.2rem;
+}
+
+.timeselect .time {
+    display: flex;
+}
+
+a.timeview {
+    padding: 0px 0.1rem;
+}
+
+.timeselect .time a.timeview {
+    flex: 1;
+    margin: 0 3px;
+    height: 0.7rem;
+    line-height: 0.7rem;
+    /*font-size: 0.28rem;*/
+    color: black;
+    text-align: center;
+    border: solid gainsboro 1px;
+    border-radius: 4px;
+    background-color: #F1F1F1;
+    display: block;
+}
+
+.timeselect .time a.timeview.mui-active {
+    border: solid #ff5a21 1px;
+    border-radius: 4px;
+    color: #ff5a21;
+    background-color: #FFFFFF;
+}
+
+.timeselect .time a.timeview p {
+    display: inline-block;
+    color: #000000;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.25rem;
+    line-height: 0.25rem;
+    /*background-color: yellow;*/
+}
+
+.timeselect .time a.timeview.mui-active p {
+    color: #ff5a21;
+}
+
+p {
+    margin: 0.1rem auto;
+}
+
+.line {
+    width: 100%;
+    height: 0.02rem;
+    background-color: #ddddde;
+    /* margin-bottom: 0.3rem; */
+}
+
+/*自定义时间弹框样式*/
+.setTime {
+    /*position: relative;*/
+    height: auto;
+    width: 100%;
+    background-color: #FFFFFF;
+    margin-bottom: 0;
+    display: none;
+    border-bottom: solid 1px #ddddde;
+}
+
+.box {
+    display: flex;
+    margin-top: 0.3rem;
+}
+
+div.inputRow {
+    position: relative;
+    flex: 1;
+    margin: 0 0.1rem;
+    text-align: center
+}
+
+input.selectdate {
+    height: 0.68rem;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    padding-right: 0px;
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+}
+
+span.calc-you {
+    position: absolute;
+    top: 0.18rem;
+    right: 0.1rem;
+    width: 0.2rem;
+    font-size: 0.32rem;
+    color: #cdcdcd;
+
+}
+
+#enddate,
+#startdate {
+    width: 100%;
+    font-size: 0.24rem;
+    text-align: center;
+}
+
+.sure {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    width: 2rem;
+    background-color: #ff5a21;
+    text-align: center;
+    color: #FFFFFF;
+    margin: auto;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    border-radius: 4px;
+}
+
+/*搜索框style*/
+.search {
+    margin-top: 0;
+    padding: 0.2rem 0.1rem 0.2rem 0.1rem;
+}
+
+.search-box {
+    line-height: 0.68rem;
+    position: relative;
+    background: white;
+}
+
+.search-input {
+    padding: 0.2rem 0.3rem 0.2rem 0.64rem;
+    box-sizing: border-box;
+    height: 0.68rem;
+    border: solid 1px #f2f2f2;
+    width: 100%;
+    font-size: 0.28rem;
+    color: #999;
+    line-height: 0.28rem;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background: #f2f2f2;
+    border-radius: 5px;
+}
+
+.search .calc-sousuo {
+    padding: 0;
+    color: #333;
+    position: absolute;
+    left: 0.1rem;
+    top: 0.12rem;
+    width: 0.46rem;
+    height: 0.46rem;
+    font-size: 0.32rem;
+    text-align: center;
+    line-height: 0.46rem;
+}
+
+.page-content {
+    padding-top: 0.88rem;
+}
+
+/*table切换*/
+.nav {
+    position: fixed;
+    top: 3.16rem;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 0.8rem;
+    background: #fff;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    box-orient: horizontal;
+    display: -moz-box;
+    display: -webkit-box;
+    display: box;
+    box-sizing: border-box;
+    border-bottom: 1px solid beige;
+}
+
+.nav-item {
+    line-height: 0.76rem;
+    margin-bottom: -1px;
+    text-align: center;
+    /* padding:0 5px; */
+    box-sizing: border-box;
+    -moz-box-flex: 3;
+    -webkit-box-flex: 3;
+    box-flex: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+.active-item {
+    color: #009979;
+}
+
+.nav-border {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    background: #009979;
+    width: 50%;
+    height: 2px;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.pageList {
+    padding-top: 3.08rem;
+}
+
+/*增加按钮*/
+.add-btn-div {
+    text-align: center;
+}
+
+.add-div {
+    height: 0.76rem;
+    line-height: 0.76rem;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.add-div .calcfont {
+    color: #ff5a21;
+}
+
+.add-div .add-text {
+    vertical-align: middle;
+    color: #ff5a21;
+}

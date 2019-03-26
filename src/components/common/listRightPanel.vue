@@ -41,7 +41,22 @@
                 </div>
             </div> -->
         </div>
-
+        <!-- data model -->
+       <div v-show="showCategory" v-for="(item,index) in modelData" class="right-content-block">
+            <div class="right-block-title">{{item.groupText}}</div>
+            <div v-if="item.type=='radio' && item.groupName =='modelDataFilter'" class="right-block-items">
+                <div v-for="radio in item.items" class="radios-div">
+                          <label class="radios-label">
+                              <input type="radio" :name="item.groupName"
+                              :data-queryfield="radio.queryfield"  :data-queryType="radio.queryType"
+                              :data-queryFormat="radio.queryFormat"  :data-queryRelation="radio.queryRelation"
+                              :value="radio.queryfield" :data-queryComparison="radio.queryComparison" v-model="modelDataFilter"/>
+                              <i class="radios"></i>
+                              <span>{{radio.text}}</span>
+                          </label>
+                </div>
+            </div>
+        </div>
         <div class="right-content-block">
             <div class="right-block-title lanText" data-lanid="847_其他"></div>
             <div class="right-block-items">
@@ -66,7 +81,8 @@ export default {
             showPanel:false,
             viewValue:'',  //右侧分类
             dataFilter:'',
-            isParentFirstEnter:false  //存储赋组件是否是新创建
+            modelDataFilter:'',
+            isParentFirstEnter:false,  //存储赋组件是否是新创建
         }
     },
     watch:{
@@ -88,7 +104,7 @@ export default {
                 _self.conStructQueryCondition(filter);
         }
     },
-    props:['panelData','searchData'],
+    props:['panelData','searchData','showCategory','modelData'],
     created:function(){
         var _self = this;
         _self.isParentFirstEnter = _self.$parent.isFirstEnter;

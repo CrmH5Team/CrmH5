@@ -19,6 +19,7 @@ import MeetingNoteinfo from '@/components/pages/MeetingNoteinfo'
 import Addmeeting from '@/components/pages/Addmeeting'
 import AddRouteOrRoom from '@/components/pages/AddRouteOrRoom'
 
+import BusinessCategories from '@/components/pages/BusinessCategories'
 
 import Search from '@/components/pages/Search'
 import Searchmodule from '@/components/pages/Searchmodule'
@@ -117,6 +118,7 @@ const router =  new Router({
         fromSave:false,  //当在详情页面保存后回到列表页面刷新
         fromName:''
       }
+     
     },
     { path:'/opportunitiesinfo/:id',name:'opportunitiesinfo',component:Opportunitiesinfo,
       meta: {
@@ -182,6 +184,15 @@ const router =  new Router({
     { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
     { path:'/poweruser',name:'poweruser',component:Poweruser},
     { path:'/singleSignOn',name:'singleSignOn',component:SingleSignOn},
+
+   //商业类别
+    { path: '/businessCategories',name:'businessCategories', component:BusinessCategories,
+    meta: {
+      keepAlive: true,
+      isBack:false,
+      fromSave:false,  //当在详情页面保存后回到列表页面刷新
+      fromName:''
+    }}
   ]
 });
 
