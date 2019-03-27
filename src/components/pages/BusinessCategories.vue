@@ -352,7 +352,7 @@ export default {
         // },
         selectTime: function () {
             var _self = this;
-            $(".timeview").off('click').on("click", ".timeview", function (event) {
+            $(".timeview").off('click').on("click", function (event) {
                 // var target = $(event.target);
                 // //判断点击的是否是timeView，如果点的是它的子元素的话，则通过子元素来获取timeView
                 // if (!target.hasClass("timeview")) {
