@@ -158,9 +158,9 @@ export default {
             _self.setCalendarEvent(_self.calendarObjGlobal);
         });
 
-        eventBus.$on('RightPanelCalendarOnlyDataEvent', function (data) {
-            _self.setQueryconditionOnlyData(data);
-        });
+        // eventBus.$on('RightPanelCalendarOnlyDataEvent', function (data) {
+        //     _self.setQueryconditionOnlyData(data);
+        // });
         eventBus.$on('RightPanelCalendarEvent', function (data) {
             _self.setQuerycondition(data);
         });
@@ -536,19 +536,19 @@ export default {
             //根据条件获取当前月份数据
             _self.setCalendarEvent(_self.calendarObjGlobal);
         },
-        setQueryconditionOnlyData: function (data) {
-            var _self = this;
-            _self.queryCondiction = data;
-        },
+        // setQueryconditionOnlyData: function (data) {
+        //     var _self = this;
+        //     _self.queryCondiction = data;
+        // },
     },
         deactivated: function () {
         eventBus.$off('updataCalendarEvent');
-        eventBus.$off('RightPanelCalendarOnlyDataEvent');
+        // eventBus.$off('RightPanelCalendarOnlyDataEvent');
         eventBus.$off('RightPanelCalendarEvent');
     },
     beforeDestroy: function () {
         eventBus.$off('updataCalendarEvent');
-        eventBus.$off('RightPanelCalendarOnlyDataEvent');
+        // eventBus.$off('RightPanelCalendarOnlyDataEvent');
         eventBus.$off('RightPanelCalendarEvent');
     },
 }

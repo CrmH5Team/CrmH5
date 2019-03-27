@@ -18,10 +18,10 @@ export default{
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
-        setQueryconditionOnlyData: function (data) {
-            var _self = this;
-            _self.queryCondiction = data;
-        },
+        // setQueryconditionOnlyData: function (data) {
+        //     var _self = this;
+        //     _self.queryCondiction = data;
+        // },
         //监听滚动固定
         watchScroll: function () {
             var _self = this;

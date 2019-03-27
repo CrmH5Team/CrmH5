@@ -339,10 +339,10 @@ export default {
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
-        setQueryconditionOnlyData: function (data) {
-            var _self = this;
-            _self.queryCondiction = data;
-        },
+        // setQueryconditionOnlyData: function (data) {
+        //     var _self = this;
+        //     _self.queryCondiction = data;
+        // },
         selectTime: function () {
             var _self = this;
             $(".time,.timeview").off('click').on("click", ".timeview", function (event) {
@@ -493,14 +493,11 @@ export default {
             tool.removeSessionStoragItem("fromPage");
 
             var isResetRightPanel = _self.showPage != num || (!tool.isNullOrEmptyObject(fromPage) && fromPage.toLowerCase() == "index");
+            _self.showPage = num;
             if (isResetRightPanel) {
                 //综合查询条件置空
                 _self.queryCondictionData = [];
                 _self.queryCondiction = [];
-            }
-            _self.showPage = num;
-
-            if (isResetRightPanel) {
 
                 //右侧radio重置为默认值
                 var returnObj = _self.$refs.rightPanel.reductionDataFilter(isResetRightPanel);
@@ -592,6 +589,9 @@ export default {
                     return;
                 } else {
                     console.log("日期不冲突");
+
+                    console.log('startdate:'+startdate);
+                    console.log('enddate:'+enddate);
 
                     // var id = _self.$route.params.id;
                     // var fromType = "Meetinginfo";

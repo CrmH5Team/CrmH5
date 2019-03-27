@@ -88,21 +88,7 @@ export default {
             }else{
                 eventBus.$emit('updataListEvent');
             }
-        },
-        //数据过滤
-        dataFilter:function(newVule,old){
-             var _self = this;
-             var filter = [];
-                filter.push(newVule);
-                _self.conStructQueryCondition(filter);
-        },
-        //businessCategories的model数据过滤
-        modelDataFilter:function(newValue,oldValue){
-          var _self = this;
-          var modelFilter = [];
-          modelFilter.push(newValue);
-          _self.categoryStructQueryCondition(modelFilter);
-        },
+        }
     },
     props:['panelData','searchData','showCategory'],
     created:function(){
@@ -134,35 +120,55 @@ export default {
             }
 
             if(isResetRightPanel){
+
                 $.each(_self.panelData,function(key,value){
 
-                  if(value.type == 'radio' && value.default && value.groupName == 'view'){
-                      _self.viewValue = value.default;
+                    if(value.type == 'radio' && value.default && value.groupName == 'view'){
+                        _self.viewValue = value.default;
 
-                  }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
-                      /*
-                      * 当dataFilter变量的值等于默认值 || 是首次进入列表页面时，通过父组件刷新数据
-                      */
-                      if(_self.dataFilter == value.default || _self.isParentFirstEnter){
+                    }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
+                        /*
+                        * 当dataFilter变量的值等于默认值 || 是首次进入列表页面时，通过父组件刷新数据
+                        */
+                        if(_self.dataFilter == value.default || _self.isParentFirstEnter){
 
-                          returnObj.returnValue = true;
-                          var defaultObj = $("[value='"+ $.trim(value.default) +"']");
-                          returnObj.defaultQueryCondition =
-                          {
-                              Field : defaultObj.attr("data-queryfield") || "",
-                              Type : defaultObj.attr("data-querytype") || "string",
-                              Format : defaultObj.attr("data-queryformat") || "",
-                              Relation : defaultObj.attr("data-queryrelation") || "and",
-                              Value : defaultObj.attr("value") || "",
-                              Comparison : defaultObj.attr("data-querycomparison") || "string",
-                          };
-                      }
-                      _self.dataFilter = value.default;
+                            returnObj.returnValue = true;
+                            var defaultObj = $("[value='"+ $.trim(value.default) +"']");
+                            returnObj.defaultQueryCondition =
+                            {
+                                Field : defaultObj.attr("data-queryfield") || "",
+                                Type : defaultObj.attr("data-querytype") || "string",
+                                Format : defaultObj.attr("data-queryformat") || "",
+                                Relation : defaultObj.attr("data-queryrelation") || "and",
+                                Value : defaultObj.attr("value") || "",
+                                Comparison : defaultObj.attr("data-querycomparison") || "string",
+                            };
+                        }
+                        _self.dataFilter = value.default;
 
-                  }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
-                      _self.modelDataFilter = value.default;
-                  }
-              });
+                    }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
+                        _self.modelDataFilter = value.default;
+                    }
+                });
+
+
+                if(_self.isParentFirstEnter){
+                    //watch监听dataFilter
+                    _self.$watch('dataFilter', function(newValue){
+                          var filter = [];
+                          filter.push(newValue);
+                          _self.conStructQueryCondition(filter);
+                    }, {deep: true});
+
+                    //watch监听modelDataFilter
+                    _self.$watch('modelDataFilter', function(newValue){
+                        console.log(newValue);
+                        //调父组件方法，把newValue传过去
+
+
+                    }, {deep: true});
+                }
+                _self.isParentFirstEnter = false;
             }
 
             return returnObj;
@@ -256,6 +262,7 @@ export default {
                 queryCondiction.push(queryCondictionObj);
             }
 
+            /*
             //触发父类的事件
             // console.log("self.isParentFirstEnter:"+self.isParentFirstEnter);
             if(self.isParentFirstEnter){
@@ -269,14 +276,13 @@ export default {
               //触发calendar View 视图中筛选
               eventBus.$emit('RightPanelCalendarEvent', queryCondiction);
             }
-            self.isParentFirstEnter = false;
+            */
 
-        },
-        //类别结构查询
-        categoryStructQueryCondition:function(arr){
-           console.log("arr:"+arr);
+            self.$parent.setQuerycondition(queryCondiction);
+            //触发calendar View 视图中筛选
+            eventBus.$emit('RightPanelCalendarEvent', queryCondiction);
 
-        },
+        }
     },
     deactivated:function(){
         eventBus.$off('showRightPanelEvent');
