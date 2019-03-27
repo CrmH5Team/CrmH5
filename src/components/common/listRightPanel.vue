@@ -112,8 +112,8 @@ export default {
 
             var _self = this;
             var returnObj = {
-                returnValue:false,
-                defaultQueryCondition:{}
+                defaultQueryCondition:{},
+                defaultModuleCondition:''
             };
             if(tool.isNullOrEmptyObject(_self.panelData)){
                 return ;
@@ -132,7 +132,7 @@ export default {
                         */
                         if(_self.dataFilter == value.default || _self.isParentFirstEnter){
 
-                            returnObj.returnValue = true;
+                            // returnObj.returnValue = true;
                             var defaultObj = $("[value='"+ $.trim(value.default) +"']");
                             returnObj.defaultQueryCondition =
                             {
@@ -147,7 +147,9 @@ export default {
                         _self.dataFilter = value.default;
 
                     }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
+
                         _self.modelDataFilter = value.default;
+                        returnObj.defaultModuleCondition = _self.modelDataFilter;
                     }
                 });
 
@@ -155,6 +157,9 @@ export default {
                 if(_self.isParentFirstEnter){
                     //watch监听dataFilter
                     _self.$watch('dataFilter', function(newValue){
+
+                          if(tool.isNullOrEmptyObject(newValue)) return;
+
                           var filter = [];
                           filter.push(newValue);
                           _self.conStructQueryCondition(filter);
@@ -162,9 +167,10 @@ export default {
 
                     //watch监听modelDataFilter
                     _self.$watch('modelDataFilter', function(newValue){
-                        console.log(newValue);
-                        //调父组件方法，把newValue传过去
 
+                        if(tool.isNullOrEmptyObject(newValue)) return;
+                        //调父组件方法，把newValue传过去
+                        _self.$parent.setModelDataFilter(newValue);
 
                     }, {deep: true});
                 }

@@ -90,6 +90,8 @@ export default {
             queryCondiction: [], //右侧checkbox条件
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
+            timeSlot:'all',   //时间条件
+            moduleCondition:'', //modelDataFilter条件
             //侧滑数据模型
             rigthPanelData: [
               {
@@ -300,9 +302,9 @@ export default {
                 if (tool.isNullOrEmptyObject(returnObj)) {
                     return;
                 }
-                if (returnObj.returnValue) {
-                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                }
+                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                _self.moduleCondition = returnObj.defaultModuleCondition;
+
             }
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
@@ -338,6 +340,11 @@ export default {
             _self.queryCondiction = data;
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
+        },
+        setModelDataFilter:function(data){
+            var _self = this;
+            _self.moduleCondition = data;
+            console.log(_self.moduleCondition);
         },
         // setQueryconditionOnlyData: function (data) {
         //     var _self = this;
@@ -381,6 +388,10 @@ export default {
                     }
                 }
                 console.log(dateType);
+                if(dateType != 'customize'){
+                    _self.timeSlot = dateType;
+                }
+
             })
         },
         //自定义展开时间选择控件
@@ -509,10 +520,13 @@ export default {
                 if (tool.isNullOrEmptyObject(returnObj)) {
                     return;
                 }
-                if (returnObj.returnValue) {
-                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                    _self.RefreshCurPageGroupData();
-                }
+                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                _self.moduleCondition = returnObj.defaultModuleCondition;
+                _self.RefreshCurPageGroupData();
+
+                //重置时间段条件
+                $('a[data-datetype="all"]').trigger("click");
+
             } else {
                 _self.RefreshCurPageGroupData();
             }

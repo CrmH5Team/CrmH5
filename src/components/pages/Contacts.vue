@@ -264,9 +264,9 @@ export default {
                 if (tool.isNullOrEmptyObject(returnObj)) {
                     return ;
                 }
-                if(returnObj.returnValue){
-                    _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                }
+                // if(returnObj.returnValue){
+                _self.queryCondiction.push(returnObj.defaultQueryCondition);
+                // }
             }
 
             _self.isFirstEnter = false;
