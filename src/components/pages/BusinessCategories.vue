@@ -346,10 +346,15 @@ export default {
         selectTime: function () {
             var _self = this;
             $(".time,.timeview").off('click').on("click", ".timeview", function (event) {
-                var target = $(event.target);
-                //判断点击的是否是timeView，如果点的是它的子元素的话，则通过子元素来获取timeView
-                if (!target.hasClass("timeview")) {
-                    target = target.parent(".timeview") || "";
+                // var target = $(event.target);
+                // //判断点击的是否是timeView，如果点的是它的子元素的话，则通过子元素来获取timeView
+                // if (!target.hasClass("timeview")) {
+                //     target = target.parent(".timeview") || "";
+                // }
+
+                var target = $(this);
+                if(tool.isNullOrEmptyObject(target)){
+                    return;
                 }
 
                 var dateType = target.attr("data-datetype") || "";
