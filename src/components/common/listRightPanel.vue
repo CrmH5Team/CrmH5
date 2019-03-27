@@ -76,6 +76,9 @@ export default {
             dataFilter:'',
             modelDataFilter:'',
             isParentFirstEnter:false,  //存储赋组件是否是新创建
+            dataFilterWatch:null,
+            modelDataFilterWatch:null,
+
         }
     },
     watch:{
@@ -154,26 +157,30 @@ export default {
                 });
 
 
-                if(_self.isParentFirstEnter){
+                // if(_self.isParentFirstEnter){
                     //watch监听dataFilter
-                    _self.$watch('dataFilter', function(newValue){
+                if(!tool.isNullOrEmptyObject(_self.dataFilterWatch)) _self.dataFilterWatch();
+                _self.dataFilterWatch = _self.$watch('dataFilter', function(newValue){
 
-                          if(tool.isNullOrEmptyObject(newValue)) return;
+                      if(tool.isNullOrEmptyObject(newValue)) return;
 
-                          var filter = [];
-                          filter.push(newValue);
-                          _self.conStructQueryCondition(filter);
-                    }, {deep: true});
+                      var filter = [];
+                      filter.push(newValue);
+                      _self.conStructQueryCondition(filter);
 
-                    //watch监听modelDataFilter
-                    _self.$watch('modelDataFilter', function(newValue){
+                }, {deep: true});
 
-                        if(tool.isNullOrEmptyObject(newValue)) return;
-                        //调父组件方法，把newValue传过去
-                        _self.$parent.setModelDataFilter(newValue);
 
-                    }, {deep: true});
-                }
+                //watch监听modelDataFilter
+                if(!tool.isNullOrEmptyObject(_self.modelDataFilterWatch)) _self.modelDataFilterWatch();
+                _self.modelDataFilterWatch = _self.$watch('modelDataFilter', function(newValue){
+
+                    if(tool.isNullOrEmptyObject(newValue)) return;
+                    //调父组件方法，把newValue传过去
+                    _self.$parent.setModelDataFilter(newValue);
+
+                }, {deep: true});
+                // }
                 _self.isParentFirstEnter = false;
             }
 
