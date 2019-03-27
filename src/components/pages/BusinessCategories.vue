@@ -137,7 +137,7 @@ export default {
                     }
                 ]
               },{
-                groupText: 'Data model',
+                groupText: 'Display Mode',
                 groupName: 'modelDataFilter',
                 type: "radio",
                 default: "areaSales",

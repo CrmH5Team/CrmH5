@@ -125,6 +125,8 @@ export default {
             if(isResetRightPanel){
 
                 $.each(_self.panelData,function(key,value){
+                    console.log(key);
+                    console.log(value);
 
                     if(value.type == 'radio' && value.default && value.groupName == 'view'){
                         _self.viewValue = value.default;
@@ -159,15 +161,14 @@ export default {
 
                 // if(_self.isParentFirstEnter){
                     //watch监听dataFilter
-                if(!tool.isNullOrEmptyObject(_self.dataFilterWatch)) _self.dataFilterWatch();
+                if(!tool.isNullOrEmptyObject(_self.dataFilterWatch)){
+                    _self.dataFilterWatch();
+                }
                 _self.dataFilterWatch = _self.$watch('dataFilter', function(newValue){
-
                       if(tool.isNullOrEmptyObject(newValue)) return;
-
                       var filter = [];
                       filter.push(newValue);
                       _self.conStructQueryCondition(filter);
-
                 }, {deep: true});
 
 

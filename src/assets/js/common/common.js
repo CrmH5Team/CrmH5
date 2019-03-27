@@ -1504,9 +1504,6 @@
 		//清空容器内容
 		containerObj.html('');
 
-		// console.log("common_InitiateGroupList");
-		console.log(queryCondiction);
-
 		if (tool.isNullOrEmptyObject(containerObj) || tool.isNullOrEmptyObject(fromType)) {
 			return;
 		}
@@ -1561,6 +1558,9 @@
 				controlName = tool.Api_ContactsHandle_Group;
 				break;
 		}
+
+		console.log("common_InitiateGroupList");
+		console.log(queryCondiction);
 
 		//查询分组数据
 		//请求地址
