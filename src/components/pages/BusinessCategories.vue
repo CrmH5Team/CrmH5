@@ -364,7 +364,6 @@ export default {
             $(".timeview").removeClass("mui-active");
             $(".timeview[data-datetype='all']").addClass("mui-active");
             _self.slideUpWithContent();
-            //<a class="timeview mui-active" data-datetype="all"><p class="" >{{all}}</p></a>
 
             
             $(".timeview").off("click").on("click", function (event) {
