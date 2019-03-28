@@ -365,7 +365,6 @@ export default {
             $(".timeview[data-datetype='all']").addClass("mui-active");
             _self.slideUpWithContent();
 
-
             $(".timeview").off("click").on("click", function (event) {
                 var target = $(this);
                 if(tool.isNullOrEmptyObject(target)){
@@ -591,11 +590,22 @@ export default {
                 }
                 _self.queryCondiction.push(returnObj.defaultQueryCondition);
                 _self.groupBy = returnObj.defaultGroupBy||"";
-                _self.RefreshCurPageGroupData();
 
                 //重置时间段条件
-                $('a[data-datetype="all"]').trigger("click");
+                //$('a[data-datetype="all"]').trigger("click");
 
+                //移除mui-active,清空数据
+                $("#startdate,#enddate").val("");
+                $(".timeview").removeClass("mui-active");
+                $(".timeview[data-datetype='all']").addClass("mui-active");
+                _self.slideUpWithContent();
+                //默认构造all条件
+                _self.timeSlot = 'all';
+                var isExeAjax = false;
+                _self.prePareQueryData(isExeAjax);
+
+
+                _self.RefreshCurPageGroupData();
             } else {
                 _self.RefreshCurPageGroupData();
             }
