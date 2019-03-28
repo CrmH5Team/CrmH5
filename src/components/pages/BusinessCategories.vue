@@ -365,7 +365,7 @@ export default {
             $(".timeview[data-datetype='all']").addClass("mui-active");
             _self.slideUpWithContent();
 
-            
+
             $(".timeview").off("click").on("click", function (event) {
                 var target = $(this);
                 if(tool.isNullOrEmptyObject(target)){
@@ -397,7 +397,7 @@ export default {
                 //准备查询条件
                 _self.prePareQueryData();
             });
-                
+
             //默认构造all条件
             _self.timeSlot = 'all';
             var isExeAjax = false;
@@ -455,7 +455,7 @@ export default {
                 "Comparison": "between",
                 "Value": dateRangeStr
             };
-            
+
             //触发查询
             if(isExeAjax == true){
                 _self.RefreshCurPageGroupData();
@@ -677,8 +677,8 @@ export default {
                 var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
                 tool.alert(compareAlert);
                 return;
-            } 
-         
+            }
+
             var dateRangeStr = startdate + "," + enddate;
             _self.dateRangeJObject = {
                 "Type": "Date",
@@ -696,10 +696,12 @@ export default {
                  var listDom = $('.pageList');
                 $('#searchInput').unbind().bind('input', function () {
                     var queryStr = $.trim($(this).val());
-                    if (queryStr === '') {
-                        listDom.find('div.date-div').show();
+                    if (queryStr == '') {
+                        listDom.find('div.date-div').show().siblings('div.group-item-list').show();
                     } else {
-                        listDom.find('div.date-div').hide().filter(":lowerCaseContains('" + queryStr + "')").show();
+                        //console.log(listDom.find('div.date-div').siblings('div.group-item-list').length);
+                        listDom.find('div.date-div').hide().siblings('div.group-item-list').hide();
+                        listDom.find('div.date-div').filter(":lowerCaseContains('" + queryStr + "')").show().siblings('div.group-item-list');
                     }
                 })
             });
