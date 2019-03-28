@@ -547,6 +547,10 @@ export default {
                     } else {
                         //若是收起
                         var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+                        if(allQueryData && !tool.isNullOrEmptyObject(_self.dateRangeJObject)){
+                            allQueryData.push(_self.dateRangeJObject);
+                            // console.log(allQueryData);
+                        }
                         tool.InitiateInnerDataList(fromType, groupID, target, allQueryData, function (containerObj) {
                             containerObj
                                 .addClass("open")
@@ -629,7 +633,7 @@ export default {
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
             if(allQueryData && !tool.isNullOrEmptyObject(_self.dateRangeJObject)){
                 allQueryData.push(_self.dateRangeJObject);
-                console.log(allQueryData);
+                // console.log(allQueryData);
             }
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
                 if (tool.isNullOrEmptyObject(containerObj)) {
