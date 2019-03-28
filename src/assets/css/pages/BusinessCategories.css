@@ -174,7 +174,16 @@ span.calc-you {
     text-align: center;
     line-height: 0.46rem;
 }
-
+/* 去掉input top阴影 */
+input{
+    outline-style: none ;
+	outline-width: 0px ;
+	text-shadow: none ;
+	-webkit-appearance: none ;
+	-webkit-user-select: text ;
+	outline-color: transparent ;
+	box-shadow: none;
+}
 .page-content {
     padding-top: 0.88rem;
 }
