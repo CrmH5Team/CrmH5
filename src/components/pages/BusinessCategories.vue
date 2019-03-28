@@ -85,9 +85,9 @@ export default {
         return {
             title: lanTool.lanContent('783_商业'),
             all:lanTool.lanContent('795_全部'),
-            thisWeek:lanTool.lanContent('1000005_本周'),
-            thisMonth:lanTool.lanContent('1000006_本月'),
-            halfYear:lanTool.lanContent('1000007_半年'),
+            thisWeek:lanTool.lanContent('1000005_最近7天'),
+            thisMonth:lanTool.lanContent('1000006_最近30天'),
+            halfYear:lanTool.lanContent('1000007_最近半年'),
             customize:lanTool.lanContent('1000008_自定义'),
             confirm:lanTool.lanContent('545_确定'),
             showCategory: true, //展示data model数据
@@ -412,7 +412,7 @@ export default {
             if(dateType == "week") {
 			    _self.constructQueryCondiction(0, -6,isExeAjax);
             } else if(dateType == "month") {
-                _self.constructQueryCondiction(-1, 0,isExeAjax);
+                _self.constructQueryCondiction(0, -30,isExeAjax);
             } else if(dateType == "halfyear") {
                 _self.constructQueryCondiction(-6, 0,isExeAjax);
             } else if(dateType == "all") {
