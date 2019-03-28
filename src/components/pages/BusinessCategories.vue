@@ -560,6 +560,11 @@ export default {
                 }
             );
         },
+        //清除查询内容
+        ClearSearchText: function () {
+            document.activeElement.blur();
+            $("input#searchInput").val('');
+        },
         //切换页面
         switchPage: function (num, e) {
             var _self = this;
@@ -625,6 +630,7 @@ export default {
         //刷新当前激活的page的分组数据
         RefreshCurPageGroupData: function () {
             var _self = this;
+            _self.ClearSearchText();
             var num = _self.showPage;
             var container = null;
             var fromType = "";
@@ -711,7 +717,7 @@ export default {
                     } else {
                         //console.log(listDom.find('div.date-div').siblings('div.group-item-list').length);
                         listDom.find('div.date-div').hide().siblings('div.group-item-list').hide();
-                        listDom.find('div.date-div').filter(":lowerCaseContains('" + queryStr + "')").show().siblings('div.group-item-list');
+                        listDom.find('div.date-div').filter(":lowerCaseContains('" + queryStr + "')").show().siblings('div.group-item-list').show();
                     }
                 })
             });
