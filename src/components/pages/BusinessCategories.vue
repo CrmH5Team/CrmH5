@@ -278,7 +278,6 @@ export default {
     },
     activated: function () {
         var _self = this;
-        _self.selectTime();
         _self.search();
         _self.watchScroll();
         _self.groupToggle();
@@ -311,6 +310,7 @@ export default {
                 }
                 _self.queryCondiction.push(returnObj.defaultQueryCondition);
                 _self.groupBy = returnObj.defaultGroupBy||"";
+                _self.selectTime();
             }
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
