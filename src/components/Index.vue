@@ -30,21 +30,22 @@
                     </div>
                 </div>
                 <div class="weui-grid">
-                    <div @click.stop="gotoUrl($event)" url="/business" class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/businessCategories" class="js_grid">
                         <div class="weui-grid__icon jihui-icon">
                             <span class="calcfont calc-jihui"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="783_商业"></p>
                     </div>
                 </div>
-                <div class="weui-grid">
-                    <div @click.stop="gotoUrl($event)" url="/businessCategories" class="js_grid">
+                <div class="weui-grid" style="display:none">
+                    <div @click.stop="gotoUrl($event)" url="/business" class="js_grid">
                         <div class="weui-grid__icon leibie-icon">
                             <span class="calcfont calc-leibie"></span>
                         </div>
                         <p class="f12 weui-grid__label">Categories</p>
                     </div>
                 </div>
+
                 <div class="weui-grid">
                     <router-link to class="js_grid">
                         <div class="weui-grid__icon intelligence-icon">
