@@ -31,7 +31,7 @@
             <div v-if="item.type=='radio' && item.groupName =='modelDataFilter'" class="right-block-items">
                 <div v-for="radio in item.items" :key="item.id" class="radios-div">
                           <label class="radios-label">
-                              <input type="radio" :name="item.id" :value="radio.id" v-model="modelDataFilter"/>
+                              <input type="radio" :name="item.id" :value="radio.id" v-model="groupByVal"/>
                               <i class="radios"></i>
                               <span>{{radio.text}}</span>
                           </label>
@@ -74,11 +74,10 @@ export default {
             showPanel:false,
             viewValue:'',  //右侧分类
             dataFilter:'',
-            modelDataFilter:'',
+            groupByVal:'',//分组数据
             isParentFirstEnter:false,  //存储赋组件是否是新创建
             dataFilterWatch:null,
-            modelDataFilterWatch:null,
-
+            modelDataFilterWatch:null
         }
     },
     watch:{
@@ -115,8 +114,8 @@ export default {
 
             var _self = this;
             var returnObj = {
-                defaultQueryCondition:{},
-                defaultModuleCondition:''
+                defaultQueryCondition:{},//默认的过滤条件
+                defaultGroupBy:''//默认的分组条件
             };
             if(tool.isNullOrEmptyObject(_self.panelData)){
                 return ;
@@ -125,8 +124,8 @@ export default {
             if(isResetRightPanel){
 
                 $.each(_self.panelData,function(key,value){
-                    console.log(key);
-                    console.log(value);
+                    // console.log(key);
+                    // console.log(value);
 
                     if(value.type == 'radio' && value.default && value.groupName == 'view'){
                         _self.viewValue = value.default;
@@ -150,11 +149,9 @@ export default {
                             };
                         }
                         _self.dataFilter = value.default;
-
                     }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
-
-                        _self.modelDataFilter = value.default;
-                        returnObj.defaultModuleCondition = _self.modelDataFilter;
+                        _self.groupByVal = value.default;
+                        returnObj.defaultGroupBy = _self.groupByVal;
                     }
                 });
 
@@ -165,7 +162,9 @@ export default {
                     _self.dataFilterWatch();
                 }
                 _self.dataFilterWatch = _self.$watch('dataFilter', function(newValue){
-                      if(tool.isNullOrEmptyObject(newValue)) return;
+                      if(tool.isNullOrEmptyObject(newValue)) {
+                          return;
+                      }
                       var filter = [];
                       filter.push(newValue);
                       _self.conStructQueryCondition(filter);
@@ -174,11 +173,11 @@ export default {
 
                 //watch监听modelDataFilter
                 if(!tool.isNullOrEmptyObject(_self.modelDataFilterWatch)) _self.modelDataFilterWatch();
-                _self.modelDataFilterWatch = _self.$watch('modelDataFilter', function(newValue){
-
-                    if(tool.isNullOrEmptyObject(newValue)) return;
-                    //调父组件方法，把newValue传过去
-                    _self.$parent.setModelDataFilter(newValue);
+                _self.modelDataFilterWatch = _self.$watch('groupByVal', function(newValue){
+                    if(tool.isNullOrEmptyObject(newValue)) {
+                        return;
+                    }
+                    _self.$parent.setGroupBy(newValue);
 
                 }, {deep: true});
                 // }

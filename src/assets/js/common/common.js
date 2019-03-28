@@ -771,7 +771,7 @@
 	 */
 	tool.GetCurrentDate = function (isFormat, dateTimeFormatStr) {
 		var currentDate = new Date();
-		return FormateDate(currentDate, isFormat, dateTimeFormatStr);
+		return tool.FormateDate(currentDate, isFormat, dateTimeFormatStr);
 	};
 
 	/*
@@ -817,7 +817,7 @@
 			handleDate.setDate(handleDate.getDate() + day);
 		}
 
-		return FormateDate(handleDate, isFormat, dateTimeFormatStr);
+		return tool.FormateDate(handleDate, isFormat, dateTimeFormatStr);
 	};
 
 	/*
@@ -1426,7 +1426,24 @@
 		}
 		$.toptip(msg, 1000, 'error',myCallBack);
 	};
-
+	//提示信息
+	tool.alert = function(msg,myCallBack){
+		if (tool.isNullOrEmptyObject(msg)) {
+			return;
+		}
+		var title = lanTool.lanContent("586_提示");
+		var btnText = lanTool.lanContent("545_确定");
+		$.alert({
+			title: title,
+			text: msg,
+			btnText:btnText,
+			onOK: function () {
+				if(!tool.isNullOrEmptyObject(myCallBack)){
+					myCallBack();
+				}
+			}
+		});
+	};
 	//当前登陆对象
 	tool.CurUser = function () {
 		var curUserStr = tool.getSessionStorageItem(tool.cache_CurUser);
@@ -1434,15 +1451,15 @@
 			return {};
 		}
 		return tool.jObject(curUserStr);
-	}
+	};
 	//注册码
 	tool.RegisterCode = function () {
 		return tool.getSessionStorageItem(tool.cache_RegisterCode) || "";
-	}
+	};
 	//用户名
 	tool.UserName = function () {
 		return tool.getSessionStorageItem(tool.cache_UserName) || "";
-	}
+	};
 
 	//模板
   tool.meetingGroupTemplate =
@@ -1499,8 +1516,9 @@
 	*containerObj:容器jquery对象
 	*noData:是否无数据
 	*myCallBack:回调函数
+	*groupBy:分组依据
 	*/
-	tool.InitiateGroupList = function (fromType, containerObj, queryCondiction,myCallBack) {
+	tool.InitiateGroupList = function (fromType, containerObj, queryCondiction,myCallBack,groupBy) {
 		//清空容器内容
 		containerObj.html('');
 
@@ -1571,7 +1589,8 @@
 			UserName: tool.UserName(),
 			_ControlName: controlName,
 			_RegisterCode: tool.RegisterCode(),
-			QueryCondiction: JSON.stringify(queryCondiction)
+			QueryCondiction: JSON.stringify(queryCondiction),
+			GroupBy:groupBy
 		};
 		var loadingIndexClassName = tool.showLoading();
 
@@ -1643,7 +1662,7 @@
 	*noData:是否无数据
 	*myCallBack:回调函数
 	*/
-	tool.InitiateInnerDataList = function (fromType, groupID, containerObj,queryCondiction, myCallBack) {
+	tool.InitiateInnerDataList = function (fromType, groupID, containerObj,queryCondiction, myCallBack,groupBy) {
 		// console.log(fromType);
 		// console.log(groupID);
 		// console.log(containerObj);
@@ -1821,7 +1840,8 @@
 			_ControlName: controlName,
 			GroupID: groupID,
 			_RegisterCode: tool.RegisterCode(),
-			QueryCondiction: JSON.stringify(queryCondiction)
+			QueryCondiction: JSON.stringify(queryCondiction),
+			GroupBy:groupBy
 		};
 		var loadingIndexClassName = tool.showLoading();
 		$.ajax({

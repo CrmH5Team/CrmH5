@@ -3285,6 +3285,7 @@ if (typeof define === 'function' && define.amd) {
     var myText;
     if (typeof text === 'object') {
       config = text;
+      myText = config.btnText || "确定";
     } else {
       if (typeof title === 'function') {
         onOK = arguments[1];
@@ -3294,18 +3295,17 @@ if (typeof define === 'function' && define.amd) {
       config = {
         text: text,
         title: title,
-        onOK: onOK
-      }
-
+        onOK: onOK,
+        btnText:btnText
+      };
 
       if(typeof btnText !== 'undefined'){
          myText = btnText;
       }else{
          myText = defaults.buttonOK;
       }
-
-
     }
+
     return $.modal({
       text: config.text,
       title: config.title,

@@ -4,25 +4,25 @@
     <div class="conditionset sticky">
         <div class="timeselect">
             <div class="time">
-                <a class="timeview mui-active" data-datetype="all"><p class="" >全部</p></a>
-                <a class="timeview" data-datetype="week"><p class="">本周</p></a>
-                <a class="timeview" data-datetype="month"><p class="" >本月</p></a>
-                <a class="timeview" data-datetype="halfyear"><p class="" >半年</p></a>
-                <a class="timeview" data-datetype="customize"><p class="" >自定义</p></a>
+                <a class="timeview mui-active" data-datetype="all"><p class="" >{{all}}</p></a>
+                <a class="timeview" data-datetype="week"><p class="">{{thisWeek}}</p></a>
+                <a class="timeview" data-datetype="month"><p class="" >{{thisMonth}}</p></a>
+                <a class="timeview" data-datetype="halfyear"><p class="" >{{halfYear}}</p></a>
+                <a class="timeview" data-datetype="customize"><p class="" >{{customize}}</p></a>
             </div>
         </div>
         <div class="line"></div>
         <div class="setTime">
             <div class="box">
                 <div class="inputRow">
-                    <input id="startdate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the start date" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
+                    <input id="startdate" class="selectdate lanInputPlaceHolder" type="text" readonly="readonly" placeholder="" data-lanid="1000009_请选择开始日期" data-field="BeginTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
                     <span class="calcfont calc-you"></span>
                 </div>
                 <div class="inputRow">
-                    <input id="enddate" class="selectdate" type="text" readonly="readonly" placeholder="please choose the end date" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
+                    <input id="enddate" class="selectdate lanInputPlaceHolder" type="text" readonly="readonly" placeholder=""  data-lanid="1000010_请选择结束日期" data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy-MM-dd">
                     <span class="calcfont calc-you"></span></div>
             </div>
-            <div class="sure" @click="sure">确定</div>
+            <div class="sure" @click="sure">{{confirm}}</div>
         </div>
         <div class="search ">
             <div class="search-box">
@@ -83,7 +83,13 @@ export default {
     },
     data() {
         return {
-            title: "Business Categories",
+            title: lanTool.lanContent('783_商业'),
+            all:lanTool.lanContent('795_全部'),
+            thisWeek:lanTool.lanContent('1000005_本周'),
+            thisMonth:lanTool.lanContent('1000006_本月'),
+            halfYear:lanTool.lanContent('1000007_半年'),
+            customize:lanTool.lanContent('1000008_自定义'),
+            confirm:lanTool.lanContent('545_确定'),
             showCategory: true, //展示data model数据
             showPage: 0,
             noData: true,
@@ -91,7 +97,8 @@ export default {
             queryCondictionData: [], //综合查询条件
             isFirstEnter: false, //是否首次进入
             timeSlot:'all',   //时间条件
-            moduleCondition:'', //modelDataFilter条件
+            groupBy:"",//分组模式
+            dateRangeJObject:{},//时间对象
             //侧滑数据模型
             rigthPanelData: [
               {
@@ -137,30 +144,30 @@ export default {
                     }
                 ]
               },{
-                groupText: 'Display Mode',
+                groupText: lanTool.lanContent("1000004_分组模式"),
                 groupName: 'modelDataFilter',
                 type: "radio",
-                default: "areaSales",
+                default: "popedomTeamInf",
                 items: [
                   {
-                      id: "areaSales",
-                      text: "业务员区域"
+                      id: "popedomTeamInf",
+                      text: lanTool.lanContent("769_业务组")
                   },
                   {
-                      id: "businessSector",
-                      text: "行业"
+                      id: "businessType",
+                      text: lanTool.lanContent("695_业务")
                   },
                   {
-                      id: "organizations",
-                      text: "客户"
+                      id: "countryName",
+                      text: lanTool.lanContent("701_国家")
                   },
                   {
-                      id: "contacts",
-                      text: "联系人"
+                      id: "shortName",
+                      text: lanTool.lanContent("685_公司")
                   },
                   {
-                      id: "Initiator",
-                      text: "负责人"
+                      id: "initiator",
+                      text: lanTool.lanContent("711_发起人")
                   }
                 ]
               }
@@ -303,8 +310,7 @@ export default {
                     return;
                 }
                 _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                _self.moduleCondition = returnObj.defaultModuleCondition;
-
+                _self.groupBy = returnObj.defaultGroupBy||"";
             }
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
@@ -335,38 +341,41 @@ export default {
         }
     },
     methods: {
+        //设置查询条件
         setQuerycondition: function (data) {
             var _self = this;
             _self.queryCondiction = data;
             //执行监听的这个动作
             _self.RefreshCurPageGroupData();
         },
-        setModelDataFilter:function(data){
+        //设置分组模式
+        setGroupBy:function(data){
             var _self = this;
-            _self.moduleCondition = data;
-            console.log(_self.moduleCondition);
+            _self.groupBy = data;
+            console.log(_self.groupBy);
+            //执行监听的这个动作
+            _self.RefreshCurPageGroupData();
         },
-        // setQueryconditionOnlyData: function (data) {
-        //     var _self = this;
-        //     _self.queryCondiction = data;
-        // },
+        //选择查询时间
         selectTime: function () {
             var _self = this;
-            $(".timeview").off('click').on("click", ".timeview", function (event) {
-                // var target = $(event.target);
-                // //判断点击的是否是timeView，如果点的是它的子元素的话，则通过子元素来获取timeView
-                // if (!target.hasClass("timeview")) {
-                //     target = target.parent(".timeview") || "";
-                // }
+            //移除mui-active,清空数据
+            $("#startdate,#enddate").val("");
+            $(".timeview").removeClass("mui-active");
+            $(".timeview[data-datetype='all']").addClass("mui-active");
+            _self.slideUpWithContent();
+            //<a class="timeview mui-active" data-datetype="all"><p class="" >{{all}}</p></a>
 
+            
+            $(".timeview").off("click").on("click", function (event) {
                 var target = $(this);
                 if(tool.isNullOrEmptyObject(target)){
                     return;
                 }
 
-                var dateType = target.attr("data-datetype") || "";
+                var dateType = target.attr("data-datetype") || "all";
+                _self.timeSlot = dateType;
                 if (!target.hasClass("mui-active")) {
-
                     target.addClass("mui-active");
                     target.siblings().removeClass("mui-active");
 
@@ -380,19 +389,78 @@ export default {
                     if (dateType == "customize") {
                         if ($(".setTime").css("display") == "none") {
                             _self.slideDownWithContent();
-
                         } else {
-
                             _self.slideUpWithContent();
                         }
                     }
                 }
-                console.log(dateType);
-                if(dateType != 'customize'){
-                    _self.timeSlot = dateType;
-                }
 
-            })
+                //准备查询条件
+                _self.prePareQueryData();
+            });
+                
+            //默认构造all条件
+            _self.timeSlot = 'all';
+            var isExeAjax = false;
+            _self.prePareQueryData(isExeAjax);
+        },
+        //准备查询条件
+        prePareQueryData:function(isExeAjax){
+            isExeAjax = (isExeAjax == null || isExeAjax == undefined) ? true : isExeAjax;
+            var _self = this;
+            var dateType = _self.timeSlot || "all";
+            dateType = dateType.toLowerCase();
+
+            if(dateType == "week") {
+			    _self.constructQueryCondiction(0, -6,isExeAjax);
+            } else if(dateType == "month") {
+                _self.constructQueryCondiction(-1, 0,isExeAjax);
+            } else if(dateType == "halfyear") {
+                _self.constructQueryCondiction(-6, 0,isExeAjax);
+            } else if(dateType == "all") {
+                _self.constructQueryCondiction(0, 0,isExeAjax);
+            } else if(dateType == "customize") {
+                _self.dateRangeJObject = {};
+                return;
+            } else {
+                _self.dateRangeJObject = {};
+                return;
+            }
+        },
+        //构造时间条件
+        constructQueryCondiction:function(month, day,isExeAjax){
+            isExeAjax = (isExeAjax == null || isExeAjax == undefined) ? true : isExeAjax;
+            var _self = this;
+            var isFormat = true;
+            var dateTimeFormatStr = "yyyy-MM-dd";
+            var startDate = new Date();
+            var endDateStr = new Date().FormatNew(dateTimeFormatStr);
+            month = month || 0;
+            day = day || 0;
+            //选择全部
+            if(month == 0 && day == 0) {
+                _self.dateRangeJObject = {};
+                if(isExeAjax == true){
+                    _self.RefreshCurPageGroupData();
+                 }
+                return;
+            }
+
+            var startDateStr = tool.SetDate(startDate, 0, month, day, isFormat, dateTimeFormatStr);
+            var dateRangeStr = startDateStr + "," + endDateStr;
+            _self.dateRangeJObject = {
+                "Type": "Date",
+                "Format": "yyyy-MM-dd",
+                "Field": "AddTime",
+                "Relation": "and",
+                "Comparison": "between",
+                "Value": dateRangeStr
+            };
+            
+            //触发查询
+            if(isExeAjax == true){
+                _self.RefreshCurPageGroupData();
+            }
         },
         //自定义展开时间选择控件
         slideDownWithContent: function () {
@@ -444,8 +512,6 @@ export default {
         //列表展开收起
         groupToggle: function () {
             var _self = this;
-            console.log("evnet.....");
-
             // _self.groupToggleHandle('dealpipelineList', 'opportunitiesList');
             $("#dealpipelineList,#opportunitiesList").off("click", "div.date-div").on(
                 "click",
@@ -487,7 +553,7 @@ export default {
                                 .addClass("open")
                                 .siblings(".group-item-list")
                                 .slideDown(500);
-                        });
+                        },_self.groupBy);
                     }
                 }
             );
@@ -521,7 +587,7 @@ export default {
                     return;
                 }
                 _self.queryCondiction.push(returnObj.defaultQueryCondition);
-                _self.moduleCondition = returnObj.defaultModuleCondition;
+                _self.groupBy = returnObj.defaultGroupBy||"";
                 _self.RefreshCurPageGroupData();
 
                 //重置时间段条件
@@ -562,6 +628,10 @@ export default {
 
             //渲染数据
             var allQueryData = tool.combineArray(_self.queryCondictionData, _self.queryCondiction, "Field");
+            if(allQueryData && !tool.isNullOrEmptyObject(_self.dateRangeJObject)){
+                allQueryData.push(_self.dateRangeJObject);
+                console.log(allQueryData);
+            }
             tool.InitiateGroupList(fromType, container, allQueryData, function (containerObj) {
                 if (tool.isNullOrEmptyObject(containerObj)) {
                     _self.noData = true;
@@ -572,7 +642,7 @@ export default {
                 } else {
                     _self.noData = false;
                 }
-            });
+            },_self.groupBy);
         },
         //日期选择器控件初始化
         initDateTimePicker: function () {
@@ -584,40 +654,38 @@ export default {
         sure: function () {
             var _self = this;
             //判断元素是否存在
-            // console.log("startdate.length:" + $("#startdate").length);
-            if ($("#startdate").length > 0) {
-                //开始日期和结束日期进行对比
-                var startdate = $("#startdate").val();
-                var enddate = $("#enddate").val();
-
-                var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
-                var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
-
-                var tips = lanTool.lanContent('933_温馨提示');
-                var sure = lanTool.lanContent("545_确定");
-
-                var d1 = new Date(startdate.replace(/\-/g, "\/"));
-                var d2 = new Date(enddate.replace(/\-/g, "\/"));
-
-                //开始日期或者结束日期其中一个为空，一个不为空
-                if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
-                    $.alert(dateEmptyAlert, tips, "", sure);
-                    return;
-                } else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
-                    $.alert(compareAlert, tips, "", sure);
-                    return;
-                } else {
-                    console.log("日期不冲突");
-
-                    console.log('startdate:'+startdate);
-                    console.log('enddate:'+enddate);
-
-                    // var id = _self.$route.params.id;
-                    // var fromType = "Meetinginfo";
-                    // tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                }
+            if($("#startdate").length<=0 || $("#enddate").length<=0){
+                return;
             }
 
+            //开始日期和结束日期进行对比
+            var startdate = $("#startdate").val();
+            var enddate = $("#enddate").val();
+
+            var d1 = new Date(startdate.replace(/\-/g, "\/"));
+            var d2 = new Date(enddate.replace(/\-/g, "\/"));
+
+            //开始日期或者结束日期其中一个为空，一个不为空
+            if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
+                var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
+                tool.alert(dateEmptyAlert);
+                return;
+            } else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 > d2) {
+                var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
+                tool.alert(compareAlert);
+                return;
+            } 
+         
+            var dateRangeStr = startdate + "," + enddate;
+            _self.dateRangeJObject = {
+                "Type": "Date",
+                "Format": "yyyy-MM-dd",
+                "Field": "AddTime",
+                "Relation": "and",
+                "Comparison": "between",
+                "Value": dateRangeStr
+            };
+            _self.RefreshCurPageGroupData();
         },
          //搜索
         search: function () {
@@ -633,6 +701,7 @@ export default {
                 })
             });
         },
+        //新增记录
         addBtn: function (e) {
             var _self = this;
             var target = $(e.target);
@@ -754,7 +823,7 @@ export default {
                     });
                 });
             }, 0);
-        },
+        }
     }
 }
 </script>
