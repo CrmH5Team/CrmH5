@@ -169,7 +169,7 @@ export default {
     },
     data() {
         return {
-            title: "CRM",
+            title: "",
             notData: false, //没有数据
             showPanel: false,
             groupData: [], //7天的数据
@@ -735,8 +735,10 @@ export default {
         handleLogOut: function () {
             var _self = this;
             if (_self.isFromSingleSignOn) {
+                _self.title = "";
                 $(".logout-btn").hide();
             } else {
+                _self.title = "CRM";
                 $(".logout-btn").show();
             }
         }
