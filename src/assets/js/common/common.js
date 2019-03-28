@@ -2930,26 +2930,20 @@
 				}
 				//data = data._OnlyOneData || [];
 				//保存成功后刷新当前页面
+				//兼容多个列表路由的情况，如business,businessCategories
 				var routeName = _self.$route.name;
+				var routeNameArr = routeName.split(',');
 				var routers = _self.$router.options.routes;
-				var curRouter;
-				//保存成功后跳转到列表页面
+
+				//更改列表页面的FromSave标志
 				for(var i = 0;i<routers.length;i++){
-					if(routeName == routers[i].name){
-						curRouter = routers[i];
-						break;
+					//若是指定的列表路由名
+					if($.inArray(routers[i].name, routeNameArr)>=0){
+							routers[i].meta.fromSave = true;
+							continue;
 					}
 				}
-				if(tool.isNullOrEmptyObject(curRouter)){
-					return;
-				}
-				routeName = curRouter.meta.listName;
-				for(var i = 0;i<routers.length;i++){
-					if(routeName == routers[i].name){
-						routers[i].meta.fromSave = true;
-						break;
-					}
-				}
+
 				if (!tool.isNullOrEmptyObject(myCallBack)) {
 					myCallBack(data);
 				}

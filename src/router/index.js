@@ -125,7 +125,7 @@ const router =  new Router({
         keepAlive: true,
         isBack:false,
         fromSave:false,  //当在文件上传保存后回到详情页面刷新
-        listName:"business"
+        listName:"business,businessCategories"
       }
     },
     //会议记录
