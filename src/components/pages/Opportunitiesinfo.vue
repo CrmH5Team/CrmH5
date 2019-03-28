@@ -665,6 +665,35 @@ export default {
                                   return true;
                               }
 
+                             //兼容多个列表路由的情况，如business,businessCategories
+                             var routeName = _self.$route.name;
+                             var routers = _self.$router.options.routes;
+                             var curRouter = null;
+
+                             //更改列表页面的FromSave标志
+                             for(var i = 0;i<routers.length;i++){
+                                 //若是指定的
+                                 if(routers[i].name == routeName){
+                                     curRouter = routers[i];
+                                     break;
+                                 }
+                             }
+
+                             if(!tool.isNullOrEmptyObject(curRouter)){
+                                 var listName = curRouter.meta.listName || "";
+                                 var listRouteNameArr = listName.split(',');
+                                 if(listRouteNameArr && listRouteNameArr.length >= 1){
+
+                                     for(var i = 0;i<routers.length;i++){
+                                         if($.inArray(routers[i].name,listRouteNameArr)>=0){
+                                             routers[i].meta.fromSave = true;
+                                             continue;
+                                         }
+                                     }
+
+                                 }
+                             }
+
                               //返回到上一页
 						      _self.$router.back(-1);
                           },
