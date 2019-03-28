@@ -711,7 +711,7 @@ export default {
                     } else {
                         //console.log(listDom.find('div.date-div').siblings('div.group-item-list').length);
                         listDom.find('div.date-div').hide().siblings('div.group-item-list').hide();
-                        listDom.find('div.date-div').filter(":lowerCaseContains('" + queryStr + "')").show().siblings('div.group-item-list');
+                        listDom.find('div.date-div').filter(":lowerCaseContains('" + queryStr + "')").show().siblings('div.group-item-list').show();
                     }
                 })
             });
