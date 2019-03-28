@@ -281,6 +281,7 @@ export default {
         _self.search();
         _self.watchScroll();
         _self.groupToggle();
+        _self.followToggle();
         _self.goInfo();
         _self.initDateTimePicker();
         if (eventBus.queryCondictionData != null && eventBus.queryCondictionData != undefined) {
@@ -614,6 +615,38 @@ export default {
             } else {
                 _self.RefreshCurPageGroupData();
             }
+        },
+          //点击关注/取消关注
+        followToggle: function () {
+            var _self = this;
+
+            $("#dealpipelineList,#opportunitiesList").off("click", ".item-stars-icon").on("click", ".item-stars-icon", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var target = $(e.target);
+                var _curObj = $(this);
+                var fromType = target.parents("div[data-fromtype]").attr("data-fromtype") || "";
+                var autoID = _curObj.attr("data-autoid") || "";
+                var actionType;
+                if (_curObj.hasClass("calc-shoucang")) {
+                    //取消关注
+                    actionType = 0;
+                } else {
+                    //添加关注
+                    actionType = 1;
+                }
+
+                tool.UserFollow(fromType, autoID, actionType, function () {
+                    if (_curObj.hasClass("calc-shoucang")) {
+                        //取消关注
+                        _curObj.removeClass("calc-shoucang").addClass("calc-noshoucang");
+                    } else {
+                        //添加关注
+                        _curObj.removeClass("calc-noshoucang").addClass("calc-shoucang");
+                    }
+                });
+            })
         },
         //table底部横条过渡效果
         changePos: function () {
