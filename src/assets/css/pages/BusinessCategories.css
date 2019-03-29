@@ -10,7 +10,7 @@
     width:100%;
     top: 0.88rem;
     height: auto;
-    z-index: 90;
+    z-index: 100;
     background-color: white;
 }
 .timeselect {
@@ -267,8 +267,8 @@ input{
 }
 .curren-div{
     position: absolute;
-    height: 0.04rem;
-    margin-top: -0.04rem;
+    height: 0.08rem;
+    margin-top: -0.08rem;
     background-color: white;
     top: 0;
     width: 100%;
