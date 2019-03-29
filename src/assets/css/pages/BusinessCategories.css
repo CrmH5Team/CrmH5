@@ -103,12 +103,13 @@ input.selectdate {
     margin-right: 0;
     width: 100%;
     text-align: center;
+    
 }
 
 span.calc-you {
     position: absolute;
     top: 0.18rem;
-    right: 0.1rem;
+    right: 0.2rem;
     width: 0.2rem;
     font-size: 0.32rem;
     color: #cdcdcd;
@@ -117,9 +118,14 @@ span.calc-you {
 
 #enddate,
 #startdate {
-    width: 100%;
+    width: calc(90% - 0.2rem);
     font-size: 0.24rem;
     text-align: center;
+    padding-right: 0.3rem;
+    padding-left: 0.1rem;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .sure {
