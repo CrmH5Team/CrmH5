@@ -37,6 +37,7 @@
         </div>
         <div id="page-content" class="page-content">
             <div class="nav sticky">
+                <div class="curren-div"></div>
                 <div id="dealPipelineSwitchPage" @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="820_交易"></div>
                 <div id="opportunitiesSwitchPage" @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="649_商业机会"></div>
                 <div class="nav-border"></div>

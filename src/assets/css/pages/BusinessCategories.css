@@ -265,3 +265,11 @@ input{
     vertical-align: middle;
     color: #ff5a21;
 }
+.curren-div{
+    position: absolute;
+    height: 0.04rem;
+    margin-top: -0.04rem;
+    background-color: white;
+    top: 0;
+    width: 100%;
+}
