@@ -14,8 +14,9 @@
     background-color: white;
 }
 .timeselect {
-    margin: 0.2rem 0;
-    margin-top: 0.2rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #ddddde;
+    box-sizing: border-box;
 }
 
 .timeselect .time {
@@ -85,7 +86,7 @@ p {
 
 .box {
     display: flex;
-    margin-top: 0.3rem;
+    padding-top: 0.3rem;
 }
 
 div.inputRow {
@@ -103,7 +104,7 @@ input.selectdate {
     margin-right: 0;
     width: 100%;
     text-align: center;
-    
+
 }
 
 span.calc-you {
@@ -145,10 +146,13 @@ span.calc-you {
 .search {
     margin-top: 0;
     padding: 0.2rem 0.1rem 0.2rem 0.1rem;
+    border-bottom: 1px solid #ddddde;
+    box-sizing: border-box;
 }
 
 .search-box {
     line-height: 0.68rem;
+    height: 0.68rem;
     position: relative;
     background: white;
 }
@@ -271,11 +275,11 @@ input{
     vertical-align: middle;
     color: #ff5a21;
 }
-.curren-div{
+/* .curren-div{
     position: absolute;
     height: 0.08rem;
     margin-top: -0.08rem;
     background-color: white;
     top: 0;
     width: 100%;
-}
+} */

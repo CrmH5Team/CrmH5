@@ -11,7 +11,7 @@
                 <a class="timeview" data-datetype="customize"><p class="" >{{customize}}</p></a>
             </div>
         </div>
-        <div class="line"></div>
+        <!-- <div class="line"></div> -->
         <div class="setTime">
             <div class="box">
                 <div class="inputRow">
@@ -33,11 +33,11 @@
                   class="search-input lanInputPlaceHolder" data-lanid="780_搜索" placeholder=""/>
           </div>
             </div>
-            <div class="line"></div>
+            <!-- <div class="line"></div> -->
         </div>
         <div id="page-content" class="page-content">
             <div class="nav sticky">
-                <div class="curren-div"></div>
+                <!-- <div class="curren-div"></div> -->
                 <div id="dealPipelineSwitchPage" @click="switchPage(0,$event)" class="nav-item f16 active-item lanText" data-lanid="820_交易"></div>
                 <div id="opportunitiesSwitchPage" @click="switchPage(1,$event)" class="nav-item f16 lanText" data-lanid="649_商业机会"></div>
                 <div class="nav-border"></div>
@@ -464,10 +464,16 @@ export default {
         },
         //自定义展开时间选择控件
         slideDownWithContent: function () {
+            var _self = this;
             $(window).scrollTop(0);
+            var headerH = parseFloat($("header").innerHeight());
+            var timeselectH = parseFloat($(".timeselect").innerHeight()+1);
+            var searchH = parseFloat($(".search").innerHeight()+1);
+            var setTimeH = parseFloat($(".setTime").innerHeight()+1);
+
             $(".setTime").slideDown(400);
             $('.nav').css({
-                "top": "5.2rem",
+                "top": (headerH + timeselectH + searchH +setTimeH)+"px",
                 'transition': 'top 0.4s ease-out',
                 '-moz-transition': 'top 0.4s ease-out',
                 '-webkit-transition': 'top 0.4s ease-out',
@@ -480,6 +486,7 @@ export default {
                 '-webkit-transition': 'padding-top 0.4s ease-out',
                 '-o-transition': 'padding-top 0.4s ease-out'
             });
+
             //必须有个延迟，不然监听固定滚动高度会出错
             setTimeout(() => {
                 this.watchScroll();
@@ -487,11 +494,15 @@ export default {
         },
         //自定义收缩时间选择控件
         slideUpWithContent: function () {
+            var _self = this;
             $(window).scrollTop(0);
-            $(".setTime").slideUp(400);
+            var headerH = parseFloat($("header").innerHeight());
+            var timeselectH = parseFloat($(".timeselect").innerHeight()+1);
+            var searchH = parseFloat($(".search").innerHeight()+1);
 
+            $(".setTime").slideUp(400);
             $('.nav').css({
-                "top": "3.16rem",
+                "top": (headerH + timeselectH + searchH)+"px",
                 'transition': 'top 0.4s ease-out',
                 '-moz-transition': 'top 0.4s ease-out',
                 '-webkit-transition': 'top 0.4s ease-out',
@@ -504,6 +515,7 @@ export default {
                 '-webkit-transition': 'padding-top 0.4s ease-out',
                 '-o-transition': 'padding-top 0.4s ease-out'
             });
+
             setTimeout(() => {
                 this.watchScroll();
             }, 420);
@@ -822,8 +834,10 @@ export default {
             var _self = this;
             setTimeout(function () {
                 var headerH = parseFloat($("header").innerHeight());
-                var navH = parseFloat($(".nav").innerHeight());
+                var navH = parseFloat($(".nav").innerHeight()+1);
                 var setH = parseFloat($(".conditionset").innerHeight());
+                var topH =  headerH + navH + setH;
+
                 // $(this).offset().top 元素到document顶部的距离
                 // $(document).scrollTop() || $(window).scrollTop(); 滚动条滚动的距离
                 $(window).unbind('scroll').bind('scroll', function () {
@@ -832,14 +846,14 @@ export default {
 
                     $(".group-div").each(function () {
                         if (
-                            ($(this).offset().top - scrollTop) <= (headerH + navH + setH)
+                            ($(this).offset().top - scrollTop) <= topH
                         ) {
                             if (tool.getSystem() === "ios") {
                                 $(this)
                                     .find(".date-div")
                                     .addClass("sticky")
                                     .css({
-                                        top: headerH + navH + setH + "px"
+                                        top: topH + "px"
                                     });
                                 return true;
                             } else {
@@ -847,7 +861,7 @@ export default {
                                     .find(".date-div")
                                     .css({
                                         position: "fixed",
-                                        top: headerH + navH + setH + "px"
+                                        top: topH + "px"
                                     });
                                 $(this)
                                     .find(".occupy-div")
