@@ -470,6 +470,7 @@ export default {
             var timeselectH = parseFloat($(".timeselect").innerHeight()+1);
             var searchH = parseFloat($(".search").innerHeight()+1);
             var setTimeH = parseFloat($(".setTime").innerHeight()+1);
+            var navH = parseFloat($(".nav").innerHeight()+1);
 
             $(".setTime").slideDown(400);
             $('.nav').css({
@@ -480,7 +481,7 @@ export default {
                 '-o-transition': 'top 0.4s ease-out'
             });
             $('.pageList').css({
-                "padding-top": "5.12rem",
+                "padding-top": (timeselectH + searchH + setTimeH + navH)+"px",
                 'transition': 'padding-top 0.4s ease-out',
                 '-moz-transition': 'padding-top 0.4s ease-out',
                 '-webkit-transition': 'padding-top 0.4s ease-out',
@@ -499,6 +500,7 @@ export default {
             var headerH = parseFloat($("header").innerHeight());
             var timeselectH = parseFloat($(".timeselect").innerHeight()+1);
             var searchH = parseFloat($(".search").innerHeight()+1);
+            var navH = parseFloat($(".nav").innerHeight()+1);
 
             $(".setTime").slideUp(400);
             $('.nav').css({
@@ -509,7 +511,7 @@ export default {
                 '-o-transition': 'top 0.4s ease-out'
             });
             $('.pageList').css({
-                "padding-top": "3.08rem",
+                "padding-top": (timeselectH + searchH + navH)+"px",
                 'transition': 'padding-top 0.4s ease-out',
                 '-moz-transition': 'padding-top 0.4s ease-out',
                 '-webkit-transition': 'padding-top 0.4s ease-out',
