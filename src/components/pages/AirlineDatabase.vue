@@ -1240,11 +1240,11 @@
             </div>
         </div>
     </div>
-    <div class="itemZheZhao">
+    <div class="itemZheZhao" >
 
     </div>
     <div class="sucaihuo-container">
-        <div class="cd-bouncy-nav-modal">
+        <div class="cd-bouncy-nav-modal" @touchmove.stop.prevent>
             <nav>
                 <ul class="cd-bouncy-nav">
                     <li data-category="#ID">
@@ -1343,7 +1343,7 @@ export default {
                   selectYear = defaultValue;
                   $('.close-picker').off('click').on("click",function() {
                         if(tool.isNullOrEmptyObject(selectYear) || selectYear == defaultValue) return;
-                       
+
                   })
                 },
                 onChange: function (data, valueTemp, displayTemp) {
@@ -1391,7 +1391,7 @@ export default {
                     _self.is_bouncy_nav_animating = false;
 
                 });
-                //判断css 动画是否开启.. 
+                //判断css 动画是否开启..
                 if ($('.cd-bouncy-nav-trigger').parents('.no-csstransitions').length > 0) {
                     $('.cd-bouncy-nav-modal').toggleClass('is-visible', $bool);
                     _self.is_bouncy_nav_animating = false;
