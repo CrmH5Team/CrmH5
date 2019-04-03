@@ -47,12 +47,12 @@
                 </div>
 
                 <div class="weui-grid">
-                    <router-link to class="js_grid">
+                    <div @click.stop="gotoUrl($event)" url="/airlineDatabase" class="js_grid">
                         <div class="weui-grid__icon intelligence-icon">
                             <span class="calcfont calc-lianxiren1"></span>
                         </div>
                         <p class="f12 weui-grid__label lanText" data-lanid="784_商业智能"></p>
-                    </router-link>
+                    </div>
                 </div>
             </div>
         </div>

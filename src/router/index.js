@@ -34,6 +34,9 @@ import Contacts from '@/components/pages/Contacts'
 import Contactsof from '@/components/pages/Contactsof'
 import Contactsinfo from '@/components/pages/Contactsinfo'
 
+//dba
+import AirlineDatabase from '@/components/pages/AirlineDatabase'
+
 import Previewfile from '@/components/pages/Previewfile'
 import Uploadinput from '@/components/pages/Uploadinput'
 
@@ -49,6 +52,8 @@ import Linkedpage from '@/components/pages/Linkedpage'
 
 //单点登陆
 import SingleSignOn from '@/components/SingleSignOn'
+
+
 
 Vue.use(Router)
 
@@ -184,6 +189,9 @@ const router =  new Router({
     { path:'/groupselectlist',name:'groupselectlist',component:Groupselectlist},
     { path:'/poweruser',name:'poweruser',component:Poweruser},
     { path:'/singleSignOn',name:'singleSignOn',component:SingleSignOn},
+   
+ //database
+ { path:'/airlineDatabase',name:'airlineDatabase',component:AirlineDatabase},
 
    //商业类别
     { path: '/businessCategories',name:'businessCategories', component:BusinessCategories,
@@ -192,7 +200,8 @@ const router =  new Router({
       isBack:false,
       fromSave:false,  //当在详情页面保存后回到列表页面刷新
       fromName:''
-    }}
+    }},
+   
   ]
 });
 
