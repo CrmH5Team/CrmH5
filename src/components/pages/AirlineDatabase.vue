@@ -3,10 +3,11 @@
     <header class="mui-bar mui-bar-nav">
         <a @click="back" class="calcfont calc-fanhui left" id="back"></a>
         <h1 class="mui-title f18">{{title}}</h1>
-        <div class="inputTime"><input id="selectYear" type="text" placeholder="select year" readonly data-field="EndTime" data-fieldControlType="dateTimePicker" data-TimeType="date" data-format="yyyy"></div>
+        <div class="inputTime">
+            <input id="selectYear" type="text" placeholder="select year" readonly>
+        </div>
 
-            <a  @click="showMenu" class="calcfont calc-jiugongge right"></a>
-
+        <a  @click="showMenu" class="calcfont calc-jiugongge right"></a>
     </header>
     <div class="segmentedControlContentsBox">
         <div class="segmentedControlContents mui-active" id="ID">
@@ -187,7 +188,6 @@
                 </ul>
             </div>
         </div>
-
         <div class="segmentedControlContents" id="country">
             <div class="fenLeiList">
                 <div class="fenLeiListCell">
@@ -1240,9 +1240,8 @@
             </div>
         </div>
     </div>
-    <div class="itemZheZhao" >
-
-    </div>
+    <!-- 弹出层 -->
+    <div class="itemZheZhao" ></div>
     <div class="sucaihuo-container">
         <div class="cd-bouncy-nav-modal" @touchmove.stop.prevent>
             <nav>
@@ -1317,41 +1316,42 @@ export default {
         back: function () {
             this.$router.back(-1);
         },
-         initSelectYear:function(){
-        //构造可选年份数据
-        var yearArray = [];
-        for(var i = 2000; i <= 2099; i++){
-            yearArray.push(i);
-        }
-        var _curObj = $('#selectYear');
-        _curObj.val((new Date()).FormatNew('yyyy'));
-        if(tool.isNullOrEmptyObject(_curObj)) return;
-        var selectYear = yearArray[0]; //默认选择的年份
-        _curObj.picker({
-                title: lanTool.lanContent("1000002_请选择年")||"",
-                cols: [
-                  {
-                    textAlign: 'center',
-                    values:yearArray
+        initSelectYear:function(){
+            //构造可选年份数据
+            var yearArray = [];
+            for(var i = 2000; i <= 2099; i++){
+                yearArray.push(i);
+            }
+            var _curObj = $('#selectYear');
+            _curObj.val((new Date()).FormatNew('yyyy'));
+            if(tool.isNullOrEmptyObject(_curObj)) return;
+            var selectYear = yearArray[0]; //默认选择的年份
+            _curObj.picker({
+                  title: lanTool.lanContent("1000002_请选择年")||"",
+                  cols: [
+                    {
+                      textAlign: 'center',
+                      values:yearArray
+                    }
+                  ],
+                  toolbarCloseText: lanTool.lanContent('569_确认'),//确认
+                  toolbarCancleText: lanTool.lanContent('570_取消'),//取消
+                  onOpen: function (data) {
+                    var defaultValue = _curObj.val() || '';
+                    _curObj.picker("setValue", [defaultValue]);
+                    selectYear = defaultValue;
+                    $('.close-picker').off('click').on("click",function() {
+                          if(tool.isNullOrEmptyObject(selectYear) || selectYear == defaultValue) return;
+
+
+                    })
+                  },
+                  onChange: function (data, valueTemp, displayTemp) {
+                      selectYear = valueTemp[0];
                   }
-                ],
-                toolbarCloseText: lanTool.lanContent('569_确认'),//确认
-                toolbarCancleText: lanTool.lanContent('570_取消'),//取消
-                onOpen: function (data) {
-                  var defaultValue = _curObj.val() || '';
-                  _curObj.picker("setValue", [defaultValue]);
-                  selectYear = defaultValue;
-                  $('.close-picker').off('click').on("click",function() {
-                        if(tool.isNullOrEmptyObject(selectYear) || selectYear == defaultValue) return;
 
-                  })
-                },
-                onChange: function (data, valueTemp, displayTemp) {
-                    selectYear = valueTemp[0];
-                }
-
-          });
-      },
+            });
+        },
         showMenu: function () {
             var _self = this;
             console.log("menu");
@@ -1365,7 +1365,7 @@ export default {
         },
         getEvent: function () {
             var _self = this;
-            $('.cd-bouncy-nav-modal li').on('click', function (event) {
+            $('.cd-bouncy-nav-modal li').off('click').on('click', function (event) {
                 console.log($(this).attr("data-category"));
                 var category = $(this).attr("data-category");
                 console.log("id:" + category);
