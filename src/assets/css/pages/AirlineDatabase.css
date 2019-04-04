@@ -84,7 +84,7 @@ input{
 
 .segmentedControlContents.mui-active {
     display: block;
-    
+
 }
 
 .segmentedControlContents ul li {
@@ -98,7 +98,7 @@ input{
 .mui-table-view.mui-table-view-chevron.mui-collapse-content {
 	margin-top: 0.1rem;
     margin-bottom: 0.1rem;
-   
+
 }
 .mui-table-view.mui-table-view-chevron.mui-collapse-content ul .mui-active{
 	background-color: #FFFFFF;
@@ -108,7 +108,7 @@ input{
 }
 .mui-table-view.mui-table-view-chevron.mui-collapse-content>li.mui-active{
     background-color: #eee;
-    
+
 }
 .headTitle {
 	padding: 0.2rem 0.3rem;
@@ -147,7 +147,7 @@ li {
     position: relative;
     display: block;
     overflow: hidden;
-   
+
     padding: inherit;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -206,7 +206,8 @@ a.mui-navigate-right .listHead {
 	line-height: 0.36rem;
 	color: #000000;
 	margin: auto 0;
-	margin-left: 10px;
+  margin-left: 10px;
+  word-wrap: break-word;
 }
 
 .flexBoxTwo
@@ -448,7 +449,7 @@ li {
 }
 
 .no-touch .cd-bouncy-nav a:hover::before {
-	
+
 }
 
 .cd-bouncy-nav li:nth-of-type(2) a::before {
