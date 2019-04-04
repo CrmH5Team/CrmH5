@@ -1297,19 +1297,23 @@ export default {
         // 列表收缩展示
         showList: function () {
             var _self = this;
-            $("li.mui-table-view-cell.mui-collapse").off("click").on("click", function () {
+            $("a.mui-navigate-right").off("click").on("click", function () {
                 var target = $(this);
                 if (tool.isNullOrEmptyObject(target)) {
                     return;
                 }
-                if (!target.hasClass("mui-active")) {
-                    target.addClass("mui-active");
-                    target.find("span").removeClass("calc-xia").addClass("calc-shang");
-                    target.find("ul").slideDown();
+                var parentTarget = target.parent();
+                  if (tool.isNullOrEmptyObject(parentTarget)) {
+                    return;
+                }
+                if (!parentTarget.hasClass("mui-active")) {
+                    parentTarget.addClass("mui-active");
+                    parentTarget.find("span").removeClass("calc-xia").addClass("calc-shang");
+                    parentTarget.find("ul").slideDown();
                 } else {
-                    target.removeClass("mui-active");
-                    target.find("span").removeClass("calc-shang").addClass("calc-xia");
-                    target.find("ul").slideUp();
+                    parentTarget.removeClass("mui-active");
+                    parentTarget.find("span").removeClass("calc-shang").addClass("calc-xia");
+                    parentTarget.find("ul").slideUp();
                 }
             })
         },
