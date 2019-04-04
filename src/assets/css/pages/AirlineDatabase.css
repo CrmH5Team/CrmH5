@@ -442,7 +442,8 @@ li {
 	height: 1.6rem;
 	width: 1.6rem;
 	border-radius: 50%;
-	background-color: #77BFA3;
+	/* background-color: #77BFA3; */
+	background-color: #e9cfae;
 	background-image: url("../../../assets/images/id.svg");
 	background-repeat: no-repeat;
     background-position: 0.3rem 0.3rem;
