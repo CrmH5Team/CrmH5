@@ -117,7 +117,7 @@ input{
     background-color: rgb(245, 245, 245);
     border-bottom: solid 1px gainsboro;
 }
-.headTitle:first{
+.fenLeiListCell:first-child .headTitle{
     border-top: solid 1px gainsboro;
 }
 .parameterName {
@@ -185,7 +185,7 @@ a.mui-navigate-right .listHead {
 
 .flexBox{
 	display: flex;
-	min-height: 30px;
+	min-height: 0.6rem;
 }
 .flexBox .flexBoxKey
 {
@@ -196,7 +196,7 @@ a.mui-navigate-right .listHead {
 	text-align: right;
 	color: #595959;
 	margin: auto 0;
-	margin-left: 10px;
+	margin-left: 0.2rem;
 }
 .flexBox .flexBoxValue
 {
@@ -206,7 +206,7 @@ a.mui-navigate-right .listHead {
 	line-height: 0.36rem;
 	color: #000000;
 	margin: auto 0;
-  margin-left: 10px;
+  margin-left: 0.2rem;
   word-wrap: break-word;
 }
 
@@ -225,10 +225,10 @@ a.mui-navigate-right .listHead {
 }
 .flexBoxTwo .boxTwo{
 	text-align: right;
-	margin-right: 30px;
+	margin-right: 0.6rem;
 }
 .mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell {
-	padding-left: 15px;
+	padding-left: 0.3rem;
 }
 
 
