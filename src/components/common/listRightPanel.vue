@@ -75,7 +75,7 @@ export default {
             viewValue:'',  //右侧分类
             dataFilter:'',
             groupByVal:'',//分组数据
-            isParentFirstEnter:false,  //存储赋组件是否是新创建
+            // isParentFirstEnter:false,  //存储赋组件是否是新创建
             dataFilterWatch:null,
             modelDataFilterWatch:null
         }
@@ -95,7 +95,7 @@ export default {
     props:['panelData','searchData','showCategory'],
     created:function(){
         var _self = this;
-        _self.isParentFirstEnter = _self.$parent.isFirstEnter;
+        // _self.isParentFirstEnter = _self.$parent.isFirstEnter;
     },
     mounted:function(){
     },
@@ -124,18 +124,18 @@ export default {
             if(isResetRightPanel){
 
                 $.each(_self.panelData,function(key,value){
-                    // console.log(key);
-                    // console.log(value);
 
                     if(value.type == 'radio' && value.default && value.groupName == 'view'){
-                        _self.viewValue = value.default;
+                        if(!tool.isNullOrEmptyObject(value.default)){
+                            _self.viewValue = value.default;
+                        }
 
                     }else if(value.type == 'radio' && value.default && value.groupName == 'dataFilter'){
                         /*
                         * 当dataFilter变量的值等于默认值 || 是首次进入列表页面时，通过父组件刷新数据
                         */
+                       /*
                         if(_self.dataFilter == value.default || _self.isParentFirstEnter){
-
                             // returnObj.returnValue = true;
                             var defaultObj = $("[value='"+ $.trim(value.default) +"']");
                             returnObj.defaultQueryCondition =
@@ -149,15 +149,31 @@ export default {
                             };
                         }
                         _self.dataFilter = value.default;
+                        */
+                        if(!tool.isNullOrEmptyObject(value.default)){
+                            _self.dataFilter = value.default;
+                            var defaultObj = $("[value='"+ $.trim(value.default) +"']");
+                            returnObj.defaultQueryCondition =
+                            {
+                                Field : defaultObj.attr("data-queryfield") || "",
+                                Type : defaultObj.attr("data-querytype") || "string",
+                                Format : defaultObj.attr("data-queryformat") || "",
+                                Relation : defaultObj.attr("data-queryrelation") || "and",
+                                Value : defaultObj.attr("value") || "",
+                                Comparison : defaultObj.attr("data-querycomparison") || "string",
+                            };
+                        }
+
                     }else if(value.type == 'radio' && value.default && value.groupName == 'modelDataFilter'){
-                        _self.groupByVal = value.default;
-                        returnObj.defaultGroupBy = _self.groupByVal;
+                        if(!tool.isNullOrEmptyObject(value.default)){
+                            _self.groupByVal = value.default;
+                            returnObj.defaultGroupBy = _self.groupByVal;
+                        }
                     }
                 });
 
 
-                // if(_self.isParentFirstEnter){
-                    //watch监听dataFilter
+                //watch监听dataFilter
                 if(!tool.isNullOrEmptyObject(_self.dataFilterWatch)){
                     _self.dataFilterWatch();
                 }
@@ -180,8 +196,8 @@ export default {
                     _self.$parent.setGroupBy(newValue);
 
                 }, {deep: true});
-                // }
-                _self.isParentFirstEnter = false;
+
+                // _self.isParentFirstEnter = false;
             }
 
             return returnObj;
