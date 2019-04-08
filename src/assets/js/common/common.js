@@ -2202,7 +2202,7 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
-
+			var addUrl = _curObj.attr("data-addUrl") ||"";
 			var parameter = {
 				'field':dataField,
 				'code':code,
@@ -2210,7 +2210,8 @@
 				'title':title,
 				'value':value,//已经选择的值
 				'selectType':selectType,
-				"filter":filter
+				"filter":filter,
+				"addUrl":addUrl
 			};
 			self.$router.push({
 				path: '/selectlist',
@@ -2235,6 +2236,7 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			var addUrl = _curObj.attr("data-addUrl") ||"";
 
 			var parameter = {
 				'field':dataField,
@@ -2243,7 +2245,8 @@
 				'title':title,
 				'value':value,//已经选择的值
 				'selectType':selectType,
-				"filter":filter
+				"filter":filter,
+				"addUrl":addUrl
 			};
 			self.$router.push({
 				path: '/selectlist',

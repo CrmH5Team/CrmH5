@@ -65,6 +65,7 @@ export default {
             selectType:"",  //判断是否多选
             radioValue:"",
             filter:"",//过滤条件
+            addUrl:"",//新增跳转的地址
             checkboxValue:[]
         }
     },
@@ -76,6 +77,8 @@ export default {
         this.value = this.$route.query.value;
         this.selectType = this.$route.query.selectType;
         this.filter = this.$route.query.filter;
+        this.addUrl = this.$route.query.addUrl;
+        console.log(this.addUrl);
     },
     mounted: function () {
         lanTool.updateLanVersion();
