@@ -61,7 +61,7 @@
                       data-selecttype="radio"
                       code="DropDowList_ViewBaseCompanyBaseInf"
                       typevalue=""
-                      data-clickObj="TargetCompanyIDClickObj"
+                      data-clickObj="TargetCompanyIDClickObj" data-addUrl="/organizationsinfo"
                       ></div>
                   </div>
 
@@ -81,6 +81,7 @@
                                 data-fieldval=""
                                 data-selecttype="radio"
                                 Code="DropDowList_ViewBaseCompanyContactsByCompany"
+                                data-addUrl="/contactsinfo"
                               ></div>
                           </div>
                           <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>

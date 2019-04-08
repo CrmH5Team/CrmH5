@@ -82,7 +82,7 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" />
+                            <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" data-addUrl="/contactsinfo" />
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -236,6 +236,7 @@ export default {
                                 var value = _curObj.attr("data-fieldVal") || "";
                                 var selectType = _curObj.attr("data-selectType") || "";
                                 var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                                var addUrl = _curObj.attr("data-addUrl") ||"";
                                 var parameter = {
                                     'field': dataField,
                                     'code': code,
@@ -243,7 +244,8 @@ export default {
                                     'title': title,
                                     'value': value, //已经选择的值
                                     'selectType': selectType,
-                                    "filter": filter
+                                    "filter": filter,
+                                    "addUrl":addUrl
                                 };
                                 _self.$router.push({
                                     path: '/selectlist',
@@ -291,6 +293,7 @@ export default {
                                 var value = _curObj.attr("data-fieldVal") || "";
                                 var selectType = _curObj.attr("data-selectType") || "";
                                 var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                                var addUrl = _curObj.attr("data-addUrl") ||"";
                                 var parameter = {
                                     'field': dataField,
                                     'code': code,
@@ -298,7 +301,8 @@ export default {
                                     'title': title,
                                     'value': value, //已经选择的值
                                     'selectType': selectType,
-                                    "filter": filter
+                                    "filter": filter,
+                                    "addUrl":addUrl
                                 };
                                 _self.$router.push({
                                     path: '/selectlist',
@@ -332,6 +336,7 @@ export default {
                     var value = _curObj.attr("data-fieldVal") || "";
                     var selectType = _curObj.attr("data-selectType") || "";
                     var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                    var addUrl = _curObj.attr("data-addUrl") ||"";
                     var parameter = {
                         'field': dataField,
                         'code': code,
@@ -339,7 +344,8 @@ export default {
                         'title': title,
                         'value': value, //已经选择的值
                         'selectType': selectType,
-                        "filter": filter
+                        "filter": filter,
+                         "addUrl":addUrl
                     };
                     _self.$router.push({
                         path: '/selectlist',
@@ -378,6 +384,7 @@ export default {
                     var value = _curObj.attr("data-fieldVal") || "";
                     var selectType = _curObj.attr("data-selectType") || "";
                     var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                    var addUrl = _curObj.attr("data-addUrl") ||"";
                     var parameter = {
                         'field': dataField,
                         'code': code,
@@ -385,7 +392,8 @@ export default {
                         'title': title,
                         'value': value, //已经选择的值
                         'selectType': selectType,
-                        "filter": filter
+                        "filter": filter,
+                         "addUrl":addUrl
                     };
                     _self.$router.push({
                         path: '/selectlist',
