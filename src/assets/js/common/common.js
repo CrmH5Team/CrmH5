@@ -2203,6 +2203,10 @@
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
 			var addUrl = _curObj.attr("data-addUrl") ||"";
+			var linkIDField = _curObj.attr("data-linkIDField") ||"";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+			var linkNameField = _curObj.attr("data-linkNameField") ||"";
+			var fromType = _curObj.attr("data-fromType") ||"";
+
 			var parameter = {
 				'field':dataField,
 				'code':code,
@@ -2211,7 +2215,10 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				"filter":filter,
-				"addUrl":addUrl
+				"addUrl":addUrl,
+				"linkIDField":linkIDField,
+				"linkNameField":linkNameField,
+				"fromType":fromType
 			};
 			self.$router.push({
 				path: '/selectlist',

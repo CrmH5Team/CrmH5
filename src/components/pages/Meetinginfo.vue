@@ -72,7 +72,12 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="CompanyID" data-fieldcontroltype="selectList" data-lanid="790_公司" data-fieldval="" data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" typevalue="" data-clickObj="CompanyIDClickObj" data-addUrl="/organizationsinfo"></div>
+                    <div class="ListSpecialCellContent" 
+                    data-field="CompanyID" data-fieldcontroltype="selectList" 
+                    data-lanid="790_公司" data-fieldval="" 
+                    data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" 
+                    typevalue="" data-clickObj="CompanyIDClickObj" 
+                    data-addUrl="/organizationsinfo"></div>
                 </div>
 
                 <div class="ListCell visible">
@@ -82,7 +87,12 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" data-field="ContactsID" data-fieldControlType="linkSelectList" data-lanid="630_联系人" data-fieldVal="" Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" data-selectType="radio" class="ListCellContentRightText" data-addUrl="/contactsinfo" />
+                            <div type="text" 
+                            data-field="ContactsID" data-fieldControlType="linkSelectList" 
+                            data-lanid="630_联系人" data-fieldVal="" 
+                            Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" 
+                            data-selectType="radio" class="ListCellContentRightText" 
+                            data-addUrl="/contactsinfo" data-linkIDField="" data-linkNameField="" data-fromType="6"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
@@ -237,6 +247,10 @@ export default {
                                 var selectType = _curObj.attr("data-selectType") || "";
                                 var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
                                 var addUrl = _curObj.attr("data-addUrl") ||"";
+                                var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                                var linkNameField = $("[data-field='CompanyID']").text()||"";
+                                var fromType = _curObj.attr("data-fromType") ||"";
+
                                 var parameter = {
                                     'field': dataField,
                                     'code': code,
@@ -245,7 +259,10 @@ export default {
                                     'value': value, //已经选择的值
                                     'selectType': selectType,
                                     "filter": filter,
-                                    "addUrl":addUrl
+                                    "addUrl":addUrl,
+                                    "linkIDField":linkIDField,
+                                    "linkNameField":linkNameField,
+                                    "fromType":fromType
                                 };
                                 _self.$router.push({
                                     path: '/selectlist',
@@ -294,6 +311,10 @@ export default {
                                 var selectType = _curObj.attr("data-selectType") || "";
                                 var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
                                 var addUrl = _curObj.attr("data-addUrl") ||"";
+                                var linkIDField = $("[data-field='CompanyID']").attr("data-fieldval") || "";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                                var linkNameField = $("[data-field='CompanyID']").text()||"";
+                                var fromType = _curObj.attr("data-fromType") ||"";
+                                
                                 var parameter = {
                                     'field': dataField,
                                     'code': code,
@@ -302,7 +323,10 @@ export default {
                                     'value': value, //已经选择的值
                                     'selectType': selectType,
                                     "filter": filter,
-                                    "addUrl":addUrl
+                                    "addUrl":addUrl,
+                                    "linkIDField":linkIDField,
+                                    "linkNameField":linkNameField,
+                                    "fromType":fromType
                                 };
                                 _self.$router.push({
                                     path: '/selectlist',
@@ -337,6 +361,10 @@ export default {
                     var selectType = _curObj.attr("data-selectType") || "";
                     var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
                     var addUrl = _curObj.attr("data-addUrl") ||"";
+                    var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                    var linkNameField = $("[data-field='CompanyID']").text()||"";
+                    var fromType = _curObj.attr("data-fromType") ||"";
+
                     var parameter = {
                         'field': dataField,
                         'code': code,
@@ -345,7 +373,10 @@ export default {
                         'value': value, //已经选择的值
                         'selectType': selectType,
                         "filter": filter,
-                         "addUrl":addUrl
+                        "addUrl":addUrl,
+                        "linkIDField":linkIDField,
+                        "linkNameField":linkNameField,
+                        "fromType":fromType
                     };
                     _self.$router.push({
                         path: '/selectlist',
@@ -385,6 +416,9 @@ export default {
                     var selectType = _curObj.attr("data-selectType") || "";
                     var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
                     var addUrl = _curObj.attr("data-addUrl") ||"";
+                    var linkIDField = $("[data-field='CompanyID']").attr("data-fieldval") || "";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                    var linkNameField = $("[data-field='CompanyID']").text()||"";
+                    var fromType = _curObj.attr("data-fromType") ||"";
                     var parameter = {
                         'field': dataField,
                         'code': code,
@@ -393,7 +427,10 @@ export default {
                         'value': value, //已经选择的值
                         'selectType': selectType,
                         "filter": filter,
-                         "addUrl":addUrl
+                        "addUrl":addUrl,
+                        "linkIDField":linkIDField,
+                        "linkNameField":linkNameField,
+                        "fromType":fromType
                     };
                     _self.$router.push({
                         path: '/selectlist',

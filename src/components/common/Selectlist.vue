@@ -69,6 +69,9 @@ export default {
             addUrl: "", //新增跳转的地址
             checkboxValue: [],
             isAdd: false,
+            linkIDField:"",
+            linkNameField:"",
+            fromType:""
         }
     },
     created: function () {
@@ -80,10 +83,14 @@ export default {
         this.selectType = this.$route.query.selectType;
         this.filter = this.$route.query.filter;
         this.addUrl = this.$route.query.addUrl;
+        this.linkIDField = this.$route.query.linkIDField;
+        this.linkNameField = this.$route.query.linkNameField;
+        this.fromType = this.$route.query.fromType;
+        
         if (!tool.isNullOrEmptyObject(this.addUrl)) {
             this.isAdd = true;
         }
-        console.log("this.addUrl:"+this.addUrl);
+        //console.log("this.addUrl:"+this.addUrl);
     },
     mounted: function () {
         lanTool.updateLanVersion();
@@ -181,9 +188,24 @@ export default {
         },
         //新增
         addHandler: function () {
-            console.log("this.addUrl:"+this.addUrl);
-            this.$router.push({
+            var _self = this;
+            if(tool.isNullOrEmptyObject(_self.addUrl)){
+                return;
+            }
+            var addUrlTemp = _self.addUrl + '/-1';
+            var paramTemp = {};
+            if(!tool.isNullOrEmptyObject(_self.fromType)){
+                //联系人
+                if(_self.fromType == "6" && !tool.isNullOrEmptyObject(_self.linkIDField)){
+                    paramTemp["companyID"] = _self.linkIDField;
+                    paramTemp["companyName"] = _self.linkNameField;
+                }
+            }
+
+            //跳转到新增页面
+            _self.$router.push({
                 path:this.addUrl + '/-1',
+                query: paramTemp
             });
         },
         //保存
