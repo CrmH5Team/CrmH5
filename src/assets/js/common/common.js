@@ -2244,6 +2244,9 @@
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
 			var addUrl = _curObj.attr("data-addUrl") ||"";
+			var linkIDField = _curObj.attr("data-linkIDField") ||"";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+			var linkNameField = _curObj.attr("data-linkNameField") ||"";
+			var fromType = _curObj.attr("data-fromType") ||"";
 
 			var parameter = {
 				'field':dataField,
@@ -2253,7 +2256,10 @@
 				'value':value,//已经选择的值
 				'selectType':selectType,
 				"filter":filter,
-				"addUrl":addUrl
+				"addUrl":addUrl,
+				"linkIDField":linkIDField,
+				"linkNameField":linkNameField,
+				"fromType":fromType
 			};
 			self.$router.push({
 				path: '/selectlist',
@@ -2344,7 +2350,7 @@
 			if(typeof(_curObj.attr("data-clickObj")) != "undefined"){
 				return;
 			}
-			console.log(_curObj);
+			// console.log(_curObj);
 			var dataField = _curObj.attr("data-field") ||"";
 			var code = _curObj.attr("Code") ||"";
 			var filter = _curObj.attr("Filter") ||"";
@@ -2352,6 +2358,8 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			var isShowAdd = _curObj.attr("data-isShowAdd") ||"false";
+			var fromType = _curObj.attr("data-fromType") ||"";
 
 			var parameter = {
 				'field':dataField,
@@ -2360,7 +2368,9 @@
 				'title':title,
 				'value':value,//已经选择的值
 				'selectType':selectType,
-				"filter":filter
+				"filter":filter,
+				"isShowAdd":isShowAdd,
+				"fromType":fromType
 			};
 			self.$router.push({
 				path: '/linkedpage',
@@ -2386,6 +2396,8 @@
 			var value = _curObj.attr("data-fieldVal") ||"";
 			var selectType = _curObj.attr("data-selectType") ||"";
 			var title = lanTool.lanContent(_curObj.attr("data-lanid") ||"");
+			var isShowAdd = _curObj.attr("data-isShowAdd") ||"false";
+			var fromType = _curObj.attr("data-fromType") ||"";
 
 			var parameter = {
 				'field':dataField,
@@ -2394,7 +2406,9 @@
 				'title':title,
 				'value':value,//已经选择的值
 				'selectType':selectType,
-				"filter":filter
+				"filter":filter,
+				"isShowAdd":isShowAdd,
+				"fromType":fromType
 			};
 			// console.log(parameter);
 			self.$router.push({

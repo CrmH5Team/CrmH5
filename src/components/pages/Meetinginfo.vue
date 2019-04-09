@@ -104,7 +104,12 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" data-field="OppIDTemp" data-fieldcontroltype="linkedPage" data-lanid="832_关联于商业" data-fieldval="" data-selecttype="radio" code="DropDowList_Opportunity" typevalue="" data-clickObj="OppIDTempClickObj"></div>
+                    <div class="ListSpecialCellContent" 
+                    data-field="OppIDTemp" data-fieldcontroltype="linkedPage" 
+                    data-lanid="832_关联于商业" data-fieldval="" 
+                    data-selecttype="radio" code="DropDowList_Opportunity" 
+                    typevalue="" data-clickObj="OppIDTempClickObj" 
+                    data-isShowAdd="true" data-fromType="9"></div>
                 </div>
 
                 <div class="ListCell">

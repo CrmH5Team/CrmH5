@@ -5,6 +5,7 @@
       <h1 class="header-title f18">{{title||''}}</h1>
       <a @click="saveHandler" class="calcfont calc-gou right" id="save"></a>
       <a @click="clearHandler" class="calc-shanchu  calcfont right" id="clear"></a>
+      <a v-show="isShowAdd=='true'" @click="addHandler" class="calc-jiahao  calcfont right" id="add"></a>
     </header>
 
     <div class="nav sticky">
@@ -89,14 +90,15 @@ export default {
       dealPipelineValue: '',
       opportunitiesValue: '',
       showPage: 0,
-
       field:"",
       code:"",
       typeValue:"",
       title: "",
       value:"",
       selectType:"",
-      filter:""
+      filter:"",
+      isShowAdd:"",
+      fromType:""
     };
   },
   watch: {
@@ -115,6 +117,8 @@ export default {
       this.value = this.$route.query.value;
       this.selectType = this.$route.query.selectType;
       this.filter = this.$route.query.filter;
+      this.isShowAdd = this.$route.query.isShowAdd;
+      this.fromType = tool.isNullOrEmptyObject(this.$route.query.fromType)?"false":this.$route.query.fromType;
   },
   mounted: function() {
     lanTool.updateLanVersion();
@@ -147,6 +151,8 @@ export default {
       _self.changePos();
       _self.showPage = num;
 
+      // console.log(_self.showPage);
+
       this.getData(_self.showPage);
     },
     //table底部横条过渡效果
@@ -164,6 +170,36 @@ export default {
     //返回上一页
     backHandler: function() {
       this.$router.back(-1);
+    },
+    //新增
+    addHandler: function () {
+        var _self = this;
+        if(tool.isNullOrEmptyObject(_self.fromType)){
+            return;
+        }
+        var curPageNum = _self.showPage;
+        if(tool.isNullOrEmptyObject(curPageNum)){
+            return;
+        }
+        //跳转到新增页面的url地址
+        var addUrlTemp = "";
+        //参数对象
+        var paramTemp = {
+          "showPage":curPageNum
+        };
+        if(_self.fromType == "9"){
+          addUrlTemp = "/opportunitiesinfo/-1";
+        }
+
+        if(tool.isNullOrEmptyObject(addUrlTemp)){
+            return;
+        }
+
+        //跳转到新增页面
+        _self.$router.push({
+            path:addUrlTemp,
+            query: paramTemp
+        });
     },
     //保存
     saveHandler: function(mycallback) {
@@ -218,7 +254,7 @@ export default {
       eventBus.$emit('updataSelectList', returnObj);
       _self.$router.back(-1);
     },
-    //清楚
+    //清除
     clearHandler:function(){
         var _self = this;
         if(_self.showPage == 0){
@@ -332,7 +368,7 @@ export default {
         if(tool.isNullOrEmptyObject(_self.value)){
             return;
         }
-        console.log(_self.value);
+        // console.log(_self.value);
         var valArrTemp = _self.value.split(",");
         _self.$nextTick(function(){
             var toTopH = [];
