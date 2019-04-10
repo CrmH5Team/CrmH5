@@ -447,10 +447,13 @@ export default {
             }
 
             var startDateStr = tool.SetDate(startDate, 0, month, day, isFormat, dateTimeFormatStr);
+            startDateStr = startDateStr + " 00:00:00";
+            endDateStr = endDateStr + " 23:59:59";
             var dateRangeStr = startDateStr + "," + endDateStr;
+            // console.log(dateRangeStr);
             _self.dateRangeJObject = {
-                "Type": "Date",
-                "Format": "yyyy-MM-dd",
+                "Type": "DateTime",
+                "Format": "yyyy-MM-dd HH:mm:ss",
                 "Field": "AddTime",
                 "Relation": "and",
                 "Comparison": "between",
@@ -743,10 +746,14 @@ export default {
                 return;
             }
 
+            startdate = startdate + " 00:00:00";
+            enddate = enddate + " 23:59:59";
             var dateRangeStr = startdate + "," + enddate;
+            
+            // console.log(dateRangeStr);
             _self.dateRangeJObject = {
-                "Type": "Date",
-                "Format": "yyyy-MM-dd",
+                "Type": "DateTime",
+                "Format": "yyyy-MM-dd HH:mm:ss",
                 "Field": "AddTime",
                 "Relation": "and",
                 "Comparison": "between",
