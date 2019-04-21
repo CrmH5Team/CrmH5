@@ -101,7 +101,7 @@
 
                         </div>
 
-                        <Uploadfile ref="uploadfile" v-show="!isAddNew" :fileListData="fileListData" :fromID="fromIDNew" :fromType="fromTypeNew" :companyID="companyID" ></Uploadfile>
+                        <Uploadfile ref="uploadfile" v-show="!isAddNew" :fileListData="fileListData" :fromID="fromIDNew" :fromType="fromTypeNew" :scheduleID="scheduleIDNew"></Uploadfile>
 
                         <Infofooter v-show="!isAddNew"> </Infofooter>
                     </div>
@@ -135,7 +135,7 @@ export default {
             fileListData: [], //文件列表
             fromIDNew: "", //当前记录ID
             fromTypeNew: "", //来源类型
-            companyID:""//公司ID
+            scheduleIDNew:""//会议ID
         }
     },
     beforeRouteEnter: function (to, from, next) {
@@ -169,6 +169,7 @@ export default {
         var fromType = "MeetingNoteinfo";
         _self.oppID = _self.$route.query.OppID;
         _self.scheduleID = _self.$route.query.ScheduleID;
+        _self.scheduleIDNew = _self.$route.query.ScheduleID;
         //_self.fromIDNew = _self.$route.params.id;
         _self.fromIDNew = _self.$route.query.OppID;
         _self.onlyView = (_self.$route.query.onlyView == "true" || _self.$route.query.onlyView == true) ? true : false;
@@ -225,8 +226,8 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function (data) {
-                        // console.log(data);
-                        _self.companyID = data["CompanyID"]||"";
+                        console.log(data);
+                        _self.scheduleIDNew = data["ScheduleID"]||"";
                         // console.log(_self.companyID);
 
                         //渲染文件列表
@@ -445,6 +446,9 @@ export default {
                     }
 
                     _curObj.text(data["MeetingTitle"] || "").attr("data-fieldval", data["AutoID"] || "");
+
+                    _self.scheduleIDNew = data["AutoID"]||"";
+
                     //1-2>MeetingTitle
                     _curObj = $("[data-field='MeetingTitle']");
                     _curObj.val(data["MeetingTitle"] || "");

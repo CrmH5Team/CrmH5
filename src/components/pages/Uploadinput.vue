@@ -76,7 +76,7 @@ export default {
             fromID:"",
             fromType:"",
             formTemp:null,
-            companyID:"",
+            scheduleID:"",
         }
     },
     beforeRouteEnter:function(to, from, next){
@@ -96,7 +96,7 @@ export default {
         var _self = this;
         _self.fromID = _self.$route.query.fromID;
         _self.fromType = _self.$route.query.fromType;
-        _self.companyID = _self.$route.query.companyID||"";
+        _self.scheduleID = _self.$route.query.scheduleID||"";
 
         //清空页面数据
         tool.ClearControlData(function(){
@@ -167,7 +167,7 @@ export default {
                 UserName: tool.UserName(),
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
-                CompanyID:_self.companyID
+                ScheduleID:_self.scheduleID
             };
             jsonDatasTemp["FromTypeID"] = _self.fromType;
             jsonDatasTemp["FromID"] = _self.fromID;

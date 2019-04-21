@@ -34,7 +34,7 @@ export default {
         return {
         }
     },
-    props: ['fileListData', 'fromID','fromType',"companyID"],
+    props: ['fileListData', 'fromID','fromType',"scheduleID"],
     mounted: function () {
         lanTool.updateLanVersion();
     },
@@ -47,7 +47,7 @@ export default {
             var parameter = {
                 fromID: _self.fromID,
                 fromType: _self.fromType,
-                companyID:_self.companyID
+                scheduleID:_self.scheduleID
             };
             _self.$router.push({
                 path: '/uploadinput',
