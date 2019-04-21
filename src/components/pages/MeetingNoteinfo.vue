@@ -488,6 +488,10 @@ export default {
                     //1-8>ContactsID_Name
                     _curObj = $("[data-field='ContactsID']");
                     _curObj.text(data["ContactsID_Name"] || "").attr("data-fieldval", data["ContactsID"] || "");
+
+
+                    //调用子组件的方法重新渲染文档列表
+                    _self.$refs.uploadfile.initDocList();
                 },
                 error: function (jqXHR, type, error) {
                     console.log(error);

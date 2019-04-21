@@ -138,7 +138,8 @@ export default {
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
                 FromTypeID:_self.fromType,
-                FromID:_self.fromID
+                FromID:_self.fromID,
+                ScheduleID:_self.scheduleID
             };
             $.ajax({
                 async: true,
