@@ -117,14 +117,14 @@ export default {
                 return;
             }
 
-            var innerTemplate = `<div class="group-item" data-url="/contactsinfo/{AutoID}">
+            var innerTemplate = `<div class="group-item f14" data-url="/contactsinfo/{AutoID}">
                             <div class="item-user-icon calcfont calc-fuzeren1" data-autoid={AutoID}></div>
                             <div class="item-block contacts-item-block">
                                 <div class="item-div item-first-div">{EnglishName}</div>
                                 <div class="item-div">{Title}</div>
-                                <div class="item-div"><span>{CompanyID}</span><span class="right">{CountryName}</span></div>
+                                <div class="item-div"><span class="left-text max60">{CompanyID}</span><span class="right-text max35">{CountryName}</span></div>
                                 <div class="item-div">
-                                  <span>{Email}</span><span class="right">{TelPhone}</span>
+                                  <span class="left-text">{Email}</span><span class="right-text">{TelPhone}</span>
                                 </div>
                                 <div class="item-div">{BusinessType},{DepartmentName}</div>
                             </div>
