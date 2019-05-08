@@ -1,7 +1,7 @@
 <template>
 <div class="search-rows f14">
 
-      <div v-for="item in searchData" class="item-row">
+      <div v-for="item in searchData" :key="item.queryfield" class="item-row">
           <!-- 手动输入 -->
           <div v-if="item.fieldControlType =='textareaInput'">
               <input class="f14 search-input" type="text"
