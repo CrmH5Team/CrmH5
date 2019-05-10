@@ -52,17 +52,6 @@
                           <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                           <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
-                      <!-- <div
-                      class="ListSpecialCellContent"
-                      data-field="TargetCompanyID"
-                      data-fieldcontroltype="selectList"
-                      data-lanid="790_公司"
-                      data-fieldval=""
-                      data-selecttype="radio"
-                      code="DropDowList_ViewBaseCompanyBaseInf"
-                      typevalue=""
-                      data-clickObj="TargetCompanyIDClickObj" data-addUrl="/organizationsinfo"
-                      ></div> -->
                       <div
                           class="ListSpecialCellContent"
                           data-field="TargetCompanyID"
@@ -84,16 +73,6 @@
                               <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                           </div>
                           <div class="ListCellContentRight rightContent">
-                              <!-- <div
-                                class="ListCellContentRightText"
-                                data-field="ContactID"
-                                data-fieldcontroltype="selectList"
-                                data-lanid="791_联系人"
-                                data-fieldval=""
-                                data-selecttype="radio"
-                                Code="DropDowList_ViewBaseCompanyContactsByCompany"
-                                data-addUrl="/contactsinfo"
-                              ></div> -->
                               <div
                                 data-field="ContactID"
                                 data-fieldControlType="linkSelectList"
@@ -514,6 +493,10 @@ export default {
                         //_self.iniMeetingNoteList(data);
                         _self.iniMeetingNoteList();
 
+                        //联动字段
+                        _self.bindEvent();
+                        _self.initContactsField();
+
                         //场景：当在selectList页面按刷新按钮再回到详情页
                         if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                               return;
@@ -542,6 +525,10 @@ export default {
             _self.isFirstEnter = false;
             _self.$route.meta.fromSave = false;
             _self.$route.meta.isBack = false;
+
+            //联动字段
+            _self.bindEvent();
+            _self.initContactsField();
 
             if(tool.isNullOrEmptyObject(eventBus.selectListData)){
                   return;
@@ -947,6 +934,94 @@ export default {
                     }
                 }
             });
+        },
+
+        //根据公司字段给联系人字段绑定事件（联动）
+        bindEvent:function(){
+              var _self = this;
+              //添加ContactsID的事件
+              var filterTemp = $("[data-field='TargetCompanyID']").attr("data-fieldval") || "";
+              if (!tool.isNullOrEmptyObject(filterTemp)) {
+                  $("[data-field='ContactID']").attr("Filter", filterTemp);
+                  $("[data-field='ContactID']").off('click').on('click', function () {
+                      var _curObj = $(this);
+                      var dataField = _curObj.attr("data-field") || "";
+                      var code = _curObj.attr("Code") || "";
+                      var filter = _curObj.attr("Filter") || "";
+                      var typeValue = _curObj.attr("TypeValue") || "";
+                      var value = _curObj.attr("data-fieldVal") || "";
+                      var selectType = _curObj.attr("data-selectType") || "";
+                      var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                      var addUrl = _curObj.attr("data-addUrl") ||"";
+                      var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                      var linkNameField = $("[data-field='TargetCompanyID']").text()||"";
+                      var fromType = _curObj.attr("data-fromType") ||"";
+
+                      var parameter = {
+                          'field': dataField,
+                          'code': code,
+                          "typeValue": typeValue,
+                          'title': title,
+                          'value': value, //已经选择的值
+                          'selectType': selectType,
+                          "filter": filter,
+                          "addUrl":addUrl,
+                          "linkIDField":linkIDField,
+                          "linkNameField":linkNameField,
+                          "fromType":fromType
+                      };
+                      _self.$router.push({
+                          path: '/selectlist',
+                          query: parameter
+                      });
+                  });
+              }
+        },
+
+        //根据公司值，初始化联系人
+        initContactsField:function(){
+              var _self = this;
+              if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+                  return;
+              }
+              if (eventBus.selectListData.field == "TargetCompanyID") {
+                  //清空数据,移除点击事件
+                  $("[data-field='ContactID']").text("").attr("data-fieldVal", "").off('click');
+                  //添加ContactsID的事件
+                  $("[data-field='ContactID']").attr("Filter", eventBus.selectListData.value.id);
+                  $("[data-field='ContactID']").off('click').on('click', function () {
+                      var _curObj = $(this);
+                      var dataField = _curObj.attr("data-field") || "";
+                      var code = _curObj.attr("Code") || "";
+                      var filter = _curObj.attr("Filter") || "";
+                      var typeValue = _curObj.attr("TypeValue") || "";
+                      var value = _curObj.attr("data-fieldVal") || "";
+                      var selectType = _curObj.attr("data-selectType") || "";
+                      var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                      var addUrl = _curObj.attr("data-addUrl") ||"";
+                      var linkIDField = $("[data-field='TargetCompanyID']").attr("data-fieldval") || "";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                      var linkNameField = $("[data-field='TargetCompanyID']").text()||"";
+                      var fromType = _curObj.attr("data-fromType") ||"";
+                      var parameter = {
+                          'field': dataField,
+                          'code': code,
+                          "typeValue": typeValue,
+                          'title': title,
+                          'value': value, //已经选择的值
+                          'selectType': selectType,
+                          "filter": filter,
+                          "addUrl":addUrl,
+                          "linkIDField":linkIDField,
+                          "linkNameField":linkNameField,
+                          "fromType":fromType
+                      };
+                      _self.$router.push({
+                          path: '/selectlist',
+                          query: parameter
+                      });
+                  });
+
+              }
         }
     }
 }
