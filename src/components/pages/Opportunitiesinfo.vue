@@ -52,7 +52,7 @@
                           <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                           <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
-                      <div
+                      <!-- <div
                       class="ListSpecialCellContent"
                       data-field="TargetCompanyID"
                       data-fieldcontroltype="selectList"
@@ -62,7 +62,18 @@
                       code="DropDowList_ViewBaseCompanyBaseInf"
                       typevalue=""
                       data-clickObj="TargetCompanyIDClickObj" data-addUrl="/organizationsinfo"
-                      ></div>
+                      ></div> -->
+                      <div
+                          class="ListSpecialCellContent"
+                          data-field="TargetCompanyID"
+                          data-fieldcontroltype="selectList"
+                          data-lanid="790_公司"
+                          data-fieldval=""
+                          data-selecttype="radio"
+                          code="DropDowList_ViewBaseCompanyBaseInfHasContact"
+                          typevalue=""
+                          data-clickObj="TargetCompanyIDClickObj"
+                          data-addUrl="/organizationsinfo"></div>
                   </div>
 
                   <!-- 联系人 -->
@@ -73,7 +84,7 @@
                               <div class="ListCellContentLeftText lanText" data-lanid="791_联系人"></div>
                           </div>
                           <div class="ListCellContentRight rightContent">
-                              <div
+                              <!-- <div
                                 class="ListCellContentRightText"
                                 data-field="ContactID"
                                 data-fieldcontroltype="selectList"
@@ -82,7 +93,21 @@
                                 data-selecttype="radio"
                                 Code="DropDowList_ViewBaseCompanyContactsByCompany"
                                 data-addUrl="/contactsinfo"
-                              ></div>
+                              ></div> -->
+                              <div
+                                data-field="ContactID"
+                                data-fieldControlType="linkSelectList"
+                                data-lanid="630_联系人"
+                                data-fieldVal=""
+                                Code="DropDowList_ViewBaseCompanyContactsByCompany"
+                                Filter=""
+                                data-selectType="radio"
+                                class="ListCellContentRightText"
+                                data-addUrl="/contactsinfo"
+                                data-linkIDField=""
+                                data-linkNameField=""
+                                data-fromType="6"></div>
+
                           </div>
                           <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
                       </div>
