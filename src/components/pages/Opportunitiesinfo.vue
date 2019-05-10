@@ -419,6 +419,9 @@ export default {
                 //隐藏order字段
                 $(".MatterOtherObj").hide();
 
+                //则联动清空联系人
+                $("[data-field='ContactID']").text("").attr("data-fieldVal", "").off('click');
+
                 //渲染控件
                 tool.InitiateInfoPageControl(_self, _self.id, function(){
 
