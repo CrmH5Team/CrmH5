@@ -989,7 +989,10 @@ export default {
               }
               if (eventBus.selectListData.field == "TargetCompanyID") {
                   //清空数据,移除点击事件
-                  $("[data-field='ContactID']").text("").attr("data-fieldVal", "").off('click');
+                  $("[data-field='ContactID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
+                  if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
+                      return false;
+                  }
                   //添加ContactsID的事件
                   $("[data-field='ContactID']").attr("Filter", eventBus.selectListData.value.id);
                   $("[data-field='ContactID']").off('click').on('click', function () {

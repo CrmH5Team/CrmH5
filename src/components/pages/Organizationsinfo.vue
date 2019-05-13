@@ -311,7 +311,10 @@ export default {
                         //若是国家字段，则根据国家值，初始化城市
                         if (eventBus.selectListData.field == "CountryID") {
                             //联动清空城市
-                            $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
+                            $("[data-field='CityID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
+                            if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
+                                return false;
+                            }
                             //添加CityID的事件
                             $("[data-field='CityID']").attr("Filter", eventBus.selectListData.value.id);
                             $("[data-field='CityID']").off('click').on('click', function () {
@@ -399,7 +402,10 @@ export default {
             //若是国家字段，则根据国家值，初始化城市
             if (eventBus.selectListData.field == "CountryID") {
                 //清空数据,移除点击事件
-                $("[data-field='CityID']").text("").attr("data-fieldVal", "").off('click');
+                $("[data-field='CityID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
+                if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
+                    return false;
+                }
                 //添加CityID的事件
                 $("[data-field='CityID']").attr("Filter", eventBus.selectListData.value.id);
                 $("[data-field='CityID']").off('click').on('click', function () {
