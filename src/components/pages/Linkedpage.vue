@@ -368,7 +368,6 @@ export default {
         if(tool.isNullOrEmptyObject(_self.value)){
             return;
         }
-        // console.log(_self.value);
         var valArrTemp = _self.value.split(",");
         _self.$nextTick(function(){
             var toTopH = [];
@@ -386,7 +385,7 @@ export default {
                     if(tool.isNullOrEmptyObject(curObj) || curObj.length <= 0){
                           return;
                     }
-                    var scrollTo = curObj.offset().top;
+                    var scrollTo = curObj.offset().top - $('.nav').innerHeight();
                     toTopH.push(scrollTo);
                 }else{
                     // //checkbox
