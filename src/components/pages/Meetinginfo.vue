@@ -72,11 +72,11 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="790_公司"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" 
-                    data-field="CompanyID" data-fieldcontroltype="selectList" 
-                    data-lanid="790_公司" data-fieldval="" 
-                    data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact" 
-                    typevalue="" data-clickObj="CompanyIDClickObj" 
+                    <div class="ListSpecialCellContent"
+                    data-field="CompanyID" data-fieldcontroltype="selectList"
+                    data-lanid="790_公司" data-fieldval=""
+                    data-selecttype="radio" code="DropDowList_ViewBaseCompanyBaseInfHasContact"
+                    typevalue="" data-clickObj="CompanyIDClickObj"
                     data-addUrl="/organizationsinfo"></div>
                 </div>
 
@@ -87,11 +87,11 @@
                             <div class="ListCellContentLeftText lanText" data-lanid="630_联系人"></div>
                         </div>
                         <div class="ListCellContentRight rightContent">
-                            <div type="text" 
-                            data-field="ContactsID" data-fieldControlType="linkSelectList" 
-                            data-lanid="630_联系人" data-fieldVal="" 
-                            Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter="" 
-                            data-selectType="radio" class="ListCellContentRightText" 
+                            <div type="text"
+                            data-field="ContactsID" data-fieldControlType="linkSelectList"
+                            data-lanid="630_联系人" data-fieldVal=""
+                            Code="DropDowList_ViewBaseCompanyContactsByCompany" Filter=""
+                            data-selectType="radio" class="ListCellContentRightText"
                             data-addUrl="/contactsinfo" data-linkIDField="" data-linkNameField="" data-fromType="6"/>
                         </div>
                         <div class="ListCellRightIcon"><span class="calcfont calc-you"></span></div>
@@ -104,11 +104,11 @@
                         <div class="ListSpecialCellFieldContent lanText" data-lanid="832_关联于商业"></div>
                         <div class="ListSpecialCellRightIcon"><span class="calcfont calc-you"></span></div>
                     </div>
-                    <div class="ListSpecialCellContent" 
-                    data-field="OppIDTemp" data-fieldcontroltype="linkedPage" 
-                    data-lanid="832_关联于商业" data-fieldval="" 
-                    data-selecttype="radio" code="DropDowList_Opportunity" 
-                    typevalue="" data-clickObj="OppIDTempClickObj" 
+                    <div class="ListSpecialCellContent"
+                    data-field="OppIDTemp" data-fieldcontroltype="linkedPage"
+                    data-lanid="832_关联于商业" data-fieldval=""
+                    data-selecttype="radio" code="DropDowList_Opportunity"
+                    typevalue="" data-clickObj="OppIDTempClickObj"
                     data-isShowAdd="true" data-fromType="9"></div>
                 </div>
 
@@ -302,7 +302,10 @@ export default {
                         //若是公司字段，则根据公司值，初始化联系人
                         if (eventBus.selectListData.field == "CompanyID") {
                             //联动清空联系人
-                            $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").off('click');
+                            $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
+                            if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
+                                return false;
+                            }
                             //添加ContactsID的事件
                             $("[data-field='ContactsID']").attr("Filter", eventBus.selectListData.value.id);
                             $("[data-field='ContactsID']").off('click').on('click', function () {
@@ -319,7 +322,7 @@ export default {
                                 var linkIDField = $("[data-field='CompanyID']").attr("data-fieldval") || "";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
                                 var linkNameField = $("[data-field='CompanyID']").text()||"";
                                 var fromType = _curObj.attr("data-fromType") ||"";
-                                
+
                                 var parameter = {
                                     'field': dataField,
                                     'code': code,
@@ -395,7 +398,7 @@ export default {
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
-            
+
             //更新selectlist控件的结果
             // console.log(eventBus.selectListData.field);
             var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
@@ -407,7 +410,10 @@ export default {
             //若是公司字段，则根据公司值，初始化联系人
             if (eventBus.selectListData.field == "CompanyID") {
                 //清空数据,移除点击事件
-                $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").off('click');
+                $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
+                if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
+                    return false;
+                }
                 //添加ContactsID的事件
                 $("[data-field='ContactsID']").attr("Filter", eventBus.selectListData.value.id);
                 $("[data-field='ContactsID']").off('click').on('click', function () {
