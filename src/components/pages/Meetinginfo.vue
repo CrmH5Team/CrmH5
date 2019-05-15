@@ -350,14 +350,15 @@ export default {
         viewMeetingNote: function (e) {
             var _self = this;
             var urlTemp = tool.AjaxBaseUrl();
-            var controlName = '';
+            var controlName = tool.Api_MeetingHandle_HasToSave;
             //传入参数
             var jsonDatasTemp = {
                 CurrentLanguageVersion: lanTool.currentLanguageVersion,
                 UserName: tool.UserName(),
                 _ControlName: controlName,
                 _RegisterCode: tool.RegisterCode(),
-                AutoID: _self.id
+                AutoID: _self.id,
+                OppID:_self.oppID
             };
             var loadingIndexClassName = tool.showLoading();
             $.ajax({
@@ -373,7 +374,14 @@ export default {
                         console.log(tool.getMessage(data));
                         return true;
                     }
-                    // data = data._OnlyOneData || [];
+                    var hasToSave = data._OnlyOneData || "true";
+                    hasToSave = hasToSave.toLowerCase();
+                    if(hasToSave == "true"){
+                        //需要提示用户保存当前数据
+                        tool.alert(lanTool.lanContent('1000164_请先保存当前会议！'));
+                        return;
+                    }
+
 
                     //请求成功后执行的操作
                     var target = $(e.target);
@@ -395,6 +403,16 @@ export default {
                         query: parameter
                     });
 
+                },
+                error: function (jqXHR, type, error) {
+                    console.log(error);
+                    tool.hideLoading(loadingIndexClassName);
+                    return true;
+                },
+                complete: function () {
+                    //tool.hideLoading();
+                    //隐藏虚拟键盘
+                    document.activeElement.blur();
                 }
             })
 

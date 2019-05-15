@@ -330,6 +330,10 @@
 	 * 查询未上传会议记录的会议列表
 	 */
 	tool.Api_MeetingHandle_QueryNoUploadRecord = "Api_MeetingHandle_QueryNoUploadRecord";
+	/*
+	 * 查询未上传会议记录的会议列表
+	 */
+	tool.Api_MeetingHandle_HasToSave = "Api_MeetingHandle_HasToSave";
 
 	/*
 	 * 销售机会分组接口
