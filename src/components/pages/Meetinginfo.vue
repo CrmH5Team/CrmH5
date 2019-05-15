@@ -375,7 +375,7 @@ export default {
                         return true;
                     }
                     var hasToSave = (data._OnlyOneData.toString().toLowerCase()) || "true";
-                    console.log(hasToSave);
+                    // console.log(hasToSave);
                     if(hasToSave == "true"){
                         //需要提示用户保存当前数据
                         tool.alert(lanTool.lanContent('1000164_请先保存当前会议！'));
