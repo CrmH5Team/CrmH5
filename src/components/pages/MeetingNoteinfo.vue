@@ -293,15 +293,17 @@ export default {
             tool.SaveOrUpdateData(fromType, id, _self, function (dataTemp) {
                 //console.log(dataTemp);
                 tool.topTipSuccess(tool.getMessage(dataTemp),function(){
+
+                    _self.$router.back(-1);
+                    return;
+                    /*
                     var autoIDTemp = dataTemp._OnlyOneData || "";
                     if(tool.isNullOrEmptyObject(autoIDTemp)){
                         _self.$router.back(-1);
                         return;
                     }
                     var path = "/MeetingNoteinfo/" + autoIDTemp;
-                    // console.log(path);
                     var query = _self.$route.query;
-
                     _self.$router.replace({
                         path: path,
                         query: query
@@ -310,6 +312,7 @@ export default {
                     setTimeout(function(){
                         window.location.reload();
                     },80);
+                    */
                 });
 
             },false);

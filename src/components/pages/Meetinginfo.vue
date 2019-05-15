@@ -125,7 +125,7 @@
 
             <Infofooter class="HideWhenNew"> </Infofooter>
 
-            <div v-show="accessMeetingNote" class="meetingRecord HideWhenNew">
+            <div v-show="accessMeetingNote" class="meetingRecord">
                 <div class="ListCell" @click.stop="viewMeetingNote($event)">
                     <div class="ListCellLeftIcon"><span class="calcfont calc-yidu"></span></div>
                     <div class="ListCellContent">
@@ -140,9 +140,10 @@
                 </div>
             </div>
 
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+
+</div>
 </template>
 
 <script>
@@ -167,12 +168,13 @@ export default {
             meetingNoticeID : "",//会议记录id
             oppID : "",//deal pipeline/opportunity ID
             defaultDateTime:"",//新建单据时候的初始时间
+            id:''  //会议id
         }
     },
 
     beforeRouteEnter: function (to, from, next) {
         //如果是从以下路由回来的就不用刷新页面
-        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'linkedpage') {
+        if (from.name == 'selectlist' || from.name == "groupselectlist" || from.name == 'linkedpage' || from.name == 'meetingNoteinfo') {
             to.meta.isBack = true;
         } else {
             to.meta.isBack = false;
@@ -190,23 +192,19 @@ export default {
         $(window).scrollTop(0);
         var _self = this;
         _self.defaultDateTime = _self.$route.query.defaultDateTime||"";
-        //监听保存
-        // _self.savePageData();
-        // //监听删除
-        // _self.deleteData();
 
         lanTool.updateLanVersion();
         document.activeElement.blur();
 
-        var id = _self.$route.params.id;
-        // console.log("_self.$route.params.id:" + id);
+        _self.id = _self.$route.params.id;
+
         var fromType = "Meetinginfo";
         //若是新增，则隐藏新增不需要显示的模块
-        if (tool.isNullOrEmptyObject(id) || Number(id) <= 0) {
+        if (tool.isNullOrEmptyObject(_self.id) || Number(_self.id) <= 0) {
             $(".HideWhenNew").hide();
             _self.isAddNew = true;
             _self.operation = false;
-
+            _self.accessMeetingNote = false;
         } else {
             $(".HideWhenNew").show();
             _self.isAddNew = false;
@@ -224,57 +222,17 @@ export default {
                 //则联动清空联系人
                 $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").off('click');
                 //渲染控件
-                tool.InitiateInfoPageControl(_self, id, function () {
+                tool.InitiateInfoPageControl(_self, _self.id, function () {
                     _self.initDefaultDateTime();
                     //渲染textarea
                     $("textarea").each(function (index, cur) {
-                        // console.log("change textarea");
                         $(cur).height('25');
                         tool.autoTextarea(cur);
                     });
                     //渲染数据
-                    tool.IniInfoData(fromType, id, function (data) {
-                        //渲染会议记录模块
-                        _self.initMeetingNote(data);
-
-                        //添加ContactsID的事件
-                        var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
-                        if (!tool.isNullOrEmptyObject(filterTemp)) {
-                            $("[data-field='ContactsID']").attr("Filter", filterTemp);
-                            $("[data-field='ContactsID']").off('click').on('click', function () {
-                                var _curObj = $(this);
-                                // console.log(_curObj);
-                                var dataField = _curObj.attr("data-field") || "";
-                                var code = _curObj.attr("Code") || "";
-                                var filter = _curObj.attr("Filter") || "";
-                                var typeValue = _curObj.attr("TypeValue") || "";
-                                var value = _curObj.attr("data-fieldVal") || "";
-                                var selectType = _curObj.attr("data-selectType") || "";
-                                var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
-                                var addUrl = _curObj.attr("data-addUrl") ||"";
-                                var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
-                                var linkNameField = $("[data-field='CompanyID']").text()||"";
-                                var fromType = _curObj.attr("data-fromType") ||"";
-
-                                var parameter = {
-                                    'field': dataField,
-                                    'code': code,
-                                    "typeValue": typeValue,
-                                    'title': title,
-                                    'value': value, //已经选择的值
-                                    'selectType': selectType,
-                                    "filter": filter,
-                                    "addUrl":addUrl,
-                                    "linkIDField":linkIDField,
-                                    "linkNameField":linkNameField,
-                                    "fromType":fromType
-                                };
-                                _self.$router.push({
-                                    path: '/selectlist',
-                                    query: parameter
-                                });
-                            });
-                        }
+                    tool.IniInfoData(fromType, _self.id, function (data) {
+                        // console.log(data);
+                        _self.meetingNoticeID = data["MeetingNoticeID"];
 
                         //渲染textarea
                         $("textarea").each(function (index, cur) {
@@ -282,67 +240,24 @@ export default {
                             tool.autoTextarea(cur);
                         });
 
-                        //场景：当在selectList页面按刷新按钮再回到详情页
-                        //  console.log(eventBus.selectListData);
+                        //联动字段
+                        _self.bindEvent();
+                        _self.initContactsField();
+
+                        //渲染会议记录模块
+                        _self.initMeetingNote();
+
                         if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                             return;
                         }
-                        // console.log(eventBus.selectListData.field);
-                        //更新selectlist控件的结果
-                        var curObj = $(
-                            "[data-field='" + eventBus.selectListData.field + "']"
-                        );
 
+                        //更新selectlist控件的结果
+                        var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
                         if (tool.isNullOrEmptyObject(curObj)) {
                             return;
                         }
                         curObj.attr("data-fieldval", eventBus.selectListData.value.id);
                         curObj.text(eventBus.selectListData.value.text);
-
-                        //若是公司字段，则根据公司值，初始化联系人
-                        if (eventBus.selectListData.field == "CompanyID") {
-                            //联动清空联系人
-                            $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
-                            if(eventBus.selectListData.value.id == '' || eventBus.selectListData.value.id == undefined){
-                                return false;
-                            }
-                            //添加ContactsID的事件
-                            $("[data-field='ContactsID']").attr("Filter", eventBus.selectListData.value.id);
-                            $("[data-field='ContactsID']").off('click').on('click', function () {
-                                var _curObj = $(this);
-                                // console.log(_curObj);
-                                var dataField = _curObj.attr("data-field") || "";
-                                var code = _curObj.attr("Code") || "";
-                                var filter = _curObj.attr("Filter") || "";
-                                var typeValue = _curObj.attr("TypeValue") || "";
-                                var value = _curObj.attr("data-fieldVal") || "";
-                                var selectType = _curObj.attr("data-selectType") || "";
-                                var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
-                                var addUrl = _curObj.attr("data-addUrl") ||"";
-                                var linkIDField = $("[data-field='CompanyID']").attr("data-fieldval") || "";//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
-                                var linkNameField = $("[data-field='CompanyID']").text()||"";
-                                var fromType = _curObj.attr("data-fromType") ||"";
-
-                                var parameter = {
-                                    'field': dataField,
-                                    'code': code,
-                                    "typeValue": typeValue,
-                                    'title': title,
-                                    'value': value, //已经选择的值
-                                    'selectType': selectType,
-                                    "filter": filter,
-                                    "addUrl":addUrl,
-                                    "linkIDField":linkIDField,
-                                    "linkNameField":linkNameField,
-                                    "fromType":fromType
-                                };
-                                _self.$router.push({
-                                    path: '/selectlist',
-                                    query: parameter
-                                });
-                            });
-
-                        }
 
                         //清空全局变量
                         eventBus.selectListData = null;
@@ -354,60 +269,193 @@ export default {
             _self.isFirstEnter = false;
             _self.$route.meta.isBack = false;
 
-            //添加ContactsID的事件
-            var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
-            if (!tool.isNullOrEmptyObject(filterTemp)) {
-                $("[data-field='ContactsID']").attr("Filter", filterTemp);
-                $("[data-field='ContactsID']").off('click').on('click', function () {
-                    var _curObj = $(this);
-                    // console.log(_curObj);
-                    var dataField = _curObj.attr("data-field") || "";
-                    var code = _curObj.attr("Code") || "";
-                    var filter = _curObj.attr("Filter") || "";
-                    var typeValue = _curObj.attr("TypeValue") || "";
-                    var value = _curObj.attr("data-fieldVal") || "";
-                    var selectType = _curObj.attr("data-selectType") || "";
-                    var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
-                    var addUrl = _curObj.attr("data-addUrl") ||"";
-                    var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
-                    var linkNameField = $("[data-field='CompanyID']").text()||"";
-                    var fromType = _curObj.attr("data-fromType") ||"";
+            //联动字段
+            _self.bindEvent();
+            _self.initContactsField();
 
-                    var parameter = {
-                        'field': dataField,
-                        'code': code,
-                        "typeValue": typeValue,
-                        'title': title,
-                        'value': value, //已经选择的值
-                        'selectType': selectType,
-                        "filter": filter,
-                        "addUrl":addUrl,
-                        "linkIDField":linkIDField,
-                        "linkNameField":linkNameField,
-                        "fromType":fromType
-                    };
-                    _self.$router.push({
-                        path: '/selectlist',
-                        query: parameter
-                    });
-                });
-            }
-
-
-            //console.log(eventBus.selectListData);
             if (tool.isNullOrEmptyObject(eventBus.selectListData)) {
                 return;
             }
 
             //更新selectlist控件的结果
-            // console.log(eventBus.selectListData.field);
             var curObj = $("[data-field='" + eventBus.selectListData.field + "']");
             if (tool.isNullOrEmptyObject(curObj)) {
                 return;
             }
             curObj.attr("data-fieldval", eventBus.selectListData.value.id);
             curObj.text(eventBus.selectListData.value.text);
-            //若是公司字段，则根据公司值，初始化联系人
+
+            //渲染会议记录模块
+            _self.initMeetingNote();
+
+            //清空全局变量
+            eventBus.selectListData = null;
+        }
+    },
+    methods: {
+        deleteData: function (e) {
+            var _self = this;
+            var id = _self.$route.params.id;
+            var fromType = "Meetinginfo";
+            tool.DeleteData(fromType, id, _self, function () {});
+
+        },
+
+        savePageData: function (e) {
+            var _self = this;
+            //判断元素是否存在
+            if ($("#startdate").length > 0) {
+                //开始日期和结束日期进行对比
+                var startdate = $("#startdate").val();
+                var enddate = $("#enddate").val();
+
+                var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
+                var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
+
+                var tips = lanTool.lanContent('933_温馨提示');
+                var sure = lanTool.lanContent("545_确定");
+
+                var d1 = new Date(startdate.replace(/\-/g, "\/"));
+                var d2 = new Date(enddate.replace(/\-/g, "\/"));
+
+                //开始日期或者结束日期其中一个为空，一个不为空
+                if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
+                    $.alert(dateEmptyAlert, tips,"", sure);
+                    return;
+                }
+              else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
+                    $.alert(compareAlert, tips,"", sure);
+                    return;
+                } else {
+                    var id = _self.$route.params.id;
+                    var fromType = "Meetinginfo";
+                    tool.SaveOrUpdateData(fromType, id, _self, function () {});
+                }
+            }
+
+        },
+
+        //渲染查看会议记录模块
+        initMeetingNote:function(){
+            var _self = this;
+            _self.oppID = $("[data-field='OppIDTemp']").attr('data-fieldval') || '';
+            if(tool.isNullOrEmptyObject(_self.meetingNoticeID) || tool.isNullOrEmptyObject(_self.oppID) || Number(_self.id) <= 0){
+                _self.accessMeetingNote = false;
+            }else{
+                _self.accessMeetingNote = true;
+            }
+        },
+
+        //点击查看会议记录
+        viewMeetingNote: function (e) {
+            var _self = this;
+            var urlTemp = tool.AjaxBaseUrl();
+            var controlName = '';
+            //传入参数
+            var jsonDatasTemp = {
+                CurrentLanguageVersion: lanTool.currentLanguageVersion,
+                UserName: tool.UserName(),
+                _ControlName: controlName,
+                _RegisterCode: tool.RegisterCode(),
+                AutoID: _self.id
+            };
+            var loadingIndexClassName = tool.showLoading();
+            $.ajax({
+                async: true,
+                type: "post",
+                url: urlTemp,
+                data: jsonDatasTemp,
+                success: function (data) {
+                    tool.hideLoading(loadingIndexClassName);
+                    data = tool.jObject(data);
+                    if (data._ReturnStatus == false) {
+                        tool.showText(tool.getMessage(data));
+                        console.log(tool.getMessage(data));
+                        return true;
+                    }
+                    // data = data._OnlyOneData || [];
+
+                    //请求成功后执行的操作
+                    var target = $(e.target);
+                    var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
+                    var infoName = _self.$route.query.infoName ||"";
+                    scheduleID = Number(scheduleID)<=0?"":scheduleID;
+                    if(tool.isNullOrEmptyObject(scheduleID)){
+                        return;
+                    }
+                    var parameter = {
+                        OppID:_self.oppID,
+                        ScheduleID:_self.id,
+                        onlyView:true,
+                        infoName:infoName,
+                        onlyView:_self.onlyView
+                    };
+                    _self.$router.push({
+                        path: url,
+                        query: parameter
+                    });
+
+                }
+            })
+
+        },
+
+        //新建时初始化时间
+        initDefaultDateTime:function(){
+            var _self = this;
+            if(!tool.isNullOrEmptyObject(_self.defaultDateTime)){
+                $("#startdate,#enddate").val(_self.defaultDateTime);
+            }
+        },
+
+        //根据公司字段给联系人字段绑定事件（联动）
+        bindEvent:function(){
+              var _self = this;
+              //添加ContactsID的事件
+              var filterTemp = $("[data-field='CompanyID']").attr("data-fieldval") || "";
+              if (!tool.isNullOrEmptyObject(filterTemp)) {
+                  $("[data-field='ContactsID']").attr("Filter", filterTemp);
+                  $("[data-field='ContactsID']").off('click').on('click', function () {
+                      var _curObj = $(this);
+                      var dataField = _curObj.attr("data-field") || "";
+                      var code = _curObj.attr("Code") || "";
+                      var filter = _curObj.attr("Filter") || "";
+                      var typeValue = _curObj.attr("TypeValue") || "";
+                      var value = _curObj.attr("data-fieldVal") || "";
+                      var selectType = _curObj.attr("data-selectType") || "";
+                      var title = lanTool.lanContent(_curObj.attr("data-lanid") || "");
+                      var addUrl = _curObj.attr("data-addUrl") ||"";
+                      var linkIDField = filterTemp;//为了在弹出页面的新增上，带出id和name，如新增联系人，需要带上当前公司信息
+                      var linkNameField = $("[data-field='CompanyID']").text()||"";
+                      var fromType = _curObj.attr("data-fromType") ||"";
+
+                      var parameter = {
+                          'field': dataField,
+                          'code': code,
+                          "typeValue": typeValue,
+                          'title': title,
+                          'value': value, //已经选择的值
+                          'selectType': selectType,
+                          "filter": filter,
+                          "addUrl":addUrl,
+                          "linkIDField":linkIDField,
+                          "linkNameField":linkNameField,
+                          "fromType":fromType
+                      };
+                      _self.$router.push({
+                          path: '/selectlist',
+                          query: parameter
+                      });
+                  });
+              }
+        },
+
+        //根据公司值，初始化联系人
+        initContactsField:function(){
+            var _self = this;
+            if(tool.isNullOrEmptyObject(eventBus.selectListData)){
+                return;
+            }
             if (eventBus.selectListData.field == "CompanyID") {
                 //清空数据,移除点击事件
                 $("[data-field='ContactsID']").text("").attr("data-fieldVal", "").attr("Filter", "").off('click');
@@ -418,7 +466,6 @@ export default {
                 $("[data-field='ContactsID']").attr("Filter", eventBus.selectListData.value.id);
                 $("[data-field='ContactsID']").off('click').on('click', function () {
                     var _curObj = $(this);
-                    // console.log(_curObj);
                     var dataField = _curObj.attr("data-field") || "";
                     var code = _curObj.attr("Code") || "";
                     var filter = _curObj.attr("Filter") || "";
@@ -451,107 +498,6 @@ export default {
 
             }
 
-            //清空全局变量
-            eventBus.selectListData = null;
-        }
-    },
-    methods: {
-        deleteData: function (e) {
-            var _self = this;
-            var id = _self.$route.params.id;
-            var fromType = "Meetinginfo";
-            tool.DeleteData(fromType, id, _self, function () {});
-            // setTimeout(function () {
-            //     $("#delete").off("click").on("click", function () {
-            //         tool.DeleteData(fromType, id, _self, function () {});
-            //     });
-            // }, 0);
-        },
-        savePageData: function (e) {
-            var _self = this;
-            // setTimeout(function () {
-            //     $("#save").off("click").on("click", function () {
-                    //判断元素是否存在
-                    // console.log("startdate.length:" + $("#startdate").length);
-                    if ($("#startdate").length > 0) {
-                        //开始日期和结束日期进行对比
-                        var startdate = $("#startdate").val();
-                        var enddate = $("#enddate").val();
-
-                        var compareAlert = lanTool.lanContent("934_开始日期不能大于或等于结束日期") || "";
-                        var dateEmptyAlert = lanTool.lanContent("935_开始日期或者结束日期不能为空") || "";
-
-                        var tips = lanTool.lanContent('933_温馨提示');
-                        var sure = lanTool.lanContent("545_确定");
-
-                        var d1 = new Date(startdate.replace(/\-/g, "\/"));
-                        var d2 = new Date(enddate.replace(/\-/g, "\/"));
-
-                        //开始日期或者结束日期其中一个为空，一个不为空
-                        if (tool.isNullOrEmptyObject(startdate) || tool.isNullOrEmptyObject(enddate)) {
-                            $.alert(dateEmptyAlert, tips,"", sure);
-                            return;
-                        }
-                      else if ((!tool.isNullOrEmptyObject(startdate) && !tool.isNullOrEmptyObject(enddate)) && d1 >= d2) {
-                            $.alert(compareAlert, tips,"", sure);
-                            return;
-                        } else {
-                            var id = _self.$route.params.id;
-                            var fromType = "Meetinginfo";
-                            tool.SaveOrUpdateData(fromType, id, _self, function () {});
-                        }
-                    }
-
-            //     });
-            // }, 0);
-        },
-        //渲染查看会议记录模块
-        initMeetingNote:function(data){
-            var _self = this;
-            _self.meetingNoticeID = data["MeetingNoticeID"] || "-1";
-            _self.oppID = data["OppIDTemp"] || "";//为了防止下一个页面的回调函数执行顺序问题，因此将OppID改成OppIDTemp
-            if(tool.isNullOrEmptyObject(_self.meetingNoticeID)){
-                //modify by Dylan 之前是没有绑定不能看，现在改成没有绑定也可以看
-                //_self.accessMeetingNote = false;
-                _self.accessMeetingNote = true;
-                //end modify
-            }else{
-                _self.accessMeetingNote = true;
-            }
-        },
-        viewMeetingNote: function (e) {
-            var _self = this;
-            var target = $(e.target);
-            var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
-            var scheduleID = _self.$route.params.id||"";
-            var infoName = _self.$route.query.infoName ||"";
-            if(tool.isNullOrEmptyObject(scheduleID)){
-                return;
-            }
-            scheduleID = Number(scheduleID)<=0?"":scheduleID;
-            var parameter = {
-                OppID:_self.oppID,
-                ScheduleID:scheduleID,
-                onlyView:true,
-                infoName:infoName,
-                onlyView:_self.onlyView
-            };
-
-            _self.$router.push({
-                path: url,
-                query: parameter
-            });
-
-            // this.$router.push({
-            //     path: '/MeetingNoteinfo/-1',
-            // });
-        },
-        //新建时初始化时间
-        initDefaultDateTime:function(){
-            var _self = this;
-            if(!tool.isNullOrEmptyObject(_self.defaultDateTime)){
-                $("#startdate,#enddate").val(_self.defaultDateTime);
-            }
         }
     }
 
