@@ -374,8 +374,8 @@ export default {
                         console.log(tool.getMessage(data));
                         return true;
                     }
-                    var hasToSave = data._OnlyOneData || "true";
-                    hasToSave = hasToSave.toLowerCase();
+                    var hasToSave = (data._OnlyOneData.toString().toLowerCase()) || "true";
+                    console.log(hasToSave);
                     if(hasToSave == "true"){
                         //需要提示用户保存当前数据
                         tool.alert(lanTool.lanContent('1000164_请先保存当前会议！'));
@@ -387,10 +387,10 @@ export default {
                     var target = $(e.target);
                     var url = "/MeetingNoteinfo/" + _self.meetingNoticeID;
                     var infoName = _self.$route.query.infoName ||"";
-                    scheduleID = Number(scheduleID)<=0?"":scheduleID;
-                    if(tool.isNullOrEmptyObject(scheduleID)){
-                        return;
-                    }
+                    //scheduleID = Number(scheduleID)<=0?"":scheduleID;
+                    // if(tool.isNullOrEmptyObject(scheduleID)){
+                    //     return;
+                    // }
                     var parameter = {
                         OppID:_self.oppID,
                         ScheduleID:_self.id,
