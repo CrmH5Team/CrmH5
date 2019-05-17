@@ -226,7 +226,7 @@ export default {
 
                     //渲染数据
                     tool.IniInfoData(fromType, id, function (data) {
-                        console.log(data);
+
                         _self.scheduleIDNew = data["ScheduleID"]||"";
                         // console.log(_self.companyID);
 
@@ -247,10 +247,12 @@ export default {
                         //更新selectlist控件的结果
                         var filedName = eventBus.selectListData.field;
                         var idTemp = eventBus.selectListData.value.id || "";
+
                         if (filedName == "ScheduleID") {
                             _self.handleScheduleID(idTemp, false);
                         } else {
                             _self.handleOppID(idTemp, false,true);
+
                         }
 
                         //清空全局变量
@@ -291,14 +293,12 @@ export default {
             var id = _self.$route.params.id;
             var fromType = "MeetingNoteinfo";
             tool.SaveOrUpdateData(fromType, id, _self, function (dataTemp) {
-                //console.log(dataTemp);
+                // console.log(dataTemp);
                 tool.topTipSuccess(tool.getMessage(dataTemp),function(){
 
-                    _self.$router.back(-1);
-                    return;
-                    /*
                     var autoIDTemp = dataTemp._OnlyOneData || "";
-                    if(tool.isNullOrEmptyObject(autoIDTemp)){
+                    //如果不是新增保存后返回上一页，新增保存就在当前页刷新
+                    if (tool.isNullOrEmptyObject(id) || Number(id) > 0) {
                         _self.$router.back(-1);
                         return;
                     }
@@ -308,11 +308,12 @@ export default {
                         path: path,
                         query: query
                     });
+
                     //保证地址替换后再刷新
                     setTimeout(function(){
                         window.location.reload();
                     },80);
-                    */
+
                 });
 
             },false);
